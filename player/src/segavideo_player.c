@@ -126,6 +126,7 @@ static uint16_t selectedIndex;
 
 // Forward declarations:
 static bool sendCommand(uint16_t command, uint16_t arg0);
+static bool waitForReply(uint16_t timeout_seconds);
 static bool sendCommandAndWait(
     uint16_t command, uint16_t arg0, uint16_t timeout_seconds);
 static void statusMessage(uint16_t pal, const char* message);
@@ -527,6 +528,11 @@ void segavideo_stop() {
 
   if (regionSize) {
     // Playing from special hardware, so we should tell it to stop streaming.
+
+    // We may have just sent CMD_FLIP_REGION without waiting.  Make sure we
+    // have the token before sending a stop command.
+    waitForReply(/* timeout_seconds= */ 1);
+
     uint16_t command_timeout = 30; // seconds
     if (!sendCommandAndWait(CMD_STOP_VIDEO, 0x00, command_timeout)) {
       statusMessage(PAL_YELLOW, "Failed to stop video stream!");
