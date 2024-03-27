@@ -441,7 +441,9 @@ def generate_final_output(args, frame_dir, sound_dir):
   frame_path_index = 0
 
   # Create the output folder.
-  os.makedirs(os.path.dirname(args.output), exist_ok=True)
+  output_folder = os.path.dirname(args.output)
+  if output_folder:
+    os.makedirs(output_folder, exist_ok=True)
 
   with open(sound_path, 'rb') as sound_file:
     with open(args.output, 'wb') as f:
