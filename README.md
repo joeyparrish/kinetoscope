@@ -1,4 +1,10 @@
-# ![Kinetoscope](logo.svg)
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="logo-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="logo.svg">
+    <img alt="Kinetoscope Logo" src="logo.svg">
+  </picture>
+</h1>
 
 A Sega Genesis / Mega Drive Video Player
 
