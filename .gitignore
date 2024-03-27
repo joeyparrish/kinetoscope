@@ -1,2 +1,6 @@
 # Swap files for ViM.
 *.sw*
+
+# When linking this source into various emulators, some of them may place
+# object files into our sources.  Ignore them.
+*.o

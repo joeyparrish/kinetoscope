@@ -1,0 +1,123 @@
+commit 6bec5643a9cb6252489460a2e795f261f2c69d56
+Author: Joey Parrish <joey.parrish@gmail.com>
+Date:   Tue Mar 26 19:17:32 2024 -0700
+
+    Emulate Kinetoscope hardware in BlastEm 0.6.2
+    
+    Patch based on https://github.com/libretro/blastem revision 277e4a62
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..8f39f7f
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,8 @@
++*.o
++*.sw*
++blastem
++dis
++termhelper
++vgmplay
++zdis
++kinetoscope
+diff --git a/Makefile b/Makefile
+index 0dddc9f..c3ab753 100644
+--- a/Makefile
++++ b/Makefile
+@@ -221,6 +221,7 @@ endif
+ 
+ MAINOBJS=blastem.o system.o genesis.o debug.o gdb_remote.o vdp.o $(RENDEROBJS) io.o romdb.o hash.o menu.o xband.o \
+ 	realtec.o i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
++	kinetoscope/emulator-patches/videostream.o kinetoscope/player/src/segavideo_parser.o \
+ 	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o zip.o bindings.o jcart.o gen_player.o
+ 
+ LIBOBJS=libblastem.o system.o genesis.o debug.o gdb_remote.o vdp.o io.o romdb.o hash.o xband.o realtec.o \
+@@ -277,6 +278,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
+ CFLAGS+= -fpic -DIS_LIB
+ endif
+ 
++CFLAGS+= -I. -Ikinetoscope/player/inc/
++
+ all : $(ALL)
+ 
+ libblastem.$(SO) : $(LIBOBJS)
+diff --git a/default.cfg b/default.cfg
+index 8274766..33813e4 100644
+--- a/default.cfg
++++ b/default.cfg
+@@ -395,6 +395,8 @@ system {
+ 	#MegaWiFi allows ROMs to make connections to the internet
+ 	#so it should only be enabled for ROMs you trust
+ 	megawifi off
++	#videostream ROMs connect to the internet as well
++	videostream on
+ 	#Model of the emulated Gen/MD system, see systems.cfg for a list of options
+ 	model md1va3
+ }
+diff --git a/romdb.c b/romdb.c
+index 79afa76..fee2971 100644
+--- a/romdb.c
++++ b/romdb.c
+@@ -14,6 +14,7 @@
+ #include "megawifi.h"
+ #include "jcart.h"
+ #include "blastem.h"
++#include "kinetoscope/emulator-patches/videostream.h"
+ 
+ #define DOM_TITLE_START 0x120
+ #define DOM_TITLE_END 0x150
+@@ -338,6 +339,54 @@ void add_memmap_header(rom_info *info, uint8_t *rom, uint32_t size, memmap_chunk
+ 			warning("ROM uses MegaWiFi, but it is disabled\n");
+ 		}
+ 		return;
++	} else if(!memcmp("SEGA VIDEOSTREAM", rom + 0x100, strlen("SEGA VIDEOSTREAM"))) {
++		info->mapper_type = MAPPER_NONE;
++		info->map_chunks = base_chunks + 3;
++		info->map = malloc(sizeof(memmap_chunk) * info->map_chunks);
++		memset(info->map, 0, sizeof(memmap_chunk)*3);
++		memcpy(info->map+3, base_map, sizeof(memmap_chunk) * base_chunks);
++
++		info->map[0].start = 0x200000;
++		info->map[0].end   = 0x400000;
++		info->map[0].mask  = 0x1FFFFF;
++		info->map[0].flags = MMAP_READ;
++		uint32_t sram_size = info->map[0].end - info->map[0].start;
++		void* sram_buffer = info->map[0].buffer = calloc(sram_size, 1);
++
++		// In hardware, this whole range will trigger the /TIME signal.
++		info->map[1].start = 0xA13000;
++		info->map[1].end   = 0xA13100;
++		// In our hardware, we will pass A3-A1 to the UART address lines,
++		// A5-A4 (high) for the UART's CS0 and CS1, and /TIME for the UART's /CS2.
++		// Therefore our port address is 0xA13030 and the mask is A5-A0, or 0x3F.
++		// In real hardware, the range would wrap around and it would respond to
++		// 0x...30, 0x...70, 0x...B0, 0x...F0.	In our software, we will use a 0x30
++		// to avoid conflicts if it is flashed to a MegaWifi cart (which uses 0xC0).
++		info->map[1].mask  = 0x00003F;
++
++		info->map[2].start = 0x000000;
++		info->map[2].end   = 0x200000;
++		if (rom_end < info->map[2].end) {
++			info->map[2].end = rom_end;
++		}
++		info->map[2].mask  = 0x1FFFFF;
++		info->map[2].flags = MMAP_READ;
++		info->map[2].buffer = rom;
++
++		if (!strcmp(
++			"on",
++			tern_find_path_default(config, "system\0videostream\0", (tern_val){.ptrval="off"}, TVAL_PTR).ptrval)
++		) {
++			info->map[1].write_16 = videostream_write_16;
++			info->map[1].write_8 = videostream_write_8;
++			info->map[1].read_16 = videostream_read_16;
++			info->map[1].read_8 = videostream_read_8;
++
++			videostream_init(sram_buffer, sram_size);
++		} else {
++			warning("ROM uses videostream, but it is disabled\n");
++		}
++		return;
+ 	} else if (has_ram_header(rom, size)) {
+ 		uint32_t ram_start = read_ram_header(info, rom);
+ 
