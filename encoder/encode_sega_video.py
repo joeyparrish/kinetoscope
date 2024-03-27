@@ -8,7 +8,7 @@
 
 """Encode videos into a format appropriate for streaming to a Sega Genesis.
 
-Requires: ImageMagick, ffmpeg with PNG output support.
+Requires ffmpeg with PNG and PPM output support.
 
 You can fit ~13.6s of audio+video in a 4MB ROM with 128kB left for the player.
 """
@@ -61,22 +61,18 @@ def main(args):
     # resampled to the target sample rate and resolution.
     extract_frames_and_audio(args, crop, fullcolor_dir, tmp_dir)
 
-    if args.detect_scenes:
-      # Determine where scene changes are, to optimize the quantization process
-      # and improve color quality.
-      scenes = detect_scene_changes(args, fullcolor_dir)
+    # Determine where scene changes are, to optimize the quantization process
+    # and improve color quality.
+    scenes = detect_scene_changes(args, fullcolor_dir)
 
-      # Organize each scene's frames into a folder.
-      construct_scenes(fullcolor_dir, scenes_dir, scenes)
+    # Organize each scene's frames into a folder.
+    construct_scenes(fullcolor_dir, scenes_dir, scenes)
 
-      # Quantize each scene.
-      quantize_scenes(scenes_dir, quantized_scenes_dir, scenes)
+    # Quantize each scene.
+    quantize_scenes(scenes_dir, quantized_scenes_dir, scenes)
 
-      # Turn those scenes into a single sequence of frames again.
-      recombine_scenes(quantized_scenes_dir, quantized_dir)
-    else:
-      # Quantize each frame.
-      quantize_frames(fullcolor_dir, quantized_dir)
+    # Turn those scenes into a single sequence of frames again.
+    recombine_scenes(quantized_scenes_dir, quantized_dir)
 
     # Encode each frame into Sega-formatted tiles.
     encode_frames_to_tiles(quantized_dir, sega_format_dir)
@@ -248,36 +244,6 @@ def construct_scenes(input_dir, output_dir, scenes):
     print('\rCreated {} / {} scenes...'.format(scene_index, len(scenes)),
           end='')
 
-  print('')
-
-
-def quantize_frames(input_dir, output_dir):
-  all_inputs = glob.glob(os.path.join(input_dir, '*.png'))
-  count = 0
-
-  for input_path in all_inputs:
-    input_filename = os.path.basename(input_path)
-    output_filename = input_filename.replace('.png', '.ppm')
-    output_path = os.path.join(output_dir, output_filename)
-
-    args = [
-      'convert',
-      # Input.
-      input_path,
-      # Disable dithering.
-      '+dither',
-      # Quantize to 15 colors (16 color palette, but color 0 is always treated
-      # as transparent).
-      '-colors', '15',
-      # Output.
-      output_path,
-    ]
-
-    subprocess.run(check=True, args=args)
-
-    count += 1
-    print('\rQuantized {} / {} frames...'.format(count, len(all_inputs)),
-          end='')
   print('')
 
 
@@ -585,11 +551,6 @@ if __name__ == '__main__':
       default=3,
       help='Chunk length in seconds.'
            ' Chunks should fit in 1MB or less with all headers.')
-  parser.add_argument('-d', '--detect-scenes',
-      action='store_true',
-      help='Use scene-detection to optimize color quantization.'
-           ' This reduces flickering colors by quantizing entire scenes'
-           ' instead of individual frames.')
   parser.add_argument('--scene-detection-threshold',
       type=float,
       default=0.5,
@@ -597,7 +558,8 @@ if __name__ == '__main__':
            ' This is applied after padding and scaling, so depending on the'
            ' input resolution, this may need to be tweaked. For vertical'
            ' video, we recommend something more like 0.2 because so many of'
-           ' the pixels will be occupied by black padding.')
+           ' the pixels will be occupied by black padding. To generate a'
+           ' unique palette per frame instead of per scene, set to 0.')
 
   args = parser.parse_args()
   main(args)

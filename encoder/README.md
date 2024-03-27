@@ -7,13 +7,12 @@ Encode videos into a format appropriate for streaming to a Sega Genesis.
 
 The encoder requires:
  - Python 3
- - ImageMagick
- - a copy of FFmpeg with PNG output support
+ - a copy of ffmpeg with PNG and PPM output support
 
 On Ubuntu, you can install these with:
 
 ```sh
-sudo apt install python3 imagemagick ffmpeg
+sudo apt install python3 ffmpeg
 ```
 
 
@@ -71,7 +70,8 @@ are a few that require additional notes:
     [`hardware/`](../hardware/) and the emulation of it in
     [`emulator-patches/`](../emulator-patches/) will not work.
 
-  * `--detect-scenes`: An experimental flag to optimize the color palette by
-    scene, rather than frame-by-frame.  This consumes a lot of memory and has
-    not yet demonstrated a concrete benefit to quality, so it is currently off
-    by default.  See also `--scene-detection-threshold` under `--help`.
+  * `--scene-detection-threshold`: The sensitivity of the scene-change
+    detection, which is used to optimize color quantization by choosing a
+    stable palette per scene.  The value is a ratio of changed pixels that
+    constitutes a new scene, from 0-1.  A threshold of 0 disables scene
+    detection and creates an independent palette for each frame.
