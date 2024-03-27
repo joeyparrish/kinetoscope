@@ -40,11 +40,12 @@ next to it that ends in `.h`, which you will reference in your code to get the
 address of the video in ROM.
 
 For a complete example of embedded video in a ROM, see the
-`embed-video-in-rom/` folder.
+[`embed-video-in-rom/`](../embed-video-in-rom/) folder.
 
-To prepare video for a streaming server (`server/` folder) or for use by an
-emulator (`emulator-patches/` folder), omit the `--generate-resource-file`
-flag, as well as the start and end (`-s` and `-e`) flags.
+To prepare video for a streaming server ([`server/`](../server/) folder) or for
+use by an emulator ([`emulator-patches/`](../emulator-patches/) folder), omit
+the `--generate-resource-file` flag, as well as the start and end (`-s` and
+`-e`) flags.
 
 
 ## Other Settings
@@ -67,7 +68,8 @@ are a few that require additional notes:
   * `--chunk-length`: The default chunk length is tuned to make chunks at the
     default frame rate and sample rate fit inside the SRAM buffer of our
     special hardware.  If the chunk size exceeds 1MB, the streaming hardware in
-    `hardware/` and the emulation of it in `emulator-patches/` will not work.
+    [`hardware/`](../hardware/) and the emulation of it in
+    [`emulator-patches/`](../emulator-patches/) will not work.
 
   * `--detect-scenes`: An experimental flag to optimize the color palette by
     scene, rather than frame-by-frame.  This consumes a lot of memory and has

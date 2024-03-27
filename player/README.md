@@ -22,7 +22,7 @@ To play video embedded in the ROM, you will need to:
 5. In your while loop, call `segavideo_processFrames()` followed by
    `SYS_doVBlankProcess()`.
 
-For a sample project, see the `embed-video-in-rom/` folder.
+For a sample project, see the [`embed-video-in-rom/`](../embed-video-in-rom/) folder.
 
 
 ## Streaming video over WiFi
@@ -31,8 +31,8 @@ To stream video over WiFi, you will need to:
 
 1. Include the player library sources, headers, and static resources into your
    SGDK project.
-2. Have the right hardware (`hardware/` folder) or emulator patches
-   (`emulator-patches/` folder).
+2. Have the right hardware ([`hardware/`](../hardware/) folder) or emulator patches
+   ([`emulator-patches/`](../emulator-patches/) folder).
 3. Call `segavideo_init()` early in `main()`.  This will set the video mode to
    256x224 to match the encoding.
 4. Call `segavideo_checkHardware()` to confirm that the streaming hardware is
@@ -48,14 +48,16 @@ To stream video over WiFi, you will need to:
 9. While `segavideo_isPlaying()`, call `segavideo_processFrames()` followed by
    `SYS_doVBlankProcess()`.
 
-For a sample project, see the `stream-with-special-hardware/` folder.
+For a sample project, see the
+[`stream-with-special-hardware/`](../stream-with-special-hardware/) folder.
 
 
 ## Technical details
 
 ### Video format
 
-The video format is detailed in `inc/segavideo_format.h`.
+The video format is detailed in structs and comments in
+[`inc/segavideo_format.h`](inc/segavideo_format.h).
 
 It begins with an overall header with information about the total number of
 frames, audio samples, etc.  Then it proceeds as a series of chunks, each of
