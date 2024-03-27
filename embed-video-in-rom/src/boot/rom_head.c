@@ -31,7 +31,7 @@ const ROMHeader rom_header = {
   // RAM address range.
   0x00FF0000,
   0x00FFFFFF,
-  // No SRAM.
+  // No SRAM (for saved games).
   "  ",
   // A0 = 16-bit SRAM, 20 = reserved.
   0xA020,
