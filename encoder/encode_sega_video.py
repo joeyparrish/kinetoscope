@@ -16,6 +16,7 @@ You can fit ~13.6s of audio+video in a 4MB ROM with 128kB left for the player.
 import argparse
 import glob
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -29,13 +30,6 @@ FILE_MAGIC = b"what nintendon't"
 # compatibility, we define a constant for the file format that is written into
 # the output file.
 FILE_FORMAT = 1
-
-# To deal with very large images, we may need to override the ImageMagick
-# policies on maximum image size and/or memory usage.
-IMAGEMAGICK_LARGE_IMAGE_ENV = {
-  'MAGICK_CONFIGURE_PATH': os.path.join(
-      os.path.dirname(__file__), 'imagemagick-policy'),
-}
 
 
 def main(args):
@@ -72,17 +66,17 @@ def main(args):
       # and improve color quality.
       scenes = detect_scene_changes(args, fullcolor_dir)
 
-      # Construct single images per scene for quantization.
+      # Organize each scene's frames into a folder.
       construct_scenes(fullcolor_dir, scenes_dir, scenes)
 
       # Quantize each scene.
-      quantize_frames(scenes_dir, quantized_scenes_dir, scenes=True)
+      quantize_scenes(scenes_dir, quantized_scenes_dir, scenes)
 
-      # Split those scenes into individual frames again.
-      split_scenes(quantized_scenes_dir, quantized_dir, scenes)
+      # Turn those scenes into a single sequence of frames again.
+      recombine_scenes(quantized_scenes_dir, quantized_dir)
     else:
       # Quantize each frame.
-      quantize_frames(fullcolor_dir, quantized_dir, scenes=False)
+      quantize_frames(fullcolor_dir, quantized_dir)
 
     # Encode each frame into Sega-formatted tiles.
     encode_frames_to_tiles(quantized_dir, sega_format_dir)
@@ -238,19 +232,17 @@ def detect_scene_changes(args, frame_dir):
 
 def construct_scenes(input_dir, output_dir, scenes):
   scene_index = 0
+
   for start_frame, end_frame in scenes:
-    # Using ImageMagick to combine frames vertically into one long scene.
-    args = ['convert', '-append']
+    scene_dir = os.path.join(output_dir, 'scene_{:05d}'.format(scene_index))
+    os.makedirs(scene_dir)
 
-    # The input frames for this scene.
-    for num in range(start_frame, end_frame + 1):
-      args.append(os.path.join(input_dir, 'frame_{:05d}.png'.format(num)))
-
-    # The output for this scene.
-    args.append(
-        os.path.join(output_dir, 'scene_{:05d}.png'.format(scene_index)))
-
-    subprocess.run(check=True, args=args, env=IMAGEMAGICK_LARGE_IMAGE_ENV)
+    for input_num in range(start_frame, end_frame + 1):
+      # Maintain the same frame numbers when splitting.
+      frame_name = 'frame_{:05d}.png'.format(input_num)
+      input_frame = os.path.join(input_dir, frame_name)
+      output_frame = os.path.join(scene_dir, frame_name)
+      shutil.copy(input_frame, output_frame)
 
     scene_index += 1
     print('\rCreated {} / {} scenes...'.format(scene_index, len(scenes)),
@@ -259,10 +251,9 @@ def construct_scenes(input_dir, output_dir, scenes):
   print('')
 
 
-def quantize_frames(input_dir, output_dir, scenes):
+def quantize_frames(input_dir, output_dir):
   all_inputs = glob.glob(os.path.join(input_dir, '*.png'))
   count = 0
-  thing = 'scene' if scenes else 'frame'
 
   for input_path in all_inputs:
     input_filename = os.path.basename(input_path)
@@ -270,7 +261,6 @@ def quantize_frames(input_dir, output_dir, scenes):
     output_path = os.path.join(output_dir, output_filename)
 
     args = [
-      # Convert tool from ImageMagick.
       'convert',
       # Input.
       input_path,
@@ -283,39 +273,74 @@ def quantize_frames(input_dir, output_dir, scenes):
       output_path,
     ]
 
-    subprocess.run(check=True, args=args, env=IMAGEMAGICK_LARGE_IMAGE_ENV)
+    subprocess.run(check=True, args=args)
 
     count += 1
-    print('\rQuantized {} / {} {}s...'.format(count, len(all_inputs), thing),
+    print('\rQuantized {} / {} frames...'.format(count, len(all_inputs)),
           end='')
   print('')
 
 
-def split_scenes(input_dir, output_dir, scenes):
+def quantize_scenes(input_dir, output_dir, scenes):
+  scene_paths = sorted(glob.glob(os.path.join(input_dir, '*')))
   scene_index = 0
+
   while scene_index < len(scenes):
     start_frame, end_frame = scenes[scene_index]
-    scene_size = end_frame - start_frame + 1
-    scene_path = os.path.join(input_dir, 'scene_{:05d}.ppm'.format(scene_index))
-    # Not filled by us, sent directly to ImageMagick.
-    output_template = os.path.join(output_dir, 'frame_%05d.ppm')
+    input_scene_dir = scene_paths[scene_index]
+    scene_name = os.path.basename(input_scene_dir)
 
-    # Use ImageMagick to split the scene (verticaly) into frames.
+    output_scene_dir = os.path.join(output_dir, scene_name)
+    os.makedirs(output_scene_dir)
+
+    # Create an optimized palette first.
+    output_pal_path = os.path.join(output_scene_dir, 'pal.png')
     args = [
-      'convert',
-      scene_path,
-      '+repage',
-      '-crop', '256x224',
-      '-scene', str(start_frame),
-      output_template,
+      'ffmpeg',
+      # Make no noise, except on error.
+      '-hide_banner', '-loglevel', 'error', '-nostats',
+      # Input and starting frame number.
+      '-start_number', str(start_frame),
+      '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
+      # Compute an optimized 15-color palette (16 color palette, but color 0 is
+      # always treated as transparent).
+      '-vf', 'palettegen=max_colors=15',
+      # Output a palette image.
+      output_pal_path,
     ]
+    subprocess.run(check=True, args=args)
 
-    subprocess.run(check=True, args=args, env=IMAGEMAGICK_LARGE_IMAGE_ENV)
+    args = [
+      'ffmpeg',
+      # Make no noise, except on error.
+      '-hide_banner', '-loglevel', 'error', '-nostats',
+      # Input and starting frame number.
+      '-start_number', str(start_frame),
+      '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
+      # Palette.
+      '-i', output_pal_path,
+      # Use the optimized palette to quantize all the frames in the scene.
+      '-lavfi', 'paletteuse=dither=none',
+      # Output individual frames in PPM format with the same frame numbers.
+      '-start_number', str(start_frame),
+      os.path.join(output_scene_dir, 'frame_%05d.ppm'),
+    ]
+    subprocess.run(check=True, args=args)
 
     scene_index += 1
-    print('\rSplit {} / {} scenes...'.format(scene_index, len(scenes)),
+    print('\rQuantized {} / {} scenes...'.format(scene_index, len(scenes)),
           end='')
   print('')
+
+
+def recombine_scenes(input_dir, output_dir):
+  # Since we maintained frame numbers during the split and quantization
+  # process, we simply combine the contents of all the input directories into
+  # the output directory.
+  scene_paths = glob.glob(os.path.join(input_dir, '*'))
+  for input_scene_dir in scene_paths:
+    for input_frame in glob.glob(os.path.join(input_scene_dir, '*.ppm')):
+      shutil.move(input_frame, output_dir)
 
 
 def encode_frames_to_tiles(input_dir, output_dir):
