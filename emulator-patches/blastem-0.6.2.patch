@@ -1,6 +1,6 @@
-commit 6bec5643a9cb6252489460a2e795f261f2c69d56
+commit 3dfb853f764898bdc713f70fa12244572e237be9
 Author: Joey Parrish <joey.parrish@gmail.com>
-Date:   Tue Mar 26 19:17:32 2024 -0700
+Date:   Wed Mar 27 07:39:28 2024 -0700
 
     Emulate Kinetoscope hardware in BlastEm 0.6.2
     
@@ -21,7 +21,7 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..c3ab753 100644
+index 0dddc9f..9aee4dc 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -221,6 +221,7 @@ endif
@@ -42,20 +42,21 @@ index 0dddc9f..c3ab753 100644
  
  libblastem.$(SO) : $(LIBOBJS)
 diff --git a/default.cfg b/default.cfg
-index 8274766..33813e4 100644
+index 8274766..550f041 100644
 --- a/default.cfg
 +++ b/default.cfg
-@@ -395,6 +395,8 @@ system {
+@@ -395,6 +395,9 @@ system {
  	#MegaWiFi allows ROMs to make connections to the internet
  	#so it should only be enabled for ROMs you trust
  	megawifi off
-+	#videostream ROMs connect to the internet as well
++	#videostream ROMs get a simulated connection, but do not really connect to
++	#the internet, so this is a safe default
 +	videostream on
  	#Model of the emulated Gen/MD system, see systems.cfg for a list of options
  	model md1va3
  }
 diff --git a/romdb.c b/romdb.c
-index 79afa76..fee2971 100644
+index 79afa76..d8535a2 100644
 --- a/romdb.c
 +++ b/romdb.c
 @@ -14,6 +14,7 @@
