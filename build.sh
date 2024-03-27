@@ -48,4 +48,4 @@ docker run \
   ghcr.io/joeyparrish/sgdk
 
 # Show the size of the output.
-ls -sh out/rom.bin
+ls -sh $relative_dir/out/rom.bin
