@@ -48,6 +48,7 @@
 #define DELAY_GENERAL 0.5
 #define DELAY_NETWORK 5
 
+// TODO: Get this from disk instead
 #define CANNED_VIDEO_LIST \
     "Never Gonna Give You Up\n" \
     "Zoey Ann the Boxer\n" \
@@ -120,10 +121,6 @@ static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size) {
     // Should this nonsense only happen for little-endian builds?
     global_sram_buffer[(offset + i) ^ 1] = data[i];
   }
-}
-
-static void write_sram_string(const char *data) {
-  write_sram(0, (uint8_t*)data, strlen(data) + 1);
 }
 
 static void write_sram_video_chunk(const SegaVideoChunkInfo* chunk) {
@@ -238,6 +235,9 @@ static void start_video() {
   }
 
   if (!video_path) {
+    // Write a 0 to SRAM, which will make sure any old data doesn't look like a
+    // valid video.
+    write_sram(0, (const uint8_t*)"", 1);
     printf("Videostream: Unknown video (%d)!\n", global_arg);
     return;
   }
@@ -334,16 +334,46 @@ static void flip_region() {
   fill_region();
 }
 
+static void get_video_list() {
+  uint8_t page_num = global_arg >> 8;
+  uint8_t page_size = global_arg & 0xff;
+  printf("VideoStream: list page_num = %d, page_size = %d\n",
+      page_num, page_size);
+
+  // Find the requested page.
+  const char* video_list = CANNED_VIDEO_LIST;
+  for (int i = 0; i < page_num * page_size; ++i) {
+    video_list = index(video_list, '\n');
+    if (!video_list) break;
+    video_list += 1;  // Move past the newline.
+  }
+
+  if (video_list) {
+    // Include the NUL terminator in the length.
+    uint32_t video_list_len = strlen(video_list) + 1;
+    // The list on disk might be longer than what we can fit in SRAM.
+    if (video_list_len > REGION_SIZE) {
+      video_list_len = REGION_SIZE - 1;
+    }
+
+    // Write the requested page to SRAM.
+    write_sram(0, (const uint8_t*)video_list, video_list_len);
+  } else {
+    // The page was not found, so write a blank string.
+    printf("Videostream: Unable to find requested page!\n");
+    write_sram(0, (const uint8_t*)"", 1);
+  }
+}
+
 static void execute_command() {
   if (global_command == CMD_ECHO) {
     // Used by the ROM to check for the necessary streaming hardware.
     uint16_t value = global_arg;
     printf("Videostream: CMD_ECHO 0x%04x\n", value);
-    write_sram(0, (uint8_t*)&value, sizeof(value));
+    write_sram(0, (const uint8_t*)&value, sizeof(value));
   } else if (global_command == CMD_LIST_VIDEOS) {
-    // Write list to SRAM.
     printf("Videostream: CMD_LIST_VIDEOS\n");
-    write_sram_string(CANNED_VIDEO_LIST);
+    get_video_list();
   } else if (global_command == CMD_START_VIDEO) {
     printf("Videostream: CMD_START_VIDEO\n");
     start_video();

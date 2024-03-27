@@ -36,13 +36,23 @@ static uint16_t nextFrameNum;
 
 // Menu
 static char **menuLines;
-static uint16_t maxIndex;
+static uint16_t maxVideoIndex;
+static uint16_t maxMenuIndex;
 static uint16_t selectedIndex;
+static uint16_t selectedPage;
+static bool nextPageExists;
+static uint16_t prevPageIndex;
+static uint16_t nextPageIndex;
+
 #define MAX_MENU_SIZE 12
-#define MENU_SELECTOR_X_OFFSET 1
-#define MENU_X_OFFSET 3
+#define MENU_ITEM_X 3
+#define MENU_ITEM_Y_MULTIPLIER 2
 #define MENU_Y_OFFSET 1
-#define MENU_Y_MULTIPLIER 2
+
+#define MENU_SELECTOR_X_OFFSET -2
+#define MENU_NAV_PREV_X 6
+#define MENU_NAV_NEXT_X 22
+#define MENU_NAV_Y 27
 
 // Hard-coded for now.  Fullscreen video only.
 #define MAP_W 32
@@ -361,7 +371,10 @@ void segavideo_init() {
     memset(menuLines[i], 0, MAP_W + 1);
   }
   selectedIndex = 0;
-  maxIndex = 0;
+  selectedPage = 0;
+  maxVideoIndex = 0;
+  maxMenuIndex = 0;
+  nextPageExists = false;
 
   paused = false;
   playing = false;
@@ -659,18 +672,17 @@ bool segavideo_getMenu() {
   uint16_t command_timeout = 30; // seconds
   volatile uint8_t* data = VIDEOSTREAM_DATA;
 
-  if (!sendCommandAndWait(CMD_LIST_VIDEOS, 0x00, command_timeout)) {
+  // We request a specific page, and we inform the streaming hardware of how
+  // many items there are per page.
+  uint16_t arg = (selectedPage << 8) | MAX_MENU_SIZE;
+  if (!sendCommandAndWait(CMD_LIST_VIDEOS, arg, command_timeout)) {
     statusMessage(PAL_YELLOW, "Failed to fetch video list!");
     return false;
   }
 
-  maxIndex = 0;
-  selectedIndex = 0;
-
   // Split the output at newlines and display one item per line.  The lines are
   // copied into CPU memory so that we can redraw the screen as the user
   // navigates.
-  // TODO: Handle multiple pages of results.
   uint16_t index = 0;
   while (*data && index < MAX_MENU_SIZE) {
     // Fill in the title.
@@ -698,34 +710,73 @@ bool segavideo_getMenu() {
     }
   }
 
-  maxIndex = index;
+  selectedIndex = 0;
+  maxMenuIndex = maxVideoIndex = index;
+  // If the string hasn't terminated, this indicates another page of data.
+  nextPageExists = *data != '\0';
+
+  // If there's a previous page, that occupies an index for navigation.
+  if (selectedPage > 0) {
+    prevPageIndex = maxMenuIndex;
+    maxMenuIndex++;
+  } else {
+    prevPageIndex = -1;
+  }
+
+  // If there's a next page, that occupies an index for navigation, too.
+  if (nextPageExists) {
+    nextPageIndex = maxMenuIndex;
+    maxMenuIndex++;
+  } else {
+    nextPageIndex = -1;
+  }
 
   return true;
+}
+
+static void drawMenuItem(
+    uint16_t item_x, uint16_t item_y, const char* text, bool selected) {
+  if (selected) {
+    VDP_setTextPalette(PAL_YELLOW);
+    VDP_drawText(">", item_x + MENU_SELECTOR_X_OFFSET, item_y);
+  } else {
+    VDP_setTextPalette(PAL_WHITE);
+  }
+
+  VDP_drawText(text, item_x, item_y);
 }
 
 void segavideo_drawMenu() {
   menuShowing = true;
 
-  for (uint16_t index = 0; index < MAX_MENU_SIZE; ++index) {
-    uint16_t menu_y = (MENU_Y_MULTIPLIER * index) + MENU_Y_OFFSET;
+  uint16_t menu_x = MENU_ITEM_X;
+
+  for (int16_t index = 0; index < MAX_MENU_SIZE; ++index) {
+    uint16_t menu_y = (MENU_ITEM_Y_MULTIPLIER * index) + MENU_Y_OFFSET;
     VDP_clearTextLine(menu_y);
 
-    if (index > maxIndex) continue;
-
-    if (index == selectedIndex) {
-      VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText(">", /* x= */ MENU_SELECTOR_X_OFFSET, /* y= */ menu_y);
-    } else {
-      VDP_setTextPalette(PAL_WHITE);
+    if (index < maxVideoIndex) {
+      drawMenuItem(menu_x, menu_y, menuLines[index],
+                   /* selected= */ index == selectedIndex);
     }
+  }
 
-    VDP_drawText(menuLines[index], /* x= */ MENU_X_OFFSET, /* y= */ menu_y);
+  VDP_clearTextLine(MENU_NAV_Y);
+
+  if (selectedPage > 0) {
+    drawMenuItem(MENU_NAV_PREV_X, MENU_NAV_Y, "Prev.",
+                 /* selected= */ selectedIndex == prevPageIndex);
+  }
+
+  if (nextPageExists) {
+    drawMenuItem(MENU_NAV_NEXT_X, MENU_NAV_Y, "Next",
+                 /* selected= */ selectedIndex == nextPageIndex);
   }
 }
 
 void segavideo_menuPreviousItem() {
   if (selectedIndex == 0) {
-    selectedIndex = maxIndex - 1;
+    selectedIndex = maxMenuIndex - 1;
   } else {
     selectedIndex--;
   }
@@ -733,16 +784,28 @@ void segavideo_menuPreviousItem() {
 
 void segavideo_menuNextItem() {
   selectedIndex++;
-  if (selectedIndex >= maxIndex) {
+  if (selectedIndex >= maxMenuIndex) {
     selectedIndex = 0;
   }
 }
 
 bool segavideo_stream(bool loop) {
+  // If the selected index is a menu navigation item, do that instead.
+  if (selectedIndex == nextPageIndex) {
+    selectedPage++;
+    segavideo_getMenu();
+    return true;
+  } else if (selectedIndex == prevPageIndex) {
+    selectedPage--;
+    segavideo_getMenu();
+    return true;
+  }
+
   menuShowing = false;
 
   uint16_t command_timeout = 30; // seconds
-  if (!sendCommandAndWait(CMD_START_VIDEO, selectedIndex, command_timeout)) {
+  uint16_t video_index = (selectedPage * MAX_MENU_SIZE) + selectedIndex;
+  if (!sendCommandAndWait(CMD_START_VIDEO, video_index, command_timeout)) {
     statusMessage(PAL_YELLOW, "Failed to start video stream!");
     waitMs(3000);
     return false;
