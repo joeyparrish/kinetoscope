@@ -1,0 +1,74 @@
+// Kinetoscope: A Sega Genesis Video Player
+//
+// Copyright (c) 2024 Joey Parrish
+//
+// See MIT License in LICENSE.txt
+
+// Sega video format details.
+// Used by the parser to interpret the file format.
+//
+// This can run on the Sega, inside an emulator, or in the firmware of the
+// streaming hardware.
+
+#ifndef _SEGAVIDEO_FORMAT_H
+#define _SEGAVIDEO_FORMAT_H
+
+#if defined(SGDK_GCC)
+# include <genesis.h>
+#else
+# include <stdint.h>
+#endif
+
+#define SEGAVIDEO_HEADER_MAGIC  "what nintendon't"
+#define SEGAVIDEO_HEADER_FORMAT 0x0001
+
+// This header appears at the start of the file in both embedded and streaming
+// mode.
+typedef struct SegaVideoHeader {
+  uint8_t magic[16];  // SEGAVIDEO_HEADER_MAGIC
+  uint16_t format;  // SEGAVIDEO_HEADER_FORMAT
+  uint16_t frameRate;  // fps
+  uint16_t sampleRate;  // Hz
+  uint16_t totalFrames;  // num frames
+  uint32_t totalSamples;  // bytes, total, multiple of 256
+} __attribute__((packed)) SegaVideoHeader;
+
+// After the header is a sequence of chunks.
+
+// Each chunk is:
+//  SegaVideoChunkHeader header
+//  uint8_t padding[header->paddingBytes]  // aligns samples to 256 bytes
+//  uint8_t samples[chunkSoundLen]
+//  SegaVideoFrame frames[chunkFrameCount]
+
+typedef struct SegaVideoChunkHeader {
+  uint32_t samples;
+  uint16_t frames;
+  uint16_t paddingBytes;
+  // Padding to maintain 256-byte alignment for the audio data that follows.
+  // The audio driver requires this alignment.
+} __attribute__((packed)) SegaVideoChunkHeader;
+
+typedef struct SegaVideoFrame {
+  // Each palette entry is a single color in ABGR format, 4 bits per channel,
+  // in big-endian order.  Entry 0 is considered fully transparent by the VDP,
+  // and all other entries are considered fully opaque.  The alpha bits are
+  // always ignored.
+  uint16_t palette[16];
+  // Each tile is a packed array of 64 (8x8) 4-bit palette indexes (16 words).
+  uint32_t tiles[8 * 32 * 28];  // 32 bytes per tile (8*uint32_t), 32x28 tiles
+} __attribute__((packed)) SegaVideoFrame;
+
+// Frames are displayed by alternating between two trivial tilemaps that have
+// no deduplication, no priority, and no flipping.  Each tilemap entry is a
+// uint16_t value as created by the TILE_ATTR_FULL() macro.  These are ordered
+// for each tile, left-to-right, top-to-bottom.  They are precomputed and in
+// resource file trivial_tilemap.res.
+
+// Streaming hardware will write to alternating regions of 1MB of SRAM.  If a
+// chunk the same size as the previous one would overflow the current region,
+// the next chunk will be written to the other region instead of the current
+// region.  The hardware will adjust the padding to ensure a 256-byte alignment
+// of audio samples, as required by the audio driver.
+
+#endif // _SEGAVIDEO_FORMAT_H
