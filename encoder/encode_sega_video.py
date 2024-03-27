@@ -69,7 +69,7 @@ def main(args):
     construct_scenes(fullcolor_dir, scenes_dir, scenes)
 
     # Quantize each scene.
-    quantize_scenes(scenes_dir, quantized_scenes_dir, scenes)
+    quantize_scenes(args, scenes_dir, quantized_scenes_dir, scenes)
 
     # Turn those scenes into a single sequence of frames again.
     recombine_scenes(quantized_scenes_dir, quantized_dir)
@@ -247,7 +247,7 @@ def construct_scenes(input_dir, output_dir, scenes):
   print('')
 
 
-def quantize_scenes(input_dir, output_dir, scenes):
+def quantize_scenes(args, input_dir, output_dir, scenes):
   scene_paths = sorted(glob.glob(os.path.join(input_dir, '*')))
   scene_index = 0
 
@@ -261,7 +261,7 @@ def quantize_scenes(input_dir, output_dir, scenes):
 
     # Create an optimized palette first.
     output_pal_path = os.path.join(output_scene_dir, 'pal.png')
-    args = [
+    ffmpeg_args = [
       'ffmpeg',
       # Make no noise, except on error.
       '-hide_banner', '-loglevel', 'error', '-nostats',
@@ -274,9 +274,9 @@ def quantize_scenes(input_dir, output_dir, scenes):
       # Output a palette image.
       output_pal_path,
     ]
-    subprocess.run(check=True, args=args)
+    subprocess.run(check=True, args=ffmpeg_args)
 
-    args = [
+    ffmpeg_args = [
       'ffmpeg',
       # Make no noise, except on error.
       '-hide_banner', '-loglevel', 'error', '-nostats',
@@ -286,12 +286,12 @@ def quantize_scenes(input_dir, output_dir, scenes):
       # Palette.
       '-i', output_pal_path,
       # Use the optimized palette to quantize all the frames in the scene.
-      '-lavfi', 'paletteuse=dither=none',
+      '-lavfi', 'paletteuse=dither={}'.format(args.dithering),
       # Output individual frames in PPM format with the same frame numbers.
       '-start_number', str(start_frame),
       os.path.join(output_scene_dir, 'frame_%05d.ppm'),
     ]
-    subprocess.run(check=True, args=args)
+    subprocess.run(check=True, args=ffmpeg_args)
 
     scene_index += 1
     print('\rQuantized {} / {} scenes...'.format(scene_index, len(scenes)),
@@ -560,6 +560,10 @@ if __name__ == '__main__':
            ' video, we recommend something more like 0.2 because so many of'
            ' the pixels will be occupied by black padding. To generate a'
            ' unique palette per frame instead of per scene, set to 0.')
+  parser.add_argument('--dithering',
+      default='none',
+      help='The ffmpeg dithering algorithm to use.'
+           ' See https://ffmpeg.org/ffmpeg-filters.html#paletteuse for a list.')
 
   args = parser.parse_args()
   main(args)
