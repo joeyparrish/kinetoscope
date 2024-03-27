@@ -305,10 +305,18 @@ static bool nextVideoFrame() {
 
   // The logic here manages some tricky chunk transitions.  Note that if we
   // have a serious issue with frame-dropping, this whole thing falls apart.
-  if (nextFrameNum == currentChunk.numFrames - 1) {
-    // One frame before the end of the chunk, change the audio address.  When
-    // the audio driver "loops", it will play the next chunk.  If we wait until
-    // the last frame, it's too late, and the audio driver has already looped.
+
+  // Two frames before the end of the chunk, change the audio address.  When
+  // the audio driver "loops", it will play the next chunk.  If we wait until
+  // the last frame, it's too late, and the audio driver has already looped.
+  bool changeAudioAddress =
+      (nextFrameNum == currentChunk.numFrames - 2) ||
+      (currentChunk.numFrames == 1);
+
+  // After showing the last frame, change addresses to the next chunk.
+  bool switchChunks = (nextFrameNum == currentChunk.numFrames);
+
+  if (changeAudioAddress) {
     prepNextChunk(&currentChunk,
                   &nextChunk,
                   /* pointerBase= */ NULL,
@@ -317,8 +325,7 @@ static bool nextVideoFrame() {
     kprintf("Next audio buffer: %p (%d)\n",
             nextChunk.audioStart, (int)nextChunk.audioSamples);
     overwriteAudioAddress(nextChunk.audioStart, nextChunk.audioSamples);
-  } else if (nextFrameNum == currentChunk.numFrames) {
-    // After showing the last frame, change addressess to the next chunk.
+  } else if (switchChunks) {
     nextFrameNum = 0;
     currentChunk = nextChunk;
 
