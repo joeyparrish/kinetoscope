@@ -38,10 +38,11 @@ static uint16_t nextFrameNum;
 static char **menuLines;
 static uint16_t maxIndex;
 static uint16_t selectedIndex;
-#define MAX_MENU_SIZE 10
+#define MAX_MENU_SIZE 12
 #define MENU_SELECTOR_X_OFFSET 1
 #define MENU_X_OFFSET 3
 #define MENU_Y_OFFSET 1
+#define MENU_Y_MULTIPLIER 2
 
 // Hard-coded for now.  Fullscreen video only.
 #define MAP_W 32
@@ -706,20 +707,19 @@ void segavideo_drawMenu() {
   menuShowing = true;
 
   for (uint16_t index = 0; index < MAX_MENU_SIZE; ++index) {
-    VDP_clearTextLine(index + MENU_Y_OFFSET);
+    uint16_t menu_y = (MENU_Y_MULTIPLIER * index) + MENU_Y_OFFSET;
+    VDP_clearTextLine(menu_y);
 
     if (index > maxIndex) continue;
 
     if (index == selectedIndex) {
       VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText(">", /* x= */ MENU_SELECTOR_X_OFFSET,
-                   /* y= */ index + MENU_Y_OFFSET);
+      VDP_drawText(">", /* x= */ MENU_SELECTOR_X_OFFSET, /* y= */ menu_y);
     } else {
       VDP_setTextPalette(PAL_WHITE);
     }
 
-    VDP_drawText(menuLines[index], /* x= */ MENU_X_OFFSET,
-                 /* y= */ index + MENU_Y_OFFSET);
+    VDP_drawText(menuLines[index], /* x= */ MENU_X_OFFSET, /* y= */ menu_y);
   }
 }
 
