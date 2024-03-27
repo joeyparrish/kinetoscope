@@ -267,17 +267,22 @@ static bool nextVideoFrame() {
   // User tiles start at index 256, and the max index is 1425.
   uint16_t tileIndex = second ? NUM_TILES : 0;
 
+  // The order of loading things here matters, but it took some experimentation
+  // to get it right.  Tiles, colors, then map gives us clean frames that look
+  // good.  Tiles, map, then colors gives us some cruft on the first frame and
+  // at potentially transitions.  Other orderings were super bad and crazy.
+
   // Unpacked, raw pointer method used by VDP_loadTileSet
   VDP_loadTileData(frame->tiles, tileIndex, NUM_TILES, CPU);
+
+  // Unpacked, raw pointer method used by PAL_setPaletteColors
+  PAL_setColors(palNum << 4, frame->palette, /* count= */ 16, CPU);
 
   // Unpacked, raw pointer method used by VDP_setTileMapEx
   VDP_setTileMapDataRectEx(BG_B, tileMap, tileIndex,
       /* x= */ 0, /* y= */ 0,
       /* w= */ MAP_W, /* h= */ MAP_H,
       /* stride= */ MAP_W, CPU);
-
-  // Unpacked, raw pointer method used by PAL_setPaletteColors
-  PAL_setColors(palNum << 4, frame->palette, /* count= */ 16, CPU);
 
   nextFrameNum = currentFrameNum + 1;
 
@@ -366,8 +371,6 @@ void segavideo_init() {
 
 // Assumes that regionSize and regionMask have been set.
 static bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop) {
-  // FIXME: garbage in first frame?  more visible on loop.
-
   if (!segavideo_validateHeader(videoData)) {
     return false;
   }
