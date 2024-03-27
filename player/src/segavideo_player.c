@@ -540,6 +540,11 @@ void segavideo_stop() {
     }
   }
 
+  // When we stop the video, clear the screen and load the default font, which
+  // may have been overwritten by video playback.
+  clearScreen();
+  VDP_loadFont(&font_default, CPU);
+
   paused = false;
   playing = false;
   menuShowing = false;
@@ -554,9 +559,15 @@ bool segavideo_isMenuShowing() {
 }
 
 static void statusMessage(uint16_t pal, const char* message) {
+  // To display a status message, make sure we clear the screen, load the
+  // default font (which may have been overwritten by video playback), and set
+  // the palette.
   clearScreen();
+  VDP_loadFont(&font_default, CPU);
   VDP_setTextPalette(pal);
+  // Put the message on the screen.
   VDP_drawText(message, 1, 1);
+  // Send the message to the emulator's debug interface (if available).
   kprintf("%s\n", message);
 }
 
