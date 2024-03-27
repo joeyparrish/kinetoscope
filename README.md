@@ -86,7 +86,9 @@ To stream video over WiFi, special hardware is required.
  - [SGDK][]: A free and open development kit for the Sega Genesis / Mega Drive
  - The logo font is [Kode Mono](https://kodemono.com/)
  - Presentation slides coming soon
- - [Slide viewer for Sega Genesis](https://github.com/joeyparrish/sega-slides/)
+ - [Sega Genesis Slide Generator and Viewer](https://github.com/joeyparrish/sega-slides/)
+ - [Krikzz](https://krikzz.com/our-products/cartridges/): Incredible hardware
+   for retro game console hacking and development, including flash carts.
 
 
 [SGDK]: https://github.com/Stephane-D/SGDK
