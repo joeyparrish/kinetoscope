@@ -561,9 +561,12 @@ if __name__ == '__main__':
            ' the pixels will be occupied by black padding. To generate a'
            ' unique palette per frame instead of per scene, set to 0.')
   parser.add_argument('--dithering',
-      default='none',
+      default='bayer',
       help='The ffmpeg dithering algorithm to use.'
-           ' See https://ffmpeg.org/ffmpeg-filters.html#paletteuse for a list.')
+           ' The default of "bayer" produces good results, but you may prefer'
+           ' "none" for some content.'
+           ' See https://ffmpeg.org/ffmpeg-filters.html#paletteuse for a full'
+           ' list of options.')
 
   args = parser.parse_args()
   main(args)

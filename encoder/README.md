@@ -75,3 +75,9 @@ are a few that require additional notes:
     stable palette per scene.  The value is a ratio of changed pixels that
     constitutes a new scene, from 0-1.  A threshold of 0 disables scene
     detection and creates an independent palette for each frame.
+
+  * `--dithering`: The dithering algorithm, which controls how the limited
+    palette of 15 colors per frame are used to represent the full color
+    original image.  The default of "bayer" produces good results for most
+    content, but you may prefer "none" in some cases.  For a full list of
+    options, see https://ffmpeg.org/ffmpeg-filters.html#paletteuse
