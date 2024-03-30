@@ -135,6 +135,10 @@ static uint16_t nextPageIndex;
 #define OFFSET_TO_POINTER(offset, base) \
     ((uint8_t*)(((uint32_t)offset) + ((uint32_t)base)))
 
+#if (DEBUG == 0)
+# define kprintf(...)
+#endif
+
 // Forward declarations:
 static bool sendCommand(uint16_t command, uint16_t arg0);
 static bool waitForReply(uint16_t timeout_seconds);

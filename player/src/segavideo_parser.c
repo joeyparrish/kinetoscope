@@ -17,6 +17,9 @@
 # include <genesis.h>
 // No definition for this in SGDK:
   typedef uint32_t uintptr_t;
+# if (DEBUG == 0)
+#   define kprintf(...)
+# endif
 #elif defined(_WIN32)
 // Windows header for ntohs and ntohl.
 # include <winsock2.h>
