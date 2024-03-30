@@ -48,7 +48,7 @@ docker run \
   ghcr.io/joeyparrish/sgdk
 
 # SGDK's compiler makes the output executable, but that's not appropriate.
-chmod 644 $relative_dir/out/rom.bin
+chmod 644 $this_dir/out/rom.bin
 
 # Show the size of the output.
-ls -sh $relative_dir/out/rom.bin
+ls -sh $this_dir/out/rom.bin
