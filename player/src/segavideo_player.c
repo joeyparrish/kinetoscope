@@ -360,7 +360,7 @@ void segavideo_init() {
   VDP_setWindowAddress(0xE000);
 
   // Unload any previous audio driver for a clean slate.
-  Z80_unloadDriver();
+  XGM2_unloadDriver();
 
   // Load menu colors.
   uint16_t white  = 0x0FFF;  // ABGR
@@ -498,7 +498,7 @@ void segavideo_pause() {
   // NOTE: XGM2_stopPCM() followed by XGM2_playPCMEx() doesn't work without
   // unloading and reloading the driver.  This is likely a bug in the driver,
   // but I don't have time to dig into it.
-  Z80_unloadDriver();
+  XGM2_unloadDriver();
 
   // Disable video
   paused = true;
@@ -547,7 +547,7 @@ void segavideo_stop() {
   if (playing) {
     // Stop audio.
     XGM2_stopPCM(SOUND_PCM_CH1);
-    Z80_unloadDriver();
+    XGM2_unloadDriver();
   }
 
   if (regionSize) {
