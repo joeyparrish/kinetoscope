@@ -1,0 +1,94 @@
+
+(rules PCB feather
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 1)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.5)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.6)
+    )
+  )
+  (rule
+    (width 200.0)
+    (clearance 200.0)
+    (clearance 100.0 (type smd_to_turn_gap))
+    (clearance 200.0 (type smd))
+    (clearance 200.0 (type "kicad_default"))
+    (clearance 200.0 (type kicad))
+  )
+  (padstack "Via[0-1]_600:300_um"
+    (shape
+      (circle F.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 600.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_600:300_um" "Via[0-1]_600:300_um" default
+  )
+  (via 
+    "Via[0-1]_600:300_um-kicad_default" "Via[0-1]_600:300_um" "kicad_default"
+  )
+  (via_rule
+    default "Via[0-1]_600:300_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_600:300_um-kicad_default"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 200.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    /GND "/decoder-internal/~{SEGA_WE_LB}" "/kinetoscope-header-internal/SEGA_A13" "/decoder-internal/~{SRAM_CE2}" "/SRAM_D_NEXT" "/decoder-internal/SEGA_A20" "/kinetoscope-header-internal/SEGA_A1" "/kinetoscope-header-internal/SEGA_D3"
+    "/kinetoscope-header-internal/SEGA_A14" "/kinetoscope-header-internal/SEGA_D5" "/kinetoscope-header-internal/SEGA_D4" "/decoder-internal/~{REG_WE}" "/decoder-internal/SEGA_A2" "/kinetoscope-header-internal/SEGA_D1" "/~{SRAM_W_A_CLR}" "/kinetoscope-header-internal/SEGA_A9"
+    "/kinetoscope-header-internal/SEGA_A23" "/kinetoscope-header-internal/SEGA_D13" "/decoder-internal/~{FLASH_CE}" "/kinetoscope-header-internal/SEGA_A6" "/kinetoscope-header-internal/SEGA_D9" "/kinetoscope-header-internal/SEGA_D0" "/kinetoscope-header-internal/SEGA_A7" "/decoder-internal/~{SEGA_AS}"
+    "/kinetoscope-header-internal/SEGA_A5" "/kinetoscope-header-internal/SEGA_D2" /SDA "/kinetoscope-header-internal/SEGA_A16" "/kinetoscope-header-internal/SEGA_A8" "/kinetoscope-header-internal/SEGA_D14" /5V "/kinetoscope-header-internal/SEGA_A15"
+    "/kinetoscope-header-internal/SEGA_A10" "/kinetoscope-header-internal/SEGA_D11" "/kinetoscope-header-internal/SEGA_A4" "/decoder-internal/SEGA_A21" "/kinetoscope-header-internal/SEGA_A11" "/kinetoscope-header-internal/SEGA_A17" "/SRAM_DIS_1" "/SRAM_DIS_2"
+    "/decoder-internal/~{SEGA_REGISTER}" "/kinetoscope-header-internal/SEGA_A22" "/kinetoscope-header-internal/SEGA_D12" "/decoder-internal/~{SRAM_CE1}" /SCL /3V "/kinetoscope-header-internal/SEGA_A3" "/decoder-internal/~{SYNC_SET}"
+    "/kinetoscope-header-internal/SEGA_A19" "/decoder-internal/~{SEGA_CE}" "/decoder-internal/WRITE" "/kinetoscope-header-internal/SEGA_D15" "/kinetoscope-header-internal/SEGA_D8" "/decoder-internal/~{RESET}" "/kinetoscope-header-internal/SEGA_D6" "/kinetoscope-header-internal/SEGA_D10"
+    "/~{SRAM_WE}" "/kinetoscope-header-internal/SEGA_A18" "/SRAM_D_CLK" "/kinetoscope-header-internal/SEGA_D7" "/kinetoscope-header-internal/SEGA_A12" "/SRAM_W_A_CLK" "/decoder-internal/~{SEGA_WE_UB}" "/decoder-internal/~{SYNC_OE}"
+    "/decoder-internal/~{SEGA_A2}" "/decoder-internal/SEGA_CE" "/decoder-internal/~{SEGA_A20}" "/decoder-internal/SEGA_REGISTER" "/decoder-internal/~{SEGA_A21}" "/decoder-internal/SEGA_AS" "/decoder-internal/READ" "/SRAM_D_IN15"
+    "/SRAM_D_IN13" "/SRAM_D_IN10" "/SRAM_D_IN11" "/SRAM_D_IN3" "/SRAM_D_IN4" "/SRAM_W_A17" "/SRAM_W_A10" "/SRAM_W_A12"
+    "/SRAM_D_IN5" "/SRAM_D_IN8" "/~{RESET_3V}" "/SRAM_W_A13" "/SRAM_D_IN9" "/SRAM_W_A1" "/SRAM_W_A8" "/SRAM_W_A3"
+    "/SRAM_W_A15" "/SRAM_D_IN6" "/SRAM_W_A7" "/SRAM_D_IN7" "/SRAM_D_IN12" "/SRAM_W_A0" "/SRAM_D_IN2" "/SRAM_W_A16"
+    "/SRAM_W_A2" "/SRAM_W_A9" "/SRAM_W_A11" "/SRAM_W_A18" "/SRAM_W_A5" "/SRAM_D_IN1" "/SRAM_W_A4" "/SRAM_D_IN0"
+    "/SRAM_W_A6" "/SRAM_W_A14" "/SRAM_D_IN14" "Net-(U10-CET)" "Net-(U10-TC)" "Net-(U11-TC)" "Net-(U12-TC)" "unconnected-(U13-Q3-Pad11)"
+    "unconnected-(U13-TC-Pad15)" "unconnected-(A1-ADC2_CH6{slash}D14{slash}IO14-Pad19)" "unconnected-(A1-ADC1_CH6{slash}A2{slash}I34-Pad7)" "unconnected-(A1-ADC2_CH7{slash}D27{slash}IO27-Pad23)" "unconnected-(A1-ADC2_CH4{slash}LED{slash}IO13-Pad25)" "unconnected-(A1-~{RESET}-Pad1)" "unconnected-(A1-USB-Pad26)" "unconnected-(A1-ADC1_CH0{slash}A4{slash}I36-Pad9)"
+    "unconnected-(A1-NC-Pad3)" "unconnected-(A1-EN-Pad27)" "unconnected-(A1-VBAT-Pad28)" "unconnected-(A1-ADC2_CH0{slash}A5{slash}IO4-Pad10)" "unconnected-(A1-ADC1_CH3{slash}A3{slash}I39-Pad8)" "unconnected-(A1-ADC2_CH8{slash}A1{slash}IO25-Pad6)" "unconnected-(A1-ADC1_CH1{slash}D37{slash}I37-Pad16)" "unconnected-(A1-ADC2_CH3{slash}D15{slash}IO15-Pad21)"
+    "unconnected-(A1-ADC2_CH9{slash}A0{slash}IO26-Pad5)" "unconnected-(A1-ADC2_CH5{slash}D12{slash}IO12-Pad24)"
+    (clearance_class "kicad_default")
+    (via_rule "kicad_default")
+    (rule
+      (width 200.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)

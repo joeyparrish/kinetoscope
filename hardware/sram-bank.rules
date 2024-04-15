@@ -1,0 +1,95 @@
+
+(rules PCB sram-bank
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 1)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.5)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.6)
+    )
+  )
+  (rule
+    (width 200.0)
+    (clearance 200.0)
+    (clearance 100.0 (type smd_to_turn_gap))
+    (clearance 200.0 (type smd))
+    (clearance 200.0 (type "kicad_default"))
+    (clearance 200.0 (type kicad))
+  )
+  (padstack "Via[0-1]_600:300_um"
+    (shape
+      (circle F.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 600.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_600:300_um" "Via[0-1]_600:300_um" default
+  )
+  (via 
+    "Via[0-1]_600:300_um-kicad_default" "Via[0-1]_600:300_um" "kicad_default"
+  )
+  (via_rule
+    default "Via[0-1]_600:300_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_600:300_um-kicad_default"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 200.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    "/SRAM_DATA5" /GND "/SRAM_A8" "/SRAM_DATA0" "/SRAM_A15" "/SRAM_A6" "/SRAM_DATA11" /5V
+    "/~{SRAM_FINAL_WE}" "/SRAM_A18" "/SRAM_A2" "/SRAM_A10" "/SRAM_A3" "/SRAM_DATA3" "/SRAM_A9" "/SRAM_DATA13"
+    "/SRAM_DATA15" "/~{SRAM_FINAL_OE}" "/SRAM_A7" "/SRAM_DATA12" "/SRAM_A11" "/SRAM_DATA4" "/SRAM_A5" "/~{SRAM_FINAL_CE}"
+    "/SRAM_A13" "/SRAM_A12" "/SRAM_DATA2" "/SRAM_DATA10" "/SRAM_DATA8" "/SRAM_A4" "/SRAM_DATA1" "/SRAM_DATA6"
+    "/SRAM_A1" "/SRAM_A17" "/SRAM_DATA14" "/SRAM_A0" "/SRAM_A16" "/SRAM_DATA9" "/SRAM_A14" "/SRAM_DATA7"
+    "/SRAM_D_IN8" "/SRAM_W_A2" "/SRAM_D_IN1" "/SEGA_D2" "/SEGA_A4" "/SRAM_D_IN10" "/SRAM_W_A0" "/SRAM_W_A17"
+    "/SRAM_D_IN3" "/~{SEGA_CE}" "/SEGA_D5" "/kinetoscope-header-internal/~{SYNC_OE}" "/SRAM_W_A14" "/SEGA_A7" "/SRAM_W_A7" "/kinetoscope-header-internal/SEGA_A22"
+    "/SEGA_D6" "/SEGA_D1" "/SRAM_DIS_2" "/kinetoscope-header-internal/~{SYNC_SET}" "/SRAM_W_A11" "/kinetoscope-header-internal/~{SEGA_AS}" "/SRAM_W_A3" "/SRAM_W_A1"
+    "/SEGA_D0" "/SRAM_D_IN12" "/SEGA_A12" "/SRAM_DIS_1" "/SRAM_D_IN14" "/SEGA_A17" "/SEGA_A5" "/SEGA_A10"
+    "/SEGA_A14" "/SRAM_W_A9" "/kinetoscope-header-internal/~{FLASH_OE}" "/SEGA_D12" "/SEGA_D11" "/kinetoscope-header-internal/SEGA_A20" "/SEGA_D10" "/SRAM_W_A10"
+    "/kinetoscope-header-internal/~{FLASH_CE}" "/SEGA_A9" "/SEGA_D14" "/SEGA_D9" "/SRAM_D_IN11" "/SRAM_D_IN5" "/SRAM_W_A13" "/SRAM_D_IN0"
+    "/SEGA_A2" "/kinetoscope-header-internal/SEGA_A21" "/SRAM_D_IN6" "/SRAM_D_IN13" "/SRAM_D_IN7" "/SRAM_D_IN4" "/SEGA_A3" "/SRAM_D_IN15"
+    "/kinetoscope-header-internal/~{FLASH_WE}" "/SEGA_A13" "/kinetoscope-header-internal/~{REG_WE}" "/SEGA_A19" "/SEGA_A8" "/SRAM_W_A15" "/kinetoscope-header-internal/~{RESET_3V}" "/SRAM_D_IN9"
+    "/SEGA_A16" "/~{SRAM_CE1}" "/SRAM_W_A12" "/kinetoscope-header-internal/SDA" "/kinetoscope-header-internal/~{SEGA_REGISTER}" "/SEGA_D7" "/SEGA_A18" "/SRAM_W_A18"
+    "/SRAM_W_A16" "/SEGA_A15" "/SRAM_W_A8" "/SEGA_D15" "/~{SRAM_WE}" "/SRAM_D_IN2" "/kinetoscope-header-internal/~{SEGA_WE_UB}" "/SEGA_A6"
+    "/SEGA_A1" "/SEGA_D13" "/kinetoscope-header-internal/~{SEGA_RESET}" "/kinetoscope-header-internal/~{SEGA_WE_LB}" "/SEGA_D3" "/SRAM_W_A4" "/SRAM_W_A5" "/kinetoscope-header-internal/SCL"
+    "/SEGA_D4" "/SEGA_D8" "/SEGA_A11" "/kinetoscope-header-internal/SEGA_A23" "/~{SRAM_CE2}" "/SRAM_W_A6" "/~{SEGA_CONTROL}" "/~{SRAM_CE}"
+    "/~{ESP32_CONTROL}" /3V "unconnected-(U8-B8-Pad14)" "unconnected-(U8-B7-Pad15)" "unconnected-(U11-B8-Pad14)" "unconnected-(U11-B7-Pad15)"
+    (clearance_class "kicad_default")
+    (via_rule "kicad_default")
+    (rule
+      (width 200.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)

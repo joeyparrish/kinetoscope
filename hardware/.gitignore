@@ -1,0 +1,13 @@
+# KiCad cache file
+fp-info-cache
+# KiCad backups
+*-backups
+*auto_saved_files*
+# KiCad temp and lock files
+~*
+*.lck
+# Design files used to interface to Freerouter
+*.dsn
+*.frb
+*.ses
+logs/freerouting.log
