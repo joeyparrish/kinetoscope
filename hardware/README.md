@@ -4,6 +4,8 @@ The hardware is composed of several stacking boards, each of which hosts a set
 of subcomponents.  The subcomponents are each in a subsheet, exposing
 hierarchical pins and buses to the parent sheet.
 
+## Boards
+
 The stacking boards are:
  - `sram-bank`: SRAM Bank Board
    - There are actually two of these in the stack, one for each 1MB SRAM bank.
@@ -27,6 +29,8 @@ The stacking boards are:
      header on top that the other boards stack onto.  This interface could also
      be used as a kind of breakout board for the development of other Sega
      cartridge projects.
+
+## Sheets
 
 The subsheets are:
  - `address-counter-internal`: SRAM Address Counter
@@ -64,3 +68,13 @@ The subsheets are:
      written to the registers. The feather clears it when the command has been
      completed.
 
+## Programming
+
+To program the Flash chip in-place:
+ 1. Stack the Register & Flash board on top of the Cart board, omitting all
+    other boards
+ 2. Place a jumper from the `~{SEGA_WE_LB}` pin (#46, fourth from the right on
+    the top row of the lower connector) to the `~{FLASH_WE}` pin (#55, second
+    from the left on the bottom row of the upper connector)
+ 3. Insert the cart into the
+    [Krikzz FlashKit Programmer MD](https://krikzz.com/our-products/accessories/flashkitmd.html)
