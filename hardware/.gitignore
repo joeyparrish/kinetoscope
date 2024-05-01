@@ -3,6 +3,7 @@ fp-info-cache
 # KiCad backups
 *-backups
 *auto_saved_files*
+*.bak
 # KiCad temp and lock files
 ~*
 *.lck
