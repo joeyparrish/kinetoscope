@@ -1756,17 +1756,6 @@
 		)
 		(uuid "30b69b4a-d30b-4e42-8e0a-241fd6b58e41")
 	)
-	(text "Outputs are always 5V.\nInputs can be 3V logic."
-		(exclude_from_sim no)
-		(at 77.216 36.576 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "31947f0d-1320-4ca4-9c1d-f4a0aebded90")
-	)
 	(text "U4+U5"
 		(exclude_from_sim no)
 		(at 159.766 43.18 0)
@@ -1946,6 +1935,19 @@
 			)
 		)
 		(uuid "c3026e94-694a-4ca6-af55-d93d47419c2e")
+	)
+	(text "NOTE: Both of these data buffers can be active at once.\n\n~{SRAM_CE} is decoded from Sega address and control signals only.\n~{ESP32_CONTROL} is from the feather only.\n\nIf this happens, the Sega will end up reading whatever word is\nbeing actively written by the feather.  This would not be\ncatastrophic, and it could only happen if the feather were unable\nto write to SRAM fast enough, and the Sega's read caught up to the\nwrite position."
+		(exclude_from_sim no)
+		(at 51.308 34.544 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "c89b8e09-0167-4340-bc97-ab08c55ae2ec")
 	)
 	(text "3V signals"
 		(exclude_from_sim no)
