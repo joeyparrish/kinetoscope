@@ -4,6 +4,11 @@ The hardware is composed of several stacking boards, each of which hosts a set
 of subcomponents.  The subcomponents are each in a subsheet, exposing
 hierarchical pins and buses to the parent sheet.
 
+One of these boards includes the ESP32 Feather V2 from Adafruit, which has WiFi
+and runs its own firmware to take commands from the Sega ROM.  See firmware in
+the `firmware/` folder.
+
+
 ## Boards
 
 The stacking boards are:
