@@ -10,5 +10,9 @@
 
 // This is the SRAM interface.
 
+#ifndef _KINETOSCOPE_SRAM_H
+
 void sram_init();
 void sram_write(uint16_t *data, int num_words);
+
+#endif // _KINETOSCOPE_SRAM_H

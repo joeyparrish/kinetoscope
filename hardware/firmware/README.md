@@ -15,9 +15,11 @@ The entry point and main loop are in `firmware.ino`.
 
 1. Set up the Arduino IDE and ESP32 board as detailed in
    https://learn.adafruit.com/adafruit-esp32-feather-v2/arduino-ide-setup
-2. To build from the command line, install `arduino-cli` as detailed in
+2. Use the Arduino Library Manager to install the Adafruit MCP23017 library and
+   the Adafruit BusIO library
+3. To build from the command line, install `arduino-cli` as detailed in
    https://arduino.github.io/arduino-cli/0.35/installation/
-3. Run `make`, which will use `arduino-cli` to do everything
+4. Run `make`, which will use `arduino-cli` to do everything
 
 
 ## Compile firmware
