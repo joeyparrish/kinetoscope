@@ -14,8 +14,7 @@
 
 void wifi_init(const char* ssid, const char* password);
 
-void wifi_connect(const char* server, int port, const char* path);
-
-bool wifi_read();
+int wifi_https_fetch(const char* server, uint16_t port, const char* path,
+                     int start_byte, uint8_t* data, int size);
 
 #endif // _KINETOSCOPE_WIFI_H

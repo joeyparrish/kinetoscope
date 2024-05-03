@@ -18,8 +18,9 @@
 #include "sram.h"
 #include "wifi.h"
 
-#define SERVER "cdn.syndication.twimg.com"
-#define PATH   "/widgets/followbutton/info.json?screen_names=adafruit"
+#define SERVER "storage.googleapis.com"
+#define PORT   443
+#define PATH   "/sega-kinetoscope/canned-videos/NEVER_GONNA_GIVE_YOU_UP.segavideo"
 
 static void test_sram_speed() {
   // 450966 words = ~3s worth of audio+video data
@@ -27,6 +28,10 @@ static void test_sram_speed() {
   int data_size = 450966;
 
   uint16_t* data = (uint16_t*)ps_malloc(data_size * sizeof(uint16_t));
+  if (!data) {
+    Serial.println("Failed to allocate is PSRAM!\n");
+    return;
+  }
 
   // Takes about 1200ms total, or about 2660ns per word.
   long start = millis();
@@ -72,6 +77,36 @@ static void test_register_speed() {
   Serial.println(" ms total for 1000 register reads\n");
 }
 
+void test_wifi_speed(int first_byte) {
+  int data_size = 1024 * 1024;
+  uint8_t* data = (uint8_t*)ps_malloc(data_size);
+  if (!data) {
+    Serial.println("Failed to allocate is PSRAM!\n");
+    return;
+  }
+  memset(data, 0, data_size);
+
+  // Takes about 4-5s (best case) to fetch 3s worth of data.  FIXME: too slow!
+  long start = millis();
+  int bytes_read = wifi_https_fetch(SERVER, PORT, PATH,
+                                    first_byte, data, data_size);
+
+  long end = millis();
+
+  Serial.print(end - start);
+  Serial.print(" ms to fetch ");
+  Serial.print(bytes_read);
+  Serial.print(" bytes over HTTPS from position ");
+  Serial.print(first_byte);
+  Serial.println(".");
+
+  Serial.print("First byte character code is ");
+  Serial.print((int)data[0]);
+  Serial.println(".\n");
+
+  free(data);
+}
+
 void setup() {
   Serial.begin(115200);
   while (!Serial) {}  // Wait for serial port to connect
@@ -85,20 +120,19 @@ void setup() {
   wifi_init(SECRET_WIFI_SSID, SECRET_WIFI_PASS);
 
   pinMode(LED_BUILTIN, OUTPUT);
-
-  wifi_connect(SERVER, 443, PATH);
 }
 
 void loop() {
+  delay(1000);
+  Serial.println("\n");
+
   test_sram_speed();
 
   test_register_speed();
 
-  while (wifi_read()) {
-    delay(100);
-  }
+  test_wifi_speed(0);
 
-  while (true) {
-    delay(1000);
-  }
+  test_wifi_speed(1);
+
+  while (true) { delay(1000); }
 }
