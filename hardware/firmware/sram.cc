@@ -78,7 +78,7 @@ static inline void sram_next_address() {
 static inline void sram_set_word(uint16_t word_data) {
   // ~1200ms to write ~3s of audio+video data (~450k words).
   X16(
-    if (word_data & 1) {
+    if (word_data & 0x8000) {
       SET(SRAM_DATA_REG, SRAM_DATA_NEXT_BIT);
     } else {
       CLEAR(SRAM_DATA_REG, SRAM_DATA_NEXT_BIT);
@@ -89,7 +89,7 @@ static inline void sram_set_word(uint16_t word_data) {
     CLEAR(SRAM_DATA_REG, SRAM_DATA_CLOCK);
 
     // Prep the next bit.
-    word_data >>= 1;
+    word_data <<= 1;
   );
 
   // Write the word (active low).
