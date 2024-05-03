@@ -19,7 +19,6 @@
 #include "wifi.h"
 
 #define SERVER "storage.googleapis.com"
-#define PORT   443
 #define PATH   "/sega-kinetoscope/canned-videos/NEVER_GONNA_GIVE_YOU_UP.segavideo"
 
 static void test_sram_speed() {
@@ -86,9 +85,9 @@ void test_wifi_speed(int first_byte) {
   }
   memset(data, 0, data_size);
 
-  // Takes about 4-5s (best case) to fetch 3s worth of data.  FIXME: too slow!
+  // Takes about 2.4s to fetch 3s worth of data.  FIXME: too slow!
   long start = millis();
-  int bytes_read = wifi_https_fetch(SERVER, PORT, PATH,
+  int bytes_read = wifi_https_fetch(SERVER, /* default port */ 0, PATH,
                                     first_byte, data, data_size);
 
   long end = millis();

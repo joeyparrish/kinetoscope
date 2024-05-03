@@ -10,15 +10,28 @@
 
 // This is the interface to the feather's WiFi.
 
+#include <ArduinoHttpClient.h>
 #include <HardwareSerial.h>
-#include <HttpClient.h>
 #include <WiFi.h>
-#include <WiFiClientSecure.h>
+
+#define PLAIN_HTTP
+#ifdef PLAIN_HTTP
+# include <WiFiClient.h>
+# define DEFAULT_PORT 80
+#else
+# include <WiFiClientSecure.h>
+# define DEFAULT_PORT 443
+#endif
 
 #include "wifi.h"
 
 static int status = WL_IDLE_STATUS;
+
+#ifdef PLAIN_HTTP
+static WiFiClient wifi_client;
+#else
 static WiFiClientSecure wifi_client;
+#endif
 
 void wifi_init(const char* ssid, const char* password) {
   Serial.print("Attempting to connect to SSID: ");
@@ -41,22 +54,27 @@ void wifi_init(const char* ssid, const char* password) {
   Serial.print(rssi);
   Serial.println(" dBm");
 
+#ifndef PLAIN_HTTP
   // Don't verify TLS certificates.
   wifi_client.setInsecure();
+#endif
 }
 
 int wifi_https_fetch(const char* server, uint16_t port, const char* path,
                      int start_byte, uint8_t* data, int size) {
   Serial.println("Starting connection to server...");
 
-  HttpClient https_client(wifi_client);
+  if (!port) {
+    port = DEFAULT_PORT;
+  }
+  HttpClient https_client(wifi_client, server, port);
 
   // Tell the library that we will send some custom headers, and it should wait
   // for us to finish those before completing the request.
   https_client.beginRequest();
 
   // Send a basic GET request.
-  if (https_client.get(server, port, path) != 0) {
+  if (https_client.get(path) != 0) {
     Serial.println("Failed to connect!");
     https_client.stop();
     return -1;
@@ -116,14 +134,10 @@ int wifi_https_fetch(const char* server, uint16_t port, const char* path,
   int bytes_left = size;
   while (bytes_left) {
     int bytes_read = https_client.read(data, bytes_left);
-    if (bytes_read < 0) {
+    if (bytes_read <= 0) {
       // FIXME: Why does this return -1 if there isn't data available _yet_?
       delay(1);
       continue;
-    }
-
-    if (bytes_read == 0) {
-      break;
     }
 
     bytes_read_total += bytes_read;
