@@ -13,11 +13,13 @@ default:
 	@echo "  make clean: clean the build outputs"
 
 build:
-	arduino-cli compile -b ${BOARD} --export-binaries
+	arduino-cli compile -b ${BOARD} \
+	    --export-binaries
 	cp build/${BOARD_PATH}/${SKETCH_NAME}.ino.elf .
 
 upload:
-	arduino-cli compile -b ${BOARD} -p ${SERIAL_PORT} --upload --verify
+	arduino-cli compile -b ${BOARD} \
+	    -p ${SERIAL_PORT} --upload --verify
 
 monitor:
 	arduino-cli monitor -p ${SERIAL_PORT} --config baudrate=115200

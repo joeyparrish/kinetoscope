@@ -1,2 +1,3 @@
 build/
 firmware.ino.elf
+arduino_secrets.h

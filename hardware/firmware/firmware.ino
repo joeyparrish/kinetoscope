@@ -13,8 +13,13 @@
 
 #include <esp32-hal-psram.h>
 
+#include "arduino_secrets.h"
 #include "registers.h"
 #include "sram.h"
+#include "wifi.h"
+
+#define SERVER "cdn.syndication.twimg.com"
+#define PATH   "/widgets/followbutton/info.json?screen_names=adafruit"
 
 static void test_sram_speed() {
   // 450966 words = ~3s worth of audio+video data
@@ -31,7 +36,7 @@ static void test_sram_speed() {
   free(data);
 
   Serial.print(end - start);
-  Serial.println(" ms total\n");
+  Serial.println(" ms total to write 3s of data to SRAM\n");
 }
 
 static void test_register_speed() {
@@ -69,6 +74,7 @@ static void test_register_speed() {
 
 void setup() {
   Serial.begin(115200);
+  while (!Serial) {}  // Wait for serial port to connect
 
   psramInit();
 
@@ -76,11 +82,23 @@ void setup() {
 
   registers_init();
 
+  wifi_init(SECRET_WIFI_SSID, SECRET_WIFI_PASS);
+
   pinMode(LED_BUILTIN, OUTPUT);
+
+  wifi_connect(SERVER, 443, PATH);
 }
 
 void loop() {
   test_sram_speed();
 
   test_register_speed();
+
+  while (wifi_read()) {
+    delay(100);
+  }
+
+  while (true) {
+    delay(1000);
+  }
 }

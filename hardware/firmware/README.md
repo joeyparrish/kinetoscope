@@ -22,6 +22,18 @@ The entry point and main loop are in `firmware.ino`.
 4. Run `make`, which will use `arduino-cli` to do everything
 
 
+## WiFi configuration
+
+Create a file called `arduino_secrets.h` with two macros:
+
+```c++
+#define SECRET_WIFI_SSID "Put your WiFi SSID here"
+#define SECRET_WIFI_PASS "Put your WiFi password here"
+```
+
+The firmware cannot be compiled without this.
+
+
 ## Compile firmware
 
 ```sh
