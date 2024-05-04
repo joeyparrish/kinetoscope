@@ -184,4 +184,8 @@ void loop() {
 
   Serial.println("");
   delay(1000);
+
+#if 1
+  while (true) { delay(1000); }
+#endif
 }

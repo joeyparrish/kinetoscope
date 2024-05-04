@@ -87,6 +87,8 @@ void wifi_init(const char* ssid, const char* password) {
   Serial.print("Signal strength (RSSI):");
   Serial.print(rssi);
   Serial.println(" dBm");
+
+  wifi_client.setNoDelay(true);
 }
 
 int wifi_https_fetch(const char* server, uint16_t port, const char* path,
@@ -154,12 +156,12 @@ int wifi_https_fetch(const char* server, uint16_t port, const char* path,
     size = body_length;
   }
 
+#if 1
   int bytes_read_total = 0;
   int bytes_left = size;
   while (bytes_left) {
     int bytes_read = https_client->read(data, bytes_left);
     if (bytes_read <= 0) {
-      // FIXME: Why does this return -1 if there isn't data available _yet_?
       delay(1);
       continue;
     }
@@ -168,6 +170,22 @@ int wifi_https_fetch(const char* server, uint16_t port, const char* path,
     bytes_left -= bytes_read;
     data += bytes_read;
   }
+#else
+  int bytes_read_total = 0;
+  int bytes_left = size;
+  while (bytes_left) {
+    int byte = https_client->read();
+    if (byte < 0) {
+      delay(1);
+      continue;
+    }
+
+    *data = byte;
+    bytes_read_total++;
+    bytes_left--;
+    data++;
+  }
+#endif
 
   if (bytes_read_total != size) {
     Serial.print("Read ");
