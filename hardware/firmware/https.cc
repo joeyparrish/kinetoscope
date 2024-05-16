@@ -145,18 +145,16 @@ int https_fetch(const char* server, uint16_t port, const char* path,
 
   int bytes_read_total = 0;
   int bytes_left = size;
-  while (bytes_left && https_client->connected()) {
-    int byte = https_client->read();
-    if (byte < 0) {
-      // No data available yet, keep trying...
+  while (bytes_left) {
+    int bytes_read = https_client->read(data, bytes_left);
+    if (bytes_read <= 0) {
       delay(1);
       continue;
     }
 
-    *data = byte;
-    bytes_read_total++;
-    bytes_left--;
-    data++;
+    bytes_read_total += bytes_read;
+    bytes_left -= bytes_read;
+    data += bytes_read;
   }
 
   if (bytes_read_total != size) {
