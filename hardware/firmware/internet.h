@@ -8,11 +8,12 @@
 // The microcontroller accepts commands from the player in the Sega ROM, and
 // can stream video from the Internet to the cartridge's shared banks of SRAM.
 
-// This is the SRAM interface.
+// This is the interface to the network.
 
-#ifndef _KINETOSCOPE_SRAM_H
+#ifndef _KINETOSCOPE_INTERNET_H
 
-void sram_init();
-void sram_write(uint16_t *data, int num_words);
+Client* internet_init_wifi(const char* ssid, const char* password);
 
-#endif // _KINETOSCOPE_SRAM_H
+Client* internet_init_wired(uint8_t* mac);
+
+#endif // _KINETOSCOPE_INTERNET_H

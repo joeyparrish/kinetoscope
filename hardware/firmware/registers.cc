@@ -4,15 +4,16 @@
 //
 // See MIT License in LICENSE.txt
 
-// Firmware that runs on the Adafruit ESP32 V2 Feather inside the cartridge.
-// The feather accepts commands from the player in the Sega ROM, and can stream
-// video from WiFi to the cartridge's shared banks of SRAM.
+// Firmware that runs on the microcontroller inside the cartridge.
+// The microcontroller accepts commands from the player in the Sega ROM, and
+// can stream video from the Internet to the cartridge's shared banks of SRAM.
 
 // This is the interface to the registers and sync token.  These are connected
-// to the feather via an I2C port expander.  The registers are written by the
-// Sega to send commands to the feather, and the sync token is a shared bit
-// between the two for the Sega to notify the feather of new commands and for
-// the feather to notify the Sega of a command's completion.
+// to the microcontroller via an I2C port expander.  The registers are written
+// by the Sega to send commands to the microcontroller, and the sync token is a
+// shared bit between the two for the Sega to notify the microcontroller of new
+// commands and for the microcontroller to notify the Sega of a command's
+// completion.
 
 #include <Adafruit_MCP23X17.h>
 
@@ -37,7 +38,7 @@ void registers_init() {
   }
 
   // Set pin B0 (overall bit 8) as input.
-  // This is the feather's copy of the sync token.
+  // This is the microcontroller's copy of the sync token.
   port_expander.pinMode(8, INPUT);
 
   // Set pins B1-B7 (overall bits 9-15) as outputs.

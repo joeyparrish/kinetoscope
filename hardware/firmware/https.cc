@@ -4,28 +4,28 @@
 //
 // See MIT License in LICENSE.txt
 
-// Firmware that runs on the Adafruit ESP32 V2 Feather inside the cartridge.
-// The feather accepts commands from the player in the Sega ROM, and can stream
-// video from WiFi to the cartridge's shared banks of SRAM.
+// Firmware that runs on the microcontroller inside the cartridge.
+// The microcontroller accepts commands from the player in the Sega ROM, and
+// can stream video from the Internet to the cartridge's shared banks of SRAM.
 
-// This is the interface to the feather's WiFi.
+// This is the interface to HTTP(S) requests.
 
 #include <ArduinoHttpClient.h>
 #include <HardwareSerial.h>
-#include <WiFi.h>
-#include <WiFiClient.h>
 
 #define DEFAULT_PORT 80
 
-#include "wifi.h"
+#include "https.h"
 
-static int status = WL_IDLE_STATUS;
-
-static WiFiClient wifi_client;
+static Client* client = NULL;
 
 static char* current_server = NULL;
 static int current_port = 0;
 static HttpClient* https_client = NULL;
+
+void https_init(Client* network_client) {
+   client = network_client;
+}
 
 // We will use persistent connections as much as possible to speed up requests.
 static bool need_new_https_client(const char* server, int port) {
@@ -63,36 +63,14 @@ static void create_https_client(const char* server, int port) {
   Serial.println(server);
 #endif
 
-  https_client = new HttpClient(wifi_client, server, port);
+  https_client = new HttpClient(*client, server, port);
   https_client->connectionKeepAlive();
   current_server = strdup(server);
   current_port = port;
 }
 
-void wifi_init(const char* ssid, const char* password) {
-  Serial.print("Attempting to connect to SSID: ");
-  Serial.println(ssid);
-
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-  }
-  Serial.println("Connected to WiFi!");
-
-  IPAddress ip = WiFi.localIP();
-  Serial.print("IP Address: ");
-  Serial.println(ip);
-
-  long rssi = WiFi.RSSI();
-  Serial.print("Signal strength (RSSI):");
-  Serial.print(rssi);
-  Serial.println(" dBm");
-
-  wifi_client.setNoDelay(true);
-}
-
-int wifi_https_fetch(const char* server, uint16_t port, const char* path,
-                     int start_byte, uint8_t* data, int size) {
+int https_fetch(const char* server, uint16_t port, const char* path,
+                int start_byte, uint8_t* data, int size) {
   if (!port) {
     port = DEFAULT_PORT;
   }
@@ -120,6 +98,10 @@ int wifi_https_fetch(const char* server, uint16_t port, const char* path,
 
   // Check the HTTP status code.
   int status_code = https_client->responseStatusCode();
+#ifdef DEBUG
+  Serial.print("HTTP status code: ");
+  Serial.println(status_code);
+#endif
 
   // Since we sent a Range header, "200 OK" means the server ignored it.
   if (status_code == 200) {
@@ -152,11 +134,15 @@ int wifi_https_fetch(const char* server, uint16_t port, const char* path,
   }
 
   int body_length = https_client->contentLength();
+#ifdef DEBUG
+  Serial.print("HTTP body length: ");
+  Serial.println(body_length);
+#endif
+
   if (body_length < size) {
     size = body_length;
   }
 
-#if 1
   int bytes_read_total = 0;
   int bytes_left = size;
   while (bytes_left) {
@@ -170,22 +156,6 @@ int wifi_https_fetch(const char* server, uint16_t port, const char* path,
     bytes_left -= bytes_read;
     data += bytes_read;
   }
-#else
-  int bytes_read_total = 0;
-  int bytes_left = size;
-  while (bytes_left) {
-    int byte = https_client->read();
-    if (byte < 0) {
-      delay(1);
-      continue;
-    }
-
-    *data = byte;
-    bytes_read_total++;
-    bytes_left--;
-    data++;
-  }
-#endif
 
   if (bytes_read_total != size) {
     Serial.print("Read ");

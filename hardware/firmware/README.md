@@ -1,25 +1,25 @@
-# Kinetoscope Feather Firmware
+# Kinetoscope Microcontroller Firmware
 
 The hardware is composed of several stacking boards, each of which hosts a set
 of subcomponents.  The subcomponents are each in a subsheet, exposing
 hierarchical pins and buses to the parent sheet.
 
-One of these boards includes the ESP32 Feather V2 from Adafruit, which has WiFi
-and runs its own firmware to take commands from the Sega ROM.
+One of these boards includes a microcontroller, which has an interface to the
+internet and runs its own firmware to take commands from the Sega ROM.
 
-This is the firmware source code, built on the Arduino core for the feather.
+This is the firmware source code, built on the Arduino core for the
+microcontroller.
 The entry point and main loop are in `firmware.ino`.
 
 
 ## Compiler setup
 
-1. Set up the Arduino IDE and ESP32 board as detailed in
-   https://learn.adafruit.com/adafruit-esp32-feather-v2/arduino-ide-setup
-2. Use the Arduino Library Manager to install the Adafruit MCP23017 library,
-   the Adafruit BusIO library, and the ArduinoHttpClient library.
-3. To build from the command line, install `arduino-cli` as detailed in
+1. To build from the command line, install `arduino-cli` as detailed in
    https://arduino.github.io/arduino-cli/0.35/installation/
-4. Run `make`, which will use `arduino-cli` to do everything.
+2. FIXME: Install arduino-cli
+3. FIXME: Install the board core
+4. FIXME: Install libraries
+5. Run `make`, which will use `arduino-cli` to do everything.
 
 
 ## WiFi configuration
@@ -43,7 +43,7 @@ make build
 
 ## Upload firmware
 
-With the feather removed from the cartridge and connected via USB:
+With the microcontroller board removed from the cartridge and connected via USB:
 
 ```sh
 make upload

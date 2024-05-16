@@ -4,15 +4,16 @@
 //
 // See MIT License in LICENSE.txt
 
-// Firmware that runs on the Adafruit ESP32 V2 Feather inside the cartridge.
-// The feather accepts commands from the player in the Sega ROM, and can stream
-// video from WiFi to the cartridge's shared banks of SRAM.
+// Firmware that runs on the microcontroller inside the cartridge.
+// The microcontroller accepts commands from the player in the Sega ROM, and
+// can stream video from the Internet to the cartridge's shared banks of SRAM.
 
 // This is the interface to the registers and sync token.  These are connected
-// to the feather via an I2C port expander.  The registers are written by the
-// Sega to send commands to the feather, and the sync token is a shared bit
-// between the two for the Sega to notify the feather of new commands and for
-// the feather to notify the Sega of a command's completion.
+// to the microcontroller via an I2C port expander.  The registers are written
+// by the Sega to send commands to the microcontroller, and the sync token is a
+// shared bit between the two for the Sega to notify the microcontroller of new
+// commands and for the microcontroller to notify the Sega of a command's
+// completion.
 
 #ifndef _KINETOSCOPE_REGISTERS_H
 

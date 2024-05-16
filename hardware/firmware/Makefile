@@ -1,4 +1,6 @@
-BOARD = esp32:esp32:adafruit_feather_esp32_v2
+#BOARD = esp32:esp32:adafruit_feather_esp32_v2
+#BOARD = adafruit:samd:adafruit_itsybitsy_m4
+BOARD = rp2040:rp2040:rpipicow
 BOARD_PATH = $(subst :,.,${BOARD})
 SERIAL_PORT = /dev/ttyACM0
 SKETCH_NAME = firmware
@@ -8,7 +10,7 @@ SKETCH_NAME = firmware
 default:
 	@echo "The following commands are supported:"
 	@echo "  make build: compile the firmware"
-	@echo "  make upload: upload the firmware to a connected feather"
+	@echo "  make upload: upload the firmware to a connected microcontroller"
 	@echo "  make monitor: run the serial monitor"
 	@echo "  make clean: clean the build outputs"
 
@@ -19,7 +21,8 @@ build:
 
 upload:
 	arduino-cli compile -b ${BOARD} \
-	    -p ${SERIAL_PORT} --upload --verify
+	    -p ${SERIAL_PORT} \
+	    --upload --verify
 
 monitor:
 	arduino-cli monitor -p ${SERIAL_PORT} --config baudrate=115200
