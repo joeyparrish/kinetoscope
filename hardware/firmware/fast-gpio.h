@@ -106,8 +106,11 @@
 #define SRAM_PIN__DATA_CLOCK    12
 #define SRAM_PIN__DATA_WRITE    11
 
-#define FAST_SET_OUTPUT_MODE(PIN) sio_hw->gpio_oe_set = 1 << (PIN)
-#define FAST_SET_INPUT_MODE(PIN) sio_hw->gpio_oe_clr = 1 << (PIN)
+// FIXME: Are these working correctly?
+//#define FAST_SET_OUTPUT_MODE(PIN) sio_hw->gpio_oe_set = 1 << (PIN)
+//#define FAST_SET_INPUT_MODE(PIN) sio_hw->gpio_oe_clr = 1 << (PIN)
+#define FAST_SET_OUTPUT_MODE(PIN) pinMode(PIN, OUTPUT)
+#define FAST_SET_INPUT_MODE(PIN) pinMode(PIN, INPUT)
 
 #define FAST_CLEAR(PIN) sio_hw->gpio_clr = 1 << (PIN)
 #define FAST_SET(PIN) sio_hw->gpio_set = 1 << (PIN)
