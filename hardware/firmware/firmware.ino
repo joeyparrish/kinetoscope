@@ -141,13 +141,20 @@ void loop() {
   Serial.println(" us avg per register read.");  // 1000x reads, ms => us
 #endif
 
-  ms = test_download_speed(buffer, BUFFER_SIZE, /* first_byte= */ 0);
-  Serial.print(ms);
-  Serial.println(" ms to fetch one buffer over HTTP.");
+  for (int i = 0; i < 10; i++) {
+    ms = test_download_speed(buffer, BUFFER_SIZE, /* first_byte= */ i);
+    float bits = BUFFER_SIZE * 8.0;
+    float seconds = ms / 1000.0;
+    float mbps = bits / seconds / 1024.0 / 1024.0;
+    Serial.print(ms);
+    Serial.print(" ms to fetch one buffer (");
+    Serial.print(mbps);
+    Serial.println(" Mbps vs 2.75 Mbps minimum)");
 
-  ms = test_sram_speed((uint16_t*)buffer, BUFFER_SIZE / 2); // bytes => words
-  Serial.print(ms);
-  Serial.println(" ms to write one buffer to SRAM.");
+    ms = test_sram_speed((uint16_t*)buffer, BUFFER_SIZE / 2); // bytes => words
+    Serial.print(ms);
+    Serial.println(" ms to write one buffer to SRAM.");
+  }
 
 #if 1
   while (true) { delay(1000); }
