@@ -13,6 +13,8 @@
 #ifndef _KINETOSCOPE_SRAM_H
 
 void sram_init();
-void sram_write(uint16_t *data, int num_words);
+void sram_start_bank(int bank);
+void sram_write(const uint8_t *data, int num_bytes);
+void sram_flush();
 
 #endif // _KINETOSCOPE_SRAM_H

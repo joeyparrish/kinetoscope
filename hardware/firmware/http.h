@@ -14,9 +14,11 @@
 
 #include <Client.h>
 
+typedef void (*http_buffer_callback)(const uint8_t* buffer, int bytes);
+
 void http_init(Client* network_client);
 
 int http_fetch(const char* server, uint16_t port, const char* path,
-               int start_byte, uint8_t* data, int size);
+               int start_byte, int size, http_buffer_callback callback);
 
 #endif // _KINETOSCOPE_HTTP_H

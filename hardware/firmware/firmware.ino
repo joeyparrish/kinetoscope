@@ -25,7 +25,6 @@
 uint8_t MAC_ADDR[] = { 0x98, 0x76, 0xB6, 0x12, 0xD4, 0x9E };
 
 // ~3s worth of audio+video data with headers and worst-case padding.
-// FIXME: Only the ESP32 with its PSRAM can store this much at once.
 #define ABOUT_3S_VIDEO_AUDIO_BYTES 901932
 
 // A safe buffer size for these tests.
@@ -36,12 +35,14 @@ uint8_t MAC_ADDR[] = { 0x98, 0x76, 0xB6, 0x12, 0xD4, 0x9E };
 # define malloc ps_malloc
 #endif
 
-static long test_sram_speed(uint16_t* data, int data_size) {
+static long test_sram_speed(uint8_t* buffer, int bytes) {
   // ESP32: Takes about 1200ms total, or about 2660ns per word.
   // M4: Takes about 500ms total, or about 957ns per word.  (FIXME: Can't store 1MB of data here.)
   // RPiPico: Takes about 430ms total, or about 937ns per word.  (FIXME: Can't store 1MB of data here.)
   long start = millis();
-  sram_write(data, data_size);
+  sram_start_bank(0);
+  sram_write(buffer, bytes);
+  sram_flush();
   long end = millis();
   return end - start;
 }
@@ -78,12 +79,15 @@ static long test_register_read_speed() {
   return end - start;
 }
 
-static long test_download_speed(uint8_t* data, int data_size, int first_byte) {
+static long test_download_speed(int first_byte, int total_size) {
   // FIXME: Measure on each platform
   // ESP32: Takes about 2.4s to fetch 3s worth of data, at best.
   long start = millis();
+  sram_start_bank(0);
   int bytes_read = http_fetch(SERVER, /* default port */ 0, PATH,
-                              first_byte, data, data_size);
+                              first_byte, total_size,
+                              sram_write);
+  sram_flush();
   long end = millis();
   return end - start;
 }
@@ -141,19 +145,21 @@ void loop() {
   Serial.println(" us avg per register read.");  // 1000x reads, ms => us
 #endif
 
+  ms = test_sram_speed(buffer, BUFFER_SIZE);
+  Serial.print(ms);
+  Serial.print(" ms to write ");
+  Serial.print(BUFFER_SIZE);
+  Serial.println(" bytes to SRAM");
+
   for (int i = 0; i < 10; i++) {
-    ms = test_download_speed(buffer, BUFFER_SIZE, /* first_byte= */ i);
-    float bits = BUFFER_SIZE * 8.0;
+    ms = test_download_speed(/* first_byte= */ i, ABOUT_3S_VIDEO_AUDIO_BYTES);
+    float bits = ABOUT_3S_VIDEO_AUDIO_BYTES * 8.0;
     float seconds = ms / 1000.0;
     float mbps = bits / seconds / 1024.0 / 1024.0;
     Serial.print(ms);
-    Serial.print(" ms to fetch one buffer (");
+    Serial.print(" ms to stream ~3s video to SRAM (");
     Serial.print(mbps);
-    Serial.println(" Mbps vs 2.75 Mbps minimum)");
-
-    ms = test_sram_speed((uint16_t*)buffer, BUFFER_SIZE / 2); // bytes => words
-    Serial.print(ms);
-    Serial.println(" ms to write one buffer to SRAM.");
+    Serial.println(" Mbps vs 2.50 Mbps minimum)");
   }
 
 #if 1

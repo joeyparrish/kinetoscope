@@ -40,7 +40,7 @@ struct HeaderData {
   int body_length;
 
   // Some body bytes may have been read in the header buffer.
-  char* body_start;
+  const uint8_t* body_start;
   int body_start_length;
 };
 
@@ -50,6 +50,7 @@ static int current_port = 0;
 static char range_value[128];
 static char request_buffer[1024];
 static char response_buffer[1024];
+static uint8_t read_buffer[MAX_READ];
 
 void http_init(Client* network_client) {
    client = network_client;
@@ -163,7 +164,7 @@ static inline bool read_response_headers(HeaderData* header_data) {
         response_buffer[i + 3] == '\n') {
       // End of headers.  Save the location and length of the body bytes we
       // have in buffer, then quit the loop.
-      header_data->body_start = response_buffer + i + 4;
+      header_data->body_start = (const uint8_t*)response_buffer + i + 4;
       header_data->body_start_length = num_read - (i + 4);
       break;
     } else if (response_buffer[i] == '\r' &&
@@ -223,7 +224,7 @@ static inline bool check_status_code(int status_code) {
 }
 
 int http_fetch(const char* server, uint16_t port, const char* path,
-               int start_byte, uint8_t* data, int size) {
+               int start_byte, int size, http_buffer_callback callback) {
   if (!port) {
     port = DEFAULT_PORT;
   }
@@ -264,25 +265,19 @@ int http_fetch(const char* server, uint16_t port, const char* path,
     size = header_data.body_length;
   }
 
-  int bytes_read_total = 0;
   int bytes_left = size;
 
   // Copy the body bytes found in the header buffer.
   if (header_data.body_start_length) {
-    int bytes = header_data.body_start_length < size ?
-        header_data.body_start_length : size;
-    memcpy(data, header_data.body_start, bytes);
-
-    bytes_read_total += bytes;
-    bytes_left -= bytes;
-    data += bytes;
+    callback(header_data.body_start, header_data.body_start_length);
+    bytes_left -= header_data.body_start_length;
   }
 
   // Continue reading body data directly into the output buffer until we have
   // the whole response.
   while (bytes_left) {
     int read_request_size = bytes_left > MAX_READ ? MAX_READ : bytes_left;
-    int bytes_read = client->read(data, read_request_size);
+    int bytes_read = client->read(read_buffer, read_request_size);
 
 #if 0
     if (bytes_read > 0 && bytes_read < read_request_size) {
@@ -296,20 +291,9 @@ int http_fetch(const char* server, uint16_t port, const char* path,
       continue;
     }
 
-    bytes_read_total += bytes_read;
+    callback(read_buffer, bytes_read);
     bytes_left -= bytes_read;
-    data += bytes_read;
   }
 
-  if (bytes_read_total != size) {
-    Serial.print("Read ");
-    Serial.print(bytes_read_total);
-    Serial.print(" bytes instead of ");
-    Serial.print(size);
-    Serial.println("!");
-    close_connection();
-    return -1;
-  }
-
-  return bytes_read_total;
+  return size;
 }
