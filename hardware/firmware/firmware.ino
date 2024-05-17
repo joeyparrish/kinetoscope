@@ -82,8 +82,8 @@ static long test_download_speed(uint8_t* data, int data_size, int first_byte) {
   // FIXME: Measure on each platform
   // ESP32: Takes about 2.4s to fetch 3s worth of data, at best.
   long start = millis();
-  int bytes_read = https_fetch(SERVER, /* default port */ 0, PATH,
-                               first_byte, data, data_size);
+  int bytes_read = http_fetch(SERVER, /* default port */ 0, PATH,
+                              first_byte, data, data_size);
   long end = millis();
   return end - start;
 }
@@ -111,7 +111,7 @@ void setup() {
 #else
   Client* client = internet_init_wired(MAC_ADDR);
 #endif
-  https_init(client);
+  http_init(client);
 
   pinMode(LED_BUILTIN, OUTPUT);
 
