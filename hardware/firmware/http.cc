@@ -26,8 +26,8 @@
 #define DEFAULT_PORT 80
 
 //#define MAX_READ 16384
-//#define MAX_READ 8192
-#define MAX_READ 4096
+#define MAX_READ 8192
+//#define MAX_READ 4096
 
 #define CONTENT_LENGTH_HEADER "Content-Length: "
 #define CONTENT_LENGTH_HEADER_LENGTH 16
