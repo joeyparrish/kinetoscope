@@ -32,11 +32,11 @@ static inline void sram_set_word(uint16_t word_data) {
 
 void sram_init() {
   // Set output modes on all SRAM pins.
-  FAST_SET_OUTPUT_MODE(SRAM_PIN__ADDR_RESET);
-  FAST_SET_OUTPUT_MODE(SRAM_PIN__ADDR_CLOCK);
-  FAST_SET_OUTPUT_MODE(SRAM_PIN__DATA_NEXT_BIT);
-  FAST_SET_OUTPUT_MODE(SRAM_PIN__DATA_CLOCK);
-  FAST_SET_OUTPUT_MODE(SRAM_PIN__DATA_WRITE);
+  pinMode(SRAM_PIN__ADDR_RESET, OUTPUT);
+  pinMode(SRAM_PIN__ADDR_CLOCK, OUTPUT);
+  pinMode(SRAM_PIN__DATA_NEXT_BIT, OUTPUT);
+  pinMode(SRAM_PIN__DATA_CLOCK, OUTPUT);
+  pinMode(SRAM_PIN__DATA_WRITE, OUTPUT);
 
   // Disable active-low signals by default (setting them high).
   FAST_SET(SRAM_PIN__ADDR_RESET);
