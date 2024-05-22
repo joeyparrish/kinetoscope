@@ -20,8 +20,7 @@ sudo apt install docker.io
 ### Real Hardware
 
 Schematics and board layouts for the real hardware can be found in the
-[`hardware/`](../hardware/) folder.  I may also be able to build and mail you a
-cartridge for a fee.  See my contact info at https://joeyparrish.github.io/
+[`hardware/`](../hardware/) folder.
 
 The real hardware will need to have its firmware updated with WiFi connection
 info such as SSID and password, as well as a server URL to pull video from (see

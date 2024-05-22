@@ -32,8 +32,7 @@ If video is embedded in the ROM, you can only fit about 13.6 seconds in a 4MB
 cartridge/ROM.
 
 Schematics and board layouts for special streaming hardware can be found in the
-[`hardware/`](hardware/) folder.  I may also be able to build and mail you a
-cartridge for a fee.  See my contact info at https://joeyparrish.github.io/
+[`hardware/`](hardware/) folder.
 
 
 ## Prerequisites
