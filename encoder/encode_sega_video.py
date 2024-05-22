@@ -111,6 +111,7 @@ def detect_crop(args):
     raise RuntimeError(
         'Unable to detect crop settings for {}'.format(args.input))
 
+  print('Cropping with {}'.format(crop))
   return crop
 
 
