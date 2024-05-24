@@ -479,6 +479,222 @@
 				)
 			)
 		)
+		(symbol "power:+3.3V"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+3.3V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+3.3V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+3.3V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "power:GND"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 	)
 	(junction
 		(at 40.64 55.88)
@@ -487,22 +703,10 @@
 		(uuid "1ee18737-c77b-4785-b614-a17f309fa0e3")
 	)
 	(junction
-		(at 85.09 80.01)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "50054198-89cb-4963-8af8-6da2d7f4590b")
-	)
-	(junction
 		(at 73.66 90.17)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "51c5c727-d8d7-4059-816d-cbb4b4e3347a")
-	)
-	(junction
-		(at 55.88 45.72)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "56f65157-4304-4222-8bfd-ed2d33252434")
 	)
 	(junction
 		(at 43.18 68.58)
@@ -684,16 +888,6 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 110.49) (xy 85.09 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "08b67b8b-e4a9-4e79-a3dc-f918f9350cdf")
-	)
-	(wire
-		(pts
 			(xy 95.25 102.87) (xy 110.49 102.87)
 		)
 		(stroke
@@ -721,16 +915,6 @@
 			(type default)
 		)
 		(uuid "0f7b087f-2755-4e83-a174-ac4eb7b9bad9")
-	)
-	(wire
-		(pts
-			(xy 55.88 43.18) (xy 55.88 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1107b7c6-b977-4d6a-8b5b-80525af8449a")
 	)
 	(wire
 		(pts
@@ -811,16 +995,6 @@
 			(type default)
 		)
 		(uuid "2ac05b6a-a47f-4fc9-b4eb-65da63edbc7c")
-	)
-	(wire
-		(pts
-			(xy 73.66 80.01) (xy 85.09 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2bd282af-afd2-45bf-80b8-59ec38ab9b56")
 	)
 	(wire
 		(pts
@@ -954,16 +1128,6 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 45.72) (xy 55.88 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "75a86322-55e2-4802-8093-be6e222a885b")
-	)
-	(wire
-		(pts
 			(xy 43.18 68.58) (xy 45.72 68.58)
 		)
 		(stroke
@@ -1004,16 +1168,6 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 80.01) (xy 85.09 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8e9e6c74-54ea-402b-a139-b7ecf8f5fcea")
-	)
-	(wire
-		(pts
 			(xy 30.48 68.58) (xy 43.18 68.58)
 		)
 		(stroke
@@ -1041,16 +1195,6 @@
 			(type default)
 		)
 		(uuid "9aa5b428-ca45-432c-b2b6-0cd6a981248b")
-	)
-	(wire
-		(pts
-			(xy 85.09 77.47) (xy 85.09 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9dcc090e-3e2f-48b6-89e3-62627103213f")
 	)
 	(wire
 		(pts
@@ -1104,16 +1248,6 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 45.72) (xy 40.64 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ac567aaa-5993-4c89-9dcb-e67eff3f9a24")
-	)
-	(wire
-		(pts
 			(xy 95.25 87.63) (xy 110.49 87.63)
 		)
 		(stroke
@@ -1124,7 +1258,7 @@
 	)
 	(bus
 		(pts
-			(xy 125.73 43.18) (xy 80.01 43.18)
+			(xy 85.09 43.18) (xy 80.01 43.18)
 		)
 		(stroke
 			(width 0)
@@ -1294,16 +1428,6 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 76.2) (xy 55.88 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f724436f-7f4a-40b6-9446-14463b66d566")
-	)
-	(wire
-		(pts
 			(xy 132.08 81.28) (xy 137.16 81.28)
 		)
 		(stroke
@@ -1332,7 +1456,7 @@
 		)
 		(uuid "ff7e6344-3e72-4ba5-b5ea-57ace682200c")
 	)
-	(text "There are not enough GPIO pins on the ESP32 V2 Feather\nto write to SRAM in parallel, so we fill this register serially."
+	(text "There are not enough GPIO pins on the microcontroller\nto write to SRAM in parallel, so we fill this register serially."
 		(exclude_from_sim no)
 		(at 38.354 31.242 0)
 		(effects
@@ -1519,57 +1643,9 @@
 		)
 		(uuid "ddf5622f-3b28-48ff-8f21-ce60e9e17856")
 	)
-	(hierarchical_label "3V_IN"
-		(shape input)
-		(at 132.08 66.04 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "0813d242-d99b-46ee-92f6-2e76bcee4cee")
-	)
-	(hierarchical_label "GND_IN"
-		(shape input)
-		(at 132.08 81.28 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "1dc95f47-d444-4a93-a7d2-28c0b3da338b")
-	)
-	(hierarchical_label "3V_IN"
-		(shape input)
-		(at 85.09 77.47 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "48938ef0-7c55-4924-a6bc-2c56076eb9f5")
-	)
-	(hierarchical_label "GND_IN"
-		(shape input)
-		(at 55.88 82.55 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "59065e47-dd67-407f-9245-341ad269f500")
-	)
 	(hierarchical_label "D[0..15]"
 		(shape output)
-		(at 125.73 43.18 0)
+		(at 85.09 43.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1578,18 +1654,6 @@
 			(justify left)
 		)
 		(uuid "6c948550-db1a-4357-b41e-67e1e8a03c3b")
-	)
-	(hierarchical_label "3V_IN"
-		(shape input)
-		(at 55.88 43.18 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "a8891559-80f9-4b9a-9daa-8174ff57582c")
 	)
 	(hierarchical_label "D_IN"
 		(shape input)
@@ -1602,18 +1666,6 @@
 			(justify right)
 		)
 		(uuid "d0678e8b-89eb-457f-8bdd-8203ccab8202")
-	)
-	(hierarchical_label "GND_IN"
-		(shape input)
-		(at 85.09 115.57 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "f1c99c47-ef09-4992-a961-5cfbebf3f4b1")
 	)
 	(hierarchical_label "CLK"
 		(shape input)
@@ -1637,7 +1689,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3b9fc90f-efc3-4d80-9cf0-ceeb74455d7f")
-		(property "Reference" "C16"
+		(property "Reference" "C9"
 			(at 150.241 72.4478 0)
 			(effects
 				(font
@@ -1664,7 +1716,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/447/KEM_C1002_X7R_SMD-3316098.pdf"
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/585/MLCC-1837944.pdf"
 			(at 147.32 73.66 0)
 			(effects
 				(font
@@ -1682,6 +1734,33 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" "187-CL10B223KB8NNNC"
+			(at 147.32 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "CL10B223KB8NNNC"
+			(at 147.32 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "C21122"
+			(at 147.32 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "629098d5-2ec2-4505-a992-859e9bd4e30b")
 		)
@@ -1689,9 +1768,341 @@
 			(uuid "e71937ef-40a1-4cd0-9550-c717851d5c79")
 		)
 		(instances
-			(project "feather"
+			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "C16")
+					(reference "C9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 85.09 82.55 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "450d4542-b42e-4eea-ab99-21e9e65c9062")
+		(property "Reference" "#PWR051"
+			(at 85.09 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 85.09 78.4169 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 85.09 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 85.09 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 85.09 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3acea9e9-9e6b-4649-b3b0-72253b18cfab")
+		)
+		(instances
+			(project "microcontroller"
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
+					(reference "#PWR051")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 73.66 80.01 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4517d4c6-e59a-483e-ae08-e9d532bc18e9")
+		(property "Reference" "#PWR049"
+			(at 73.66 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 73.66 75.8769 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 73.66 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 73.66 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 73.66 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "27d906d1-5780-4bc8-97a1-977770d7b688")
+		)
+		(instances
+			(project "microcontroller"
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
+					(reference "#PWR049")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 40.64 45.72 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "51541fe2-5c4e-49e6-8eef-d11fc1b07fcc")
+		(property "Reference" "#PWR050"
+			(at 40.64 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 40.64 41.5869 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 40.64 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 40.64 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 40.64 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "273ed7c9-123e-4905-aeba-21bebb345b8a")
+		)
+		(instances
+			(project "microcontroller"
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
+					(reference "#PWR050")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 132.08 81.28 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "73264b82-8c80-4fbd-b715-7b9e9f9b99d8")
+		(property "Reference" "#PWR0118"
+			(at 125.73 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 128.9051 81.28 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 132.08 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 132.08 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 132.08 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e15b97a9-631d-4f82-a407-f980cdb80a61")
+		)
+		(instances
+			(project "microcontroller"
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
+					(reference "#PWR0118")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 132.08 66.04 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7ce5e73a-e39a-4014-ae0f-e82b4a55da0b")
+		(property "Reference" "#PWR052"
+			(at 135.89 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 128.905 66.04 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 132.08 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 132.08 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 132.08 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b62b6c8a-18ff-4c3e-ba9f-a9e620a7b5b4")
+		)
+		(instances
+			(project "microcontroller"
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
+					(reference "#PWR052")
 					(unit 1)
 				)
 			)
@@ -1707,7 +2118,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8593db73-1496-47d3-aa25-1fcbc6c09a3f")
-		(property "Reference" "C15"
+		(property "Reference" "C8"
 			(at 140.081 72.4478 0)
 			(effects
 				(font
@@ -1734,7 +2145,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/447/KEM_C1002_X7R_SMD-3316098.pdf"
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/585/MLCC-1837944.pdf"
 			(at 137.16 73.66 0)
 			(effects
 				(font
@@ -1752,6 +2163,33 @@
 				(hide yes)
 			)
 		)
+		(property "Mouser Part Number" "187-CL10B223KB8NNNC"
+			(at 137.16 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "CL10B223KB8NNNC"
+			(at 137.16 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "C21122"
+			(at 137.16 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3853caf8-030f-41c2-8d46-33b079e0cec4")
 		)
@@ -1759,9 +2197,207 @@
 			(uuid "fe7631fc-fcb9-480f-bb19-07e319b51036")
 		)
 		(instances
-			(project "feather"
+			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "C15")
+					(reference "C8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 55.88 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8bad20cf-be00-46cf-9607-986eaeea2c1b")
+		(property "Reference" "#PWR053"
+			(at 55.88 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 55.88 80.3331 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 55.88 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 55.88 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 55.88 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e877016f-052a-403a-aa3f-4367d5962455")
+		)
+		(instances
+			(project "microcontroller"
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
+					(reference "#PWR053")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 55.88 48.26 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ae98e763-fdac-4559-87af-7f0404bd1223")
+		(property "Reference" "#PWR048"
+			(at 55.88 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 55.88 44.1269 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 55.88 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 55.88 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 55.88 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bdfe4d3b-f731-4679-84fe-19cc7a9b0c8b")
+		)
+		(instances
+			(project "microcontroller"
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
+					(reference "#PWR048")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 85.09 110.49 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c0f1c488-fa81-4b64-a43b-4deffbcd53b3")
+		(property "Reference" "#PWR054"
+			(at 85.09 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 85.09 114.6231 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 85.09 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 85.09 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 85.09 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "77810144-f9a9-43cb-a2c6-910102214221")
+		)
+		(instances
+			(project "microcontroller"
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
+					(reference "#PWR054")
 					(unit 1)
 				)
 			)
@@ -1777,7 +2413,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d059626a-101d-4821-98ce-7febf949946e")
-		(property "Reference" "U14"
+		(property "Reference" "U8"
 			(at 58.0741 46.6555 0)
 			(effects
 				(font
@@ -1786,7 +2422,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LV164D,118"
+		(property "Value" "shift register"
 			(at 58.0741 49.0798 0)
 			(effects
 				(font
@@ -1795,7 +2431,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 78.74 68.58 0)
 			(effects
 				(font
@@ -1814,6 +2450,33 @@
 			)
 		)
 		(property "Description" "8-bit serial-in parallel-out shift register"
+			(at 55.88 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "771-LV164PW118"
+			(at 55.88 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "74LV164PW,118"
+			(at 55.88 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "C179331"
 			(at 55.88 60.96 0)
 			(effects
 				(font
@@ -1865,9 +2528,9 @@
 			(uuid "f686d7d0-80fe-4a8f-a218-9a14e066858f")
 		)
 		(instances
-			(project "feather"
+			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "U14")
+					(reference "U8")
 					(unit 1)
 				)
 			)
@@ -1883,7 +2546,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d0d2eea3-2b61-43be-b1a7-7fd4467e50d9")
-		(property "Reference" "U15"
+		(property "Reference" "U9"
 			(at 87.2841 80.9455 0)
 			(effects
 				(font
@@ -1892,7 +2555,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LV164D,118"
+		(property "Value" "shift register"
 			(at 87.2841 83.3698 0)
 			(effects
 				(font
@@ -1901,7 +2564,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
+		(property "Footprint" "Package_SO:TSSOP-14_4.4x5mm_P0.65mm"
 			(at 107.95 102.87 0)
 			(effects
 				(font
@@ -1920,6 +2583,33 @@
 			)
 		)
 		(property "Description" "8-bit serial-in parallel-out shift register"
+			(at 85.09 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "771-LV164PW118"
+			(at 85.09 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "74LV164PW,118"
+			(at 85.09 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "C179331"
 			(at 85.09 95.25 0)
 			(effects
 				(font
@@ -1971,9 +2661,9 @@
 			(uuid "7558f770-c999-40b6-81c3-4d8314c478ef")
 		)
 		(instances
-			(project "feather"
+			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "U15")
+					(reference "U9")
 					(unit 1)
 				)
 			)

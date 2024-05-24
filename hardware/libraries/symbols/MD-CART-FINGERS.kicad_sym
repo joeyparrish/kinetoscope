@@ -7,7 +7,7 @@
 			(offset 1.016)
 		)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(property "Reference" "P"
 			(at -13.97 62.23 0)
@@ -26,7 +26,7 @@
 			)
 		)
 		(property "Footprint" "MD-CART-FINGERS:MD-CART-FINGERS"
-			(at -11.43 -17.78 0)
+			(at -0.508 -67.818 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -50,24 +50,6 @@
 				(hide yes)
 			)
 		)
-		(symbol "MD-CART-FINGERS_0_0"
-			(text "BLAST"
-				(at -2.54 0 900)
-				(effects
-					(font
-						(size 3.048 3.048)
-					)
-				)
-			)
-			(text "PROCESSOR"
-				(at 2.54 0 900)
-				(effects
-					(font
-						(size 3.048 3.048)
-					)
-				)
-			)
-		)
 		(symbol "MD-CART-FINGERS_0_1"
 			(rectangle
 				(start -15.24 60.96)
@@ -78,6 +60,24 @@
 				)
 				(fill
 					(type none)
+				)
+			)
+		)
+		(symbol "MD-CART-FINGERS_1_0"
+			(text "/ MEGADRIVE"
+				(at 2.54 0 900)
+				(effects
+					(font
+						(size 3.048 3.048)
+					)
+				)
+			)
+			(text "SEGA GENESIS"
+				(at -2.54 0 900)
+				(effects
+					(font
+						(size 3.048 3.048)
+					)
 				)
 			)
 		)

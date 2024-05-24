@@ -1234,6 +1234,102 @@
 				)
 			)
 		)
+		(symbol "power:GND"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 	)
 	(junction
 		(at 31.75 180.34)
@@ -3428,30 +3524,6 @@
 		)
 		(uuid "0537d353-e6ca-45b3-ba5b-5869ca24df20")
 	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 49.53 180.34 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "06f6063c-d1c0-4deb-9130-a4e85e0bf749")
-	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 111.76 181.61 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "092d59cf-3c2a-4abb-876d-3a24636b7785")
-	)
 	(hierarchical_label "OUT_V"
 		(shape input)
 		(at 92.71 29.21 0)
@@ -3487,30 +3559,6 @@
 			(justify left)
 		)
 		(uuid "261e9734-dc6f-4aee-b2d1-83e4de0b15b8")
-	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 173.99 133.35 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "2754c17f-3147-4ad2-b2d5-59d5c2604d5d")
-	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 88.9 162.56 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "40d8f09f-2cd2-42c1-8ae3-4494d31c1d81")
 	)
 	(hierarchical_label "IN_V"
 		(shape input)
@@ -3571,18 +3619,6 @@
 			(justify left)
 		)
 		(uuid "8229d8db-b107-4f70-8c33-64f4ca210dc1")
-	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 88.9 90.17 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "86fbc528-ec8e-4ac0-8787-ccc048f7bf33")
 	)
 	(hierarchical_label "IN_V"
 		(shape input)
@@ -3680,18 +3716,6 @@
 		)
 		(uuid "c4e12e3e-ff09-4c60-96a3-bfb85e92adde")
 	)
-	(hierarchical_label "GND"
-		(shape input)
-		(at 187.96 153.67 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "d26a3974-de5e-4f26-85bf-7e488959a593")
-	)
 	(hierarchical_label "IN_V"
 		(shape input)
 		(at 170.18 143.51 180)
@@ -3774,7 +3798,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "029949c6-415c-48fb-8ddb-c4bd8d0ca3e2")
-		(property "Reference" "C15"
+		(property "Reference" "C21"
 			(at 101.6 184.1965 90)
 			(effects
 				(font
@@ -3790,7 +3814,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 105.41 189.5348 0)
 			(effects
 				(font
@@ -3817,6 +3841,33 @@
 				(hide yes)
 			)
 		)
+		(property "JLCPCB Part Number" "CL10B223KB8NNNC"
+			(at 101.6 190.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "80-C0603C223K4R"
+			(at 101.6 190.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "C0603C223K4RACTU"
+			(at 101.6 190.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "e3ed111f-2211-430f-9f1a-2daa43dad0f5")
 		)
@@ -3825,12 +3876,12 @@
 		)
 		(instances
 			(project "sram-bank"
-				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
-					(reference "C15")
-					(unit 1)
-				)
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
 					(reference "C21")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "C15")
 					(unit 1)
 				)
 			)
@@ -3846,7 +3897,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "043e87e5-fe0a-43f4-9fe1-03cfa13abe69")
-		(property "Reference" "C13"
+		(property "Reference" "C19"
 			(at 101.6 165.1465 90)
 			(effects
 				(font
@@ -3862,7 +3913,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 105.41 170.4848 0)
 			(effects
 				(font
@@ -3889,6 +3940,33 @@
 				(hide yes)
 			)
 		)
+		(property "JLCPCB Part Number" "CL10B223KB8NNNC"
+			(at 101.6 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "80-C0603C223K4R"
+			(at 101.6 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "C0603C223K4RACTU"
+			(at 101.6 171.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "0373a28c-85c3-4ece-bce5-b862a8321f24")
 		)
@@ -3897,12 +3975,12 @@
 		)
 		(instances
 			(project "sram-bank"
-				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
-					(reference "C13")
-					(unit 1)
-				)
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
 					(reference "C19")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "C13")
 					(unit 1)
 				)
 			)
@@ -3918,7 +3996,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "10b1bcae-a750-4dc1-b0c2-1564a1f9cda3")
-		(property "Reference" "U8"
+		(property "Reference" "U11"
 			(at 190.1541 147.7701 0)
 			(effects
 				(font
@@ -3927,7 +4005,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SN74LVC8T245DWRG4"
+		(property "Value" "3.3V <=> 5V"
 			(at 190.1541 150.1944 0)
 			(effects
 				(font
@@ -3936,7 +4014,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:SOIC-24W_7.5x15.4mm_P1.27mm"
+		(property "Footprint" "Package_SO:SSOP-24_5.3x8.2mm_P0.65mm"
 			(at 208.28 144.78 0)
 			(effects
 				(font
@@ -3945,7 +4023,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lvc8t245"
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc8t245.pdf"
 			(at 187.96 156.21 0)
 			(effects
 				(font
@@ -3955,6 +4033,33 @@
 			)
 		)
 		(property "Description" "8-Bit Dual-Supply Bus Transceiver With Configurable Voltage Translation and 3-State Outputs"
+			(at 187.96 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "C19197"
+			(at 187.96 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "595-SN74LVC8T245DBR"
+			(at 187.96 120.65 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "SN74LVC8T245DBR"
 			(at 187.96 120.65 0)
 			(effects
 				(font
@@ -4037,12 +4142,83 @@
 		)
 		(instances
 			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
+					(reference "U11")
+					(unit 1)
+				)
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
 					(reference "U8")
 					(unit 1)
 				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 111.76 181.61 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "15a8b4d0-ccc9-4de2-a200-fb8f1d461368")
+		(property "Reference" "#PWR027"
+			(at 118.11 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 114.935 181.61 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 111.76 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 111.76 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 111.76 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "01a8573b-60c3-4d66-bd71-b9a81c60bd99")
+		)
+		(instances
+			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
-					(reference "U11")
+					(reference "#PWR027")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "#PWR026")
 					(unit 1)
 				)
 			)
@@ -4058,7 +4234,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "186187a4-88ae-474c-9bd0-50d83519ce06")
-		(property "Reference" "C14"
+		(property "Reference" "C20"
 			(at 101.6 175.3065 90)
 			(effects
 				(font
@@ -4074,7 +4250,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 105.41 180.6448 0)
 			(effects
 				(font
@@ -4101,6 +4277,33 @@
 				(hide yes)
 			)
 		)
+		(property "JLCPCB Part Number" "CL10B223KB8NNNC"
+			(at 101.6 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "80-C0603C223K4R"
+			(at 101.6 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "C0603C223K4RACTU"
+			(at 101.6 181.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "04d5a9de-cfec-445f-af45-d3692cf744ae")
 		)
@@ -4109,12 +4312,12 @@
 		)
 		(instances
 			(project "sram-bank"
-				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
-					(reference "C14")
-					(unit 1)
-				)
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
 					(reference "C20")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "C14")
 					(unit 1)
 				)
 			)
@@ -4130,7 +4333,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4626bd05-6ed6-464a-9a5f-b703ab7e65da")
-		(property "Reference" "C10"
+		(property "Reference" "C16"
 			(at 39.37 162.6065 90)
 			(effects
 				(font
@@ -4146,7 +4349,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 43.18 167.9448 0)
 			(effects
 				(font
@@ -4173,6 +4376,33 @@
 				(hide yes)
 			)
 		)
+		(property "JLCPCB Part Number" "CL10B223KB8NNNC"
+			(at 39.37 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "80-C0603C223K4R"
+			(at 39.37 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "C0603C223K4RACTU"
+			(at 39.37 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "a16ab1b1-7552-45e4-a262-ee329c6655f1")
 		)
@@ -4181,12 +4411,82 @@
 		)
 		(instances
 			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
+					(reference "C16")
+					(unit 1)
+				)
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
 					(reference "C10")
 					(unit 1)
 				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 187.96 153.67 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "50d82681-c391-46c5-9546-8afefc628d41")
+		(property "Reference" "#PWR031"
+			(at 187.96 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 187.96 157.8031 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 187.96 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 187.96 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 187.96 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "796bfbe8-68b8-44c0-adf4-ae594854cc46")
+		)
+		(instances
+			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
-					(reference "C16")
+					(reference "#PWR031")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -4202,7 +4502,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "57ba08b4-8064-48a0-89f5-48eb42bc24d9")
-		(property "Reference" "C12"
+		(property "Reference" "C18"
 			(at 39.37 182.9265 90)
 			(effects
 				(font
@@ -4218,7 +4518,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 43.18 188.2648 0)
 			(effects
 				(font
@@ -4245,6 +4545,33 @@
 				(hide yes)
 			)
 		)
+		(property "JLCPCB Part Number" "CL10B223KB8NNNC"
+			(at 39.37 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "80-C0603C223K4R"
+			(at 39.37 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "C0603C223K4RACTU"
+			(at 39.37 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "c05f0838-726b-4a1a-bcb7-ecd2f5534c80")
 		)
@@ -4253,12 +4580,12 @@
 		)
 		(instances
 			(project "sram-bank"
-				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
-					(reference "C12")
-					(unit 1)
-				)
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
 					(reference "C18")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "C12")
 					(unit 1)
 				)
 			)
@@ -4274,7 +4601,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7e256314-8738-492f-b7f9-2714aedc23c9")
-		(property "Reference" "U6"
+		(property "Reference" "U9"
 			(at 91.0941 86.8101 0)
 			(effects
 				(font
@@ -4283,7 +4610,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SN74LVC8T245DWRG4"
+		(property "Value" "3.3V <=> 5V"
 			(at 91.0941 89.2344 0)
 			(effects
 				(font
@@ -4292,7 +4619,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:SOIC-24W_7.5x15.4mm_P1.27mm"
+		(property "Footprint" "Package_SO:SSOP-24_5.3x8.2mm_P0.65mm"
 			(at 109.22 83.82 0)
 			(effects
 				(font
@@ -4301,7 +4628,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lvc8t245"
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc8t245.pdf"
 			(at 88.9 95.25 0)
 			(effects
 				(font
@@ -4311,6 +4638,33 @@
 			)
 		)
 		(property "Description" "8-Bit Dual-Supply Bus Transceiver With Configurable Voltage Translation and 3-State Outputs"
+			(at 88.9 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "C19197"
+			(at 88.9 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "595-SN74LVC8T245DBR"
+			(at 88.9 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "SN74LVC8T245DBR"
 			(at 88.9 59.69 0)
 			(effects
 				(font
@@ -4393,12 +4747,12 @@
 		)
 		(instances
 			(project "sram-bank"
-				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
-					(reference "U6")
-					(unit 1)
-				)
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
 					(reference "U9")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "U6")
 					(unit 1)
 				)
 			)
@@ -4414,7 +4768,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "81376ec5-8d11-4fce-a06e-e2e7996c6eb5")
-		(property "Reference" "C11"
+		(property "Reference" "C17"
 			(at 39.37 174.0365 90)
 			(effects
 				(font
@@ -4430,7 +4784,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 43.18 179.3748 0)
 			(effects
 				(font
@@ -4457,6 +4811,33 @@
 				(hide yes)
 			)
 		)
+		(property "JLCPCB Part Number" "CL10B223KB8NNNC"
+			(at 39.37 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "80-C0603C223K4R"
+			(at 39.37 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "C0603C223K4RACTU"
+			(at 39.37 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "884a05c1-924f-4ec0-9553-f09451f6f2a3")
 		)
@@ -4465,12 +4846,153 @@
 		)
 		(instances
 			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
+					(reference "C17")
+					(unit 1)
+				)
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
 					(reference "C11")
 					(unit 1)
 				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 49.53 180.34 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "81cf3605-4a31-4b19-b269-93135b4312af")
+		(property "Reference" "#PWR029"
+			(at 55.88 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 52.705 180.34 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 49.53 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 49.53 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 49.53 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2ed8ee9f-6fe7-43b0-aeb3-acbd432dfea0")
+		)
+		(instances
+			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
-					(reference "C17")
+					(reference "#PWR029")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "#PWR028")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 88.9 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "af6a1816-f755-4350-9bc3-c95ff2dbfa00")
+		(property "Reference" "#PWR033"
+			(at 88.9 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 88.9 94.3031 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 88.9 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 88.9 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 88.9 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9c185f63-fa53-46d6-a4df-7fcd1db767cd")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
+					(reference "#PWR033")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
@@ -4486,7 +5008,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b666162f-e56d-4256-baa0-64a63f2fbfa6")
-		(property "Reference" "U7"
+		(property "Reference" "U10"
 			(at 91.0941 156.6601 0)
 			(effects
 				(font
@@ -4495,7 +5017,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SN74LVC8T245DWRG4"
+		(property "Value" "3.3V <=> 5V"
 			(at 91.0941 159.0844 0)
 			(effects
 				(font
@@ -4504,7 +5026,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:SOIC-24W_7.5x15.4mm_P1.27mm"
+		(property "Footprint" "Package_SO:SSOP-24_5.3x8.2mm_P0.65mm"
 			(at 109.22 153.67 0)
 			(effects
 				(font
@@ -4513,7 +5035,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lvc8t245"
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc8t245.pdf"
 			(at 88.9 165.1 0)
 			(effects
 				(font
@@ -4523,6 +5045,33 @@
 			)
 		)
 		(property "Description" "8-Bit Dual-Supply Bus Transceiver With Configurable Voltage Translation and 3-State Outputs"
+			(at 88.9 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "C19197"
+			(at 88.9 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "595-SN74LVC8T245DBR"
+			(at 88.9 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "SN74LVC8T245DBR"
 			(at 88.9 129.54 0)
 			(effects
 				(font
@@ -4605,12 +5154,153 @@
 		)
 		(instances
 			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
+					(reference "U10")
+					(unit 1)
+				)
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
 					(reference "U7")
 					(unit 1)
 				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 173.99 133.35 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bd2f87f2-c279-4923-a16b-5a1d472a6e8c")
+		(property "Reference" "#PWR035"
+			(at 167.64 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 170.8151 133.35 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 173.99 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 173.99 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 173.99 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "71761629-92be-45c2-970d-a1daff99109e")
+		)
+		(instances
+			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
-					(reference "U10")
+					(reference "#PWR035")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "#PWR034")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 88.9 162.56 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e0832f5c-b902-4301-bf13-f87c0deba96e")
+		(property "Reference" "#PWR025"
+			(at 88.9 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 88.9 166.6931 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 88.9 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 88.9 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 88.9 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6e03bda7-e0fd-4c41-9e92-600c45b17241")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/0a9a7de8-3fba-4801-a42b-51b6ed2978d3"
+					(reference "#PWR025")
+					(unit 1)
+				)
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/bc339041-f96e-4f3a-ab6d-4320e48b2499"
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)

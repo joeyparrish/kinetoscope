@@ -1,5 +1,3 @@
-#BOARD = esp32:esp32:adafruit_feather_esp32_v2
-#BOARD = adafruit:samd:adafruit_itsybitsy_m4
 BOARD = rp2040:rp2040:rpipicow
 BOARD_PATH = $(subst :,.,${BOARD})
 SERIAL_PORT = /dev/ttyACM0

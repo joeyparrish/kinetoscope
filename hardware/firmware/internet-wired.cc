@@ -11,8 +11,6 @@
 // This is the interface to a wired connection using an SPI-connected Ethernet
 // board.
 
-#if !defined(ARDUINO_ARCH_ESP32)  // This board has WiFi instead.
-
 #include <Ethernet.h>
 #include <HardwareSerial.h>
 #include <SPI.h>
@@ -51,5 +49,3 @@ Client* internet_init_wired(uint8_t* mac) {
 
   return &client;
 }
-
-#endif

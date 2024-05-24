@@ -1,7 +1,7 @@
 {
   "board": {
     "active_layer": 0,
-    "active_layer_preset": "All Layers",
+    "active_layer_preset": "",
     "auto_track_width": true,
     "hidden_netclasses": [],
     "hidden_nets": [],
@@ -60,7 +60,6 @@
       34,
       35,
       36,
-      39,
       40
     ],
     "visible_layers": "fffffff_ffffffff",
@@ -73,7 +72,7 @@
     "ssh_key": ""
   },
   "meta": {
-    "filename": "registers.kicad_prl",
+    "filename": "microcontroller.kicad_prl",
     "version": 3
   },
   "project": {

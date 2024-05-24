@@ -10,7 +10,8 @@
 
 // This is the interface to the microcontroller's WiFi, for those with WiFi.
 
-#if defined(ARDUINO_ARCH_ESP32)  // This board has WiFi.
+// These boards have WiFi.
+#if defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_RP2040)
 
 #include <HardwareSerial.h>
 #include <WiFi.h>

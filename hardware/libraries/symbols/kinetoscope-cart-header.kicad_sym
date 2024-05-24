@@ -2,12 +2,12 @@
 	(version 20231120)
 	(generator "kicad_symbol_editor")
 	(generator_version "8.0")
-	(symbol "kinetoscope-cart-header"
+	(symbol "kinetoscope-cart-header-a"
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(property "Reference" "J"
-			(at -1.016 1.016 0)
+			(at 0 1.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15,15 +15,15 @@
 			)
 		)
 		(property "Value" ""
-			(at -10.16 -2.54 0)
+			(at 1.27 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "kinetoscope-cart-header:kinetoscope-cart-header"
-			(at -0.508 14.732 0)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x26_P2.54mm_Vertical"
+			(at 1.27 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -32,7 +32,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at -10.16 -2.54 0)
+			(at 1.27 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -41,7 +41,7 @@
 			)
 		)
 		(property "Description" ""
-			(at -10.16 -2.54 0)
+			(at 1.27 0 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -49,18 +49,10 @@
 				(hide yes)
 			)
 		)
-		(property "ki_locked" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(symbol "kinetoscope-cart-header_1_1"
+		(symbol "kinetoscope-cart-header-a_1_1"
 			(rectangle
 				(start -15.24 0)
-				(end 15.24 -68.58)
+				(end 15.24 -86.36)
 				(stroke
 					(width 0)
 					(type default)
@@ -69,7 +61,7 @@
 					(type none)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -5.08 0)
 				(length 2.54)
 				(name "SEGA_A1"
@@ -87,7 +79,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -30.48 0)
 				(length 2.54)
 				(name "SEGA_A10"
@@ -105,7 +97,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -33.02 0)
 				(length 2.54)
 				(name "SEGA_A11"
@@ -123,7 +115,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -35.56 0)
 				(length 2.54)
 				(name "SEGA_A12"
@@ -141,7 +133,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -38.1 0)
 				(length 2.54)
 				(name "SEGA_A13"
@@ -159,7 +151,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -40.64 0)
 				(length 2.54)
 				(name "SEGA_A14"
@@ -177,7 +169,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -43.18 0)
 				(length 2.54)
 				(name "SEGA_A15"
@@ -195,7 +187,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -48.26 0)
 				(length 2.54)
 				(name "SEGA_A16"
@@ -213,7 +205,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -50.8 0)
 				(length 2.54)
 				(name "SEGA_A17"
@@ -231,7 +223,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -53.34 0)
 				(length 2.54)
 				(name "SEGA_A18"
@@ -249,7 +241,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -55.88 0)
 				(length 2.54)
 				(name "SEGA_A19"
@@ -267,7 +259,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -7.62 0)
 				(length 2.54)
 				(name "SEGA_A2"
@@ -285,7 +277,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -58.42 0)
 				(length 2.54)
 				(name "SEGA_A20"
@@ -303,7 +295,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -60.96 0)
 				(length 2.54)
 				(name "SEGA_A21"
@@ -321,7 +313,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -63.5 0)
 				(length 2.54)
 				(name "SEGA_A22"
@@ -339,7 +331,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -66.04 0)
 				(length 2.54)
 				(name "SEGA_A23"
@@ -357,7 +349,25 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
+				(at -17.78 -71.12 0)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "24"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
 				(at 17.78 -2.54 180)
 				(length 2.54)
 				(name "SEGA_D0"
@@ -375,7 +385,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -5.08 180)
 				(length 2.54)
 				(name "SEGA_D1"
@@ -393,7 +403,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -7.62 180)
 				(length 2.54)
 				(name "SEGA_D2"
@@ -411,7 +421,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -10.16 180)
 				(length 2.54)
 				(name "SEGA_D3"
@@ -429,7 +439,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -12.7 180)
 				(length 2.54)
 				(name "SEGA_D4"
@@ -447,7 +457,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -10.16 0)
 				(length 2.54)
 				(name "SEGA_A3"
@@ -465,7 +475,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -15.24 180)
 				(length 2.54)
 				(name "SEGA_D5"
@@ -483,7 +493,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -17.78 180)
 				(length 2.54)
 				(name "SEGA_D6"
@@ -501,7 +511,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -20.32 180)
 				(length 2.54)
 				(name "SEGA_D7"
@@ -519,7 +529,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -25.4 180)
 				(length 2.54)
 				(name "SEGA_D8"
@@ -537,7 +547,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -27.94 180)
 				(length 2.54)
 				(name "SEGA_D9"
@@ -555,7 +565,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -30.48 180)
 				(length 2.54)
 				(name "SEGA_D10"
@@ -573,7 +583,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -33.02 180)
 				(length 2.54)
 				(name "SEGA_D11"
@@ -591,7 +601,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -35.56 180)
 				(length 2.54)
 				(name "SEGA_D12"
@@ -609,7 +619,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -38.1 180)
 				(length 2.54)
 				(name "SEGA_D13"
@@ -627,7 +637,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -40.64 180)
 				(length 2.54)
 				(name "SEGA_D14"
@@ -645,7 +655,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -12.7 0)
 				(length 2.54)
 				(name "SEGA_A4"
@@ -663,7 +673,7 @@
 					)
 				)
 			)
-			(pin bidirectional line
+			(pin passive line
 				(at 17.78 -43.18 180)
 				(length 2.54)
 				(name "SEGA_D15"
@@ -681,8 +691,98 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at 17.78 -48.26 180)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "41"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -53.34 180)
+				(length 2.54)
+				(name "5V"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "42"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -55.88 180)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "43"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -60.96 180)
+				(length 2.54)
+				(name "3V"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "44"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -63.5 180)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "45"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -68.58 180)
 				(length 2.54)
 				(name "~{SEGA_WE_LB}"
 					(effects
@@ -699,8 +799,8 @@
 					)
 				)
 			)
-			(pin output line
-				(at 17.78 -50.8 180)
+			(pin passive line
+				(at 17.78 -71.12 180)
 				(length 2.54)
 				(name "~{SEGA_WE_UB}"
 					(effects
@@ -717,8 +817,8 @@
 					)
 				)
 			)
-			(pin output line
-				(at 17.78 -53.34 180)
+			(pin passive line
+				(at 17.78 -73.66 180)
 				(length 2.54)
 				(name "~{SEGA_CE}"
 					(effects
@@ -735,8 +835,8 @@
 					)
 				)
 			)
-			(pin output line
-				(at 17.78 -55.88 180)
+			(pin passive line
+				(at 17.78 -76.2 180)
 				(length 2.54)
 				(name "~{SEGA_REGISTER}"
 					(effects
@@ -753,7 +853,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -15.24 0)
 				(length 2.54)
 				(name "SEGA_A5"
@@ -771,8 +871,8 @@
 					)
 				)
 			)
-			(pin output line
-				(at 17.78 -58.42 180)
+			(pin passive line
+				(at 17.78 -78.74 180)
 				(length 2.54)
 				(name "~{SEGA_AS}"
 					(effects
@@ -789,8 +889,8 @@
 					)
 				)
 			)
-			(pin output line
-				(at 17.78 -60.96 180)
+			(pin passive line
+				(at 17.78 -81.28 180)
 				(length 2.54)
 				(name "~{SEGA_RESET}"
 					(effects
@@ -807,7 +907,25 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
+				(at 17.78 -83.82 180)
+				(length 2.54)
+				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "52"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
 				(at -17.78 -17.78 0)
 				(length 2.54)
 				(name "SEGA_A6"
@@ -825,7 +943,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -20.32 0)
 				(length 2.54)
 				(name "SEGA_A7"
@@ -843,7 +961,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -25.4 0)
 				(length 2.54)
 				(name "SEGA_A8"
@@ -861,7 +979,7 @@
 					)
 				)
 			)
-			(pin output line
+			(pin passive line
 				(at -17.78 -27.94 0)
 				(length 2.54)
 				(name "SEGA_A9"
@@ -880,1235 +998,13 @@
 				)
 			)
 		)
-		(symbol "kinetoscope-cart-header_2_1"
-			(rectangle
-				(start -15.24 0)
-				(end 15.24 -17.78)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(pin passive line
-				(at -17.78 -2.54 0)
-				(length 2.54)
-				(name "~{FLASH_OE}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "53"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -5.08 0)
-				(length 2.54)
-				(name "~{FLASH_CE}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "54"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -7.62 0)
-				(length 2.54)
-				(name "~{FLASH_WE}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "55"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -12.7 0)
-				(length 2.54)
-				(name "~{SRAM_CE1}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "56"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -15.24 0)
-				(length 2.54)
-				(name "~{SRAM_CE2}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "57"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 17.78 -7.62 180)
-				(length 2.54)
-				(name "~{SYNC_OE}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "58"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 17.78 -5.08 180)
-				(length 2.54)
-				(name "~{SYNC_SET}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "59"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 17.78 -2.54 180)
-				(length 2.54)
-				(name "~{RESET_3V}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "60"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 17.78 -12.7 180)
-				(length 2.54)
-				(name "~{REG_WE}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "61"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-		)
-		(symbol "kinetoscope-cart-header_3_1"
-			(rectangle
-				(start -17.78 0)
-				(end 17.78 -20.32)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(pin passive line
-				(at -20.32 -17.78 0)
-				(length 2.54)
-				(name "~{SRAM_WE}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "67"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 17.78 -2.54 180)
-				(length 2.54)
-				(name "SRAM_DIS_1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "68"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 17.78 -5.08 180)
-				(length 2.54)
-				(name "SRAM_DIS_2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "69"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 17.78 -10.16 180)
-				(length 2.54)
-				(name "SDA"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "70"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 17.78 -12.7 180)
-				(length 2.54)
-				(name "SCL"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "71"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-		)
-		(symbol "kinetoscope-cart-header_4_1"
-			(rectangle
-				(start -15.24 0)
-				(end 15.24 -55.88)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -17.78 180)
-				(length 2.54)
-				(name "SRAM_D_IN6"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "100"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -20.32 180)
-				(length 2.54)
-				(name "SRAM_D_IN7"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "101"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -25.4 180)
-				(length 2.54)
-				(name "SRAM_D_IN8"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "102"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -27.94 180)
-				(length 2.54)
-				(name "SRAM_D_IN9"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "103"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -30.48 180)
-				(length 2.54)
-				(name "SRAM_D_IN10"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "104"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -33.02 180)
-				(length 2.54)
-				(name "SRAM_D_IN11"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "105"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -35.56 180)
-				(length 2.54)
-				(name "SRAM_D_IN12"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "106"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -38.1 180)
-				(length 2.54)
-				(name "SRAM_D_IN13"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "107"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -40.64 180)
-				(length 2.54)
-				(name "SRAM_D_IN14"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "108"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -43.18 180)
-				(length 2.54)
-				(name "SRAM_D_IN15"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "109"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -2.54 0)
-				(length 2.54)
-				(name "SRAM_W_A0"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "74"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -5.08 0)
-				(length 2.54)
-				(name "SRAM_W_A1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "75"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -7.62 0)
-				(length 2.54)
-				(name "SRAM_W_A2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "76"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -10.16 0)
-				(length 2.54)
-				(name "SRAM_W_A3"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "77"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -12.7 0)
-				(length 2.54)
-				(name "SRAM_W_A4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "78"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -15.24 0)
-				(length 2.54)
-				(name "SRAM_W_A5"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "79"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -17.78 0)
-				(length 2.54)
-				(name "SRAM_W_A6"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "80"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -20.32 0)
-				(length 2.54)
-				(name "SRAM_W_A7"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "81"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -25.4 0)
-				(length 2.54)
-				(name "SRAM_W_A8"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "82"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -27.94 0)
-				(length 2.54)
-				(name "SRAM_W_A9"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "83"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -30.48 0)
-				(length 2.54)
-				(name "SRAM_W_A10"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "84"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -33.02 0)
-				(length 2.54)
-				(name "SRAM_W_A11"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "85"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -35.56 0)
-				(length 2.54)
-				(name "SRAM_W_A12"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "86"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -38.1 0)
-				(length 2.54)
-				(name "SRAM_W_A13"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "87"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -40.64 0)
-				(length 2.54)
-				(name "SRAM_W_A14"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "88"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -43.18 0)
-				(length 2.54)
-				(name "SRAM_W_A15"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "89"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -48.26 0)
-				(length 2.54)
-				(name "SRAM_W_A16"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "90"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -50.8 0)
-				(length 2.54)
-				(name "SRAM_W_A17"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "91"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -17.78 -53.34 0)
-				(length 2.54)
-				(name "SRAM_W_A18"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "92"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -2.54 180)
-				(length 2.54)
-				(name "SRAM_D_IN0"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "94"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -5.08 180)
-				(length 2.54)
-				(name "SRAM_D_IN1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "95"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -7.62 180)
-				(length 2.54)
-				(name "SRAM_D_IN2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "96"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -10.16 180)
-				(length 2.54)
-				(name "SRAM_D_IN3"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "97"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -12.7 180)
-				(length 2.54)
-				(name "SRAM_D_IN4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "98"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -15.24 180)
-				(length 2.54)
-				(name "SRAM_D_IN5"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "99"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-		)
-		(symbol "kinetoscope-cart-header_5_1"
-			(rectangle
-				(start -12.7 0)
-				(end 22.86 -15.24)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(pin passive line
-				(at 21.59 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "110"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -11.43 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "24"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -8.89 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "41"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -2.54 2.54 270)
-				(length 2.54)
-				(name "5V"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "42"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -6.35 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "43"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 2.54 2.54 270)
-				(length 2.54)
-				(name "3V"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "44"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -3.81 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "45"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at -1.27 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "52"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 1.27 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "62"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 3.81 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "63"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 6.35 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "64"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 8.89 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "65"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 11.43 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "66"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 13.97 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "72"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 16.51 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "73"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin passive line
-				(at 19.05 -17.78 90)
-				(length 2.54)
-				(name "GND"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "93"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-		)
 	)
-	(symbol "kinetoscope-cart-header-half"
+	(symbol "kinetoscope-cart-header-b"
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(property "Reference" "J"
-			(at 0 0 0)
+			(at 0 1.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2116,15 +1012,15 @@
 			)
 		)
 		(property "Value" ""
-			(at 6.35 0 0)
+			(at 0 -24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "kinetoscope-cart-header:kinetoscope-cart-header-half"
-			(at 6.35 0 0)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x21_P2.54mm_Vertical"
+			(at 0 -24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2133,7 +1029,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 6.35 0 0)
+			(at 0 -24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2142,7 +1038,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 6.35 0 0)
+			(at 0 -24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2150,18 +1046,10 @@
 				(hide yes)
 			)
 		)
-		(property "ki_locked" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(symbol "kinetoscope-cart-header-half_1_1"
+		(symbol "kinetoscope-cart-header-b_1_1"
 			(rectangle
 				(start -15.24 -1.27)
-				(end 15.24 -69.85)
+				(end 15.24 -77.47)
 				(stroke
 					(width 0)
 					(type default)
@@ -2170,10 +1058,10 @@
 					(type none)
 				)
 			)
-			(pin output line
-				(at -17.78 -6.35 0)
+			(pin passive line
+				(at -17.78 -5.08 0)
 				(length 2.54)
-				(name "SEGA_A1"
+				(name "~{SRAM_WE}"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2188,10 +1076,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -31.75 0)
+			(pin passive line
+				(at -17.78 -27.94 0)
 				(length 2.54)
-				(name "SEGA_A10"
+				(name "SRAM_W_A4"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2206,10 +1094,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -34.29 0)
+			(pin passive line
+				(at -17.78 -30.48 0)
 				(length 2.54)
-				(name "SEGA_A11"
+				(name "SRAM_W_A5"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2224,10 +1112,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -36.83 0)
+			(pin passive line
+				(at -17.78 -33.02 0)
 				(length 2.54)
-				(name "SEGA_A12"
+				(name "SRAM_W_A6"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2242,10 +1130,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -39.37 0)
+			(pin passive line
+				(at -17.78 -35.56 0)
 				(length 2.54)
-				(name "SEGA_A13"
+				(name "SRAM_W_A7"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2260,10 +1148,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -41.91 0)
+			(pin passive line
+				(at -17.78 -40.64 0)
 				(length 2.54)
-				(name "SEGA_A14"
+				(name "SRAM_W_A8"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2278,10 +1166,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -44.45 0)
+			(pin passive line
+				(at -17.78 -43.18 0)
 				(length 2.54)
-				(name "SEGA_A15"
+				(name "SRAM_W_A9"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2296,10 +1184,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -49.53 0)
+			(pin passive line
+				(at -17.78 -45.72 0)
 				(length 2.54)
-				(name "SEGA_A16"
+				(name "SRAM_W_A10"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2314,10 +1202,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -52.07 0)
+			(pin passive line
+				(at -17.78 -48.26 0)
 				(length 2.54)
-				(name "SEGA_A17"
+				(name "SRAM_W_A11"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2332,10 +1220,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -54.61 0)
+			(pin passive line
+				(at -17.78 -50.8 0)
 				(length 2.54)
-				(name "SEGA_A18"
+				(name "SRAM_W_A12"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2350,10 +1238,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -57.15 0)
+			(pin passive line
+				(at -17.78 -53.34 0)
 				(length 2.54)
-				(name "SEGA_A19"
+				(name "SRAM_W_A13"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2368,10 +1256,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -8.89 0)
+			(pin passive line
+				(at -17.78 -7.62 0)
 				(length 2.54)
-				(name "SEGA_A2"
+				(name "GND"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2386,10 +1274,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -59.69 0)
+			(pin passive line
+				(at -17.78 -55.88 0)
 				(length 2.54)
-				(name "SEGA_A20"
+				(name "SRAM_W_A14"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2404,10 +1292,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -62.23 0)
+			(pin passive line
+				(at -17.78 -58.42 0)
 				(length 2.54)
-				(name "SEGA_A21"
+				(name "SRAM_W_A15"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2422,10 +1310,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -64.77 0)
+			(pin passive line
+				(at -17.78 -63.5 0)
 				(length 2.54)
-				(name "SEGA_A22"
+				(name "SRAM_W_A16"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2440,10 +1328,10 @@
 					)
 				)
 			)
-			(pin output line
-				(at -17.78 -67.31 0)
+			(pin passive line
+				(at -17.78 -66.04 0)
 				(length 2.54)
-				(name "SEGA_A23"
+				(name "SRAM_W_A17"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -2458,545 +1346,10 @@
 					)
 				)
 			)
-			(pin bidirectional line
-				(at 17.78 -3.81 180)
-				(length 2.54)
-				(name "SEGA_D0"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "25"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -6.35 180)
-				(length 2.54)
-				(name "SEGA_D1"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "26"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -8.89 180)
-				(length 2.54)
-				(name "SEGA_D2"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "27"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -11.43 180)
-				(length 2.54)
-				(name "SEGA_D3"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "28"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -13.97 180)
-				(length 2.54)
-				(name "SEGA_D4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "29"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at -17.78 -11.43 0)
-				(length 2.54)
-				(name "SEGA_A3"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "3"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -16.51 180)
-				(length 2.54)
-				(name "SEGA_D5"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "30"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -19.05 180)
-				(length 2.54)
-				(name "SEGA_D6"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "31"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -21.59 180)
-				(length 2.54)
-				(name "SEGA_D7"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "32"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -26.67 180)
-				(length 2.54)
-				(name "SEGA_D8"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "33"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -29.21 180)
-				(length 2.54)
-				(name "SEGA_D9"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "34"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -31.75 180)
-				(length 2.54)
-				(name "SEGA_D10"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "35"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -34.29 180)
-				(length 2.54)
-				(name "SEGA_D11"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "36"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -36.83 180)
-				(length 2.54)
-				(name "SEGA_D12"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "37"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -39.37 180)
-				(length 2.54)
-				(name "SEGA_D13"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "38"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -41.91 180)
-				(length 2.54)
-				(name "SEGA_D14"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "39"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at -17.78 -13.97 0)
-				(length 2.54)
-				(name "SEGA_A4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "4"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin bidirectional line
-				(at 17.78 -44.45 180)
-				(length 2.54)
-				(name "SEGA_D15"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "40"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at 17.78 -49.53 180)
-				(length 2.54)
-				(name "~{SEGA_WE_LB}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "46"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at 17.78 -52.07 180)
-				(length 2.54)
-				(name "~{SEGA_WE_UB}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "47"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at 17.78 -54.61 180)
-				(length 2.54)
-				(name "~{SEGA_CE}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "48"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at 17.78 -57.15 180)
-				(length 2.54)
-				(name "~{SEGA_REGISTER}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "49"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at -17.78 -16.51 0)
-				(length 2.54)
-				(name "SEGA_A5"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "5"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at 17.78 -59.69 180)
-				(length 2.54)
-				(name "~{SEGA_AS}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "50"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at 17.78 -62.23 180)
-				(length 2.54)
-				(name "~{SEGA_RESET}"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "51"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at -17.78 -19.05 0)
-				(length 2.54)
-				(name "SEGA_A6"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "6"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at -17.78 -21.59 0)
-				(length 2.54)
-				(name "SEGA_A7"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "7"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at -17.78 -26.67 0)
-				(length 2.54)
-				(name "SEGA_A8"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "8"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-			(pin output line
-				(at -17.78 -29.21 0)
-				(length 2.54)
-				(name "SEGA_A9"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-				(number "9"
-					(effects
-						(font
-							(size 1.27 1.27)
-						)
-					)
-				)
-			)
-		)
-		(symbol "kinetoscope-cart-header-half_2_1"
-			(rectangle
-				(start -6.35 -3.81)
-				(end 6.35 -19.05)
-				(stroke
-					(width 0)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
 			(pin passive line
-				(at -5.08 -21.59 90)
+				(at -17.78 -68.58 0)
 				(length 2.54)
-				(name "GND"
+				(name "SRAM_W_A18"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3012,9 +1365,333 @@
 				)
 			)
 			(pin passive line
-				(at -2.54 -21.59 90)
+				(at -17.78 -73.66 0)
 				(length 2.54)
 				(name "GND"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "25"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -20.32 180)
+				(length 2.54)
+				(name "SRAM_D_IN0"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "26"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -22.86 180)
+				(length 2.54)
+				(name "SRAM_D_IN1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "27"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -25.4 180)
+				(length 2.54)
+				(name "SRAM_D_IN2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "28"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -27.94 180)
+				(length 2.54)
+				(name "SRAM_D_IN3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "29"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -5.08 180)
+				(length 2.54)
+				(name "SRAM_DIS_1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -30.48 180)
+				(length 2.54)
+				(name "SRAM_D_IN4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "30"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -33.02 180)
+				(length 2.54)
+				(name "SRAM_D_IN5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "31"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -35.56 180)
+				(length 2.54)
+				(name "SRAM_D_IN6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "32"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -38.1 180)
+				(length 2.54)
+				(name "SRAM_D_IN7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "33"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -43.18 180)
+				(length 2.54)
+				(name "SRAM_D_IN8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "34"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -45.72 180)
+				(length 2.54)
+				(name "SRAM_D_IN9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "35"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -48.26 180)
+				(length 2.54)
+				(name "SRAM_D_IN10"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "36"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -50.8 180)
+				(length 2.54)
+				(name "SRAM_D_IN11"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "37"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -53.34 180)
+				(length 2.54)
+				(name "SRAM_D_IN12"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "38"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -55.88 180)
+				(length 2.54)
+				(name "SRAM_D_IN13"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "39"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 17.78 -7.62 180)
+				(length 2.54)
+				(name "SRAM_DIS_2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -58.42 180)
+				(length 2.54)
+				(name "SRAM_D_IN14"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "40"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin bidirectional line
+				(at 17.78 -60.96 180)
+				(length 2.54)
+				(name "SRAM_D_IN15"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3030,9 +1707,9 @@
 				)
 			)
 			(pin passive line
-				(at -2.54 -1.27 270)
+				(at 17.78 -66.04 180)
 				(length 2.54)
-				(name "5V"
+				(name "GND"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3048,7 +1725,7 @@
 				)
 			)
 			(pin passive line
-				(at 0 -21.59 90)
+				(at 17.78 -10.16 180)
 				(length 2.54)
 				(name "GND"
 					(effects
@@ -3057,7 +1734,7 @@
 						)
 					)
 				)
-				(number "43"
+				(number "5"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3066,16 +1743,16 @@
 				)
 			)
 			(pin passive line
-				(at 2.54 -1.27 270)
+				(at -17.78 -17.78 0)
 				(length 2.54)
-				(name "3V"
+				(name "SRAM_W_A0"
 					(effects
 						(font
 							(size 1.27 1.27)
 						)
 					)
 				)
-				(number "44"
+				(number "6"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3084,16 +1761,16 @@
 				)
 			)
 			(pin passive line
-				(at 2.54 -21.59 90)
+				(at -17.78 -20.32 0)
 				(length 2.54)
-				(name "GND"
+				(name "SRAM_W_A1"
 					(effects
 						(font
 							(size 1.27 1.27)
 						)
 					)
 				)
-				(number "45"
+				(number "7"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -3102,20 +1779,109 @@
 				)
 			)
 			(pin passive line
-				(at 5.08 -21.59 90)
+				(at -17.78 -22.86 0)
 				(length 2.54)
-				(name "GND"
+				(name "SRAM_W_A2"
 					(effects
 						(font
 							(size 1.27 1.27)
 						)
 					)
 				)
-				(number "52"
+				(number "8"
 					(effects
 						(font
 							(size 1.27 1.27)
 						)
+					)
+				)
+			)
+			(pin passive line
+				(at -17.78 -25.4 0)
+				(length 2.54)
+				(name "SRAM_W_A3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+	)
+	(symbol "kinetoscope-cart-template"
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(property "Reference" "X"
+			(at 0 -5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" ""
+			(at 0 -5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "kinetoscope-cart-header:kinetoscope-cart-board-template"
+			(at 0 -5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 -5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 0 -5.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(symbol "kinetoscope-cart-template_0_1"
+			(rectangle
+				(start 12.7 -3.81)
+				(end -12.7 1.27)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "kinetoscope-cart-template_1_1"
+			(text "Template for Kinetoscope\nboard header alignment"
+				(at 0 -1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
 				)
 			)

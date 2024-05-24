@@ -37,15 +37,15 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.762,
-          "height": 1.524,
-          "width": 1.524
+          "drill": 6.0,
+          "height": 6.0,
+          "width": 6.0
         },
-        "silk_line_width": 0.1,
+        "silk_line_width": 0.1524,
         "silk_text_italic": false,
         "silk_text_size_h": 1.0,
         "silk_text_size_v": 1.0,
-        "silk_text_thickness": 0.1,
+        "silk_text_thickness": 0.1524,
         "silk_text_upright": false,
         "zones": {
           "min_clearance": 1.0
@@ -79,6 +79,7 @@
         "footprint_type_mismatch": "ignore",
         "hole_clearance": "error",
         "hole_near_hole": "error",
+        "holes_co_located": "warning",
         "invalid_outline": "error",
         "isolated_copper": "warning",
         "item_on_disabled_layer": "error",
@@ -99,7 +100,7 @@
         "silk_over_copper": "warning",
         "silk_overlap": "warning",
         "skew_out_of_range": "error",
-        "solder_mask_bridge": "error",
+        "solder_mask_bridge": "ignore",
         "starved_thermal": "error",
         "text_height": "warning",
         "text_thickness": "warning",
@@ -117,19 +118,19 @@
         "max_error": 0.005,
         "min_clearance": 0.1524,
         "min_connection": 0.1524,
-        "min_copper_edge_clearance": 0.127,
-        "min_hole_clearance": 0.127,
-        "min_hole_to_hole": 0.127,
-        "min_microvia_diameter": 0.508,
-        "min_microvia_drill": 0.254,
+        "min_copper_edge_clearance": 0.3,
+        "min_hole_clearance": 0.33,
+        "min_hole_to_hole": 0.5,
+        "min_microvia_diameter": 0.0,
+        "min_microvia_drill": 0.0,
         "min_resolved_spokes": 2,
         "min_silk_clearance": 0.0,
-        "min_text_height": 0.8,
-        "min_text_thickness": 0.127,
-        "min_through_hole_diameter": 0.254,
+        "min_text_height": 1.0,
+        "min_text_thickness": 0.15,
+        "min_through_hole_diameter": 0.3,
         "min_track_width": 0.1524,
-        "min_via_annular_width": 0.127,
-        "min_via_diameter": 0.508,
+        "min_via_annular_width": 0.25,
+        "min_via_diameter": 0.8,
         "solder_mask_to_copper_clearance": 0.0,
         "use_height_for_length_calcs": true
       },
@@ -270,7 +271,7 @@
         0,
         1,
         0,
-        1,
+        0,
         0,
         1,
         2
@@ -348,13 +349,13 @@
       [
         0,
         2,
-        1,
-        2,
-        0,
-        0,
-        1,
         0,
         2,
+        0,
+        0,
+        1,
+        0,
+        0,
         2,
         2,
         2
@@ -450,18 +451,18 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.2,
-        "diff_pair_gap": 0.25,
+        "clearance": 0.1524,
+        "diff_pair_gap": 0.2,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
         "line_style": 0,
-        "microvia_diameter": 0.3,
-        "microvia_drill": 0.1,
+        "microvia_diameter": 0.0,
+        "microvia_drill": 0.0,
         "name": "Default",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.2,
-        "via_diameter": 0.6,
+        "track_width": 0.1524,
+        "via_diameter": 0.8,
         "via_drill": 0.3,
         "wire_width": 6
       }
@@ -478,8 +479,8 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
-      "pos_files": "",
+      "plot": "cart-fab",
+      "pos_files": "cart-fab/",
       "specctra_dsn": "cart.dsn",
       "step": "",
       "svg": "",
@@ -489,6 +490,7 @@
   },
   "schematic": {
     "annotate_start_num": 0,
+    "bom_export_filename": "cart-fab/cart.csv",
     "bom_fmt_presets": [],
     "bom_fmt_settings": {
       "field_delimiter": ",",
@@ -505,13 +507,13 @@
       "fields_ordered": [
         {
           "group_by": false,
-          "label": "Reference",
+          "label": "Designator",
           "name": "Reference",
           "show": true
         },
         {
           "group_by": true,
-          "label": "Value",
+          "label": "Comment",
           "name": "Value",
           "show": true
         },
@@ -522,7 +524,7 @@
           "show": true
         },
         {
-          "group_by": false,
+          "group_by": true,
           "label": "Footprint",
           "name": "Footprint",
           "show": true
@@ -534,10 +536,10 @@
           "show": true
         },
         {
-          "group_by": true,
+          "group_by": false,
           "label": "DNP",
           "name": "${DNP}",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
@@ -550,6 +552,24 @@
           "label": "Description",
           "name": "Description",
           "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Part#",
+          "name": "Part Number",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "Mouser Part#",
+          "name": "Mouser Part Number",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "JLCPCB Part#",
+          "name": "JLCPCB Part Number",
+          "show": true
         }
       ],
       "filter_string": "",
@@ -601,6 +621,10 @@
     [
       "6dac8cb5-ba7e-4a0d-b8d8-ab0b7982aa02",
       "Root"
+    ],
+    [
+      "1a049b5b-210f-4363-876e-a04f4cdab991",
+      "flash-internal"
     ]
   ],
   "text_variables": {}

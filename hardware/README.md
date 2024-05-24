@@ -4,82 +4,83 @@ The hardware is composed of several stacking boards, each of which hosts a set
 of subcomponents.  The subcomponents are each in a subsheet, exposing
 hierarchical pins and buses to the parent sheet.
 
-One of these boards includes the ESP32 Feather V2 from Adafruit, which has WiFi
-and runs its own firmware to take commands from the Sega ROM.  See firmware in
-the `firmware/` folder.
+One of these boards includes a microcontroller with WiFi and an ethernet
+module, and runs its own firmware to take commands from the Sega ROM.  See
+firmware in the `firmware/` folder.
 
 
 ## Boards
 
 The stacking boards are:
+ - `cart`: Cartridge Board
+   - This is the board that actually plugs into the Sega Genesis.
+   - It has 2MB of flash, which acts as the "ROM" chip for addresses 0-2MB, and
+     contains the code that runs on the Sega.
+   - The flash chip is compatible with the [Krikzz FlashKit Programmer MD][].
+   - There is also a pin header on top that the other boards stack onto.
+   - The pin header could also be used as a kind of breakout board for the
+     development of other Sega cartridge projects.
  - `sram-bank`: SRAM Bank Board
    - There are actually two of these in the stack, one for each 1MB SRAM bank.
    - These host the SRAM itself, the buffers that allow it to be alternately
-     controlled by the Sega or the ESP32 feather, and the level shifters that
+     controlled by the Sega or the microcontroller, and the level shifters that
      allow it to interface to the 5V system of the Sega. This is the most
      complex.  A solder jumper on the board selects whether it responds as bank
      1 or bank 2.
- - `registers`: Register & Flash Board
-   - This hosts the registers, sync token, and flash "ROM" chips.
+ - `microcontroller`: Microcontroller Board
+   - This hosts the microcontroller, voltage regulator, registers, sync token,
+     and ethernet module.
    - The registers and sync token allow the Sega to send commands to the
-     feather and wait for responses.  The flash chips act as the "ROM" chip,
-     and contain the code that runs on the Sega.
- - `feather`: Feather and Decoder Board
-   - This hosts the Adafruit ESP32 feather, which is responsible for WiFi and
-     writing to SRAM, and the signal decoder logic, which decodes Sega address
-     lines and other signals to generate the control signals for the various
-     subcomponents to avoid bus conflicts.
- - `cart`: Cartridge Edge Connector Board
-   - This is the board that actually plugs into the Sega Genesis.  It has a pin
-     header on top that the other boards stack onto.  This interface could also
-     be used as a kind of breakout board for the development of other Sega
-     cartridge projects.
+     microcontroller and wait for responses.
+   - The microcontroller is a Raspberry Pi Pico W, which is receives commands
+     through the registers and sync token, and is responsible for WiFi/Ethernet
+     and streaming video to SRAM.
 
 ## Sheets
 
 The subsheets are:
- - `address-counter-internal`: SRAM Address Counter
-   - The feather doesn't have enough pins to output the SRAM address it wants
-     to write to, so instead, this counter is used to generate sequential
+ - `address-counter-internal`: SRAM address counter
+   - The microcontroller doesn't have enough pins to output the SRAM address it
+     wants to write to, so instead, this counter is used to generate sequential
      addresses.
  - `buffer-16-internal`: 16-bit tri-state, level-shifting buffer
    - This buffer allows us to manage control of the 16-bit data bus on the
-     SRAM, switching between Sega and feather control when needed.
+     SRAM, switching between Sega and microcontroller control when needed.
  - `buffer-22-internal`: 22-bit tri-state, level-shifting buffer
    - This buffer allows us to manage control of the 19-bit address bus and
-     control signals on the SRAM, switching between Sega and feather control
-     when needed.
+     control signals on the SRAM, switching between Sega and microcontroller
+     control when needed.
  - `data-register-internal`: 16-bit serial-to-parallel shift register
-   - The feather doesn't have enough pins to output the SRAM words it wants to
-     write, so instead, this register is used to convert a serial output from
-     the feather into the parallel input needed by the SRAM.
- - `decoder-internal`: Control Signal Decoder
-   - Decodes the addresses and control signals from the Sega into the control
-     signals for all the other various components.
+   - The microcontroller doesn't have enough pins to output the SRAM words it
+     wants to write, so instead, this register is used to convert a serial
+     output from the microcontroller into the parallel input needed by the
+     SRAM.
+ - `ethernet-internal`: WizNet-5500-based Ethernet module
+   - All the circuitry necessary to use wired Ethernet through the WizNet 5500,
+     which talks to the microcontroller through an SPI interface.
  - `flash-internal`: Flash connected to buses
    - Flash memory connected to buses to simplify top-level schematics.
  - `kinetoscope-header-internal`: Kinetoscope stacking pin headers
    - The stacking pin headers used for inter-board signals.
- - `port-expander-internal`: Port expander connected to buses
-   - Port expander IC connected to buses to simplify top-level schematics.
  - `register-file-internal`: 4x 8-bit Register File
-   - Special registers the Sega writes to and the feather reads from to receive
-     commands.
+   - Special registers the Sega writes to and the microcontroller reads from to
+     receive commands.
  - `sram-internal`: SRAM connected to buses
    - SRAM connected to buses to simplify top-level schematics.
  - `sync-token-internal`: Shared Sync Token
-   - A single bit that can be set by the Sega, cleared by the feather, and read
-     by both. The sega sets the bit to tell the feather that a command has been
-     written to the registers. The feather clears it when the command has been
-     completed.
+   - A single bit that can be set by the Sega, cleared by the microcontroller,
+     and read by both. The sega sets the bit to tell the microcontroller that a
+     command has been written to the registers. The microcontroller clears it
+     when the command has been completed.
 
 ## Programming
 
 To program the Flash chip in-place:
- 1. Stack the Register & Flash board on top of the Cart board, omitting all
-    other boards
- 2. Place a jumper from the `~{SEGA_WE_LB}` pin (#46, fourth from the right on
-    the top row of the lower connector) to the `~{FLASH_WE}` pin (#55, second
-    from the left on the bottom row of the upper connector)
- 3. Insert the cart into the
-    [Krikzz FlashKit Programmer MD](https://krikzz.com/our-products/accessories/flashkitmd.html)
+ 1. Insert the cartridge board into the [Krikzz FlashKit Programmer MD][]
+ 2. Write to it as you would a normal flash cart, using the
+    [original FlashKit-MD software][] (GUI) or [FlashKit MD Python Client][]
+    (command line)
+
+[Krikzz FlashKit Programmer MD]: https://krikzz.com/our-products/accessories/flashkitmd.html
+[original FlashKit-MD software]: https://krikzz.com/pub/support/flashkit-md/
+[FlashKit MD Python Client]: https://github.com/joeyparrish/flashkit-md-py

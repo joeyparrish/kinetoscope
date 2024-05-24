@@ -30,11 +30,6 @@ uint8_t MAC_ADDR[] = { 0x98, 0x76, 0xB6, 0x12, 0xD4, 0x9E };
 // A safe buffer size for these tests.
 #define BUFFER_SIZE 100 * 1024
 
-// On the ESP32 board, use PSRAM.
-#if defined(ARDUINO_ARCH_ESP32)
-# define malloc ps_malloc
-#endif
-
 static long test_sram_speed(uint8_t* buffer, int bytes) {
   // ESP32: Takes about 1200ms total, or about 2660ns per word.
   // M4: Takes about 500ms total, or about 957ns per word.  (FIXME: Can't store 1MB of data here.)
@@ -102,15 +97,11 @@ void setup() {
   delay(1000);
   Serial.println("Hello, world!\n");
 
-#if defined(ARDUINO_ARCH_ESP32)
-  psramInit();
-#endif
-
   sram_init();
 
   // registers_init();
 
-#if defined(ARDUINO_ARCH_ESP32)
+#if defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_RP2040)
   Client* client = internet_init_wifi(SECRET_WIFI_SSID, SECRET_WIFI_PASS);
 #else
   Client* client = internet_init_wired(MAC_ADDR);

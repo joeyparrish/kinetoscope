@@ -12,3 +12,9 @@ fp-info-cache
 *.frb
 *.ses
 logs/freerouting.log
+*.rules
+# Fabrication outputs
+*-fab
+*-fab.zip
+# Rule check reports
+*.rpt
