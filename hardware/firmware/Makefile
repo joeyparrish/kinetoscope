@@ -26,7 +26,9 @@ upload:
 	    --upload --verify
 
 monitor:
-	arduino-cli monitor -p ${SERIAL_PORT} --config baudrate=115200
+	arduino-cli monitor -b ${BOARD} \
+	    -p ${SERIAL_PORT} \
+	    --config baudrate=115200
 
 clean:
 	rm -rf build ${SKETCH_NAME}.ino.elf
