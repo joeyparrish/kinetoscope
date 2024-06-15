@@ -28,10 +28,7 @@ Client* internet_init_wired(uint8_t* mac) {
   // MISO == GP16
   // SCK == 18
 
-  // FIXME: Handle failures here
   int ok = Ethernet.begin(mac);
-  Serial.print("DHCP: ");
-  Serial.println(ok ? "success" : "failure");
 
   if (Ethernet.hardwareStatus() == EthernetNoHardware) {
     Serial.println("Ethernet shield was not found.");
@@ -43,9 +40,14 @@ Client* internet_init_wired(uint8_t* mac) {
     Serial.println("W5500 Ethernet controller detected.");
   }
 
+  Serial.print("DHCP: ");
+  Serial.println(ok ? "success" : "failure");
+  if (!ok) {
+    return NULL;
+  }
+
   IPAddress ip = Ethernet.localIP();
   Serial.print("IP Address: ");
   Serial.println(ip);
-
   return &client;
 }

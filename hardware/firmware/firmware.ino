@@ -30,10 +30,10 @@ uint8_t MAC_ADDR[] = { 0x98, 0x76, 0xB6, 0x12, 0xD4, 0x9E };
 // A safe buffer size for these tests.
 #define BUFFER_SIZE 100 * 1024
 
-// FIXME: Update all measurements
-
 static long test_sram_speed(uint8_t* buffer, int bytes) {
-  // Takes about 430ms total, or about 937ns per word.
+  // 100kB: ~83ms
+  // 1MB: ~830ms
+  // 3s video+audio: ~731ms
   long start = millis();
   sram_start_bank(0);
   sram_write(buffer, bytes);
@@ -43,10 +43,10 @@ static long test_sram_speed(uint8_t* buffer, int bytes) {
 }
 
 static long test_sync_token_read_speed() {
+  // ~114 ns per read
   long start = millis();
   int count = 0;
-  // Takes about 470us each.
-  for (int i = 0; i < 1000; ++i) {
+  for (int i = 0; i < 1000000; ++i) {
     count += is_sync_token_set();
   }
   long end = millis();
@@ -54,9 +54,9 @@ static long test_sync_token_read_speed() {
 }
 
 static long test_sync_token_clear_speed() {
+  // ~114 ns per clear
   long start = millis();
-  // Takes about 700us each.
-  for (int i = 0; i < 1000; ++i) {
+  for (int i = 0; i < 1000000; ++i) {
     clear_sync_token();
   }
   long end = millis();
@@ -64,10 +64,10 @@ static long test_sync_token_clear_speed() {
 }
 
 static long test_register_read_speed() {
+  // ~228 ns per read
   int count = 0;
   long start = millis();
-  // Takes about 820us each.
-  for (int i = 0; i < 1000; ++i) {
+  for (int i = 0; i < 1000000; ++i) {
     count += read_register(i & 3);
   }
   long end = millis();
@@ -75,7 +75,9 @@ static long test_register_read_speed() {
 }
 
 static long test_download_speed(int first_byte, int total_size) {
-  // FIXME: Measure on each platform
+  // 2.5Mbps minimum required
+  // ~2.7Mbps with initial HTTP connection overhead
+  // ~3.0Mbps on subsequent requests @902kB
   long start = millis();
   sram_start_bank(0);
   int bytes_read = http_fetch(SERVER, /* default port */ 0, PATH,
@@ -99,11 +101,32 @@ void setup() {
   sram_init();
   registers_init();
 
-  // FIXME: Prefer wired, fall back to wifi if configured
+  // Prefer wired, fall back to WiFi if configured.
   Client* client = internet_init_wired(MAC_ADDR);
+
+  if (!client) {
+    Serial.println("Wired connection failed!");
+
 #if defined(ARDUINO_ARCH_RP2040)
-  //Client* client = internet_init_wifi(SECRET_WIFI_SSID, SECRET_WIFI_PASS);
+    if (strlen(SECRET_WIFI_SSID) && strlen(SECRET_WIFI_PASS)) {
+      client = internet_init_wifi(SECRET_WIFI_SSID, SECRET_WIFI_PASS);
+      if (!client) {
+        Serial.println("WiFi connection failed!");
+      }
+    } else {
+      Serial.println("WiFi not configured!");
+    }
+#else
+    Serial.println("WiFi hardware not available!");
 #endif
+  }
+
+  // TODO: Report status back to the Sega.
+  if (!client) {
+    Serial.println("Failed to connect to the network!");
+    while (true) { delay(1000); }
+  }
+
   http_init(client);
 
   pinMode(LED_BUILTIN, OUTPUT);
@@ -122,15 +145,15 @@ void loop() {
 
   ms = test_sync_token_read_speed();
   Serial.print(ms);
-  Serial.println(" us avg per sync token read.");  // 1000x reads, ms => us
+  Serial.println(" ns avg per sync token read.");  // 1Mx reads, ms => ns
 
   ms = test_sync_token_clear_speed();
   Serial.print(ms);
-  Serial.println(" us avg per sync token clear.");  // 1000x reads, ms => us
+  Serial.println(" ns avg per sync token clear.");  // 1Mx reads, ms => ns
 
   ms = test_register_read_speed();
   Serial.print(ms);
-  Serial.println(" us avg per register read.");  // 1000x reads, ms => us
+  Serial.println(" ns avg per register read.");  // 1Mx reads, ms => ns
 
   ms = test_sram_speed(buffer, BUFFER_SIZE);
   Serial.print(ms);
