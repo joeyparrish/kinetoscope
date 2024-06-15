@@ -15,64 +15,49 @@
 // commands and for the microcontroller to notify the Sega of a command's
 // completion.
 
-#include <Adafruit_MCP23X17.h>
-
 #include "registers.h"
 
-static Adafruit_MCP23X17 port_expander;
-static uint8_t port_b_state;
-
-#define SYNC_TOKEN_BIT       0x01
-#define CLEAR_SYNC_TOKEN_BIT 0x02
-
-#define REGISTER_ADDRESS_SHIFT 2
-#define REGISTER_ADDRESS_MASK  0b00001100  // Before shifting
+#include "fast-gpio.h"
 
 void registers_init() {
-  port_expander.begin_I2C();
+  // Set modes on register and sync pins.
+  pinMode(REG_PIN__D0, INPUT);
+  pinMode(REG_PIN__D1, INPUT);
+  pinMode(REG_PIN__D2, INPUT);
+  pinMode(REG_PIN__D3, INPUT);
+  pinMode(REG_PIN__D4, INPUT);
+  pinMode(REG_PIN__D5, INPUT);
+  pinMode(REG_PIN__D6, INPUT);
+  pinMode(REG_PIN__D7, INPUT);
 
-  // Set all of port A's bits (0-7) as inputs.
-  // Port A is the register data.
-  for (int i = 0; i < 8; ++i) {
-    port_expander.pinMode(i, INPUT);
-  }
+  pinMode(REG_PIN__A0, OUTPUT);
+  pinMode(REG_PIN__A1, OUTPUT);
 
-  // Set pin B0 (overall bit 8) as input.
-  // This is the microcontroller's copy of the sync token.
-  port_expander.pinMode(8, INPUT);
+  pinMode(SYNC_PIN__READY, INPUT);
+  pinMode(SYNC_PIN__CLEAR, OUTPUT);
 
-  // Set pins B1-B7 (overall bits 9-15) as outputs.
-  // B1 is an active-low signal to clear the sync token after a command.
-  // B2-B3 is the register number to read.
-  // B4-B7 are unused.
-  for (int i = 9; i < 16; ++i) {
-    port_expander.pinMode(i, OUTPUT);
-  }
+  // Disable active-low signals by default (setting them high).
+  FAST_SET(SYNC_PIN__CLEAR);
 
-  port_b_state = 0;
+  // Set other outputs low by default.
+  FAST_CLEAR(REG_PIN__A0);
+  FAST_CLEAR(REG_PIN__A1);
+
   clear_sync_token();
 }
 
 int is_sync_token_set() {
-  return port_expander.readGPIOB() & SYNC_TOKEN_BIT;
+  return FAST_GET(SYNC_PIN__READY);
 }
 
 void clear_sync_token() {
-  // The clear signal is active low.  So clear the bit first.
-  port_b_state &= ~CLEAR_SYNC_TOKEN_BIT;
-  port_expander.writeGPIOB(port_b_state);
-
-  // FIXME: timing?
-  // Now raise it to high again.
-  port_b_state |= CLEAR_SYNC_TOKEN_BIT;
-  port_expander.writeGPIOB(port_b_state);
+  FAST_PULSE_ACTIVE_LOW(SYNC_PIN__CLEAR);
 }
 
 uint8_t read_register(int register_address) {
-  port_b_state &= ~REGISTER_ADDRESS_MASK;
-  port_b_state |= register_address < REGISTER_ADDRESS_SHIFT;
-  port_expander.writeGPIOB(port_b_state);
+  FAST_WRITE(REG_PIN__A0, register_address & 1);
+  FAST_WRITE(REG_PIN__A1, register_address & 2);
 
-  // FIXME: timing?
-  return port_expander.readGPIOA();
+  // FIXME: need to delay here?
+  return FAST_READ_MULTIPLE(REG_PIN__D_MASK, REG_PIN__D_SHIFT);
 }

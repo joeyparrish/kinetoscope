@@ -13,16 +13,13 @@
 #include "fast-gpio.h"
 
 static int leftover = -1;
+static int active_bank_pin = -1;
 
 // Explicitly unrolled loop for 16 bits of data.
 #define X16(a) { a; a; a; a; a; a; a; a; a; a; a; a; a; a; a; a; }
 static inline void sram_write_word(uint16_t word_data) {
   X16(
-    if (word_data & 0x8000) {
-      FAST_SET(SRAM_PIN__DATA_NEXT_BIT);
-    } else {
-      FAST_CLEAR(SRAM_PIN__DATA_NEXT_BIT);
-    }
+    FAST_WRITE(SRAM_PIN__DATA_NEXT_BIT, word_data & 0x8000);
 
     // Clock in the bit (rising edge).
     FAST_PULSE_ACTIVE_HIGH(SRAM_PIN__DATA_CLOCK);
@@ -40,6 +37,8 @@ static inline void sram_write_word(uint16_t word_data) {
 
 void sram_init() {
   // Set output modes on all SRAM pins.
+  pinMode(SRAM_PIN__WRITE_BANK_1, OUTPUT);
+  pinMode(SRAM_PIN__WRITE_BANK_2, OUTPUT);
   pinMode(SRAM_PIN__ADDR_RESET, OUTPUT);
   pinMode(SRAM_PIN__ADDR_CLOCK, OUTPUT);
   pinMode(SRAM_PIN__DATA_NEXT_BIT, OUTPUT);
@@ -51,6 +50,8 @@ void sram_init() {
   FAST_SET(SRAM_PIN__DATA_WRITE);
 
   // Set other outputs low by default.
+  FAST_CLEAR(SRAM_PIN__WRITE_BANK_1);
+  FAST_CLEAR(SRAM_PIN__WRITE_BANK_2);
   FAST_CLEAR(SRAM_PIN__ADDR_CLOCK);
   FAST_CLEAR(SRAM_PIN__DATA_NEXT_BIT);
   FAST_CLEAR(SRAM_PIN__DATA_CLOCK);
@@ -59,7 +60,8 @@ void sram_init() {
 }
 
 void sram_start_bank(int bank) {
-  // FIXME: select bank
+  active_bank_pin = bank ? SRAM_PIN__WRITE_BANK_2 : SRAM_PIN__WRITE_BANK_1;
+  FAST_SET(active_bank_pin);
 
   // Reset the write address to 0.
   FAST_PULSE_ACTIVE_LOW(SRAM_PIN__ADDR_RESET);
@@ -97,5 +99,9 @@ void sram_flush() {
     sram_write_word(word);
   }
 
+  if (active_bank_pin >= 0) {
+    FAST_CLEAR(active_bank_pin);
+    active_bank_pin = -1;
+  }
   leftover = -1;
 }

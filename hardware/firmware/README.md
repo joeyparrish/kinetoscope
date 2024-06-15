@@ -16,10 +16,18 @@ The entry point and main loop are in `firmware.ino`.
 
 1. To build from the command line, install `arduino-cli` as detailed in
    https://arduino.github.io/arduino-cli/0.35/installation/
-2. FIXME: Install arduino-cli
-3. FIXME: Install the board core
-4. FIXME: Install libraries
-5. Run `make`, which will use `arduino-cli` to do everything.
+2. Install the earlephilhower rp2040 core:
+   ```sh
+   arduino-cli config add board_manager.additional_urls https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+   arduino-cli core update-index
+   arduino-cli core install rp2040:rp2040
+   ```
+3. Install the Ethernet library:
+   ```sh
+   arduino-cli lib install Ethernet
+   ```
+4. Set WiFi credentials (see WiFi configuration section below)
+5. Run `make`, which will show you a menu of actions.
 
 
 ## WiFi configuration
@@ -31,7 +39,8 @@ Create a file called `arduino_secrets.h` with two macros:
 #define SECRET_WIFI_PASS "Put your WiFi password here"
 ```
 
-The firmware cannot be compiled without this.
+The firmware cannot be compiled without this.  To disable WiFi and require a
+wired connection, leave these blank.
 
 
 ## Compile firmware

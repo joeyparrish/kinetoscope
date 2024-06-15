@@ -30,10 +30,10 @@ uint8_t MAC_ADDR[] = { 0x98, 0x76, 0xB6, 0x12, 0xD4, 0x9E };
 // A safe buffer size for these tests.
 #define BUFFER_SIZE 100 * 1024
 
+// FIXME: Update all measurements
+
 static long test_sram_speed(uint8_t* buffer, int bytes) {
-  // ESP32: Takes about 1200ms total, or about 2660ns per word.
-  // M4: Takes about 500ms total, or about 957ns per word.  (FIXME: Can't store 1MB of data here.)
-  // RPiPico: Takes about 430ms total, or about 937ns per word.  (FIXME: Can't store 1MB of data here.)
+  // Takes about 430ms total, or about 937ns per word.
   long start = millis();
   sram_start_bank(0);
   sram_write(buffer, bytes);
@@ -76,7 +76,6 @@ static long test_register_read_speed() {
 
 static long test_download_speed(int first_byte, int total_size) {
   // FIXME: Measure on each platform
-  // ESP32: Takes about 2.4s to fetch 3s worth of data, at best.
   long start = millis();
   sram_start_bank(0);
   int bytes_read = http_fetch(SERVER, /* default port */ 0, PATH,
@@ -98,13 +97,12 @@ void setup() {
   Serial.println("Hello, world!\n");
 
   sram_init();
+  registers_init();
 
-  // registers_init();
-
-#if defined(ARDUINO_ARCH_ESP32) || defined(ARDUINO_ARCH_RP2040)
-  Client* client = internet_init_wifi(SECRET_WIFI_SSID, SECRET_WIFI_PASS);
-#else
+  // FIXME: Prefer wired, fall back to wifi if configured
   Client* client = internet_init_wired(MAC_ADDR);
+#if defined(ARDUINO_ARCH_RP2040)
+  //Client* client = internet_init_wifi(SECRET_WIFI_SSID, SECRET_WIFI_PASS);
 #endif
   http_init(client);
 
@@ -122,7 +120,6 @@ void setup() {
 void loop() {
   long ms;
 
-#if 0
   ms = test_sync_token_read_speed();
   Serial.print(ms);
   Serial.println(" us avg per sync token read.");  // 1000x reads, ms => us
@@ -134,7 +131,6 @@ void loop() {
   ms = test_register_read_speed();
   Serial.print(ms);
   Serial.println(" us avg per register read.");  // 1000x reads, ms => us
-#endif
 
   ms = test_sram_speed(buffer, BUFFER_SIZE);
   Serial.print(ms);
@@ -153,7 +149,5 @@ void loop() {
     Serial.println(" Mbps vs 2.50 Mbps minimum)");
   }
 
-#if 1
   while (true) { delay(1000); }
-#endif
 }

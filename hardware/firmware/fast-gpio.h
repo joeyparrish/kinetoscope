@@ -17,69 +17,45 @@
 
 #include <Arduino.h>
 
-#if defined(ARDUINO_ARCH_ESP32)  // e.g. Adafruit ESP32 Feather v2
+#if defined(ARDUINO_ARCH_RP2040)  // e.g. Raspberry Pi Pico (W)
 
-#define SRAM_PIN__ADDR_RESET    33
-#define SRAM_PIN__ADDR_CLOCK    32
-
-#define SRAM_PIN__DATA_NEXT_BIT  5
-#define SRAM_PIN__DATA_CLOCK    19
-#define SRAM_PIN__DATA_WRITE    21
-
-// Example:
-// MAKE_ESP32_REG(ENABLE, 1, S) => GPIO_ENABLE1_W1TS_REG
-// MAKE_ESP32_REG(OUT, , C) => GPIO_OUT_W1TC_REG
-#define MAKE_ESP32_REG(TYPE, REG, S_OR_C) \
-  GPIO_##TYPE####REG##_W1T##S_OR_C##_REG
-
-#define FAST_CLEAR(PIN) { \
-  if ((PIN) > 31) { \
-    REG_WRITE(MAKE_ESP32_REG(OUT, 1, C), 1 << (32 - PIN)); \
-  } else { \
-    REG_WRITE(MAKE_ESP32_REG(OUT, , C), 1 << (PIN)); \
-  } \
-}
-
-#define FAST_SET(PIN) { \
-  if ((PIN) > 31) { \
-    REG_WRITE(MAKE_ESP32_REG(OUT, 1, S), 1 << (32 - PIN)); \
-  } else { \
-    REG_WRITE(MAKE_ESP32_REG(OUT, , S), 1 << (PIN)); \
-  } \
-}
-
-
-#elif defined(ARDUINO_ARCH_SAMD)  // e.g. Adafruit M4 boards
-
-#define SRAM_REG                PORTA
-#define SRAM_PIN__ADDR_RESET    15  // D5
-#define SRAM_PIN__ADDR_CLOCK    18  // D7
-
-#define SRAM_PIN__DATA_NEXT_BIT 19  // D9
-#define SRAM_PIN__DATA_CLOCK    20  // D10
-#define SRAM_PIN__DATA_WRITE    21  // D11
-
-#define FAST_CLEAR(PIN) \
-  PORT->Group[SRAM_REG].OUTCLR.reg = 1 << (PIN);
-
-#define FAST_SET(PIN) \
-  PORT->Group[SRAM_REG].OUTSET.reg = 1 << (PIN);
-
-
-#elif defined(ARDUINO_ARCH_RP2040)  // e.g. Raspberry Pi Pico (W)
+#define SRAM_PIN__WRITE_BANK_1  12
+#define SRAM_PIN__WRITE_BANK_2  13
 
 #define SRAM_PIN__ADDR_RESET    15
-#define SRAM_PIN__ADDR_CLOCK    14
+#define SRAM_PIN__ADDR_CLOCK    20
 
-#define SRAM_PIN__DATA_NEXT_BIT 13
-#define SRAM_PIN__DATA_CLOCK    12
-#define SRAM_PIN__DATA_WRITE    11
+#define SRAM_PIN__DATA_NEXT_BIT 21
+#define SRAM_PIN__DATA_CLOCK    22
+#define SRAM_PIN__DATA_WRITE    14
+
+#define SYNC_PIN__READY         10
+#define SYNC_PIN__CLEAR         11
+
+#define REG_PIN__A0              8
+#define REG_PIN__A1              9
+
+#define REG_PIN__D0              0
+#define REG_PIN__D1              1
+#define REG_PIN__D2              2
+#define REG_PIN__D3              3
+#define REG_PIN__D4              4
+#define REG_PIN__D5              5
+#define REG_PIN__D6              6
+#define REG_PIN__D7              7
+
+#define REG_PIN__D_MASK    0x000000ff
+#define REG_PIN__D_SHIFT            0
 
 #define FAST_CLEAR(PIN) sio_hw->gpio_clr = 1 << (PIN)
 #define FAST_SET(PIN) sio_hw->gpio_set = 1 << (PIN)
-
+#define FAST_GET(PIN) (sio_hw->gpio_in & (1 << (PIN)))
+#define FAST_READ_MULTIPLE(MASK, SHIFT) ((sio_hw->gpio_in & (MASK)) >> SHIFT)
 
 #else
+
+#define SRAM_PIN__WRITE_BANK_1   0
+#define SRAM_PIN__WRITE_BANK_2   0
 
 #define SRAM_PIN__ADDR_RESET     0
 #define SRAM_PIN__ADDR_CLOCK     0
@@ -88,8 +64,28 @@
 #define SRAM_PIN__DATA_CLOCK     0
 #define SRAM_PIN__DATA_WRITE     0
 
+#define SYNC_PIN__READY          0
+#define SYNC_PIN__CLEAR          0
+
+#define REG_PIN__A0              0
+#define REG_PIN__A1              0
+
+#define REG_PIN__D0              0
+#define REG_PIN__D1              0
+#define REG_PIN__D2              0
+#define REG_PIN__D3              0
+#define REG_PIN__D4              0
+#define REG_PIN__D5              0
+#define REG_PIN__D6              0
+#define REG_PIN__D7              0
+
+#define REG_PIN__D_MASK    0x00000000
+#define REG_PIN__D_SHIFT            0
+
 #define FAST_CLEAR(PIN) digitalWrite(PIN, LOW)
 #define FAST_SET(PIN) digitalWrite(PIN, HIGH)
+#define FAST_GET(PIN) digitalRead(PIN)
+#define FAST_READ_MULTIPLE(MASK, SHIFT) 0
 
 #error No fast GPIO or pin definitions for this board!
 
@@ -104,4 +100,12 @@
 #define FAST_PULSE_ACTIVE_HIGH(PIN) { \
   FAST_SET(PIN); \
   FAST_CLEAR(PIN); \
+}
+
+#define FAST_WRITE(PIN, VALUE) { \
+  if (VALUE) { \
+    FAST_SET(PIN); \
+  } else { \
+    FAST_CLEAR(PIN); \
+  } \
 }
