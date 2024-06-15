@@ -2,6 +2,12 @@ name: Build Software
 
 on:
   push: # Trigger for pushes.
+    paths:
+      - embed-video-in-rom/**
+      - encoder/**
+      - player/**
+      - stream-with-special-hardware/**
+      - .github/workflows/build-software.yaml
   pull_request: # Trigger for pull requests.
     types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch: # Allows for manual triggering.
@@ -19,7 +25,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build
+    name: Build Software
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

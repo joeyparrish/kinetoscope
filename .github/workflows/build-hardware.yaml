@@ -1,0 +1,66 @@
+name: Build Hardware
+
+on:
+  push: # Trigger for pushes.
+    paths:
+      - hardware/**
+      - !hardware/firmware/**
+      - .github/workflows/build-hardware.yaml
+  pull_request: # Trigger for pull requests.
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch: # Allows for manual triggering.
+    inputs:
+      ref:
+        description: "The ref to build and test."
+        required: false
+
+# If another instance of this workflow is started for the same PR, cancel the
+# old one.  If a PR is updated and a new test run is started, the old test run
+# will be cancelled automatically to conserve resources.
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Hardware
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Install KiCad 8
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-8.0-releases
+          sudo apt update
+          sudo apt install --install-recommends kicad
+
+      - name: Install custom symbols and footprints
+        run: |
+          mkdir -p ~/.local/share/kicad/8.0
+          cp -a hardware/libraries/* ~/.local/share/kicad/8.0/
+          mkdir -p ~/.config/kicad/8.0
+          cp .github/workflows/*-lib-table ~/.config/kicad/8.0/
+
+      - name: Install Kode Mono font
+        run: |
+          wget https://github.com/isaozler/kode-mono/releases/download/1.206/kode-mono-fonts.zip
+          unzip kode-mono-fonts.zip
+          mkdir -p ~/.local/share/fonts
+          cp kode-mono-fonts/fonts/ttf/* ~/.local/share/fonts/
+          rm -rf kode-mono-fonts
+
+      - name: Generate fab outputs
+        run: |
+          cd hardware
+          ./fab-jlcpcb.sh cart
+          ./fab-jlcpcb.sh microcontroller
+          ./fab-jlcpcb.sh sram-bank
+
+      - name: Upload fab outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: fab
+          path: hardware/*-fab.zip
