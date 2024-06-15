@@ -1,0 +1,46 @@
+name: Build Software
+
+on:
+  push: # Trigger for pushes.
+  pull_request: # Trigger for pull requests.
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch: # Allows for manual triggering.
+    inputs:
+      ref:
+        description: "The ref to build and test."
+        required: false
+
+# If another instance of this workflow is started for the same PR, cancel the
+# old one.  If a PR is updated and a new test run is started, the old test run
+# will be cancelled automatically to conserve resources.
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Pull SGDK docker container
+        run: docker pull ghcr.io/stephane-d/sgdk:latest
+
+      - name: Build streamer software
+        run: ./stream-with-special-hardware/build.sh
+
+      - name: Install FFmpeg
+        run: sudo apt -y install ffmpeg
+
+      - name: Encode video for embedding
+        run: |
+          wget https://github.com/shaka-project/shaka-player/raw/main/test/test/assets/small.mp4
+          ./encoder/encode_sega_video.py \
+            -i small.mp4 -o embed-video-in-rom/res/video_data.segavideo -g
+
+      - name: Build embedded player
+        run: ./embed-video-in-rom/build.sh
