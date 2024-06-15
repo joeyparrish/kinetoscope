@@ -22,9 +22,12 @@ The entry point and main loop are in `firmware.ino`.
    arduino-cli core update-index
    arduino-cli core install rp2040:rp2040
    ```
-3. Install the Ethernet library:
+3. Install the Ethernet library.  Until a new release is out that solves
+   https://github.com/arduino-libraries/Ethernet/issues/267,  we install a
+   forked version with the fix:
    ```sh
-   arduino-cli lib install Ethernet
+   arduino-cli config set library.enable_unsafe_install true
+   arduino-cli lib install --git-url https://github.com/joeyparrish/Ethernet
    ```
 4. Set WiFi credentials (see WiFi configuration section below)
 5. Run `make`, which will show you a menu of actions.

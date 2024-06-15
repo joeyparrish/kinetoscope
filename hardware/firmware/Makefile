@@ -2,6 +2,7 @@ BOARD = rp2040:rp2040:rpipicow
 BOARD_PATH = $(subst :,.,${BOARD})
 SERIAL_PORT = /dev/ttyACM0
 SKETCH_NAME = firmware
+EXTRA_FLAGS = -DETHERNET_LARGE_BUFFERS -DMAX_SOCK_NUM=1 \"-DSPI_ETHERNET_SETTINGS=SPISettings(80000000, MSBFIRST, SPI_MODE0)\"
 
 .PHONY: default build upload monitor clean
 
@@ -14,11 +15,13 @@ default:
 
 build:
 	arduino-cli compile -b ${BOARD} \
+	    --build-property "build.extra_flags=${EXTRA_FLAGS}" \
 	    --export-binaries
 	cp build/${BOARD_PATH}/${SKETCH_NAME}.ino.elf .
 
 upload:
 	arduino-cli compile -b ${BOARD} \
+	    --build-property "build.extra_flags=${EXTRA_FLAGS}" \
 	    -p ${SERIAL_PORT} \
 	    --upload --verify
 
