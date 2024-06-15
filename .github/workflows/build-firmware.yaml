@@ -1,0 +1,53 @@
+name: Build Firmware
+
+on:
+  push: # Trigger for pushes.
+    paths:
+      - hardware/firmware/**
+      - .github/workflows/build-firmware.yaml
+  pull_request: # Trigger for pull requests.
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch: # Allows for manual triggering.
+    inputs:
+      ref:
+        description: "The ref to build and test."
+        required: false
+
+# If another instance of this workflow is started for the same PR, cancel the
+# old one.  If a PR is updated and a new test run is started, the old test run
+# will be cancelled automatically to conserve resources.
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Firmware
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Install Arduino CLI
+        run: |
+          export BINDIR=~/bin
+          mkdir -p $BINDIR
+          # This install script reads BINDIR
+          curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+          echo $BINDIR >> $GITHUB_PATH
+
+      - name: Install Arduino RP2040 core
+        run: |
+          arduino-cli config add board_manager.additional_urls https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
+          arduino-cli core update-index
+          arduino-cli core install rp2040:rp2040
+
+      - name: Install Arduino libraries
+        run: arduino-cli lib install Ethernet
+
+      - name: Build firmware
+        run: |
+          cd hardware/firmware
+          make build

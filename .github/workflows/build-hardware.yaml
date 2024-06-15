@@ -4,7 +4,7 @@ on:
   push: # Trigger for pushes.
     paths:
       - hardware/**
-      - !hardware/firmware/**
+      - '!hardware/firmware/**'
       - .github/workflows/build-hardware.yaml
   pull_request: # Trigger for pull requests.
     types: [opened, synchronize, reopened, ready_for_review]
