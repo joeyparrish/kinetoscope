@@ -2270,10 +2270,6 @@
 		(uuid "1dff715c-9414-41b5-961d-9b947d7a7be1")
 	)
 	(no_connect
-		(at 82.55 96.52)
-		(uuid "1e93e9a3-8d96-45e2-a916-fae3a73dbd93")
-	)
-	(no_connect
 		(at 177.8 36.83)
 		(uuid "23ff5148-5937-406f-ad59-83387ae92c7b")
 	)
@@ -2437,6 +2433,16 @@
 	)
 	(wire
 		(pts
+			(xy 147.32 76.2) (xy 147.32 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1050e59a-0283-4e94-9d34-9e5fef7df76d")
+	)
+	(wire
+		(pts
 			(xy 35.56 99.06) (xy 45.72 99.06)
 		)
 		(stroke
@@ -2454,16 +2460,6 @@
 			(type default)
 		)
 		(uuid "1477c3df-b37e-45ac-b8a7-b4d244adc5e5")
-	)
-	(wire
-		(pts
-			(xy 147.32 76.2) (xy 147.32 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "17823342-1bd3-4867-b503-fb94f17946c9")
 	)
 	(wire
 		(pts
@@ -2525,6 +2521,16 @@
 		)
 		(uuid "29b3f8a5-ac03-484f-adbb-f68fdf566f42")
 	)
+	(bus
+		(pts
+			(xy 139.7 77.47) (xy 139.7 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2aee1981-a06b-4552-8638-a2c14ee341ad")
+	)
 	(wire
 		(pts
 			(xy 35.56 58.42) (xy 45.72 58.42)
@@ -2534,6 +2540,16 @@
 			(type default)
 		)
 		(uuid "32f3afcc-5cdb-41f5-a427-089dba946601")
+	)
+	(wire
+		(pts
+			(xy 142.24 76.2) (xy 142.24 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "33a12b1b-dda8-4ef3-9987-a14b91ca8473")
 	)
 	(bus
 		(pts
@@ -2637,6 +2653,16 @@
 	)
 	(wire
 		(pts
+			(xy 82.55 96.52) (xy 91.44 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "59c83fb0-a42b-43ee-9cdd-9c3d0a40eba7")
+	)
+	(wire
+		(pts
 			(xy 35.56 78.74) (xy 45.72 78.74)
 		)
 		(stroke
@@ -2715,16 +2741,6 @@
 		)
 		(uuid "630c476a-44d4-48e0-a1a2-c8015d84d1a9")
 	)
-	(bus
-		(pts
-			(xy 142.24 77.47) (xy 142.24 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6692d7a7-c928-4251-b3cd-a2aadba92200")
-	)
 	(wire
 		(pts
 			(xy 35.56 86.36) (xy 45.72 86.36)
@@ -2754,16 +2770,6 @@
 			(type default)
 		)
 		(uuid "6bc87a90-c4af-4cf4-99f2-9dcb07ce9a0a")
-	)
-	(wire
-		(pts
-			(xy 144.78 29.21) (xy 152.4 29.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7206cc38-9895-41ef-8cf6-8e5978c544a6")
 	)
 	(wire
 		(pts
@@ -2817,6 +2823,16 @@
 	)
 	(wire
 		(pts
+			(xy 144.78 76.2) (xy 144.78 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "865cdd63-0565-435d-8df2-1a1b500aa88f")
+	)
+	(wire
+		(pts
 			(xy 219.71 25.4) (xy 227.33 25.4)
 		)
 		(stroke
@@ -2864,6 +2880,16 @@
 			(type default)
 		)
 		(uuid "8db960b7-b3e8-49cd-b103-d445a51348e1")
+	)
+	(wire
+		(pts
+			(xy 40.64 146.05) (xy 44.45 146.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8fa0a381-5071-403c-8677-45bca347e5c0")
 	)
 	(wire
 		(pts
@@ -3037,16 +3063,6 @@
 	)
 	(wire
 		(pts
-			(xy 144.78 76.2) (xy 144.78 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c61a14bf-0560-413c-a50f-59e13c7e4e16")
-	)
-	(wire
-		(pts
 			(xy 35.56 71.12) (xy 45.72 71.12)
 		)
 		(stroke
@@ -3207,6 +3223,16 @@
 	)
 	(wire
 		(pts
+			(xy 144.78 29.21) (xy 152.4 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fa83e059-63fd-4f5e-9334-b3ceca7e24c5")
+	)
+	(wire
+		(pts
 			(xy 35.56 53.34) (xy 45.72 53.34)
 		)
 		(stroke
@@ -3257,6 +3283,16 @@
 		)
 		(uuid "326c0fa7-401f-4946-b617-b91fbc399751")
 	)
+	(text "Register addresses\n0xA13000\n0xA13002\n0xA13004\n0xA13006\n\nToken addresss\n0xA13008"
+		(exclude_from_sim no)
+		(at 271.526 42.672 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "64114df4-530f-4fe8-bf65-3e93f4f79f30")
+	)
 	(text "5V input tolerated"
 		(exclude_from_sim no)
 		(at 188.214 149.098 0)
@@ -3267,15 +3303,16 @@
 		)
 		(uuid "7213816b-17aa-4ce9-8343-041e21b9e762")
 	)
-	(text "GP17 is chip-select in the design that\nused Adafruit's Ethernet Featherwing.\nEthernet chip-select is hard-coded in\nthis version, so GP17 is unused and\nSPI can't be shared."
+	(text "000 => register & !A3 & write = REG_WE\n010 => register & A3 & write = SYNC_SET\n110 => register & A3 & !write = SYNC_OE"
 		(exclude_from_sim no)
-		(at 77.47 108.712 0)
+		(at 118.618 19.05 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
+			(justify left)
 		)
-		(uuid "73c8e9df-82ab-4e12-96eb-5b05fdd10c51")
+		(uuid "7b4e70eb-5eb3-4bab-96ed-76ca4b1fa02f")
 	)
 	(text "5V signal"
 		(exclude_from_sim no)
@@ -3286,6 +3323,16 @@
 			)
 		)
 		(uuid "af38b013-7c02-4b9c-a1ae-9dd2451c7456")
+	)
+	(text "Write 16-bits to even addresses,\nbut only low byte is accepted.\n\nOr write 8-bits to odd addresses."
+		(exclude_from_sim no)
+		(at 240.538 41.656 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "bb773e19-4b3e-42a8-bd09-277137c1f2b1")
 	)
 	(text "5V signal"
 		(exclude_from_sim no)
@@ -3372,6 +3419,17 @@
 			(justify left bottom)
 		)
 		(uuid "159a5d91-8a6d-443a-9257-3324a611d287")
+	)
+	(label "~{SPI_CS}"
+		(at 44.45 146.05 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "16a9c55e-dca3-4476-83fe-34eff1e8333e")
 	)
 	(label "~{SEGA_WE_LB}"
 		(at 229.87 107.95 180)
@@ -3736,6 +3794,17 @@
 		)
 		(uuid "93cce1bf-ed19-4d24-bdf1-2f5a0212b498")
 	)
+	(label "~{SPI_CS}"
+		(at 91.44 96.52 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9b92c527-b2cc-4807-b85e-5aa715f78999")
+	)
 	(label "REG_R_A0"
 		(at 35.56 76.2 180)
 		(fields_autoplaced yes)
@@ -3835,7 +3904,7 @@
 		)
 		(uuid "b506a1ab-5091-4edd-ba7e-bfbc55070ae4")
 	)
-	(label "SEGA_A2"
+	(label "SEGA_A3"
 		(at 144.78 29.21 180)
 		(fields_autoplaced yes)
 		(effects
@@ -3880,7 +3949,7 @@
 		(uuid "c46ab4f7-1bab-4d41-946a-dd7d23bf1230")
 	)
 	(label "SEGA_A1"
-		(at 144.78 76.2 90)
+		(at 142.24 76.2 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3902,7 +3971,7 @@
 		(uuid "c5b0516d-c573-4fe0-9b19-625136dd2f24")
 	)
 	(label "SEGA_A2"
-		(at 147.32 76.2 90)
+		(at 144.78 76.2 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3946,7 +4015,7 @@
 		(uuid "c983ff5c-6b3f-4ec1-8e82-bbc35e24dcfd")
 	)
 	(label "SEGA_D[0..7]"
-		(at 142.24 77.47 90)
+		(at 139.7 77.47 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3988,6 +4057,17 @@
 			(justify right bottom)
 		)
 		(uuid "e302fc09-22d4-4fec-931d-b64f05b9e89a")
+	)
+	(label "SEGA_A3"
+		(at 147.32 76.2 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e3c85046-4d54-4e15-b1d5-786d7dc494aa")
 	)
 	(label "SEGA_A1"
 		(at 205.74 107.95 180)
@@ -7726,7 +7806,7 @@
 			(uuid "ef911288-44d5-4a3d-b67b-552749ba0988")
 		)
 		(pin "SEGA_D[0..7]" bidirectional
-			(at 142.24 85.09 90)
+			(at 139.7 85.09 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7736,7 +7816,7 @@
 			(uuid "4b8b0b83-c266-4b5d-94fd-8731d3c82301")
 		)
 		(pin "SEGA_A2" passive
-			(at 147.32 85.09 90)
+			(at 144.78 85.09 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7746,7 +7826,7 @@
 			(uuid "7998d357-8056-4352-b8b8-64a707ac337d")
 		)
 		(pin "SEGA_A1" passive
-			(at 144.78 85.09 90)
+			(at 142.24 85.09 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7754,6 +7834,16 @@
 				(justify right)
 			)
 			(uuid "73359548-401e-458d-9b26-ab52d417cdbb")
+		)
+		(pin "SEGA_A3" passive
+			(at 147.32 85.09 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "8e32b9bb-13bc-43a8-b6d6-17e2597ade2e")
 		)
 		(instances
 			(project "microcontroller"
@@ -7833,7 +7923,7 @@
 	)
 	(sheet
 		(at 27.94 135.89)
-		(size 12.7 10.16)
+		(size 12.7 12.7)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -7853,7 +7943,7 @@
 			)
 		)
 		(property "Sheetfile" "ethernet-internal.kicad_sch"
-			(at 27.94 146.6346 0)
+			(at 27.94 149.1746 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7890,6 +7980,16 @@
 				(justify right)
 			)
 			(uuid "e8569854-4e2c-43c4-b0a6-99c6bc074f3a")
+		)
+		(pin "~{CS}" input
+			(at 40.64 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "365d82e9-81b9-4eaa-9c78-223eb184c57c")
 		)
 		(instances
 			(project "microcontroller"

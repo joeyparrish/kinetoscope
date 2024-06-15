@@ -4308,16 +4308,6 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 91.44) (xy 104.14 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8f081a2a-210e-4b72-9161-ca85f0e762e8")
-	)
-	(wire
-		(pts
 			(xy 99.06 165.1) (xy 110.49 165.1)
 		)
 		(stroke
@@ -4628,6 +4618,16 @@
 	)
 	(wire
 		(pts
+			(xy 88.9 91.44) (xy 104.14 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f073026e-6bcc-472c-acb6-91bf6c552ab0")
+	)
+	(wire
+		(pts
 			(xy 149.86 120.65) (xy 152.4 120.65)
 		)
 		(stroke
@@ -4736,16 +4736,6 @@
 			)
 		)
 		(uuid "dea7641b-1e09-41ff-a72a-397ea93157e6")
-	)
-	(text "Chip select (~{SCS}) is always active (low)."
-		(exclude_from_sim no)
-		(at 87.884 87.63 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "eba6e57c-f501-4194-8ef4-ac11de1456e5")
 	)
 	(text "IRQ and reset signals are unused."
 		(exclude_from_sim no)
@@ -4932,6 +4922,18 @@
 			(justify left bottom)
 		)
 		(uuid "fbd4e7a5-cc12-4691-ac6d-192993867393")
+	)
+	(hierarchical_label "~{CS}"
+		(shape input)
+		(at 88.9 91.44 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "3cffed13-56be-4233-be3a-996ac9c86ba1")
 	)
 	(hierarchical_label "MISO"
 		(shape output)
@@ -7843,7 +7845,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "940637d1-5d6c-4481-8097-2964a74a485d")
 		(property "Reference" "#PWR091"
 			(at 116.84 90.17 0)
@@ -7855,7 +7856,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 116.84 82.2269 0)
+			(at 115.57 82.296 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7896,73 +7897,6 @@
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/615a7c3e-7c73-493c-85cc-9308526429fc"
 					(reference "#PWR091")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 100.33 91.44 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9821b569-3e0c-41f7-a707-acdb17341ef0")
-		(property "Reference" "#PWR0117"
-			(at 93.98 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 97.1551 91.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 100.33 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 100.33 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 100.33 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "fbcb30fd-cb59-4541-b384-a11de34cdae6")
-		)
-		(instances
-			(project ""
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/615a7c3e-7c73-493c-85cc-9308526429fc"
-					(reference "#PWR0117")
 					(unit 1)
 				)
 			)
