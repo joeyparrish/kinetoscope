@@ -64,8 +64,8 @@ static uint16_t nextPageIndex;
 // Ports to communicate with our special hardware.
 #define VIDEOSTREAM_PORT_COMMAND (volatile uint16_t*)0xA13000  // low 8 bits
 #define VIDEOSTREAM_PORT_ARG     (volatile uint16_t*)0xA13002  // low 8 bits
-#define VIDEOSTREAM_PORT_TOKEN   (volatile uint16_t*)0xA13008  // low 1 bit
-#define VIDEOSTREAM_PORT_ERROR   (volatile uint16_t*)0xA1300A  // low 1 bit
+#define VIDEOSTREAM_PORT_TOKEN   (volatile uint16_t*)0xA13008  // low 1 bit, set on write
+#define VIDEOSTREAM_PORT_ERROR   (volatile uint16_t*)0xA1300A  // low 1 bit, clear on write
 #define VIDEOSTREAM_DATA          (volatile uint8_t*)0x200000
 
 // Commands for that hardware.
@@ -865,5 +865,7 @@ bool segavideo_isErrorShowing() {
 }
 
 void segavideo_clearError() {
+  volatile uint16_t* error_port = VIDEOSTREAM_PORT_ERROR;
+  *error_port = 0;
   errorShowing = false;
 }
