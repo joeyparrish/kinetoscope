@@ -105,7 +105,7 @@ void run_tests() {
   ms = test_sram_speed(buffer, BUFFER_SIZE);
   Serial.print(ms);
   Serial.print(" ms to write ");
-  Serial.print(buffer_size);
+  Serial.print(BUFFER_SIZE);
   Serial.println(" bytes to SRAM");
 
   for (int i = 0; i < 10; i++) {
