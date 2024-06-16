@@ -1301,6 +1301,10 @@
 		(uuid "5070802c-9691-4dea-8b83-49011989cb19")
 	)
 	(no_connect
+		(at 212.09 161.29)
+		(uuid "56f58b3f-1cb8-4f33-890a-cf8a2da71343")
+	)
+	(no_connect
 		(at 214.63 161.29)
 		(uuid "5ba049be-badc-43a4-bf47-10fd74c981ce")
 	)
@@ -5210,7 +5214,7 @@
 			(uuid "4a2d2abc-5947-434d-b5ae-f1a8882e974e")
 		)
 		(pin "SEGA_A2" passive
-			(at 217.17 161.29 270)
+			(at 214.63 161.29 270)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5220,7 +5224,7 @@
 			(uuid "b796a5e9-eab6-4b0c-b0c7-e09bb0c73755")
 		)
 		(pin "SEGA_A1" passive
-			(at 214.63 161.29 270)
+			(at 212.09 161.29 270)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5228,6 +5232,16 @@
 				(justify left)
 			)
 			(uuid "d4c626fe-2852-4a70-b4ba-5681013cb496")
+		)
+		(pin "SEGA_A3" passive
+			(at 217.17 161.29 270)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "02b556d6-b54f-483d-ac06-feb77f487096")
 		)
 		(instances
 			(project "sram-bank"
