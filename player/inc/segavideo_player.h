@@ -66,4 +66,16 @@ void segavideo_menuNextItem();
 // Shows an error message on-screen and returns false on failure.
 bool segavideo_stream(bool loop);
 
+// Is there a pending error from the microcontroller?
+bool segavideo_hasError();
+
+// Show the pending error.
+void segavideo_showError();
+
+// Is an error showing now?
+bool segavideo_isErrorShowing();
+
+// Clear the error state and screen.
+void segavideo_clearError();
+
 #endif // _SEGAVIDEO_PLAYER_H

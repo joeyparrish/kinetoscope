@@ -29,8 +29,10 @@
 #define SRAM_PIN__DATA_CLOCK    22
 #define SRAM_PIN__DATA_WRITE    14
 
-#define SYNC_PIN__READY         10
-#define SYNC_PIN__CLEAR         11
+#define SYNC_PIN__CMD_READY     10
+#define SYNC_PIN__CMD_CLEAR     11
+#define SYNC_PIN__ERR_FLAGGED   27
+#define SYNC_PIN__ERR_SET       26
 
 #define REG_PIN__A0              8
 #define REG_PIN__A1              9
@@ -64,8 +66,10 @@
 #define SRAM_PIN__DATA_CLOCK     0
 #define SRAM_PIN__DATA_WRITE     0
 
-#define SYNC_PIN__READY          0
-#define SYNC_PIN__CLEAR          0
+#define SYNC_PIN__CMD_READY      0
+#define SYNC_PIN__CMD_CLEAR      0
+#define SYNC_PIN__ERR_FLAGGED    0
+#define SYNC_PIN__ERR_SET        0
 
 #define REG_PIN__A0              0
 #define REG_PIN__A1              0

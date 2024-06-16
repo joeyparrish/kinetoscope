@@ -19,11 +19,29 @@
 
 #include <inttypes.h>
 
+// These are the sega address bits A2 and A1.  There is no A0 signal from the
+// sega, since it has a 16-bit data bus.
+#define KINETOSCOPE_REG_CMD      0   // Sega's 0xA13000
+#define KINETOSCOPE_REG_ARG      1   // Sega's 0xA13002
+// These exist in hardware but aren't used at the moment.
+#define KINETOSCOPE_REG_UNUSED_2 2
+#define KINETOSCOPE_REG_UNUSED_3 3
+
+#define KINETOSCOPE_CMD_ECHO        0x00  // Writes arg to SRAM
+#define KINETOSCOPE_CMD_LIST_VIDEOS 0x01  // Writes video list to SRAM
+#define KINETOSCOPE_CMD_START_VIDEO 0x02  // Begins streaming to SRAM
+#define KINETOSCOPE_CMD_STOP_VIDEO  0x03  // Stops streaming
+#define KINETOSCOPE_CMD_FLIP_REGION 0x04  // Switch SRAM banks for streaming
+
 void registers_init();
 
-int is_sync_token_set();
+int is_cmd_set();
 
-void clear_sync_token();
+void clear_cmd();
+
+void flag_error();
+
+int is_err_flagged();
 
 uint8_t read_register(int register_address);
 

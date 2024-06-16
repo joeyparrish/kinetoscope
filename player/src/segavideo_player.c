@@ -18,6 +18,7 @@ static bool playing;
 static bool paused;
 static bool loop;
 static bool menuShowing;
+static bool errorShowing;
 static const uint8_t* loopVideoData;
 
 static SegaVideoChunkInfo currentChunk;
@@ -61,17 +62,18 @@ static uint16_t nextPageIndex;
 #define TILE_SIZE 32
 
 // Ports to communicate with our special hardware.
-#define VIDEOSTREAM_PORT_COMMAND (volatile uint16_t*)0xA13030
-#define VIDEOSTREAM_PORT_TOKEN   (volatile uint16_t*)0xA13032
-#define VIDEOSTREAM_PORT_ARG     (volatile uint16_t*)0xA13034
+#define VIDEOSTREAM_PORT_COMMAND (volatile uint16_t*)0xA13000  // low 8 bits
+#define VIDEOSTREAM_PORT_ARG     (volatile uint16_t*)0xA13002  // low 8 bits
+#define VIDEOSTREAM_PORT_TOKEN   (volatile uint16_t*)0xA13008  // low 1 bit
+#define VIDEOSTREAM_PORT_ERROR   (volatile uint16_t*)0xA1300A  // low 1 bit
 #define VIDEOSTREAM_DATA          (volatile uint8_t*)0x200000
 
 // Commands for that hardware.
-#define CMD_ECHO        0x00
-#define CMD_LIST_VIDEOS 0x01
-#define CMD_START_VIDEO 0x02
-#define CMD_STOP_VIDEO  0x03
-#define CMD_FLIP_REGION 0x04
+#define CMD_ECHO        0x00  // Writes arg to SRAM
+#define CMD_LIST_VIDEOS 0x01  // Writes video list to SRAM
+#define CMD_START_VIDEO 0x02  // Begins streaming to SRAM
+#define CMD_STOP_VIDEO  0x03  // Stops streaming
+#define CMD_FLIP_REGION 0x04  // Switch SRAM banks for streaming
 
 // Token values for async communication.
 #define TOKEN_CONTROL_TO_SEGA     0
@@ -391,6 +393,7 @@ void segavideo_init() {
   playing = false;
   loop = false;
   menuShowing = false;
+  errorShowing = false;
   loopVideoData = NULL;
 }
 
@@ -406,6 +409,7 @@ static bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop) {
   loop = pleaseLoop;
   playing = true;
   menuShowing = false;
+  errorShowing = false;
   loopVideoData = videoData;
 
   // Audio
@@ -576,6 +580,7 @@ void segavideo_stop() {
   paused = false;
   playing = false;
   menuShowing = false;
+  errorShowing = false;
 }
 
 bool segavideo_isPlaying() {
@@ -836,4 +841,29 @@ bool segavideo_stream(bool loop) {
     return false;
   }
   return true;
+}
+
+bool segavideo_hasError() {
+  volatile uint16_t* error_port = VIDEOSTREAM_PORT_ERROR;
+  return *error_port != 0;
+}
+
+void segavideo_showError() {
+  if (!errorShowing) {
+    clearScreen();
+
+    // TODO: Show a specific error and position the text better.
+    VDP_setTextPalette(PAL_YELLOW);
+    VDP_drawText("Error!", 1, 1);
+  }
+
+  errorShowing = true;
+}
+
+bool segavideo_isErrorShowing() {
+  return errorShowing;
+}
+
+void segavideo_clearError() {
+  errorShowing = false;
 }

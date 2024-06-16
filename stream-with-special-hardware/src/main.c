@@ -26,6 +26,10 @@ static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
     if (state & BUTTON_DOWN) {
       segavideo_menuNextItem();
     }
+  } else if (segavideo_isErrorShowing()) {
+    if (state & BUTTON_START) {
+      segavideo_clearError();
+    }
   }
 }
 
@@ -51,6 +55,11 @@ int main(bool hardReset) {
     // While playing, process video frames.
     while (segavideo_isPlaying()) {
       segavideo_processFrames();
+      SYS_doVBlankProcess();
+    }
+
+    while (segavideo_hasError()) {
+      segavideo_showError();
       SYS_doVBlankProcess();
     }
 

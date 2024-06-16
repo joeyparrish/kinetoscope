@@ -21,37 +21,48 @@
 
 void registers_init() {
   // Set modes on register and sync pins.
-  pinMode(REG_PIN__D0, INPUT);
-  pinMode(REG_PIN__D1, INPUT);
-  pinMode(REG_PIN__D2, INPUT);
-  pinMode(REG_PIN__D3, INPUT);
-  pinMode(REG_PIN__D4, INPUT);
-  pinMode(REG_PIN__D5, INPUT);
-  pinMode(REG_PIN__D6, INPUT);
-  pinMode(REG_PIN__D7, INPUT);
+  pinMode(REG_PIN__D0, INPUT_PULLDOWN);
+  pinMode(REG_PIN__D1, INPUT_PULLDOWN);
+  pinMode(REG_PIN__D2, INPUT_PULLDOWN);
+  pinMode(REG_PIN__D3, INPUT_PULLDOWN);
+  pinMode(REG_PIN__D4, INPUT_PULLDOWN);
+  pinMode(REG_PIN__D5, INPUT_PULLDOWN);
+  pinMode(REG_PIN__D6, INPUT_PULLDOWN);
+  pinMode(REG_PIN__D7, INPUT_PULLDOWN);
 
   pinMode(REG_PIN__A0, OUTPUT);
   pinMode(REG_PIN__A1, OUTPUT);
 
-  pinMode(SYNC_PIN__READY, INPUT);
-  pinMode(SYNC_PIN__CLEAR, OUTPUT);
+  pinMode(SYNC_PIN__CMD_READY, INPUT_PULLDOWN);
+  pinMode(SYNC_PIN__CMD_CLEAR, OUTPUT);
+  pinMode(SYNC_PIN__ERR_SET, OUTPUT);
+  pinMode(SYNC_PIN__ERR_FLAGGED, INPUT_PULLDOWN);
 
   // Disable active-low signals by default (setting them high).
-  FAST_SET(SYNC_PIN__CLEAR);
+  FAST_SET(SYNC_PIN__CMD_CLEAR);
+  FAST_SET(SYNC_PIN__ERR_SET);
 
   // Set other outputs low by default.
   FAST_CLEAR(REG_PIN__A0);
   FAST_CLEAR(REG_PIN__A1);
 
-  clear_sync_token();
+  clear_cmd();
 }
 
-int is_sync_token_set() {
-  return FAST_GET(SYNC_PIN__READY);
+int is_cmd_set() {
+  return FAST_GET(SYNC_PIN__CMD_READY);
 }
 
-void clear_sync_token() {
-  FAST_PULSE_ACTIVE_LOW(SYNC_PIN__CLEAR);
+void clear_cmd() {
+  FAST_PULSE_ACTIVE_LOW(SYNC_PIN__CMD_CLEAR);
+}
+
+void flag_error() {
+  FAST_PULSE_ACTIVE_LOW(SYNC_PIN__ERR_SET);
+}
+
+int is_err_flagged() {
+  return FAST_GET(SYNC_PIN__ERR_FLAGGED);
 }
 
 uint8_t read_register(int register_address) {

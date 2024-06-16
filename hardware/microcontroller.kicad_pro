@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1524,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 1.0
         }
       },
       "diff_pair_dimensions": [
@@ -229,7 +229,9 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [],
+    "erc_exclusions": [
+      "pin_to_pin|1016000|838200|987b6538-1e2f-45b4-ac06-3f1d196c2c33|3af5e09d-2796-4423-85d6-987974c9c3e4|/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33|/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33|/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
+    ],
     "meta": {
       "version": 0
     },
