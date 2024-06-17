@@ -47,21 +47,25 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: streamer-rom
+          path: software
 
       - name: Pull firmware
         uses: actions/download-artifact@v4
         with:
           name: firmware
+          path: firmware
 
       - name: Pull hardware
         uses: actions/download-artifact@v4
         with:
-          name: fab
+          name: hardware
+          path: hardware
 
       - name: Pull blastem
         uses: actions/download-artifact@v4
         with:
           name: blastem
+          path: blastem
 
       - name: Arrange release artifacts
         run: |
