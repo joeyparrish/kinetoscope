@@ -1,0 +1,68 @@
+name: Release
+
+on:
+  push: # Trigger on new version tags
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+
+# If another instance of this workflow is started for the same PR, cancel the
+# old one.  If a PR is updated and a new test run is started, the old test run
+# will be cancelled automatically to conserve resources.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  software:
+    uses: joeyparrish/kinetoscope/.github/workflows/build-software.yaml@main
+    with:
+      ref: ${{ github.ref }}
+
+  firmware:
+    uses: joeyparrish/kinetoscope/.github/workflows/build-firmware.yaml@main
+    with:
+      ref: ${{ github.ref }}
+
+  hardware:
+    uses: joeyparrish/kinetoscope/.github/workflows/build-hardware.yaml@main
+    with:
+      ref: ${{ github.ref }}
+
+  emulators:
+    uses: joeyparrish/kinetoscope/.github/workflows/build-emulators.yaml@main
+    with:
+      ref: ${{ github.ref }}
+
+  release:
+    needs:
+      - software
+      - firmware
+      - hardware
+      - emulators
+
+    name: Compile Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull software
+        uses: actions/download-artifact@v4
+        with:
+          name: streamer-rom
+
+      - name: Pull firmware
+        uses: actions/download-artifact@v4
+        with:
+          name: firmware
+
+      - name: Pull hardware
+        uses: actions/download-artifact@v4
+        with:
+          name: fab
+
+      - name: Pull blastem
+        uses: actions/download-artifact@v4
+        with:
+          name: blastem
+
+      - name: Arrange release artifacts
+        run: |
+          ls -lR

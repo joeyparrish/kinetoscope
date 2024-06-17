@@ -2,6 +2,8 @@ name: Build Hardware
 
 on:
   push: # Trigger for pushes.
+    branches:
+      - main
     paths:
       - hardware/**
       - '!hardware/firmware/**'
@@ -11,14 +13,20 @@ on:
   workflow_dispatch: # Allows for manual triggering.
     inputs:
       ref:
-        description: "The ref to build and test."
+        description: "The ref to build."
         required: false
+  workflow_call: # Allows for another workflow to call this one.
+    inputs:
+      ref:
+        description: "The ref to build."
+        required: true
+        type: string
 
 # If another instance of this workflow is started for the same PR, cancel the
 # old one.  If a PR is updated and a new test run is started, the old test run
 # will be cancelled automatically to conserve resources.
 concurrency:
-  group: ${{ github.workflow }}-${{ inputs.ref || github.ref }}
+  group: build-hardware-${{ inputs.ref || github.ref }}
   cancel-in-progress: true
 
 jobs:
