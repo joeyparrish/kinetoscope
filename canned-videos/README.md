@@ -14,3 +14,18 @@ Windows, installed to "C:\Users\USERNAME\AppData\Local\Kinetoscope-Emulation":
 ```ps1
 ./install.ps1
 ```
+
+## Installing canned videos without the full source code:
+
+Linux or macOS:
+
+```sh
+curl https://raw.githubusercontent.com/joeyparrish/kinetoscope/main/canned-videos/install.sh | bash
+```
+
+Windows:
+
+```ps1
+Invoke-WebRequest https://raw.githubusercontent.com/joeyparrish/kinetoscope/main/canned-videos/install.ps1 -OutFile install-canned-videos.ps1
+.\install-canned-videos.ps1
+```
