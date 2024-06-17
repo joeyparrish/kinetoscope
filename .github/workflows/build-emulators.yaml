@@ -69,5 +69,5 @@ jobs:
       - name: Upload blastem binaries
         uses: actions/upload-artifact@v4
         with:
-          name: blastem
+          name: blastem-linux
           path: blastem64-0.6.2-kinetoscope

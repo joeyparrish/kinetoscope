@@ -12,6 +12,10 @@ concurrency:
   group: release-${{ github.ref }}
   cancel-in-progress: true
 
+# Necessary permissions to create a release.
+permissions:
+  contents: write
+
 jobs:
   software:
     uses: joeyparrish/kinetoscope/.github/workflows/build-software.yaml@main
@@ -43,30 +47,77 @@ jobs:
     name: Compile Release
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          path: source
+
       - name: Pull software
         uses: actions/download-artifact@v4
         with:
           name: streamer-rom
-          path: software
+          path: kinetoscope-streamer-rom
 
       - name: Pull firmware
         uses: actions/download-artifact@v4
         with:
           name: firmware
-          path: firmware
+          path: kinetoscope-firmware
 
       - name: Pull hardware
         uses: actions/download-artifact@v4
         with:
           name: hardware
-          path: hardware
+          path: kinetoscope-hardware
 
       - name: Pull blastem
         uses: actions/download-artifact@v4
         with:
-          name: blastem
-          path: blastem
+          name: blastem-linux
+          path: kinetoscope-blastem
 
       - name: Arrange release artifacts
         run: |
-          ls -lR
+          # Debug: show everything we execute.
+          set -x
+          # Debug: show all downloaded artifacts.
+          find -ls
+
+          # Prep streamer ROM.
+          mv kinetoscope-streamer-rom/rom.bin kinetoscope-streamer-rom/kinetoscope-streamer-rom.bin
+          cp source/LICENSE.txt kinetoscope-streamer-rom/
+          zip -r9 kinetoscope-streamer-rom.zip kinetoscope-streamer-rom/
+
+          # Prep firmware.
+          mv kinetoscope-firmware/firmware.ino.uf2 kinetoscope-firmware/kinetoscope-firmware.uf2
+          cp source/LICENSE.txt kinetoscope-firmware/
+          zip -r9 kinetoscope-firmware.zip kinetoscope-firmware/
+
+          # Prep hardware fab files.
+          for project in cart microcontroller sram-bank; do
+            unzip -j -d kinetoscope-hardware/ kinetoscope-hardware/$project-fab.zip $project-fab/$project.bom.csv $project-fab/$project-front.pos.csv
+          done
+          cp source/LICENSE.txt kinetoscope-hardware/
+          echo "These zip files contain Gerbers, BOM files, and position files for each board design." >>
+          echo "" >> kinetoscope-hardware/README.txt
+          echo "The zip file can be uploaded to JLCPCB when they ask for Gerbers." >> kinetoscope-hardware/README.txt
+          echo "*.bom.csv is the BOM file in JLCPCB format." >> kinetoscope-hardware/README.txt
+          echo "*-front.pos.csv is the position file in JLCPCB format." >> kinetoscope-hardware/README.txt
+          zip -r9 kinetoscope-hardware.zip kinetoscope-hardware/
+
+          # Prep emulator binaries.
+          mv blastem kinetoscope-blastem64-0.6.2-linux-x64
+          zip -r9 kinetoscope-blastem64-0.6.2-linux-x64 kinetoscope-blastem64-0.6.2-linux-x64.zip
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          fail_on_unmatched_files: true
+          generate_release_notes: false
+          make_latest: true
+          files: |
+            kinetoscope-streamer-rom.zip
+            kinetoscope-firmware.zip
+            kinetoscope-hardware.zip
+            kinetoscope-blastem64-0.6.2-linux-x64.zip

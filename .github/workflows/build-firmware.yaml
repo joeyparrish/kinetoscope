@@ -71,4 +71,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: firmware
-          path: hardware/firmware/firmware.ino.elf
+          path: hardware/firmware/firmware.ino.uf2

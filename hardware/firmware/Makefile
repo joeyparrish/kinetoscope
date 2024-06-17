@@ -17,7 +17,7 @@ build:
 	arduino-cli compile -b ${BOARD} \
 	    --build-property "build.extra_flags=${EXTRA_FLAGS}" \
 	    --export-binaries
-	cp build/${BOARD_PATH}/${SKETCH_NAME}.ino.elf .
+	cp build/${BOARD_PATH}/${SKETCH_NAME}.ino.uf2 .
 
 upload:
 	arduino-cli compile -b ${BOARD} \
