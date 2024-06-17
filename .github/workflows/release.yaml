@@ -75,7 +75,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: blastem-linux
-          path: kinetoscope-blastem
+          path: kinetoscope-blastem64-0.6.2-linux-x64
 
       - name: Arrange release artifacts
         run: |
@@ -99,7 +99,7 @@ jobs:
             unzip -j -d kinetoscope-hardware/ kinetoscope-hardware/$project-fab.zip $project-fab/$project.bom.csv $project-fab/$project-front.pos.csv
           done
           cp source/LICENSE.txt kinetoscope-hardware/
-          echo "These zip files contain Gerbers, BOM files, and position files for each board design." >>
+          echo "These zip files contain Gerbers, BOM files, and position files for each board design." >> kinetoscope-hardware/README.txt
           echo "" >> kinetoscope-hardware/README.txt
           echo "The zip file can be uploaded to JLCPCB when they ask for Gerbers." >> kinetoscope-hardware/README.txt
           echo "*.bom.csv is the BOM file in JLCPCB format." >> kinetoscope-hardware/README.txt
@@ -107,8 +107,7 @@ jobs:
           zip -r9 kinetoscope-hardware.zip kinetoscope-hardware/
 
           # Prep emulator binaries.
-          mv blastem kinetoscope-blastem64-0.6.2-linux-x64
-          zip -r9 kinetoscope-blastem64-0.6.2-linux-x64 kinetoscope-blastem64-0.6.2-linux-x64.zip
+          zip -r9 kinetoscope-blastem64-0.6.2-linux-x64.zip kinetoscope-blastem64-0.6.2-linux-x64/
 
       - name: Create release
         uses: softprops/action-gh-release@v2
