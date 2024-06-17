@@ -63,7 +63,12 @@ jobs:
           tar xf SDL2-2.30.3.tar.gz
           ln -s SDL2-2.30.3 sdl
 
-      - name: Portable build
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          create-symlink: true
+
+      - name: Build portable binaries
         run: ./build_release
 
       - name: Upload blastem binaries
