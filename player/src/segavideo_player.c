@@ -62,11 +62,11 @@ static uint16_t nextPageIndex;
 #define TILE_SIZE 32
 
 // Ports to communicate with our special hardware.
-#define VIDEOSTREAM_PORT_COMMAND (volatile uint16_t*)0xA13000  // low 8 bits
-#define VIDEOSTREAM_PORT_ARG     (volatile uint16_t*)0xA13002  // low 8 bits
-#define VIDEOSTREAM_PORT_TOKEN   (volatile uint16_t*)0xA13008  // low 1 bit, set on write
-#define VIDEOSTREAM_PORT_ERROR   (volatile uint16_t*)0xA1300A  // low 1 bit, clear on write
-#define VIDEOSTREAM_DATA          (volatile uint8_t*)0x200000
+#define KINETOSCOPE_PORT_COMMAND (volatile uint16_t*)0xA13000  // low 8 bits
+#define KINETOSCOPE_PORT_ARG     (volatile uint16_t*)0xA13002  // low 8 bits
+#define KINETOSCOPE_PORT_TOKEN   (volatile uint16_t*)0xA13008  // low 1 bit, set on write
+#define KINETOSCOPE_PORT_ERROR   (volatile uint16_t*)0xA1300A  // low 1 bit, clear on write
+#define KINETOSCOPE_DATA          (volatile uint8_t*)0x200000
 
 // Commands for that hardware.
 #define CMD_ECHO        0x00  // Writes arg to SRAM
@@ -303,10 +303,9 @@ static bool nextVideoFrame() {
 
   nextFrameNum = currentFrameNum + 1;
 
-  // HACK: Work around emulation issues by reading the token to trigger the
-  // videostream emulator to check the time and execute CMD_FLIP_REGION that
-  // was not awaited.
-  volatile uint16_t* token_port = VIDEOSTREAM_PORT_TOKEN;
+  // HACK: Work around emulation issues.  Read the token so that the emulator
+  // can check the time and execute a CMD_FLIP_REGION that was not awaited.
+  volatile uint16_t* token_port = KINETOSCOPE_PORT_TOKEN;
   (void)*token_port;
 
   // The logic here manages some tricky chunk transitions.  Note that if we
@@ -605,9 +604,9 @@ static void statusMessage(uint16_t pal, const char* message) {
 }
 
 static bool sendCommand(uint16_t command, uint16_t arg0) {
-  volatile uint16_t* command_port = VIDEOSTREAM_PORT_COMMAND;
-  volatile uint16_t* token_port = VIDEOSTREAM_PORT_TOKEN;
-  volatile uint16_t* arg_port = VIDEOSTREAM_PORT_ARG;
+  volatile uint16_t* command_port = KINETOSCOPE_PORT_COMMAND;
+  volatile uint16_t* token_port = KINETOSCOPE_PORT_TOKEN;
+  volatile uint16_t* arg_port = KINETOSCOPE_PORT_ARG;
 
   if (*token_port != TOKEN_CONTROL_TO_SEGA) {
     return false;
@@ -622,7 +621,7 @@ static bool sendCommand(uint16_t command, uint16_t arg0) {
 static bool waitForReply(uint16_t timeout_seconds) {
   kprintf("Waiting for streamer response.\n");
 
-  volatile uint16_t* token_port = VIDEOSTREAM_PORT_TOKEN;
+  volatile uint16_t* token_port = KINETOSCOPE_PORT_TOKEN;
   uint16_t counter = 0;
   uint16_t max_counter =
       IS_PAL_SYSTEM ? 50 * timeout_seconds : 60 * timeout_seconds;
@@ -646,7 +645,7 @@ bool segavideo_checkHardware() {
   statusMessage(PAL_WHITE, "Checking for streamer...");
 
   uint16_t command_timeout = 5; // seconds
-  volatile uint8_t* data = VIDEOSTREAM_DATA;
+  volatile uint8_t* data = KINETOSCOPE_DATA;
 
   if (!sendCommand(CMD_ECHO, 0x55)) {
     statusMessage(PAL_YELLOW, "Streamer not found! (code 1)");
@@ -686,7 +685,7 @@ bool segavideo_getMenu() {
   statusMessage(PAL_WHITE, "Fetching video list...");
 
   uint16_t command_timeout = 30; // seconds
-  volatile uint8_t* data = VIDEOSTREAM_DATA;
+  volatile uint8_t* data = KINETOSCOPE_DATA;
 
   // We request a specific page, and we inform the streaming hardware of how
   // many items there are per page.
@@ -844,7 +843,7 @@ bool segavideo_stream(bool loop) {
 }
 
 bool segavideo_hasError() {
-  volatile uint16_t* error_port = VIDEOSTREAM_PORT_ERROR;
+  volatile uint16_t* error_port = KINETOSCOPE_PORT_ERROR;
   return *error_port != 0;
 }
 
@@ -865,7 +864,7 @@ bool segavideo_isErrorShowing() {
 }
 
 void segavideo_clearError() {
-  volatile uint16_t* error_port = VIDEOSTREAM_PORT_ERROR;
+  volatile uint16_t* error_port = KINETOSCOPE_PORT_ERROR;
   *error_port = 0;
   errorShowing = false;
 }

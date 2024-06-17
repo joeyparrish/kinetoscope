@@ -4,7 +4,7 @@
 //
 // See MIT License in LICENSE.txt
 
-// Emulation of video streaming hardware in BlastEm.
+// Emulation of Kinetoscope video streaming hardware in BlastEm.
 
 #include <stdint.h>
 #include <string.h>
@@ -31,16 +31,15 @@
 #define CMD_FLIP_REGION 0x04
 
 // NOTE: The addresses sent to us are all relative to the base of 0xA13000.
-// So we only check the offset from there.
-#define VIDEOSTREAM_PORT_COMMAND 0x30
-#define VIDEOSTREAM_PORT_TOKEN   0x32
-#define VIDEOSTREAM_PORT_ARG     0x34
-// These are unused, but would be usable with our UART wiring.
-#define VIDEOSTREAM_PORT_UNUSED0 0x36
-#define VIDEOSTREAM_PORT_UNUSED1 0x38
-#define VIDEOSTREAM_PORT_UNUSED2 0x3A
-#define VIDEOSTREAM_PORT_UNUSED3 0x3C
-#define VIDEOSTREAM_PORT_UNUSED4 0x3E
+// So we only check the offset from there.  All addresses are even because the
+// cartridge interface does not have a wire for A0.  So all port accesses are
+// 16-bit aligned.
+#define KINETOSCOPE_PORT_COMMAND  0x00  // command, only the low 8 bits are read
+#define KINETOSCOPE_PORT_ARG      0x02  // arg, only the low 8 bits are read
+#define KINETOSCOPE_PORT_UNUSED_2 0x04  // register exists in hardware, unused
+#define KINETOSCOPE_PORT_UNUSED_3 0x06  // register exists in hardware, unused
+#define KINETOSCOPE_PORT_TOKEN    0x08  // low 1 bit, set on write by Sega
+#define KINETOSCOPE_PORT_ERROR    0x0A  // low 1 bit, clear on write by Sega
 
 #define TOKEN_CONTROL_TO_SEGA     0
 #define TOKEN_CONTROL_TO_STREAMER 1
@@ -78,6 +77,7 @@ static uint8_t* global_sram_buffer = NULL;
 static uint32_t global_sram_size = 0;
 static uint16_t global_command = 0;
 static uint16_t global_token = TOKEN_CONTROL_TO_SEGA;
+static uint16_t global_error = 0;
 static uint16_t global_arg;
 static uint32_t global_ready_cycle = (uint32_t)-1;
 static uint8_t* global_video_data = NULL;
@@ -108,7 +108,7 @@ static uint32_t cycle_delay(void *context, double delay_seconds) {
 
 static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size) {
   if (offset + size > global_sram_size) {
-    warning("Videostream: tried to overflow SRAM!"
+    warning("Kinetoscope: tried to overflow SRAM!"
             " (offset: 0x%08x, size: 0x%08x)\n",
             offset, size);
     return;
@@ -128,7 +128,7 @@ static void write_sram_video_chunk(const SegaVideoChunkInfo* chunk) {
   uint32_t header_size = sizeof(SegaVideoChunkHeader) +
       ((global_video_data_offset == 0) ? sizeof(SegaVideoHeader) : 0);
 
-  printf("Videostream: Writing chunk size 0x%x from input offset 0x%08x"
+  printf("Kinetoscope: Writing chunk size 0x%x from input offset 0x%08x"
          " to output offset 0x%08x\n",
          chunk_size, global_video_data_offset, global_sram_offset);
 
@@ -144,7 +144,7 @@ static void write_sram_video_chunk(const SegaVideoChunkInfo* chunk) {
       global_video_data + global_video_data_offset
       - PADDING_BYTES_OFFSET_FROM_END_OF_HEADER);
   uint16_t padding_bytes = ntohs(*pointer_to_padding_bytes);
-  printf("Videostream: original padding bytes = %d\n", (int)padding_bytes);
+  printf("Kinetoscope: original padding bytes = %d\n", (int)padding_bytes);
 
   // Compute the actual data size and move the input offset past the padding.
   uint32_t data_size = chunk_size - header_size - padding_bytes;
@@ -153,8 +153,8 @@ static void write_sram_video_chunk(const SegaVideoChunkInfo* chunk) {
   // Adjust the padding to align audio in the output stream.
   uint32_t padding_remainder = global_sram_offset % 256;
   padding_bytes = padding_remainder ? (256 - padding_remainder) : 0;
-  printf("Videostream: SRAM offset after header: 0x%08x\n", global_sram_offset);
-  printf("Videostream: new padding bytes = %d\n", (int)padding_bytes);
+  printf("Kinetoscope: SRAM offset after header: 0x%08x\n", global_sram_offset);
+  printf("Kinetoscope: new padding bytes = %d\n", (int)padding_bytes);
   uint16_t network_order_padding_bytes = htons(padding_bytes);
   write_sram(global_sram_offset - PADDING_BYTES_OFFSET_FROM_END_OF_HEADER,
              (const uint8_t*)&network_order_padding_bytes,
@@ -198,7 +198,7 @@ static void fill_region() {
       write_sram_video_chunk(&chunk);
       if (!chunk.numFrames || !chunk.audioSamples) {
         // No more chunks!
-        printf("Videostream: No more chunks!"
+        printf("Kinetoscope: No more chunks!"
                " Final header written to offset 0x%08x\n",
                (int)(global_sram_offset - sizeof(SegaVideoChunkHeader)));
         stop_video();
@@ -209,7 +209,7 @@ static void fill_region() {
       // This region is now full.
       // Start the next write in the alternate region.
       global_sram_offset = start_region ^ REGION_SIZE;
-      printf("Videostream: Start region 0x%08x is full, next region 0x%08x\n",
+      printf("Kinetoscope: Start region 0x%08x is full, next region 0x%08x\n",
              start_region, global_sram_offset);
       return;
     }
@@ -238,13 +238,13 @@ static void start_video() {
     // Write a 0 to SRAM, which will make sure any old data doesn't look like a
     // valid video.
     write_sram(0, (const uint8_t*)"", 1);
-    printf("Videostream: Unknown video (%d)!\n", global_arg);
+    printf("Kinetoscope: Unknown video (%d)!\n", global_arg);
     return;
   }
 
   FILE* f = fopen(video_path, "r");
   if (!f) {
-    printf("Videostream: Failed to open video (%s)!\n", video_path);
+    printf("Kinetoscope: Failed to open video (%s)!\n", video_path);
     free(video_path);
     return;
   }
@@ -253,7 +253,7 @@ static void start_video() {
   if (fseek(f, 0, SEEK_END) ||
       ((size = ftell(f)) < 0) ||
       fseek(f, 0, SEEK_SET)) {
-    printf("Videostream: Failed to get video size (%s)!\n", video_path);
+    printf("Kinetoscope: Failed to get video size (%s)!\n", video_path);
     free(video_path);
     return;
   }
@@ -263,7 +263,7 @@ static void start_video() {
   }
   global_video_data = (uint8_t*)malloc(size);
   if (!global_video_data) {
-    printf("Videostream: Failed to allocate space for video (%s)!\n",
+    printf("Kinetoscope: Failed to allocate space for video (%s)!\n",
         video_path);
     free(video_path);
     return;
@@ -271,7 +271,7 @@ static void start_video() {
 
   size_t bytes_read = fread(global_video_data, 1, size, f);
   if (bytes_read != size) {
-    printf("Videostream: Failed to read video (%s; retval=%d)!\n",
+    printf("Kinetoscope: Failed to read video (%s; retval=%d)!\n",
         video_path, (int)bytes_read);
     free(video_path);
     free(global_video_data);
@@ -279,7 +279,7 @@ static void start_video() {
     return;
   }
 
-  printf("Videostream: Loaded video (%s).\n", video_path);
+  printf("Kinetoscope: Loaded video (%s).\n", video_path);
   fclose(f);
   free(video_path);
 
@@ -307,7 +307,7 @@ static void start_video() {
   uint32_t end_region = end_offset & REGION_OFFSET_MASK;
 
   if (start_region != end_region) {
-    printf("Videostream: First video chunk overflows the region!\n");
+    printf("Kinetoscope: First video chunk overflows the region!\n");
     stop_video();
     return;
   }
@@ -327,7 +327,7 @@ static void start_video() {
 
 static void flip_region() {
   if (!global_video_data) {
-    printf("Videostream: FLIP_REGION command while not playing!\n");
+    printf("Kinetoscope: FLIP_REGION command while not playing!\n");
     return;
   }
 
@@ -360,7 +360,7 @@ static void get_video_list() {
     write_sram(0, (const uint8_t*)video_list, video_list_len);
   } else {
     // The page was not found, so write a blank string.
-    printf("Videostream: Unable to find requested page!\n");
+    printf("Kinetoscope: Unable to find requested page!\n");
     write_sram(0, (const uint8_t*)"", 1);
   }
 }
@@ -369,57 +369,59 @@ static void execute_command() {
   if (global_command == CMD_ECHO) {
     // Used by the ROM to check for the necessary streaming hardware.
     uint16_t value = global_arg;
-    printf("Videostream: CMD_ECHO 0x%04x\n", value);
+    printf("Kinetoscope: CMD_ECHO 0x%04x\n", value);
     write_sram(0, (const uint8_t*)&value, sizeof(value));
   } else if (global_command == CMD_LIST_VIDEOS) {
-    printf("Videostream: CMD_LIST_VIDEOS\n");
+    printf("Kinetoscope: CMD_LIST_VIDEOS\n");
     get_video_list();
   } else if (global_command == CMD_START_VIDEO) {
-    printf("Videostream: CMD_START_VIDEO\n");
+    printf("Kinetoscope: CMD_START_VIDEO\n");
     start_video();
   } else if (global_command == CMD_STOP_VIDEO) {
-    printf("Videostream: CMD_STOP_VIDEO\n");
+    printf("Kinetoscope: CMD_STOP_VIDEO\n");
     stop_video();
   } else if (global_command == CMD_FLIP_REGION) {
-    printf("Videostream: CMD_FLIP_REGION\n");
+    printf("Kinetoscope: CMD_FLIP_REGION\n");
     flip_region();
   } else {
-    printf("Videostream: unknown command 0x%02x\n", global_command);
+    printf("Kinetoscope: unknown command 0x%02x\n", global_command);
   }
 
   // Completed.
-  printf("Videostream: command complete.\n");
+  printf("Kinetoscope: command complete.\n");
   global_token = TOKEN_CONTROL_TO_SEGA;
 }
 
-void videostream_init(void *sram_buffer, uint32_t sram_size) {
+void kinetoscope_init(void *sram_buffer, uint32_t sram_size) {
   global_sram_buffer = sram_buffer;
   global_sram_size = sram_size;
 }
 
-void *videostream_write_16(uint32_t address, void *context, uint16_t value) {
+void *kinetoscope_write_16(uint32_t address, void *context, uint16_t value) {
   m68k_context *m68k = (m68k_context *)context;
 
-  if (address == VIDEOSTREAM_PORT_COMMAND) {
+  if (address == KINETOSCOPE_PORT_COMMAND) {
     global_command = value;
-  } else if (address == VIDEOSTREAM_PORT_TOKEN) {
-    global_token = value;
-    if (global_token == TOKEN_CONTROL_TO_STREAMER) {
-      printf("Videostream: Received command 0x%02x\n", global_command);
-      // Decide when the command will execute, simulating async operation of
-      // the cart's secondary processor.
-      double delay_seconds =
-          global_command == CMD_LIST_VIDEOS ? DELAY_NETWORK : DELAY_GENERAL;
-      global_ready_cycle =
-          m68k->current_cycle + cycle_delay(context, delay_seconds);
-    }
-  } else if (address >= VIDEOSTREAM_PORT_ARG) {
+  } else if (address == KINETOSCOPE_PORT_ARG) {
     global_arg = value;
+  } else if (address == KINETOSCOPE_PORT_TOKEN) {
+    // This bit is always set on write by Sega, no matter the value.
+    global_token = TOKEN_CONTROL_TO_STREAMER;
+    printf("Kinetoscope: Received command 0x%02x\n", global_command);
+    // Decide when the command will execute, simulating async operation of
+    // the cart's secondary processor.
+    double delay_seconds =
+        global_command == CMD_LIST_VIDEOS ? DELAY_NETWORK : DELAY_GENERAL;
+    global_ready_cycle =
+        m68k->current_cycle + cycle_delay(context, delay_seconds);
+  } else if (address == KINETOSCOPE_PORT_ERROR) {
+    // This bit is always cleared on write by Sega, no matter the value.
+    global_error = 0;  // always cleared on write by Sega
   }
   return context;
 }
 
-void *videostream_write_8(uint32_t address, void *context, uint8_t value) {
+void *kinetoscope_write_8(uint32_t address, void *context, uint8_t value) {
   uint32_t aligned_address = address & ~1;
   if (address != aligned_address) {
     // second byte = low byte in big-endian systems
@@ -427,31 +429,37 @@ void *videostream_write_8(uint32_t address, void *context, uint8_t value) {
     return context;
   } else {
     // first byte = high byte in big-endian systems
-    return videostream_write_16(address, context, ((uint16_t)value) << 8);
+    return kinetoscope_write_16(address, context, ((uint16_t)value) << 8);
   }
 }
 
-uint16_t videostream_read_16(uint32_t address, void *context) {
+uint16_t kinetoscope_read_16(uint32_t address, void *context) {
   m68k_context *m68k = (m68k_context *)context;
 
-  if (address == VIDEOSTREAM_PORT_TOKEN) {
-    if (m68k->current_cycle >= global_ready_cycle &&
-        global_token == TOKEN_CONTROL_TO_STREAMER) {
-      execute_command();
-    }
-    return global_token;
+  if (m68k->current_cycle >= global_ready_cycle &&
+      global_token == TOKEN_CONTROL_TO_STREAMER) {
+    execute_command();
+  }
+
+  if (address == KINETOSCOPE_PORT_TOKEN) {
+    // These are always 1-bit values.
+    return global_token ? 1 : 0;
+  } else if (address == KINETOSCOPE_PORT_ERROR) {
+    // These are always 1-bit values.
+    return global_error ? 1 : 0;
   } else {
+    // Register values are write-only from the Sega.
     return 0;
   }
 }
 
-uint8_t videostream_read_8(uint32_t address, void *context) {
+uint8_t kinetoscope_read_8(uint32_t address, void *context) {
   uint32_t aligned_address = address & ~1;
   if (address != aligned_address) {
     // second byte = low byte in big-endian systems
-    return videostream_read_16(aligned_address, context) & 0xff;
+    return kinetoscope_read_16(aligned_address, context) & 0xff;
   } else {
     // first byte = high byte in big-endian systems
-    return videostream_read_16(aligned_address, context) >> 8;
+    return kinetoscope_read_16(aligned_address, context) >> 8;
   }
 }

@@ -1,4 +1,4 @@
-commit 3dfb853f764898bdc713f70fa12244572e237be9
+commit 72e9e8749c8e7212b84341cc890262264349846b
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,14 +21,14 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..9aee4dc 100644
+index 0dddc9f..7b17335 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -221,6 +221,7 @@ endif
  
  MAINOBJS=blastem.o system.o genesis.o debug.o gdb_remote.o vdp.o $(RENDEROBJS) io.o romdb.o hash.o menu.o xband.o \
  	realtec.o i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
-+	kinetoscope/emulator-patches/videostream.o kinetoscope/player/src/segavideo_parser.o \
++	kinetoscope/emulator-patches/kinetoscope.o kinetoscope/player/src/segavideo_parser.o \
  	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o zip.o bindings.o jcart.o gen_player.o
  
  LIBOBJS=libblastem.o system.o genesis.o debug.o gdb_remote.o vdp.o io.o romdb.o hash.o xband.o realtec.o \
@@ -42,28 +42,28 @@ index 0dddc9f..9aee4dc 100644
  
  libblastem.$(SO) : $(LIBOBJS)
 diff --git a/default.cfg b/default.cfg
-index 8274766..550f041 100644
+index 8274766..2bcfd15 100644
 --- a/default.cfg
 +++ b/default.cfg
 @@ -395,6 +395,9 @@ system {
  	#MegaWiFi allows ROMs to make connections to the internet
  	#so it should only be enabled for ROMs you trust
  	megawifi off
-+	#videostream ROMs get a simulated connection, but do not really connect to
++	#kinetoscope ROMs get a simulated connection, but do not really connect to
 +	#the internet, so this is a safe default
-+	videostream on
++	kinetoscope on
  	#Model of the emulated Gen/MD system, see systems.cfg for a list of options
  	model md1va3
  }
 diff --git a/romdb.c b/romdb.c
-index 79afa76..d8535a2 100644
+index 79afa76..e3a7de8 100644
 --- a/romdb.c
 +++ b/romdb.c
 @@ -14,6 +14,7 @@
  #include "megawifi.h"
  #include "jcart.h"
  #include "blastem.h"
-+#include "kinetoscope/emulator-patches/videostream.h"
++#include "kinetoscope/emulator-patches/kinetoscope.h"
  
  #define DOM_TITLE_START 0x120
  #define DOM_TITLE_END 0x150
@@ -71,7 +71,7 @@ index 79afa76..d8535a2 100644
  			warning("ROM uses MegaWiFi, but it is disabled\n");
  		}
  		return;
-+	} else if(!memcmp("SEGA VIDEOSTREAM", rom + 0x100, strlen("SEGA VIDEOSTREAM"))) {
++	} else if(!memcmp("SEGA KINETOSCOPE", rom + 0x100, strlen("SEGA KINETOSCOPE"))) {
 +		info->mapper_type = MAPPER_NONE;
 +		info->map_chunks = base_chunks + 3;
 +		info->map = malloc(sizeof(memmap_chunk) * info->map_chunks);
@@ -88,13 +88,13 @@ index 79afa76..d8535a2 100644
 +		// In hardware, this whole range will trigger the /TIME signal.
 +		info->map[1].start = 0xA13000;
 +		info->map[1].end   = 0xA13100;
-+		// In our hardware, we will pass A3-A1 to the UART address lines,
-+		// A5-A4 (high) for the UART's CS0 and CS1, and /TIME for the UART's /CS2.
-+		// Therefore our port address is 0xA13030 and the mask is A5-A0, or 0x3F.
-+		// In real hardware, the range would wrap around and it would respond to
-+		// 0x...30, 0x...70, 0x...B0, 0x...F0.	In our software, we will use a 0x30
-+		// to avoid conflicts if it is flashed to a MegaWifi cart (which uses 0xC0).
-+		info->map[1].mask  = 0x00003F;
++		// In our hardware, we use A1-A3 to address various special ports.  A0 (low
++		// byte / high byte) doesn't exist in the cartridge interface.  But we
++		// effectively respond to changes in the bottom 4 bits.
++		// Therefore our port address is 0xA13000 and the mask is 0x00F.
++		// In real hardware, the range would wrap around and 0x...00, 0x...10,
++		// 0x...20, ... would all map to the same port.
++		info->map[1].mask  = 0x00000F;
 +
 +		info->map[2].start = 0x000000;
 +		info->map[2].end   = 0x200000;
@@ -107,16 +107,16 @@ index 79afa76..d8535a2 100644
 +
 +		if (!strcmp(
 +			"on",
-+			tern_find_path_default(config, "system\0videostream\0", (tern_val){.ptrval="off"}, TVAL_PTR).ptrval)
++			tern_find_path_default(config, "system\0kinetoscope\0", (tern_val){.ptrval="off"}, TVAL_PTR).ptrval)
 +		) {
-+			info->map[1].write_16 = videostream_write_16;
-+			info->map[1].write_8 = videostream_write_8;
-+			info->map[1].read_16 = videostream_read_16;
-+			info->map[1].read_8 = videostream_read_8;
++			info->map[1].write_16 = kinetoscope_write_16;
++			info->map[1].write_8 = kinetoscope_write_8;
++			info->map[1].read_16 = kinetoscope_read_16;
++			info->map[1].read_8 = kinetoscope_read_8;
 +
-+			videostream_init(sram_buffer, sram_size);
++			kinetoscope_init(sram_buffer, sram_size);
 +		} else {
-+			warning("ROM uses videostream, but it is disabled\n");
++			warning("ROM uses kinetoscope, but it is disabled\n");
 +		}
 +		return;
  	} else if (has_ram_header(rom, size)) {

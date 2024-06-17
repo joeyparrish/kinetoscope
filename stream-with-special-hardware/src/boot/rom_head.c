@@ -14,7 +14,7 @@ const ROMHeader rom_header = {
   // Though you may not find emulation of this hardware anywhere that I didn't
   // contribute it.  See the folder "emulator-patches" to modify your OSS Sega
   // emulator.
-  "SEGA VIDEOSTREAM",
+  "SEGA KINETOSCOPE",
   // Copyright line.
   "(C) Joey Parrish",
   // Game title.
