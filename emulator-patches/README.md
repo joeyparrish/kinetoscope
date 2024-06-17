@@ -10,3 +10,12 @@ We provide patches for the following emulators:
    4. `git clone https://github.com/joeyparrish/kinetoscope`
    5. `patch -p1 -i kinetoscope/emulator-patches/blastem-0.6.2.patch`
    6. `make`
+
+## Licensing
+
+These patches and Kinetoscope code in general are licensed under the MIT
+license found in LICENSE.txt.  BlastEm is licensed under GPLv3.  These are
+compatible in this arrangement, but the final build of BlastEm using these
+patches must be distributed under GPLv3.
+
+See also https://libguides.wvu.edu/c.php?g=1260463&p=9239106#s-lg-box-29255221
