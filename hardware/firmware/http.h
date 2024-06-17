@@ -18,6 +18,7 @@ typedef void (*http_buffer_callback)(const uint8_t* buffer, int bytes);
 
 void http_init(Client* network_client);
 
+// Reports error messages through error.h and returns -1 on failure
 int http_fetch(const char* server, uint16_t port, const char* path,
                int start_byte, int size, http_buffer_callback callback);
 

@@ -12,6 +12,7 @@
 #include <HardwareSerial.h>
 
 #include "arduino_secrets.h"
+#include "error.h"
 #include "http.h"
 #include "internet.h"
 #include "registers.h"
@@ -21,6 +22,10 @@
 // An actual MAC address assigned to me with my ethernet board.
 // Don't put two of these devices on the same network, y'all.
 uint8_t MAC_ADDR[] = { 0x98, 0x76, 0xB6, 0x12, 0xD4, 0x9E };
+
+static void freeze() {
+  while (true) { delay(1000); }
+}
 
 void setup() {
   Serial.begin(115200);
@@ -46,25 +51,31 @@ void setup() {
       client = internet_init_wifi(SECRET_WIFI_SSID, SECRET_WIFI_PASS);
       if (!client) {
         Serial.println("WiFi connection failed!");
+        report_error("WiFi connection failed!");
       }
     } else {
       Serial.println("WiFi not configured!");
+      report_error("Wired connection failed and WiFi not configured!");
     }
 #else
     Serial.println("WiFi hardware not available!");
+    report_error("Wired connection failed and WiFi hardware not available!");
 #endif
   }
 
-  // TODO: Report status back to the Sega.
   if (!client) {
     Serial.println("Failed to connect to the network!");
-    while (true) { delay(1000); }
+  } else {
+    http_init(client);
   }
-
-  http_init(client);
 }
 
 void loop() {
-  run_tests();
-  while (true) { delay(1000); }
+#if 0
+  if (!is_error_flagged()) {
+    run_tests();
+  }
+#endif
+
+  freeze();
 }

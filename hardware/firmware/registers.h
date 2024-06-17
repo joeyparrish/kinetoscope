@@ -41,7 +41,7 @@ void clear_cmd();
 
 void flag_error();
 
-int is_err_flagged();
+int is_error_flagged();
 
 uint8_t read_register(int register_address);
 

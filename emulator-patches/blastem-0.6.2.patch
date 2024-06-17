@@ -1,4 +1,4 @@
-commit 645641aa7bc74fdb261b4eb05bdd6d6fc2ec3d90
+commit de6b8db6902bcccdb172e4fec1f360b3b3df107e
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -104,6 +104,18 @@ index 8274766..2bcfd15 100644
 +	kinetoscope on
  	#Model of the emulated Gen/MD system, see systems.cfg for a list of options
  	model md1va3
+ }
+diff --git a/gdb_remote.c b/gdb_remote.c
+index 9dbfce4..2effc89 100644
+--- a/gdb_remote.c
++++ b/gdb_remote.c
+@@ -582,6 +582,6 @@ void gdb_remote_init(void)
+ 	}
+ 	socket_close(listen_sock);
+ #else
+-	disable_stdout_messages();
++	//disable_stdout_messages();
+ #endif
  }
 diff --git a/img2tiles.py b/img2tiles.py
 index c91273c..f637add 100755

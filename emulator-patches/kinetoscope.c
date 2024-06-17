@@ -29,6 +29,7 @@
 #define CMD_START_VIDEO 0x02
 #define CMD_STOP_VIDEO  0x03
 #define CMD_FLIP_REGION 0x04
+#define CMD_GET_ERROR   0x05
 
 // NOTE: The addresses sent to us are all relative to the base of 0xA13000.
 // So we only check the offset from there.  All addresses are even because the
@@ -80,6 +81,7 @@ static uint32_t global_sram_size = 0;
 static uint16_t global_command = 0;
 static uint16_t global_token = TOKEN_CONTROL_TO_SEGA;
 static uint16_t global_error = 0;
+static char* global_error_str = NULL;
 static uint16_t global_arg;
 static uint32_t global_ready_cycle = (uint32_t)-1;
 static uint8_t* global_video_data = NULL;
@@ -368,6 +370,19 @@ static void get_video_list() {
   }
 }
 
+static void report_error(const char *message) {
+  printf("Kinetoscope: Simulating error: %s\n", message);
+  global_error = 1;
+  if (global_error_str) {
+    free(global_error_str);
+  }
+  global_error_str = strdup(message);
+}
+
+static void write_error_to_sram() {
+  write_sram(0, (const uint8_t*)global_error_str, strlen(global_error_str));
+}
+
 static void execute_command() {
   if (global_command == CMD_ECHO) {
     // Used by the ROM to check for the necessary streaming hardware.
@@ -386,6 +401,9 @@ static void execute_command() {
   } else if (global_command == CMD_FLIP_REGION) {
     printf("Kinetoscope: CMD_FLIP_REGION\n");
     flip_region();
+  } else if (global_command == CMD_GET_ERROR) {
+    printf("Kinetoscope: CMD_GET_ERROR\n");
+    write_error_to_sram();
   } else {
     printf("Kinetoscope: unknown command 0x%02x\n", global_command);
   }
@@ -418,8 +436,11 @@ void *kinetoscope_write_16(uint32_t address, void *context, uint16_t value) {
     global_ready_cycle =
         m68k->current_cycle + cycle_delay(context, delay_seconds);
   } else if (address == KINETOSCOPE_PORT_ERROR) {
+    printf("Kinetoscope: Clearing error bit\n");
     // This bit is always cleared on write by Sega, no matter the value.
     global_error = 0;  // always cleared on write by Sega
+  } else {
+    printf("Kinetoscope: Unknown address 0x%02x\n", address);
   }
   return context;
 }
@@ -446,8 +467,10 @@ uint16_t kinetoscope_read_16(uint32_t address, void *context) {
 
   if (address == KINETOSCOPE_PORT_TOKEN) {
     // These are always 1-bit values.
+    //printf("Kinetoscope: Reading token bit: %d\n", global_token);
     return global_token ? 1 : 0;
   } else if (address == KINETOSCOPE_PORT_ERROR) {
+    //printf("Kinetoscope: Reading error bit: %d\n", global_error);
     // These are always 1-bit values.
     return global_error ? 1 : 0;
   } else {

@@ -61,7 +61,7 @@ void flag_error() {
   FAST_PULSE_ACTIVE_LOW(SYNC_PIN__ERR_SET);
 }
 
-int is_err_flagged() {
+int is_error_flagged() {
   return FAST_GET(SYNC_PIN__ERR_FLAGGED);
 }
 

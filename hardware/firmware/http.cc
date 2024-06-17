@@ -21,13 +21,12 @@
 #include <Arduino.h>
 #include <HardwareSerial.h>
 
+#include "error.h"
 #include "http.h"
 
 #define DEFAULT_PORT 80
 
-//#define MAX_READ 16384
 #define MAX_READ 8192
-//#define MAX_READ 4096
 
 #define CONTENT_LENGTH_HEADER "Content-Length: "
 #define CONTENT_LENGTH_HEADER_LENGTH 16
@@ -53,7 +52,7 @@ static char response_buffer[1024];
 static uint8_t read_buffer[MAX_READ];
 
 void http_init(Client* network_client) {
-   client = network_client;
+  client = network_client;
 }
 
 // We will use persistent connections as much as possible to speed up requests.
@@ -225,6 +224,11 @@ static inline bool check_status_code(int status_code) {
 
 int http_fetch(const char* server, uint16_t port, const char* path,
                int start_byte, int size, http_buffer_callback callback) {
+  if (!client) {
+    report_error("No internet connection!");
+    return -1;
+  }
+
   if (!port) {
     port = DEFAULT_PORT;
   }
@@ -234,6 +238,7 @@ int http_fetch(const char* server, uint16_t port, const char* path,
 
   HeaderData header_data;
   if (!read_response_headers(&header_data)) {
+    report_error("Failed to read HTTP headers!");
     close_connection();
     return -1;
   }
@@ -244,6 +249,7 @@ int http_fetch(const char* server, uint16_t port, const char* path,
 #endif
 
   if (!check_status_code(header_data.status_code)) {
+    report_error("Failed to read HTTP status code!");
     close_connection();
     return -1;
   }
@@ -254,6 +260,7 @@ int http_fetch(const char* server, uint16_t port, const char* path,
 #endif
 
   if (header_data.body_length < 0) {
+    report_error("Unexpected zero-length response!");
     Serial.println("Failed!  Unexpected zero-length response!");
     close_connection();
     return -1;

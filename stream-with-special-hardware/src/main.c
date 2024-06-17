@@ -33,23 +33,42 @@ static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
   }
 }
 
+static void handleError() {
+  while (segavideo_hasError()) {
+    segavideo_showError();
+    SYS_doVBlankProcess();
+  }
+}
+
 int main(bool hardReset) {
   JOY_setEventHandler(onJoystickEvent);
 
   segavideo_init();
 
-  if (!segavideo_checkHardware() || !segavideo_getMenu()) {
+  if (!segavideo_checkHardware()) {
     return 0;
   }
 
   while (true) {
+    if (segavideo_hasError()) {
+      handleError();
+      continue;
+    }
+
     // Start in the menu.
-    segavideo_drawMenu();
+    if (segavideo_getMenu()) {
+      segavideo_drawMenu();
+    }
 
     // Redraw the menu while it is visible.
     while (segavideo_isMenuShowing()) {
       segavideo_drawMenu();
       SYS_doVBlankProcess();
+    }
+
+    if (segavideo_hasError()) {
+      handleError();
+      continue;
     }
 
     // While playing, process video frames.
@@ -58,9 +77,9 @@ int main(bool hardReset) {
       SYS_doVBlankProcess();
     }
 
-    while (segavideo_hasError()) {
-      segavideo_showError();
-      SYS_doVBlankProcess();
+    if (segavideo_hasError()) {
+      handleError();
+      continue;
     }
 
     // Loop back to the menu.

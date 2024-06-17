@@ -74,6 +74,7 @@ static uint16_t nextPageIndex;
 #define CMD_START_VIDEO 0x02  // Begins streaming to SRAM
 #define CMD_STOP_VIDEO  0x03  // Stops streaming
 #define CMD_FLIP_REGION 0x04  // Switch SRAM banks for streaming
+#define CMD_GET_ERROR   0x05  // Load error information into SRAM
 
 // Token values for async communication.
 #define TOKEN_CONTROL_TO_SEGA     0
@@ -338,7 +339,7 @@ static bool nextVideoFrame() {
       // We send this command without awaiting a response.  Can't get stuck
       // waiting during playback.
       if (!sendCommand(CMD_FLIP_REGION, 0x00)) {
-        statusMessage(PAL_YELLOW, "Failed to request filling of next region!");
+        statusMessage(PAL_YELLOW, "Failed to flip region!");
         waitMs(3000);
         return false;
       }
@@ -761,6 +762,52 @@ static void drawMenuItem(
   VDP_drawText(text, item_x, item_y);
 }
 
+static void drawMultilineText(const char* text) {
+  const int max_line_len = 30;
+  char line[31];  // max_line_len + nul terminator
+
+  int len = strlen(text);
+  int y = 1;
+  kprintf("drawMultilineText: %s\n", text);
+  kprintf("drawMultilineText: len=%d\n", (int)len);
+
+  // Could go negative after ending on the nul, hence > 0 and not != 0
+  while (len > 0) {
+    // Maximum length available for this line.
+    int max_len = len > max_line_len ? max_line_len : len;
+
+    // Find the last space where we could break the line without overflow.
+    int space_offset = max_len;
+    while (space_offset >= 0 &&
+           text[space_offset] != ' ' &&
+           text[space_offset] != '\0') {
+      space_offset--;
+    }
+
+    if (space_offset < 0) {
+      // The first word is too long.  Truncate it, then skip the rest.
+      memcpy(line, text, max_len);
+      line[max_len] = '\0';
+
+      while (*text != ' ' && *text != '\0') {
+        len--;
+        text++;
+      }
+    } else {
+      // |space_offset| is the space on which we must break the line.
+      memcpy(line, text, space_offset);
+      line[space_offset] = '\0';
+
+      len -= space_offset + 1;
+      text += space_offset + 1;
+    }
+
+    kprintf("drawMultilineText: y=%d, len=%d, line=%s\n", y, len, line);
+    VDP_drawText(line, 1, y);
+    y++;
+  }
+}
+
 void segavideo_drawMenu() {
   menuShowing = true;
 
@@ -851,9 +898,13 @@ void segavideo_showError() {
   if (!errorShowing) {
     clearScreen();
 
-    // TODO: Show a specific error and position the text better.
-    VDP_setTextPalette(PAL_YELLOW);
-    VDP_drawText("Error!", 1, 1);
+    uint16_t command_timeout = 5; // seconds
+    if (!sendCommandAndWait(CMD_GET_ERROR, 0, command_timeout)) {
+      statusMessage(PAL_YELLOW, "Failed to retrieve error!");
+    } else {
+      VDP_setTextPalette(PAL_YELLOW);
+      drawMultilineText((const char*)KINETOSCOPE_DATA);
+    }
   }
 
   errorShowing = true;
