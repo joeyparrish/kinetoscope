@@ -58,3 +58,9 @@ jobs:
           echo '#define SECRET_WIFI_SSID ""' >> arduino_secrets.h
           echo '#define SECRET_WIFI_PASS ""' >> arduino_secrets.h
           make build
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: hardware/firmware/firmware.ino.elf

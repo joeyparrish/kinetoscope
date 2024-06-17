@@ -50,3 +50,9 @@ jobs:
 
       - name: Build embedded player
         run: ./embed-video-in-rom/build.sh
+
+      - name: Upload streamer ROM
+        uses: actions/upload-artifact@v4
+        with:
+          name: streamer-rom
+          path: ./stream-with-special-hardware/out/rom.bin

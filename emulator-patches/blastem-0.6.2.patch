@@ -1,4 +1,4 @@
-commit 72e9e8749c8e7212b84341cc890262264349846b
+commit 645641aa7bc74fdb261b4eb05bdd6d6fc2ec3d90
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,7 +21,7 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..7b17335 100644
+index 0dddc9f..c69ff64 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -221,6 +221,7 @@ endif
@@ -41,6 +41,56 @@ index 0dddc9f..7b17335 100644
  all : $(ALL)
  
  libblastem.$(SO) : $(LIBOBJS)
+@@ -366,7 +369,7 @@ m68k.c : m68k.cpu cpu_dsl.py
+ 	$(CC) $(CFLAGS) -c -o $@ $<
+ 
+ %.png : %.xcf
+-	xcf2png $< > $@
++	convert $< $@
+ 
+ %.tiles : %.spec
+ 	./img2tiles.py -s $< $@
+diff --git a/build_release b/build_release
+index f5faa10..ad3ba82 100755
+--- a/build_release
++++ b/build_release
+@@ -32,10 +32,8 @@ else
+ 	make PORTABLE=1 clean all
+ 	SDLDLLPATH=sdl/i686-w64-mingw32/bin
+ fi
+-make menu.bin tmss.md
+ if [ $OS = "Windows" -o $OS = "Win64" ]; then
+ 	binaries="dis.exe zdis.exe vgmplay.exe blastem.exe $SDLDLLPATH/SDL2.dll"
+-	verstr=`sed -E -n 's/^[^B]+BLASTEM_VERSION "([^"]+)"/blastem \1/p' blastem.c`
+ 	txt=".txt"
+ else
+ 	binaries="dis zdis vgmplay blastem termhelper"
+@@ -44,11 +42,9 @@ else
+ 	else
+ 		binaries="$binaries lib"
+ 	fi
+-	verstr=`./blastem -v`
+ 	txt=""
+ fi
+-binaries="$binaries menu.bin tmss.md"
+-ver=`echo $verstr | awk '/blastem/ { gsub(/\r/, "", $2); print $2 }'`
++ver="0.6.2-kinetoscope"
+ if [ $OS = "Windows" ]; then
+ 	suffix='-win32'
+ elif [ $OS = "Win64" ]; then
+@@ -66,11 +62,7 @@ cp -r $binaries shaders images default.cfg rom.db gamecontrollerdb.txt systems.c
+ for file in README COPYING CHANGELOG; do
+ 	cp "$file" "$dir"/"$file$txt"
+ done
+-if [ $OS = "Darwin" ]; then
+-	cp SDL-LICENSE "$dir"
+-else
+-	cp sdl/COPYING.txt "$dir"/SDL-LICENSE$txt
+-fi
++cp sdl/LICENSE.txt "$dir"/SDL-LICENSE$txt
+ cp glew/LICENSE.txt "$dir"/GLEW-LICENSE$txt
+ 
+ if [ $OS = "Windows" -o $OS = "Win64" ]; then
 diff --git a/default.cfg b/default.cfg
 index 8274766..2bcfd15 100644
 --- a/default.cfg
@@ -55,6 +105,16 @@ index 8274766..2bcfd15 100644
  	#Model of the emulated Gen/MD system, see systems.cfg for a list of options
  	model md1va3
  }
+diff --git a/img2tiles.py b/img2tiles.py
+index c91273c..f637add 100755
+--- a/img2tiles.py
++++ b/img2tiles.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2.7
+ from PIL import Image
+ 
+ def gchannel(Val):
 diff --git a/romdb.c b/romdb.c
 index 79afa76..e3a7de8 100644
 --- a/romdb.c

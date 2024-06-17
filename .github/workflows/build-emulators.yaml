@@ -40,11 +40,26 @@ jobs:
           ref: ${{ inputs.ref || github.ref }}
           path: kinetoscope
 
-      - name: Install prereqs
-        run: sudo apt -y install libsdl2-dev libglew-dev
-
       - name: Apply patch
         run: patch -p1 -i kinetoscope/emulator-patches/blastem-0.6.2.patch
 
-      - name: Make
-        run: make
+      - name: Install deps for portable build
+        run: |
+          sudo apt -y install libgl-dev libglu1-mesa-dev
+
+          wget -O glew-2.1.0.tgz https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.tgz/download
+          tar xf glew-2.1.0.tgz
+          ln -s glew-2.1.0 glew
+
+          wget -O SDL2-2.30.3.tar.gz https://github.com/libsdl-org/SDL/releases/download/release-2.30.3/SDL2-2.30.3.tar.gz
+          tar xf SDL2-2.30.3.tar.gz
+          ln -s SDL2-2.30.3 sdl
+
+      - name: Portable build
+        run: ./build_release
+
+      - name: Upload blastem binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: blastem
+          path: blastem64-0.6.2-kinetoscope
