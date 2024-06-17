@@ -55,6 +55,7 @@
     "Bohemian Rhapsody\n" \
     "Developers, Developers\n" \
     "Shia LaBeouf\n" \
+    "You Spin Me Round\n" \
 
 // Video indices from the list above
 #define NEVER_GONNA_GIVE_YOU_UP 0
@@ -63,6 +64,7 @@
 #define BOHEMIAN_RHAPSODY       3
 #define DEVELOPERS_DEVELOPERS   4
 #define SHIA_LABEOUF            5
+#define YOU_SPIN_ME_ROUND       6
 
 // SRAM regions.
 #define REGION_OFFSET_MASK 0x100000  // 0MB or 1MB offset
@@ -232,6 +234,7 @@ static void start_video() {
     VIDEO_CASE(BOHEMIAN_RHAPSODY);
     VIDEO_CASE(DEVELOPERS_DEVELOPERS);
     VIDEO_CASE(SHIA_LABEOUF);
+    VIDEO_CASE(YOU_SPIN_ME_ROUND);
   }
 
   if (!video_path) {

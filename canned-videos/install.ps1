@@ -6,6 +6,7 @@ $FILES=@(
   "GANGNAM_STYLE.segavideo",
   "NEVER_GONNA_GIVE_YOU_UP.segavideo",
   "SHIA_LABEOUF.segavideo",
+  "YOU_SPIN_ME_ROUND.segavideo",
   "ZOEY_ANN_THE_BOXER.segavideo"
 )
 
