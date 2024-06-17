@@ -1,0 +1,50 @@
+name: Build Emulators
+
+on:
+  push: # Trigger for pushes.
+    paths:
+      - emulator-patches/**
+      - player/**
+      - .github/workflows/build-emulators.yaml
+  pull_request: # Trigger for pull requests.
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch: # Allows for manual triggering.
+    inputs:
+      ref:
+        description: "The ref to build and test."
+        required: false
+
+# If another instance of this workflow is started for the same PR, cancel the
+# old one.  If a PR is updated and a new test run is started, the old test run
+# will be cancelled automatically to conserve resources.
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-blastem:
+    name: Build BlastEm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout BlastEm
+        uses: actions/checkout@v4
+        with:
+          repository: libretro/blastem
+          ref: 277e4a62668597d4f59cadda1cbafb844f981d45
+          path: .
+
+      - name: Checkout Kinetoscope
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ inputs.ref || github.ref }}
+          path: kinetoscope
+
+      - name: Install prereqs
+        run: sudo apt -y install libsdl2-dev libglew-dev
+
+      - name: Apply patch
+        run: patch -p1 -i kinetoscope/emulator-patches/blastem-0.6.2.patch
+
+      - name: Make
+        run: make
