@@ -87,11 +87,13 @@ jobs:
           # Prep streamer ROM.
           mv kinetoscope-streamer-rom/rom.bin kinetoscope-streamer-rom/kinetoscope-streamer-rom.bin
           cp source/LICENSE.txt kinetoscope-streamer-rom/
+          echo "The Kinetoscope streamer ROM is built to be flashed to Kinetoscope hardware or run inside an emulator built with Kinetoscope support." >> kinetoscope-streamer-rom/README.txt
           zip -r9 kinetoscope-streamer-rom.zip kinetoscope-streamer-rom/
 
           # Prep firmware.
           mv kinetoscope-firmware/firmware.ino.uf2 kinetoscope-firmware/kinetoscope-firmware.uf2
           cp source/LICENSE.txt kinetoscope-firmware/
+          echo "The Kinetoscope firmware is built for the Raspberry Pi Pico W." >> kinetoscope-firmware/README.txt
           zip -r9 kinetoscope-firmware.zip kinetoscope-firmware/
 
           # Prep hardware fab files.
@@ -107,6 +109,9 @@ jobs:
           zip -r9 kinetoscope-hardware.zip kinetoscope-hardware/
 
           # Prep emulator binaries.
+          echo "This build of BlastEm supports Kinetoscope emulation." >> kinetoscope-blastem64-0.6.2-linux-x64/README.kinetoscope.txt
+          echo "Canned videos are required for emulation." >> kinetoscope-blastem64-0.6.2-linux-x64/README.kinetoscope.txt
+          echo "See https://github.com/joeyparrish/kinetoscope/tree/main/canned-videos#readme" >> kinetoscope-blastem64-0.6.2-linux-x64/README.kinetoscope.txt
           zip -r9 kinetoscope-blastem64-0.6.2-linux-x64.zip kinetoscope-blastem64-0.6.2-linux-x64/
 
       - name: Create release
