@@ -20,6 +20,12 @@ The stacking boards are:
    - There is also a pin header on top that the other boards stack onto.
    - The pin header could also be used as a kind of breakout board for the
      development of other Sega cartridge projects.
+   - Right-angle pin headers on the sides of the board are optional, and used
+     only for debugging.
+   - When ordering this through JLCPCB, be sure to set the following options:
+     - Surface Finish: ENIG
+     - Gold Fingers: Yes
+     - 30°finger chamfered: Yes
  - `sram-bank`: SRAM Bank Board
    - There are actually two of these in the stack, one for each 1MB SRAM bank.
    - These host the SRAM itself, the buffers that allow it to be alternately
