@@ -746,7 +746,7 @@
 				)
 			)
 			(pin passive line
-				(at 17.78 -60.96 180)
+				(at 17.78 -58.42 180)
 				(length 2.54)
 				(name "3V"
 					(effects
@@ -764,9 +764,9 @@
 				)
 			)
 			(pin passive line
-				(at 17.78 -63.5 180)
+				(at 17.78 -66.04 180)
 				(length 2.54)
-				(name "GND"
+				(name "~{SEGA_OE}"
 					(effects
 						(font
 							(size 1.27 1.27)
