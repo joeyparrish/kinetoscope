@@ -84,35 +84,50 @@ jobs:
           # Debug: show all downloaded artifacts.
           find -ls
 
+          VERSION=$( echo ${{ github.ref }} | sed -e 's@refs/tags/@@' )
+
           # Prep streamer ROM.
           mv kinetoscope-streamer-rom/rom.bin kinetoscope-streamer-rom/kinetoscope-streamer-rom.bin
           cp source/LICENSE.txt kinetoscope-streamer-rom/
           echo "The Kinetoscope streamer ROM is built to be flashed to Kinetoscope hardware or run inside an emulator built with Kinetoscope support." >> kinetoscope-streamer-rom/README.txt
-          zip -r9 kinetoscope-streamer-rom.zip kinetoscope-streamer-rom/
+          mv kinetoscope-streamer-rom kinetoscope-$VERSION-streamer-rom
+          zip -r9 kinetoscope-$VERSION-streamer-rom.zip kinetoscope-$VERSION-streamer-rom/
 
           # Prep firmware.
           mv kinetoscope-firmware/firmware.ino.uf2 kinetoscope-firmware/kinetoscope-firmware.uf2
           cp source/LICENSE.txt kinetoscope-firmware/
           echo "The Kinetoscope firmware is built for the Raspberry Pi Pico W." >> kinetoscope-firmware/README.txt
-          zip -r9 kinetoscope-firmware.zip kinetoscope-firmware/
+          mv kinetoscope-firmware kinetoscope-$VERSION-firmware
+          zip -r9 kinetoscope-$VERSION-firmware.zip kinetoscope-$VERSION-firmware/
 
           # Prep hardware fab files.
-          for project in cart microcontroller sram-bank; do
-            unzip -j -d kinetoscope-hardware/ kinetoscope-hardware/$project-fab.zip $project-fab/$project.bom.csv $project-fab/$project-front.pos.csv
-          done
+          (cd kinetoscope-hardware
+
+            for project in cart microcontroller sram-bank; do
+              unzip $project-fab.zip
+              rm $project-fab.zip
+              mv $project-fab kinetoscope-$VERSION-$project-fab
+              mv kinetoscope-$VERSION-$project-fab/$project-front.pos.csv kinetoscope-$VERSION-$project-front.pos.csv
+              mv kinetoscope-$VERSION-$project-fab/$project.bom.csv kinetoscope-$VERSION-$project.bom.csv
+              zip -r9 kinetoscope-$VERSION-$project-fab.zip kinetoscope-$VERSION-$project-fab/
+            done
+          )
+
           cp source/LICENSE.txt kinetoscope-hardware/
           echo "These zip files contain Gerbers, BOM files, and position files for each board design." >> kinetoscope-hardware/README.txt
           echo "" >> kinetoscope-hardware/README.txt
           echo "The zip file can be uploaded to JLCPCB when they ask for Gerbers." >> kinetoscope-hardware/README.txt
           echo "*.bom.csv is the BOM file in JLCPCB format." >> kinetoscope-hardware/README.txt
           echo "*-front.pos.csv is the position file in JLCPCB format." >> kinetoscope-hardware/README.txt
-          zip -r9 kinetoscope-hardware.zip kinetoscope-hardware/
+          mv kinetoscope-hardware kinetoscope-$VERSION-hardware
+          zip -r9 kinetoscope-$VERSION-hardware.zip kinetoscope-$VERSION-hardware/
 
           # Prep emulator binaries.
           echo "This build of BlastEm supports Kinetoscope emulation." >> kinetoscope-blastem64-0.6.2-linux-x64/README.kinetoscope.txt
           echo "Canned videos are required for emulation." >> kinetoscope-blastem64-0.6.2-linux-x64/README.kinetoscope.txt
           echo "See https://github.com/joeyparrish/kinetoscope/tree/main/canned-videos#readme" >> kinetoscope-blastem64-0.6.2-linux-x64/README.kinetoscope.txt
-          zip -r9 kinetoscope-blastem64-0.6.2-linux-x64.zip kinetoscope-blastem64-0.6.2-linux-x64/
+          mv kinetoscope-blastem64-0.6.2-linux-x64 kinetoscope-$VERSION-blastem64-0.6.2-linux-x64
+          zip -r9 kinetoscope-$VERSION-blastem64-0.6.2-linux-x64.zip kinetoscope-$VERSION-blastem64-0.6.2-linux-x64/
 
       - name: Create release
         uses: softprops/action-gh-release@v2
@@ -121,7 +136,7 @@ jobs:
           generate_release_notes: false
           make_latest: true
           files: |
-            kinetoscope-streamer-rom.zip
-            kinetoscope-firmware.zip
-            kinetoscope-hardware.zip
-            kinetoscope-blastem64-0.6.2-linux-x64.zip
+            kinetoscope-*-streamer-rom.zip
+            kinetoscope-*-firmware.zip
+            kinetoscope-*-hardware.zip
+            kinetoscope-*-blastem64-0.6.2-linux-x64.zip
