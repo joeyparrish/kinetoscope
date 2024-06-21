@@ -2306,6 +2306,10 @@
 		(uuid "7b759dc2-1695-4bd8-8e81-17935581531b")
 	)
 	(no_connect
+		(at 120.65 148.59)
+		(uuid "894e800a-9c48-440b-84ff-60fac62f08e5")
+	)
+	(no_connect
 		(at 186.69 82.55)
 		(uuid "a6f8a764-e789-4fb3-83ef-a377ff4ad427")
 	)
@@ -9051,6 +9055,16 @@
 				(justify right)
 			)
 			(uuid "8e32b9bb-13bc-43a8-b6d6-17e2597ade2e")
+		)
+		(pin "~{SEGA_OE}" passive
+			(at 120.65 148.59 270)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "22f2da5c-9530-4a5e-9236-e6dfe4246539")
 		)
 		(instances
 			(project "microcontroller"

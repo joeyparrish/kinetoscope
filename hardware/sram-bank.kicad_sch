@@ -1329,6 +1329,10 @@
 		(uuid "8b770231-5df0-40f3-9430-c0165e6b4ee4")
 	)
 	(no_connect
+		(at 224.79 161.29)
+		(uuid "8c5f5f14-3aee-47ae-b0e9-032432f49923")
+	)
+	(no_connect
 		(at 232.41 161.29)
 		(uuid "a46fa3cd-be15-49a7-9084-2182b9e4f8ef")
 	)
@@ -5242,6 +5246,16 @@
 				(justify left)
 			)
 			(uuid "02b556d6-b54f-483d-ac06-feb77f487096")
+		)
+		(pin "~{SEGA_OE}" passive
+			(at 224.79 161.29 270)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "f013ea3b-e4fd-421f-98f2-95d983dd3f53")
 		)
 		(instances
 			(project "sram-bank"
