@@ -110,6 +110,7 @@ jobs:
               mv kinetoscope-$VERSION-$project-fab/$project-front.pos.csv kinetoscope-$VERSION-$project-front.pos.csv
               mv kinetoscope-$VERSION-$project-fab/$project.bom.csv kinetoscope-$VERSION-$project.bom.csv
               zip -r9 kinetoscope-$VERSION-$project-fab.zip kinetoscope-$VERSION-$project-fab/
+              rm -rf kinetoscope-$VERSION-$project-fab/
             done
           )
 
