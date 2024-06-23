@@ -68,6 +68,7 @@ To stream video over WiFi, special hardware is required.
    in a standard ROM+emulator or in a flash cart.
  - [`hardware/`](hardware/): The schematics and board layouts for a custom
    cartridge with special streaming hardware.
+ - [`hardware/firmware/`](hardware/firmware/): The firmware that runs on the microcontroller of the custom cartridge hardware.
  - [`stream-with-special-hardware/`](stream-with-special-hardware/): A project
    using [SGDK][] that builds a small ROM that can communicate with the
    streaming hardware from [`hardware/`](hardware/), stream video over WiFi,
@@ -77,7 +78,7 @@ To stream video over WiFi, special hardware is required.
  - [`emulator-patches/`](emulator-patches/): Patches for OSS emulators to
    emulate the streaming hardware.
  - [`server/`](server/): Details on running a server for Sega video streams.
- - [`canned-videos/`(canned-videos/): Install canned, pre-encoded videos for
+ - [`canned-videos/`](canned-videos/): Install canned, pre-encoded videos for
    use in an emulator or video server.
 
 
