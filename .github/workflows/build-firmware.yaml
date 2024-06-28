@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - hardware/firmware/**
+      - firmware/**
       - .github/workflows/build-firmware.yaml
   pull_request: # Trigger for pull requests.
     types: [opened, synchronize, reopened, ready_for_review]
@@ -62,7 +62,7 @@ jobs:
 
       - name: Build firmware
         run: |
-          cd hardware/firmware
+          cd firmware
           echo '#define SECRET_WIFI_SSID ""' >> arduino_secrets.h
           echo '#define SECRET_WIFI_PASS ""' >> arduino_secrets.h
           make build
@@ -71,4 +71,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: firmware
-          path: hardware/firmware/firmware.ino.uf2
+          path: firmware/firmware.ino.uf2

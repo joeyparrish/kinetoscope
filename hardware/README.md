@@ -6,7 +6,7 @@ hierarchical pins and buses to the parent sheet.
 
 One of these boards includes a microcontroller with WiFi and an ethernet
 module, and runs its own firmware to take commands from the Sega ROM.  See
-firmware in the `firmware/` folder.
+firmware in the `../firmware/` folder.
 
 
 ## Boards

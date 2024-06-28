@@ -68,7 +68,8 @@ To stream video over WiFi, special hardware is required.
    in a standard ROM+emulator or in a flash cart.
  - [`hardware/`](hardware/): The schematics and board layouts for a custom
    cartridge with special streaming hardware.
- - [`hardware/firmware/`](hardware/firmware/): The firmware that runs on the microcontroller of the custom cartridge hardware.
+ - [`firmware/`](firmware/): The firmware that runs on the microcontroller of
+   the custom cartridge hardware.
  - [`stream-with-special-hardware/`](stream-with-special-hardware/): A project
    using [SGDK][] that builds a small ROM that can communicate with the
    streaming hardware from [`hardware/`](hardware/), stream video over WiFi,
