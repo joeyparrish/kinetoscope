@@ -5,7 +5,7 @@
 	(uuid "6dac8cb5-ba7e-4a0d-b8d8-ab0b7982aa02")
 	(paper "A4")
 	(title_block
-		(title "Kinetoscope Cartridge Connector")
+		(title "Kinetoscope Cartridge Connector zzz")
 	)
 	(lib_symbols
 		(symbol "74xx:74HC138"
