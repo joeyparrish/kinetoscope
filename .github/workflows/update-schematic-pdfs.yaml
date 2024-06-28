@@ -37,6 +37,9 @@ jobs:
       - name: Install KiCad
         uses: ./.github/workflows/install-kicad
 
+      - name: Debug event name
+        run: echo "Event name is ${{ github.event_name }}"
+
       - name: Checkout PR
         if: github.event_name == 'pull_request'
         env:
