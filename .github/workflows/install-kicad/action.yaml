@@ -1,0 +1,52 @@
+name: Install KiCad
+description: Install KiCad and related bits, with caching
+
+runs:
+  using: composite
+  steps:
+    - name: Configure KiCad PPA
+      shell: bash
+      run: |
+        sudo add-apt-repository --yes ppa:kicad/kicad-8.0-releases
+        sudo apt update
+
+    - name: Make Apt Packages Cacheable
+      shell: bash
+      run: |
+        sudo chmod 777 /var/cache/apt/archives/
+        # NOTE: hashFiles (below) can only operate inside the workspace.
+        cp /var/lib/apt/lists/ppa.launchpadcontent.net_kicad_kicad-8.0-releases_ubuntu_dists_jammy_InRelease kicad.ppa.release
+
+    - name: Cache KiCad Packages
+      id: cache-packages
+      uses: actions/cache@v4
+      with:
+        path: /var/cache/apt/archives/**.deb
+        # NOTE: hashFiles can only operate inside the workspace (copy above).
+        key: kicad-packages-${{ hashFiles('kicad.ppa.release') }}
+
+    - name: Download KiCad (unless cached)
+      shell: bash
+      if: steps.cache-packages.outputs.cache-hit != 'true'
+      run: sudo apt install --download-only kicad
+
+    - name: Install KiCad
+      shell: bash
+      run: sudo apt install kicad
+
+    - name: Install custom symbols and footprints
+      shell: bash
+      run: |
+        mkdir -p ~/.local/share/kicad/8.0
+        cp -a hardware/libraries/* ~/.local/share/kicad/8.0/
+        mkdir -p ~/.config/kicad/8.0
+        cp .github/workflows/*-lib-table ~/.config/kicad/8.0/
+
+    - name: Install Kode Mono font
+      shell: bash
+      run: |
+        wget https://github.com/isaozler/kode-mono/releases/download/1.206/kode-mono-fonts.zip
+        unzip kode-mono-fonts.zip
+        mkdir -p ~/.local/share/fonts
+        cp kode-mono-fonts/fonts/ttf/* ~/.local/share/fonts/
+        rm -rf kode-mono-fonts

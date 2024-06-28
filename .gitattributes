@@ -1,0 +1,3 @@
+# See https://superuser.com/a/1251397
+# To see hex diffs for PDFs, run: git config --local diff.hex.textconv "hexdump -v -C" && git config --local diff.hex.binary true
+*.pdf binary diff=hex

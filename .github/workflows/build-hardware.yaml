@@ -38,31 +38,8 @@ jobs:
         with:
           ref: ${{ inputs.ref || github.ref }}
 
-      - name: Configure KiCad PPA
-        run: |
-          sudo add-apt-repository --yes ppa:kicad/kicad-8.0-releases
-          sudo apt update
-
-      - name: Make Apt Packages Cacheable
-        run: |
-          sudo chmod 777 /var/cache/apt/archives/
-          # NOTE: hashFiles (below) can only operate inside the workspace.
-          cp /var/lib/apt/lists/ppa.launchpadcontent.net_kicad_kicad-8.0-releases_ubuntu_dists_jammy_InRelease kicad.ppa.release
-
-      - name: Cache KiCad Packages
-        id: cache-packages
-        uses: actions/cache@v4
-        with:
-          path: /var/cache/apt/archives/**.deb
-          # NOTE: hashFiles can only operate inside the workspace (copy above).
-          key: kicad-packages-${{ hashFiles('kicad.ppa.release') }}
-
-      - name: Download KiCad (unless cached)
-        if: steps.cache-packages.outputs.cache-hit != 'true'
-        run: sudo apt install --download-only kicad
-
       - name: Install KiCad
-        run: sudo apt install kicad
+        uses: ./.github/workflows/install-kicad
 
       - name: Install custom symbols and footprints
         run: |
