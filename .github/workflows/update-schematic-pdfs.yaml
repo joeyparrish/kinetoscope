@@ -13,9 +13,10 @@ on:
 
 # If another instance of this workflow is started for the same PR, cancel the
 # old one.  If a PR is updated and a new test run is started, the old test run
-# will be cancelled automatically to conserve resources.
+# will be cancelled automatically to conserve resources and to avoid a race
+# updating the PR.
 concurrency:
-  group: update-schematic-pdfs-${{ github.ref }}
+  group: update-schematic-pdfs-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 permissions:
@@ -37,11 +38,8 @@ jobs:
       - name: Install KiCad
         uses: ./.github/workflows/install-kicad
 
-      - name: Debug event name
-        run: echo "Event name is ${{ github.event_name }}"
-
       - name: Checkout PR
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request_target'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh pr checkout ${{ github.event.pull_request.number }}
@@ -71,14 +69,14 @@ jobs:
           fi
 
       - name: Update PR
-        if: github.event_name == 'pull_request' && steps.generate.outputs.needs-update == 'true'
+        if: github.event_name == 'pull_request_target' && steps.generate.outputs.needs-update == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git push
 
       - name: Create PR
-        if: github.event_name != 'pull_request' && steps.generate.outputs.needs-update == 'true'
+        if: github.event_name != 'pull_request_target' && steps.generate.outputs.needs-update == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
