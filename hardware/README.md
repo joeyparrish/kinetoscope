@@ -9,6 +9,26 @@ module, and runs its own firmware to take commands from the Sega ROM.  See
 firmware in the `../firmware/` folder.
 
 
+## Prerequisites
+
+The hardware design was done in KiCad 8.  To install KiCad 8 on Ubuntu, run:
+
+```sh
+sudo add-apt-repository --yes ppa:kicad/kicad-8.0-releases
+sudo apt update
+sudo apt install --install-recommends kicad
+```
+
+To see hardware schematics without KiCad, open the PDF files in the
+[`hardware/`](hardware/) folder.
+
+To order boards, see hardware zip files attached to
+[releases](https://github.com/joeyparrish/kinetoscope/releases).  These can be
+uploaded to JLCPCB.
+
+TODO: Document ordering process, automate rotational fixes to JLCPCB placement
+
+
 ## Boards
 
 The stacking boards are:
@@ -52,6 +72,7 @@ The stacking boards are:
      through the registers and sync token, and is responsible for WiFi/Ethernet
      and streaming video to SRAM.
 
+
 ## Sheets
 
 The subsheets are:
@@ -88,6 +109,7 @@ The subsheets are:
      and read by both. The sega sets the bit to tell the microcontroller that a
      command has been written to the registers. The microcontroller clears it
      when the command has been completed.
+
 
 ## Programming
 
