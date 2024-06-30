@@ -5,7 +5,6 @@ on:
     branches:
       - main
     paths:
-      - encoder/**
       - software/**
       - .github/workflows/build-software.yaml
   pull_request: # Trigger for pull requests.
@@ -42,22 +41,34 @@ jobs:
       - name: Pull SGDK docker container
         run: docker pull ghcr.io/stephane-d/sgdk:latest
 
+      - name: Build embedded Never Gonna Give You Up
+        run: |
+          wget https://storage.googleapis.com/sega-kinetoscope/canned-videos/never-gonna-give-you-up-embed.zip
+          unzip -o never-gonna-give-you-up-embed.zip -d software/embed-video-in-rom/
+          rm -rf software/embed-video-in-rom/out
+          ./software/embed-video-in-rom/build.sh
+
+      - name: Upload Never Gonna Give You Up ROM
+        uses: actions/upload-artifact@v4
+        with:
+          name: never-gonna-give-you-up-rom
+          path: ./software/embed-video-in-rom/out/rom.bin
+
+      - name: Build embedded You Spin Me Round
+        run: |
+          wget https://storage.googleapis.com/sega-kinetoscope/canned-videos/you-spin-me-round-embed.zip
+          unzip -o you-spin-me-round-embed.zip -d software/embed-video-in-rom/
+          rm -rf software/embed-video-in-rom/out
+          ./software/embed-video-in-rom/build.sh
+
+      - name: Upload You Spin Me Round ROM
+        uses: actions/upload-artifact@v4
+        with:
+          name: you-spin-me-round-rom
+          path: ./software/embed-video-in-rom/out/rom.bin
+
       - name: Build streamer software
         run: ./software/stream-with-special-hardware/build.sh
-
-      - name: Install FFmpeg
-        run: sudo apt -y install ffmpeg
-
-      - name: Encode video for embedding
-        run: |
-          wget https://github.com/shaka-project/shaka-player/raw/main/test/test/assets/small.mp4
-          ./encoder/encode_sega_video.py \
-              -i small.mp4 \
-              -o software/embed-video-in-rom/res/video_data.segavideo \
-              -g
-
-      - name: Build embedded player
-        run: ./software/embed-video-in-rom/build.sh
 
       - name: Upload streamer ROM
         uses: actions/upload-artifact@v4

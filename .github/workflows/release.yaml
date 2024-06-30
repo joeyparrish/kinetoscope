@@ -53,7 +53,19 @@ jobs:
           ref: ${{ github.ref }}
           path: source
 
-      - name: Pull software
+      - name: Pull Never Gonna Give You Up ROM
+        uses: actions/download-artifact@v4
+        with:
+          name: never-gonna-give-you-up-rom
+          path: kinetoscope-never-gonna-give-you-up-rom
+
+      - name: Pull You Spin Me Round ROM
+        uses: actions/download-artifact@v4
+        with:
+          name: you-spin-me-round-rom
+          path: kinetoscope-you-spin-me-round-rom
+
+      - name: Pull streamer ROM
         uses: actions/download-artifact@v4
         with:
           name: streamer-rom
@@ -89,8 +101,22 @@ jobs:
           # Prep encoder.
           cp source/encoder/encode_sega_video.py kinetoscope-$VERSION-encoder.py
 
+          # Prep Never Gonna Give You Up ROM.
+          mv kinetoscope-never-gonna-give-you-up-rom/rom.bin kinetoscope-never-gonna-give-you-up-rom/kinetoscope-never-gonna-give-you-up.bin
+          cp source/LICENSE.txt kinetoscope-never-gonna-give-you-up-rom/
+          echo "This Kinetoscope demo ROM will run on any system or emulator." >> kinetoscope-never-gonna-give-you-up-rom/README.txt
+          mv kinetoscope-never-gonna-give-you-up-rom kinetoscope-$VERSION-never-gonna-give-you-up-rom
+          zip -r9 kinetoscope-$VERSION-never-gonna-give-you-up-rom.zip kinetoscope-$VERSION-never-gonna-give-you-up-rom/
+
+          # Prep You Spin Me Round ROM.
+          mv kinetoscope-you-spin-me-round-rom/rom.bin kinetoscope-you-spin-me-round-rom/kinetoscope-you-spin-me-round.bin
+          cp source/LICENSE.txt kinetoscope-you-spin-me-round-rom/
+          echo "This Kinetoscope demo ROM will run on any system or emulator." >> kinetoscope-you-spin-me-round-rom/README.txt
+          mv kinetoscope-you-spin-me-round-rom kinetoscope-$VERSION-you-spin-me-round-rom
+          zip -r9 kinetoscope-$VERSION-you-spin-me-round-rom.zip kinetoscope-$VERSION-you-spin-me-round-rom/
+
           # Prep streamer ROM.
-          mv kinetoscope-streamer-rom/rom.bin kinetoscope-streamer-rom/kinetoscope-streamer-rom.bin
+          mv kinetoscope-streamer-rom/rom.bin kinetoscope-streamer-rom/kinetoscope-streamer.bin
           cp source/LICENSE.txt kinetoscope-streamer-rom/
           echo "The Kinetoscope streamer ROM is built to be flashed to Kinetoscope hardware or run inside an emulator built with Kinetoscope support." >> kinetoscope-streamer-rom/README.txt
           mv kinetoscope-streamer-rom kinetoscope-$VERSION-streamer-rom
@@ -141,6 +167,8 @@ jobs:
           make_latest: true
           files: |
             kinetoscope-*-encoder.py
+            kinetoscope-*-never-gonna-give-you-up-rom.zip
+            kinetoscope-*-you-spin-me-round-rom.zip
             kinetoscope-*-streamer-rom.zip
             kinetoscope-*-firmware.zip
             kinetoscope-*-hardware.zip
