@@ -86,6 +86,9 @@ jobs:
 
           VERSION=$( echo ${{ github.ref }} | sed -e 's@refs/tags/@@' )
 
+          # Prep encoder.
+          cp source/encoder/encode_sega_video.py kinetoscope-$VERSION-encoder.py
+
           # Prep streamer ROM.
           mv kinetoscope-streamer-rom/rom.bin kinetoscope-streamer-rom/kinetoscope-streamer-rom.bin
           cp source/LICENSE.txt kinetoscope-streamer-rom/
@@ -137,6 +140,7 @@ jobs:
           generate_release_notes: false
           make_latest: true
           files: |
+            kinetoscope-*-encoder.py
             kinetoscope-*-streamer-rom.zip
             kinetoscope-*-firmware.zip
             kinetoscope-*-hardware.zip
