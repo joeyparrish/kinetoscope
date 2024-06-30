@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - emulator-patches/**
-      - player/**
+      - software/player/**
       - .github/workflows/build-emulators.yaml
   pull_request: # Trigger for pull requests.
     types: [opened, synchronize, reopened, ready_for_review]

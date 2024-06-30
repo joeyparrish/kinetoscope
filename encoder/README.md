@@ -38,8 +38,8 @@ same name as the output, but end in `.res`.  SGDK will generate a header file
 next to it that ends in `.h`, which you will reference in your code to get the
 address of the video in ROM.
 
-For a complete example of embedded video in a ROM, see the
-[`embed-video-in-rom/`](../embed-video-in-rom/) folder.
+For a complete example of embedded video in a ROM, see
+[`../software/embed-video-in-rom/`](../software/embed-video-in-rom/).
 
 To prepare video for a streaming server ([`server/`](../server/) folder) or for
 use by an emulator ([`emulator-patches/`](../emulator-patches/) folder), omit

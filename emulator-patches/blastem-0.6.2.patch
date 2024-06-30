@@ -28,7 +28,7 @@ index 0dddc9f..c69ff64 100644
  
  MAINOBJS=blastem.o system.o genesis.o debug.o gdb_remote.o vdp.o $(RENDEROBJS) io.o romdb.o hash.o menu.o xband.o \
  	realtec.o i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
-+	kinetoscope/emulator-patches/kinetoscope.o kinetoscope/player/src/segavideo_parser.o \
++	kinetoscope/emulator-patches/kinetoscope.o kinetoscope/software/player/src/segavideo_parser.o \
  	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o zip.o bindings.o jcart.o gen_player.o
  
  LIBOBJS=libblastem.o system.o genesis.o debug.o gdb_remote.o vdp.o io.o romdb.o hash.o xband.o realtec.o \
@@ -36,7 +36,7 @@ index 0dddc9f..c69ff64 100644
  CFLAGS+= -fpic -DIS_LIB
  endif
  
-+CFLAGS+= -I. -Ikinetoscope/player/inc/
++CFLAGS+= -I. -Ikinetoscope/software/player/inc/
 +
  all : $(ALL)
  

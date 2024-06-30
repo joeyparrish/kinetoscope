@@ -5,10 +5,8 @@ on:
     branches:
       - main
     paths:
-      - embed-video-in-rom/**
       - encoder/**
-      - player/**
-      - stream-with-special-hardware/**
+      - software/**
       - .github/workflows/build-software.yaml
   pull_request: # Trigger for pull requests.
     types: [opened, synchronize, reopened, ready_for_review]
@@ -45,7 +43,7 @@ jobs:
         run: docker pull ghcr.io/stephane-d/sgdk:latest
 
       - name: Build streamer software
-        run: ./stream-with-special-hardware/build.sh
+        run: ./software/stream-with-special-hardware/build.sh
 
       - name: Install FFmpeg
         run: sudo apt -y install ffmpeg
@@ -54,13 +52,15 @@ jobs:
         run: |
           wget https://github.com/shaka-project/shaka-player/raw/main/test/test/assets/small.mp4
           ./encoder/encode_sega_video.py \
-            -i small.mp4 -o embed-video-in-rom/res/video_data.segavideo -g
+              -i small.mp4 \
+              -o software/embed-video-in-rom/res/video_data.segavideo \
+              -g
 
       - name: Build embedded player
-        run: ./embed-video-in-rom/build.sh
+        run: ./software/embed-video-in-rom/build.sh
 
       - name: Upload streamer ROM
         uses: actions/upload-artifact@v4
         with:
           name: streamer-rom
-          path: ./stream-with-special-hardware/out/rom.bin
+          path: ./software/stream-with-special-hardware/out/rom.bin

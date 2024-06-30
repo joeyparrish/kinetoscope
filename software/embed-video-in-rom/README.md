@@ -22,7 +22,7 @@ sudo apt install python3 ffmpeg docker.io
 To make a 10-second clip, from time 0 to time 10, run:
 
 ```sh
-../encoder/encode_sega_video.py \
+../../encoder/encode_sega_video.py \
   -i /path/to/never-gonna-give-you-up.mp4 \
   -s 0 -e 10 \
   -o res/video_data.segavideo \
