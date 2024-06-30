@@ -290,11 +290,16 @@ static bool nextVideoFrame() {
   // good.  Tiles, map, then colors gives us some cruft on the first frame and
   // at potentially transitions.  Other orderings were super bad and crazy.
 
+  // NOTE: We know our structures and their members are properly aligned in
+  // reality, so we ignore this GCC warning here.
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waddress-of-packed-member"
   // Unpacked, raw pointer method used by VDP_loadTileSet
   VDP_loadTileData(frame->tiles, tileIndex, NUM_TILES, CPU);
 
   // Unpacked, raw pointer method used by PAL_setPaletteColors
   PAL_setColors(palNum << 4, frame->palette, /* count= */ 16, CPU);
+#pragma GCC diagnostic pop
 
   // Unpacked, raw pointer method used by VDP_setTileMapEx
   VDP_setTileMapDataRectEx(BG_B, tileMap, tileIndex,
