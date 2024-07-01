@@ -46,21 +46,24 @@ void setup() {
   if (!client) {
     Serial.println("Wired connection failed!");
 
+    bool has_wifi = false;
 #if defined(ARDUINO_ARCH_RP2040)
-    if (strlen(SECRET_WIFI_SSID) && strlen(SECRET_WIFI_PASS)) {
+    has_wifi = rp2040.isPicoW();
+#endif
+
+    if (!has_wifi) {
+      Serial.println("WiFi hardware not available!");
+      report_error("Wired connection failed and WiFi hardware not available!");
+    } else if (!strlen(SECRET_WIFI_SSID)) {
+      Serial.println("WiFi not configured!");
+      report_error("Wired connection failed and WiFi not configured!");
+    } else {
       client = internet_init_wifi(SECRET_WIFI_SSID, SECRET_WIFI_PASS);
       if (!client) {
         Serial.println("WiFi connection failed!");
         report_error("WiFi connection failed!");
       }
-    } else {
-      Serial.println("WiFi not configured!");
-      report_error("Wired connection failed and WiFi not configured!");
     }
-#else
-    Serial.println("WiFi hardware not available!");
-    report_error("Wired connection failed and WiFi hardware not available!");
-#endif
   }
 
   if (!client) {

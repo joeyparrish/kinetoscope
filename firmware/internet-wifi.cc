@@ -27,7 +27,11 @@ Client* internet_init_wifi(const char* ssid, const char* password) {
   Serial.print("Attempting to connect to SSID: ");
   Serial.println(ssid);
 
-  WiFi.begin(ssid, password);
+  if (password && *password) {
+    WiFi.begin(ssid, password);
+  } else {
+    WiFi.begin(ssid);
+  }
 
   // FIXME: Handle timeouts here
   while (WiFi.status() != WL_CONNECTED) {
@@ -47,6 +51,13 @@ Client* internet_init_wifi(const char* ssid, const char* password) {
   wifi_client.setNoDelay(true);
 
   return &wifi_client;
+}
+
+#else
+
+// Stub for boards without WiFi.
+Client* internet_init_wifi(const char* ssid, const char* password) {
+  return NULL;
 }
 
 #endif

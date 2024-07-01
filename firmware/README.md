@@ -39,7 +39,7 @@ Create a file called `arduino_secrets.h` with two macros:
 
 ```c++
 #define SECRET_WIFI_SSID "Put your WiFi SSID here"
-#define SECRET_WIFI_PASS "Put your WiFi password here"
+#define SECRET_WIFI_PASS "Put your WiFi password here, or blank if none needed"
 ```
 
 The firmware cannot be compiled without this.  To disable WiFi and require a
