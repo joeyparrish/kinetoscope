@@ -99,7 +99,16 @@ jobs:
           VERSION=$( echo ${{ github.ref }} | sed -e 's@refs/tags/@@' )
 
           # Prep encoder.
-          cp source/encoder/encode_sega_video.py kinetoscope-$VERSION-encoder.py
+          mkdir kinetoscope-$VERSION-encoder/
+          cp source/encoder/encode_sega_video.py kinetoscope-$VERSION-encoder/
+          cp source/LICENSE.txt kinetoscope-$VERSION-encoder/
+          echo "This Python 3 script, with the help of FFmpeg, generates videos that can be played back on a Sega Genesis / Mega Drive with Kinetoscope." >> kinetoscope-$VERSION-encoder/README.txt
+          zip -r9 kinetoscope-$VERSION-encoder.zip kinetoscope-$VERSION-encoder/
+
+          # Prep player source.
+          cp -a source/software/player/ kinetoscope-$VERSION-player
+          cp source/LICENSE.txt kinetoscope-$VERSION-player/
+          zip -r9 kinetoscope-$VERSION-player.zip kinetoscope-$VERSION-player/
 
           # Prep Never Gonna Give You Up ROM.
           mv kinetoscope-never-gonna-give-you-up-rom/rom.bin kinetoscope-never-gonna-give-you-up-rom/kinetoscope-never-gonna-give-you-up.bin
@@ -166,7 +175,8 @@ jobs:
           generate_release_notes: false
           make_latest: true
           files: |
-            kinetoscope-*-encoder.py
+            kinetoscope-*-encoder.zip
+            kinetoscope-*-player.zip
             kinetoscope-*-never-gonna-give-you-up-rom.zip
             kinetoscope-*-you-spin-me-round-rom.zip
             kinetoscope-*-streamer-rom.zip
