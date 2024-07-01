@@ -36,6 +36,16 @@ Schematics and board layouts for special streaming hardware can be found in the
 [`hardware/`](hardware/) folder.
 
 
+## Web Demo
+
+To see Kinetoscope playing a simple embedded video ROM in a web-based emulator,
+try this StackBlitz:
+
+ - [Web Demo](https://js-qsqtm3.stackblitz.io/)
+ - [StackBlitz Editor](https://stackblitz.com/edit/js-qsqtm3?file=index.js)
+ - [Nostalgist.js Emulator](https://nostalgist.js.org/)
+
+
 ## Project Folders
 
 Each folder has a README with more information, including prerequisites that
