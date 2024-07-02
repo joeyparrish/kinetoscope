@@ -28,8 +28,7 @@
 // our slim throughput margins too much.
 #define VIDEO_SERVER "storage.googleapis.com"
 #define VIDEO_SERVER_PORT 80
-// TODO: Finalize the metadata format and upload this.
-#define VIDEO_LIST_PATH "/sega-kinetoscope/canned-videos/list.txt"
+#define VIDEO_LIST_PATH "/sega-kinetoscope/canned-videos/catalog.bin"
 
 #define MAX_SERVER 256
 #define MAX_PATH 256

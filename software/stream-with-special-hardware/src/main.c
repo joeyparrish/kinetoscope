@@ -12,7 +12,12 @@
 #include "segavideo_player.h"
 
 static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
-  if (segavideo_isPlaying()) {
+  if (segavideo_isErrorShowing()) {
+    // Error: press start|A|B|C to continue.
+    if (state & (BUTTON_START | BUTTON_A | BUTTON_B | BUTTON_C)) {
+      segavideo_clearError();
+    }
+  } else if (segavideo_isPlaying()) {
     // Playing: press start to pause, C to stop.
     if (state & BUTTON_START) {
       segavideo_togglePause();
@@ -21,8 +26,8 @@ static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
       segavideo_stop();
     }
   } else if (segavideo_isMenuShowing()) {
-    // Menu: press start to choose, up/down to navigate.
-    if (state & BUTTON_START) {
+    // Menu: press start|A|B|C to choose, up/down to navigate.
+    if (state & (BUTTON_START | BUTTON_A | BUTTON_B | BUTTON_C)) {
       segavideo_stream(/* loop= */ false);
     }
     if (state & BUTTON_UP) {
@@ -31,17 +36,14 @@ static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
     if (state & BUTTON_DOWN) {
       segavideo_menuNextItem();
     }
-  } else if (segavideo_isErrorShowing()) {
-    // Error: press start to continue.
-    if (state & BUTTON_START) {
-      segavideo_clearError();
-    }
   }
 }
 
 static void handleError() {
+  segavideo_showError();
+
   // Continue to show the error until the user presses start to clear it.
-  while (segavideo_hasError()) {
+  while (segavideo_isErrorShowing()) {
     segavideo_showError();
     SYS_doVBlankProcess();
   }
@@ -69,13 +71,19 @@ int main(bool hardReset) {
       segavideo_drawMenu();
     }
 
+    // Check for errors.  May be download errors for the catalog.
+    if (segavideo_hasError()) {
+      handleError();
+      continue;
+    }
+
     // Redraw the menu while it is visible.
     while (segavideo_isMenuShowing()) {
       segavideo_drawMenu();
       SYS_doVBlankProcess();
     }
 
-    // Check for errors.  May be download errors for the menu or a video.
+    // Check for errors.  May be download errors for a video.
     if (segavideo_hasError()) {
       handleError();
       continue;

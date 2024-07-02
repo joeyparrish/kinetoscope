@@ -31,6 +31,10 @@ FILE_MAGIC = b"what nintendon't"
 # the output file.
 FILE_FORMAT = 1
 
+# Number of tiles (w, h) for fullscreen and thumbnail sizes.
+FULLSCREEN_TILES = (32, 28)
+THUMBNAIL_TILES = (16, 14)
+
 
 def main(args):
   with tempfile.TemporaryDirectory(prefix='encode_sega_video_') as tmp_dir:
@@ -53,6 +57,9 @@ def main(args):
 
     sega_format_dir = os.path.join(tmp_dir, 'sega_format')
     os.mkdir(sega_format_dir)
+
+    thumb_dir = os.path.join(tmp_dir, 'thumb')
+    os.mkdir(thumb_dir)
 
     # Detect crop settings for the input video.
     crop = detect_crop(args)
@@ -77,8 +84,11 @@ def main(args):
     # Encode each frame into Sega-formatted tiles.
     encode_frames_to_tiles(quantized_dir, sega_format_dir)
 
+    # Generate a thumbnail image.
+    generate_thumbnail(args, fullcolor_dir, thumb_dir)
+
     # Generate the final output file.
-    generate_final_output(args, sega_format_dir, tmp_dir)
+    generate_final_output(args, sega_format_dir, tmp_dir, thumb_dir)
 
     if args.generate_resource_file:
       generate_resource_file(args)
@@ -248,6 +258,42 @@ def construct_scenes(input_dir, output_dir, scenes):
   print('')
 
 
+def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
+  # Create an optimized palette first.
+  output_pal_path = os.path.join(output_scene_dir, 'pal.png')
+  ffmpeg_args = [
+    'ffmpeg',
+    # Make no noise, except on error.
+    '-hide_banner', '-loglevel', 'error', '-nostats',
+    # Input and starting frame number.
+    '-start_number', str(start_frame),
+    '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
+    # Compute an optimized 15-color palette (16 color palette, but color 0 is
+    # always treated as transparent).
+    '-vf', 'palettegen=max_colors=15',
+    # Output a palette image.
+    output_pal_path,
+  ]
+  subprocess.run(check=True, args=ffmpeg_args)
+
+  ffmpeg_args = [
+    'ffmpeg',
+    # Make no noise, except on error.
+    '-hide_banner', '-loglevel', 'error', '-nostats',
+    # Input and starting frame number.
+    '-start_number', str(start_frame),
+    '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
+    # Palette.
+    '-i', output_pal_path,
+    # Use the optimized palette to quantize all the frames in the scene.
+    '-lavfi', 'paletteuse=dither={}'.format(args.dithering),
+    # Output individual frames in PPM format with the same frame numbers.
+    '-start_number', str(start_frame),
+    os.path.join(output_scene_dir, 'frame_%05d.ppm'),
+  ]
+  subprocess.run(check=True, args=ffmpeg_args)
+
+
 def quantize_scenes(args, input_dir, output_dir, scenes):
   scene_paths = sorted(glob.glob(os.path.join(input_dir, '*')))
   scene_index = 0
@@ -260,39 +306,7 @@ def quantize_scenes(args, input_dir, output_dir, scenes):
     output_scene_dir = os.path.join(output_dir, scene_name)
     os.makedirs(output_scene_dir)
 
-    # Create an optimized palette first.
-    output_pal_path = os.path.join(output_scene_dir, 'pal.png')
-    ffmpeg_args = [
-      'ffmpeg',
-      # Make no noise, except on error.
-      '-hide_banner', '-loglevel', 'error', '-nostats',
-      # Input and starting frame number.
-      '-start_number', str(start_frame),
-      '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
-      # Compute an optimized 15-color palette (16 color palette, but color 0 is
-      # always treated as transparent).
-      '-vf', 'palettegen=max_colors=15',
-      # Output a palette image.
-      output_pal_path,
-    ]
-    subprocess.run(check=True, args=ffmpeg_args)
-
-    ffmpeg_args = [
-      'ffmpeg',
-      # Make no noise, except on error.
-      '-hide_banner', '-loglevel', 'error', '-nostats',
-      # Input and starting frame number.
-      '-start_number', str(start_frame),
-      '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
-      # Palette.
-      '-i', output_pal_path,
-      # Use the optimized palette to quantize all the frames in the scene.
-      '-lavfi', 'paletteuse=dither={}'.format(args.dithering),
-      # Output individual frames in PPM format with the same frame numbers.
-      '-start_number', str(start_frame),
-      os.path.join(output_scene_dir, 'frame_%05d.ppm'),
-    ]
-    subprocess.run(check=True, args=ffmpeg_args)
+    quantize_scene(args, input_scene_dir, output_scene_dir, start_frame)
 
     scene_index += 1
     print('\rQuantized {} / {} scenes...'.format(scene_index, len(scenes)),
@@ -319,7 +333,7 @@ def encode_frames_to_tiles(input_dir, output_dir):
     output_filename = input_filename.replace('.ppm', '.bin')
     output_path = os.path.join(output_dir, output_filename)
 
-    ppm_to_sega_frame(input_path, output_path)
+    ppm_to_sega_frame(input_path, output_path, FULLSCREEN_TILES)
 
     count += 1
     print('\rConverted {} / {} frames to tiles...'.format(
@@ -327,7 +341,7 @@ def encode_frames_to_tiles(input_dir, output_dir):
   print('')
 
 
-def ppm_to_sega_frame(in_path, out_path):
+def ppm_to_sega_frame(in_path, out_path, expected_tiles):
   with open(in_path, 'rb') as f:
     data = f.read()
 
@@ -355,8 +369,7 @@ def ppm_to_sega_frame(in_path, out_path):
   tiles_height = height // 8
 
   # We should have a fullscreen image.
-  assert tiles_width == 32
-  assert tiles_height == 28
+  assert (tiles_width, tiles_height) == expected_tiles
 
   for tile_y in range(tiles_height):
     for tile_x in range(tiles_width):
@@ -410,7 +423,7 @@ def pack_palette(palette):
   return packed
 
 
-def generate_final_output(args, frame_dir, sound_dir):
+def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
   print('Generating final output {}...'.format(args.output))
 
   sound_path = os.path.join(sound_dir, 'sound.pcm')
@@ -446,6 +459,20 @@ def generate_final_output(args, frame_dir, sound_dir):
       f.write(args.sample_rate.to_bytes(2, 'big'))
       f.write(frame_count.to_bytes(2, 'big'))
       f.write(sound_len.to_bytes(4, 'big'))
+
+      # Compute the title for the metadata, truncate/pad to 128 bytes including
+      # terminator.
+      title = os.path.splitext(os.path.basename(args.input))[0]
+      title = args.title or title
+      title = title.encode('utf-8')
+      title = (title + bytes(128))[0:127] + b'\0'
+      assert len(title) == 128
+      f.write(title)
+
+      f.write(bytes(836)) # Padding/unused
+
+      with open(os.path.join(thumb_dir, 'thumb.segaframe'), 'rb') as thumb:
+        f.write(thumb.read())
 
       while sound_len and frame_count:
         # Write SegaVideoChunkHeader
@@ -491,9 +518,9 @@ def generate_final_output(args, frame_dir, sound_dir):
 
 def generate_resource_file(args):
   # Create a resource file next to the output file.
-  # If the output is "my-video.bin", the resource file will be "my-video.res",
-  # it will be included in your project with "my-video.h", and the data
-  # referenced with the pointer "my_video".
+  # If the output is "my-video.segavideo", the resource file will be
+  # "my-video.res", it will be included in your project with "my-video.h", and
+  # the data referenced with the pointer "my_video".
   output_dir = os.path.dirname(args.output)
   output_filename = os.path.basename(args.output)
   output_name = os.path.splitext(output_filename)[0]
@@ -507,6 +534,46 @@ def generate_resource_file(args):
   print('Resource file {} generated.'.format(resource_file_path))
   print('Include in your project via "{}.h"'
         ' and use the pointer "{}".'.format(output_name, output_variable_name))
+
+
+def generate_thumbnail(args, fullcolor_dir, thumb_dir):
+  # Choose a thumbnail frame by fraction through the video.
+  fullcolor_frames = sorted(glob.glob(os.path.join(fullcolor_dir, '*.png')))
+  thumb_index = int(len(fullcolor_frames) * args.thumbnail_fraction)
+  fullcolor_thumb_frame = fullcolor_frames[thumb_index]
+
+  # Set up what quantize_scene expects for input and output.
+  thumb_in_dir = os.path.join(thumb_dir, 'in')
+  thumb_out_dir = os.path.join(thumb_dir, 'out')
+  os.mkdir(thumb_in_dir)
+  os.mkdir(thumb_out_dir)
+
+  thumb_in = os.path.join(thumb_in_dir, 'frame_00001.png')
+  thumb_out = os.path.join(thumb_out_dir, 'frame_00001.ppm')
+  sega_frame_out = os.path.join(thumb_dir, 'thumb.segaframe')
+
+  # Create a half-sized version of the frame to quantize and convert to a
+  # Sega-compatible format.
+  ffmpeg_args = [
+    'ffmpeg',
+    # Make no noise, except on error.
+    '-hide_banner', '-loglevel', 'error', '-nostats',
+    # Input.
+    '-i', fullcolor_thumb_frame,
+    # Scale.
+    '-vf', 'scale=128:112',
+    # Output.
+    thumb_in,
+  ]
+  subprocess.run(check=True, args=ffmpeg_args)
+
+  # Now quantize this half-sized image.
+  quantize_scene(args, thumb_in_dir, thumb_out_dir, 1)
+
+  # Then convert to Sega format.
+  ppm_to_sega_frame(thumb_out, sega_frame_out, THUMBNAIL_TILES)
+
+  print('Thumbnail generated from frame #{}.'.format(thumb_index + 1))
 
 
 if __name__ == '__main__':
@@ -535,6 +602,8 @@ if __name__ == '__main__':
   parser.add_argument('-g', '--generate-resource-file',
       action='store_true',
       help='Generate SGDK resource file for hard-coding a video into a ROM.')
+  parser.add_argument('-t', '--title',
+      help='Title to store in metadata.  Defaults to input filename.')
   parser.add_argument('-f', '--fps',
       type=int,
       default=10,
@@ -552,6 +621,10 @@ if __name__ == '__main__':
       default=3,
       help='Chunk length in seconds.'
            ' Chunks should fit in 1MB or less with all headers.')
+  parser.add_argument('--thumbnail-fraction',
+      type=float,
+      default=2/3,
+      help='Fraction of the way through the video to choose a thumbnail.')
   parser.add_argument('--scene-detection-threshold',
       type=float,
       default=0.5,

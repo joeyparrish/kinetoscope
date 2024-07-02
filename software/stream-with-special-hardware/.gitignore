@@ -2,8 +2,8 @@
 # Also it's written in assembly, so, like, yuck.
 src/boot/sega.s
 
-# Generated header for the tilemap resources.
-res/trivial_tilemap.h
+# Generated headers for resources.
+res/*.h
 
 # All build outputs go here.
 out/

@@ -11,6 +11,8 @@
 #include "segavideo_player.h"
 #include "segavideo_parser.h"
 #include "segavideo_format.h"
+
+#include "kinetoscope_logo.h"
 #include "trivial_tilemap.h"
 
 // State
@@ -18,6 +20,8 @@ static bool playing;
 static bool paused;
 static bool loop;
 static bool menuShowing;
+static bool menuChanged;
+static bool internalError;
 static bool errorShowing;
 static const uint8_t* loopVideoData;
 
@@ -37,29 +41,36 @@ static uint16_t nextFrameNum;
 
 // Menu
 static char **menuLines;
-static uint16_t maxVideoIndex;
-static uint16_t maxMenuIndex;
-static uint16_t selectedIndex;
-static uint16_t selectedPage;
-static bool nextPageExists;
-static uint16_t prevPageIndex;
-static uint16_t nextPageIndex;
+static int numVideos;
+static int selectedIndex;
 
-#define MAX_MENU_SIZE 12
-#define MENU_ITEM_X 3
+#define MENU_ITEM_X 2   // tiles
 #define MENU_ITEM_Y_MULTIPLIER 2
-#define MENU_Y_OFFSET 1
+#define MENU_Y_OFFSET 9 // tiles
+#define MENU_SELECTOR_X_OFFSET -2 // tiles
 
-#define MENU_SELECTOR_X_OFFSET -2
-#define MENU_NAV_PREV_X 6
-#define MENU_NAV_NEXT_X 22
-#define MENU_NAV_Y 27
+#define STATUS_MESSAGE_X 1
+#define STATUS_MESSAGE_Y 7
+
+#define LOGO_X 2 // tiles
+#define LOGO_Y 1 // tiles
 
 // Hard-coded for now.  Fullscreen video only.
 #define MAP_W 32
 #define MAP_H 28
-#define NUM_TILES (32 * 28)
+#define NUM_TILES (32 * 28)  // 896
+
+#define THUMB_X 15
+#define THUMB_Y 13
+#define THUMB_MAP_W 16
+#define THUMB_MAP_H 14
+#define NUM_THUMB_TILES (16 * 14)  // 224
+
+// NOTE: The font occupies 96 tiles, 1696 through 1791
+// NOTE: The logo occupies 168 tiles
+
 #define TILE_SIZE 32
+#define MAX_CATALOG_SIZE 127
 
 // Ports to communicate with our special hardware.
 #define KINETOSCOPE_PORT_COMMAND (volatile uint16_t*)0xA13000  // low 8 bits
@@ -80,7 +91,10 @@ static uint16_t nextPageIndex;
 #define TOKEN_CONTROL_TO_SEGA     0
 #define TOKEN_CONTROL_TO_STREAMER 1
 
-// Palettes used for on-screen text.
+// Palettes allocated for logo and thumbnail.
+#define PAL_THUMB  PAL0
+#define PAL_LOGO   PAL1
+// Palettes allocated for on-screen text.
 #define PAL_WHITE  PAL2
 #define PAL_YELLOW PAL3
 
@@ -147,7 +161,9 @@ static bool sendCommand(uint16_t command, uint16_t arg0);
 static bool waitForReply(uint16_t timeout_seconds);
 static bool sendCommandAndWait(
     uint16_t command, uint16_t arg0, uint16_t timeout_seconds);
-static void statusMessage(uint16_t pal, const char* message);
+static void drawMultilineText(const char* text);
+static void errorMessage(const char* message);
+static void statusMessage(const char* message);
 
 static void prepNextChunk(const SegaVideoChunkInfo* currentChunk,
                           SegaVideoChunkInfo* nextChunk,
@@ -197,6 +213,15 @@ static bool regionOverflow(const SegaVideoChunkInfo* chunk,
 
 static void clearScreen() {
   VDP_clearPlane(BG_B, /* wait= */ true);
+}
+
+static void loadMenuColors() {
+  // Load menu colors.
+  uint16_t white  = 0x0FFF;  // ABGR
+  uint16_t yellow = 0x00FF;  // ABGR
+  // Text uses the last entry of each palette.
+  PAL_setColors(PAL_WHITE  * 16 + 15, &white,  /* count= */ 1, CPU);
+  PAL_setColors(PAL_YELLOW * 16 + 15, &yellow, /* count= */ 1, CPU);
 }
 
 static void overwriteAudioAddress(const uint8_t* samples, uint32_t length) {
@@ -283,7 +308,7 @@ static bool nextVideoFrame() {
       (tileMap[0] & TILE_ATTR_PALETTE_MASK) >> TILE_ATTR_PALETTE_SFT;
   // NOTE: We are hijacking system tiles for more space!
   // User tiles start at index 256, and the max index is 1425.
-  uint16_t tileIndex = second ? NUM_TILES : 0;
+  uint16_t tileIndex = second ? (NUM_TILES + 1) : 1;
 
   // The order of loading things here matters, but it took some experimentation
   // to get it right.  Tiles, colors, then map gives us clean frames that look
@@ -344,7 +369,7 @@ static bool nextVideoFrame() {
       // We send this command without awaiting a response.  Can't get stuck
       // waiting during playback.
       if (!sendCommand(CMD_FLIP_REGION, 0x00)) {
-        statusMessage(PAL_YELLOW, "Failed to flip region!");
+        errorMessage("Failed to flip region!");
         waitMs(3000);
         return false;
       }
@@ -373,31 +398,26 @@ void segavideo_init() {
   // Unload any previous audio driver for a clean slate.
   XGM2_unloadDriver();
 
-  // Load menu colors.
-  uint16_t white  = 0x0FFF;  // ABGR
-  uint16_t yellow = 0x00FF;  // ABGR
-  // Text uses the last entry of each palette.
-  PAL_setColors(PAL_WHITE  * 16 + 15, &white,  /* count= */ 1, CPU);
-  PAL_setColors(PAL_YELLOW * 16 + 15, &yellow, /* count= */ 1, CPU);
+  // Load menu palettes.
+  loadMenuColors();
 
   // Allocate menu line pointers.
-  menuLines = (char**)MEM_alloc(sizeof(char*) * MAX_MENU_SIZE);
+  menuLines = (char**)MEM_alloc(sizeof(char*) * MAX_CATALOG_SIZE);
   // Allocate a full row of text for each line.
-  for (uint16_t i = 0; i < MAX_MENU_SIZE; ++i) {
+  for (uint16_t i = 0; i < MAX_CATALOG_SIZE; ++i) {
     // One extra for nul terminator:
     menuLines[i] = (char*)MEM_alloc(MAP_W + 1);
     memset(menuLines[i], 0, MAP_W + 1);
   }
   selectedIndex = 0;
-  selectedPage = 0;
-  maxVideoIndex = 0;
-  maxMenuIndex = 0;
-  nextPageExists = false;
+  numVideos = 0;
 
   paused = false;
   playing = false;
   loop = false;
   menuShowing = false;
+  menuChanged = false;
+  internalError = false;
   errorShowing = false;
   loopVideoData = NULL;
 }
@@ -414,6 +434,7 @@ static bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop) {
   loop = pleaseLoop;
   playing = true;
   menuShowing = false;
+  internalError = false;
   errorShowing = false;
   loopVideoData = videoData;
 
@@ -572,8 +593,11 @@ void segavideo_stop() {
 
     uint16_t command_timeout = 30; // seconds
     if (!sendCommandAndWait(CMD_STOP_VIDEO, 0x00, command_timeout)) {
-      statusMessage(PAL_YELLOW, "Failed to stop video stream!");
-      waitMs(3000);
+      paused = false;
+      playing = false;
+      menuShowing = false;
+      errorMessage("Failed to stop video stream!");
+      return;
     }
   }
 
@@ -585,6 +609,7 @@ void segavideo_stop() {
   paused = false;
   playing = false;
   menuShowing = false;
+  internalError = false;
   errorShowing = false;
 }
 
@@ -596,17 +621,45 @@ bool segavideo_isMenuShowing() {
   return menuShowing;
 }
 
-static void statusMessage(uint16_t pal, const char* message) {
-  // To display a status message, make sure we clear the screen, load the
-  // default font (which may have been overwritten by video playback), and set
-  // the palette.
+static void drawLogo() {
+  VDP_drawImageEx(
+      BG_B, &kinetoscope_logo,
+      TILE_ATTR_FULL(PAL_LOGO, FALSE, FALSE, FALSE, NUM_THUMB_TILES + 1),
+      LOGO_X, LOGO_Y,
+      /* load palette */ TRUE,
+      CPU);
+
+  // FIXME: What is overwriting these?
+  loadMenuColors();
+}
+
+static void genericMessage(uint16_t pal, const char* message) {
+  // To display a status message, make sure we clear the screen, redraw the
+  // logo, load the default font (which may have been overwritten by video
+  // playback), and set the palette.
   clearScreen();
+  drawLogo();
   VDP_loadFont(&font_default, CPU);
   VDP_setTextPalette(pal);
+
   // Put the message on the screen.
-  VDP_drawText(message, 1, 1);
+  drawMultilineText(message);
+
   // Send the message to the emulator's debug interface (if available).
   kprintf("%s\n", message);
+}
+
+static void statusMessage(const char* message) {
+  genericMessage(PAL_WHITE, message);
+}
+
+static void errorMessage(const char* message) {
+  genericMessage(PAL_YELLOW, message);
+  internalError = true;
+  errorShowing = true;
+  paused = false;
+  playing = false;
+  menuShowing = false;
 }
 
 static bool sendCommand(uint16_t command, uint16_t arg0) {
@@ -648,110 +701,84 @@ static bool sendCommandAndWait(
 }
 
 bool segavideo_checkHardware() {
-  statusMessage(PAL_WHITE, "Checking for streamer...");
+  clearScreen();
+  drawLogo();
+
+  statusMessage("Checking for Kinetoscope cartridge...");
 
   uint16_t command_timeout = 5; // seconds
   volatile uint8_t* data = KINETOSCOPE_DATA;
 
   if (!sendCommand(CMD_ECHO, 0x55)) {
-    statusMessage(PAL_YELLOW, "Streamer not found! (code 1)");
+    errorMessage("Kinetoscope cartridge not found! (code 1)");
     kprintf("The token was in an invalid state. Streamer hardware unlikely.\n");
     return false;
   }
 
   if (!waitForReply(command_timeout)) {
-    statusMessage(PAL_YELLOW, "Streamer not found! (code 2)");
+    errorMessage("Kinetoscope cartridge not found! (code 2)");
     kprintf("No reply from streamer hardware before timeout.\n");
     return false;
   }
 
   if (*data != 0x55) {
-    statusMessage(PAL_YELLOW, "Streamer not found! (code 3)");
+    errorMessage("Kinetoscope cartridge not found! (code 3)");
     kprintf("Unable to find 0x55 echoed back: %d\n", *data);
     return false;
   }
 
   if (!sendCommandAndWait(CMD_ECHO, 0xAA, command_timeout)) {
-    statusMessage(PAL_YELLOW, "Streamer not found! (code 4)");
+    errorMessage("Kinetoscope cartridge not found! (code 4)");
     return false;
   }
 
   if (*data != 0xAA) {
-    statusMessage(PAL_YELLOW, "Streamer not found! (code 5)");
+    errorMessage("Kinetoscope cartridge not found! (code 5)");
     kprintf("Unable to find 0xAA echoed back: %d\n", *data);
     return false;
   }
 
-  statusMessage(PAL_WHITE, "Streamer found!");
+  statusMessage("Kinetoscope cartridge detected!");
   waitMs(1000);
   return true;
 }
 
 bool segavideo_getMenu() {
-  statusMessage(PAL_WHITE, "Fetching video list...");
+  statusMessage("Fetching video list...");
 
   uint16_t command_timeout = 30; // seconds
-  volatile uint8_t* data = KINETOSCOPE_DATA;
-
-  // We request a specific page, and we inform the streaming hardware of how
-  // many items there are per page.
-  uint16_t arg = (selectedPage << 8) | MAX_MENU_SIZE;
-  if (!sendCommandAndWait(CMD_LIST_VIDEOS, arg, command_timeout)) {
-    statusMessage(PAL_YELLOW, "Failed to fetch video list!");
+  if (!sendCommandAndWait(CMD_LIST_VIDEOS, 0, command_timeout)) {
+    errorMessage("Failed to fetch video list!");
     return false;
   }
 
-  // Split the output at newlines and display one item per line.  The lines are
-  // copied into CPU memory so that we can redraw the screen as the user
-  // navigates.
-  uint16_t index = 0;
-  while (*data && index < MAX_MENU_SIZE) {
-    // Fill in the title.
-    uint16_t bytes_left = MAP_W;
-    char* next_output = menuLines[index];
-    while (*data && *data != '\n') {
-      // Ignore any excess bytes that don't fit in the row.
-      if (bytes_left) {
-        *next_output = *data;
-        next_output++;
-        bytes_left--;
-      }
-      data++;
-    }
+  volatile const uint8_t* data = KINETOSCOPE_DATA;
 
-    // We left room for the nul terminator, since we allocated MAP_W+1.
-    *next_output = '\0';
+  // Validate the catalog header.
+  if (!segavideo_validateHeader(data)) {
+    errorMessage("Video catalog is invalid!");
+    return false;
+  }
 
-    // Move to the next menu line.
-    index++;
+  // Count the number of entries in the catalog and copy their titles.
+  const SegaVideoHeader* header = (const SegaVideoHeader*)data;
+  numVideos = 0;
+  while (header->magic[0]) {
+    // This relies on header->title (128 bytes) being larger than menuLines[x]
+    // (32 bytes) and zero-padded.
+    memcpy(menuLines[numVideos], header->title, MAP_W);
+    menuLines[numVideos][MAP_W] = '\0';  // Allocated MAP_W+1 bytes
 
-    if (*data == '\n') {
-      // Advance to the next line of input data.
-      data++;
+    numVideos++;
+    header++;
+
+    if (numVideos > MAX_CATALOG_SIZE) {
+      errorMessage("Video catalog overflow!");
+      return false;
     }
   }
 
   selectedIndex = 0;
-  maxMenuIndex = maxVideoIndex = index;
-  // If the string hasn't terminated, this indicates another page of data.
-  nextPageExists = *data != '\0';
-
-  // If there's a previous page, that occupies an index for navigation.
-  if (selectedPage > 0) {
-    prevPageIndex = maxMenuIndex;
-    maxMenuIndex++;
-  } else {
-    prevPageIndex = -1;
-  }
-
-  // If there's a next page, that occupies an index for navigation, too.
-  if (nextPageExists) {
-    nextPageIndex = maxMenuIndex;
-    maxMenuIndex++;
-  } else {
-    nextPageIndex = -1;
-  }
-
   return true;
 }
 
@@ -772,7 +799,7 @@ static void drawMultilineText(const char* text) {
   char line[31];  // max_line_len + nul terminator
 
   int len = strlen(text);
-  int y = 1;
+  int y = STATUS_MESSAGE_Y;
   kprintf("drawMultilineText: %s\n", text);
   kprintf("drawMultilineText: len=%d\n", (int)len);
 
@@ -808,73 +835,78 @@ static void drawMultilineText(const char* text) {
     }
 
     kprintf("drawMultilineText: y=%d, len=%d, line=%s\n", y, len, line);
-    VDP_drawText(line, 1, y);
+    VDP_drawText(line, STATUS_MESSAGE_X, y);
     y++;
   }
 }
 
 void segavideo_drawMenu() {
-  menuShowing = true;
+  if (!menuShowing) {
+    clearScreen();
+    drawLogo();
 
-  uint16_t menu_x = MENU_ITEM_X;
+    // TODO: Draw instructions
 
-  for (int16_t index = 0; index < MAX_MENU_SIZE; ++index) {
-    uint16_t menu_y = (MENU_ITEM_Y_MULTIPLIER * index) + MENU_Y_OFFSET;
+    menuShowing = true;
+    menuChanged = true;
+  }
+
+  if (!menuChanged) return;
+
+  for (int16_t offset = -1; offset <= 1; ++offset) {
+    uint16_t menu_y = MENU_Y_OFFSET + (MENU_ITEM_Y_MULTIPLIER * offset);
     VDP_clearTextLine(menu_y);
 
-    if (index < maxVideoIndex) {
-      drawMenuItem(menu_x, menu_y, menuLines[index],
-                   /* selected= */ index == selectedIndex);
-    }
+    // Adding numVideos so the result is always positive.
+    int index = (numVideos + selectedIndex + offset) % numVideos;
+    drawMenuItem(MENU_ITEM_X, menu_y, menuLines[index],
+                 /* selected= */ offset == 0);
   }
 
-  VDP_clearTextLine(MENU_NAV_Y);
+  // Draw thumbnail
+  volatile const uint8_t* data = KINETOSCOPE_DATA;
+  const SegaVideoHeader* header = (const SegaVideoHeader*)data;
+  header += selectedIndex;
 
-  if (selectedPage > 0) {
-    drawMenuItem(MENU_NAV_PREV_X, MENU_NAV_Y, "Prev.",
-                 /* selected= */ selectedIndex == prevPageIndex);
-  }
+  uint16_t tileIndex = 1;
+  const uint16_t* tileMap = (const uint16_t*)(trivial_tilemap_half_0);
+  uint16_t palNum = PAL_THUMB;
 
-  if (nextPageExists) {
-    drawMenuItem(MENU_NAV_NEXT_X, MENU_NAV_Y, "Next",
-                 /* selected= */ selectedIndex == nextPageIndex);
-  }
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Waddress-of-packed-member"
+  // Unpacked, raw pointer method used by VDP_loadTileSet
+  VDP_loadTileData(header->thumbTiles, tileIndex, NUM_THUMB_TILES, CPU);
+
+  // Unpacked, raw pointer method used by PAL_setPaletteColors
+  PAL_setColors(palNum << 4, header->thumbPalette, /* count= */ 16, CPU);
+#pragma GCC diagnostic pop
+
+  // Unpacked, raw pointer method used by VDP_setTileMapEx
+  VDP_setTileMapDataRectEx(BG_B, tileMap, tileIndex,
+      /* x= */ THUMB_X, /* y= */ THUMB_Y,
+      /* w= */ THUMB_MAP_W, /* h= */ THUMB_MAP_H,
+      /* stride= */ THUMB_MAP_W, CPU);
+
+  menuChanged = false;
 }
 
 void segavideo_menuPreviousItem() {
-  if (selectedIndex == 0) {
-    selectedIndex = maxMenuIndex - 1;
-  } else {
-    selectedIndex--;
-  }
+  selectedIndex = (numVideos + selectedIndex - 1) % numVideos;
+  menuChanged = true;
 }
 
 void segavideo_menuNextItem() {
-  selectedIndex++;
-  if (selectedIndex >= maxMenuIndex) {
-    selectedIndex = 0;
-  }
+  selectedIndex = (selectedIndex + 1) % numVideos;
+  menuChanged = true;
 }
 
 bool segavideo_stream(bool loop) {
-  // If the selected index is a menu navigation item, do that instead.
-  if (selectedIndex == nextPageIndex) {
-    selectedPage++;
-    segavideo_getMenu();
-    return true;
-  } else if (selectedIndex == prevPageIndex) {
-    selectedPage--;
-    segavideo_getMenu();
-    return true;
-  }
-
   menuShowing = false;
 
   uint16_t command_timeout = 30; // seconds
-  uint16_t video_index = (selectedPage * MAX_MENU_SIZE) + selectedIndex;
+  uint16_t video_index = selectedIndex;
   if (!sendCommandAndWait(CMD_START_VIDEO, video_index, command_timeout)) {
-    statusMessage(PAL_YELLOW, "Failed to start video stream!");
-    waitMs(3000);
+    errorMessage("Failed to start video stream!");
     return false;
   }
 
@@ -887,8 +919,7 @@ bool segavideo_stream(bool loop) {
   regionSize                =           0x100000;  // 1MB
   regionMask                =           0x300000;
   if (!segavideo_playInternal(videoData, loop)) {
-    statusMessage(PAL_YELLOW, "Wrong video format!");
-    waitMs(3000);
+    errorMessage("Wrong video format!");
     return false;
   }
   return true;
@@ -896,7 +927,7 @@ bool segavideo_stream(bool loop) {
 
 bool segavideo_hasError() {
   volatile uint16_t* error_port = KINETOSCOPE_PORT_ERROR;
-  return *error_port != 0;
+  return *error_port != 0 || internalError;
 }
 
 void segavideo_showError() {
@@ -905,7 +936,7 @@ void segavideo_showError() {
 
     uint16_t command_timeout = 5; // seconds
     if (!sendCommandAndWait(CMD_GET_ERROR, 0, command_timeout)) {
-      statusMessage(PAL_YELLOW, "Failed to retrieve error!");
+      errorMessage("Failed to retrieve error!");
     } else {
       VDP_setTextPalette(PAL_YELLOW);
       drawMultilineText((const char*)KINETOSCOPE_DATA);
@@ -923,4 +954,5 @@ void segavideo_clearError() {
   volatile uint16_t* error_port = KINETOSCOPE_PORT_ERROR;
   *error_port = 0;
   errorShowing = false;
+  internalError = false;
 }

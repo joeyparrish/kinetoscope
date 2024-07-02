@@ -1,0 +1,1 @@
+../../player/res/kinetoscope_logo.res

@@ -23,7 +23,8 @@
 #define SEGAVIDEO_HEADER_FORMAT 0x0001
 
 // This header appears at the start of the file in both embedded and streaming
-// mode.
+// mode.  Each one is exactly 8kB, so they can form the basis of a catalog
+// format that the streamer ROM can easily flip through.
 typedef struct SegaVideoHeader {
   uint8_t magic[16];  // SEGAVIDEO_HEADER_MAGIC
   uint16_t format;  // SEGAVIDEO_HEADER_FORMAT
@@ -31,6 +32,17 @@ typedef struct SegaVideoHeader {
   uint16_t sampleRate;  // Hz
   uint16_t totalFrames;  // num frames
   uint32_t totalSamples;  // bytes, total, multiple of 256
+
+  // 28 bytes above.
+  char title[128];
+  uint8_t padding[836];
+  // 7200 bytes below.
+
+  // A thumbnail for display in the streamer ROM menu. Just like
+  // SegaVideoFrame below, but at 1/2 resolution in each dimension (16x14
+  // tiles). See SegaVideoFrame for more details. Uses trivial_tilemap_half_0.
+  uint16_t thumbPalette[16];
+  uint32_t thumbTiles[8 * 16 * 14];  // 16x14 tiles
 } __attribute__((packed)) SegaVideoHeader;
 
 // After the header is a sequence of chunks.
@@ -56,6 +68,7 @@ typedef struct SegaVideoFrame {
   // always ignored.
   uint16_t palette[16];
   // Each tile is a packed array of 64 (8x8) 4-bit palette indexes (16 words).
+  // Uses trivial_tilemap_0 or trivial_tilemap_1.
   uint32_t tiles[8 * 32 * 28];  // 32 bytes per tile (8*uint32_t), 32x28 tiles
 } __attribute__((packed)) SegaVideoFrame;
 

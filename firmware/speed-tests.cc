@@ -17,7 +17,7 @@
 #define PATH   "/sega-kinetoscope/canned-videos/NEVER_GONNA_GIVE_YOU_UP.segavideo"
 
 // ~3s worth of audio+video data with headers and worst-case padding.
-#define ABOUT_3S_VIDEO_AUDIO_BYTES 901932
+#define ABOUT_3S_VIDEO_AUDIO_BYTES 909511
 
 // A safe buffer size for these tests.
 #define BUFFER_SIZE 100 * 1024
