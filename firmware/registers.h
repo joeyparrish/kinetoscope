@@ -32,6 +32,7 @@
 #define KINETOSCOPE_CMD_START_VIDEO 0x02  // Begins streaming to SRAM
 #define KINETOSCOPE_CMD_STOP_VIDEO  0x03  // Stops streaming
 #define KINETOSCOPE_CMD_FLIP_REGION 0x04  // Switch SRAM banks for streaming
+#define KINETOSCOPE_CMD_GET_ERROR   0x05  // Load error information into SRAM
 
 void registers_init();
 

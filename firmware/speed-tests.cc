@@ -22,7 +22,7 @@
 // A safe buffer size for these tests.
 #define BUFFER_SIZE 100 * 1024
 
-static long test_sram_speed(uint8_t* buffer, int bytes) {
+static long test_sram_speed(const uint8_t* buffer, int bytes) {
   // 100kB: ~83ms
   // 1MB: ~830ms
   // 3s video+audio: ~731ms
@@ -66,6 +66,11 @@ static long test_register_read_speed() {
   return end - start;
 }
 
+static bool sram_write_callback(const uint8_t* buffer, int bytes) {
+  sram_write(buffer, bytes);
+  return true;  // HTTP transfer can continue.
+}
+
 static long test_download_speed(int first_byte, int total_size) {
   // 2.5Mbps minimum required
   // ~2.7Mbps with initial HTTP connection overhead
@@ -74,7 +79,7 @@ static long test_download_speed(int first_byte, int total_size) {
   sram_start_bank(0);
   int bytes_read = http_fetch(SERVER, /* default port */ 0, PATH,
                               first_byte, total_size,
-                              sram_write);
+                              sram_write_callback);
   sram_flush();
   long end = millis();
   return end - start;

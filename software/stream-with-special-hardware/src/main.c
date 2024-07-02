@@ -13,10 +13,15 @@
 
 static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
   if (segavideo_isPlaying()) {
+    // Playing: press start to pause, C to stop.
     if (state & BUTTON_START) {
       segavideo_togglePause();
     }
+    if (state & BUTTON_C) {
+      segavideo_stop();
+    }
   } else if (segavideo_isMenuShowing()) {
+    // Menu: press start to choose, up/down to navigate.
     if (state & BUTTON_START) {
       segavideo_stream(/* loop= */ false);
     }
@@ -27,6 +32,7 @@ static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
       segavideo_menuNextItem();
     }
   } else if (segavideo_isErrorShowing()) {
+    // Error: press start to continue.
     if (state & BUTTON_START) {
       segavideo_clearError();
     }
@@ -34,6 +40,7 @@ static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
 }
 
 static void handleError() {
+  // Continue to show the error until the user presses start to clear it.
   while (segavideo_hasError()) {
     segavideo_showError();
     SYS_doVBlankProcess();
@@ -45,11 +52,13 @@ int main(bool hardReset) {
 
   segavideo_init();
 
+  // Stop immediately if we don't have the right hardware.
   if (!segavideo_checkHardware()) {
     return 0;
   }
 
   while (true) {
+    // Check for errors.  At this stage, most likely connection errors.
     if (segavideo_hasError()) {
       handleError();
       continue;
@@ -66,6 +75,7 @@ int main(bool hardReset) {
       SYS_doVBlankProcess();
     }
 
+    // Check for errors.  May be download errors for the menu or a video.
     if (segavideo_hasError()) {
       handleError();
       continue;
@@ -75,11 +85,12 @@ int main(bool hardReset) {
     while (segavideo_isPlaying()) {
       segavideo_processFrames();
       SYS_doVBlankProcess();
-    }
 
-    if (segavideo_hasError()) {
-      handleError();
-      continue;
+      // Check for errors.  At this stage, most likely a buffer underflow.
+      if (segavideo_hasError()) {
+        handleError();
+        break;
+      }
     }
 
     // Loop back to the menu.

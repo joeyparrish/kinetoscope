@@ -4,6 +4,10 @@
 //
 // See MIT License in LICENSE.txt
 
+// Firmware that runs on the microcontroller inside the cartridge.
+// The microcontroller accepts commands from the player in the Sega ROM, and
+// can stream video from the Internet to the cartridge's shared banks of SRAM.
+
 // Error reporting.
 
 #ifndef _KINETOSCOPE_ERROR_H

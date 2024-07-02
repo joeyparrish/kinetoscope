@@ -8,13 +8,10 @@
 // The microcontroller accepts commands from the player in the Sega ROM, and
 // can stream video from the Internet to the cartridge's shared banks of SRAM.
 
-// This is the interface to the network.
+// This is a set of basic string utilities.
 
-#ifndef _KINETOSCOPE_INTERNET_H
+#ifndef _KINETOSCOPE_STRING_UTIL_H
 
-// Password can be blank or null if there is no authentication required.
-Client* internet_init_wifi(const char* ssid, const char* password);
+void copy_string(char* destination, const char* source, int size);
 
-Client* internet_init_wired(const uint8_t* mac);
-
-#endif // _KINETOSCOPE_INTERNET_H
+#endif // _KINETOSCOPE_STRING_UTIL_H

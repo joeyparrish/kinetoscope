@@ -14,7 +14,7 @@
 
 #include <Client.h>
 
-typedef void (*http_buffer_callback)(const uint8_t* buffer, int bytes);
+typedef bool (*http_buffer_callback)(const uint8_t* buffer, int bytes);
 
 void http_init(Client* network_client);
 

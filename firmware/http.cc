@@ -23,10 +23,12 @@
 
 #include "error.h"
 #include "http.h"
+#include "string-util.h"
 
 #define DEFAULT_PORT 80
 
 #define MAX_READ 8192
+#define MAX_SERVER 256
 
 #define CONTENT_LENGTH_HEADER "Content-Length: "
 #define CONTENT_LENGTH_HEADER_LENGTH 16
@@ -44,7 +46,7 @@ struct HeaderData {
 };
 
 static Client* client = NULL;
-static char* current_server = NULL;
+static char current_server[MAX_SERVER];
 static int current_port = 0;
 static char range_value[128];
 static char request_buffer[1024];
@@ -53,14 +55,11 @@ static uint8_t read_buffer[MAX_READ];
 
 void http_init(Client* network_client) {
   client = network_client;
+  current_server[0] = '\0';
 }
 
 // We will use persistent connections as much as possible to speed up requests.
 static inline bool need_new_connection(const char* server, int port) {
-  if (!current_server) {
-    return true;
-  }
-
   if (strcmp(server, current_server)) {
     return true;
   }
@@ -78,11 +77,7 @@ static inline bool need_new_connection(const char* server, int port) {
 
 static void close_connection() {
   client->stop();
-
-  if (current_server) {
-    free(current_server);
-    current_server = NULL;
-  }
+  current_server[0] = '\0';
 }
 
 static inline void connect_if_needed(const char* server, int port) {
@@ -103,7 +98,7 @@ static inline void connect_if_needed(const char* server, int port) {
 
   client->connect(server, port);
 
-  current_server = strdup(server);
+  copy_string(current_server, server, MAX_SERVER);
   current_port = port;
 }
 
@@ -276,7 +271,12 @@ int http_fetch(const char* server, uint16_t port, const char* path,
 
   // Copy the body bytes found in the header buffer.
   if (header_data.body_start_length) {
-    callback(header_data.body_start, header_data.body_start_length);
+    bool ok = callback(header_data.body_start, header_data.body_start_length);
+    if (!ok) {
+      Serial.println("Transfer interrupted.");
+      close_connection();
+      return -1;
+    }
     bytes_left -= header_data.body_start_length;
   }
 
@@ -298,7 +298,12 @@ int http_fetch(const char* server, uint16_t port, const char* path,
       continue;
     }
 
-    callback(read_buffer, bytes_read);
+    bool ok = callback(read_buffer, bytes_read);
+    if (!ok) {
+      Serial.println("Transfer interrupted.");
+      close_connection();
+      return -1;
+    }
     bytes_left -= bytes_read;
   }
 

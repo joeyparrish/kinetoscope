@@ -19,7 +19,7 @@
 
 EthernetClient client;
 
-Client* internet_init_wired(uint8_t* mac) {
+Client* internet_init_wired(const uint8_t* mac) {
   SPI.begin();
 
   // Default SPI pins for RP2040:
@@ -28,7 +28,8 @@ Client* internet_init_wired(uint8_t* mac) {
   // MISO == GP16
   // SCK == 18
 
-  int ok = Ethernet.begin(mac);
+  // It's really stupid that this library doesn't take a const input.
+  int ok = Ethernet.begin(const_cast<uint8_t*>(mac));
 
   if (Ethernet.hardwareStatus() == EthernetNoHardware) {
     Serial.println("Ethernet shield was not found.");
