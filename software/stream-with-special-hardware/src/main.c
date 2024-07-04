@@ -9,15 +9,17 @@
 
 #include <genesis.h>
 
+#include "segavideo_menu.h"
 #include "segavideo_player.h"
+#include "segavideo_state.h"
 
 static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
-  if (segavideo_isErrorShowing()) {
+  if (segavideo_getState() == Error) {
     // Error: press start|A|B|C to continue.
     if (state & (BUTTON_START | BUTTON_A | BUTTON_B | BUTTON_C)) {
-      segavideo_clearError();
+      segavideo_menu_clearError();
     }
-  } else if (segavideo_isPlaying()) {
+  } else if (segavideo_getState() == Player) {
     // Playing: press start to pause, C to stop.
     if (state & BUTTON_START) {
       segavideo_togglePause();
@@ -25,26 +27,25 @@ static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
     if (state & BUTTON_C) {
       segavideo_stop();
     }
-  } else if (segavideo_isMenuShowing()) {
+  } else if (segavideo_getState() == Menu) {
     // Menu: press start|A|B|C to choose, up/down to navigate.
     if (state & (BUTTON_START | BUTTON_A | BUTTON_B | BUTTON_C)) {
-      segavideo_stream(/* loop= */ false);
+      segavideo_menu_select(/* loop= */ false);
     }
     if (state & BUTTON_UP) {
-      segavideo_menuPreviousItem();
+      segavideo_menu_previousItem();
     }
     if (state & BUTTON_DOWN) {
-      segavideo_menuNextItem();
+      segavideo_menu_nextItem();
     }
   }
 }
 
 static void handleError() {
-  segavideo_showError();
+  segavideo_menu_showError();
 
-  // Continue to show the error until the user presses start to clear it.
-  while (segavideo_isErrorShowing()) {
-    segavideo_showError();
+  // Continue to show the error until the user presses something to clear it.
+  while (segavideo_getState() == Error) {
     SYS_doVBlankProcess();
   }
 }
@@ -53,38 +54,39 @@ int main(bool hardReset) {
   JOY_setEventHandler(onJoystickEvent);
 
   segavideo_init();
+  segavideo_menu_init();
 
   // Stop immediately if we don't have the right hardware.
-  if (!segavideo_checkHardware()) {
+  if (!segavideo_menu_checkHardware()) {
     return 0;
   }
 
   while (true) {
     // Check for errors.  At this stage, most likely connection errors.
-    if (segavideo_hasError()) {
+    if (segavideo_menu_hasError()) {
       handleError();
       continue;
     }
 
     // Start in the menu.
-    if (segavideo_getMenu()) {
-      segavideo_drawMenu();
+    if (segavideo_menu_load()) {
+      segavideo_menu_draw();
     }
 
     // Check for errors.  May be download errors for the catalog.
-    if (segavideo_hasError()) {
+    if (segavideo_menu_hasError()) {
       handleError();
       continue;
     }
 
     // Redraw the menu while it is visible.
-    while (segavideo_isMenuShowing()) {
-      segavideo_drawMenu();
+    while (segavideo_getState() == Menu) {
+      segavideo_menu_draw();
       SYS_doVBlankProcess();
     }
 
     // Check for errors.  May be download errors for a video.
-    if (segavideo_hasError()) {
+    if (segavideo_menu_hasError()) {
       handleError();
       continue;
     }
@@ -95,7 +97,7 @@ int main(bool hardReset) {
       SYS_doVBlankProcess();
 
       // Check for errors.  At this stage, most likely a buffer underflow.
-      if (segavideo_hasError()) {
+      if (segavideo_menu_hasError()) {
         handleError();
         break;
       }

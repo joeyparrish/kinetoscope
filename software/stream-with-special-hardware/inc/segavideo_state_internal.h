@@ -1,0 +1,1 @@
+../../player/inc/segavideo_state_internal.h

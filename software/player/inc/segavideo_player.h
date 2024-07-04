@@ -38,44 +38,13 @@ void segavideo_stop();
 // True if we are playing something.
 bool segavideo_isPlaying();
 
-// -- --- ----- Streaming APIs ----- --- -- //
-// Each of these functions requires special hardware or emulation.
-
-// Returns true if the streaming hardware is available.
-// Shows status and error messages on screen during this process.
-bool segavideo_checkHardware();
-
-// Fetch a list of available videos and write it to memory.
-// Shows an error message on-screen and returns false on failure.
-bool segavideo_getMenu();
-
-// Draw the on-screen menu of videos.
-// Only valid after calling segavideo_getMenu() returns true.
-void segavideo_drawMenu();
-
-// True if the menu is showing.
-bool segavideo_isMenuShowing();
-
-// Move to the previous menu item.
-void segavideo_menuPreviousItem();
-
-// Move to the next menu item.
-void segavideo_menuNextItem();
-
-// Start streaming the currently-selected menu item.
-// Shows an error message on-screen and returns false on failure.
-bool segavideo_stream(bool loop);
-
-// Is there a pending error from the microcontroller?
-bool segavideo_hasError();
-
-// Show the pending error.
-void segavideo_showError();
-
-// Is an error showing now?
-bool segavideo_isErrorShowing();
-
-// Clear the error state and screen.
-void segavideo_clearError();
+// For internal use in the streamer ROM.  Don't use this.
+bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop,
+                            uint32_t pleaseRegionSize,
+                            uint32_t pleaseRegionMask,
+                            VoidCallback* pleaseLoopCallback,
+                            VoidCallback* pleaseStopCallback,
+                            VoidCallback* pleaseFlipCallback,
+                            VoidCallback* pleaseEmuHackCallback);
 
 #endif // _SEGAVIDEO_PLAYER_H
