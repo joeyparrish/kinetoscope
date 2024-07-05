@@ -22,33 +22,35 @@ static char **menuLines;
 static int numVideos;
 static int selectedIndex;
 
-#define MENU_ITEM_X 2   // tiles
+// All offsets and sizes are in tiles, not pixels
+#define MENU_ITEM_X 2
 #define MENU_ITEM_Y_MULTIPLIER 2
-#define MENU_Y_OFFSET 9 // tiles
-#define MENU_SELECTOR_X_OFFSET -2 // tiles
+#define MENU_Y_OFFSET 9
+#define MENU_SELECTOR_X_OFFSET -2
 
 #define STATUS_MESSAGE_X 1
 #define STATUS_MESSAGE_Y 7
-
-#define LOGO_X 2 // tiles
-#define LOGO_Y 1 // tiles
-
-// Hard-coded for now.  Fullscreen video only.
-#define MAP_W 32
-#define MAP_H 28
-#define NUM_TILES (32 * 28)  // 896
+#define STATUS_MESSAGE_W 30
 
 #define THUMB_X 15
 #define THUMB_Y 13
 #define THUMB_MAP_W 16
 #define THUMB_MAP_H 14
-#define NUM_THUMB_TILES (16 * 14)  // 224
+#define THUMB_TILES (16 * 14)  // 224
+#define THUMB_TILE_INDEX 1
 
-// NOTE: The thumbnail occupies 224 tiles, 1 through 224
-// NOTE: The logo occupies 168 tiles, right after the thumbnail
+#define LOGO_X 2
+#define LOGO_Y 1
+#define LOGO_TILE_INDEX (THUMB_TILE_INDEX + THUMB_TILES)
+#define LOGO_TILES (28 * 6)  // 168
+
+#define INSTRUCTIONS_X 2
+#define INSTRUCTIONS_Y 15
+#define INSTRUCTIONS_TILE_INDEX (LOGO_TILE_INDEX + LOGO_TILES)
+#define INSTRUCTIONS_TILES (11 * 6)  // 66
+
 // NOTE: The font occupies 96 tiles, 1696 through 1791
 
-#define TILE_SIZE 32
 #define MAX_CATALOG_SIZE 127
 
 #if defined(SIMULATE_HARDWARE)
@@ -175,7 +177,7 @@ static void loadMenuColors() {
 }
 
 static void drawMultilineText(const char* text) {
-  const int max_line_len = 30;
+  const int max_line_len = STATUS_MESSAGE_W;
   char line[31];  // max_line_len + nul terminator
 
   int len = strlen(text);
@@ -255,8 +257,8 @@ void segavideo_menu_init() {
   // Allocate a full row of text for each line.
   for (uint16_t i = 0; i < MAX_CATALOG_SIZE; ++i) {
     // One extra for nul terminator:
-    menuLines[i] = (char*)MEM_alloc(MAP_W + 1);
-    memset(menuLines[i], 0, MAP_W + 1);
+    menuLines[i] = (char*)MEM_alloc(STATUS_MESSAGE_W + 1);
+    memset(menuLines[i], 0, STATUS_MESSAGE_W + 1);
   }
 
   selectedIndex = 0;
@@ -267,12 +269,13 @@ void segavideo_menu_init() {
 static void drawLogo() {
   VDP_drawImageEx(
       BG_B, &kinetoscope_logo,
-      TILE_ATTR_FULL(PAL_LOGO, FALSE, FALSE, FALSE, NUM_THUMB_TILES + 1),
+      TILE_ATTR_FULL(PAL_LOGO, FALSE, FALSE, FALSE, LOGO_TILE_INDEX),
       LOGO_X, LOGO_Y,
       /* load palette */ TRUE,
       CPU);
 
-  // FIXME: What is overwriting these?
+  // It's not clear to me what is overwriting these palettes, but reloading at
+  // this point fixes them.
   loadMenuColors();
 }
 
@@ -345,9 +348,9 @@ bool segavideo_menu_load() {
   numVideos = 0;
   while (header->magic[0]) {
     // This relies on header->title (128 bytes) being larger than menuLines[x]
-    // (32 bytes) and zero-padded.
-    memcpy(menuLines[numVideos], header->title, MAP_W);
-    menuLines[numVideos][MAP_W] = '\0';  // Allocated MAP_W+1 bytes
+    // and zero-padded.
+    memcpy(menuLines[numVideos], header->title, STATUS_MESSAGE_W);
+    menuLines[numVideos][STATUS_MESSAGE_W] = '\0';  // Allocated byte for this
 
     numVideos++;
     header++;
@@ -402,14 +405,14 @@ void segavideo_menu_draw() {
   const SegaVideoHeader* header = (const SegaVideoHeader*)data;
   header += selectedIndex;
 
-  uint16_t tileIndex = 1;
+  uint16_t tileIndex = THUMB_TILE_INDEX;
   const uint16_t* tileMap = (const uint16_t*)(trivial_tilemap_half_0);
   uint16_t palNum = PAL_THUMB;
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Waddress-of-packed-member"
   // Unpacked, raw pointer method used by VDP_loadTileSet
-  VDP_loadTileData(header->thumbTiles, tileIndex, NUM_THUMB_TILES, CPU);
+  VDP_loadTileData(header->thumbTiles, tileIndex, THUMB_TILES, CPU);
 
   // Unpacked, raw pointer method used by PAL_setPaletteColors
   PAL_setColors(palNum << 4, header->thumbPalette, /* count= */ 16, CPU);
