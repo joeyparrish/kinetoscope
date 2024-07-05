@@ -215,6 +215,7 @@ static void drawMultilineText(const char* text) {
     }
 
     kprintf("drawMultilineText: y=%d, len=%d, line=%s\n", y, len, line);
+    VDP_clearTextArea(STATUS_MESSAGE_X, y, max_line_len, 1);
     VDP_drawText(line, STATUS_MESSAGE_X, y);
     y++;
   }
