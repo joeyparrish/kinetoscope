@@ -43,6 +43,7 @@ static uint16_t nextFrameNum;
 #define MAP_W 32
 #define MAP_H 28
 #define NUM_TILES (32 * 28)  // 896
+#define FRAME_TILE_INDEX 0  // Overwrites 16 system tiles, but we need space
 
 // NOTE: We use the XGM2 driver.  With the PCM-specific drivers, I found audio
 // got "bubbly"-sounding during full-screen VDP tile transfers.  The XGM2
@@ -149,6 +150,12 @@ static bool regionOverflow(const SegaVideoChunkInfo* chunk,
 }
 
 static void clearScreen() {
+  // Restore the first system tile, overwritten by playback.  This tile is used
+  // to clear the screen.  This restore logic is adapted from SGDK's
+  // VDP_resetScreen() in src/vdp.c.
+  VDP_fillTileData(0, TILE_SYSTEM_INDEX, 1, TRUE);
+
+  // Now clearing the screen should work as expected.
   VDP_clearPlane(BG_B, /* wait= */ true);
 }
 
@@ -236,7 +243,7 @@ static bool nextVideoFrame() {
       (tileMap[0] & TILE_ATTR_PALETTE_MASK) >> TILE_ATTR_PALETTE_SFT;
   // NOTE: We are hijacking system tiles for more space!
   // User tiles start at index 256, and the max index is 1425.
-  uint16_t tileIndex = second ? (NUM_TILES + 1) : 1;
+  uint16_t tileIndex = FRAME_TILE_INDEX + (second ? NUM_TILES : 0);
 
   // The order of loading things here matters, but it took some experimentation
   // to get it right.  Tiles, colors, then map gives us clean frames that look
