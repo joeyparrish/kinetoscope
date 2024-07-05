@@ -38,10 +38,11 @@ static int selectedIndex;
 #define THUMB_MAP_H 14
 #define THUMB_TILES (16 * 14)  // 224
 #define THUMB_TILE_INDEX 1
+#define THUMB_TILE_INDEX_2 (THUMB_TILE_INDEX + THUMB_TILES)
 
 #define LOGO_X 2
 #define LOGO_Y 1
-#define LOGO_TILE_INDEX (THUMB_TILE_INDEX + THUMB_TILES)
+#define LOGO_TILE_INDEX (THUMB_TILE_INDEX_2 + THUMB_TILES)
 #define LOGO_TILES (28 * 6)  // 168
 
 #define INSTRUCTIONS_X 2
@@ -407,7 +408,8 @@ void segavideo_menu_draw() {
   const SegaVideoHeader* header = (const SegaVideoHeader*)data;
   header += selectedIndex;
 
-  uint16_t tileIndex = THUMB_TILE_INDEX;
+  bool second = selectedIndex & 1;
+  uint16_t tileIndex = second ? THUMB_TILE_INDEX_2 : THUMB_TILE_INDEX;
   const uint16_t* tileMap = (const uint16_t*)(trivial_tilemap_half_0);
   uint16_t palNum = PAL_THUMB;
 
