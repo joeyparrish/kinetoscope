@@ -337,6 +337,7 @@ bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop,
   stopCallback = pleaseStopCallback;
   flipCallback = pleaseFlipCallback;
   emuHackCallback = pleaseEmuHackCallback;
+  segavideo_setState(Player);
 
   if (!segavideo_validateHeader(videoData)) {
     return false;
