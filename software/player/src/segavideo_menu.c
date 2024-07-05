@@ -51,23 +51,34 @@ static int selectedIndex;
 #define TILE_SIZE 32
 #define MAX_CATALOG_SIZE 127
 
+#if defined(SIMULATE_HARDWARE)
+# include "embedded_catalog.h"
+# include "embedded_video.h"
+
+# define KINETOSCOPE_MENU_DATA embedded_catalog
+# define KINETOSCOPE_ERROR_DATA "Error: something went wrong!"
+# define KINETOSCOPE_VIDEO_DATA embedded_video
+# define KINETOSCOPE_VIDEO_REGION_SIZE 0
+# define KINETOSCOPE_VIDEO_REGION_MASK 0
+#else
 // Ports to communicate with our special hardware.
-#define KINETOSCOPE_PORT_COMMAND (volatile uint16_t*)0xA13000  // low 8 bits
-#define KINETOSCOPE_PORT_ARG     (volatile uint16_t*)0xA13002  // low 8 bits
-#define KINETOSCOPE_PORT_TOKEN   (volatile uint16_t*)0xA13008  // low 1 bit, set on write
-#define KINETOSCOPE_PORT_ERROR   (volatile uint16_t*)0xA1300A  // low 1 bit, clear on write
-#define KINETOSCOPE_DATA          (volatile uint8_t*)0x200000
-#define KINETOSCOPE_MENU_DATA        (const uint8_t*)(KINETOSCOPE_DATA)
-#define KINETOSCOPE_ERROR_DATA          (const char*)(KINETOSCOPE_DATA)
+# define KINETOSCOPE_PORT_COMMAND (volatile uint16_t*)0xA13000  // low 8 bits
+# define KINETOSCOPE_PORT_ARG     (volatile uint16_t*)0xA13002  // low 8 bits
+# define KINETOSCOPE_PORT_TOKEN   (volatile uint16_t*)0xA13008  // low 1 bit, set on write
+# define KINETOSCOPE_PORT_ERROR   (volatile uint16_t*)0xA1300A  // low 1 bit, clear on write
+# define KINETOSCOPE_DATA          (volatile uint8_t*)0x200000
+# define KINETOSCOPE_MENU_DATA        (const uint8_t*)(KINETOSCOPE_DATA)
+# define KINETOSCOPE_ERROR_DATA          (const char*)(KINETOSCOPE_DATA)
 
 // Play from two SRAM regions:
 //  - starting at 0x200000 and ending at 0x300000
 //  - starting at 0x300000 and ending at 0x400000
 // The streamer hardware will fill in whole chunks only into these regions,
 // flipping back and forth between them.
-#define KINETOSCOPE_VIDEO_DATA       (const uint8_t*)(KINETOSCOPE_DATA)
-#define KINETOSCOPE_VIDEO_REGION_SIZE 0x100000  // 1MB
-#define KINETOSCOPE_VIDEO_REGION_MASK 0x300000
+# define KINETOSCOPE_VIDEO_DATA       (const uint8_t*)(KINETOSCOPE_DATA)
+# define KINETOSCOPE_VIDEO_REGION_SIZE 0x100000  // 1MB
+# define KINETOSCOPE_VIDEO_REGION_MASK 0x300000
+#endif
 
 // Commands for that hardware.
 #define CMD_ECHO        0x00  // Writes arg to SRAM
@@ -93,6 +104,7 @@ static int selectedIndex;
 #endif
 
 static bool sendCommand(uint16_t command, uint16_t arg0) {
+#if !defined(SIMULATE_HARDWARE)
   volatile uint16_t* command_port = KINETOSCOPE_PORT_COMMAND;
   volatile uint16_t* token_port = KINETOSCOPE_PORT_TOKEN;
   volatile uint16_t* arg_port = KINETOSCOPE_PORT_ARG;
@@ -104,10 +116,12 @@ static bool sendCommand(uint16_t command, uint16_t arg0) {
   *command_port = command;
   *arg_port = arg0;
   *token_port = TOKEN_CONTROL_TO_STREAMER;
+#endif
   return true;
 }
 
 static bool waitForReply(uint16_t timeout_seconds) {
+#if !defined(SIMULATE_HARDWARE)
   kprintf("Waiting for streamer response.\n");
 
   volatile uint16_t* token_port = KINETOSCOPE_PORT_TOKEN;
@@ -122,6 +136,7 @@ static bool waitForReply(uint16_t timeout_seconds) {
     return false;
   }
 
+#endif
   return true;
 }
 
@@ -131,13 +146,19 @@ static bool sendCommandAndWait(
 }
 
 static bool pendingError() {
+#if defined(SIMULATE_HARDWARE)
+  return false;
+#else
   volatile uint16_t* error_port = KINETOSCOPE_PORT_ERROR;
   return *error_port != 0;
+#endif
 }
 
 static void clearPendingError() {
+#if !defined(SIMULATE_HARDWARE)
   volatile uint16_t* error_port = KINETOSCOPE_PORT_ERROR;
   *error_port = 0;
+#endif
 }
 
 static void clearScreen() {
@@ -260,6 +281,9 @@ bool segavideo_menu_checkHardware() {
 
   statusMessage("Checking for Kinetoscope cartridge...");
 
+#if defined(SIMULATE_HARDWARE)
+  waitMs(1000);
+#else
   uint16_t command_timeout = 5; // seconds
   volatile uint8_t* data = KINETOSCOPE_DATA;
 
@@ -291,6 +315,7 @@ bool segavideo_menu_checkHardware() {
     kprintf("Unable to find 0xAA echoed back: %d\n", *data);
     return false;
   }
+#endif
 
   statusMessage("Kinetoscope cartridge detected!");
   waitMs(1000);
@@ -436,10 +461,12 @@ static void streamingFlipCallback() {
 }
 
 static void streamingEmuHackCallback() {
+#if !defined(SIMULATE_HARDWARE)
   // HACK: Work around emulation issues.  Read the token so that the emulator
   // can check the time and execute a CMD_FLIP_REGION that was not awaited.
   volatile uint16_t* token_port = KINETOSCOPE_PORT_TOKEN;
   (void)*token_port;
+#endif
 }
 
 bool segavideo_menu_select(bool loop) {
