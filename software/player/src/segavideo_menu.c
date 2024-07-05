@@ -287,6 +287,7 @@ bool segavideo_menu_checkHardware() {
 
 #if defined(SIMULATE_HARDWARE)
   waitMs(1000);
+  statusMessage("Simulated Kinetoscope cartridge detected!");
 #else
   uint16_t command_timeout = 5; // seconds
   volatile uint8_t* data = KINETOSCOPE_DATA;
@@ -319,9 +320,10 @@ bool segavideo_menu_checkHardware() {
     kprintf("Unable to find 0xAA echoed back: %d\n", *data);
     return false;
   }
-#endif
 
   statusMessage("Kinetoscope cartridge detected!");
+#endif
+
   waitMs(1000);
   return true;
 }
