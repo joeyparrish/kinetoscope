@@ -22,6 +22,7 @@ static bool menuChanged;
 static char **menuLines;
 static int numVideos;
 static int selectedIndex;
+static int max_status_y = 0;
 
 // All offsets and sizes are in tiles, not pixels
 #define MENU_ITEM_X 2
@@ -221,6 +222,15 @@ static void drawMultilineText(const char* text) {
     VDP_drawText(line, STATUS_MESSAGE_X, y);
     y++;
   }
+
+  int new_max_status_y = y;
+
+  // Clear remaining lines of the old status message.
+  while (y < max_status_y) {
+    VDP_clearTextArea(STATUS_MESSAGE_X, y, max_line_len, 1);
+    y++;
+  }
+  max_status_y = new_max_status_y;
 }
 
 static void genericMessage(uint16_t pal, const char* message) {
