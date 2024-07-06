@@ -15,6 +15,7 @@
 #include "segavideo_state_internal.h"
 
 #include "kinetoscope_logo.h"
+#include "menu_font.h"
 #include "trivial_tilemap.h"
 
 static bool menuChanged;
@@ -45,10 +46,8 @@ static int selectedIndex;
 #define LOGO_TILE_INDEX (THUMB_TILE_INDEX_2 + THUMB_TILES)
 #define LOGO_TILES (28 * 6)  // 168
 
-#define INSTRUCTIONS_X 2
+#define INSTRUCTIONS_X 1
 #define INSTRUCTIONS_Y 15
-#define INSTRUCTIONS_TILE_INDEX (LOGO_TILE_INDEX + LOGO_TILES)
-#define INSTRUCTIONS_TILES (11 * 6)  // 66
 
 // NOTE: The font occupies 96 tiles, 1696 through 1791
 
@@ -172,9 +171,9 @@ static void loadMenuColors() {
   // Load menu colors.
   uint16_t white  = 0x0FFF;  // ABGR
   uint16_t yellow = 0x00FF;  // ABGR
-  // Text uses the last entry of each palette.
-  PAL_setColors(PAL_WHITE  * 16 + 15, &white,  /* count= */ 1, CPU);
-  PAL_setColors(PAL_YELLOW * 16 + 15, &yellow, /* count= */ 1, CPU);
+  // The custom font uses the first entry of each palette.
+  PAL_setColors(PAL_WHITE  * 16 + 1, &white,  /* count= */ 1, CPU);
+  PAL_setColors(PAL_YELLOW * 16 + 1, &yellow, /* count= */ 1, CPU);
 }
 
 static void drawMultilineText(const char* text) {
@@ -225,8 +224,8 @@ static void drawMultilineText(const char* text) {
 }
 
 static void genericMessage(uint16_t pal, const char* message) {
-  // Load the default font (which may have been overwritten by video playback).
-  VDP_loadFont(&font_default, CPU);
+  // Load the menu font (which may have been overwritten by video playback).
+  VDP_loadFont(&menu_font, CPU);
 
   // Set the palette.
   VDP_setTextPalette(pal);
@@ -278,6 +277,12 @@ static void drawLogo() {
   // It's not clear to me what is overwriting these palettes, but reloading at
   // this point fixes them.
   loadMenuColors();
+}
+
+static void drawInstructions() {
+  VDP_drawText("Choose a video", INSTRUCTIONS_X, INSTRUCTIONS_Y);
+  VDP_drawText(" Press start ", INSTRUCTIONS_X, INSTRUCTIONS_Y + 2);
+  VDP_drawText("   to play   ", INSTRUCTIONS_X, INSTRUCTIONS_Y + 3);
 }
 
 bool segavideo_menu_checkHardware() {
@@ -383,9 +388,8 @@ static void drawMenuItem(
 void segavideo_menu_draw() {
   if (segavideo_getState() != Menu) {
     clearScreen();
+    drawInstructions();
     drawLogo();
-
-    // TODO: Draw instructions
 
     segavideo_setState(Menu);
     menuChanged = true;
