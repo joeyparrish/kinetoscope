@@ -37,7 +37,7 @@ static uint32_t audioResumeSamples;
 
 // Video
 static uint16_t frameRate;
-static uint16_t nextFrameNum;
+static uint32_t nextFrameNum;
 
 // Hard-coded for now.  Fullscreen video only.
 #define MAP_W 32

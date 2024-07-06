@@ -457,7 +457,7 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
       f.write(FILE_FORMAT.to_bytes(2, 'big'))
       f.write(args.fps.to_bytes(2, 'big'))
       f.write(args.sample_rate.to_bytes(2, 'big'))
-      f.write(frame_count.to_bytes(2, 'big'))
+      f.write(frame_count.to_bytes(4, 'big'))
       f.write(sound_len.to_bytes(4, 'big'))
 
       # Compute the title for the metadata, truncate/pad to 128 bytes including

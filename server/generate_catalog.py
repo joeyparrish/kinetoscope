@@ -25,8 +25,8 @@ def get_video_header(path):
   assert len(header) == 8192
 
   # The header parts before and after the relative_url field.
-  first_part = header[0:(28+128)]
-  last_part = header[(28+128+128):]
+  first_part = header[0:(30+128)]
+  last_part = header[(30+128+128):]
 
   # Compute the relative URL.
   relative_url = os.path.relpath(path)

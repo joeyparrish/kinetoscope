@@ -30,13 +30,13 @@ typedef struct SegaVideoHeader {
   uint16_t format;  // SEGAVIDEO_HEADER_FORMAT
   uint16_t frameRate;  // fps
   uint16_t sampleRate;  // Hz
-  uint16_t totalFrames;  // num frames
+  uint32_t totalFrames;  // num frames
   uint32_t totalSamples;  // bytes, total, multiple of 256
 
-  // 28 bytes above.
+  // 30 bytes above.
   char title[128];
   char relative_url[128];
-  uint8_t padding[708];
+  uint8_t padding[706];
   // 7200 bytes below.
 
   // A thumbnail for display in the streamer ROM menu. Just like
