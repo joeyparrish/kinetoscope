@@ -63,6 +63,10 @@ jobs:
           tar xf SDL2-2.30.3.tar.gz
           ln -s SDL2-2.30.3 sdl
 
+          wget -O curl-8.8.0.tar.gz https://github.com/curl/curl/releases/download/curl-8_8_0/curl-8.8.0.tar.gz
+          tar xf curl-8.8.0.tar.gz
+          ln -s curl-8.8.0 curl
+
       - name: Setup ccache
         uses: hendrikmuhs/ccache-action@v1.2
         with:

@@ -1,4 +1,4 @@
-commit de6b8db6902bcccdb172e4fec1f360b3b3df107e
+commit 06c9809ff38d3fe16cf893b3382c0ace5055296a
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,10 +21,31 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..c69ff64 100644
+index 0dddc9f..8cc2106 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -221,6 +221,7 @@ endif
+@@ -109,6 +109,10 @@ endif
+ endif #Darwin
+ CFLAGS+= -I$(SDL_INCLUDE_PATH)
+ 
++# Static libcurl for kinetoscope emulation
++CFLAGS+= -Icurl/include
++LDFLAGS+= curl/lib/.libs/libcurl.a
++
+ else
+ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
+ LDFLAGS:=-lm
+@@ -126,6 +130,9 @@ LDFLAGS+= -framework OpenGL -framework AppKit
+ endif
+ endif
+ 
++# System libcurl for Kinetoscope emulation
++LDFLAGS+= $(curl-config --libs)
++
+ endif #PORTABLE
+ endif #Windows
+ 
+@@ -221,6 +228,7 @@ endif
  
  MAINOBJS=blastem.o system.o genesis.o debug.o gdb_remote.o vdp.o $(RENDEROBJS) io.o romdb.o hash.o menu.o xband.o \
  	realtec.o i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
@@ -32,7 +53,7 @@ index 0dddc9f..c69ff64 100644
  	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o zip.o bindings.o jcart.o gen_player.o
  
  LIBOBJS=libblastem.o system.o genesis.o debug.o gdb_remote.o vdp.o io.o romdb.o hash.o xband.o realtec.o \
-@@ -277,6 +278,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
+@@ -277,6 +285,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
  CFLAGS+= -fpic -DIS_LIB
  endif
  
@@ -41,7 +62,7 @@ index 0dddc9f..c69ff64 100644
  all : $(ALL)
  
  libblastem.$(SO) : $(LIBOBJS)
-@@ -366,7 +369,7 @@ m68k.c : m68k.cpu cpu_dsl.py
+@@ -366,7 +376,7 @@ m68k.c : m68k.cpu cpu_dsl.py
  	$(CC) $(CFLAGS) -c -o $@ $<
  
  %.png : %.xcf
@@ -51,10 +72,25 @@ index 0dddc9f..c69ff64 100644
  %.tiles : %.spec
  	./img2tiles.py -s $< $@
 diff --git a/build_release b/build_release
-index f5faa10..ad3ba82 100755
+index f5faa10..880044d 100755
 --- a/build_release
 +++ b/build_release
-@@ -32,10 +32,8 @@ else
+@@ -24,6 +24,14 @@ if [ $OS = "Linux" ]; then
+ 	make all
+ 	cd ..
+ fi
++
++cd curl
++./configure \
++    --enable-static --disable-shared --without-ssl \
++    --without-libpsl --without-zstd --without-brotli
++make
++cd ..
++
+ echo "Path is: $PATH"
+ if [ $OS = "Win64" ]; then
+ 	make PORTABLE=1 OS=Windows CPU=x86_64 clean all
+@@ -32,10 +40,8 @@ else
  	make PORTABLE=1 clean all
  	SDLDLLPATH=sdl/i686-w64-mingw32/bin
  fi
@@ -65,7 +101,7 @@ index f5faa10..ad3ba82 100755
  	txt=".txt"
  else
  	binaries="dis zdis vgmplay blastem termhelper"
-@@ -44,11 +42,9 @@ else
+@@ -44,11 +50,9 @@ else
  	else
  		binaries="$binaries lib"
  	fi
@@ -78,7 +114,7 @@ index f5faa10..ad3ba82 100755
  if [ $OS = "Windows" ]; then
  	suffix='-win32'
  elif [ $OS = "Win64" ]; then
-@@ -66,11 +62,7 @@ cp -r $binaries shaders images default.cfg rom.db gamecontrollerdb.txt systems.c
+@@ -66,11 +70,7 @@ cp -r $binaries shaders images default.cfg rom.db gamecontrollerdb.txt systems.c
  for file in README COPYING CHANGELOG; do
  	cp "$file" "$dir"/"$file$txt"
  done
@@ -91,20 +127,6 @@ index f5faa10..ad3ba82 100755
  cp glew/LICENSE.txt "$dir"/GLEW-LICENSE$txt
  
  if [ $OS = "Windows" -o $OS = "Win64" ]; then
-diff --git a/default.cfg b/default.cfg
-index 8274766..2bcfd15 100644
---- a/default.cfg
-+++ b/default.cfg
-@@ -395,6 +395,9 @@ system {
- 	#MegaWiFi allows ROMs to make connections to the internet
- 	#so it should only be enabled for ROMs you trust
- 	megawifi off
-+	#kinetoscope ROMs get a simulated connection, but do not really connect to
-+	#the internet, so this is a safe default
-+	kinetoscope on
- 	#Model of the emulated Gen/MD system, see systems.cfg for a list of options
- 	model md1va3
- }
 diff --git a/gdb_remote.c b/gdb_remote.c
 index 9dbfce4..2effc89 100644
 --- a/gdb_remote.c
@@ -128,7 +150,7 @@ index c91273c..f637add 100755
  
  def gchannel(Val):
 diff --git a/romdb.c b/romdb.c
-index 79afa76..e3a7de8 100644
+index 79afa76..416647f 100644
 --- a/romdb.c
 +++ b/romdb.c
 @@ -14,6 +14,7 @@
@@ -139,7 +161,7 @@ index 79afa76..e3a7de8 100644
  
  #define DOM_TITLE_START 0x120
  #define DOM_TITLE_END 0x150
-@@ -338,6 +339,54 @@ void add_memmap_header(rom_info *info, uint8_t *rom, uint32_t size, memmap_chunk
+@@ -338,6 +339,47 @@ void add_memmap_header(rom_info *info, uint8_t *rom, uint32_t size, memmap_chunk
  			warning("ROM uses MegaWiFi, but it is disabled\n");
  		}
  		return;
@@ -177,19 +199,12 @@ index 79afa76..e3a7de8 100644
 +		info->map[2].flags = MMAP_READ;
 +		info->map[2].buffer = rom;
 +
-+		if (!strcmp(
-+			"on",
-+			tern_find_path_default(config, "system\0kinetoscope\0", (tern_val){.ptrval="off"}, TVAL_PTR).ptrval)
-+		) {
-+			info->map[1].write_16 = kinetoscope_write_16;
-+			info->map[1].write_8 = kinetoscope_write_8;
-+			info->map[1].read_16 = kinetoscope_read_16;
-+			info->map[1].read_8 = kinetoscope_read_8;
++		info->map[1].write_16 = kinetoscope_write_16;
++		info->map[1].write_8 = kinetoscope_write_8;
++		info->map[1].read_16 = kinetoscope_read_16;
++		info->map[1].read_8 = kinetoscope_read_8;
 +
-+			kinetoscope_init(sram_buffer, sram_size);
-+		} else {
-+			warning("ROM uses kinetoscope, but it is disabled\n");
-+		}
++		kinetoscope_init(sram_buffer, sram_size);
 +		return;
  	} else if (has_ram_header(rom, size)) {
  		uint32_t ram_start = read_ram_header(info, rom);

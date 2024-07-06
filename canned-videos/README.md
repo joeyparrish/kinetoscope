@@ -1,21 +1,17 @@
 # Canned Sega Videos
 
-Canned videos for use in an emulator or streaming server can be downloaded and
-installed with these scripts.
-
-Linux or macOS, installed to `~/.local/share/Kinetoscope-Emulation/`:
+Pre-encoded videos for testing can be downloaded with these scripts.
+A folder will be created in your current directly called `kinetoscope-videos`.
 
 ```sh
 ./install.sh
 ```
 
-Windows, installed to "C:\Users\USERNAME\AppData\Local\Kinetoscope-Emulation":
-
 ```ps1
 ./install.ps1
 ```
 
-## Installing canned videos without the full source code:
+## Downloading canned videos without the full source code:
 
 Linux or macOS:
 

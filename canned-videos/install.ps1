@@ -10,7 +10,7 @@ $FILES=@(
   "ZOEY_ANN_THE_BOXER.segavideo"
 )
 
-$DESTINATION="$env:LOCALAPPDATA\Kinetoscope-Emulation"
+$DESTINATION=".\kinetoscope-videos"
 New-Item -ItemType Directory -Path "$DESTINATION" -Force
 
 $ProgressPreference = 'SilentlyContinue'

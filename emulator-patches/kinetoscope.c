@@ -9,6 +9,8 @@
 #include <stdint.h>
 #include <string.h>
 
+#include <curl/curl.h>
+
 #include "genesis.h"
 #include "util.h"
 
@@ -48,25 +50,6 @@
 #define DELAY_GENERAL 0.5
 #define DELAY_NETWORK 5
 
-// TODO: Get this from disk instead
-#define CANNED_VIDEO_LIST \
-    "Never Gonna Give You Up\n" \
-    "Zoey Ann the Boxer\n" \
-    "Gangnam Style\n" \
-    "Bohemian Rhapsody\n" \
-    "Developers, Developers\n" \
-    "Shia LaBeouf\n" \
-    "You Spin Me Round\n" \
-
-// Video indices from the list above
-#define NEVER_GONNA_GIVE_YOU_UP 0
-#define ZOEY_ANN_THE_BOXER      1
-#define GANGNAM_STYLE           2
-#define BOHEMIAN_RHAPSODY       3
-#define DEVELOPERS_DEVELOPERS   4
-#define SHIA_LABEOUF            5
-#define YOU_SPIN_ME_ROUND       6
-
 // SRAM regions.
 #define REGION_OFFSET_MASK 0x100000  // 0MB or 1MB offset
 #define REGION_SIZE        0x100000  // 1MB size
@@ -75,6 +58,8 @@
 #define PADDING_BYTES_OFFSET_FROM_END_OF_HEADER \
   (sizeof(SegaVideoChunkHeader) - offsetof(SegaVideoChunkHeader, paddingBytes))
 
+#define VIDEO_BASE_URL "http://storage.googleapis.com/sega-kinetoscope/canned-videos/"
+#define VIDEO_CATALOG_URL VIDEO_BASE_URL "catalog.bin"
 
 static uint8_t* global_sram_buffer = NULL;
 static uint32_t global_sram_size = 0;
@@ -92,17 +77,6 @@ static uint32_t global_video_data_offset;
 static uint32_t global_sram_offset;
 // Size of the last chunk written:
 static uint32_t global_last_chunk_size;
-
-const char* get_video_dir() {
-  static const char* video_dir = NULL;
-  if (!video_dir) {
-    const char* base = get_userdata_dir();
-    if (base) {
-      video_dir = alloc_concat(base, PATH_SEP "Kinetoscope-Emulation");
-    }
-  }
-  return video_dir;
-}
 
 static uint32_t cycle_delay(void *context, double delay_seconds) {
   m68k_context *m68k = (m68k_context *)context;
@@ -127,6 +101,55 @@ static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size) {
   }
 }
 
+static void report_error(const char *message) {
+  printf("Kinetoscope: Simulating error: %s\n", message);
+  global_error = 1;
+  if (global_error_str) {
+    free(global_error_str);
+  }
+  global_error_str = strdup(message);
+}
+
+static void write_error_to_sram() {
+  write_sram(0, (const uint8_t*)global_error_str, strlen(global_error_str));
+}
+
+// Writes HTTP data to SRAM.
+static size_t http_data_callback(void *data, size_t size, size_t n, void *ctx) {
+  write_sram(global_sram_offset, data, size * n);
+  global_sram_offset += size * n;
+  return size * n;
+}
+
+static bool fetch_range_to_sram(const char* url, int first_byte, int last_byte) {
+  char range[32];
+  snprintf(range, 32, "%d-%d", first_byte, last_byte);
+  // snprintf doesn't guarantee a terminator when it overflows.
+  range[31] = '\0';
+
+  global_sram_offset = 0;
+
+  CURL* handle = curl_easy_init();
+  curl_easy_setopt(handle, CURLOPT_URL, url);
+  curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, http_data_callback);
+  curl_easy_setopt(handle, CURLOPT_WRITEDATA, NULL);
+  if (first_byte != 0 || last_byte != -1) {
+    curl_easy_setopt(handle, CURLOPT_RANGE, range);
+  }
+
+  CURLcode res = curl_easy_perform(handle);
+  long http_code = 0;
+  curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &http_code);
+  curl_easy_cleanup(handle);
+
+  return res == CURLE_OK && (http_code == 200 || http_code == 206);
+}
+
+static bool fetch_to_sram(const char* url) {
+  return fetch_range_to_sram(url, 0, -1);
+}
+
+#if 0 // FIXME: Reimplement video chunk logic by writing from libcurl to SRAM
 static void write_sram_video_chunk(const SegaVideoChunkInfo* chunk) {
   uint32_t chunk_size = (uint32_t)(chunk->end - chunk->start);
   uint32_t header_size = sizeof(SegaVideoChunkHeader) +
@@ -177,6 +200,7 @@ static void write_sram_video_chunk(const SegaVideoChunkInfo* chunk) {
   // Store the last chunk size.
   global_last_chunk_size = chunk_size;
 }
+#endif
 
 static void stop_video() {
   if (global_video_data) {
@@ -186,6 +210,7 @@ static void stop_video() {
 }
 
 static void fill_region() {
+#if 0 // FIXME: Reimplement video chunk logic by writing from libcurl to SRAM
   uint32_t start_region = global_sram_offset & REGION_OFFSET_MASK;
 
   while (true) {
@@ -218,26 +243,11 @@ static void fill_region() {
       return;
     }
   }
+#endif
 }
 
 static void start_video() {
   char* video_path = NULL;
-
-  switch (global_arg) {
-#define VIDEO_CASE(VALUE_MACRO) \
-    case VALUE_MACRO: \
-      video_path = alloc_concat( \
-          get_video_dir(), PATH_SEP #VALUE_MACRO ".segavideo"); \
-      break;
-
-    VIDEO_CASE(NEVER_GONNA_GIVE_YOU_UP);
-    VIDEO_CASE(ZOEY_ANN_THE_BOXER);
-    VIDEO_CASE(GANGNAM_STYLE);
-    VIDEO_CASE(BOHEMIAN_RHAPSODY);
-    VIDEO_CASE(DEVELOPERS_DEVELOPERS);
-    VIDEO_CASE(SHIA_LABEOUF);
-    VIDEO_CASE(YOU_SPIN_ME_ROUND);
-  }
 
   if (!video_path) {
     // Write a 0 to SRAM, which will make sure any old data doesn't look like a
@@ -247,22 +257,7 @@ static void start_video() {
     return;
   }
 
-  FILE* f = fopen(video_path, "r");
-  if (!f) {
-    printf("Kinetoscope: Failed to open video (%s)!\n", video_path);
-    free(video_path);
-    return;
-  }
-
-  long size;
-  if (fseek(f, 0, SEEK_END) ||
-      ((size = ftell(f)) < 0) ||
-      fseek(f, 0, SEEK_SET)) {
-    printf("Kinetoscope: Failed to get video size (%s)!\n", video_path);
-    free(video_path);
-    return;
-  }
-
+#if 0 // FIXME: Reimplement video chunk logic by writing from libcurl to SRAM
   if (global_video_data) {
     free(global_video_data);
   }
@@ -328,6 +323,7 @@ static void start_video() {
     // Fill the second region as well.
     fill_region();
   }
+#endif
 }
 
 static void flip_region() {
@@ -340,47 +336,12 @@ static void flip_region() {
 }
 
 static void get_video_list() {
-  uint8_t page_num = global_arg >> 8;
-  uint8_t page_size = global_arg & 0xff;
-  printf("VideoStream: list page_num = %d, page_size = %d\n",
-      page_num, page_size);
+  printf("Kinetoscope: list\n");
 
-  // Find the requested page.
-  const char* video_list = CANNED_VIDEO_LIST;
-  for (int i = 0; i < page_num * page_size; ++i) {
-    video_list = index(video_list, '\n');
-    if (!video_list) break;
-    video_list += 1;  // Move past the newline.
+  if (!fetch_to_sram(VIDEO_CATALOG_URL)) {
+    report_error("Failed to download video catalog!");
+    return;
   }
-
-  if (video_list) {
-    // Include the NUL terminator in the length.
-    uint32_t video_list_len = strlen(video_list) + 1;
-    // The list on disk might be longer than what we can fit in SRAM.
-    if (video_list_len > REGION_SIZE) {
-      video_list_len = REGION_SIZE - 1;
-    }
-
-    // Write the requested page to SRAM.
-    write_sram(0, (const uint8_t*)video_list, video_list_len);
-  } else {
-    // The page was not found, so write a blank string.
-    printf("Kinetoscope: Unable to find requested page!\n");
-    write_sram(0, (const uint8_t*)"", 1);
-  }
-}
-
-static void report_error(const char *message) {
-  printf("Kinetoscope: Simulating error: %s\n", message);
-  global_error = 1;
-  if (global_error_str) {
-    free(global_error_str);
-  }
-  global_error_str = strdup(message);
-}
-
-static void write_error_to_sram() {
-  write_sram(0, (const uint8_t*)global_error_str, strlen(global_error_str));
 }
 
 static void execute_command() {
@@ -416,6 +377,13 @@ static void execute_command() {
 void kinetoscope_init(void *sram_buffer, uint32_t sram_size) {
   global_sram_buffer = sram_buffer;
   global_sram_size = sram_size;
+
+  curl_global_init(CURL_GLOBAL_ALL);
+
+#if 0
+  // To test error handling, simulate no connection
+  report_error("Wired connection failed and WiFi not configured!  Have you tried connecting the thing to the other thing?");
+#endif
 }
 
 void *kinetoscope_write_16(uint32_t address, void *context, uint16_t value) {

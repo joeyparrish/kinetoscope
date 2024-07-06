@@ -12,7 +12,7 @@ FILES=(
   ZOEY_ANN_THE_BOXER.segavideo
 )
 
-DESTINATION=~/.local/share/Kinetoscope-Emulation/
+DESTINATION=./kinetoscope-videos
 mkdir -p $DESTINATION
 
 for FILE in "${FILES[@]}"; do

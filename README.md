@@ -62,8 +62,7 @@ must be installed to work on that part of the project.
  - [`emulator-patches/`](emulator-patches/): Patches for OSS emulators to
    emulate the streaming hardware.
  - [`server/`](server/): Details on running a server for Sega video streams.
- - [`canned-videos/`](canned-videos/): Install canned, pre-encoded videos for
-   use in an emulator or video server.
+ - [`canned-videos/`](canned-videos/): Download canned, pre-encoded videos.
 
 
 ## Links
