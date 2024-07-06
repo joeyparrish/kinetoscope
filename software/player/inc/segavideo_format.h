@@ -20,7 +20,7 @@
 #endif
 
 #define SEGAVIDEO_HEADER_MAGIC  "what nintendon't"
-#define SEGAVIDEO_HEADER_FORMAT 0x0001
+#define SEGAVIDEO_HEADER_FORMAT 0x0002
 
 // This header appears at the start of the file in both embedded and streaming
 // mode.  Each one is exactly 8kB, so they can form the basis of a catalog
@@ -32,11 +32,13 @@ typedef struct SegaVideoHeader {
   uint16_t sampleRate;  // Hz
   uint32_t totalFrames;  // num frames
   uint32_t totalSamples;  // bytes, total, multiple of 256
+  uint32_t chunkSize;  // bytes, for all but the final chunk
+  uint32_t totalChunks;
 
-  // 30 bytes above.
+  // 38 bytes above.
   char title[128];
   char relative_url[128];
-  uint8_t padding[706];
+  uint8_t padding[698];
   // 7200 bytes below.
 
   // A thumbnail for display in the streamer ROM menu. Just like
@@ -57,9 +59,13 @@ typedef struct SegaVideoHeader {
 typedef struct SegaVideoChunkHeader {
   uint32_t samples;
   uint16_t frames;
-  uint16_t paddingBytes;
-  // Padding to maintain 256-byte alignment for the audio data that follows.
-  // The audio driver requires this alignment.
+  // Padding right after the chunk header to maintain 256-byte alignment for
+  // the audio data that follows.  The audio driver requires this alignment.
+  uint16_t prePaddingBytes;
+  // Padding after the last frame to maintain 256-byte alignemnt for the next
+  // chunk.  This is slightly wasteful, but makes chunk sizes predictable,
+  // removing chunk parsing from the microcontroller.
+  uint16_t postPaddingBytes;
 } __attribute__((packed)) SegaVideoChunkHeader;
 
 typedef struct SegaVideoFrame {
@@ -82,7 +88,6 @@ typedef struct SegaVideoFrame {
 // Streaming hardware will write to alternating regions of 1MB of SRAM.  If a
 // chunk the same size as the previous one would overflow the current region,
 // the next chunk will be written to the other region instead of the current
-// region.  The hardware will adjust the padding to ensure a 256-byte alignment
-// of audio samples, as required by the audio driver.
+// region.
 
 #endif // _SEGAVIDEO_FORMAT_H

@@ -64,10 +64,11 @@ void segavideo_parseChunk(const uint8_t* chunkStart,
   chunkInfo->start = chunkStart;
   chunkInfo->audioStart =
       chunkStart + sizeof(SegaVideoChunkHeader) +
-      ntohs(chunkHeader->paddingBytes);
+      ntohs(chunkHeader->prePaddingBytes);
   chunkInfo->audioSamples = ntohl(chunkHeader->samples);
   chunkInfo->frameStart = chunkInfo->audioStart + chunkInfo->audioSamples;
   chunkInfo->numFrames = ntohs(chunkHeader->frames);
   chunkInfo->end =
-      chunkInfo->frameStart + sizeof(SegaVideoFrame) * chunkInfo->numFrames;
+      chunkInfo->frameStart + sizeof(SegaVideoFrame) * chunkInfo->numFrames +
+      ntohs(chunkHeader->postPaddingBytes);
 }

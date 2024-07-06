@@ -28,7 +28,7 @@ typedef struct SegaVideoChunkInfo {
   const uint8_t* audioStart;
   uint32_t audioSamples;
   const uint8_t* frameStart;
-  uint16_t numFrames;
+  uint32_t numFrames;
   const uint8_t* end;
   bool flipRegion;
 } SegaVideoChunkInfo;

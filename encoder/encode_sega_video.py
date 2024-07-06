@@ -29,7 +29,7 @@ FILE_MAGIC = b"what nintendon't"
 # that people want to expand on this goofy project and worry about
 # compatibility, we define a constant for the file format that is written into
 # the output file.
-FILE_FORMAT = 1
+FILE_FORMAT = 2
 
 # Number of tiles (w, h) for fullscreen and thumbnail sizes.
 FULLSCREEN_TILES = (32, 28)
@@ -452,6 +452,9 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
 
   with open(sound_path, 'rb') as sound_file:
     with open(args.output, 'wb') as f:
+      chunk_size = 0
+      num_chunks = 0
+
       # Write SegaVideoHeader
       f.write(FILE_MAGIC)
       f.write(FILE_FORMAT.to_bytes(2, 'big'))
@@ -459,6 +462,9 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
       f.write(args.sample_rate.to_bytes(2, 'big'))
       f.write(frame_count.to_bytes(4, 'big'))
       f.write(sound_len.to_bytes(4, 'big'))
+      chunk_size_offset = f.tell()
+      f.write(chunk_size.to_bytes(4, 'big'))
+      f.write(num_chunks.to_bytes(4, 'big'))
 
       # Compute the title for the metadata, truncate/pad to 128 bytes including
       # terminator.
@@ -469,22 +475,33 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
       assert len(title) == 128
       f.write(title)
 
-      f.write(bytes(836)) # Padding/unused
+      f.write(bytes(128)) # relative URL, filled in for catalog later
+
+      f.write(bytes(698)) # Padding/unused
 
       with open(os.path.join(thumb_dir, 'thumb.segaframe'), 'rb') as thumb:
         f.write(thumb.read())
 
       while sound_len and frame_count:
         # Write SegaVideoChunkHeader
+        start_of_chunk = f.tell()
         chunk_sound_size = min(sound_len, samples_per_chunk)
         f.write(chunk_sound_size.to_bytes(4, 'big'))
         chunk_frame_count = min(frame_count, frames_per_chunk)
         f.write(chunk_frame_count.to_bytes(2, 'big'))
+
         current_position = f.tell()
-        padding_remainder = (current_position + 2) % 256
-        padding_bytes = 256 - padding_remainder if padding_remainder else 0
-        f.write(padding_bytes.to_bytes(2, 'big'))
-        f.write(bytes(padding_bytes))
+        pre_padding_remainder = (current_position + 4) % 256
+        pre_padding_bytes = 256 - pre_padding_remainder if pre_padding_remainder else 0
+        f.write(pre_padding_bytes.to_bytes(2, 'big'))
+
+        # We fill this in later.
+        post_padding_bytes = 0
+        post_padding_bytes_offset = f.tell()
+        f.write(post_padding_bytes.to_bytes(2, 'big'))
+
+        # Add pre-padding.
+        f.write(bytes(pre_padding_bytes))
 
         # Write audio:
         sound_data = sound_file.read(chunk_sound_size)
@@ -505,13 +522,41 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
           frame_count -= 1
           frame_path_index += 1
 
+        # Figure out the post-padding.
+        end_of_frames = f.tell()
+        post_padding_remainder = end_of_frames % 256
+        post_padding_bytes = 256 - post_padding_remainder if post_padding_remainder else 0
+
+        # Seek back to fill in the post-padding field.
+        f.seek(post_padding_bytes_offset)
+        f.write(post_padding_bytes.to_bytes(2, 'big'))
+        f.seek(end_of_frames)
+
+        # Add post-padding.
+        f.write(bytes(post_padding_bytes))
+
+        # If this is the first chunk, record the size.
+        end_of_chunk = f.tell()
+        if chunk_size == 0:
+          chunk_size = end_of_chunk - start_of_chunk
+
+        # Count chunks.
+        num_chunks += 1
+
       # Write final SegaVideoChunkHeader to indicate no more chunks
       chunk_sound_size = 0
       f.write(chunk_sound_size.to_bytes(4, 'big'))
       chunk_frame_count = 0
       f.write(chunk_frame_count.to_bytes(2, 'big'))
-      padding_bytes = 0
-      f.write(padding_bytes.to_bytes(2, 'big'))
+      pre_padding_bytes = 0
+      f.write(pre_padding_bytes.to_bytes(2, 'big'))
+      post_padding_bytes = 0
+      f.write(post_padding_bytes.to_bytes(2, 'big'))
+
+      # Seek back to the header to fill in these two fields.
+      f.seek(chunk_size_offset)
+      f.write(chunk_size.to_bytes(4, 'big'))
+      f.write(num_chunks.to_bytes(4, 'big'))
 
   print('Output complete.')
 

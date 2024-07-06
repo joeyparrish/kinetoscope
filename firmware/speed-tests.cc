@@ -14,10 +14,10 @@
 #include "sram.h"
 
 #define SERVER "storage.googleapis.com"
-#define PATH   "/sega-kinetoscope/canned-videos/NEVER_GONNA_GIVE_YOU_UP.segavideo"
+#define PATH   "/sega-kinetoscope/canned-videos/Never%20Gonna%20Give%20You%20Up.segavideo"
 
-// ~3s worth of audio+video data with headers and worst-case padding.
-#define ABOUT_3S_VIDEO_AUDIO_BYTES 909511
+// 3s worth of audio+video data, at default settings, with headers.
+#define ABOUT_3S_VIDEO_AUDIO_BYTES 901376
 
 // A safe buffer size for these tests.
 #define BUFFER_SIZE 100 * 1024
