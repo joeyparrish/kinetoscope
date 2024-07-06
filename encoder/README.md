@@ -41,8 +41,7 @@ address of the video in ROM.
 For a complete example of embedded video in a ROM, see
 [`../software/embed-video-in-rom/`](../software/embed-video-in-rom/).
 
-To prepare video for a streaming server ([`server/`](../server/) folder) or for
-use by an emulator ([`emulator-patches/`](../emulator-patches/) folder), omit
+To prepare video for a streaming server ([`server/`](../server/) folder), omit
 the `--generate-resource-file` flag, as well as the start and end (`-s` and
 `-e`) flags.
 

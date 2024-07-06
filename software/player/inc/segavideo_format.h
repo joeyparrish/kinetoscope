@@ -35,7 +35,8 @@ typedef struct SegaVideoHeader {
 
   // 28 bytes above.
   char title[128];
-  uint8_t padding[836];
+  char relative_url[128];
+  uint8_t padding[708];
   // 7200 bytes below.
 
   // A thumbnail for display in the streamer ROM menu. Just like
