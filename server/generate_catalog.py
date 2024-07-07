@@ -17,6 +17,7 @@ See also ../encoder/encode_sega_video.py
 
 import os
 import sys
+import urllib.parse
 
 
 def get_video_header(path):
@@ -34,9 +35,9 @@ def get_video_header(path):
     raise RuntimeError('All paths must be inside this folder!')
 
   # Encode the relative URL.
-  relative_url = relative_url.encode('utf-8')
+  relative_url = urllib.parse.quote(relative_url).encode('utf-8')
   if len(relative_url) > 127:
-    raise RuntimeError('Relative paths cannot be more than 127 bytes.')
+    raise RuntimeError('Relative paths cannot be more than 127 bytes after URL encoding.')
 
   # Truncate/pad to 128 bytes including terminator.
   relative_url = (relative_url + bytes(128))[0:127] + b'\0'
