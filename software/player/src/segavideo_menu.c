@@ -47,7 +47,7 @@ static int max_status_y = 0;
 #define LOGO_TILE_INDEX (THUMB_TILE_INDEX_2 + THUMB_TILES)
 #define LOGO_TILES (28 * 6)  // 168
 
-#define INSTRUCTIONS_X 1
+#define INSTRUCTIONS_X 0
 #define INSTRUCTIONS_Y 15
 
 // NOTE: The font occupies 96 tiles, 1696 through 1791
@@ -522,6 +522,7 @@ bool segavideo_menu_hasError() {
 void segavideo_menu_showError() {
   if (segavideo_getState() != Error) {
     clearScreen();
+    drawLogo();
 
     uint16_t command_timeout = 5; // seconds
     // NOTE: Bypassing errorMessage() here and calling genericMessage and
