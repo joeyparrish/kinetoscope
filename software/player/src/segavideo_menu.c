@@ -252,8 +252,10 @@ static void statusMessage(const char* message) {
 }
 
 static void errorMessage(const char* message) {
-  genericMessage(PAL_YELLOW, message);
-  segavideo_setState(Error);
+  if (!segavideo_menu_hasError()) {
+    genericMessage(PAL_YELLOW, message);
+    segavideo_setState(Error);
+  }
 }
 
 void segavideo_menu_init() {
@@ -514,7 +516,7 @@ bool segavideo_menu_select(bool loop) {
 }
 
 bool segavideo_menu_hasError() {
-  return pendingError() || segavideo_getState() == Error;
+  return segavideo_getState() == Error || pendingError();
 }
 
 void segavideo_menu_showError() {
@@ -522,11 +524,15 @@ void segavideo_menu_showError() {
     clearScreen();
 
     uint16_t command_timeout = 5; // seconds
+    // NOTE: Bypassing errorMessage() here and calling genericMessage and
+    // segavideo_setState to ensure we don't get locked out by pendingError()
+    // and segavideo_menu_hasError().
     if (!sendCommandAndWait(CMD_GET_ERROR, 0, command_timeout)) {
-      errorMessage("Failed to retrieve error!");
+      genericMessage(PAL_YELLOW, "Failed to retrieve error!");
     } else {
-      errorMessage(KINETOSCOPE_ERROR_DATA);
+      genericMessage(PAL_YELLOW, KINETOSCOPE_ERROR_DATA);
     }
+    segavideo_setState(Error);
   }
 }
 

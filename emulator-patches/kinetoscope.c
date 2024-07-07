@@ -104,12 +104,16 @@ static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size) {
 }
 
 static void report_error(const char *message) {
-  printf("Kinetoscope: Simulating error: %s\n", message);
-  global_error = 1;
-  if (global_error_str) {
-    free(global_error_str);
+  if (global_error == 0) {
+    printf("Kinetoscope: Simulating error: %s\n", message);
+    global_error = 1;
+    if (global_error_str) {
+      free(global_error_str);
+    }
+    global_error_str = strdup(message);
+  } else {
+    printf("Kinetoscope: Ignoring error: %s\n", message);
   }
-  global_error_str = strdup(message);
 }
 
 static void write_error_to_sram() {
