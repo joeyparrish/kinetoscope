@@ -1,4 +1,4 @@
-commit 06c9809ff38d3fe16cf893b3382c0ace5055296a
+commit f763ebcf3a755010bf4a6f696e0a93b2018516d6
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,7 +21,7 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..8cc2106 100644
+index 0dddc9f..a74fd14 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -109,6 +109,10 @@ endif
@@ -49,7 +49,7 @@ index 0dddc9f..8cc2106 100644
  
  MAINOBJS=blastem.o system.o genesis.o debug.o gdb_remote.o vdp.o $(RENDEROBJS) io.o romdb.o hash.o menu.o xband.o \
  	realtec.o i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
-+	kinetoscope/emulator-patches/kinetoscope.o kinetoscope/software/player/src/segavideo_parser.o \
++	kinetoscope/emulator-patches/kinetoscope.o \
  	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o zip.o bindings.o jcart.o gen_player.o
  
  LIBOBJS=libblastem.o system.o genesis.o debug.o gdb_remote.o vdp.o io.o romdb.o hash.o xband.o realtec.o \

@@ -9,11 +9,20 @@
 #include <genesis.h>
 
 #include "segavideo_player.h"
-#include "segavideo_parser.h"
 #include "segavideo_format.h"
 #include "segavideo_state_internal.h"
 
 #include "trivial_tilemap.h"
+
+typedef struct ChunkInfo {
+  const uint8_t* start;
+  const uint8_t* audioStart;
+  uint32_t audioSamples;
+  const uint8_t* frameStart;
+  uint32_t numFrames;
+  const uint8_t* end;
+  bool flipRegion;
+} ChunkInfo;
 
 // State
 static bool playing;
@@ -21,8 +30,8 @@ static bool paused;
 static bool loop;
 static const uint8_t* loopVideoData;
 
-static SegaVideoChunkInfo currentChunk;
-static SegaVideoChunkInfo nextChunk;
+static ChunkInfo currentChunk;
+static ChunkInfo nextChunk;
 static uint32_t regionSize;
 static uint32_t regionMask;
 static VoidCallback* loopCallback;
@@ -103,8 +112,42 @@ static uint32_t nextFrameNum;
 # define kprintf(...)
 #endif
 
-static void prepNextChunk(const SegaVideoChunkInfo* currentChunk,
-                          SegaVideoChunkInfo* nextChunk,
+bool segavideo_validateHeader(const uint8_t* videoData) {
+  const SegaVideoHeader* header = (const SegaVideoHeader*)videoData;
+
+  // No memcmp in SGDK...
+  for (uint16_t i = 0; i < sizeof(header->magic); ++i) {
+    if (header->magic[i] != SEGAVIDEO_HEADER_MAGIC[i]) {
+      kprintf("Header magic does not match!  Wrong format?\n");
+      return false;
+    }
+  }
+
+  if (header->format != SEGAVIDEO_HEADER_FORMAT) {
+    kprintf("Header format does not match!  New revision?\n");
+    return false;
+  }
+
+  return true;
+}
+
+static void parseChunk(const uint8_t* chunkStart,
+                       ChunkInfo* chunkInfo) {
+  const SegaVideoChunkHeader* chunkHeader =
+      (const SegaVideoChunkHeader*)chunkStart;
+  chunkInfo->start = chunkStart;
+  chunkInfo->audioStart =
+      chunkStart + sizeof(SegaVideoChunkHeader) + chunkHeader->prePaddingBytes;
+  chunkInfo->audioSamples = chunkHeader->samples;
+  chunkInfo->frameStart = chunkInfo->audioStart + chunkInfo->audioSamples;
+  chunkInfo->numFrames = chunkHeader->frames;
+  chunkInfo->end =
+      chunkInfo->frameStart + sizeof(SegaVideoFrame) * chunkInfo->numFrames +
+      chunkHeader->postPaddingBytes;
+}
+
+static void prepNextChunk(const ChunkInfo* currentChunk,
+                          ChunkInfo* nextChunk,
                           uint8_t* pointerBase,
                           uint32_t regionMask,
                           uint32_t regionSize) {
@@ -129,7 +172,7 @@ static void prepNextChunk(const SegaVideoChunkInfo* currentChunk,
     kprintf("Next chunk wrapped: %p\n", chunkStart);
   }
 
-  segavideo_parseChunk(chunkStart, nextChunk);
+  parseChunk(chunkStart, nextChunk);
   nextChunk->flipRegion = flipRegion;
   kprintf("Next chunk: %p => %p\n", nextChunk->start, nextChunk->end);
 
@@ -141,7 +184,7 @@ static void prepNextChunk(const SegaVideoChunkInfo* currentChunk,
   }
 }
 
-static bool regionOverflow(const SegaVideoChunkInfo* chunk,
+static bool regionOverflow(const ChunkInfo* chunk,
                            uint8_t* pointerBase,
                            uint32_t regionMask) {
   uint32_t startRegion = MASK(chunk->start, pointerBase, regionMask);
@@ -368,7 +411,7 @@ bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop,
 
   // Parse chunk header
   const uint8_t* chunkStart = videoData + sizeof(SegaVideoHeader);
-  segavideo_parseChunk(chunkStart, &currentChunk);
+  parseChunk(chunkStart, &currentChunk);
   currentChunk.flipRegion = false;
 
   if (regionOverflow(&currentChunk,

@@ -1,1 +1,0 @@
-../../player/inc/segavideo_parser.h

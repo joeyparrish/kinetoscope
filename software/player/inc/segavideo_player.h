@@ -39,6 +39,9 @@ void segavideo_stop();
 bool segavideo_isPlaying();
 
 // For internal use in the streamer ROM.  Don't use this.
+bool segavideo_validateHeader(const uint8_t* videoData);
+
+// For internal use in the streamer ROM.  Don't use this.
 bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop,
                             uint32_t pleaseRegionSize,
                             uint32_t pleaseRegionMask,

@@ -10,7 +10,6 @@
 
 #include "segavideo_menu.h"
 #include "segavideo_format.h"
-#include "segavideo_parser.h"
 #include "segavideo_player.h"
 #include "segavideo_state_internal.h"
 
