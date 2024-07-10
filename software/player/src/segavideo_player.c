@@ -410,7 +410,7 @@ static void simpleLoopCallback() {
   // Only works to call it again after segavideo_stop().
   // This is the version for content built into a ROM.
   segavideo_playInternal(loopVideoData, /* loop= */ true,
-                         /* region size */ 0, /* region mask */ 0,
+                         /* region size */ 0, /* region mask */ 0xffffffff,
                          simpleLoopCallback,
                          doNothingCallback,
                          doNothingCallback,
@@ -420,7 +420,7 @@ static void simpleLoopCallback() {
 void segavideo_play(const uint8_t* videoData, bool loop) {
   kprintf("segavideo_play\n");
   segavideo_playInternal(videoData, loop,
-                         /* region size */ 0, /* region mask */ 0,
+                         /* region size */ 0, /* region mask */ 0xffffffff,
                          simpleLoopCallback,
                          doNothingCallback,
                          doNothingCallback,
