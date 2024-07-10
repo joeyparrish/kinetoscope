@@ -13,5 +13,6 @@
 #ifndef _KINETOSCOPE_STRING_UTIL_H
 
 void copy_string(char* destination, const char* source, int size);
+void concatenate_string(char* destination, const char* source, int size);
 
 #endif // _KINETOSCOPE_STRING_UTIL_H

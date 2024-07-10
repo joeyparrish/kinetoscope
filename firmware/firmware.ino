@@ -16,6 +16,7 @@
 #include "http.h"
 #include "internet.h"
 #include "registers.h"
+#include "segavideo_format.h"
 #include "speed-tests.h"
 #include "sram.h"
 #include "string-util.h"
@@ -28,7 +29,8 @@
 // our slim throughput margins too much.
 #define VIDEO_SERVER "storage.googleapis.com"
 #define VIDEO_SERVER_PORT 80
-#define VIDEO_LIST_PATH "/sega-kinetoscope/canned-videos/catalog.bin"
+#define VIDEO_BASE_PATH "/sega-kinetoscope/canned-videos/"
+#define VIDEO_CATALOG_PATH VIDEO_BASE_PATH "catalog.bin"
 
 #define MAX_SERVER 256
 #define MAX_PATH 256
@@ -52,11 +54,17 @@ static bool hardware_ready = false;
 // The second core uses these to receive commands from the first core.
 static volatile bool second_core_idle = true;
 static volatile bool second_core_interrupt = false;
-static char fetch_server[MAX_SERVER];
-static volatile uint16_t fetch_port = 0;
+static int fetch_start_byte = 0;
+static int fetch_size = 0;
 static char fetch_path[MAX_PATH];
-static volatile int fetch_start_byte = 0;
-static volatile int fetch_size = 0;
+static http_data_callback fetch_callback = NULL;
+static uint8_t* fetch_buffer = NULL;
+static int fetch_buffer_size = 0;
+
+static int chunk_size = 0;
+static int total_chunks = 0;
+static int next_chunk_num = 0;
+static int next_offset = 0;
 
 static void init_all_hardware() {
   sram_init();
@@ -99,18 +107,61 @@ static void init_all_hardware() {
   }
 }
 
-static void second_core_fetch(const char* server, uint16_t port,
-                              const char* path, int start_byte = 0,
-                              int size = MAX_FETCH_SIZE) {
-  copy_string(fetch_server, server, MAX_SERVER);
-  fetch_port = port;
-  copy_string(fetch_path, path, MAX_PATH);
-  fetch_start_byte = start_byte;
-  fetch_size = size;
-  second_core_idle = false;
+static bool http_sram_callback(const uint8_t* buffer, int bytes) {
+  // Check for interrupt.
+  if (second_core_interrupt) {
+    return false;
+  }
+
+  sram_write(buffer, bytes);
+  return true;
 }
 
-static void await_second_core_fetch() {
+static bool http_buffer_callback(const uint8_t* buffer, int bytes) {
+  // Check for interrupt.
+  if (second_core_interrupt) {
+    return false;
+  }
+
+  int to_copy = min(bytes, fetch_buffer_size);
+  memcpy(fetch_buffer, buffer, to_copy);
+  fetch_buffer += to_copy;
+  fetch_buffer_size -= to_copy;
+  return true;
+}
+
+// Expects fetch_callback and any necessary globals for it to be set in advance.
+static bool fetch_generic(const char* path, int start_byte, int size) {
+  if (!second_core_idle) {
+    report_error("Command conflict! Busy!");
+    return false;
+  }
+
+  if (path != fetch_path) {
+    copy_string(fetch_path, path, MAX_PATH);
+  }
+  fetch_start_byte = start_byte;
+  fetch_size = size;
+
+  second_core_idle = false;
+  return true;
+}
+
+static bool fetch_into_buffer(void* buffer, const char* path,
+                              int start_byte, int size) {
+  fetch_callback = http_buffer_callback;
+  fetch_buffer = (uint8_t*)buffer;
+  fetch_buffer_size = size;
+  return fetch_generic(path, start_byte, size);
+}
+
+static bool fetch_into_sram(const char* path, int start_byte = 0,
+                            int size = MAX_FETCH_SIZE) {
+  fetch_callback = http_sram_callback;
+  return fetch_generic(path, start_byte, size);
+}
+
+static void await_fetch() {
   while (!second_core_idle) { delay(1 /* ms */); }
 }
 
@@ -124,25 +175,53 @@ static void process_command(uint8_t command, uint8_t arg) {
       break;
 
     case KINETOSCOPE_CMD_LIST_VIDEOS:
-      if (!second_core_idle) {
-        report_error("Command conflict! Busy!");
-        break;
-      }
-
       // Pull video list into SRAM.
       Serial.println("Fetching video list...");
-      second_core_fetch(VIDEO_SERVER, VIDEO_SERVER_PORT, VIDEO_LIST_PATH);
-      await_second_core_fetch();
-      Serial.println("Done.");
+      sram_start_bank(0);
+      if (fetch_into_sram(VIDEO_CATALOG_PATH)) {
+        await_fetch();
+        Serial.println("Done.");
+      }
       break;
 
     case KINETOSCOPE_CMD_START_VIDEO:
-      if (!second_core_idle) {
-        report_error("Command conflict! Busy!");
+      Serial.print("Starting video ");
+      Serial.println(arg);
+
+      // Get the appropriate header from the catalog.
+      SegaVideoHeader header;
+      if (!fetch_into_buffer(&header, VIDEO_CATALOG_PATH, arg * sizeof(header),
+                            sizeof(header))) {
         break;
       }
+      await_fetch();
 
-      // TODO: Start streaming.  Fill both SRAM banks before returning.
+      // Construct the URL of the video.
+      copy_string(fetch_path, VIDEO_BASE_PATH, MAX_PATH);
+      concatenate_string(fetch_path, header.relative_url, MAX_PATH);
+
+      // Start streaming.
+      chunk_size = ntohl(header.chunkSize);
+
+      // Fill both SRAM banks before returning.
+      sram_start_bank(0);
+      if (!fetch_into_sram(fetch_path, 0, sizeof(header) + chunk_size)) {
+        break;
+      }
+      await_fetch();
+
+      total_chunks = ntohl(header.totalChunks);
+      if (total_chunks != 1) {
+        sram_start_bank(1);
+        if (!fetch_into_sram(fetch_path, sizeof(header) + chunk_size,
+                             chunk_size)) {
+          break;
+        }
+        await_fetch();
+      }
+
+      next_chunk_num = 2;
+      next_offset = sizeof(header) + chunk_size * 2;
       break;
 
     case KINETOSCOPE_CMD_STOP_VIDEO:
@@ -157,12 +236,21 @@ static void process_command(uint8_t command, uint8_t arg) {
       break;
 
     case KINETOSCOPE_CMD_FLIP_REGION:
+      if (next_chunk_num == total_chunks) {
+        // Nothing to do.  EOF.
+        break;
+      }
+
       if (!second_core_idle) {
         report_error("Buffer underflow!  Internet too slow?");
         break;
       }
 
-      // TODO: Start filling the next SRAM bank.
+      // Start filling the next SRAM bank.  Don't wait for completion.
+      sram_start_bank(next_chunk_num & 1);
+      fetch_into_sram(fetch_path, next_offset, chunk_size);
+      next_chunk_num++;
+      next_offset += chunk_size;
       break;
 
     case KINETOSCOPE_CMD_GET_ERROR:
@@ -214,16 +302,6 @@ void loop() {
 // RP2040 core, so they may need to be ported if anyone wants to use a
 // different microcontroller.
 
-static bool http_transfer_callback(const uint8_t* buffer, int bytes) {
-  // Check for interrupt.
-  if (second_core_interrupt) {
-    return false;
-  }
-
-  sram_write(buffer, bytes);
-  return true;
-}
-
 void setup1() {
   // Wait for the first core to finish initializing the hardware.
   while (!hardware_ready) { delay(1 /* ms */); }
@@ -237,8 +315,18 @@ void loop1() {
   // Begin requested transfer.  The callback will check for interrupts via
   // second_core_interrupt.  The http library will report an error to the Sega
   // if it fails.
-  http_fetch(fetch_server, fetch_port, fetch_path, fetch_start_byte,
-             fetch_size, http_transfer_callback);
+#ifdef DEBUG
+  Serial.print("Fetching ");
+  Serial.print(fetch_path);
+  Serial.print(" at ");
+  Serial.println(fetch_start_byte);
+#endif
+  http_fetch(VIDEO_SERVER, VIDEO_SERVER_PORT, fetch_path, fetch_start_byte,
+             fetch_size, fetch_callback);
+  // It's fine to do this, even if fetch_callback != http_sram_callback.
+  // This way, SRAM is always flushed even when the first core doesn't await
+  // the fetch.
+  sram_flush();
 
   // Clear state.
   second_core_interrupt = false;

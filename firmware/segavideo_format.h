@@ -1,0 +1,1 @@
+../software/player/inc/segavideo_format.h

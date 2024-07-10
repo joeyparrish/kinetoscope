@@ -218,7 +218,7 @@ static inline bool check_status_code(int status_code) {
 }
 
 int http_fetch(const char* server, uint16_t port, const char* path,
-               int start_byte, int size, http_buffer_callback callback) {
+               int start_byte, int size, http_data_callback callback) {
   if (!client) {
     report_error("No internet connection!");
     return -1;

@@ -20,3 +20,9 @@ void copy_string(char* destination, const char* source, int size) {
   strncpy(destination, source, size);
   destination[size - 1] = '\0';
 }
+
+void concatenate_string(char* destination, const char* source, int size) {
+  size_t len = strlen(destination);
+  strncpy(destination + len, source, size - len);
+  destination[size - 1] = '\0';
+}
