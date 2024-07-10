@@ -69,7 +69,6 @@ static uint16_t global_error = 0;
 static char* global_error_str = NULL;
 static uint16_t global_arg;
 static uint32_t global_ready_cycle = (uint32_t)-1;
-static char global_video_paths[128][128];
 static char* global_video_url = NULL;
 static uint32_t global_chunk_size = 0;
 static uint32_t global_chunk_num = 0;
@@ -152,11 +151,11 @@ static size_t http_data_to_buffer(char* data, size_t size, size_t n, void* ctx) 
 
 typedef size_t (*WriteCallback)(char*, size_t, size_t, void *);
 
-static bool fetch_range(const char* url, int first_byte, int size,
+static bool fetch_range(const char* url, size_t first_byte, size_t size,
                         WriteCallback write_callback, void* ctx) {
   char range[32];
-  int last_byte = first_byte + size - 1;
-  snprintf(range, 32, "%d-%d", first_byte, last_byte);
+  size_t last_byte = first_byte + size - 1;
+  snprintf(range, 32, "%zd-%zd", first_byte, last_byte);
   // snprintf doesn't guarantee a terminator when it overflows.
   range[31] = '\0';
 
@@ -184,7 +183,8 @@ static bool fetch_range(const char* url, int first_byte, int size,
   return res == CURLE_OK && (http_code == 200 || http_code == 206);
 }
 
-static bool fetch_range_to_sram(const char* url, int first_byte, int size) {
+static bool fetch_range_to_sram(const char* url, size_t first_byte,
+                                size_t size) {
   return fetch_range(url, first_byte, size, http_data_to_sram, NULL);
 }
 
@@ -192,12 +192,17 @@ static bool fetch_to_sram(const char* url) {
   return fetch_range_to_sram(url, 0, -1);
 }
 
-static bool fetch_to_buffer(const char* url, void* data, size_t size) {
+static bool fetch_range_to_buffer(const char* url, void* data,
+                                  size_t first_byte, size_t size) {
   HttpBuffer buffer;
   buffer.data = (char*)data;
   buffer.offset = 0;
   buffer.max = size;
-  return fetch_range(url, 0, size, http_data_to_buffer, &buffer);
+  return fetch_range(url, first_byte, size, http_data_to_buffer, &buffer);
+}
+
+static bool fetch_to_buffer(const char* url, void* data, size_t size) {
+  return fetch_range_to_buffer(url, data, 0, size);
 }
 
 static void stop_video() {
@@ -240,16 +245,28 @@ static void start_video() {
     return;
   }
 
-  const char* path = global_video_paths[video_index];
-  if (*path == '\0') {
+  SegaVideoHeader header;
+  if (!fetch_range_to_buffer(VIDEO_CATALOG_URL, &header,
+                             sizeof(header) * video_index, sizeof(header))) {
     char buf[64];
-    snprintf(buf, 64, "Video index exceeds catalog! (%d)", (int)video_index);
+    snprintf(buf, 64, "Failed to fetch catalog index! (%d)", (int)video_index);
+    report_error(buf);
+    return;
+  }
+
+  // header.relative_url should be nul-terminated, but just in case, use
+  // strnlen and fail if we get the maximum size, which would indicate no
+  // nul-terminator.
+  const char* path = header.relative_url;
+  size_t path_len = strnlen(path, sizeof(header.relative_url));
+  if (path_len == sizeof(header.relative_url)) {
+    char buf[64];
+    snprintf(buf, 64, "Invalid catalog data at index! (%d)", (int)video_index);
     report_error(buf);
     return;
   }
 
   size_t base_len = strlen(VIDEO_BASE_URL);
-  size_t path_len = strlen(path);
   if (global_video_url) {
     free(global_video_url);
   }
@@ -258,7 +275,6 @@ static void start_video() {
   memcpy(global_video_url + base_len, path, path_len);
   global_video_url[base_len + path_len] = '\0';
 
-  SegaVideoHeader header;
   if (!fetch_to_buffer(global_video_url, &header, sizeof(header))) {
     report_error("Failed to fetch video! (header)");
     return;
@@ -296,21 +312,6 @@ static void get_video_list() {
   if (!fetch_to_sram(VIDEO_CATALOG_URL)) {
     report_error("Failed to download video catalog!");
     return;
-  }
-
-  // Extract relative video URLs from the catalog.
-  SegaVideoHeader* header = (SegaVideoHeader*)global_sram_buffer;
-  for (int i = 0; i < 128; ++i) {
-    if (header->magic[0]) {
-      for (int j = 0; j < 128; ++j) {
-        // undo byte-swapping
-        global_video_paths[i][j] = header->relative_url[j ^ 1];
-      }
-      global_video_paths[i][128] = '\0';
-      header++;
-    } else {
-      global_video_paths[i][0] = '\0';
-    }
   }
 }
 
