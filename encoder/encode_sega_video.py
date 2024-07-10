@@ -423,6 +423,13 @@ def pack_palette(palette):
   return packed
 
 
+def patch_at_offset(f, patch_offset, value, size):
+  offset = f.tell()
+  f.seek(patch_offset)
+  f.write(value.to_bytes(size, 'big'))
+  f.seek(offset)
+
+
 def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
   print('Generating final output {}...'.format(args.output))
 
@@ -489,9 +496,12 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
         f.write(chunk_sound_size.to_bytes(4, 'big'))
         chunk_frame_count = min(frame_count, frames_per_chunk)
         f.write(chunk_frame_count.to_bytes(2, 'big'))
+        final_chunk = 0
+        final_chunk_offset = f.tell()
+        f.write(final_chunk.to_bytes(2, 'big'))
 
-        current_position = f.tell()
-        pre_padding_remainder = (current_position + 4) % 256
+        current_offset = f.tell()
+        pre_padding_remainder = (current_offset + 4) % 256
         pre_padding_bytes = 256 - pre_padding_remainder if pre_padding_remainder else 0
         f.write(pre_padding_bytes.to_bytes(2, 'big'))
 
@@ -528,9 +538,7 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
         post_padding_bytes = 256 - post_padding_remainder if post_padding_remainder else 0
 
         # Seek back to fill in the post-padding field.
-        f.seek(post_padding_bytes_offset)
-        f.write(post_padding_bytes.to_bytes(2, 'big'))
-        f.seek(end_of_frames)
+        patch_at_offset(f, post_padding_bytes_offset, post_padding_bytes, 2)
 
         # Add post-padding.
         f.write(bytes(post_padding_bytes))
@@ -543,20 +551,13 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
         # Count chunks.
         num_chunks += 1
 
-      # Write final SegaVideoChunkHeader to indicate no more chunks
-      chunk_sound_size = 0
-      f.write(chunk_sound_size.to_bytes(4, 'big'))
-      chunk_frame_count = 0
-      f.write(chunk_frame_count.to_bytes(2, 'big'))
-      pre_padding_bytes = 0
-      f.write(pre_padding_bytes.to_bytes(2, 'big'))
-      post_padding_bytes = 0
-      f.write(post_padding_bytes.to_bytes(2, 'big'))
-
       # Seek back to the header to fill in these two fields.
-      f.seek(chunk_size_offset)
-      f.write(chunk_size.to_bytes(4, 'big'))
-      f.write(num_chunks.to_bytes(4, 'big'))
+      patch_at_offset(f, chunk_size_offset, chunk_size, 4)
+      patch_at_offset(f, chunk_size_offset + 4, num_chunks, 4)
+
+      # Seek back to the final chunk header to fill in this field.
+      final_chunk = 1
+      patch_at_offset(f, final_chunk_offset, final_chunk, 2)
 
   print('Output complete.')
 

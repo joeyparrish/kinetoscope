@@ -21,7 +21,7 @@ typedef struct ChunkInfo {
   const uint8_t* frameStart;
   uint32_t numFrames;
   const uint8_t* end;
-  bool flipRegion;
+  bool final;
 } ChunkInfo;
 
 // State
@@ -31,6 +31,7 @@ static bool loop;
 static const uint8_t* loopVideoData;
 
 static ChunkInfo currentChunk;
+static int currentChunkNum;
 static ChunkInfo nextChunk;
 static uint32_t regionSize;
 static uint32_t regionMask;
@@ -97,16 +98,11 @@ static uint32_t nextFrameNum;
 // The status byte will have bit 0x01 set if we are playing PCM channel 1.
 #define XGM2_STATUS ((volatile uint8_t*)(Z80_RAM + 0x0102))
 
-// Offset a pointer against a base pointer
-#define OFFSET(pointer, base) \
-    (((uint32_t)pointer) - ((uint32_t)base))
+// Mask a pointer as a uint32_t
+#define MASK(pointer, mask) (((uint32_t)pointer) & (mask))
 
-// Mask a pointer offset as a uint32_t
-#define MASK(pointer, base, mask) (OFFSET(pointer, base) & mask)
-
-// Turn an offset and base pointer back into a real pointer
-#define OFFSET_TO_POINTER(offset, base) \
-    ((uint8_t*)(((uint32_t)offset) + ((uint32_t)base)))
+#define NEXT_POINTER(pointer, mask, size) \
+    ((uint8_t*)(MASK(pointer, mask) ^ size))
 
 #if (DEBUG == 0)
 # define kprintf(...)
@@ -144,52 +140,23 @@ static void parseChunk(const uint8_t* chunkStart,
   chunkInfo->end =
       chunkInfo->frameStart + sizeof(SegaVideoFrame) * chunkInfo->numFrames +
       chunkHeader->postPaddingBytes;
+  chunkInfo->final = chunkHeader->finalChunk != 0;
 }
 
 static void prepNextChunk(const ChunkInfo* currentChunk,
                           ChunkInfo* nextChunk,
-                          uint8_t* pointerBase,
                           uint32_t regionMask,
                           uint32_t regionSize) {
-  kprintf("Current chunk: %p => %p\n", currentChunk->start, currentChunk->end);
-
-  // Compute chunk placement
-  const uint8_t* chunkStart = currentChunk->end;
-  const uint32_t chunkSize =
-      ((uint32_t)currentChunk->end) - ((uint32_t)currentChunk->start);
-  const uint8_t* estimatedChunkEnd = currentChunk->end + chunkSize;
-  bool flipRegion = false;
-
-  if (MASK(estimatedChunkEnd - 1, pointerBase, regionMask) !=
-      MASK(chunkStart, pointerBase, regionMask)) {
-    // The next chunk as computed would cross a boundary in SRAM, so the
-    // streamer hardware will instead place it at the start of the other
-    // region.
-    chunkStart = OFFSET_TO_POINTER(
-        MASK(chunkStart, pointerBase, regionMask) ^ regionSize,
-        pointerBase);
-    flipRegion = true;
-    kprintf("Next chunk wrapped: %p\n", chunkStart);
-  }
-
-  parseChunk(chunkStart, nextChunk);
-  nextChunk->flipRegion = flipRegion;
-  kprintf("Next chunk: %p => %p\n", nextChunk->start, nextChunk->end);
-
-  if (!nextChunk->audioSamples || !nextChunk->numFrames) {
+  if (currentChunk->final) {
     kprintf("No more chunks!\n");
-    nextChunk->audioStart = NULL;
-    nextChunk->frameStart = NULL;
-    nextChunk->flipRegion = false;
+    memset(nextChunk, 0, sizeof(*nextChunk));
+  } else {
+    // Compute chunk placement
+    const uint8_t* chunkStart = NEXT_POINTER(
+        currentChunk->end, regionMask, regionSize);
+    parseChunk(chunkStart, nextChunk);
+    kprintf("Next chunk: %p => %p\n", nextChunk->start, nextChunk->end);
   }
-}
-
-static bool regionOverflow(const ChunkInfo* chunk,
-                           uint8_t* pointerBase,
-                           uint32_t regionMask) {
-  uint32_t startRegion = MASK(chunk->start, pointerBase, regionMask);
-  uint32_t endRegion = MASK(chunk->end - 1, pointerBase, regionMask);
-  return startRegion != endRegion;
 }
 
 static void clearScreen() {
@@ -330,7 +297,6 @@ static bool nextVideoFrame() {
   if (changeAudioAddress) {
     prepNextChunk(&currentChunk,
                   &nextChunk,
-                  /* pointerBase= */ NULL,
                   regionMask,
                   regionSize);
     kprintf("Next audio buffer: %p (%d)\n",
@@ -339,10 +305,9 @@ static bool nextVideoFrame() {
   } else if (switchChunks) {
     nextFrameNum = 0;
     currentChunk = nextChunk;
-
-    if (currentChunk.flipRegion) {
-      flipCallback();
-    }
+    currentChunkNum++;
+    kprintf("Now playing chunk %d\n", currentChunkNum);
+    flipCallback();
   }
 
   return true;
@@ -408,18 +373,13 @@ bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop,
   // Video
   frameRate = header->frameRate;
   nextFrameNum = 0;
+  currentChunkNum = 0;
+  kprintf("Now playing chunk %d\n", currentChunkNum);
 
   // Parse chunk header
   const uint8_t* chunkStart = videoData + sizeof(SegaVideoHeader);
   parseChunk(chunkStart, &currentChunk);
-  currentChunk.flipRegion = false;
-
-  if (regionOverflow(&currentChunk,
-                     /* pointerBase= */ NULL,
-                     regionMask)) {
-    kprintf("First video chunk overflows the region!\n");
-    return false;
-  }
+  kprintf("First chunk: %p => %p\n", currentChunk.start, currentChunk.end);
 
   // Clear anything that might have been on screen before.
   clearScreen();

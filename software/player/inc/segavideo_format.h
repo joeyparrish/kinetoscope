@@ -59,6 +59,8 @@ typedef struct SegaVideoHeader {
 typedef struct SegaVideoChunkHeader {
   uint32_t samples;
   uint16_t frames;
+  // If zero, keep playing after this.  If non-zero, this is the final chunk.
+  uint16_t finalChunk;
   // Padding right after the chunk header to maintain 256-byte alignment for
   // the audio data that follows.  The audio driver requires this alignment.
   uint16_t prePaddingBytes;

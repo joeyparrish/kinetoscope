@@ -283,7 +283,6 @@ static void start_video() {
 
 static void flip_region() {
   if (!global_chunks_left) {
-    report_error("FLIP_REGION command while not playing!");
     return;
   }
 
