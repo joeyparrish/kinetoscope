@@ -346,6 +346,9 @@ bool segavideo_menu_checkHardware() {
 }
 
 bool segavideo_menu_load() {
+  clearScreen();
+  drawLogo();
+
   statusMessage("Fetching video list...");
 
 #if defined(SIMULATE_HARDWARE)
