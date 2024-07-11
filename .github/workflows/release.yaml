@@ -101,8 +101,9 @@ jobs:
           # Prep encoder.
           mkdir kinetoscope-$VERSION-encoder/
           cp source/encoder/encode_sega_video.py kinetoscope-$VERSION-encoder/
+          cp source/server/generate_catalog.py kinetoscope-$VERSION-encoder/
           cp source/LICENSE.txt kinetoscope-$VERSION-encoder/
-          echo "This Python 3 script, with the help of FFmpeg, generates videos that can be played back on a Sega Genesis / Mega Drive with Kinetoscope." >> kinetoscope-$VERSION-encoder/README.txt
+          echo "These Python 3 scripts, with the help of FFmpeg, generates videos that can be played back on a Sega Genesis / Mega Drive with Kinetoscope." >> kinetoscope-$VERSION-encoder/README.txt
           zip -r9 kinetoscope-$VERSION-encoder.zip kinetoscope-$VERSION-encoder/
 
           # Prep player source.
