@@ -1,4 +1,4 @@
-commit f763ebcf3a755010bf4a6f696e0a93b2018516d6
+commit 992f1e2bba15241a2025a52b7c5a494e95debc73
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,7 +21,7 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..a74fd14 100644
+index 0dddc9f..7162720 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -109,6 +109,10 @@ endif
@@ -40,7 +40,7 @@ index 0dddc9f..a74fd14 100644
  endif
  
 +# System libcurl for Kinetoscope emulation
-+LDFLAGS+= $(curl-config --libs)
++LDFLAGS+= $(shell curl-config --libs)
 +
  endif #PORTABLE
  endif #Windows
