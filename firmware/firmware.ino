@@ -21,8 +21,8 @@
 #include "sram.h"
 #include "string-util.h"
 
-#define DEBUG
-#define RUN_TESTS
+//#define DEBUG
+//#define RUN_TESTS
 
 // NOTE: This must be a plain HTTP server.  HTTPS is too expensive for this
 // application and microcontroller.  Even though we could do it, it would hurt
@@ -202,6 +202,7 @@ static void process_command(uint8_t command, uint8_t arg) {
 
       // Start streaming.
       chunk_size = ntohl(header.chunkSize);
+      total_chunks = ntohl(header.totalChunks);
 
       // Fill both SRAM banks before returning.
       sram_start_bank(0);
@@ -209,19 +210,18 @@ static void process_command(uint8_t command, uint8_t arg) {
         break;
       }
       await_fetch();
+      next_chunk_num = 1;
+      next_offset = sizeof(header) + chunk_size;
 
-      total_chunks = ntohl(header.totalChunks);
       if (total_chunks != 1) {
         sram_start_bank(1);
-        if (!fetch_into_sram(fetch_path, sizeof(header) + chunk_size,
-                             chunk_size)) {
+        if (!fetch_into_sram(fetch_path, next_offset, chunk_size)) {
           break;
         }
         await_fetch();
+        next_chunk_num++;
+        next_offset += chunk_size;
       }
-
-      next_chunk_num = 2;
-      next_offset = sizeof(header) + chunk_size * 2;
       break;
 
     case KINETOSCOPE_CMD_STOP_VIDEO:
@@ -236,7 +236,7 @@ static void process_command(uint8_t command, uint8_t arg) {
       break;
 
     case KINETOSCOPE_CMD_FLIP_REGION:
-      if (next_chunk_num == total_chunks) {
+      if (next_chunk_num >= total_chunks) {
         // Nothing to do.  EOF.
         break;
       }
