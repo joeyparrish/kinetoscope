@@ -196,32 +196,32 @@ static inline bool read_response_headers(HeaderData* header_data) {
 static inline bool check_status_code(int status_code) {
   // Since we sent a Range header, "200 OK" means the server ignored it.
   if (status_code == 200) {
-    Serial.println("Failed!  Range request not supported?");
+    report_error("Request failed! Range not supported?");
     return false;
   }
 
-  // TODO: Test HTTP redirects
+  // TODO: Support HTTP redirects?
   if (status_code / 100 == 3) {
-    Serial.println("Failed!  No redirect support!");
+    report_error("Request failed! Redirect not supported!");
     return false;
   }
 
   // We should get an HTTP "206 Partial Content" status.  If not, we failed.
   if (status_code != 206) {
-    Serial.print("Failed with status code ");
-    Serial.print(status_code);
-    Serial.println("!");
+    char buf[64];
+    snprintf(buf, 64, "Request failed! HTTP status %d", status_code);
+    report_error(buf);
     return false;
   }
 
   return true;
 }
 
-int http_fetch(const char* server, uint16_t port, const char* path,
-               int start_byte, int size, http_data_callback callback) {
+bool http_fetch(const char* server, uint16_t port, const char* path,
+                int start_byte, int size, http_data_callback callback) {
   if (!client) {
     report_error("No internet connection!");
-    return -1;
+    return false;
   }
 
   if (!port) {
@@ -235,7 +235,7 @@ int http_fetch(const char* server, uint16_t port, const char* path,
   if (!read_response_headers(&header_data)) {
     report_error("Failed to read HTTP headers!");
     close_connection();
-    return -1;
+    return false;
   }
 
 #ifdef DEBUG
@@ -243,10 +243,10 @@ int http_fetch(const char* server, uint16_t port, const char* path,
   Serial.println(header_data.status_code);
 #endif
 
+  // Calls report_error() on failure
   if (!check_status_code(header_data.status_code)) {
-    report_error("Failed to read HTTP status code!");
     close_connection();
-    return -1;
+    return false;
   }
 
 #ifdef DEBUG
@@ -256,9 +256,8 @@ int http_fetch(const char* server, uint16_t port, const char* path,
 
   if (header_data.body_length < 0) {
     report_error("Unexpected zero-length response!");
-    Serial.println("Failed!  Unexpected zero-length response!");
     close_connection();
-    return -1;
+    return false;
   }
 
   // Can't read more than the body length.  If it's smaller than the buffer,
@@ -275,7 +274,7 @@ int http_fetch(const char* server, uint16_t port, const char* path,
     if (!ok) {
       Serial.println("Transfer interrupted.");
       close_connection();
-      return -1;
+      return false;
     }
     bytes_left -= header_data.body_start_length;
   }
@@ -302,10 +301,10 @@ int http_fetch(const char* server, uint16_t port, const char* path,
     if (!ok) {
       Serial.println("Transfer interrupted.");
       close_connection();
-      return -1;
+      return false;
     }
     bytes_left -= bytes_read;
   }
 
-  return size;
+  return true;
 }

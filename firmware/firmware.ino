@@ -9,7 +9,6 @@
 // can stream video from the Internet to the cartridge's shared banks of SRAM.
 
 #include <Arduino.h>
-#include <HardwareSerial.h>
 
 #include "arduino_secrets.h"
 #include "error.h"
@@ -54,6 +53,7 @@ static bool hardware_ready = false;
 // The second core uses these to receive commands from the first core.
 static volatile bool second_core_idle = true;
 static volatile bool second_core_interrupt = false;
+static volatile bool fetch_okay = false;
 static int fetch_start_byte = 0;
 static int fetch_size = 0;
 static char fetch_path[MAX_PATH];
@@ -161,8 +161,9 @@ static bool fetch_into_sram(const char* path, int start_byte = 0,
   return fetch_generic(path, start_byte, size);
 }
 
-static void await_fetch() {
+static bool await_fetch() {
   while (!second_core_idle) { delay(1 /* ms */); }
+  return fetch_okay;
 }
 
 static void process_command(uint8_t command, uint8_t arg) {
@@ -178,8 +179,7 @@ static void process_command(uint8_t command, uint8_t arg) {
       // Pull video list into SRAM.
       Serial.println("Fetching video list...");
       sram_start_bank(0);
-      if (fetch_into_sram(VIDEO_CATALOG_PATH)) {
-        await_fetch();
+      if (fetch_into_sram(VIDEO_CATALOG_PATH) && await_fetch()) {
         Serial.println("Done.");
       }
       break;
@@ -191,10 +191,10 @@ static void process_command(uint8_t command, uint8_t arg) {
       // Get the appropriate header from the catalog.
       SegaVideoHeader header;
       if (!fetch_into_buffer(&header, VIDEO_CATALOG_PATH, arg * sizeof(header),
-                            sizeof(header))) {
+                            sizeof(header)) ||
+          !await_fetch()) {
         break;
       }
-      await_fetch();
 
       // Construct the URL of the video.
       copy_string(fetch_path, VIDEO_BASE_PATH, MAX_PATH);
@@ -206,19 +206,19 @@ static void process_command(uint8_t command, uint8_t arg) {
 
       // Fill both SRAM banks before returning.
       sram_start_bank(0);
-      if (!fetch_into_sram(fetch_path, 0, sizeof(header) + chunk_size)) {
+      if (!fetch_into_sram(fetch_path, 0, sizeof(header) + chunk_size) ||
+          !await_fetch()) {
         break;
       }
-      await_fetch();
       next_chunk_num = 1;
       next_offset = sizeof(header) + chunk_size;
 
       if (total_chunks != 1) {
         sram_start_bank(1);
-        if (!fetch_into_sram(fetch_path, next_offset, chunk_size)) {
+        if (!fetch_into_sram(fetch_path, next_offset, chunk_size) ||
+            !await_fetch()) {
           break;
         }
-        await_fetch();
         next_chunk_num++;
         next_offset += chunk_size;
       }
@@ -321,8 +321,8 @@ void loop1() {
   Serial.print(" at ");
   Serial.println(fetch_start_byte);
 #endif
-  http_fetch(VIDEO_SERVER, VIDEO_SERVER_PORT, fetch_path, fetch_start_byte,
-             fetch_size, fetch_callback);
+  fetch_okay = http_fetch(VIDEO_SERVER, VIDEO_SERVER_PORT, fetch_path,
+                          fetch_start_byte, fetch_size, fetch_callback);
   // It's fine to do this, even if fetch_callback != http_sram_callback.
   // This way, SRAM is always flushed even when the first core doesn't await
   // the fetch.

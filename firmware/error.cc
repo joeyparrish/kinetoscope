@@ -6,6 +6,8 @@
 
 // Error reporting.
 
+#include <Arduino.h>
+
 #include <cstdarg>
 #include <cstdio>
 
@@ -24,6 +26,9 @@ void report_error(const char* format, ...) {
   vsnprintf(error_buffer, MAX_ERROR, format, args);
   va_end(args);
  
+  Serial.print("Error reported: ");
+  Serial.println(error_buffer);
+
   // Set a flag the Sega should notice and query later.
   flag_error();
 }
