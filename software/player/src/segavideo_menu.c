@@ -61,7 +61,7 @@ static int max_status_y = 0;
 # define KINETOSCOPE_ERROR_DATA "Error: something went wrong!"
 # define KINETOSCOPE_VIDEO_DATA embedded_video
 # define KINETOSCOPE_VIDEO_REGION_SIZE 0
-# define KINETOSCOPE_VIDEO_REGION_MASK 0
+# define KINETOSCOPE_VIDEO_REGION_MASK 0xffffffff
 #else
 // Ports to communicate with our special hardware.
 # define KINETOSCOPE_PORT_COMMAND (volatile uint16_t*)0xA13000  // low 8 bits
