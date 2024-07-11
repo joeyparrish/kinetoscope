@@ -1,8 +1,15 @@
 # Kinetoscope Video Server
 
-A video server for Kinetoscope only needs to be able to serve static content,
-so you have many, many options for serving content.  I'm currently using Google
-Cloud Storage.
+A video server for Kinetoscope only needs to be able to serve static content
+over plain HTTP, so you have many, many options for serving content.  I'm
+currently using Google Cloud Storage.
+
+
+## HTTP vs HTTPS
+
+Due primarily to hardware limitations and time budgets, streaming **must** be
+over plain HTTP, **not** HTTPS.  Though we could build TLS/SSL support into the
+firmware, it would reduce our throughput by too much to be tolerated.
 
 
 ## Format
