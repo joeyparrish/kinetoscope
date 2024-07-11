@@ -348,6 +348,10 @@ bool segavideo_menu_checkHardware() {
 bool segavideo_menu_load() {
   statusMessage("Fetching video list...");
 
+#if defined(SIMULATE_HARDWARE)
+  waitMs(3000);
+#endif
+
   uint16_t command_timeout = 30; // seconds
   if (!sendCommandAndWait(CMD_LIST_VIDEOS, 0, command_timeout)) {
     errorMessage("Failed to fetch video list!");
