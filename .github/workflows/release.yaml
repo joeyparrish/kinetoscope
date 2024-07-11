@@ -163,6 +163,7 @@ jobs:
 
           # Prep emulator binaries.
           echo "This build of BlastEm supports Kinetoscope emulation." >> kinetoscope-blastem64-0.6.2-linux-x64/README.kinetoscope.txt
+          chmod 755 kinetoscope-blastem64-0.6.2-linux-x64/blastem
           mv kinetoscope-blastem64-0.6.2-linux-x64 kinetoscope-$VERSION-blastem64-0.6.2-linux-x64
           zip -r9 kinetoscope-$VERSION-blastem64-0.6.2-linux-x64.zip kinetoscope-$VERSION-blastem64-0.6.2-linux-x64/
 
