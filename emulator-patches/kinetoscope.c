@@ -60,7 +60,13 @@
 #define PADDING_BYTES_OFFSET_FROM_END_OF_HEADER \
   (sizeof(SegaVideoChunkHeader) - offsetof(SegaVideoChunkHeader, paddingBytes))
 
-#define VIDEO_BASE_URL "http://storage.googleapis.com/sega-kinetoscope/canned-videos/"
+#define VIDEO_SERVER "storage.googleapis.com"
+#define VIDEO_SERVER_PORT 80
+#define VIDEO_BASE_PATH "/sega-kinetoscope/canned-videos/"
+
+#define _STRINGIFY(X) #X
+#define STRINGIFY(X) _STRINGIFY(X)
+#define VIDEO_BASE_URL "http://" VIDEO_SERVER ":" STRINGIFY(VIDEO_SERVER_PORT) VIDEO_BASE_PATH
 #define VIDEO_CATALOG_URL VIDEO_BASE_URL "catalog.bin"
 
 static uint8_t* global_sram_buffer = NULL;

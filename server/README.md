@@ -46,3 +46,19 @@ python3 generate_catalog.py \
 ```sh
 python3 generate_catalog.py *.segavideo
 ```
+
+
+## Changing servers
+
+Both the emulator
+([`../emulator-patches/kinetoscope.c`](../emulator-patches/kinetoscope.c)) and
+the firmware
+([`../firmware/firmware.ino`](../firmware/firmware.ino)) have macros to set the
+video server.  In either or both, you can change the following defaults and
+recompile:
+
+```c++
+#define VIDEO_SERVER "storage.googleapis.com"
+#define VIDEO_SERVER_PORT 80
+#define VIDEO_BASE_PATH "/sega-kinetoscope/canned-videos/"
+```
