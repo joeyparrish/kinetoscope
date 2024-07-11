@@ -9,8 +9,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
+#include <unistd.h>
 
 #include <curl/curl.h>
+#include <pthread.h>
 
 #include "genesis.h"
 #include "util.h"
@@ -73,6 +75,8 @@ static char* global_video_url = NULL;
 static uint32_t global_chunk_size = 0;
 static uint32_t global_chunk_num = 0;
 static uint32_t global_chunks_left = 0;
+static pthread_t global_fetch_thread;
+static volatile bool global_fetch_busy = false;
 
 // Where we read from next:
 static uint32_t global_video_url_start_byte;
@@ -206,33 +210,53 @@ static bool fetch_to_buffer(const char* url, void* data, size_t size) {
 }
 
 static void stop_video() {
-  // TODO: stop_video
+  // TODO: interrupt curl transfers
 }
 
-// TODO: fetch in a thread
-// TODO: check for underflow
-static void fetch_chunk() {
-  size_t size = global_chunk_size;
-  if (global_chunk_num == 0) {
-    size += sizeof(SegaVideoHeader);
+static void* fetch_thread(void* ignored_arg) {
+  while (true) {
+    while (!global_fetch_busy) {
+      usleep(10 * 1000);  // 10ms
+    }
+
+    size_t size = global_chunk_size;
+    if (global_chunk_num == 0) {
+      size += sizeof(SegaVideoHeader);
+    }
+
+    if (!fetch_range_to_sram(global_video_url, global_video_url_start_byte,
+                             size)) {
+      char buf[64];
+      snprintf(buf, 64, "Failed to fetch video! (chunk %d)", global_chunk_num);
+      report_error(buf);
+    } else {
+      global_chunk_num++;
+      global_chunks_left--;
+      global_video_url_start_byte += size;
+      global_sram_offset = (global_chunk_num & 1) ? REGION_SIZE : 0;
+    }
+
+    global_fetch_busy = false;
   }
 
-  if (!fetch_range_to_sram(global_video_url, global_video_url_start_byte,
-                           size)) {
-    char buf[64];
-    snprintf(buf, 64, "Failed to fetch video! (chunk %d)", global_chunk_num);
-    report_error(buf);
+  return NULL;
+}
+
+static void fetch_chunk() {
+  // Check for underflow
+  if (global_fetch_busy) {
+    report_error("Underflow detected! Internet too slow?");
     return;
   }
 
-  global_chunk_num++;
-  global_chunks_left--;
-  global_video_url_start_byte += size;
-  global_sram_offset = (global_chunk_num & 1) ? REGION_SIZE : 0;
+  // Flag the thread to start the next chunk.
+  global_fetch_busy = true;
 }
 
-// TODO: fetch in a thread
 static void wait_for_chunk() {
+  while (global_fetch_busy) {
+    usleep(10 * 1000);  // 10ms
+  }
 }
 
 static void start_video() {
@@ -350,6 +374,9 @@ void kinetoscope_init(void *sram_buffer, uint32_t sram_size) {
   global_sram_size = sram_size;
 
   curl_global_init(CURL_GLOBAL_ALL);
+
+  global_fetch_busy = false;
+  pthread_create(&global_fetch_thread, NULL, fetch_thread, NULL);
 
 #if 0
   // To test error handling, simulate no connection

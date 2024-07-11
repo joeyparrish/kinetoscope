@@ -1,4 +1,4 @@
-commit 992f1e2bba15241a2025a52b7c5a494e95debc73
+commit ae6a97d3d053c29e0d1544f8fe09b9d2c2ba7c7d
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,31 +21,37 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..7162720 100644
+index 0dddc9f..f4c96df 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -109,6 +109,10 @@ endif
+@@ -109,6 +109,13 @@ endif
  endif #Darwin
  CFLAGS+= -I$(SDL_INCLUDE_PATH)
  
 +# Static libcurl for kinetoscope emulation
 +CFLAGS+= -Icurl/include
 +LDFLAGS+= curl/lib/.libs/libcurl.a
++# Pthread for kinetoscope emulation
++CFLAGS+= -pthread
++LDFLAGS+= -pthread
 +
  else
  ifeq ($(MAKECMDGOALS),libblastem.$(SO))
  LDFLAGS:=-lm
-@@ -126,6 +130,9 @@ LDFLAGS+= -framework OpenGL -framework AppKit
+@@ -126,6 +133,12 @@ LDFLAGS+= -framework OpenGL -framework AppKit
  endif
  endif
  
 +# System libcurl for Kinetoscope emulation
 +LDFLAGS+= $(shell curl-config --libs)
++# Pthread for kinetoscope emulation
++CFLAGS+= -pthread
++LDFLAGS+= -pthread
 +
  endif #PORTABLE
  endif #Windows
  
-@@ -221,6 +228,7 @@ endif
+@@ -221,6 +234,7 @@ endif
  
  MAINOBJS=blastem.o system.o genesis.o debug.o gdb_remote.o vdp.o $(RENDEROBJS) io.o romdb.o hash.o menu.o xband.o \
  	realtec.o i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
@@ -53,7 +59,7 @@ index 0dddc9f..7162720 100644
  	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o zip.o bindings.o jcart.o gen_player.o
  
  LIBOBJS=libblastem.o system.o genesis.o debug.o gdb_remote.o vdp.o io.o romdb.o hash.o xband.o realtec.o \
-@@ -277,6 +285,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
+@@ -277,6 +291,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
  CFLAGS+= -fpic -DIS_LIB
  endif
  
@@ -62,7 +68,7 @@ index 0dddc9f..7162720 100644
  all : $(ALL)
  
  libblastem.$(SO) : $(LIBOBJS)
-@@ -366,7 +376,7 @@ m68k.c : m68k.cpu cpu_dsl.py
+@@ -366,7 +382,7 @@ m68k.c : m68k.cpu cpu_dsl.py
  	$(CC) $(CFLAGS) -c -o $@ $<
  
  %.png : %.xcf
