@@ -26,7 +26,7 @@ To order boards, see hardware zip files attached to
 [releases](https://github.com/joeyparrish/kinetoscope/releases).  These can be
 uploaded to JLCPCB.
 
-TODO: Document ordering process, automate rotational fixes to JLCPCB placement
+TODO: Document ordering process
 
 
 ## Boards
@@ -47,11 +47,6 @@ The stacking boards are:
        - Surface Finish: ENIG
        - Gold Fingers: Yes
        - 30°finger chamfered: Yes
-     - Uncheck the following parts, which JLCPCB will mis-populate:
-       - J1 (pin header)
-     - The following parts need to be rotated 90 degrees to the right before
-       ordering, because JLCPCB's models disagree with KiCad's:
-       - Every IC that isn't U6 (flash chip)
      - The following parts will have to be populated by hand:
        - C2 (bulk capacitor, electrolytic, 47uF, 16+V)
        - U2 (fixed low-drop-out regulator, 1.5A @ 3.3V)

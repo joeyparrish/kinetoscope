@@ -104,5 +104,10 @@ if ! kicad-cli sch export bom \
   exit 1
 fi
 
+echo "Filtering BOM and fixing rotations for JLCPCB..."
+./fix-bom-and-pos.py \
+    "$1-fab/$1.bom.csv" "$1-fab/$1.bom.csv" \
+    "$1-fab/$1-front.pos.csv" "$1-fab/$1-front.pos.csv"
+
 echo "Zipping..."
 zip -r9 "$1-fab.zip" "$1-fab/"
