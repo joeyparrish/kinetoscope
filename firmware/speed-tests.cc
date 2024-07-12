@@ -77,9 +77,8 @@ static long test_download_speed(int first_byte, int total_size) {
   // ~3.0Mbps on subsequent requests @902kB
   long start = millis();
   sram_start_bank(0);
-  int bytes_read = http_fetch(SERVER, /* default port */ 0, PATH,
-                              first_byte, total_size,
-                              sram_write_callback);
+  http_fetch(SERVER, /* default port */ 0, PATH, first_byte, total_size,
+             sram_write_callback);
   sram_flush();
   long end = millis();
   return end - start;
@@ -88,8 +87,7 @@ static long test_download_speed(int first_byte, int total_size) {
 void run_tests() {
   long ms;
 
-  uint8_t* buffer = NULL;
-  buffer = (uint8_t*)malloc(BUFFER_SIZE);
+  uint8_t* buffer = (uint8_t*)malloc(BUFFER_SIZE);
   if (!buffer) {
     Serial.println("Failed to allocate buffer!");
     while (true) { delay(1000); }
