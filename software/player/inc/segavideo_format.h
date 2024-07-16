@@ -24,7 +24,10 @@
 
 // This header appears at the start of the file in both embedded and streaming
 // mode.  Each one is exactly 8kB, so they can form the basis of a catalog
-// format that the streamer ROM can easily flip through.
+// format that the streamer ROM can easily flip through.  The catalog is the
+// concatenation of the headers of all the videos, with the relative_url field
+// filled in.  The relative_url field is not used in the video itself, only in
+// the catalog.
 typedef struct SegaVideoHeader {
   uint8_t magic[16];  // SEGAVIDEO_HEADER_MAGIC
   uint16_t format;  // SEGAVIDEO_HEADER_FORMAT
@@ -33,12 +36,12 @@ typedef struct SegaVideoHeader {
   uint32_t totalFrames;  // num frames
   uint32_t totalSamples;  // bytes, total, multiple of 256
   uint32_t chunkSize;  // bytes, for all but the final chunk
-  uint32_t totalChunks;
+  uint32_t totalChunks;  // number of chunks to follow this header
 
   // 38 bytes above.
-  char title[128];
-  char relative_url[128];
-  uint8_t padding[698];
+  char title[128];  // US-ASCII for display with a very simple font
+  char relative_url[128];  // relative to catalog, filled in catalog creation
+  uint8_t padding[698];  // zeros
   // 7200 bytes below.
 
   // A thumbnail for display in the streamer ROM menu. Just like
@@ -57,8 +60,8 @@ typedef struct SegaVideoHeader {
 //  SegaVideoFrame frames[chunkFrameCount]
 
 typedef struct SegaVideoChunkHeader {
-  uint32_t samples;
-  uint16_t frames;
+  uint32_t samples;  // in audio, each of which is one byte
+  uint16_t frames;  // in video, each of which is a SegaVideoFrame
   // If zero, keep playing after this.  If non-zero, this is the final chunk.
   uint16_t finalChunk;
   // Padding right after the chunk header to maintain 256-byte alignment for
