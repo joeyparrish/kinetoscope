@@ -48,7 +48,6 @@ The stacking boards are:
        - Gold Fingers: Yes
        - 30°finger chamfered: Yes
      - The following parts will have to be populated by hand:
-       - C2 (bulk capacitor, electrolytic, 47uF, 16+V)
        - U2 (fixed low-drop-out regulator, 1.5A @ 3.3V)
        - J1 (Adafruit stacking pin header, modified)
  - `sram-bank`: SRAM Bank Board

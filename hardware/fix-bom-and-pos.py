@@ -15,6 +15,7 @@ ROTATE_PACKAGES = [
 # Packages we know don't need rotation.
 OKAY_PACKAGES = [
   'C_0603_1608Metric',
+  'C_1206_3216Metric',
   'Crystal_SMD_0603-2Pin_6.0x3.5mm',
   'L_0603_1608Metric',
   'R_0603_1608Metric',
