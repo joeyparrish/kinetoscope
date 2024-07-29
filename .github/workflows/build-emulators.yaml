@@ -80,3 +80,4 @@ jobs:
         with:
           name: blastem-linux
           path: blastem64-0.6.2-kinetoscope
+          retention-days: 1

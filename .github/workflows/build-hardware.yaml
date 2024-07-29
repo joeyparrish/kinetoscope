@@ -68,3 +68,4 @@ jobs:
         with:
           name: hardware
           path: hardware/*-fab.zip
+          retention-days: 1

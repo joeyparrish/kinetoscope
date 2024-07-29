@@ -72,3 +72,4 @@ jobs:
         with:
           name: firmware
           path: firmware/firmware.ino.uf2
+          retention-days: 1

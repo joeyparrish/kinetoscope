@@ -53,6 +53,7 @@ jobs:
         with:
           name: never-gonna-give-you-up-rom
           path: ./software/embed-video-in-rom/out/rom.bin
+          retention-days: 1
 
       - name: Build embedded You Spin Me Round
         run: |
@@ -66,6 +67,7 @@ jobs:
         with:
           name: you-spin-me-round-rom
           path: ./software/embed-video-in-rom/out/rom.bin
+          retention-days: 1
 
       - name: Build streamer software
         run: ./software/stream-with-special-hardware/build.sh
@@ -75,3 +77,4 @@ jobs:
         with:
           name: streamer-rom
           path: ./software/stream-with-special-hardware/out/rom.bin
+          retention-days: 1
