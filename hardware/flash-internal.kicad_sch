@@ -5747,9 +5747,9 @@
 		)
 		(uuid "0d6c3865-64d3-4238-8f14-193b36b119f4")
 	)
-	(text "This outputs at 3.3V logic levels, which\nare compatible with the Sega's 5V TTL\nsystem.  We rely on this fact so that\nthe cart can remain compatible with both\nthe Sega and the FlashKit programmer.\nIf we made the right side 5V, then the\nminimum high level for data input would\nbe 3.5V (VccB * 0.7), which would cause\n3.3V inputs not to work right."
+	(text "This outputs at 3.3V logic levels, which\nare compatible with the Sega's 5V TTL\nsystem.  We rely on this fact so that\nthe cart can remain compatible with both\nthe Sega and the FlashKit programmer.\nIf we made the right side 5V, then the\nminimum high level for data input would\nbe 3.5V (VccB * 0.7), which would cause\n3.3V inputs not to work right.\n\nBy using 3.3V on both sides, we can\ntake advantage of the chip's 5V-\ntolerant input so that anything over\n3.3V * 0.7 (= 2.31V) is considered\nhigh, and the input can be either\n5V or 3.3V logic, with the output\nalways at 3.3V."
 		(exclude_from_sim no)
-		(at 243.84 33.02 0)
+		(at 243.586 36.322 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5757,6 +5757,17 @@
 			(justify left)
 		)
 		(uuid "21984756-0637-4702-ae8f-20fee640db26")
+	)
+	(text "~{OE} is connected to ~{CE_3V} via ~{DATA_OE_INT}\nand ~{CE_3V_INT}.  Throughput (in either direction)\nwill be enabled any time the address space\nindicates reading or writing flash (0-2MB)."
+		(exclude_from_sim no)
+		(at 226.568 141.732 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3cbc7bab-474c-42ff-9d6e-bd9957fbc6d7")
 	)
 	(text "DIR is high,\ndata always flows\nA => B."
 		(exclude_from_sim no)
@@ -5790,9 +5801,9 @@
 		)
 		(uuid "89a6e63e-6b72-487a-8f5d-7183cce8599a")
 	)
-	(text "DIR is high to pass data from A to B.\nDIR is connected to ~{WE}.\n~{WE} is high when we're reading.\nTherefore the reading side (flash chip\nside) should be A."
+	(text "DIR is high to pass data from A to B.\nDIR is connected to ~{WE} via DATA_DIR_INT.\n~{WE} is high when we're reading.\nTherefore the reading side (flash chip side)\nshould be A."
 		(exclude_from_sim no)
-		(at 189.23 141.732 0)
+		(at 178.308 141.478 0)
 		(effects
 			(font
 				(size 1.27 1.27)
