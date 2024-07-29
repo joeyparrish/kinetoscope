@@ -5747,7 +5747,7 @@
 		)
 		(uuid "0d6c3865-64d3-4238-8f14-193b36b119f4")
 	)
-	(text "This outputs at 3.3V logic levels, which\nare compatible with the Sega's 5V TTL\nsystem.  We rely on this fact so that\nthe cart can remain compatible with both\nthe Sega and the FlashKit programmer.\nIf we made the right side 5V, then the\nminimum high level for data input would\nbe 3.5V (VccB * 0.7), which would cause\n3.3V inputs not to work right.\n\nBy using 3.3V on both sides, we can\ntake advantage of the chip's 5V-\ntolerant input so that anything over\n3.3V * 0.7 (= 2.31V) is considered\nhigh, and the input can be either\n5V or 3.3V logic, with the output\nalways at 3.3V."
+	(text "This outputs at 3.3V logic levels, which\nare compatible with the Sega's 5V TTL\nsystem.  We rely on this fact so that\nthe cart can remain compatible with both\nthe Sega and the FlashKit programmer.\nIf we made the right side 5V, then the\nminimum high level for data input would\nbe 3.5V (VccB * 0.7), which would cause\n3.3V inputs not to work right.\n\nBy using 3.3V on both sides, we can\ntake advantage of the chip's 5V-\ntolerant input so that anything over\n3.3V * 0.7 (= 2.31V) is considered\nhigh, and the input when writing can\nbe 3.3V."
 		(exclude_from_sim no)
 		(at 243.586 36.322 0)
 		(effects
