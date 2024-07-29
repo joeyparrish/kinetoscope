@@ -5780,7 +5780,7 @@
 		)
 		(uuid "505023f5-719a-4171-bd68-af948f6ceb57")
 	)
-	(text "These bridges can be cut with a knife to hijack these\nsignals through the pin header labeled \"debug-flash\"."
+	(text "These bridges can be used to snoop on these signals,\nor cut with a knife to hijack them."
 		(exclude_from_sim no)
 		(at 40.894 100.584 0)
 		(effects
