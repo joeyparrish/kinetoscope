@@ -65,6 +65,7 @@ jobs:
 
       - name: Upload fab outputs
         uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call'
         with:
           name: hardware
           path: hardware/*-fab.zip

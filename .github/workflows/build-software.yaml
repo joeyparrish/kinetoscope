@@ -50,6 +50,7 @@ jobs:
 
       - name: Upload Never Gonna Give You Up ROM
         uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call'
         with:
           name: never-gonna-give-you-up-rom
           path: ./software/embed-video-in-rom/out/rom.bin
@@ -64,6 +65,7 @@ jobs:
 
       - name: Upload You Spin Me Round ROM
         uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call'
         with:
           name: you-spin-me-round-rom
           path: ./software/embed-video-in-rom/out/rom.bin
@@ -74,6 +76,7 @@ jobs:
 
       - name: Upload streamer ROM
         uses: actions/upload-artifact@v4
+        if: github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call'
         with:
           name: streamer-rom
           path: ./software/stream-with-special-hardware/out/rom.bin
