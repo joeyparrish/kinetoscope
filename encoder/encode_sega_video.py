@@ -64,9 +64,15 @@ def main(args):
     # Detect crop settings for the input video.
     crop = detect_crop(args)
 
+    # Detect normalization settings for the input audio.
+    if args.filter_audio:
+      normalization = detect_normalization(args)
+    else:
+      normalization = None
+
     # Extract individual frames, reduced to the output framerate, and audio,
     # resampled to the target sample rate and resolution.
-    extract_frames_and_audio(args, crop, fullcolor_dir, tmp_dir)
+    extract_frames_and_audio(args, crop, normalization, fullcolor_dir, tmp_dir)
 
     # Determine where scene changes are, to optimize the quantization process
     # and improve color quality.
@@ -94,6 +100,12 @@ def main(args):
       generate_resource_file(args)
 
 
+def run(debug, **kwargs):
+  if debug:
+    print('+ ' + ' '.join(kwargs['args']))
+  return subprocess.run(**kwargs)
+
+
 def detect_crop(args):
   rounding = 8  # round to a multiple of 8 pixels, the Sega tile size
 
@@ -101,21 +113,36 @@ def detect_crop(args):
 
   ffmpeg_args = [
     'ffmpeg',
+    # Keyframes only.  As much as a 4x speedup on some of my content.
+    # Saves ~3 minutes on a full movie.
+    '-skip_frame', 'nokey',
     # Input.
     '-i', args.input,
+    # No audio or sub or metadata processing.
+    '-an', '-sn', '-dn',
     # Video filters.
     '-vf', 'cropdetect=round={}'.format(rounding),
-    # No output.
-    '-f', 'null', '-',
   ]
 
-  process = subprocess.run(
+  # Maybe subset the input.
+  if args.start:
+    ffmpeg_args.extend(['-ss', str(args.start)])
+  if args.end:
+    ffmpeg_args.extend(['-to', str(args.end)])
+
+  ffmpeg_args.extend([
+    # No output.
+    '-f', 'null', '-',
+  ])
+
+  process = run(args.debug,
       check=True, capture_output=True, text=True, args=ffmpeg_args)
 
   crop = None
   for line in process.stderr.split('\n'):
     if 'crop=' in line:
       crop = line.split('crop=')[1].split(' ')[0]
+      # Do not break.  We get many of these lines, and take from the last.
 
   if crop is None:
     raise RuntimeError(
@@ -125,7 +152,62 @@ def detect_crop(args):
   return crop
 
 
-def extract_frames_and_audio(args, crop, frame_dir, audio_dir):
+def detect_normalization(args):
+  print('Detecting volume normalization...')
+
+  ffmpeg_args = [
+    'ffmpeg',
+    # Input.
+    '-i', args.input,
+    # No video or sub or metadata processing.
+    '-vn', '-sn', '-dn',
+    # Downmix to 1 channel.
+    '-ac', '1',
+    # Audio filters.
+    '-af', 'volumedetect',
+  ]
+
+  # Maybe subset the input.
+  if args.start:
+    ffmpeg_args.extend(['-ss', str(args.start)])
+  if args.end:
+    ffmpeg_args.extend(['-to', str(args.end)])
+
+  ffmpeg_args.extend([
+    # No output.
+    '-f', 'null', '-',
+  ])
+
+  process = run(args.debug,
+      check=True, capture_output=True, text=True, args=ffmpeg_args)
+
+  max_volume = None
+  for line in process.stderr.split('\n'):
+    # Ex: [Parsed_volumedetect_0 @ 0x55750044e8c0] max_volume: -4.7 dB
+    if ' max_volume: ' in line:
+      max_volume = line.split(' max_volume: ')[1].split(' ')[0]
+      print('Max volume detected: {} dB'.format(max_volume))
+      # This only happens once.  Quit parsing.
+      break
+
+  if max_volume is None:
+    raise RuntimeError(
+        'Unable to detect normalization settings for {}'.format(args.input))
+
+  # Whatever it is, invert it. If the max is -4.7, that becomes a 4.7 increase.
+  normalization = float(max_volume) * -1
+
+  # Actually, let's target -1.0 dB.  If the source is beyond that, do nothing.
+  if normalization <= 1.0:
+    normalization = 0
+  else:
+    normalization -= 1.0
+
+  print('Increasing volume by {:.1f} dB'.format(normalization))
+  return normalization
+
+
+def extract_frames_and_audio(args, crop, normalization, frame_dir, audio_dir):
   # Notes on frame sizing:
   #  - SD analog display (NTSC) is 320x240.
   #  - The player sets the Genesis video processor's (VDP) resolution to
@@ -174,8 +256,6 @@ def extract_frames_and_audio(args, crop, frame_dir, audio_dir):
   ])
 
   ffmpeg_args.extend([
-    # Audio sample rate.
-    '-ar', str(args.sample_rate),
     # Mix down to mono audio.
     '-ac', '1',
     # Encode as 8-bit signed raw PCM.
@@ -183,19 +263,67 @@ def extract_frames_and_audio(args, crop, frame_dir, audio_dir):
     '-f', 's8',
   ])
 
+  if args.filter_audio:
+    # Audio filters.
+    audio_filters = [
+      # Experimentation shows that the biggest source of noise is quantization
+      # noise when we go down to 8-bit samples.  This effect is the most extreme
+      # in quiet moments, so start by normalizing the volume.
+      "volume={}dB".format(normalization),
+      # Then, run a denoising filter to remove frequency components below a certain
+      # volume threshold.  This part might just be voodoo.  I don't know what I'm
+      # doing here, but Star Wars sounds like crap and I'm desperate.
+      "afftdn=nr=40:nf=-36",
+      # Finally, resample to 13kHz using sox, which should include a low-pass filter
+      # to remove frequencies above the Nyquist frequency (13kHz / 2) and avoid
+      # aliasing (where high frequencies get mapped to low ones again).
+      "aresample={}:resampler=soxr:osf=8:osr={}:dither_method=triangular".format(
+          args.sample_rate, args.sample_rate),
+    ]
+
+    ffmpeg_args.extend([
+      # Add audio filters.
+      '-af', ','.join(audio_filters),
+    ])
+  else:
+    ffmpeg_args.extend([
+      # Audio sample rate.
+      '-ar', str(args.sample_rate),
+    ])
+
   # Apply the same subset to the audio output.
   if args.start:
     ffmpeg_args.extend(['-ss', str(args.start)])
   if args.end:
     ffmpeg_args.extend(['-to', str(args.end)])
 
+  temp_audio_file = os.path.join(audio_dir, 'sound.pcm')
   ffmpeg_args.extend([
     # Output specifier for audio.
-    os.path.join(audio_dir, 'sound.pcm'),
+    temp_audio_file,
   ])
 
   print('Extracting video frames and audio...')
-  subprocess.run(check=True, args=ffmpeg_args)
+  run(args.debug, check=True, args=ffmpeg_args)
+
+  if args.debug_audio:
+    audio_debug_path = os.path.join(args.output + '.wav')
+    print('Saving extracted audio to {}'.format(audio_debug_path))
+
+    run(args.debug, check=True, args=[
+      'ffmpeg',
+      # Make less noise.
+      '-hide_banner', '-loglevel', 'error',
+      # Input.
+      '-f', 's8',
+      '-acodec', 'pcm_s8',
+      '-ac', '1',
+      '-ar', str(args.sample_rate),
+      '-i', temp_audio_file,
+      # Output.
+      '-acodec', 'pcm_u8',
+      '-y', audio_debug_path,
+    ])
 
 
 def detect_scene_changes(args, frame_dir):
@@ -214,7 +342,7 @@ def detect_scene_changes(args, frame_dir):
     '-f', 'null', '-',
   ]
 
-  process = subprocess.run(
+  process = run(args.debug,
       check=True, capture_output=True, text=True, args=ffmpeg_args)
 
   scene_change_frames = []
@@ -274,7 +402,7 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
     # Output a palette image.
     output_pal_path,
   ]
-  subprocess.run(check=True, args=ffmpeg_args)
+  run(args.debug, check=True, args=ffmpeg_args)
 
   ffmpeg_args = [
     'ffmpeg',
@@ -291,7 +419,7 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
     '-start_number', str(start_frame),
     os.path.join(output_scene_dir, 'frame_%05d.ppm'),
   ]
-  subprocess.run(check=True, args=ffmpeg_args)
+  run(args.debug, check=True, args=ffmpeg_args)
 
 
 def quantize_scenes(args, input_dir, output_dir, scenes):
@@ -311,7 +439,9 @@ def quantize_scenes(args, input_dir, output_dir, scenes):
     scene_index += 1
     print('\rQuantized {} / {} scenes...'.format(scene_index, len(scenes)),
           end='')
-  print('')
+    if args.debug: print('')
+
+  if not args.debug: print('')
 
 
 def recombine_scenes(input_dir, output_dir):
@@ -611,7 +741,7 @@ def generate_thumbnail(args, fullcolor_dir, thumb_dir):
     # Output.
     thumb_in,
   ]
-  subprocess.run(check=True, args=ffmpeg_args)
+  run(args.debug, check=True, args=ffmpeg_args)
 
   # Now quantize this half-sized image.
   quantize_scene(args, thumb_in_dir, thumb_out_dir, 1)
@@ -687,6 +817,16 @@ if __name__ == '__main__':
            ' "none" for some content.'
            ' See https://ffmpeg.org/ffmpeg-filters.html#paletteuse for a full'
            ' list of options.')
+  parser.add_argument('--no-filter-audio',
+      dest='filter_audio',
+      action='store_false',
+      help='Skip audio filtering and normalization.')
+  parser.add_argument('--debug',
+      action='store_true',
+      help='Print all ffmpeg commands.')
+  parser.add_argument('--debug-audio',
+      action='store_true',
+      help='Save 8-bit audio for debugging filtering and audio driver.')
 
   args = parser.parse_args()
   main(args)
