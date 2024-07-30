@@ -6,6 +6,8 @@
 
 // Sega video player and streaming hardware interface.
 
+#define DEBUG 1
+
 #include <genesis.h>
 
 #include "segavideo_player.h"
@@ -13,6 +15,11 @@
 #include "segavideo_state_internal.h"
 
 #include "trivial_tilemap.h"
+
+#define AUDIO_XGM2   1
+#define AUDIO_PCM    2
+
+#define AUDIO_DRIVER AUDIO_XGM2
 
 typedef struct ChunkInfo {
   const uint8_t* start;
@@ -98,6 +105,19 @@ static uint32_t nextFrameNum;
 // The status byte will have bit 0x01 set if we are playing PCM channel 1.
 #define XGM2_STATUS ((volatile uint8_t*)(Z80_RAM + 0x0102))
 
+// At this address, the first two bytes are the current PCM address divided by
+// 256.  The next two bytes are the remaining PCM length divided by 256, in
+// bytes.
+#define PCM_CURRENT ((volatile uint8_t*)(Z80_RAM + 0x0114))
+
+// At this address, the first two bytes are the base PCM address divided by 256.
+// The next two bytes are the PCM length divided by 256, in bytes.
+#define PCM_PARAMS ((volatile uint8_t*)(Z80_RAM + 0x0104))
+
+// The status byte will have bit 0x01 set if we are playing.
+// The following byte will have bit 0x01 set if we are looping.
+#define PCM_STATUS ((volatile uint8_t*)(Z80_RAM + 0x0102))
+
 // Mask a pointer as a uint32_t
 #define MASK(pointer, mask) (((uint32_t)pointer) & (mask))
 
@@ -169,19 +189,101 @@ static void clearScreen() {
   VDP_clearPlane(BG_B, /* wait= */ true);
 }
 
+static void loadAudioDriver() {
+#if AUDIO_DRIVER == AUDIO_XGM2
+  XGM2_loadDriver(true);
+#elif AUDIO_DRIVER == AUDIO_PCM
+  SND_PCM_loadDriver(true);
+#endif
+}
+
+static void unloadAudioDriver() {
+#if AUDIO_DRIVER == AUDIO_XGM2
+  XGM2_unloadDriver();
+#elif AUDIO_DRIVER == AUDIO_PCM
+  SND_PCM_unloadDriver();
+#endif
+
+  SND_NULL_loadDriver();
+}
+
+static void updateAudioDriver() {
+  // Does nothing for now, but we may wish to experiment with drivers that
+  // require a call from the m68k on every frame.
+#if AUDIO_DRIVER == AUDIO_XGM2
+#elif AUDIO_DRIVER == AUDIO_PCM
+#endif
+}
+
+static void startAudio(const uint8_t* samples, uint32_t length, bool loop) {
+#if AUDIO_DRIVER == AUDIO_XGM2
+  // Assumes 13,312 Hz.
+  XGM2_playPCMEx(samples, length, SOUND_PCM_CH1, /*priority=*/ 6,
+      /*halfRate=*/ false, loop);
+#elif AUDIO_DRIVER == AUDIO_PCM
+  // Choose closest suported playback rate.
+  SoundPcmSampleRate rate;
+  if (sampleRate < 9512) {
+    rate = SOUND_PCM_RATE_8000;
+  } else if (sampleRate < 12212) {
+    rate = SOUND_PCM_RATE_11025;
+  } else if (sampleRate < 14700) {
+    rate = SOUND_PCM_RATE_13400;
+  } else if (sampleRate < 19205) {
+    rate = SOUND_PCM_RATE_16000;
+  } else if (sampleRate < 27025) {
+    rate = SOUND_PCM_RATE_22050;
+  } else {
+    rate = SOUND_PCM_RATE_32000;
+  }
+
+  SND_PCM_startPlay(samples, length, SOUND_PCM_RATE_13400, SOUND_PAN_CENTER,
+      loop);
+#endif
+}
+
+static void waitForAudioDriver() {
+#if AUDIO_DRIVER == AUDIO_XGM2
+  while (!Z80_isDriverReady()) {
+    waitMs(1);
+  }
+  while (!XGM2_isPlayingPCM(SOUND_PCM_CH1_MSK)) {
+    waitMs(1);
+  }
+#elif AUDIO_DRIVER == AUDIO_PCM
+  while (!Z80_isDriverReady()) {
+    waitMs(1);
+  }
+  while (!SND_PCM_isPlaying()) {
+    waitMs(1);
+  }
+#endif
+}
+
 static void overwriteAudioAddress(const uint8_t* samples, uint32_t length) {
   Z80_requestBus(true);
 
   if (samples) {
     // Next address to loop back to.
+#if AUDIO_DRIVER == AUDIO_XGM2
     XGM2_PARAMS[0] = ((uint32_t)samples) >> 8;
     XGM2_PARAMS[1] = ((uint32_t)samples) >> 16;
     XGM2_PARAMS[2] = length >> 6;
     XGM2_PARAMS[3] = length >> 14;
+#elif AUDIO_DRIVER == AUDIO_PCM
+    PCM_PARAMS[0] = ((uint32_t)samples) >> 8;
+    PCM_PARAMS[1] = ((uint32_t)samples) >> 16;
+    PCM_PARAMS[2] = length >> 8;
+    PCM_PARAMS[3] = length >> 16;
+#endif
   } else {
     // All out of data, so disable the "loop" flag.  Playback will end when the
     // current buffer runs out.
+#if AUDIO_DRIVER == AUDIO_XGM2
     XGM2_CURRENT[5] = 0;
+#elif AUDIO_DRIVER == AUDIO_PCM
+    PCM_STATUS[1] = 0;
+#endif
   }
 
   Z80_releaseBus();
@@ -193,6 +295,7 @@ static uint32_t getCurrentAudioAddress() {
   uint8_t addrMid = 0;
   uint8_t addrHigh = 0;
 
+#if AUDIO_DRIVER == AUDIO_XGM2
   if (*XGM2_STATUS & 1) {
     // Something is playing.
     // XGM2_CURRENT[0] is addrLow and is not used.
@@ -201,10 +304,32 @@ static uint32_t getCurrentAudioAddress() {
   } else {
     // Leave the address at 0, to represent that we are not playing.
   }
+#elif AUDIO_DRIVER == AUDIO_PCM
+  if (*PCM_STATUS & 1) {
+    // Something is playing.
+    addrMid = PCM_CURRENT[0];
+    addrHigh = PCM_CURRENT[1];
+  } else {
+    // Leave the address at 0, to represent that we are not playing.
+  }
+#endif
 
   Z80_releaseBus();
 
   return (addrMid << 8) | (addrHigh << 16);
+}
+
+static void stopAudio() {
+#if AUDIO_DRIVER == AUDIO_XGM2
+  XGM2_stopPCM(SOUND_PCM_CH1);
+
+  // NOTE: XGM2_stopPCM() followed by XGM2_playPCMEx() doesn't work without
+  // unloading and reloading the driver.  This is likely a bug in the driver,
+  // but I don't have time to dig into it.
+  XGM2_unloadDriver();
+#elif AUDIO_DRIVER == AUDIO_PCM
+  SND_PCM_stopPlay();
+#endif
 }
 
 static bool nextVideoFrame() {
@@ -330,7 +455,7 @@ void segavideo_init() {
   VDP_setWindowAddress(0xE000);
 
   // Unload any previous audio driver for a clean slate.
-  XGM2_unloadDriver();
+  unloadAudioDriver();
 
   paused = false;
   playing = false;
@@ -386,17 +511,10 @@ bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop,
 
   // Start audio
   if (currentChunk.audioSamples) {
-    XGM2_loadDriver(true);
-
-    XGM2_playPCMEx(currentChunk.audioStart, currentChunk.audioSamples,
-        SOUND_PCM_CH1, /*priority=*/ 6, /*halfRate=*/ false, /*loop=*/ true);
-
-    while (!Z80_isDriverReady()) {
-      waitMs(1);
-    }
-    while (!XGM2_isPlayingPCM(SOUND_PCM_CH1_MSK)) {
-      waitMs(1);
-    }
+    loadAudioDriver();
+    startAudio(currentChunk.audioStart, currentChunk.audioSamples,
+               /*loop=*/ true);
+    waitForAudioDriver();
   }
 
   return true;
@@ -428,6 +546,8 @@ void segavideo_play(const uint8_t* videoData, bool loop) {
 }
 
 void segavideo_processFrames() {
+  updateAudioDriver();
+
   if (!playing || paused) return;
 
   bool stillPlaying = nextVideoFrame();
@@ -461,14 +581,7 @@ void segavideo_pause() {
                        + currentChunk.audioSamples
                        - audioResumeAddr;
 
-  // Stop audio.
-  XGM2_stopPCM(SOUND_PCM_CH1);
-
-  // NOTE: XGM2_stopPCM() followed by XGM2_playPCMEx() doesn't work without
-  // unloading and reloading the driver.  This is likely a bug in the driver,
-  // but I don't have time to dig into it.
-  XGM2_unloadDriver();
-
+  stopAudio();
   // Disable video
   paused = true;
 }
@@ -480,18 +593,10 @@ void segavideo_resume() {
     return;
   }
 
-  XGM2_loadDriver(true);
-  XGM2_playPCMEx((uint8_t*)audioResumeAddr, audioResumeSamples, SOUND_PCM_CH1,
-      /*priority=*/ 6, /*halfRate=*/ false, /*loop=*/ true);
-
-  // Wait for the "playing" signal so we know the internal addresses have been
-  // set.
-  while (!Z80_isDriverReady()) {
-    waitMs(1);
-  }
-  while (!XGM2_isPlayingPCM(SOUND_PCM_CH1_MSK)) {
-    waitMs(1);
-  }
+  loadAudioDriver();
+  startAudio((const uint8_t*)audioResumeAddr, audioResumeSamples,
+      /* loop= */ true);
+  waitForAudioDriver();
 
   // Enable video
   paused = false;
@@ -514,9 +619,7 @@ void segavideo_stop() {
   kprintf("segavideo_stop\n");
 
   if (playing) {
-    // Stop audio.
-    XGM2_stopPCM(SOUND_PCM_CH1);
-    XGM2_unloadDriver();
+    stopAudio();
   }
 
   // When we stop the video, clear the screen and load the default font, which
