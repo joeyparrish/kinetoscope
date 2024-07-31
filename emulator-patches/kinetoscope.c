@@ -22,10 +22,14 @@
 #if defined(_WIN32)
 // Windows header for ntohs and ntohl.
 # include <winsock2.h>
+// For GetTickCount64.
+# include <windows.h>
 #else
 // Linux headers for ntohs and ntohl.
 # include <arpa/inet.h>
 # include <netinet/in.h>
+// For clock_gettime.
+# include <time.h>
 #endif
 
 #define CMD_ECHO        0x00
@@ -49,7 +53,7 @@
 #define TOKEN_CONTROL_TO_SEGA     0
 #define TOKEN_CONTROL_TO_STREAMER 1
 
-#define SIMULATED_PROCESSING_DELAY 0.1  // seconds
+#define SIMULATED_PROCESSING_DELAY 100  // milliseconds
 
 // SRAM regions.
 #define REGION_OFFSET_MASK 0x100000  // 0MB or 1MB offset
@@ -75,7 +79,7 @@ static uint16_t global_token = TOKEN_CONTROL_TO_SEGA;
 static uint16_t global_error = 0;
 static char* global_error_str = NULL;
 static uint16_t global_arg;
-static uint32_t global_ready_cycle = (uint32_t)-1;
+static uint64_t global_ready_time = (uint64_t)-1;
 static char* global_video_url = NULL;
 static uint32_t global_chunk_size = 0;
 static uint32_t global_chunk_num = 0;
@@ -88,10 +92,22 @@ static uint32_t global_video_url_start_byte;
 // Where we write to next:
 static uint32_t global_sram_offset;
 
-static uint32_t cycle_delay(void *context, double delay_seconds) {
-  m68k_context *m68k = (m68k_context *)context;
-  genesis_context *genesis = (genesis_context *)m68k->system;
-  return delay_seconds * genesis->master_clock;
+// Current time in milliseconds.
+static uint64_t ms_now() {
+#if defined(_WIN32)
+  return GetTickCount64();
+#else
+  struct timespec tp;
+  int rv = clock_gettime(CLOCK_MONOTONIC, &tp);
+  if (rv != 0) {
+    rv = clock_gettime(CLOCK_REALTIME, &tp);
+  }
+  if (rv != 0) {
+    warning("Kinetoscope: failed to get clock!\n");
+    return (uint64_t)-1;
+  }
+  return (tp.tv_sec * 1000) + (tp.tv_nsec / 1e6);
+#endif
 }
 
 static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size) {
@@ -390,8 +406,6 @@ void kinetoscope_init(void *sram_buffer, uint32_t sram_size) {
 }
 
 void *kinetoscope_write_16(uint32_t address, void *context, uint16_t value) {
-  m68k_context *m68k = (m68k_context *)context;
-
   if (address == KINETOSCOPE_PORT_COMMAND) {
     global_command = value;
   } else if (address == KINETOSCOPE_PORT_ARG) {
@@ -402,9 +416,7 @@ void *kinetoscope_write_16(uint32_t address, void *context, uint16_t value) {
     printf("Kinetoscope: Received command 0x%02x\n", global_command);
     // Decide when the command will execute, simulating async operation of
     // the cart's secondary processor.
-    double delay_seconds = SIMULATED_PROCESSING_DELAY;
-    global_ready_cycle =
-        m68k->current_cycle + cycle_delay(context, delay_seconds);
+    global_ready_time = ms_now() + SIMULATED_PROCESSING_DELAY;
   } else if (address == KINETOSCOPE_PORT_ERROR) {
     printf("Kinetoscope: Clearing error bit\n");
     // This bit is always cleared on write by Sega, no matter the value.
@@ -428,9 +440,7 @@ void *kinetoscope_write_8(uint32_t address, void *context, uint8_t value) {
 }
 
 uint16_t kinetoscope_read_16(uint32_t address, void *context) {
-  m68k_context *m68k = (m68k_context *)context;
-
-  if (m68k->current_cycle >= global_ready_cycle &&
+  if (ms_now() >= global_ready_time &&
       global_token == TOKEN_CONTROL_TO_STREAMER) {
     execute_command();
   }
