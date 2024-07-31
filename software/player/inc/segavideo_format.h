@@ -90,9 +90,6 @@ typedef struct SegaVideoFrame {
 // for each tile, left-to-right, top-to-bottom.  They are precomputed and in
 // resource file trivial_tilemap.res.
 
-// Streaming hardware will write to alternating regions of 1MB of SRAM.  If a
-// chunk the same size as the previous one would overflow the current region,
-// the next chunk will be written to the other region instead of the current
-// region.
+// Streaming hardware will write chunks to alternating 1MB regions of SRAM.
 
 #endif // _SEGAVIDEO_FORMAT_H
