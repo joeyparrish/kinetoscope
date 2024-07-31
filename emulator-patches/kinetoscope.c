@@ -49,8 +49,7 @@
 #define TOKEN_CONTROL_TO_SEGA     0
 #define TOKEN_CONTROL_TO_STREAMER 1
 
-#define DELAY_GENERAL 0.5
-#define DELAY_NETWORK 5
+#define SIMULATED_PROCESSING_DELAY 0.1  // seconds
 
 // SRAM regions.
 #define REGION_OFFSET_MASK 0x100000  // 0MB or 1MB offset
@@ -403,8 +402,7 @@ void *kinetoscope_write_16(uint32_t address, void *context, uint16_t value) {
     printf("Kinetoscope: Received command 0x%02x\n", global_command);
     // Decide when the command will execute, simulating async operation of
     // the cart's secondary processor.
-    double delay_seconds =
-        global_command == CMD_LIST_VIDEOS ? DELAY_NETWORK : DELAY_GENERAL;
+    double delay_seconds = SIMULATED_PROCESSING_DELAY;
     global_ready_cycle =
         m68k->current_cycle + cycle_delay(context, delay_seconds);
   } else if (address == KINETOSCOPE_PORT_ERROR) {
