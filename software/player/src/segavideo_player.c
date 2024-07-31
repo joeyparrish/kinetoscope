@@ -39,6 +39,7 @@ static const uint8_t* loopVideoData;
 
 static ChunkInfo currentChunk;
 static int currentChunkNum;
+static int totalChunks;
 static ChunkInfo nextChunk;
 static uint32_t regionSize;
 static uint32_t regionMask;
@@ -344,6 +345,7 @@ static bool nextVideoFrame() {
 
   // No more frames, but we let the audio finish playing, so return true.
   if (!currentChunk.numFrames) return true;
+  if (currentChunkNum >= totalChunks) return true;
 
   // Compute frame timing.
   uint32_t firstSample = (uint32_t)currentChunk.audioStart;
@@ -414,7 +416,7 @@ static bool nextVideoFrame() {
   // the last frame, it's too late, and the audio driver has already looped.
   bool changeAudioAddress =
       (nextFrameNum == currentChunk.numFrames - 2) ||
-      (currentChunk.numFrames == 1);
+      (currentChunk.numFrames <= 2);
 
   // After showing the last frame, change addresses to the next chunk.
   bool switchChunks = (nextFrameNum == currentChunk.numFrames);
@@ -499,6 +501,7 @@ bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop,
   frameRate = header->frameRate;
   nextFrameNum = 0;
   currentChunkNum = 0;
+  totalChunks = header->totalChunks;
   kprintf("Now playing chunk %d\n", currentChunkNum);
 
   // Parse chunk header
