@@ -20,6 +20,10 @@ on:
         description: "The ref to build."
         required: true
         type: string
+      for-release:
+        description: "True if we should upload artifacts for a release."
+        default: false
+        type: boolean
 
 # If another instance of this workflow is started for the same PR, cancel the
 # old one.  If a PR is updated and a new test run is started, the old test run
@@ -69,7 +73,7 @@ jobs:
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
-        if: github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_call'
+        if: inputs.for-release
         with:
           name: firmware
           path: firmware/firmware.ino.uf2
