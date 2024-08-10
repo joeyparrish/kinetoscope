@@ -8,6 +8,259 @@
 		(title "Kinetoscope Sync Token")
 	)
 	(lib_symbols
+		(symbol "74xGxx:74LVC2G125"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at 2.54 7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "74LVC2G125"
+				(at 2.54 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Dual Buffer Tri-State, Low-Voltage CMOS"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "Dual Buff Tri-State LVC CMOS"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "VSSOP*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "74LVC2G125_1_1"
+				(polyline
+					(pts
+						(xy -7.62 6.35) (xy -7.62 -6.35) (xy 5.08 0) (xy -7.62 6.35)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin input inverted
+					(at 0 10.16 270)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -15.24 0 0)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin tri_state line
+					(at 12.7 0 180)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "74LVC2G125_2_1"
+				(polyline
+					(pts
+						(xy -7.62 6.35) (xy -7.62 -6.35) (xy 5.08 0) (xy -7.62 6.35)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin tri_state line
+					(at 12.7 0 180)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -15.24 0 0)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input inverted
+					(at 0 10.16 270)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "74LVC2G125_3_0"
+				(rectangle
+					(start -5.08 -5.08)
+					(end 5.08 5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "74LVC2G125_3_1"
+				(pin power_in line
+					(at 0 -10.16 90)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 10.16 270)
+					(length 5.08)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "74xx:74HCT74"
 			(pin_names
 				(offset 1.016)
@@ -518,474 +771,6 @@
 				)
 			)
 		)
-		(symbol "Logic_LevelTranslator:SN74LV1T125DBV"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U14"
-				(at 16.0829 6.145 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "3.3V <=> 5V"
-				(at 16.0829 3.7207 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
-				(at 0 -24.13 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv1t125"
-				(at 0 -21.59 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Single Power Supply, Single Buffer Gate with 3-State Output, CMOS Logic Level Shifter Level Shifter, SOT-23-5"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Mouser Part Number" "595-74LV1T125DBVRG4"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Part Number" "SN74LV1T125DBVRG4"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "JLCPCB Part Number" "C2675706"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "single buffer level shift"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "SOT?23*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "SN74LV1T125DBV_0_1"
-				(rectangle
-					(start -5.08 5.08)
-					(end 5.08 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 0) (xy -2.54 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 0) (xy 2.54 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "SN74LV1T125DBV_1_1"
-				(polyline
-					(pts
-						(xy -0.762 -0.762) (xy -0.762 0.762) (xy 1.016 0) (xy -0.762 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin input line
-					(at -7.62 2.54 0)
-					(length 2.54)
-					(name "~{OE}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -7.62 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin tri_state line
-					(at 7.62 0 180)
-					(length 2.54)
-					(name "Y"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 7.62 270)
-					(length 2.54)
-					(name "VCC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "SN74LV1T125DBV_1"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U2"
-				(at 16.0829 6.145 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "3.3V <=> 5V"
-				(at 16.0829 3.7207 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
-				(at 0 -24.13 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv1t125"
-				(at 0 -21.59 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Single Power Supply, Single Buffer Gate with 3-State Output, CMOS Logic Level Shifter Level Shifter, SOT-23-5"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Mouser Part Number" "595-74LV1T125DBVRG4"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Part Number" "SN74LV1T125DBVRG4"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "JLCPCB Part Number" "C2675706"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "single buffer level shift"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "SOT?23*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "SN74LV1T125DBV_1_0_1"
-				(rectangle
-					(start -5.08 5.08)
-					(end 5.08 -5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 0) (xy -2.54 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 0) (xy 2.54 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "SN74LV1T125DBV_1_1_1"
-				(polyline
-					(pts
-						(xy -0.762 -0.762) (xy -0.762 0.762) (xy 1.016 0) (xy -0.762 -0.762)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin input line
-					(at -7.62 2.54 0)
-					(length 2.54)
-					(name "~{OE}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -7.62 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin tri_state line
-					(at 7.62 0 180)
-					(length 2.54)
-					(name "Y"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 7.62 270)
-					(length 2.54)
-					(name "VCC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "power:+3.3V"
 			(power)
 			(pin_numbers hide)
@@ -1106,126 +891,6 @@
 				)
 			)
 		)
-		(symbol "power:+5V"
-			(power)
-			(pin_numbers hide)
-			(pin_names
-				(offset 0) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "+5V"
-				(at 0 3.556 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"+5V\""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "+5V_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+5V_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "power:GND"
 			(power)
 			(pin_numbers hide)
@@ -1324,10 +989,22 @@
 		)
 	)
 	(junction
-		(at 64.77 142.24)
+		(at 74.93 142.24)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "253f2223-5ff1-4db1-8ada-7ad92eea483d")
+		(uuid "73f29e21-3467-4429-ae92-156488570445")
+	)
+	(junction
+		(at 222.25 99.06)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8b0b4048-b43d-450a-aabf-950201b344c1")
+	)
+	(junction
+		(at 205.74 125.73)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a3bce703-231e-44e8-948a-d6552a7d0659")
 	)
 	(junction
 		(at 187.96 125.73)
@@ -1342,10 +1019,22 @@
 		(uuid "da6646c0-4ba6-43ea-9e64-92aed7fcf9b4")
 	)
 	(junction
-		(at 81.28 91.44)
+		(at 222.25 125.73)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "eb2eedfe-832c-462d-9ac3-b594adab5919")
+		(uuid "eb7fe3b7-73c5-4e0e-9676-af6e96a9b5a0")
+	)
+	(junction
+		(at 205.74 99.06)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ebfddbc5-9af2-4cf7-82e5-16c0a06cb9d2")
+	)
+	(junction
+		(at 73.66 91.44)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f2aa6068-6edb-42a2-ab98-bb0a463837a8")
 	)
 	(no_connect
 		(at 59.69 147.32)
@@ -1357,27 +1046,7 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 165.1) (xy 64.77 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0dacfb55-f095-4785-8ddf-c1b5236a8233")
-	)
-	(wire
-		(pts
-			(xy 101.6 83.82) (xy 106.68 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0e9ba5e2-c162-4d2c-9345-0563edef058d")
-	)
-	(wire
-		(pts
-			(xy 81.28 101.6) (xy 106.68 101.6)
+			(xy 73.66 104.14) (xy 106.68 104.14)
 		)
 		(stroke
 			(width 0)
@@ -1387,23 +1056,33 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 142.24) (xy 78.74 142.24)
+			(xy 74.93 142.24) (xy 78.74 142.24)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "1a13e4d1-e6cc-4185-85f3-58f1c6ffd921")
+		(uuid "2369bdbc-f991-4e73-867e-7b693b6f62a4")
 	)
 	(wire
 		(pts
-			(xy 81.28 83.82) (xy 81.28 91.44)
+			(xy 222.25 100.33) (xy 222.25 99.06)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "1b9f663f-54d6-43e7-8563-6293999c65ac")
+		(uuid "2affbba8-d5ba-430f-89d2-80f9d79231fa")
+	)
+	(wire
+		(pts
+			(xy 245.11 125.73) (xy 222.25 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c400af8-e516-431a-b760-edbd397b147e")
 	)
 	(wire
 		(pts
@@ -1417,33 +1096,13 @@
 	)
 	(wire
 		(pts
-			(xy 91.44 165.1) (xy 64.77 165.1)
+			(xy 245.11 111.76) (xy 245.11 125.73)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "361c7c5c-364b-4819-92aa-765a7a51020f")
-	)
-	(wire
-		(pts
-			(xy 76.2 139.7) (xy 78.74 139.7)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "39a72bda-b942-45a0-be4b-6362735d4830")
-	)
-	(wire
-		(pts
-			(xy 72.39 81.28) (xy 86.36 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3f0c97da-c223-4922-bb5b-11a8d843dff1")
+		(uuid "45e8e61a-a79d-4fbc-aeee-1185c638bc14")
 	)
 	(wire
 		(pts
@@ -1454,6 +1113,36 @@
 			(type default)
 		)
 		(uuid "46e371fc-3f02-49e7-8797-b889a6397676")
+	)
+	(wire
+		(pts
+			(xy 73.66 91.44) (xy 73.66 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f904f14-fad8-4bb6-a2e0-80ab1ccdc1fa")
+	)
+	(wire
+		(pts
+			(xy 74.93 142.24) (xy 74.93 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "51b1de9a-9908-4b59-9911-cf39e9de2543")
+	)
+	(wire
+		(pts
+			(xy 245.11 99.06) (xy 222.25 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "59897e75-9ee1-4d8e-b9c8-326d22cc99a5")
 	)
 	(wire
 		(pts
@@ -1477,6 +1166,26 @@
 	)
 	(wire
 		(pts
+			(xy 245.11 104.14) (xy 245.11 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "685cf8ad-b229-4dd5-b182-13a3992e6d64")
+	)
+	(wire
+		(pts
+			(xy 74.93 157.48) (xy 106.68 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e4fee71-8574-4a29-b699-150417e61d4f")
+	)
+	(wire
+		(pts
 			(xy 205.74 111.76) (xy 205.74 125.73)
 		)
 		(stroke
@@ -1487,7 +1196,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 142.24) (xy 64.77 142.24)
+			(xy 59.69 142.24) (xy 74.93 142.24)
 		)
 		(stroke
 			(width 0)
@@ -1497,23 +1206,13 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 91.44) (xy 81.28 91.44)
+			(xy 60.96 91.44) (xy 73.66 91.44)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "91cb09c0-bf90-4fc9-bf9c-d85ef6799cf6")
-	)
-	(wire
-		(pts
-			(xy 93.98 142.24) (xy 97.79 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "93310e42-51a3-41ee-8926-3d37d52f3bba")
 	)
 	(wire
 		(pts
@@ -1567,23 +1266,13 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 83.82) (xy 81.28 83.82)
+			(xy 78.74 91.44) (xy 73.66 91.44)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "cf75f4b8-f38d-41ac-a712-c2db0e404fb0")
-	)
-	(wire
-		(pts
-			(xy 81.28 91.44) (xy 81.28 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d5f34d59-73f5-4fce-bb0d-6891cce59b02")
 	)
 	(wire
 		(pts
@@ -1605,19 +1294,39 @@
 		)
 		(uuid "e3530e34-981f-4417-a2bd-34a7a1c0b585")
 	)
-	(text "3V signal,\nmatches VCC"
-		(exclude_from_sim no)
-		(at 43.18 123.698 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
+	(wire
+		(pts
+			(xy 222.25 120.65) (xy 222.25 125.73)
 		)
-		(uuid "1a90a953-5bb6-4dfb-9b6b-d4e578ec13c3")
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e686297d-19eb-47d1-a024-84c03ab90bec")
+	)
+	(wire
+		(pts
+			(xy 205.74 99.06) (xy 222.25 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f10ff43d-5580-4282-aa61-742fbad0ea1c")
+	)
+	(wire
+		(pts
+			(xy 222.25 125.73) (xy 205.74 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f28fe5bf-8311-4490-aa22-ad1b22e3a406")
 	)
 	(text "Always on, outputs at 3.3V to the microcontroller."
 		(exclude_from_sim no)
-		(at 90.932 168.656 0)
+		(at 106.172 161.036 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1628,7 +1337,7 @@
 	)
 	(text "Always on, outputs at 3.3V to the microcontroller."
 		(exclude_from_sim no)
-		(at 106.172 105.156 0)
+		(at 106.172 107.696 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1637,19 +1346,9 @@
 		)
 		(uuid "2cc3e940-2dcc-419c-8bc1-f6eec58c7e58")
 	)
-	(text "3V signal,\ntolerated"
+	(text "Controlled by ~{ERR_OE}, outputs at 3.3V (OK) to M68k\non the shared data bus.\n\n~{ERR_OE} and ~{CMD_OE} must be mutually exclusive."
 		(exclude_from_sim no)
-		(at 70.104 94.488 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "48a123e8-bc62-499b-a3c9-f87bf92629a5")
-	)
-	(text "Controlled by ~{ERR_OE}, outputs at 5V to M68k\non the shared data bus.\n\n~{ERR_OE} and ~{CMD_OE} must be mutually exclusive."
-		(exclude_from_sim no)
-		(at 96.266 149.098 0)
+		(at 106.68 135.382 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1658,7 +1357,7 @@
 		)
 		(uuid "5bbec4f5-af24-4d82-b197-f393f86fba06")
 	)
-	(text "This is a synchronization token between the M68k and the microcontroller.\n\nThe token will be cleared on boot/reset.\n\nThe M68k will be able to set the token (~{CMD_SET}), indicating to\nthe microcontroller that a command is ready to be executed.\n\nThe microcontroller will be able to clear the token (~{CMD_CLR}),\nindicating to the M68k that the command has been executed.\n\nThe M68k and microcontroller both will be able to read the current state\nof the token.  The M68k reads a 5V version of the signal, and the\nmicrocontroller reads a 3.3V version of the signal.\n\nCommand codes and arguments are passed through a separate register file.\n\nThe microcontroller can also flag an error ~{ERR_SET} to the M68k,\nwho can clear it with ~{ERR_CLR} after noticing."
+	(text "These are synchronization tokens between the M68k and the microcontroller.\n\nThe tokens will be cleared on boot/reset.\n\nThe M68k will be able to set the command token (~{CMD_SET}), indicating to\nthe microcontroller that a command is ready to be executed.\n\nThe microcontroller will be able to clear the command token (~{CMD_CLR}),\nindicating to the M68k that the command has been executed.\n\nCommand codes and arguments are passed through a separate register file.\n\nThe microcontroller can also flag an error (~{ERR_SET}) to the M68k,\nwho can clear it (~{ERR_CLR}) after noticing.\n\nThe M68k and microcontroller both will be able to read the current state\nof either token through OUTPUT_5V, which goes to the shared data bus with\n5V logic.  3.3V version of both tokens are output to the microcontroller\non dedicated lines."
 		(exclude_from_sim no)
 		(at 32.258 41.402 0)
 		(effects
@@ -1669,9 +1368,9 @@
 		)
 		(uuid "8cc3e9b8-17b7-472d-aeb2-fece0008abc7")
 	)
-	(text "Controlled by ~{CMD_OE}, outputs at 5V to M68k\non the shared data bus.\n\n~{ERR_OE} and ~{CMD_OE} must be mutually exclusive."
+	(text "Controlled by ~{CMD_OE}, outputs at 3.3V (OK) to M68k\non the shared data bus.\n\n~{ERR_OE} and ~{CMD_OE} must be mutually exclusive."
 		(exclude_from_sim no)
-		(at 107.188 90.17 0)
+		(at 106.426 84.836 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1679,66 +1378,6 @@
 			(justify left)
 		)
 		(uuid "9242a584-9398-4837-b7b6-8973d5866e54")
-	)
-	(text "5V signal,\ntolerated"
-		(exclude_from_sim no)
-		(at 46.228 72.898 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "9994dd0f-8c26-4207-ae8c-192e17fcfdd8")
-	)
-	(text "3V signal,\nmatches VCC"
-		(exclude_from_sim no)
-		(at 44.196 109.728 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "9bcb27f2-272a-4c1c-93fa-cdcf46bc9fe6")
-	)
-	(text "5V signal,\ntolerated"
-		(exclude_from_sim no)
-		(at 44.958 163.83 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "be9e68d1-7bd7-4e11-afb0-f090ea5596dc")
-	)
-	(text "5V signal,\nmatches VCC"
-		(exclude_from_sim no)
-		(at 70.612 77.724 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "d9c6a2c8-84ec-4831-bbda-a9236c5c7e1c")
-	)
-	(text "3V signal,\ntolerated"
-		(exclude_from_sim no)
-		(at 73.152 145.288 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "f3aff7d9-1ebf-4bf3-b6d4-f21c75cd13ee")
-	)
-	(text "5V signal,\nmatches VCC"
-		(exclude_from_sim no)
-		(at 73.406 135.128 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "f6390440-6baf-4d91-9819-1f6d76785ddd")
 	)
 	(hierarchical_label "~{CMD_SET}"
 		(shape input)
@@ -1766,7 +1405,7 @@
 	)
 	(hierarchical_label "ERR_3V_ALWAYS_ON"
 		(shape output)
-		(at 91.44 165.1 0)
+		(at 106.68 157.48 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1778,7 +1417,7 @@
 	)
 	(hierarchical_label "CMD_3V_ALWAYS_ON"
 		(shape output)
-		(at 106.68 101.6 0)
+		(at 106.68 104.14 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1790,13 +1429,13 @@
 	)
 	(hierarchical_label "~{ERR_OE}"
 		(shape input)
-		(at 76.2 139.7 180)
+		(at 93.98 132.08 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "74b125df-c901-44a0-8d0e-53cf6745be3a")
 	)
@@ -1826,19 +1465,19 @@
 	)
 	(hierarchical_label "~{CMD_OE}"
 		(shape input)
-		(at 72.39 81.28 180)
+		(at 93.98 81.28 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "d2f90582-86c9-4fae-9321-caf03c11559d")
 	)
-	(hierarchical_label "OUTPUT_5V"
+	(hierarchical_label "SHARED_OUTPUT"
 		(shape tri_state)
-		(at 106.68 83.82 0)
+		(at 106.68 91.44 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1848,9 +1487,9 @@
 		)
 		(uuid "ed5f8816-77c0-4e10-920a-1926e9047ca5")
 	)
-	(hierarchical_label "OUTPUT_5V"
+	(hierarchical_label "SHARED_OUTPUT"
 		(shape tri_state)
-		(at 97.79 142.24 0)
+		(at 106.68 142.24 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1861,7 +1500,7 @@
 		(uuid "f0b029d6-b570-451b-95dc-761bb4b753a6")
 	)
 	(symbol
-		(lib_id "power:GND")
+		(lib_id "74xGxx:74LVC2G125")
 		(at 93.98 91.44 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1869,25 +1508,24 @@
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "0bb7b3a4-1819-487c-96bb-164034cc9494")
-		(property "Reference" "#PWR070"
-			(at 93.98 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 93.98 95.5731 0)
+		(uuid "0e906265-6bba-4042-a34e-8a2093834910")
+		(property "Reference" "U18"
+			(at 92.71 99.5101 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Value" "74LVC2G125"
+			(at 92.71 101.9344 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
 			(at 93.98 91.44 0)
 			(effects
 				(font
@@ -1896,7 +1534,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74LVC2G125-2937395.pdf"
 			(at 93.98 91.44 0)
 			(effects
 				(font
@@ -1905,7 +1543,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+		(property "Description" "Dual Buffer Tri-State, Low-Voltage CMOS"
 			(at 93.98 91.44 0)
 			(effects
 				(font
@@ -1914,30 +1552,8 @@
 				(hide yes)
 			)
 		)
-		(pin "1"
-			(uuid "f142f46c-961f-46e3-a590-51ebf71fe361")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "#PWR070")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 86.36 149.86 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "1d4dea7e-a62c-493c-866f-e51e6e8fe372")
-		(property "Reference" "#PWR075"
-			(at 86.36 156.21 0)
+		(property "JLCPCB Part Number" "C548582"
+			(at 93.98 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1945,16 +1561,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 86.36 153.9931 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 86.36 149.86 0)
+		(property "Mouser Part Number" "771-LVC2G125DC125"
+			(at 93.98 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1962,8 +1570,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 86.36 149.86 0)
+		(property "Part Number" "74LVC2G125DC,125"
+			(at 93.98 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1971,143 +1579,67 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 86.36 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "70ec134f-0986-4408-96ed-fd274e164f96")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "#PWR075")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Logic_LevelTranslator:SN74LV1T125DBV")
-		(at 93.98 83.82 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "24c36da5-d888-41b8-a690-993474098845")
-		(property "Reference" "U14"
-			(at 110.0629 77.675 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "3.3V <=> 5V"
-			(at 110.0629 80.0993 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
-			(at 93.98 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv1t125"
-			(at 93.98 105.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Single Power Supply, Single Buffer Gate with 3-State Output, CMOS Logic Level Shifter Level Shifter, SOT-23-5"
-			(at 93.98 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "595-74LV1T125DBVRG4"
-			(at 93.98 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Number" "SN74LV1T125DBVRG4"
-			(at 93.98 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "JLCPCB Part Number" "C2675706"
-			(at 93.98 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "af1bf36a-dc0c-4ade-b5b0-c47e456ef6ff")
-		)
-		(pin "5"
-			(uuid "f0253d7b-78d6-4724-b325-9aecc4cea6fd")
-		)
-		(pin "3"
-			(uuid "64537687-d79e-473d-8945-499e623469b4")
-		)
-		(pin "1"
-			(uuid "496307d9-5c25-4d1b-83b6-848f61f949ba")
+		(pin "8"
+			(uuid "a65ecb95-e896-4dc0-88b6-6d861e9be1bd")
 		)
 		(pin "4"
-			(uuid "987b6538-1e2f-45b4-ac06-3f1d196c2c33")
+			(uuid "b8911bc9-b450-4395-aedb-5300d3406869")
+		)
+		(pin "2"
+			(uuid "52a94d2a-6795-48ef-94f2-960bb78635f7")
+		)
+		(pin "3"
+			(uuid "0d445565-f855-4e9f-a7be-eb738cfca7af")
+		)
+		(pin "6"
+			(uuid "685a8037-79eb-4b71-a5b1-3d469eb648bb")
+		)
+		(pin "1"
+			(uuid "fe27a67e-0aee-4af3-bea5-21a0e4e70519")
+		)
+		(pin "5"
+			(uuid "1627d2df-d5e1-4cc2-9bb6-75ab0bc671bd")
+		)
+		(pin "7"
+			(uuid "464d8f03-41e3-4d8d-9867-30a8a792bdd2")
 		)
 		(instances
-			(project "microcontroller"
+			(project ""
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "U14")
+					(reference "U18")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 120.65 133.35 0)
-		(unit 1)
+		(lib_id "74xGxx:74LVC2G125")
+		(at 93.98 142.24 0)
+		(unit 2)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "363dafa0-d330-4c5b-8023-f316e08994f2")
-		(property "Reference" "#PWR0126"
-			(at 120.65 139.7 0)
+		(uuid "233a20a2-63dd-4238-afac-044026481d65")
+		(property "Reference" "U18"
+			(at 92.71 150.3101 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LVC2G125"
+			(at 92.71 152.7344 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+			(at 93.98 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2115,16 +1647,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 120.65 137.4831 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 120.65 133.35 0)
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74LVC2G125-2937395.pdf"
+			(at 93.98 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2132,8 +1656,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 120.65 133.35 0)
+		(property "Description" "Dual Buffer Tri-State, Low-Voltage CMOS"
+			(at 93.98 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2141,23 +1665,62 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 120.65 133.35 0)
+		(property "JLCPCB Part Number" "C548582"
+			(at 93.98 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
+		)
+		(property "Mouser Part Number" "771-LVC2G125DC125"
+			(at 93.98 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "74LVC2G125DC,125"
+			(at 93.98 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "8"
+			(uuid "a65ecb95-e896-4dc0-88b6-6d861e9be1bd")
+		)
+		(pin "4"
+			(uuid "b8911bc9-b450-4395-aedb-5300d3406869")
+		)
+		(pin "2"
+			(uuid "52a94d2a-6795-48ef-94f2-960bb78635f7")
+		)
+		(pin "3"
+			(uuid "0d445565-f855-4e9f-a7be-eb738cfca7af")
+		)
+		(pin "6"
+			(uuid "685a8037-79eb-4b71-a5b1-3d469eb648bb")
 		)
 		(pin "1"
-			(uuid "49414cab-1b9d-444e-bc83-60a310ea5053")
+			(uuid "fe27a67e-0aee-4af3-bea5-21a0e4e70519")
+		)
+		(pin "5"
+			(uuid "1627d2df-d5e1-4cc2-9bb6-75ab0bc671bd")
+		)
+		(pin "7"
+			(uuid "464d8f03-41e3-4d8d-9867-30a8a792bdd2")
 		)
 		(instances
-			(project "microcontroller"
+			(project ""
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "#PWR0126")
-					(unit 1)
+					(reference "U18")
+					(unit 2)
 				)
 			)
 		)
@@ -2326,17 +1889,35 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 120.65 125.73 0)
-		(unit 1)
+		(lib_id "74xGxx:74LVC2G125")
+		(at 222.25 110.49 0)
+		(unit 3)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "54b92e79-18cb-4973-bff9-89aec21f44b1")
-		(property "Reference" "#PWR0117"
-			(at 120.65 129.54 0)
+		(uuid "68dc6d7d-ea69-41a7-ba6a-f7e426f3c2ea")
+		(property "Reference" "U18"
+			(at 228.092 109.2778 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "74LVC2G125"
+			(at 228.092 111.7021 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
+			(at 222.25 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2344,16 +1925,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+5V"
-			(at 120.65 121.5969 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 120.65 125.73 0)
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74LVC2G125-2937395.pdf"
+			(at 222.25 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2361,8 +1934,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 120.65 125.73 0)
+		(property "Description" "Dual Buffer Tri-State, Low-Voltage CMOS"
+			(at 222.25 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2370,221 +1943,62 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 120.65 125.73 0)
+		(property "JLCPCB Part Number" "C548582"
+			(at 222.25 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
 			)
+		)
+		(property "Mouser Part Number" "771-LVC2G125DC125"
+			(at 222.25 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "74LVC2G125DC,125"
+			(at 222.25 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "8"
+			(uuid "a65ecb95-e896-4dc0-88b6-6d861e9be1bd")
+		)
+		(pin "4"
+			(uuid "b8911bc9-b450-4395-aedb-5300d3406869")
+		)
+		(pin "2"
+			(uuid "52a94d2a-6795-48ef-94f2-960bb78635f7")
+		)
+		(pin "3"
+			(uuid "0d445565-f855-4e9f-a7be-eb738cfca7af")
+		)
+		(pin "6"
+			(uuid "685a8037-79eb-4b71-a5b1-3d469eb648bb")
 		)
 		(pin "1"
-			(uuid "65c82fa2-0d7f-4058-ae53-badb201ff42e")
+			(uuid "fe27a67e-0aee-4af3-bea5-21a0e4e70519")
+		)
+		(pin "5"
+			(uuid "1627d2df-d5e1-4cc2-9bb6-75ab0bc671bd")
+		)
+		(pin "7"
+			(uuid "464d8f03-41e3-4d8d-9867-30a8a792bdd2")
 		)
 		(instances
-			(project "microcontroller"
+			(project ""
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "#PWR0117")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 124.46 68.58 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "55d7d713-6924-4f11-8190-bfedef7af678")
-		(property "Reference" "#PWR073"
-			(at 124.46 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 124.46 64.4469 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 124.46 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 124.46 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 124.46 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b25c2582-99c1-44be-8c2b-f6deb0621a51")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "#PWR073")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 93.98 76.2 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "801ef648-8ebb-4e5b-b4c5-27e7e9b1600d")
-		(property "Reference" "#PWR072"
-			(at 93.98 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 93.98 72.0669 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 93.98 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 93.98 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "98e7d65e-6b7f-4b14-b64a-d06c583d6f65")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "#PWR072")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 86.36 134.62 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8847b89e-16a7-4d4f-b942-73c4e5c8f394")
-		(property "Reference" "#PWR074"
-			(at 86.36 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 86.36 130.4869 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 86.36 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 86.36 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 86.36 134.62 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5941e26e-74eb-4374-9a21-3f89ab75c57d")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "#PWR074")
-					(unit 1)
+					(reference "U18")
+					(unit 3)
 				)
 			)
 		)
@@ -2608,7 +2022,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "flip-flop"
+		(property "Value" "74AHC74"
 			(at 54.2641 137.9798 0)
 			(effects
 				(font
@@ -2808,7 +2222,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "flip-flop"
+		(property "Value" "74AHC74"
 			(at 193.802 112.9721 0)
 			(effects
 				(font
@@ -2923,74 +2337,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 124.46 76.2 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ab80478a-7036-46fc-a67c-3ad5fe045770")
-		(property "Reference" "#PWR071"
-			(at 124.46 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 124.46 80.3331 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 124.46 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 124.46 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 124.46 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5b5a2072-12cc-4442-86d8-45aa1df794c4")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "#PWR071")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
-		(at 124.46 72.39 0)
+		(at 245.11 107.95 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2999,7 +2347,7 @@
 		(fields_autoplaced yes)
 		(uuid "abd36db5-591e-4361-9528-cfd48c0626cf")
 		(property "Reference" "C16"
-			(at 127.381 71.1778 0)
+			(at 248.031 106.7378 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3008,7 +2356,7 @@
 			)
 		)
 		(property "Value" "22nF"
-			(at 127.381 73.6021 0)
+			(at 248.031 109.1621 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3017,7 +2365,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 125.4252 76.2 0)
+			(at 246.0752 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3026,7 +2374,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.mouser.com/datasheet/2/585/MLCC-1837944.pdf"
-			(at 124.46 72.39 0)
+			(at 245.11 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3035,7 +2383,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 124.46 72.39 0)
+			(at 245.11 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3044,7 +2392,7 @@
 			)
 		)
 		(property "Mouser Part Number" "187-CL10B223KB8NNNC"
-			(at 124.46 72.39 0)
+			(at 245.11 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3053,7 +2401,7 @@
 			)
 		)
 		(property "Part Number" "CL10B223KB8NNNC"
-			(at 124.46 72.39 0)
+			(at 245.11 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3062,7 +2410,7 @@
 			)
 		)
 		(property "JLCPCB Part Number" "C21122"
-			(at 124.46 72.39 0)
+			(at 245.11 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3104,7 +2452,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "flip-flop"
+		(property "Value" "74AHC74"
 			(at 55.5341 87.1798 0)
 			(effects
 				(font
@@ -3352,111 +2700,6 @@
 		)
 	)
 	(symbol
-		(lib_name "SN74LV1T125DBV_1")
-		(lib_id "Logic_LevelTranslator:SN74LV1T125DBV")
-		(at 86.36 142.24 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d4b3e42d-d221-4714-814d-2c5f5b448f00")
-		(property "Reference" "U2"
-			(at 102.4429 136.095 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "3.3V <=> 5V"
-			(at 102.4429 138.5193 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
-			(at 86.36 166.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv1t125"
-			(at 86.36 163.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Single Power Supply, Single Buffer Gate with 3-State Output, CMOS Logic Level Shifter Level Shifter, SOT-23-5"
-			(at 86.36 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "595-74LV1T125DBVRG4"
-			(at 86.36 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Number" "SN74LV1T125DBVRG4"
-			(at 86.36 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "JLCPCB Part Number" "C2675706"
-			(at 86.36 142.24 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "7a38492d-40c6-4671-8acc-48c0d473708a")
-		)
-		(pin "5"
-			(uuid "5bf6d5be-163d-4c77-8507-f845d86ac9ce")
-		)
-		(pin "3"
-			(uuid "5b0a0dc1-788f-4ee4-88f1-d414ce3f152d")
-		)
-		(pin "1"
-			(uuid "b4b4261f-f6cb-4dcd-96d7-da83d3e8e2b5")
-		)
-		(pin "4"
-			(uuid "3af5e09d-2796-4423-85d6-987974c9c3e4")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "U2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 45.72 93.98 270)
 		(unit 1)
@@ -3518,103 +2761,6 @@
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
 					(reference "#PWR079")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 120.65 129.54 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "fb7f3e3d-8060-4b6a-9ab2-e336f8ba71d5")
-		(property "Reference" "C31"
-			(at 123.571 128.3278 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "22nF"
-			(at 123.571 130.7521 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 121.6152 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/585/MLCC-1837944.pdf"
-			(at 120.65 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 120.65 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "187-CL10B223KB8NNNC"
-			(at 120.65 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Number" "CL10B223KB8NNNC"
-			(at 120.65 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "JLCPCB Part Number" "C21122"
-			(at 120.65 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "ff13c5ed-503b-43f0-8ee8-8e0afa2f83bc")
-		)
-		(pin "2"
-			(uuid "ee567432-4011-4aef-a75a-69b20008d381")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-					(reference "C31")
 					(unit 1)
 				)
 			)

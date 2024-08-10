@@ -3327,7 +3327,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "counter"
+		(property "Value" "74LV163"
 			(at 80.9341 50.3498 0)
 			(effects
 				(font
@@ -3664,7 +3664,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "counter"
+		(property "Value" "74LV163"
 			(at 146.9741 96.0698 0)
 			(effects
 				(font
@@ -4196,7 +4196,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "counter"
+		(property "Value" "74LV163"
 			(at 179.9941 116.3898 0)
 			(effects
 				(font
@@ -4401,7 +4401,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "counter"
+		(property "Value" "74LV163"
 			(at 50.4541 24.9498 0)
 			(effects
 				(font
@@ -4998,7 +4998,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "counter"
+		(property "Value" "74LV163"
 			(at 115.2241 74.4798 0)
 			(effects
 				(font

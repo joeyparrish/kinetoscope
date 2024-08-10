@@ -1456,7 +1456,7 @@
 		)
 		(uuid "ff7e6344-3e72-4ba5-b5ea-57ace682200c")
 	)
-	(text "There are not enough GPIO pins on the microcontroller\nto write to SRAM in parallel, so we fill this register serially."
+	(text "There are not enough GPIO pins on the microcontroller to write\nto SRAM in parallel, so we fill this data register serially."
 		(exclude_from_sim no)
 		(at 38.354 31.242 0)
 		(effects
@@ -2422,7 +2422,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "shift register"
+		(property "Value" "74LV164"
 			(at 58.0741 49.0798 0)
 			(effects
 				(font
@@ -2555,7 +2555,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "shift register"
+		(property "Value" "74LV164"
 			(at 87.2841 83.3698 0)
 			(effects
 				(font
