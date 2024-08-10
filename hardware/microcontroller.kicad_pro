@@ -229,10 +229,7 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [
-      "lib_symbol_issues|863600|1422400|d4b3e42d-d221-4714-814d-2c5f5b448f00|00000000-0000-0000-0000-000000000000|||",
-      "pin_to_pin|1016000|838200|987b6538-1e2f-45b4-ac06-3f1d196c2c33|3af5e09d-2796-4423-85d6-987974c9c3e4|/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33|/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33|/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/fae06e8c-0a24-478c-87ed-aff0b09d1b33"
-    ],
+    "erc_exclusions": [],
     "meta": {
       "version": 0
     },
@@ -500,6 +497,10 @@
       {
         "netclass": "Power",
         "pattern": "+*V*"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "VBUS"
       }
     ]
   },
@@ -654,10 +655,6 @@
     [
       "3a2d4409-520b-42a9-988d-13f6351a40c4",
       "kinetoscope-header-internal"
-    ],
-    [
-      "615a7c3e-7c73-493c-85cc-9308526429fc",
-      "ethernet-internal"
     ],
     [
       "57b1bbcc-81ef-4ab7-8891-6dc63b07bcb2",
