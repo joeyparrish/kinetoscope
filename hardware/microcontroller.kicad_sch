@@ -5390,6 +5390,15 @@
 				(hide yes)
 			)
 		)
+		(property "Part Number" "PH1RB-02-UA"
+			(at 104.14 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "1cb4f0bf-a36f-47b0-8e75-7ab1f136469d")
 		)
@@ -5469,6 +5478,15 @@
 			)
 		)
 		(property "Mouser Part Number" "710-61302011821"
+			(at 55.88 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "61302011821"
 			(at 55.88 48.26 0)
 			(effects
 				(font
@@ -7209,6 +7227,15 @@
 				(hide yes)
 			)
 		)
+		(property "Part Number" "61302011821"
+			(at 72.39 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "18"
 			(uuid "863f2fbb-6ce6-4383-966c-5d78954714ea")
 		)
@@ -8060,6 +8087,15 @@
 			)
 		)
 		(property "Mouser Part Number" "737-PH1RB-02-UA"
+			(at 104.14 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "PH1RB-02-UA"
 			(at 104.14 50.8 0)
 			(effects
 				(font
