@@ -267,6 +267,7 @@ static void process_command(uint8_t command, uint8_t arg) {
 
 void setup() {
   Serial.begin(115200);
+  digitalWrite(LED_BUILTIN, LOW);
 
 #ifdef DEBUG
   while (!Serial) { delay(10 /* ms */); }  // Wait for serial port to connect
@@ -321,12 +322,15 @@ void loop1() {
   Serial.print(" at ");
   Serial.println(fetch_start_byte);
 #endif
+
+  digitalWrite(LED_BUILTIN, HIGH);
   fetch_okay = http_fetch(VIDEO_SERVER, VIDEO_SERVER_PORT, fetch_path,
                           fetch_start_byte, fetch_size, fetch_callback);
   // It's fine to do this, even if fetch_callback != http_sram_callback.
   // This way, SRAM is always flushed even when the first core doesn't await
   // the fetch.
   sram_flush();
+  digitalWrite(LED_BUILTIN, LOW);
 
   // Clear state.
   second_core_interrupt = false;
