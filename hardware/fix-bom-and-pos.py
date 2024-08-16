@@ -10,6 +10,7 @@ ROTATE_PACKAGES = [
   'SSOP-24_5.3x8.2mm_P0.65mm',
   'TSSOP-16_4.4x3.6mm_P0.4mm',
   'TSSOP-16_4.4x5mm_P0.65mm',
+  'VSSOP-8_2.3x2mm_P0.5mm',
 ]
 
 # Packages we know don't need rotation.

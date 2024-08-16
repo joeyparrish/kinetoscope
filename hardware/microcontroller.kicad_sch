@@ -5372,7 +5372,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C5540789"
+		(property "JLCPCB Part Number" ""
 			(at 104.14 58.42 0)
 			(effects
 				(font
@@ -8077,7 +8077,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C5540789"
+		(property "JLCPCB Part Number" ""
 			(at 104.14 50.8 0)
 			(effects
 				(font
