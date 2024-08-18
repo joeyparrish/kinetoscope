@@ -70,9 +70,9 @@ static void init_all_hardware() {
   sram_init();
   registers_init();
 
-  // Turn on LED as a primitive visual status.
+  // Use LED as a primitive visual status.
   pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(LED_BUILTIN, LOW);
 
   // Prefer wired, fall back to WiFi if configured.
   Client* client = internet_init_wired(MAC_ADDR);
@@ -267,7 +267,6 @@ static void process_command(uint8_t command, uint8_t arg) {
 
 void setup() {
   Serial.begin(115200);
-  digitalWrite(LED_BUILTIN, LOW);
 
 #ifdef DEBUG
   while (!Serial) { delay(10 /* ms */); }  // Wait for serial port to connect
