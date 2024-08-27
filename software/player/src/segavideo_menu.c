@@ -105,77 +105,6 @@ static int max_status_y = 0;
 # define kprintf(...)
 #endif
 
-static bool sendCommand(uint16_t command, uint16_t arg0) {
-#if !defined(SIMULATE_HARDWARE)
-  volatile uint16_t* command_port = KINETOSCOPE_PORT_COMMAND;
-  volatile uint16_t* token_port = KINETOSCOPE_PORT_TOKEN;
-  volatile uint16_t* arg_port = KINETOSCOPE_PORT_ARG;
-
-  if (*token_port != TOKEN_CONTROL_TO_SEGA) {
-    return false;
-  }
-
-  *command_port = command;
-  *arg_port = arg0;
-  *token_port = TOKEN_CONTROL_TO_STREAMER;
-#endif
-  return true;
-}
-
-static bool waitForReply(uint16_t timeout_seconds) {
-#if !defined(SIMULATE_HARDWARE)
-  kprintf("Waiting for streamer response.\n");
-
-  volatile uint16_t* token_port = KINETOSCOPE_PORT_TOKEN;
-  uint16_t counter = 0;
-  uint16_t max_counter =
-      IS_PAL_SYSTEM ? 50 * timeout_seconds : 60 * timeout_seconds;
-  while (*token_port == TOKEN_CONTROL_TO_STREAMER && ++counter < max_counter) {
-    SYS_doVBlankProcess();
-  }
-
-  if (*token_port == TOKEN_CONTROL_TO_STREAMER) {
-    return false;
-  }
-
-#endif
-  return true;
-}
-
-static bool sendCommandAndWait(
-    uint16_t command, uint16_t arg0, uint16_t timeout_seconds) {
-  return sendCommand(command, arg0) && waitForReply(timeout_seconds);
-}
-
-static bool pendingError() {
-#if defined(SIMULATE_HARDWARE)
-  return false;
-#else
-  volatile uint16_t* error_port = KINETOSCOPE_PORT_ERROR;
-  return *error_port != 0;
-#endif
-}
-
-static void clearPendingError() {
-#if !defined(SIMULATE_HARDWARE)
-  volatile uint16_t* error_port = KINETOSCOPE_PORT_ERROR;
-  *error_port = 0;
-#endif
-}
-
-static void clearScreen() {
-  VDP_clearPlane(BG_B, /* wait= */ true);
-}
-
-static void loadMenuColors() {
-  // Load menu colors.
-  uint16_t white  = 0x0FFF;  // ABGR
-  uint16_t yellow = 0x00FF;  // ABGR
-  // The custom font uses the first entry of each palette.
-  PAL_setColors(PAL_WHITE  * 16 + 1, &white,  /* count= */ 1, CPU);
-  PAL_setColors(PAL_YELLOW * 16 + 1, &yellow, /* count= */ 1, CPU);
-}
-
 static void drawMultilineText(const char* text) {
   const int max_line_len = STATUS_MESSAGE_W;
   char line[31];  // max_line_len + nul terminator
@@ -255,6 +184,90 @@ static void errorMessage(const char* message) {
     genericMessage(PAL_YELLOW, message);
     segavideo_setState(Error);
   }
+}
+
+static bool pendingError() {
+#if defined(SIMULATE_HARDWARE)
+  return false;
+#else
+  // NOTE: Only bit zero is meaningful.  The others are all garbage.
+  return ((*KINETOSCOPE_PORT_ERROR) & 1) != 0;
+#endif
+}
+
+static void clearPendingError() {
+#if !defined(SIMULATE_HARDWARE)
+  // NOTE: The data doesn't matter in hardware.  Any write will clear this.
+  *KINETOSCOPE_PORT_ERROR = 0;
+#endif
+}
+
+static bool isSegaInControl() {
+#if defined(SIMULATE_HARDWARE)
+  return true;
+#else
+  // NOTE: Only bit zero is meaningful.  The others are all garbage.
+  return ((*KINETOSCOPE_PORT_TOKEN) & 1) == TOKEN_CONTROL_TO_SEGA;
+#endif
+}
+
+static void passControlToStreamer() {
+#if !defined(SIMULATE_HARDWARE)
+  // NOTE: The data doesn't matter in hardware.  Any write will clear this.
+  *KINETOSCOPE_PORT_TOKEN = TOKEN_CONTROL_TO_STREAMER;
+#endif
+}
+
+static void writeCommand(uint16_t command, uint16_t arg0) {
+#if !defined(SIMULATE_HARDWARE)
+  *KINETOSCOPE_PORT_COMMAND = command;
+  *KINETOSCOPE_PORT_ARG = arg0;
+#endif
+}
+
+static bool sendCommand(uint16_t command, uint16_t arg0) {
+  if (!isSegaInControl()) {
+    return false;
+  }
+
+  writeCommand(command, arg0);
+  passControlToStreamer();
+  return true;
+}
+
+static bool waitForReply(uint16_t timeout_seconds) {
+  kprintf("Waiting for streamer response.\n");
+
+  uint16_t counter = 0;
+  uint16_t max_counter =
+      IS_PAL_SYSTEM ? 50 * timeout_seconds : 60 * timeout_seconds;
+  while (!isSegaInControl() && ++counter < max_counter) {
+    SYS_doVBlankProcess();
+  }
+
+  if (!isSegaInControl()) {
+    return false;
+  }
+
+  return true;
+}
+
+static bool sendCommandAndWait(
+    uint16_t command, uint16_t arg0, uint16_t timeout_seconds) {
+  return sendCommand(command, arg0) && waitForReply(timeout_seconds);
+}
+
+static void clearScreen() {
+  VDP_clearPlane(BG_B, /* wait= */ true);
+}
+
+static void loadMenuColors() {
+  // Load menu colors.
+  uint16_t white  = 0x0FFF;  // ABGR
+  uint16_t yellow = 0x00FF;  // ABGR
+  // The custom font uses the first entry of each palette.
+  PAL_setColors(PAL_WHITE  * 16 + 1, &white,  /* count= */ 1, CPU);
+  PAL_setColors(PAL_YELLOW * 16 + 1, &yellow, /* count= */ 1, CPU);
 }
 
 void segavideo_menu_init() {
