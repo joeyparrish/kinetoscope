@@ -67,8 +67,8 @@ static int next_chunk_num = 0;
 static int next_offset = 0;
 
 static void init_all_hardware() {
-  sram_init();
   registers_init();
+  sram_init();
 
   // Use LED as a primitive visual status.
   pinMode(LED_BUILTIN, OUTPUT);
@@ -105,6 +105,8 @@ static void init_all_hardware() {
   } else {
     http_init(client);
   }
+
+  Serial.println("All hardware initialized.");
 }
 
 static bool http_sram_callback(const uint8_t* buffer, int bytes) {
@@ -167,6 +169,12 @@ static bool await_fetch() {
 }
 
 static void process_command(uint8_t command, uint8_t arg) {
+  Serial.print("Command ");
+  Serial.print(command);
+  Serial.print(" arg 0x");
+  Serial.print(arg < 0x10 ? "0" : "");
+  Serial.println(arg, HEX);
+
   switch (command) {
     case KINETOSCOPE_CMD_ECHO:
       // Write the argument to SRAM so the ROM software knows we are listening.
@@ -259,7 +267,14 @@ static void process_command(uint8_t command, uint8_t arg) {
       break;
   }
 
+#ifdef DEBUG
+  // Don't clear the flag too quickly.
+  // TODO: Determine if this is necessary once hardware prototypes are working.
+  delay(10 /* ms */);
+#endif
+
   clear_cmd();
+  Serial.println("Command complete.");
 }
 
 // Setup and loop for the first core.  This core will initialize all hardware
@@ -270,11 +285,9 @@ void setup() {
 
 #ifdef DEBUG
   while (!Serial) { delay(10 /* ms */); }  // Wait for serial port to connect
-
-  // Delay startup so we can have the serial monitor attached.
-  delay(1000 /* ms */);
-  Serial.println("Kinetoscope boot!\n");
 #endif
+
+  Serial.println("Kinetoscope boot!\n");
 
   init_all_hardware();
 
