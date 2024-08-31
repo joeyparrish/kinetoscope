@@ -273,6 +273,9 @@ static void loadMenuColors() {
 void segavideo_menu_init() {
   kprintf("segavideo_menu_init\n");
 
+  // Clear the error flag, which may boot up in a random state.
+  clearPendingError();
+
   // Load menu palettes.
   loadMenuColors();
 

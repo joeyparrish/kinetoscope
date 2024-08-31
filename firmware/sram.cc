@@ -18,6 +18,7 @@ static int active_bank_pin = -1;
 // Explicitly unrolled loop for 16 bits of data.
 #define X16(a) { a; a; a; a; a; a; a; a; a; a; a; a; a; a; a; a; }
 static inline void sram_write_word(uint16_t word_data) {
+  // ~20ns setup time from next data bit to rising edge of clock
   X16(
     FAST_WRITE(SRAM_PIN__DATA_NEXT_BIT, word_data & 0x8000);
 

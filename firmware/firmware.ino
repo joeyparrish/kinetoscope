@@ -292,9 +292,7 @@ void setup() {
   init_all_hardware();
 
 #ifdef RUN_TESTS
-  if (!is_error_flagged()) {
-    run_tests();
-  }
+  run_tests();
 #endif
 
   // Allow the second core to start its loop.

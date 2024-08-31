@@ -9,6 +9,7 @@
 #include <Arduino.h>
 #include <HardwareSerial.h>
 
+#include "fast-gpio.h"
 #include "http.h"
 #include "registers.h"
 #include "sram.h"
@@ -22,46 +23,58 @@
 // A safe buffer size for these tests.
 #define BUFFER_SIZE 100 * 1024
 
-static long test_sram_speed(const uint8_t* buffer, int bytes) {
-  // 100kB: ~83ms
-  // 1MB: ~830ms
-  // 3s video+audio: ~731ms
+// Explicitly unrolled loop for 10 repeated statements.
+#define X10(a) { a; a; a; a; a;  a; a; a; a; a; }
+// Explicitly unrolled loop for 100 repeated statements.
+#define X100(a) { X10(X10(a)); }
+// Explicitly unrolled loop for 1k repeated statements.
+#define X1k(a) { X10(X10(X10(a))); }
+// A partially unrolled loop that minimizes time spent on incrementing and
+// checking, while not exploding the program size to the point that it slows
+// down execution (10k/100k unrolled) or overruns the available program space
+// (1M unrolled).
+#define X1M(a) { for (int i = 0; i < 1'000; ++i) { X1k(a); } }
+
+static long test_fast_gpio_speed() {
+  // ~75 ns per pulse
   long start = millis();
-  sram_start_bank(0);
-  sram_write(buffer, bytes);
-  sram_flush();
+  X1M(FAST_PULSE_ACTIVE_LOW(SYNC_PIN__CMD_CLEAR));
   long end = millis();
   return end - start;
 }
 
 static long test_sync_token_read_speed() {
-  // ~114 ns per read
+  // ~86 ns per read
   long start = millis();
-  int count = 0;
-  for (int i = 0; i < 1000000; ++i) {
-    count += is_cmd_set();
-  }
+  X1M(is_cmd_set());
   long end = millis();
   return end - start;
 }
 
 static long test_sync_token_clear_speed() {
-  // ~114 ns per clear
+  // ~122 ns per clear
   long start = millis();
-  for (int i = 0; i < 1000000; ++i) {
-    clear_cmd();
-  }
+  X1M(clear_cmd());
   long end = millis();
   return end - start;
 }
 
 static long test_register_read_speed() {
-  // ~228 ns per read
-  int count = 0;
+  // ~1543 ns per read
   long start = millis();
-  for (int i = 0; i < 1000000; ++i) {
-    count += read_register(i & 3);
-  }
+  X1M(read_register(i & 3));
+  long end = millis();
+  return end - start;
+}
+
+static long test_sram_speed(const uint8_t* buffer, int bytes) {
+  // 100kB: ~116ms
+  // 1MB: ~1160ms
+  // 3s video+audio: ~1020ms
+  long start = millis();
+  sram_start_bank(0);
+  sram_write(buffer, bytes);
+  sram_flush();
   long end = millis();
   return end - start;
 }
@@ -92,6 +105,11 @@ void run_tests() {
     Serial.println("Failed to allocate buffer!");
     while (true) { delay(1000); }
   }
+  memset(buffer, 0x55, BUFFER_SIZE);
+
+  ms = test_fast_gpio_speed();
+  Serial.print(ms);
+  Serial.println(" ns avg per GPIO pulse.");  // 1Mx pulses, ms => ns
 
   ms = test_sync_token_read_speed();
   Serial.print(ms);
@@ -111,15 +129,19 @@ void run_tests() {
   Serial.print(BUFFER_SIZE);
   Serial.println(" bytes to SRAM");
 
-  for (int i = 0; i < 10; i++) {
-    ms = test_download_speed(/* first_byte= */ i, ABOUT_3S_VIDEO_AUDIO_BYTES);
-    float bits = ABOUT_3S_VIDEO_AUDIO_BYTES * 8.0;
-    float seconds = ms / 1000.0;
-    float mbps = bits / seconds / 1024.0 / 1024.0;
-    Serial.print(ms);
-    Serial.print(" ms to stream ~3s video to SRAM (");
-    Serial.print(mbps);
-    Serial.println(" Mbps vs 2.50 Mbps minimum)");
+  if (is_error_flagged()) {
+    Serial.println("Error flagged, skipping network tests.");
+  } else {
+    for (int i = 0; i < 10; i++) {
+      ms = test_download_speed(/* first_byte= */ i, ABOUT_3S_VIDEO_AUDIO_BYTES);
+      float bits = ABOUT_3S_VIDEO_AUDIO_BYTES * 8.0;
+      float seconds = ms / 1000.0;
+      float mbps = bits / seconds / 1024.0 / 1024.0;
+      Serial.print(ms);
+      Serial.print(" ms to stream ~3s video to SRAM (");
+      Serial.print(mbps);
+      Serial.println(" Mbps vs 2.50 Mbps minimum)");
+    }
   }
 
   Serial.println("\n");

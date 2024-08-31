@@ -68,7 +68,13 @@ int is_error_flagged() {
 uint8_t read_register(int register_address) {
   FAST_WRITE(REG_PIN__A0, register_address & 1);
   FAST_WRITE(REG_PIN__A1, register_address & 2);
-
-  // FIXME: need to delay here?
+  // The data sheet for the 74HC670 says the data will be available after at
+  // most 295ns at 2V, and 59ns at 4.5V.  (Not given for 3.3V, no curve
+  // graphed.)  Here we wait 1 us to be sure that we are reading the right
+  // data.  It is okay to read a register a little more slowly.  Writing to
+  // SRAM and reading from the network are the critical operations in terms of
+  // speed.
+  // https://www.ti.com/lit/ds/symlink/cd74hc670.pdf
+  delayMicroseconds(1);
   return FAST_READ_MULTIPLE(REG_PIN__D_MASK, REG_PIN__D_SHIFT);
 }
