@@ -64,20 +64,20 @@ static int max_status_y = 0;
 # define KINETOSCOPE_VIDEO_REGION_MASK 0xffffffff
 #else
 // Ports to communicate with our special hardware.
-# define KINETOSCOPE_PORT_COMMAND (volatile uint16_t*)0xA13000  // low 8 bits
-# define KINETOSCOPE_PORT_ARG     (volatile uint16_t*)0xA13002  // low 8 bits
-# define KINETOSCOPE_PORT_TOKEN   (volatile uint16_t*)0xA13008  // low 1 bit, set on write
-# define KINETOSCOPE_PORT_ERROR   (volatile uint16_t*)0xA1300A  // low 1 bit, clear on write
-# define KINETOSCOPE_DATA          (volatile uint8_t*)0x200000
-# define KINETOSCOPE_MENU_DATA        (const uint8_t*)(KINETOSCOPE_DATA)
-# define KINETOSCOPE_ERROR_DATA          (const char*)(KINETOSCOPE_DATA)
+# define KINETOSCOPE_PORT_COMMAND ((volatile uint16_t*)0xA13000)  // low 8 bits
+# define KINETOSCOPE_PORT_ARG     ((volatile uint16_t*)0xA13002)  // low 8 bits
+# define KINETOSCOPE_PORT_TOKEN   ((volatile uint16_t*)0xA13008)  // low 1 bit, set on write
+# define KINETOSCOPE_PORT_ERROR   ((volatile uint16_t*)0xA1300A)  // low 1 bit, clear on write
+# define KINETOSCOPE_DATA          ((volatile uint8_t*)0x200000)
+# define KINETOSCOPE_MENU_DATA        ((const uint8_t*)KINETOSCOPE_DATA)
+# define KINETOSCOPE_ERROR_DATA          ((const char*)KINETOSCOPE_DATA)
 
 // Play from two SRAM regions:
 //  - starting at 0x200000 and ending at 0x300000
 //  - starting at 0x300000 and ending at 0x400000
 // The streamer hardware will fill in whole chunks only into these regions,
 // flipping back and forth between them.
-# define KINETOSCOPE_VIDEO_DATA       (const uint8_t*)(KINETOSCOPE_DATA)
+# define KINETOSCOPE_VIDEO_DATA       ((const uint8_t*)KINETOSCOPE_DATA)
 # define KINETOSCOPE_VIDEO_REGION_SIZE 0x100000  // 1MB
 # define KINETOSCOPE_VIDEO_REGION_MASK 0x300000
 #endif
