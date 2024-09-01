@@ -5749,6 +5749,12 @@
 			(uuid "66567808-9455-4ac4-8b3e-72cf7f12a171")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR05")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR05")
@@ -5816,6 +5822,12 @@
 			(uuid "4ce9a7ad-cae7-48be-a4d7-8f25b1334350")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR07")
@@ -5882,6 +5894,12 @@
 			(uuid "56ba92dd-ffce-420c-884c-5f6b615d38f1")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR084")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR084")
@@ -6145,6 +6163,12 @@
 			(uuid "4fa5632e-9f75-45be-b4af-d3a52f5c8849")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#FLG02")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#FLG02")
@@ -6212,6 +6236,12 @@
 			(uuid "d0f6540b-48b4-4585-8b66-30c0f255a72a")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR01")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR01")
@@ -6279,6 +6309,12 @@
 			(uuid "2b4d2a18-d33a-408b-93bf-845c9e4144cb")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR08")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR08")
@@ -6591,6 +6627,12 @@
 			(uuid "3e3e83ad-a98f-4062-8b70-ec1ca7e5a99e")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR09")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR09")
@@ -6658,6 +6700,12 @@
 			(uuid "08309c8d-0a02-4d42-97ec-94ec60b0ffae")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR04")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR04")
@@ -6725,6 +6773,12 @@
 			(uuid "c71bb8f7-e943-4d8a-8826-bc850b88efda")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR010")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR010")
@@ -6791,6 +6845,12 @@
 			(uuid "4b996979-c7f4-4d7d-a906-7a4a55fe800e")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR085")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR085")
@@ -6858,6 +6918,12 @@
 			(uuid "ab95eea5-fbdb-4f55-aeca-38d72c27a4f0")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR02")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR02")
@@ -6925,6 +6991,12 @@
 			(uuid "21869d9c-554a-409d-810f-7ff27561b8a0")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR06")
@@ -7061,6 +7133,12 @@
 			(uuid "9ea7c158-6973-47aa-ab26-458a8e376f34")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#FLG01")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#FLG01")
@@ -7128,6 +7206,12 @@
 			(uuid "d047eaef-1777-4a70-8ead-d54bc9cf8b57")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR011")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR011")
@@ -7194,6 +7278,12 @@
 			(uuid "426d4b05-27aa-43ef-a725-c62edd08080e")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#PWR083")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#PWR083")
@@ -7260,6 +7350,12 @@
 			(uuid "d117d911-cad9-4f9d-ab03-fe160adb2924")
 		)
 		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "#FLG03")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "#FLG03")

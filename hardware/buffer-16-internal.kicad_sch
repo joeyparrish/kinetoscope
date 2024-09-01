@@ -3139,7 +3139,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3V <=> 5V"
+		(property "Value" "74LVC8T245"
 			(at 129.1941 86.6944 0)
 			(effects
 				(font
@@ -3914,7 +3914,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3V <=> 5V"
+		(property "Value" "74LVC8T245"
 			(at 129.1941 156.5444 0)
 			(effects
 				(font

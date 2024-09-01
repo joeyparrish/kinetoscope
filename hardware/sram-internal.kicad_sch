@@ -3403,7 +3403,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "PSRAM"
+		(property "Value" "IS66WV51216EALL"
 			(at 112.6841 46.5398 0)
 			(effects
 				(font
