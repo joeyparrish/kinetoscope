@@ -1916,7 +1916,7 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 115.57) (xy 163.83 120.65)
+			(xy 163.83 119.38) (xy 163.83 120.65)
 		)
 		(stroke
 			(width 0)
@@ -2116,7 +2116,7 @@
 	)
 	(wire
 		(pts
-			(xy 130.81 95.25) (xy 130.81 100.33)
+			(xy 130.81 97.79) (xy 130.81 100.33)
 		)
 		(stroke
 			(width 0)
@@ -2617,6 +2617,17 @@
 		)
 		(uuid "032438a2-4678-42ac-b8e6-be053eb85942")
 	)
+	(label "AR3"
+		(at 160.02 113.03 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "11f2535c-6e75-42b3-af52-20e816db1fc5")
+	)
 	(label "A16"
 		(at 161.29 107.95 0)
 		(fields_autoplaced yes)
@@ -2628,6 +2639,17 @@
 		)
 		(uuid "17fa0877-1564-4831-bdaf-bd64c398b59c")
 	)
+	(label "AR1"
+		(at 92.71 67.31 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1b74d9f8-8f27-4f14-a191-e8df5a13aef7")
+	)
 	(label "A10"
 		(at 130.81 81.28 0)
 		(fields_autoplaced yes)
@@ -2638,6 +2660,17 @@
 			(justify left bottom)
 		)
 		(uuid "3ff7dc6f-48d3-441f-a0c6-9dcada7eaee6")
+	)
+	(label "AR2"
+		(at 127 91.44 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "41070a5b-3db7-43ed-af7c-75d3149d2d9d")
 	)
 	(label "A7"
 		(at 102.87 59.69 0)
@@ -2671,6 +2704,17 @@
 			(justify left bottom)
 		)
 		(uuid "53ec6b46-b22a-46c7-b6e3-bd407285cf66")
+	)
+	(label "AR0"
+		(at 62.23 41.91 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "557bf9b3-a918-4768-be74-7c597aedf6ce")
 	)
 	(label "A11"
 		(at 130.81 83.82 0)
@@ -3449,7 +3493,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 130.81 95.25 0)
+		(at 130.81 97.79 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3458,7 +3502,7 @@
 		(fields_autoplaced yes)
 		(uuid "1a9adc93-d40c-4ba6-96fa-767055557c7b")
 		(property "Reference" "#PWR038"
-			(at 130.81 99.06 0)
+			(at 130.81 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3467,7 +3511,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 130.81 91.1169 0)
+			(at 130.81 93.6569 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3475,7 +3519,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 130.81 95.25 0)
+			(at 130.81 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3484,7 +3528,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 130.81 95.25 0)
+			(at 130.81 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3493,7 +3537,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 130.81 95.25 0)
+			(at 130.81 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4318,7 +4362,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 163.83 115.57 0)
+		(at 163.83 119.38 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4327,7 +4371,7 @@
 		(fields_autoplaced yes)
 		(uuid "b77575f4-6161-4b45-a762-fc3e70ac868c")
 		(property "Reference" "#PWR039"
-			(at 163.83 119.38 0)
+			(at 163.83 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4336,7 +4380,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 163.83 111.4369 0)
+			(at 163.83 115.2469 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4344,7 +4388,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 163.83 115.57 0)
+			(at 163.83 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4353,7 +4397,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 163.83 115.57 0)
+			(at 163.83 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4362,7 +4406,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 163.83 115.57 0)
+			(at 163.83 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
