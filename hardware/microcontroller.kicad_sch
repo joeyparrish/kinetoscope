@@ -7011,7 +7011,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LVC138"
+		(property "Value" "74LVC138A"
 			(at 176.1841 30.0298 0)
 			(effects
 				(font
@@ -8726,7 +8726,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LVC138"
+		(property "Value" "74LVC138A"
 			(at 177.4541 93.5298 0)
 			(effects
 				(font

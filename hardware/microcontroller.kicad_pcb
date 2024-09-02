@@ -7684,7 +7684,7 @@
 			)
 		)
 		(property ki_fp_filters "VSSOP*")
-		(path "/841ccc31-7d50-4d80-98e5-956ddd656bad")
+		(path "/b38c05ec-5f36-4476-ad63-fa8f236f7910")
 		(sheetname "Root")
 		(sheetfile "microcontroller.kicad_sch")
 		(attr smd)
@@ -9552,7 +9552,7 @@
 				)
 			)
 		)
-		(property "Value" "74LVC138"
+		(property "Value" "74LVC138A"
 			(at 0 3.45 0)
 			(layer "F.Fab")
 			(uuid "d1a331e6-8403-426f-9325-a1e2abd8093a")
@@ -14175,7 +14175,7 @@
 				)
 			)
 		)
-		(property "Value" "74LVC138"
+		(property "Value" "74LVC138A"
 			(at 0 3.45 0)
 			(layer "F.Fab")
 			(uuid "020d06ce-d349-46ff-8d14-aeef362890d5")
