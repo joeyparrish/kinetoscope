@@ -7623,15 +7623,15 @@
 		(fields_autoplaced yes)
 		(uuid "45cd7368-2bc4-4067-9078-7a5940a4129f")
 		(property "Reference" "J_~{CE}_2"
-			(at 31.75 167.541 0)
+			(at 31.75 169.027 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "jumper-bridged"
-			(at 31.75 170.1108 0)
+		(property "Value" "~"
+			(at 31.75 170.8539 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9170,15 +9170,15 @@
 		(fields_autoplaced yes)
 		(uuid "84de0ecf-0a59-46d3-af58-4c6a1b12de0c")
 		(property "Reference" "J_~{WE}_2"
-			(at 31.75 116.741 0)
+			(at 31.75 118.227 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "jumper-bridged"
-			(at 31.75 119.3108 0)
+		(property "Value" "~"
+			(at 31.75 120.0539 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9700,15 +9700,15 @@
 		(fields_autoplaced yes)
 		(uuid "96361b5c-6374-4b65-a146-45dea9e3bb9a")
 		(property "Reference" "J_~{WE}_3"
-			(at 31.75 126.901 0)
+			(at 31.75 128.387 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "jumper-bridged"
-			(at 31.75 129.4708 0)
+		(property "Value" "~"
+			(at 31.75 130.2139 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9907,7 +9907,7 @@
 				)
 			)
 		)
-		(property "Value" "jumper-bridged"
+		(property "Value" "~"
 			(at 31.75 139.6308 0)
 			(effects
 				(font
@@ -9968,15 +9968,15 @@
 		(fields_autoplaced yes)
 		(uuid "9ed8573e-508e-4522-be43-1c5da6866fca")
 		(property "Reference" "J_~{CE}_1"
-			(at 31.75 157.381 0)
+			(at 31.75 158.867 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "jumper-bridged"
-			(at 31.75 159.9508 0)
+		(property "Value" "~"
+			(at 31.75 160.6939 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10726,15 +10726,15 @@
 		(fields_autoplaced yes)
 		(uuid "cc4a8cd0-9c27-4e4a-9117-b6d2b36facb9")
 		(property "Reference" "J_~{OE}_2"
-			(at 31.75 147.221 0)
+			(at 31.75 148.707 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "jumper-bridged"
-			(at 31.75 149.7908 0)
+		(property "Value" "~"
+			(at 31.75 150.5339 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11425,7 +11425,7 @@
 				)
 			)
 		)
-		(property "Value" "jumper-bridged"
+		(property "Value" "~"
 			(at 31.75 109.1508 0)
 			(effects
 				(font

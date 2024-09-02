@@ -5288,6 +5288,16 @@
 		)
 		(uuid "37863a0a-84d4-407c-95ff-c529fc423b12")
 	)
+	(text "3.3V regulator @ 1.5A"
+		(exclude_from_sim no)
+		(at 50.292 46.228 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "4934b4dd-9e68-4efd-987a-a30a7ddd145b")
+	)
 	(text "~{TIME} is active for addresses in the range\n0xA130xx.  These are for our registers and tokens."
 		(exclude_from_sim no)
 		(at 148.336 139.446 0)
@@ -5891,6 +5901,17 @@
 			(justify left bottom)
 		)
 		(uuid "7e99a3ac-96db-431f-90d8-0f3913aa440a")
+	)
+	(label "+3.3V_INT"
+		(at 45.72 25.3471 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "80cd49b7-769c-42e3-abf4-42ae93ee39ec")
 	)
 	(label "SEGA_A3"
 		(at 210.82 36.83 180)
@@ -7447,7 +7468,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" ""
+		(property "JLCPCB Part Number" "C2883999"
 			(at 232.41 26.67 0)
 			(effects
 				(font
@@ -7456,7 +7477,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" ""
+		(property "Mouser Part Number" "200-CES12601TD"
 			(at 232.41 26.67 0)
 			(effects
 				(font
@@ -7465,7 +7486,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" ""
+		(property "Part Number" "X6521FV-2x26-C85D32"
 			(at 232.41 26.67 0)
 			(effects
 				(font
@@ -7923,7 +7944,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5A @ 3.3V"
+		(property "Value" "MCP1827S-3302E/EB"
 			(at 35.56 29.3948 0)
 			(effects
 				(font
@@ -7931,7 +7952,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Horizontal_TabDown"
+		(property "Footprint" "Package_TO_SOT_SMD:TO-252-3_TabPin2"
 			(at 35.56 27.305 0)
 			(effects
 				(font
@@ -7959,7 +7980,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "579-MCP1827S3302E/AB"
+		(property "Mouser Part Number" "579-MCP1827S3302E/EB"
 			(at 35.56 33.02 0)
 			(effects
 				(font
@@ -7968,7 +7989,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "MCP1827S-3302E/AB"
+		(property "Part Number" "MCP1827S-3302E/EB"
 			(at 35.56 33.02 0)
 			(effects
 				(font
@@ -7977,7 +7998,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C641199"
+		(property "JLCPCB Part Number" "C641200"
 			(at 35.56 33.02 0)
 			(effects
 				(font
@@ -8023,7 +8044,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LVC138"
+		(property "Value" "74LVC138A"
 			(at 135.5441 159.5698 0)
 			(effects
 				(font
@@ -8860,7 +8881,7 @@
 				)
 			)
 		)
-		(property "Value" "jumper-bridged"
+		(property "Value" "~"
 			(at 55.372 35.306 0)
 			(effects
 				(font
