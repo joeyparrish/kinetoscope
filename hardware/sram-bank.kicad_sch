@@ -712,6 +712,198 @@
 				)
 			)
 		)
+		(symbol "Jumper:SolderJumper_2_Bridged"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim yes)
+			(in_bom no)
+			(on_board yes)
+			(property "Reference" "JP"
+				(at 0 2.032 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SolderJumper_2_Bridged"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "solder jumper SPST"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "SolderJumper*Bridged*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SolderJumper_2_Bridged_0_1"
+				(rectangle
+					(start -0.508 0.508)
+					(end 0.508 -0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(arc
+					(start -0.254 1.016)
+					(mid -1.2656 0)
+					(end -0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.254 1.016)
+					(mid -1.2656 0)
+					(end -0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.254 1.016) (xy -0.254 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 1.016) (xy 0.254 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0.254 -1.016)
+					(mid 1.2656 0)
+					(end 0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0.254 -1.016)
+					(mid 1.2656 0)
+					(end 0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+			)
+			(symbol "SolderJumper_2_Bridged_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "power:+3.3V"
 			(power)
 			(pin_numbers hide)
@@ -1313,6 +1505,16 @@
 	)
 	(wire
 		(pts
+			(xy 153.67 140.97) (xy 158.75 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1a133769-23a3-4fa0-adb1-b8076b9ac07f")
+	)
+	(wire
+		(pts
 			(xy 234.95 29.21) (xy 242.57 29.21)
 		)
 		(stroke
@@ -1320,6 +1522,16 @@
 			(type default)
 		)
 		(uuid "1ae23378-ca18-4df8-85b6-908ec2b57a38")
+	)
+	(wire
+		(pts
+			(xy 142.24 149.86) (xy 146.05 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ba35c20-2cbc-4908-b08c-736c949c50c1")
 	)
 	(bus
 		(pts
@@ -1613,6 +1825,16 @@
 	)
 	(wire
 		(pts
+			(xy 142.24 158.75) (xy 146.05 158.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "728d01a7-0534-46da-907c-67d9d971ece2")
+	)
+	(wire
+		(pts
 			(xy 35.56 111.76) (xy 45.72 111.76)
 		)
 		(stroke
@@ -1673,6 +1895,16 @@
 	)
 	(wire
 		(pts
+			(xy 153.67 158.75) (xy 158.75 158.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "973a9e91-7d18-4f44-8e7a-a342301a3469")
+	)
+	(wire
+		(pts
 			(xy 193.04 60.96) (xy 181.61 60.96)
 		)
 		(stroke
@@ -1680,6 +1912,16 @@
 			(type default)
 		)
 		(uuid "9e802979-d472-4e59-936e-c3fe426ba5c1")
+	)
+	(wire
+		(pts
+			(xy 153.67 149.86) (xy 158.75 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a4b0542d-aea1-49cf-908f-5e6414c60c81")
 	)
 	(wire
 		(pts
@@ -1870,6 +2112,16 @@
 			(type default)
 		)
 		(uuid "ea569e42-dc13-42a1-b640-7297fb20fe4d")
+	)
+	(wire
+		(pts
+			(xy 142.24 140.97) (xy 146.05 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ef362172-6f08-4c8e-bcb7-149042b9ea2c")
 	)
 	(polyline
 		(pts
@@ -2096,9 +2348,19 @@
 		)
 		(uuid "557d55ac-74c8-4005-a688-1773996bbcd8")
 	)
+	(text "These bridges can be used to snoop on these signals,\nor cut with a knife to hijack them."
+		(exclude_from_sim no)
+		(at 152.4 133.35 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "5fa00dc9-c176-4c0f-b63a-2ab51ee3ef3f")
+	)
 	(text "<- 3V, works anyway"
 		(exclude_from_sim no)
-		(at 113.792 110.744 0)
+		(at 117.094 110.744 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2160,7 +2422,7 @@
 	)
 	(text "<- 3V, works anyway"
 		(exclude_from_sim no)
-		(at 119.126 103.124 0)
+		(at 123.698 102.87 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2241,6 +2503,17 @@
 		)
 		(uuid "fc2b6293-fc2a-493d-b304-21a44f1b97b4")
 	)
+	(label "~{SRAM_CE}"
+		(at 142.24 140.97 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "0d939275-c61d-4eb9-9815-d672823529bc")
+	)
 	(label "~{UC_CONTROL}"
 		(at 266.7 101.6 0)
 		(fields_autoplaced yes)
@@ -2296,7 +2569,7 @@
 		)
 		(uuid "29a5b0fa-5c92-4863-a759-28a668bfcee2")
 	)
-	(label "~{SEGA_CONTROL}"
+	(label "~{SEGA_CONTROL_INT}"
 		(at 93.98 104.14 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2395,7 +2668,7 @@
 		)
 		(uuid "4803ba65-5be7-4503-b033-f0e04f4381f6")
 	)
-	(label "~{UC_CONTROL}"
+	(label "~{UC_CONTROL_INT}"
 		(at 93.98 139.7 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2516,7 +2789,7 @@
 		)
 		(uuid "7676fd7a-4511-4175-8277-d334582c0c41")
 	)
-	(label "~{SRAM_CE}"
+	(label "~{SRAM_CE_INT}"
 		(at 93.98 111.76 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2604,6 +2877,17 @@
 		)
 		(uuid "8f1ca1ab-9bc0-4ab5-b2f1-4f422b721b86")
 	)
+	(label "~{SRAM_CE_INT}"
+		(at 158.75 140.97 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8feeb3ab-06cf-4a1f-9b42-18b19ae35a0c")
+	)
 	(label "SRAM_DIS_1"
 		(at 52.07 182.88 180)
 		(fields_autoplaced yes)
@@ -2614,6 +2898,28 @@
 			(justify right bottom)
 		)
 		(uuid "98fa3f7b-42d1-4baa-bce9-d820c7714404")
+	)
+	(label "~{SEGA_CONTROL}"
+		(at 142.24 158.75 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "996de2fb-855b-4e4b-8599-18a012e4a2e3")
+	)
+	(label "~{UC_CONTROL}"
+		(at 142.24 149.86 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a94b7add-88a8-4627-bd1f-7c9611343d23")
 	)
 	(label "~{SRAM_CE}"
 		(at 95.25 72.39 180)
@@ -2758,6 +3064,17 @@
 		)
 		(uuid "dae7c7d1-7324-4315-b3bc-3975dcf2f1cd")
 	)
+	(label "~{SEGA_CONTROL_INT}"
+		(at 158.75 158.75 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f4549fe1-4639-4cf8-91d4-45252e15e00a")
+	)
 	(label "~{SRAM_FINAL_OE}"
 		(at 35.56 144.78 180)
 		(fields_autoplaced yes)
@@ -2779,6 +3096,17 @@
 			(justify right bottom)
 		)
 		(uuid "f68be557-cc32-4a54-b165-0fcd139bf987")
+	)
+	(label "~{UC_CONTROL_INT}"
+		(at 158.75 149.86 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f8afae2e-5aa8-4e40-a092-bfc917a05ff0")
 	)
 	(label "SRAM_W_A[0..18]"
 		(at 93.98 142.24 0)
@@ -3027,6 +3355,74 @@
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
 					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 149.86 158.75 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "40ea0bb6-d338-412b-9975-a440960330a3")
+		(property "Reference" "J_~{SEGA}_1"
+			(at 149.86 155.057 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 149.86 156.8839 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 149.86 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 149.86 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 149.86 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5db0c6a4-5824-475e-b953-383e92ae42c7")
+		)
+		(pin "2"
+			(uuid "c9333b94-97f9-4a77-9275-cadb161ee538")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
+					(reference "J_~{SEGA}_1")
 					(unit 1)
 				)
 			)
@@ -3981,6 +4377,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 149.86 149.86 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c103e2cf-bb11-4a0b-818d-e0a4a57431a1")
+		(property "Reference" "J_~{UC}_1"
+			(at 149.86 146.167 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 149.86 147.9939 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 149.86 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 149.86 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 149.86 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8608e8df-4978-4ae3-b946-2bdd8bb5bc96")
+		)
+		(pin "2"
+			(uuid "892f20ba-f9c9-430f-8341-a84c6abfc2ec")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
+					(reference "J_~{UC}_1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 242.57 34.29 270)
 		(unit 1)
@@ -4308,6 +4772,74 @@
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
 					(reference "#PWR020")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 149.86 140.97 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "deecb1a9-852b-456f-952c-146fa8d9b67c")
+		(property "Reference" "J_~{CE}_1"
+			(at 149.86 137.277 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 149.86 139.1039 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 149.86 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 149.86 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 149.86 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "286f267d-4d5c-4f9e-a4f7-ae417afba38f")
+		)
+		(pin "2"
+			(uuid "408fac6b-4d50-429d-a07a-0b788910cc72")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
+					(reference "J_~{CE}_1")
 					(unit 1)
 				)
 			)
