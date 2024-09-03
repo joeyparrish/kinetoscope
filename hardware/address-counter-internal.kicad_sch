@@ -8,7 +8,7 @@
 		(title "Kinetoscope SRAM Address Counter")
 	)
 	(lib_symbols
-		(symbol "74xx:74LS163"
+		(symbol "74xx:74LS161"
 			(pin_names
 				(offset 1.016)
 			)
@@ -23,7 +23,7 @@
 					)
 				)
 			)
-			(property "Value" "74LS163"
+			(property "Value" "74LS161"
 				(at -7.62 -16.51 0)
 				(effects
 					(font
@@ -40,7 +40,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS163"
+			(property "Datasheet" "http://www.ti.com/lit/gpn/sn74LS161"
 				(at 0 0 0)
 				(effects
 					(font
@@ -84,7 +84,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "74LS163_1_0"
+			(symbol "74LS161_1_0"
 				(pin input line
 					(at -12.7 -12.7 0)
 					(length 5.08)
@@ -374,7 +374,7 @@
 					)
 				)
 			)
-			(symbol "74LS163_1_1"
+			(symbol "74LS161_1_1"
 				(rectangle
 					(start -7.62 15.24)
 					(end 7.62 -15.24)
@@ -3353,7 +3353,7 @@
 		)
 	)
 	(symbol
-		(lib_id "74xx:74LS163")
+		(lib_id "74xx:74LS161")
 		(at 78.74 67.31 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3371,7 +3371,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LV163"
+		(property "Value" "74LV161A"
 			(at 80.9341 50.3498 0)
 			(effects
 				(font
@@ -3389,7 +3389,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv163a"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv161a"
 			(at 78.74 67.31 0)
 			(effects
 				(font
@@ -3407,7 +3407,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LV163APWR"
+		(property "Mouser Part Number" "595-SN74LV161APWR"
 			(at 78.74 67.31 0)
 			(effects
 				(font
@@ -3416,7 +3416,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SN74LV163APWR"
+		(property "Part Number" "SN74LV161APWR"
 			(at 78.74 67.31 0)
 			(effects
 				(font
@@ -3425,7 +3425,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C2675453"
+		(property "JLCPCB Part Number" "C2649404"
 			(at 78.74 67.31 0)
 			(effects
 				(font
@@ -3690,7 +3690,7 @@
 		)
 	)
 	(symbol
-		(lib_id "74xx:74LS163")
+		(lib_id "74xx:74LS161")
 		(at 144.78 113.03 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3708,7 +3708,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LV163"
+		(property "Value" "74LV161A"
 			(at 146.9741 96.0698 0)
 			(effects
 				(font
@@ -3726,7 +3726,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv163a"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv161a"
 			(at 144.78 113.03 0)
 			(effects
 				(font
@@ -3744,7 +3744,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LV163APWR"
+		(property "Mouser Part Number" "595-SN74LV161APWR"
 			(at 144.78 113.03 0)
 			(effects
 				(font
@@ -3753,7 +3753,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SN74LV163APWR"
+		(property "Part Number" "SN74LV161APWR"
 			(at 144.78 113.03 0)
 			(effects
 				(font
@@ -3762,7 +3762,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C2675453"
+		(property "JLCPCB Part Number" "C2649404"
 			(at 144.78 113.03 0)
 			(effects
 				(font
@@ -4222,7 +4222,7 @@
 		)
 	)
 	(symbol
-		(lib_id "74xx:74LS163")
+		(lib_id "74xx:74LS161")
 		(at 177.8 133.35 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4240,7 +4240,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LV163"
+		(property "Value" "74LV161A"
 			(at 179.9941 116.3898 0)
 			(effects
 				(font
@@ -4258,7 +4258,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv163a"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv161a"
 			(at 177.8 133.35 0)
 			(effects
 				(font
@@ -4276,7 +4276,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LV163APWR"
+		(property "Mouser Part Number" "595-SN74LV161APWR"
 			(at 177.8 133.35 0)
 			(effects
 				(font
@@ -4285,7 +4285,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SN74LV163APWR"
+		(property "Part Number" "SN74LV161APWR"
 			(at 177.8 133.35 0)
 			(effects
 				(font
@@ -4294,7 +4294,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C2675453"
+		(property "JLCPCB Part Number" "C2649404"
 			(at 177.8 133.35 0)
 			(effects
 				(font
@@ -4427,7 +4427,7 @@
 		)
 	)
 	(symbol
-		(lib_id "74xx:74LS163")
+		(lib_id "74xx:74LS161")
 		(at 48.26 41.91 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4445,7 +4445,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LV163"
+		(property "Value" "74LV161A"
 			(at 50.4541 24.9498 0)
 			(effects
 				(font
@@ -4463,7 +4463,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv163a"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv161a"
 			(at 48.26 41.91 0)
 			(effects
 				(font
@@ -4481,7 +4481,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LV163APWR"
+		(property "Mouser Part Number" "595-SN74LV161APWR"
 			(at 48.26 41.91 0)
 			(effects
 				(font
@@ -4490,7 +4490,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SN74LV163APWR"
+		(property "Part Number" "SN74LV161APWR"
 			(at 48.26 41.91 0)
 			(effects
 				(font
@@ -4499,7 +4499,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C2675453"
+		(property "JLCPCB Part Number" "C2649404"
 			(at 48.26 41.91 0)
 			(effects
 				(font
@@ -5024,7 +5024,7 @@
 		)
 	)
 	(symbol
-		(lib_id "74xx:74LS163")
+		(lib_id "74xx:74LS161")
 		(at 113.03 91.44 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -5042,7 +5042,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LV163"
+		(property "Value" "74LV161A"
 			(at 115.2241 74.4798 0)
 			(effects
 				(font
@@ -5060,7 +5060,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv163a"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv161a"
 			(at 113.03 91.44 0)
 			(effects
 				(font
@@ -5078,7 +5078,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LV163APWR"
+		(property "Mouser Part Number" "595-SN74LV161APWR"
 			(at 113.03 91.44 0)
 			(effects
 				(font
@@ -5087,7 +5087,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SN74LV163APWR"
+		(property "Part Number" "SN74LV161APWR"
 			(at 113.03 91.44 0)
 			(effects
 				(font
@@ -5096,7 +5096,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C2675453"
+		(property "JLCPCB Part Number" "C2649404"
 			(at 113.03 91.44 0)
 			(effects
 				(font

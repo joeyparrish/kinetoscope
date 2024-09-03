@@ -2422,7 +2422,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LV164"
+		(property "Value" "74LV164A"
 			(at 58.0741 49.0798 0)
 			(effects
 				(font
@@ -2440,7 +2440,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74LV164-1517637.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv164a"
 			(at 78.74 68.58 0)
 			(effects
 				(font
@@ -2458,7 +2458,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "771-LV164PW118"
+		(property "Mouser Part Number" "595-SN74LV164APWR"
 			(at 55.88 60.96 0)
 			(effects
 				(font
@@ -2467,7 +2467,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "74LV164PW,118"
+		(property "Part Number" "SN74LV164APWR"
 			(at 55.88 60.96 0)
 			(effects
 				(font
@@ -2476,7 +2476,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C179331"
+		(property "JLCPCB Part Number" "C403720"
 			(at 55.88 60.96 0)
 			(effects
 				(font
@@ -2555,7 +2555,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "74LV164"
+		(property "Value" "74LV164A"
 			(at 87.2841 83.3698 0)
 			(effects
 				(font
@@ -2573,7 +2573,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74LV164-1517637.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lv164a"
 			(at 107.95 102.87 0)
 			(effects
 				(font
@@ -2591,7 +2591,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "771-LV164PW118"
+		(property "Mouser Part Number" "595-SN74LV164APWR"
 			(at 85.09 95.25 0)
 			(effects
 				(font
@@ -2600,7 +2600,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "74LV164PW,118"
+		(property "Part Number" "SN74LV164APWR"
 			(at 85.09 95.25 0)
 			(effects
 				(font
@@ -2609,7 +2609,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C179331"
+		(property "JLCPCB Part Number" "C403720"
 			(at 85.09 95.25 0)
 			(effects
 				(font

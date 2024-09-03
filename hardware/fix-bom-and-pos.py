@@ -9,6 +9,7 @@ ROTATE_PACKAGES = {
   'SO-16_3.9x9.9mm_P1.27mm': -90,
   'SSOP-24_5.3x8.2mm_P0.65mm': -90,
   'TO-252-3_TabPin2': 180,
+  'TSSOP-14_4.4x5mm_P0.65mm': -90,
   'TSSOP-16_4.4x3.6mm_P0.4mm': -90,
   'TSSOP-16_4.4x5mm_P0.65mm': -90,
   'VSSOP-8_2.3x2mm_P0.5mm': -90,
