@@ -67,9 +67,10 @@ The stacking boards are:
        - Surface Finish: ENIG
        - Gold Fingers: Yes
        - 30°finger chamfered: Yes
-     - The following parts will have to be populated by hand:
-       - U2 (fixed low-drop-out regulator, 1.5A @ 3.3V)
-       - J1 (Adafruit stacking pin header, modified)
+     - The following parts will not be properly placed by JLCPCB's systems, and
+       must be rotated and moved into place manually during the ordering
+       process:
+       - J1 (pin header for attaching other boards)
  - `sram-bank`: SRAM Bank Board
    - There are actually two of these in the stack, one for each 1MB SRAM bank.
    - These host the SRAM itself, the buffers that allow it to be alternately

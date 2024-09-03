@@ -4,14 +4,15 @@ import csv
 import sys
 
 # Packages we know need rotation.
-ROTATE_PACKAGES = [
-  'LQFP-48_7x7mm_P0.5mm',
-  'SO-16_3.9x9.9mm_P1.27mm',
-  'SSOP-24_5.3x8.2mm_P0.65mm',
-  'TSSOP-16_4.4x3.6mm_P0.4mm',
-  'TSSOP-16_4.4x5mm_P0.65mm',
-  'VSSOP-8_2.3x2mm_P0.5mm',
-]
+ROTATE_PACKAGES = {
+  'LQFP-48_7x7mm_P0.5mm': -90,
+  'SO-16_3.9x9.9mm_P1.27mm': -90,
+  'SSOP-24_5.3x8.2mm_P0.65mm': -90,
+  'TO-252-3_TabPin2': 180,
+  'TSSOP-16_4.4x3.6mm_P0.4mm': -90,
+  'TSSOP-16_4.4x5mm_P0.65mm': -90,
+  'VSSOP-8_2.3x2mm_P0.5mm': -90,
+}
 
 # Packages we know don't need rotation.
 OKAY_PACKAGES = [
@@ -76,7 +77,9 @@ with open(pos_out, 'w', newline='') as f:
     # Correct the rotation of certain items.
     if package in ROTATE_PACKAGES:
       print('Fixing rotation of {}, package {}'.format(name, package))
-      rotation -= 90
+      rotation += ROTATE_PACKAGES[package]
+      while rotation < 0: rotation += 360
+      while rotation >= 360: rotation -= 360
       row['Rotation'] = '{:.6f}'.format(rotation)
     elif package in OKAY_PACKAGES or package in DONT_HAVE_PACKAGES:
       pass
