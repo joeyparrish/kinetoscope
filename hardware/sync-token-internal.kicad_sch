@@ -2040,7 +2040,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74AHC_AHCT74-2937188.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74ahc74"
 			(at 52.07 144.78 0)
 			(effects
 				(font
@@ -2058,7 +2058,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "771-AHCPW118"
+		(property "Mouser Part Number" "595-SN74AHC74PWR"
 			(at 52.07 144.78 0)
 			(effects
 				(font
@@ -2067,7 +2067,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "74AHC74PW,118"
+		(property "Part Number" "SN74AHC74PWR"
 			(at 52.07 144.78 0)
 			(effects
 				(font
@@ -2076,7 +2076,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C71900"
+		(property "JLCPCB Part Number" "C8179"
 			(at 52.07 144.78 0)
 			(effects
 				(font
@@ -2240,7 +2240,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74AHC_AHCT74-2937188.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74ahc74"
 			(at 187.96 111.76 0)
 			(effects
 				(font
@@ -2258,7 +2258,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "771-AHCPW118"
+		(property "Mouser Part Number" "595-SN74AHC74PWR"
 			(at 187.96 111.76 0)
 			(effects
 				(font
@@ -2267,7 +2267,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "74AHC74PW,118"
+		(property "Part Number" "SN74AHC74PWR"
 			(at 187.96 111.76 0)
 			(effects
 				(font
@@ -2276,7 +2276,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C71900"
+		(property "JLCPCB Part Number" "C8179"
 			(at 187.96 111.76 0)
 			(effects
 				(font
@@ -2470,7 +2470,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74AHC_AHCT74-2937188.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74ahc74"
 			(at 53.34 93.98 0)
 			(effects
 				(font
@@ -2488,7 +2488,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "771-AHCPW118"
+		(property "Mouser Part Number" "595-SN74AHC74PWR"
 			(at 53.34 93.98 0)
 			(effects
 				(font
@@ -2497,7 +2497,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "74AHC74PW,118"
+		(property "Part Number" "SN74AHC74PWR"
 			(at 53.34 93.98 0)
 			(effects
 				(font
@@ -2506,7 +2506,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C71900"
+		(property "JLCPCB Part Number" "C8179"
 			(at 53.34 93.98 0)
 			(effects
 				(font

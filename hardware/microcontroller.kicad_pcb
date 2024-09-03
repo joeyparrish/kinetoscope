@@ -8656,7 +8656,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74AHC_AHCT74-2937188.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74ahc74"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8682,7 +8682,7 @@
 				)
 			)
 		)
-		(property "Mouser Part Number" "771-AHCPW118"
+		(property "Mouser Part Number" "595-SN74AHC74PWR"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8695,7 +8695,7 @@
 				)
 			)
 		)
-		(property "Part Number" "74AHC74PW,118"
+		(property "Part Number" "SN74AHC74PWR"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8708,7 +8708,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part Number" "C71900"
+		(property "JLCPCB Part Number" "C8179"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
