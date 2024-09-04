@@ -67,10 +67,10 @@ The stacking boards are:
        - Surface Finish: ENIG
        - Gold Fingers: Yes
        - 30°finger chamfered: Yes
-     - The following parts will not be properly placed by JLCPCB's systems, and
-       must be rotated and moved into place manually during the ordering
-       process:
-       - J1 (pin header for attaching other boards)
+     - The following parts will not be properly placed by JLCPCB's systems
+       automatically, and must be adjusted manually during the ordering process:
+       - J1 (pin header for attaching other boards, wrong location and rotation)
+       - U2 (voltage regulator, offset a little too far to the right)
  - `sram-bank`: SRAM Bank Board
    - There are actually two of these in the stack, one for each 1MB SRAM bank.
    - These host the SRAM itself, the buffers that allow it to be alternately
