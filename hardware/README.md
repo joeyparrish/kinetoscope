@@ -78,6 +78,13 @@ The stacking boards are:
      allow it to interface to the 5V system of the Sega. This is the most
      complex.  A solder jumper on the board selects whether it responds as bank
      1 or bank 2.
+   - When ordering this through JLCPCB:
+     - The following parts must be populated by hand:
+       - J1 must be 2x Adafruit stacking headers modified to 26 pins each
+       - J2 must be 2x Adafruit stacking headers modified to 21 pins each
+       - JP1 and JP2 are solder jumpers that must be closed on each board; to
+         set bank 1, bridge center to left on both jumpers; to set bank 2,
+         bridge center to right on both jumpers (also indicated on silkscreen)
  - `microcontroller`: Microcontroller Board
    - This hosts the microcontroller, voltage regulator, registers, sync token,
      and ethernet module.
@@ -86,6 +93,17 @@ The stacking boards are:
    - The microcontroller is a Raspberry Pi Pico W, which is receives commands
      through the registers and sync token, and is responsible for WiFi/Ethernet
      and streaming video to SRAM.
+   - When ordering this through JLCPCB:
+     - The following parts must be populated by hand:
+       - J1 must be 2x Adafruit stacking headers modified to 26 pins each
+       - J2 must be 2x Adafruit stacking headers modified to 21 pins each
+       - J3 and J4 are 20-pin female headers @ 0.1 inch pitch, to mount a
+         Raspberry Pi Pico W with male headers facing down
+       - J5 and J7 are male right-angle headers @ 0.1 inch pitch, which need a
+         single jumper (see silkscreen notes for jumper settings for play vs
+         programming)
+       - J6 is an optional 2x3 pin header @ 0.1 inch pitch to connect to an
+         external Ethernet featherwing (wiring required, no adapter yet)
 
 
 ## Sheets
@@ -107,9 +125,6 @@ The subsheets are:
      wants to write, so instead, this register is used to convert a serial
      output from the microcontroller into the parallel input needed by the
      SRAM.
- - `ethernet-internal`: WizNet-5500-based Ethernet module
-   - All the circuitry necessary to use wired Ethernet through the WizNet 5500,
-     which talks to the microcontroller through an SPI interface.
  - `flash-internal`: Flash connected to buses
    - Flash memory connected to buses to simplify top-level schematics.
  - `kinetoscope-header-internal`: Kinetoscope stacking pin headers
@@ -120,10 +135,13 @@ The subsheets are:
  - `sram-internal`: SRAM connected to buses
    - SRAM connected to buses to simplify top-level schematics.
  - `sync-token-internal`: Shared Sync Token
-   - A single bit that can be set by the Sega, cleared by the microcontroller,
-     and read by both. The sega sets the bit to tell the microcontroller that a
-     command has been written to the registers. The microcontroller clears it
-     when the command has been completed.
+   - A pair of single bit tokens.  One can be set by the Sega and cleared by
+     the microcontroller, and the other vice-versa.  Both CPUs can read the
+     state of both tokens.  For the command bit, the Sega sets it to tell the
+     microcontroller that a command has been written to the registers. The
+     microcontroller clears it when the command has been completed.  For the
+     error bit, the microcontroller sets it to tell the Sega that an error has
+     occurred, and the Sega clears it after the error has been read.
 
 
 ## Programming
