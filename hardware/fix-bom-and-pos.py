@@ -12,6 +12,7 @@ ROTATE_PACKAGES = {
   'TSSOP-14_4.4x5mm_P0.65mm': -90,
   'TSSOP-16_4.4x3.6mm_P0.4mm': -90,
   'TSSOP-16_4.4x5mm_P0.65mm': -90,
+  'TSSOP-20_4.4x6.5mm_P0.65mm': -90,
   'VSSOP-8_2.3x2mm_P0.5mm': -90,
 }
 
