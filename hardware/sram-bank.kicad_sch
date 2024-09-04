@@ -2760,7 +2760,7 @@
 		)
 		(uuid "6233a149-009d-4b86-814f-ed03d66083f2")
 	)
-	(label "~{UC_CONTROL}"
+	(label "~{UC_CONTROL_INT}"
 		(at 151.13 30.48 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2925,7 +2925,7 @@
 		)
 		(uuid "a94b7add-88a8-4627-bd1f-7c9611343d23")
 	)
-	(label "~{SRAM_CE}"
+	(label "~{SRAM_CE_INT}"
 		(at 95.25 72.39 180)
 		(fields_autoplaced yes)
 		(effects
