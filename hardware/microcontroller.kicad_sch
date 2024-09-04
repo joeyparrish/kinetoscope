@@ -2600,10 +2600,6 @@
 		(uuid "4cc029d9-5b94-4221-a15d-5da1e739d153")
 	)
 	(no_connect
-		(at 184.15 41.91)
-		(uuid "5095365f-00d8-41ec-8014-8c0c888628f7")
-	)
-	(no_connect
 		(at 50.8 193.04)
 		(uuid "61de2a92-c51c-4a7a-a009-5caa6e22eb1f")
 	)
@@ -2755,7 +2751,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 133.35) (xy 57.15 142.24)
+			(xy 54.61 133.35) (xy 54.61 142.24)
 		)
 		(stroke
 			(width 0)
@@ -2885,13 +2881,23 @@
 	)
 	(bus
 		(pts
-			(xy 49.53 134.62) (xy 49.53 142.24)
+			(xy 46.99 134.62) (xy 46.99 142.24)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "2aee1981-a06b-4552-8638-a2c14ee341ad")
+	)
+	(wire
+		(pts
+			(xy 57.15 133.35) (xy 57.15 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2fb9ecf0-4421-4e4d-a65a-b648e9b55271")
 	)
 	(wire
 		(pts
@@ -2905,7 +2911,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 133.35) (xy 52.07 142.24)
+			(xy 49.53 133.35) (xy 49.53 142.24)
 		)
 		(stroke
 			(width 0)
@@ -2955,13 +2961,13 @@
 	)
 	(wire
 		(pts
-			(xy 269.24 27.94) (xy 270.51 27.94)
+			(xy 184.15 41.91) (xy 191.77 41.91)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3d7fe291-a523-4c5a-b84f-f1a2ec83478b")
+		(uuid "3c75bf61-9104-489e-bace-4a3c318bfc6d")
 	)
 	(wire
 		(pts
@@ -3013,16 +3019,6 @@
 		)
 		(uuid "4f583c10-6808-4a04-8229-886aac575e53")
 	)
-	(wire
-		(pts
-			(xy 269.24 22.86) (xy 270.51 22.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5185ab6a-0fff-4ecc-ad0a-a89250f16dfa")
-	)
 	(bus
 		(pts
 			(xy 33.02 58.42) (xy 33.02 60.96)
@@ -3045,23 +3041,13 @@
 	)
 	(wire
 		(pts
-			(xy 269.24 25.4) (xy 270.51 25.4)
+			(xy 229.87 26.67) (xy 232.41 26.67)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "53e62bcb-895e-4ac8-9d47-8c119864cd5b")
-	)
-	(wire
-		(pts
-			(xy 229.87 27.94) (xy 232.41 27.94)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5422126b-5cd5-441c-91ff-7df0eb3cf535")
+		(uuid "579496eb-af38-4cd8-a839-b874e7cce381")
 	)
 	(wire
 		(pts
@@ -3092,16 +3078,6 @@
 			(type default)
 		)
 		(uuid "59c83fb0-a42b-43ee-9cdd-9c3d0a40eba7")
-	)
-	(wire
-		(pts
-			(xy 35.56 78.74) (xy 45.72 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5c0935bd-9474-4b51-96cc-dfa17db9a760")
 	)
 	(wire
 		(pts
@@ -3225,6 +3201,16 @@
 	)
 	(wire
 		(pts
+			(xy 35.56 78.74) (xy 45.72 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6a7d15ad-d3ce-4dfe-a2a9-6749bf7670e5")
+	)
+	(wire
+		(pts
 			(xy 185.42 102.87) (xy 190.5 102.87)
 		)
 		(stroke
@@ -3295,23 +3281,13 @@
 	)
 	(wire
 		(pts
-			(xy 54.61 133.35) (xy 54.61 142.24)
+			(xy 52.07 133.35) (xy 52.07 142.24)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "865cdd63-0565-435d-8df2-1a1b500aa88f")
-	)
-	(wire
-		(pts
-			(xy 229.87 25.4) (xy 232.41 25.4)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "871f1be7-6441-4274-9d54-2ac7e53d9670")
 	)
 	(wire
 		(pts
@@ -3475,6 +3451,16 @@
 	)
 	(wire
 		(pts
+			(xy 269.24 26.67) (xy 270.51 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b60a9b2e-820b-4394-b407-21796096e4de")
+	)
+	(wire
+		(pts
 			(xy 82.55 71.12) (xy 91.44 71.12)
 		)
 		(stroke
@@ -3635,6 +3621,16 @@
 	)
 	(wire
 		(pts
+			(xy 269.24 24.13) (xy 270.51 24.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cf183326-c698-434e-aed9-fcc219ac1b2b")
+	)
+	(wire
+		(pts
 			(xy 240.03 156.21) (xy 242.57 156.21)
 		)
 		(stroke
@@ -3662,6 +3658,16 @@
 			(type default)
 		)
 		(uuid "d19fae8d-47cf-4e10-a9c3-767fc2e59f1f")
+	)
+	(wire
+		(pts
+			(xy 229.87 24.13) (xy 232.41 24.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dcb1a44c-4cb3-40d6-a5ae-eae57d351e11")
 	)
 	(wire
 		(pts
@@ -3895,9 +3901,9 @@
 		)
 		(uuid "326c0fa7-401f-4946-b617-b91fbc399751")
 	)
-	(text "Register addresses\nCMD: 0xA13000\nARG: 0xA13002\nunused2: 0xA13004\nunused3: 0xA13006\n\nCommand token address\n0xA13008\n\nError token address\n0xA1300A"
+	(text "Register addresses\nCMD: 0xA13010\nARG: 0xA13012\n\nCommand token address\n0xA13008\n\nError token address\n0xA1300A"
 		(exclude_from_sim no)
-		(at 271.272 45.466 0)
+		(at 271.78 48.006 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3925,7 +3931,7 @@
 		)
 		(uuid "7213816b-17aa-4ce9-8343-041e21b9e762")
 	)
-	(text "Decoder for registers (W)\nPre-reqs: register & AS\n\nREG_WE = write & !read & !A3 (010 = Y2)"
+	(text "Decoder for registers (W)\nPre-reqs: register & AS & A4\n\nREG_0_WE = write & !read & !A1 (010 = Y2)\nREG_1_WE = write & !read &  A1 (011 = Y3)"
 		(exclude_from_sim no)
 		(at 153.162 18.542 0)
 		(effects
@@ -3948,7 +3954,7 @@
 	)
 	(text "Write 16-bits to even addresses,\nbut only low byte is accepted."
 		(exclude_from_sim no)
-		(at 243.332 35.56 0)
+		(at 250.952 34.544 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4020,17 +4026,6 @@
 		)
 		(uuid "03704245-8dca-475a-9c91-7ac2ddddb337")
 	)
-	(label "REG_R_A1"
-		(at 35.56 78.74 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "04900b8e-3591-4c16-9b33-3aec3a0e7ec6")
-	)
 	(label "~{CMD_OE}"
 		(at 190.5 107.95 0)
 		(fields_autoplaced yes)
@@ -4074,17 +4069,6 @@
 			(justify left bottom)
 		)
 		(uuid "153d1fa0-158e-49e9-ab06-b5547786970e")
-	)
-	(label "SEGA_A2"
-		(at 270.51 25.4 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "159a5d91-8a6d-443a-9257-3324a611d287")
 	)
 	(label "~{SPI_CS}"
 		(at 242.57 156.21 0)
@@ -4273,6 +4257,17 @@
 		)
 		(uuid "3bb0e13b-3934-4937-b8d9-d9e9510b6899")
 	)
+	(label "SEGA_A4"
+		(at 57.15 133.35 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "412641a5-d9fe-4919-bfd1-37081fcd00c2")
+	)
 	(label "REG_R_D[0..7]"
 		(at 26.67 48.26 180)
 		(fields_autoplaced yes)
@@ -4294,6 +4289,17 @@
 			(justify right bottom)
 		)
 		(uuid "4aadb36a-84d4-4c4c-a40b-52c0b0de3e1e")
+	)
+	(label "~{REG_0_OE}"
+		(at 229.87 24.13 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "4bd9164e-3be9-483f-8e9a-2e4cbeed6023")
 	)
 	(label "SEGA_A3"
 		(at 162.56 115.57 180)
@@ -4339,7 +4345,7 @@
 		)
 		(uuid "51fd017e-bb1d-43e1-bbc6-51cf24ccb22c")
 	)
-	(label "~{REG_WE}"
+	(label "~{REG_0_WE}"
 		(at 191.77 39.37 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4360,17 +4366,6 @@
 			(justify left bottom)
 		)
 		(uuid "5e2a9835-a08a-4272-babe-274edeae8e59")
-	)
-	(label "SEGA_A3"
-		(at 153.67 34.29 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "64c7f790-dbe4-4013-8e93-f925096c1873")
 	)
 	(label "SEGA_D[0..7]"
 		(at 270.51 20.32 0)
@@ -4482,6 +4477,17 @@
 		)
 		(uuid "775e5b15-a6b3-4ca2-942f-73076c2a274f")
 	)
+	(label "SEGA_A1"
+		(at 153.67 34.29 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "77d5efdd-5c1f-4d6b-a9e0-26ca7558f73d")
+	)
 	(label "SRAM_D_NEXT"
 		(at 121.92 193.04 0)
 		(fields_autoplaced yes)
@@ -4559,7 +4565,18 @@
 		)
 		(uuid "9b92c527-b2cc-4807-b85e-5aa715f78999")
 	)
-	(label "REG_R_A0"
+	(label "~{REG_1_WE}"
+		(at 270.51 26.67 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9baca3fa-539b-4973-9f28-e9ec081defe6")
+	)
+	(label "~{REG_0_OE}"
 		(at 35.56 76.2 180)
 		(fields_autoplaced yes)
 		(effects
@@ -4625,28 +4642,6 @@
 		)
 		(uuid "a583aa99-b2ce-4916-9153-1d84f4571b5c")
 	)
-	(label "~{REG_WE}"
-		(at 270.51 27.94 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "a7e654d1-18eb-4ddb-96eb-d7c993b53da9")
-	)
-	(label "REG_R_A1"
-		(at 229.87 27.94 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "ad256d9e-c9ab-4516-89ce-5b1cf53a3c42")
-	)
 	(label "REG_R_D7"
 		(at 35.56 73.66 0)
 		(fields_autoplaced yes)
@@ -4680,6 +4675,17 @@
 		)
 		(uuid "b506a1ab-5091-4edd-ba7e-bfbc55070ae4")
 	)
+	(label "~{REG_1_OE}"
+		(at 35.56 78.74 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "b6dbe048-e7b4-4abf-8e47-9c2e8a3e0d82")
+	)
 	(label "~{ERR_SET}"
 		(at 229.87 72.39 180)
 		(fields_autoplaced yes)
@@ -4712,17 +4718,6 @@
 			(justify right bottom)
 		)
 		(uuid "bb3f64f2-aed5-48f1-8776-30028f6aa0be")
-	)
-	(label "REG_R_A0"
-		(at 229.87 25.4 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "bc209bad-4f83-4f34-8b4a-647cbb47fd3f")
 	)
 	(label "~{ERR_OE}"
 		(at 229.87 77.47 180)
@@ -4758,7 +4753,7 @@
 		(uuid "c46ab4f7-1bab-4d41-946a-dd7d23bf1230")
 	)
 	(label "SEGA_A1"
-		(at 52.07 133.35 90)
+		(at 49.53 133.35 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4780,7 +4775,7 @@
 		(uuid "c5b0516d-c573-4fe0-9b19-625136dd2f24")
 	)
 	(label "SEGA_A2"
-		(at 54.61 133.35 90)
+		(at 52.07 133.35 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4789,6 +4784,17 @@
 			(justify left bottom)
 		)
 		(uuid "c78b8088-d5a5-46e4-9b06-1c7b463a7a2c")
+	)
+	(label "SEGA_A4"
+		(at 161.29 52.07 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c847a3f5-358a-4126-a7bf-a50ba3a0c1a5")
 	)
 	(label "~{SEGA_AS}"
 		(at 67.31 133.35 90)
@@ -4824,7 +4830,7 @@
 		(uuid "c983ff5c-6b3f-4ec1-8e82-bbc35e24dcfd")
 	)
 	(label "SEGA_D[0..7]"
-		(at 49.53 134.62 90)
+		(at 46.99 134.62 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4833,6 +4839,17 @@
 			(justify left bottom)
 		)
 		(uuid "caf52ebb-1235-47e2-9cae-6909713d8964")
+	)
+	(label "~{REG_0_WE}"
+		(at 270.51 24.13 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cd78aa36-db93-4c60-bff6-6fcd9a3f570b")
 	)
 	(label "SRAM_D_IN[0..15]"
 		(at 96.52 190.5 180)
@@ -4855,6 +4872,28 @@
 			(justify right bottom)
 		)
 		(uuid "e0a61c4c-06ab-401f-9597-7f3f80e76e07")
+	)
+	(label "~{REG_1_OE}"
+		(at 229.87 26.67 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e10d243d-a1c8-4be7-8d98-fba609b3ec3d")
+	)
+	(label "~{REG_1_WE}"
+		(at 191.77 41.91 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e1631e23-2b91-4afe-9b73-0afffede3c21")
 	)
 	(label "SPI_MOSI"
 		(at 91.44 88.9 0)
@@ -4879,7 +4918,7 @@
 		(uuid "e302fc09-22d4-4fec-931d-b64f05b9e89a")
 	)
 	(label "SEGA_A3"
-		(at 57.15 133.35 90)
+		(at 54.61 133.35 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4910,17 +4949,6 @@
 			(justify right bottom)
 		)
 		(uuid "e9c9604e-b6ed-4768-a660-258aeb96f21e")
-	)
-	(label "SEGA_A1"
-		(at 270.51 22.86 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ea9f694c-4b31-4473-90a7-fd6d136588ae")
 	)
 	(label "~{SEGA_REGISTER}"
 		(at 161.29 46.99 180)
@@ -6333,73 +6361,6 @@
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
 					(reference "#PWR066")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 161.29 52.07 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "513b8e94-8163-4d06-8e4c-e662cc2f04b5")
-		(property "Reference" "#PWR064"
-			(at 165.1 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 157.48 52.0699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 161.29 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 161.29 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 161.29 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "880e8777-119f-4c95-b4da-16e4d8111811")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "#PWR064")
 					(unit 1)
 				)
 			)
@@ -9879,7 +9840,7 @@
 			(uuid "ef911288-44d5-4a3d-b67b-552749ba0988")
 		)
 		(pin "SEGA_D[0..7]" bidirectional
-			(at 49.53 142.24 90)
+			(at 46.99 142.24 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9889,7 +9850,7 @@
 			(uuid "4b8b0b83-c266-4b5d-94fd-8731d3c82301")
 		)
 		(pin "SEGA_A2" passive
-			(at 54.61 142.24 90)
+			(at 52.07 142.24 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9899,7 +9860,7 @@
 			(uuid "7998d357-8056-4352-b8b8-64a707ac337d")
 		)
 		(pin "SEGA_A1" passive
-			(at 52.07 142.24 90)
+			(at 49.53 142.24 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9909,7 +9870,7 @@
 			(uuid "73359548-401e-458d-9b26-ab52d417cdbb")
 		)
 		(pin "SEGA_A3" passive
-			(at 57.15 142.24 90)
+			(at 54.61 142.24 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9927,6 +9888,16 @@
 				(justify right)
 			)
 			(uuid "22f2da5c-9530-4a5e-9236-e6dfe4246539")
+		)
+		(pin "SEGA_A4" passive
+			(at 57.15 142.24 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "487f5f33-0534-4bcf-a05d-66e2b9d01801")
 		)
 		(instances
 			(project "microcontroller"
@@ -10074,7 +10045,7 @@
 	)
 	(sheet
 		(at 232.41 17.78)
-		(size 36.83 12.7)
+		(size 36.83 11.43)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -10094,7 +10065,7 @@
 			)
 		)
 		(property "Sheetfile" "register-file-internal.kicad_sch"
-			(at 232.41 31.0646 0)
+			(at 232.41 29.7946 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10122,55 +10093,45 @@
 			)
 			(uuid "ec05c5f4-d31f-4ea4-af1a-5df0e507dc73")
 		)
-		(pin "W_A0" input
-			(at 269.24 22.86 0)
+		(pin "~{REG_0_WE}" input
+			(at 269.24 24.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "b73bd2c6-a520-48ae-b9ae-7a9ae7da1836")
+			(uuid "9df75733-0d02-4c35-9d4f-7d9252f7a632")
 		)
-		(pin "W_A1" input
-			(at 269.24 25.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "646ca5d3-cfc0-433d-8dba-f079b79ee39e")
-		)
-		(pin "~{WE}" input
-			(at 269.24 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "7c57d87d-aa0a-4898-bcf4-616fa9aebda8")
-		)
-		(pin "R_A0" input
-			(at 232.41 25.4 180)
+		(pin "~{REG_0_OE}" input
+			(at 232.41 24.13 180)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "53b3288d-e793-4715-bb36-fc59b09f3a1b")
+			(uuid "ed75abb2-fd98-4c65-9438-166e25f77562")
 		)
-		(pin "R_A1" input
-			(at 232.41 27.94 180)
+		(pin "~{REG_1_OE}" input
+			(at 232.41 26.67 180)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "c73323cd-a979-42ad-9f66-92fa4754e013")
+			(uuid "14d97e04-d43b-41c9-b516-308960c6595c")
+		)
+		(pin "~{REG_1_WE}" input
+			(at 269.24 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "93c9d3d9-6438-4fdc-b263-a2b0326c744f")
 		)
 		(instances
 			(project "microcontroller"

@@ -34,8 +34,8 @@
 #define SYNC_PIN__ERR_FLAGGED   27
 #define SYNC_PIN__ERR_SET       26
 
-#define REG_PIN__A0              8
-#define REG_PIN__A1              9
+#define REG_PIN__OE0             8
+#define REG_PIN__OE1             9
 
 #define REG_PIN__D0              0
 #define REG_PIN__D1              1
@@ -71,8 +71,8 @@
 #define SYNC_PIN__ERR_FLAGGED    0
 #define SYNC_PIN__ERR_SET        0
 
-#define REG_PIN__A0              0
-#define REG_PIN__A1              0
+#define REG_PIN__OE0             0
+#define REG_PIN__OE1             0
 
 #define REG_PIN__D0              0
 #define REG_PIN__D1              0

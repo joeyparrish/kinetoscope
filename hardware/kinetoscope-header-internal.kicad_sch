@@ -2344,6 +2344,12 @@
 		(color 0 0 0 0)
 		(uuid "3d2371a6-0223-4e3d-9643-7fce9d0799a8")
 	)
+	(junction
+		(at 36.83 46.99)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "76614aa8-98d0-4b23-9a31-0e0f9af11850")
+	)
 	(bus_entry
 		(at 30.48 74.93)
 		(size 2.54 2.54)
@@ -3254,6 +3260,16 @@
 		)
 		(uuid "1d1185df-0946-47d4-96de-51f16da0008b")
 	)
+	(wire
+		(pts
+			(xy 36.83 46.99) (xy 44.45 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ddc5ad1-1dc1-4815-8198-17046e30d3dd")
+	)
 	(bus
 		(pts
 			(xy 166.37 105.41) (xy 166.37 107.95)
@@ -3493,6 +3509,16 @@
 			(type default)
 		)
 		(uuid "34ee823b-7f1d-4a64-afce-57046509aadb")
+	)
+	(wire
+		(pts
+			(xy 36.83 26.67) (xy 36.83 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "35d2f5b0-335f-4d5a-a956-12c71ff7022a")
 	)
 	(bus
 		(pts
@@ -3916,7 +3942,17 @@
 	)
 	(wire
 		(pts
-			(xy 33.02 46.99) (xy 44.45 46.99)
+			(xy 27.94 26.67) (xy 36.83 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "78aa48f2-9964-4c59-bc19-b82bd9a92884")
+	)
+	(wire
+		(pts
+			(xy 33.02 46.99) (xy 36.83 46.99)
 		)
 		(stroke
 			(width 0)
@@ -5560,7 +5596,7 @@
 	)
 	(hierarchical_label "SEGA_A[1..17]"
 		(shape passive)
-		(at 27.94 26.67 180)
+		(at 27.94 34.29 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5641,6 +5677,18 @@
 			(justify right)
 		)
 		(uuid "c7c8b111-8e3a-4642-9602-d923723bfde0")
+	)
+	(hierarchical_label "SEGA_A4"
+		(shape passive)
+		(at 27.94 26.67 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ca703dd2-06b9-4e82-a42e-66de9bb3a8f0")
 	)
 	(hierarchical_label "SEGA_A22"
 		(shape passive)

@@ -19,13 +19,8 @@
 
 #include <inttypes.h>
 
-// These are the sega address bits A2 and A1.  There is no A0 signal from the
-// sega, since it has a 16-bit data bus.
-#define KINETOSCOPE_REG_CMD      0   // Sega's 0xA13000
-#define KINETOSCOPE_REG_ARG      1   // Sega's 0xA13002
-// These exist in hardware but aren't used at the moment.
-#define KINETOSCOPE_REG_UNUSED_2 2
-#define KINETOSCOPE_REG_UNUSED_3 3
+#define KINETOSCOPE_REG_CMD      0   // Port at 0xA13010
+#define KINETOSCOPE_REG_ARG      1   // Port at 0xA13012
 
 #define KINETOSCOPE_CMD_ECHO        0x00  // Writes arg to SRAM
 #define KINETOSCOPE_CMD_LIST_VIDEOS 0x01  // Writes video list to SRAM

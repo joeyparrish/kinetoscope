@@ -64,8 +64,8 @@ static int max_status_y = 0;
 # define KINETOSCOPE_VIDEO_REGION_MASK 0xffffffff
 #else
 // Ports to communicate with our special hardware.
-# define KINETOSCOPE_PORT_COMMAND ((volatile uint16_t*)0xA13000)  // low 8 bits
-# define KINETOSCOPE_PORT_ARG     ((volatile uint16_t*)0xA13002)  // low 8 bits
+# define KINETOSCOPE_PORT_COMMAND ((volatile uint16_t*)0xA13010)  // low 8 bits
+# define KINETOSCOPE_PORT_ARG     ((volatile uint16_t*)0xA13012)  // low 8 bits
 # define KINETOSCOPE_PORT_TOKEN   ((volatile uint16_t*)0xA13008)  // low 1 bit, set on write
 # define KINETOSCOPE_PORT_ERROR   ((volatile uint16_t*)0xA1300A)  // low 1 bit, clear on write
 # define KINETOSCOPE_DATA          ((volatile uint8_t*)0x200000)

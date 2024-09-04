@@ -30,8 +30,8 @@ void registers_init() {
   pinMode(REG_PIN__D6, INPUT_PULLDOWN);
   pinMode(REG_PIN__D7, INPUT_PULLDOWN);
 
-  pinMode(REG_PIN__A0, OUTPUT);
-  pinMode(REG_PIN__A1, OUTPUT);
+  pinMode(REG_PIN__OE0, OUTPUT);
+  pinMode(REG_PIN__OE1, OUTPUT);
 
   pinMode(SYNC_PIN__CMD_READY, INPUT_PULLDOWN);
   pinMode(SYNC_PIN__CMD_CLEAR, OUTPUT);
@@ -41,10 +41,8 @@ void registers_init() {
   // Disable active-low signals by default (setting them high).
   FAST_SET(SYNC_PIN__CMD_CLEAR);
   FAST_SET(SYNC_PIN__ERR_SET);
-
-  // Set other outputs low by default.
-  FAST_CLEAR(REG_PIN__A0);
-  FAST_CLEAR(REG_PIN__A1);
+  FAST_SET(REG_PIN__OE0);
+  FAST_SET(REG_PIN__OE1);
 
   clear_cmd();
 }
@@ -66,15 +64,26 @@ int is_error_flagged() {
 }
 
 uint8_t read_register(int register_address) {
-  FAST_WRITE(REG_PIN__A0, register_address & 1);
-  FAST_WRITE(REG_PIN__A1, register_address & 2);
-  // The data sheet for the 74HC670 says the data will be available after at
-  // most 295ns at 2V, and 59ns at 4.5V.  (Not given for 3.3V, no curve
-  // graphed.)  Here we wait 1 us to be sure that we are reading the right
-  // data.  It is okay to read a register a little more slowly.  Writing to
-  // SRAM and reading from the network are the critical operations in terms of
-  // speed.
-  // https://www.ti.com/lit/ds/symlink/cd74hc670.pdf
-  delayMicroseconds(1);
-  return FAST_READ_MULTIPLE(REG_PIN__D_MASK, REG_PIN__D_SHIFT);
+  // These are active-low signals.
+  if (register_address == 0) {
+    FAST_CLEAR(REG_PIN__OE0);
+  } else if (register_address == 1) {
+    FAST_CLEAR(REG_PIN__OE1);
+  }
+
+  // The data sheet for the 74AHC373 says the data will be available after at
+  // most 11ns at 3.3V.  Here we wait 4 nops (should be about 8ns each).  This
+  // should be more than safe, and still plenty fast.
+  // https://www.ti.com/lit/gpn/sn74ahc373
+  // It is worth noting that writing to SRAM and reading from the network are
+  // the critical operations in terms of speed, and optimizing this is not so
+  // important.  But reading it too fast is a problem, since many of these fast
+  // GPIO operations are only 8ns long.
+  asm("nop"); asm("nop"); asm("nop"); asm("nop");
+  uint8_t data = FAST_READ_MULTIPLE(REG_PIN__D_MASK, REG_PIN__D_SHIFT);
+
+  // Disable these active-low signals.
+  FAST_SET(REG_PIN__OE0);
+  FAST_SET(REG_PIN__OE1);
+  return data;
 }

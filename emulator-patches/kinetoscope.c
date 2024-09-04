@@ -43,10 +43,8 @@
 // So we only check the offset from there.  All addresses are even because the
 // cartridge interface does not have a wire for A0.  So all port accesses are
 // 16-bit aligned.
-#define KINETOSCOPE_PORT_COMMAND  0x00  // command, only the low 8 bits are read
-#define KINETOSCOPE_PORT_ARG      0x02  // arg, only the low 8 bits are read
-#define KINETOSCOPE_PORT_UNUSED_2 0x04  // register exists in hardware, unused
-#define KINETOSCOPE_PORT_UNUSED_3 0x06  // register exists in hardware, unused
+#define KINETOSCOPE_PORT_COMMAND  0x10  // command, only the low 8 bits are read
+#define KINETOSCOPE_PORT_ARG      0x12  // arg, only the low 8 bits are read
 #define KINETOSCOPE_PORT_TOKEN    0x08  // low 1 bit, set on write by Sega
 #define KINETOSCOPE_PORT_ERROR    0x0A  // low 1 bit, clear on write by Sega
 
