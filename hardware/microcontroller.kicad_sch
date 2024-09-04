@@ -4225,6 +4225,17 @@
 		)
 		(uuid "e185d8de-737c-4bc8-8d2a-0e731f84d984")
 	)
+	(text "NOTE: Because of limitations in the number of inputs\nin our address decoders, a conflict is possible\nif the addresses 0xA13018 - 0xA1301F are written.\nThis range could trigger both a sync token to be\nflipped and a register to be written at the same time.\nDon't do it."
+		(exclude_from_sim no)
+		(at 199.39 45.212 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "eca4b1d4-b16f-4abb-991f-1a4f3e13596b")
+	)
 	(text "3V signals from microcontroller"
 		(exclude_from_sim no)
 		(at 18.542 163.83 0)
