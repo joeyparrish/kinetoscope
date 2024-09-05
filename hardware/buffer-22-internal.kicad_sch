@@ -4014,7 +4014,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:SSOP-24_5.3x8.2mm_P0.65mm"
+		(property "Footprint" "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm"
 			(at 208.28 144.78 0)
 			(effects
 				(font
@@ -4023,7 +4023,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc8t245.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lvc8t245"
 			(at 187.96 156.21 0)
 			(effects
 				(font
@@ -4041,7 +4041,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C19197"
+		(property "JLCPCB Part Number" "C27643"
 			(at 187.96 120.65 0)
 			(effects
 				(font
@@ -4050,7 +4050,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LVC8T245DBR"
+		(property "Mouser Part Number" "595-SN74LVC8T245PWR"
 			(at 187.96 120.65 0)
 			(effects
 				(font
@@ -4059,7 +4059,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SN74LVC8T245DBR"
+		(property "Part Number" "SN74LVC8T245PWR"
 			(at 187.96 120.65 0)
 			(effects
 				(font
@@ -4619,7 +4619,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:SSOP-24_5.3x8.2mm_P0.65mm"
+		(property "Footprint" "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm"
 			(at 109.22 83.82 0)
 			(effects
 				(font
@@ -4628,7 +4628,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc8t245.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lvc8t245"
 			(at 88.9 95.25 0)
 			(effects
 				(font
@@ -4646,7 +4646,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C19197"
+		(property "JLCPCB Part Number" "C27643"
 			(at 88.9 59.69 0)
 			(effects
 				(font
@@ -4655,7 +4655,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LVC8T245DBR"
+		(property "Mouser Part Number" "595-SN74LVC8T245PWR"
 			(at 88.9 59.69 0)
 			(effects
 				(font
@@ -4664,7 +4664,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SN74LVC8T245DBR"
+		(property "Part Number" "SN74LVC8T245PWR"
 			(at 88.9 59.69 0)
 			(effects
 				(font
@@ -5026,7 +5026,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:SSOP-24_5.3x8.2mm_P0.65mm"
+		(property "Footprint" "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm"
 			(at 109.22 153.67 0)
 			(effects
 				(font
@@ -5035,7 +5035,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc8t245.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lvc8t245"
 			(at 88.9 165.1 0)
 			(effects
 				(font
@@ -5053,7 +5053,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C19197"
+		(property "JLCPCB Part Number" "C27643"
 			(at 88.9 129.54 0)
 			(effects
 				(font
@@ -5062,7 +5062,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LVC8T245DBR"
+		(property "Mouser Part Number" "595-SN74LVC8T245PWR"
 			(at 88.9 129.54 0)
 			(effects
 				(font
@@ -5071,7 +5071,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SN74LVC8T245DBR"
+		(property "Part Number" "SN74LVC8T245PWR"
 			(at 88.9 129.54 0)
 			(effects
 				(font

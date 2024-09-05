@@ -3148,7 +3148,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:SSOP-24_5.3x8.2mm_P0.65mm"
+		(property "Footprint" "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm"
 			(at 147.32 81.28 0)
 			(effects
 				(font
@@ -3157,7 +3157,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc8t245.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lvc8t245"
 			(at 127 92.71 0)
 			(effects
 				(font
@@ -3175,7 +3175,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C19197"
+		(property "JLCPCB Part Number" "C27643"
 			(at 127 57.15 0)
 			(effects
 				(font
@@ -3184,7 +3184,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LVC8T245DBR"
+		(property "Mouser Part Number" "595-SN74LVC8T245PWR"
 			(at 127 57.15 0)
 			(effects
 				(font
@@ -3193,7 +3193,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SN74LVC8T245DBR"
+		(property "Part Number" "SN74LVC8T245PWR"
 			(at 127 57.15 0)
 			(effects
 				(font
@@ -3923,7 +3923,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_SO:SSOP-24_5.3x8.2mm_P0.65mm"
+		(property "Footprint" "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm"
 			(at 147.32 151.13 0)
 			(effects
 				(font
@@ -3932,7 +3932,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc8t245.pdf"
+		(property "Datasheet" "https://www.ti.com/lit/gpn/sn74lvc8t245"
 			(at 127 162.56 0)
 			(effects
 				(font
@@ -3950,7 +3950,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C19197"
+		(property "JLCPCB Part Number" "C27643"
 			(at 127 127 0)
 			(effects
 				(font
@@ -3959,7 +3959,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "595-SN74LVC8T245DBR"
+		(property "Mouser Part Number" "595-SN74LVC8T245PWR"
 			(at 127 127 0)
 			(effects
 				(font
@@ -3968,7 +3968,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SN74LVC8T245DBR"
+		(property "Part Number" "SN74LVC8T245PWR"
 			(at 127 127 0)
 			(effects
 				(font

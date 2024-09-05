@@ -94,11 +94,14 @@ The stacking boards are:
      through the registers and sync token, and is responsible for WiFi/Ethernet
      and streaming video to SRAM.
    - When ordering this through JLCPCB:
+     - The following parts may not be properly rendered by JLCPCB's systems
+       automatically.  You may choose to leave them off your order and populate
+       them by hand if you wish:
+       - J3 and J4 are 20-pin female headers @ 0.1 inch pitch, to mount a
+         Raspberry Pi Pico W with male headers facing down
      - The following parts must be populated by hand:
        - J1 must be 2x Adafruit stacking headers modified to 26 pins each
        - J2 must be 2x Adafruit stacking headers modified to 21 pins each
-       - J3 and J4 are 20-pin female headers @ 0.1 inch pitch, to mount a
-         Raspberry Pi Pico W with male headers facing down
        - J5 and J7 are male right-angle headers @ 0.1 inch pitch, which need a
          single jumper (see silkscreen notes for jumper settings for play vs
          programming)
