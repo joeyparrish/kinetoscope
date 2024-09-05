@@ -73,11 +73,10 @@ The stacking boards are:
        - U2 (voltage regulator, offset a little too far to the right)
  - `sram-bank`: SRAM Bank Board
    - There are actually two of these in the stack, one for each 1MB SRAM bank.
-   - These host the SRAM itself, the buffers that allow it to be alternately
-     controlled by the Sega or the microcontroller, and the level shifters that
-     allow it to interface to the 5V system of the Sega. This is the most
-     complex.  A solder jumper on the board selects whether it responds as bank
-     1 or bank 2.
+   - These host the SRAM itself, and the buffers that allow it to be
+     alternately controlled by the Sega or the microcontroller.  This is the
+     most complex.  A solder jumper on the board selects whether it responds as
+     bank 1 or bank 2.
    - When ordering this through JLCPCB:
      - The following parts must be populated by hand:
        - J1 must be 2x Adafruit stacking headers modified to 26 pins each
@@ -86,13 +85,14 @@ The stacking boards are:
          set bank 1, bridge center to left on both jumpers; to set bank 2,
          bridge center to right on both jumpers (also indicated on silkscreen)
  - `microcontroller`: Microcontroller Board
-   - This hosts the microcontroller, voltage regulator, registers, sync token,
-     and ethernet module.
+   - This hosts the microcontroller, registers, sync token, and buffers to send
+     data to SRAM.
    - The registers and sync token allow the Sega to send commands to the
      microcontroller and wait for responses.
    - The microcontroller is a Raspberry Pi Pico W, which is receives commands
      through the registers and sync token, and is responsible for WiFi/Ethernet
-     and streaming video to SRAM.
+     and streaming video to SRAM.  You can buy one here for $7 (as of September
+     2024): https://www.adafruit.com/product/5544
    - When ordering this through JLCPCB:
      - The following parts may not be properly rendered by JLCPCB's systems
        automatically.  You may choose to leave them off your order and populate
