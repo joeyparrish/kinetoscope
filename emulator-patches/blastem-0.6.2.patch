@@ -1,4 +1,4 @@
-commit ae6a97d3d053c29e0d1544f8fe09b9d2c2ba7c7d
+commit 5126640d303a7411d7e84e8d41cfd5d92b88c1bd
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -156,7 +156,7 @@ index c91273c..f637add 100755
  
  def gchannel(Val):
 diff --git a/romdb.c b/romdb.c
-index 79afa76..416647f 100644
+index 79afa76..feb6fcb 100644
 --- a/romdb.c
 +++ b/romdb.c
 @@ -14,6 +14,7 @@
@@ -190,11 +190,11 @@ index 79afa76..416647f 100644
 +		info->map[1].end   = 0xA13100;
 +		// In our hardware, we use A1-A3 to address various special ports.  A0 (low
 +		// byte / high byte) doesn't exist in the cartridge interface.  But we
-+		// effectively respond to changes in the bottom 4 bits.
-+		// Therefore our port address is 0xA13000 and the mask is 0x00F.
-+		// In real hardware, the range would wrap around and 0x...00, 0x...10,
-+		// 0x...20, ... would all map to the same port.
-+		info->map[1].mask  = 0x00000F;
++		// effectively respond to changes in the bottom 5 bits.
++		// Therefore our port address is 0xA13000 and the mask is 0x01F.
++		// In real hardware, the range would wrap around and 0x...00, 0x...20,
++		// 0x...40, ... would all map to the same port.
++		info->map[1].mask  = 0x00001F;
 +
 +		info->map[2].start = 0x000000;
 +		info->map[2].end   = 0x200000;
