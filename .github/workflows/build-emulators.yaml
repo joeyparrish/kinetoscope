@@ -33,10 +33,26 @@ concurrency:
   group: build-emulators-${{ inputs.ref || github.ref }}
   cancel-in-progress: true
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build-blastem:
-    name: Build BlastEm
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: linux
+            runs-on: ubuntu-latest
+          - os: windows
+            runs-on: windows-latest
+          - os: mac
+            runs-on: macos-latest
+
+    name: Build BlastEm for ${{ matrix.os }}
+    runs-on: ${{ matrix.runs-on }}
+
     steps:
       - name: Checkout BlastEm
         uses: actions/checkout@v4
@@ -57,7 +73,20 @@ jobs:
 
       - name: Install deps for portable build
         run: |
-          sudo apt -y install libgl-dev libglu1-mesa-dev
+          if [[ "${{ matrix.os }}" == "linux" ]]; then
+            sudo apt -y install \
+                libgl-dev \
+                libglu1-mesa-dev
+          elif [[ "${{ matrix.os }}" == "mac" ]]; then
+            true  # FIXME: any prep here?
+          elif [[ "${{ matrix.os }}" == "windows" ]]; then
+            choco install --no-progress \
+                make \
+                mingw \
+                wget
+          fi
+
+          set -x
 
           wget -O glew-2.1.0.tgz https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.tgz/download
           tar xf glew-2.1.0.tgz
@@ -67,11 +96,16 @@ jobs:
           tar xf SDL2-2.30.3.tar.gz
           ln -s SDL2-2.30.3 sdl
 
+          # Fix SDL build issues on Windows, where bash's path has spaces in it.
+          echo -e "#!/bin/bash\nexit 0" > sdl/build-scripts/updaterev.sh
+          sed -e 's/@SHELL@/bash/' -i.orig sdl/Makefile.in
+
           wget -O curl-8.8.0.tar.gz https://github.com/curl/curl/releases/download/curl-8_8_0/curl-8.8.0.tar.gz
           tar xf curl-8.8.0.tar.gz
           ln -s curl-8.8.0 curl
 
       - name: Setup ccache
+        if: ${{ matrix.os != 'windows' }}
         uses: hendrikmuhs/ccache-action@v1.2
         with:
           create-symlink: true
@@ -83,6 +117,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: inputs.for-release
         with:
-          name: blastem-linux
-          path: blastem64-0.6.2-kinetoscope
+          name: blastem-${{ matrix.os }}
+          path: blastem-0.6.2-kinetoscope
           retention-days: 1

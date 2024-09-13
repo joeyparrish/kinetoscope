@@ -1,4 +1,4 @@
-commit 5126640d303a7411d7e84e8d41cfd5d92b88c1bd
+commit 246b213d8c625d929e2413213a24d1c0281b42ea
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,9 +21,22 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..f4c96df 100644
+index 0dddc9f..594b599 100644
 --- a/Makefile
 +++ b/Makefile
+@@ -96,10 +96,10 @@ LDFLAGS:=-lm glew/lib/libGLEW.a
+ endif
+ 
+ ifeq ($(OS),Darwin)
+-SDL_INCLUDE_PATH:=Frameworks/SDL2.framework/Headers
+ CFLAGS+=  -mmacosx-version-min=10.10
+ LDFLAGS+= -mmacosx-version-min=10.10
+-FIXUP:=install_name_tool -change @rpath/SDL2.framework/Versions/A/SDL2 @executable_path/Frameworks/SDL2.framework/Versions/A/SDL2
++SDL_INCLUDE_PATH:=sdl/include
++LDFLAGS+= -Llib -lSDL2
+ else
+ SDL_INCLUDE_PATH:=sdl/include
+ LDFLAGS+= -Wl,-rpath='$$ORIGIN/lib' -Llib -lSDL2
 @@ -109,6 +109,13 @@ endif
  endif #Darwin
  CFLAGS+= -I$(SDL_INCLUDE_PATH)
@@ -59,7 +72,16 @@ index 0dddc9f..f4c96df 100644
  	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o zip.o bindings.o jcart.o gen_player.o
  
  LIBOBJS=libblastem.o system.o genesis.o debug.o gdb_remote.o vdp.o io.o romdb.o hash.o xband.o realtec.o \
-@@ -277,6 +291,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
+@@ -240,8 +254,6 @@ else
+ ifeq ($(CPU),i686)
+ CFLAGS+=-DX86_32 -m32
+ LDFLAGS+=-m32
+-else
+-$(error $(CPU) is not a supported architecture)
+ endif
+ endif
+ 
+@@ -277,6 +289,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
  CFLAGS+= -fpic -DIS_LIB
  endif
  
@@ -68,7 +90,7 @@ index 0dddc9f..f4c96df 100644
  all : $(ALL)
  
  libblastem.$(SO) : $(LIBOBJS)
-@@ -366,7 +382,7 @@ m68k.c : m68k.cpu cpu_dsl.py
+@@ -366,7 +380,7 @@ m68k.c : m68k.cpu cpu_dsl.py
  	$(CC) $(CFLAGS) -c -o $@ $<
  
  %.png : %.xcf
@@ -78,13 +100,58 @@ index 0dddc9f..f4c96df 100644
  %.tiles : %.spec
  	./img2tiles.py -s $< $@
 diff --git a/build_release b/build_release
-index f5faa10..880044d 100755
+index f5faa10..b593cee 100755
 --- a/build_release
 +++ b/build_release
-@@ -24,6 +24,14 @@ if [ $OS = "Linux" ]; then
- 	make all
- 	cd ..
+@@ -1,29 +1,50 @@
+ #!/bin/sh
+ 
+ set -e
++set -x
+ 
+ if [ -z "$OS" ]; then
+ 	OS=`uname -s`
  fi
+ 
+-if [ $OS = "Linux" ]; then
++#if [ $OS = "Linux" -o "$OS" = "Darwin" ]; then
+ 	cd sdl
+ 	./configure
++  grep SHELL Makefile.in
++  grep /sh.exe Makefile || true
++  grep /bash.exe Makefile || true
++  cat -n build-scripts/updaterev.sh
++  export SHELL="bash"
+ 	make all
++  find build/ # FIXME
+ 	cd ..
++
+ 	rm -rf lib
+ 	mkdir lib
+-	cp sdl/build/.libs/libSDL2-*.so.*.*.* lib
+-	sdl=`ls lib`
+-	link=`echo $sdl | sed -E 's/(so\.[0-9]*).*/\1/'`
+-	cd lib
+-	ln -s "$sdl" "$link"
+-	ln -s "$sdl" libSDL2.so
+-	cd ..
++
++	if [ $OS = "Linux" ]; then
++		cp sdl/build/.libs/libSDL2-*.so.*.*.* lib
++		sdl=`ls lib`
++		link=`echo $sdl | sed -E 's/(so\.[0-9]*).*/\1/'`
++		cd lib
++		ln -s "$sdl" "$link"
++		ln -s "$sdl" libSDL2.so
++	  cd ..
++	fi
++
+ 	cd glew
+ 	make all
++	find lib/  # FIXME
+ 	cd ..
+-fi
++#fi
 +
 +cd curl
 +./configure \
@@ -96,7 +163,7 @@ index f5faa10..880044d 100755
  echo "Path is: $PATH"
  if [ $OS = "Win64" ]; then
  	make PORTABLE=1 OS=Windows CPU=x86_64 clean all
-@@ -32,10 +40,8 @@ else
+@@ -32,10 +53,8 @@ else
  	make PORTABLE=1 clean all
  	SDLDLLPATH=sdl/i686-w64-mingw32/bin
  fi
@@ -107,7 +174,7 @@ index f5faa10..880044d 100755
  	txt=".txt"
  else
  	binaries="dis zdis vgmplay blastem termhelper"
-@@ -44,11 +50,9 @@ else
+@@ -44,21 +63,9 @@ else
  	else
  		binaries="$binaries lib"
  	fi
@@ -116,11 +183,21 @@ index f5faa10..880044d 100755
  fi
 -binaries="$binaries menu.bin tmss.md"
 -ver=`echo $verstr | awk '/blastem/ { gsub(/\r/, "", $2); print $2 }'`
-+ver="0.6.2-kinetoscope"
- if [ $OS = "Windows" ]; then
- 	suffix='-win32'
- elif [ $OS = "Win64" ]; then
-@@ -66,11 +70,7 @@ cp -r $binaries shaders images default.cfg rom.db gamecontrollerdb.txt systems.c
+-if [ $OS = "Windows" ]; then
+-	suffix='-win32'
+-elif [ $OS = "Win64" ]; then
+-	suffix='-win64'
+-elif [ $OS = "Darwin" ]; then
+-	suffix='-osx'
+-else
+-	suffix=`file ./blastem | sed -E 's/^[^:]*: [^ ]* ([0-9]*)-bit .*/\1/'`
+-fi
+-dir="blastem${suffix}-${ver}"
++dir="blastem-0.6.2-kinetoscope"
+ echo $dir
+ rm -rf "$dir"
+ mkdir "$dir"
+@@ -66,11 +73,7 @@ cp -r $binaries shaders images default.cfg rom.db gamecontrollerdb.txt systems.c
  for file in README COPYING CHANGELOG; do
  	cp "$file" "$dir"/"$file$txt"
  done
