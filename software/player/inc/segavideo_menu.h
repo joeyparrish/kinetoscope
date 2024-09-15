@@ -42,12 +42,18 @@ void segavideo_menu_nextItem();
 bool segavideo_menu_select(bool loop);
 
 // Is there a pending error or an error already on screen?
+// This is not valid until after segavideo_menu_checkHardware() has succeeded.
+// Before that time, the state of the error flag is undefined.
 bool segavideo_menu_hasError();
 
 // Show the error.
+// This is not valid until after segavideo_menu_checkHardware() has succeeded.
+// Before that time, the state of the error flag is undefined.
 void segavideo_menu_showError();
 
 // Clear the error state and screen.
+// The error is automatically cleared during a successful call to
+// segavideo_menu_checkHardware().
 void segavideo_menu_clearError();
 
 #endif // _SEGAVIDEO_MENU_H

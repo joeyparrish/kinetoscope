@@ -270,14 +270,25 @@ static void loadMenuColors() {
   PAL_setColors(PAL_YELLOW * 16 + 1, &yellow, /* count= */ 1, CPU);
 }
 
+static void drawLogo() {
+  VDP_drawImageEx(
+      BG_B, &kinetoscope_logo,
+      TILE_ATTR_FULL(PAL_LOGO, FALSE, FALSE, FALSE, LOGO_TILE_INDEX),
+      LOGO_X, LOGO_Y,
+      /* load palette */ TRUE,
+      CPU);
+
+  // It's not clear to me what is overwriting these palettes, but reloading at
+  // this point fixes them.
+  loadMenuColors();
+}
+
 void segavideo_menu_init() {
   kprintf("segavideo_menu_init\n");
 
-  // Clear the error flag, which may boot up in a random state.
-  clearPendingError();
-
-  // Load menu palettes.
   loadMenuColors();
+  clearScreen();
+  drawLogo();
 
   // Allocate menu line pointers.
   menuLines = (char**)MEM_alloc(sizeof(char*) * MAX_CATALOG_SIZE);
@@ -291,19 +302,6 @@ void segavideo_menu_init() {
   selectedIndex = 0;
   numVideos = 0;
   menuChanged = false;
-}
-
-static void drawLogo() {
-  VDP_drawImageEx(
-      BG_B, &kinetoscope_logo,
-      TILE_ATTR_FULL(PAL_LOGO, FALSE, FALSE, FALSE, LOGO_TILE_INDEX),
-      LOGO_X, LOGO_Y,
-      /* load palette */ TRUE,
-      CPU);
-
-  // It's not clear to me what is overwriting these palettes, but reloading at
-  // this point fixes them.
-  loadMenuColors();
 }
 
 static void drawInstructions() {
@@ -357,6 +355,7 @@ bool segavideo_menu_checkHardware() {
   statusMessage("Kinetoscope cartridge detected!");
 #endif
 
+  clearPendingError();
   waitMs(1000);
   return true;
 }
