@@ -14,12 +14,13 @@
 #include <Ethernet.h>
 #include <HardwareSerial.h>
 #include <SPI.h>
+#include <utility/w5100.h>  // Inside Ethernet library
 
 #include "internet.h"
 
 EthernetClient client;
 
-Client* internet_init_wired(const uint8_t* mac) {
+Client* internet_init_wired(const uint8_t* mac, unsigned int timeout_seconds) {
   SPI.begin();
 
   // Default SPI pins for RP2040:
@@ -28,18 +29,26 @@ Client* internet_init_wired(const uint8_t* mac) {
   // MISO == GP16
   // SCK == 18
 
-  // It's really stupid that this library doesn't take a const input.
-  int ok = Ethernet.begin(const_cast<uint8_t*>(mac));
+  // hardwareStatus() isn't valid until the W5100 library is initialized, which
+  // normally happens during DHCP negotiation.  Since that has a long timeout,
+  // go around the Ethernet library and initialize the chipset directly first.
+  W5100.init();
+  int hardware_status = Ethernet.hardwareStatus();
 
-  if (Ethernet.hardwareStatus() == EthernetNoHardware) {
-    Serial.println("Ethernet shield was not found.");
-  } else if (Ethernet.hardwareStatus() == EthernetW5100) {
+  if (hardware_status == EthernetW5100) {
     Serial.println("W5100 Ethernet controller detected.");
-  } else if (Ethernet.hardwareStatus() == EthernetW5200) {
+  } else if (hardware_status == EthernetW5200) {
     Serial.println("W5200 Ethernet controller detected.");
-  } else if (Ethernet.hardwareStatus() == EthernetW5500) {
+  } else if (hardware_status == EthernetW5500) {
     Serial.println("W5500 Ethernet controller detected.");
+  } else {
+    Serial.println("No Ethernet controller found.");
+    return NULL;
   }
+
+  unsigned long timeout_ms = timeout_seconds * 1000L;
+  // It's really stupid that this library doesn't take a const input.
+  int ok = Ethernet.begin(const_cast<uint8_t*>(mac), timeout_ms);
 
   Serial.print("DHCP: ");
   Serial.println(ok ? "success" : "failure");

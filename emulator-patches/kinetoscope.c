@@ -38,6 +38,7 @@
 #define CMD_STOP_VIDEO  0x03
 #define CMD_FLIP_REGION 0x04
 #define CMD_GET_ERROR   0x05
+#define CMD_CONNECT_NET 0x06
 
 // NOTE: The addresses sent to us are all relative to the base of 0xA13000.
 // So we only check the offset from there.  All addresses are even because the
@@ -125,7 +126,13 @@ static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size) {
   }
 }
 
-static void report_error(const char *message) {
+static void report_error(const char *format, ...) {
+  char message[256];
+  va_list args;
+  va_start(args, format);
+  vsnprintf(message, sizeof(message), format, args);
+  va_end(args);
+
   if (global_error == 0) {
     printf("Kinetoscope: Simulating error: %s\n", message);
     global_error = 1;
@@ -379,8 +386,11 @@ static void execute_command() {
   } else if (global_command == CMD_GET_ERROR) {
     printf("Kinetoscope: CMD_GET_ERROR\n");
     write_error_to_sram();
+  } else if (global_command == CMD_CONNECT_NET) {
+    printf("Kinetoscope: CMD_CONNECT_NET\n");
+    // Nothing to do: already connected.
   } else {
-    printf("Kinetoscope: unknown command 0x%02x\n", global_command);
+    report_error("Unrecognized command 0x%02X!", global_command);
   }
 
   // Completed.

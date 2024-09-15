@@ -35,6 +35,8 @@
 #define MAX_PATH 256
 #define MAX_FETCH_SIZE (1024 * 1024)
 
+#define NETWORK_TIMEOUT_SECONDS 30
+
 // Allocate a second 8kB stack for the second core.
 // https://github.com/earlephilhower/arduino-pico/blob/master/docs/multicore.rst
 bool core1_separate_stack = true;
@@ -61,6 +63,7 @@ static http_data_callback fetch_callback = NULL;
 static uint8_t* fetch_buffer = NULL;
 static int fetch_buffer_size = 0;
 
+static bool network_connected = false;
 static int chunk_size = 0;
 static int total_chunks = 0;
 static int next_chunk_num = 0;
@@ -74,8 +77,13 @@ static void init_all_hardware() {
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
+  Serial.println("All hardware initialized.");
+}
+
+static void connect_network() {
   // Prefer wired, fall back to WiFi if configured.
-  Client* client = internet_init_wired(MAC_ADDR);
+  Serial.println("Connecting to the network...");
+  Client* client = internet_init_wired(MAC_ADDR, NETWORK_TIMEOUT_SECONDS);
 
   if (!client) {
     Serial.println("Wired connection failed!");
@@ -92,7 +100,8 @@ static void init_all_hardware() {
       Serial.println("WiFi not configured!");
       report_error("Wired connection failed and WiFi not configured!");
     } else {
-      client = internet_init_wifi(SECRET_WIFI_SSID, SECRET_WIFI_PASS);
+      client = internet_init_wifi(SECRET_WIFI_SSID, SECRET_WIFI_PASS,
+                                  NETWORK_TIMEOUT_SECONDS);
       if (!client) {
         Serial.println("WiFi connection failed!");
         report_error("WiFi connection failed!");
@@ -102,11 +111,9 @@ static void init_all_hardware() {
 
   if (!client) {
     Serial.println("Failed to connect to the network!");
-  } else {
-    http_init(client);
   }
-
-  Serial.println("All hardware initialized.");
+  http_init(client);
+  network_connected = client != NULL;
 }
 
 static bool http_sram_callback(const uint8_t* buffer, int bytes) {
@@ -265,6 +272,17 @@ static void process_command(uint8_t command, uint8_t arg) {
       // Write a buffered error message to SRAM so the ROM software can read it.
       write_error_to_sram();
       break;
+
+    case KINETOSCOPE_CMD_CONNECT_NET:
+      if (!network_connected) {
+        connect_network();
+      }
+      break;
+
+    default: {
+      report_error("Unrecognized command 0x%02X!", command);
+      break;
+    }
   }
 
 #ifdef DEBUG
@@ -292,6 +310,8 @@ void setup() {
   init_all_hardware();
 
 #ifdef RUN_TESTS
+  // Automatically connect to the network to run speed tests.
+  connect_network();
   run_tests();
 #endif
 

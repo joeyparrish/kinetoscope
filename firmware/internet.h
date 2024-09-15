@@ -13,8 +13,9 @@
 #ifndef _KINETOSCOPE_INTERNET_H
 
 // Password can be blank or null if there is no authentication required.
-Client* internet_init_wifi(const char* ssid, const char* password);
+Client* internet_init_wifi(const char* ssid, const char* password,
+                           unsigned int timeout_seconds);
 
-Client* internet_init_wired(const uint8_t* mac);
+Client* internet_init_wired(const uint8_t* mac, unsigned int timeout_seconds);
 
 #endif // _KINETOSCOPE_INTERNET_H

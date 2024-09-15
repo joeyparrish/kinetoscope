@@ -89,6 +89,7 @@ static int max_status_y = 0;
 #define CMD_STOP_VIDEO  0x03  // Stops streaming
 #define CMD_FLIP_REGION 0x04  // Switch SRAM banks for streaming
 #define CMD_GET_ERROR   0x05  // Load error information into SRAM
+#define CMD_CONNECT_NET 0x06  // Connect to the network
 
 // Token values for async communication.
 #define TOKEN_CONTROL_TO_SEGA     0
@@ -364,15 +365,21 @@ bool segavideo_menu_load() {
   clearScreen();
   drawLogo();
 
-  statusMessage("Fetching video list...");
-
+  statusMessage("Connecting to the network...");
 #if defined(SIMULATE_HARDWARE)
   waitMs(3000);
 #endif
+  uint16_t command_timeout = 40; // seconds
+  if (!sendCommandAndWait(CMD_CONNECT_NET, 0, command_timeout)) {
+    return false;
+  }
 
-  uint16_t command_timeout = 30; // seconds
+  statusMessage("Fetching video list...");
+#if defined(SIMULATE_HARDWARE)
+  waitMs(3000);
+#endif
+  command_timeout = 30; // seconds
   if (!sendCommandAndWait(CMD_LIST_VIDEOS, 0, command_timeout)) {
-    errorMessage("Failed to fetch video list!");
     return false;
   }
 

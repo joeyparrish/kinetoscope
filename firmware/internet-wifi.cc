@@ -23,7 +23,8 @@ static int status = WL_IDLE_STATUS;
 
 static WiFiClient wifi_client;
 
-Client* internet_init_wifi(const char* ssid, const char* password) {
+Client* internet_init_wifi(const char* ssid, const char* password,
+                           unsigned int timeout_seconds) {
   Serial.print("Attempting to connect to SSID: ");
   Serial.println(ssid);
 
@@ -33,8 +34,14 @@ Client* internet_init_wifi(const char* ssid, const char* password) {
     WiFi.begin(ssid);
   }
 
-  // FIXME: Handle timeouts here
+  long timeout_ms = timeout_seconds * 1000L;
+  long start_ms = millis();
   while (WiFi.status() != WL_CONNECTED) {
+    long end_ms = millis();
+    if (end_ms - start_ms >= timeout_ms) {
+      Serial.println("WiFi timeout!");
+      return NULL;
+    }
     delay(500);
   }
   Serial.println("Connected to WiFi!");
