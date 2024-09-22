@@ -42,8 +42,7 @@ Create a file called `arduino_secrets.h` with two macros:
 #define SECRET_WIFI_PASS "Put your WiFi password here, or blank if none needed"
 ```
 
-The firmware cannot be compiled without this.  To disable WiFi and require a
-wired connection, leave these blank.
+If you don't, the firmware will only be able to use a wired connection.
 
 
 ## Compile firmware

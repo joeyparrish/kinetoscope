@@ -13,13 +13,16 @@ default:
 	@echo "  make monitor: run the serial monitor"
 	@echo "  make clean: clean the build outputs"
 
-build:
+arduino_secrets.h:
+	touch arduino_secrets.h
+
+build: arduino_secrets.h
 	arduino-cli compile -b ${BOARD} \
 	    --build-property "build.extra_flags=${EXTRA_FLAGS}" \
 	    --export-binaries
 	cp build/${BOARD_PATH}/${SKETCH_NAME}.ino.uf2 .
 
-upload:
+upload: arduino_secrets.h
 	arduino-cli compile -b ${BOARD} \
 	    --build-property "build.extra_flags=${EXTRA_FLAGS}" \
 	    -p ${SERIAL_PORT} \
