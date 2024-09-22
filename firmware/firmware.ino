@@ -23,6 +23,14 @@
 //#define DEBUG
 //#define RUN_TESTS
 
+#if !defined(SECRET_WIFI_SSID)
+# define SECRET_WIFI_SSID ""
+#endif
+
+#if !defined(SECRET_WIFI_PASS)
+# define SECRET_WIFI_PASS ""
+#endif
+
 // NOTE: This must be a plain HTTP server.  HTTPS is too expensive for this
 // application and microcontroller.  Even though we could do it, it would hurt
 // our slim throughput margins too much.
