@@ -299,15 +299,10 @@ static void process_command(uint8_t command, uint8_t arg) {
 // and then process incoming commands from the Sega.
 
 void setup() {
-  Serial.begin(115200);
-
-#ifdef DEBUG
-  while (!Serial) { delay(10 /* ms */); }  // Wait for serial port to connect
-#endif
-
-  Serial.println("Kinetoscope boot!\n");
-
   init_all_hardware();
+
+  Serial.begin(115200);
+  Serial.println("Kinetoscope boot!\n");
 
 #ifdef RUN_TESTS
   // Automatically connect to the network to run speed tests.
