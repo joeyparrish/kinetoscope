@@ -58,7 +58,7 @@ jobs:
           unzip kode-mono-fonts.zip
           mkdir -p ~/.local/share/fonts
           cp kode-mono-fonts/fonts/ttf/* ~/.local/share/fonts/
-          rm -rf kode-mono-fonts
+          rm -rf kode-mono-fonts{,.zip}
 
       - name: Generate fab outputs
         run: |
