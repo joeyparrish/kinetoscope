@@ -36,5 +36,5 @@ void report_error(const char* format, ...) {
 void write_error_to_sram() {
   sram_start_bank(0);
   sram_write((const uint8_t *)error_buffer, MAX_ERROR);
-  sram_flush();
+  sram_flush_and_release_bank();
 }

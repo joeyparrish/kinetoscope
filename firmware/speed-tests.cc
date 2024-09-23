@@ -74,7 +74,7 @@ static long test_sram_speed(const uint8_t* buffer, int bytes) {
   long start = millis();
   sram_start_bank(0);
   sram_write(buffer, bytes);
-  sram_flush();
+  sram_flush_and_release_bank();
   long end = millis();
   return end - start;
 }
@@ -92,7 +92,7 @@ static long test_download_speed(int first_byte, int total_size) {
   sram_start_bank(0);
   http_fetch(SERVER, /* default port */ 0, PATH, first_byte, total_size,
              sram_write_callback);
-  sram_flush();
+  sram_flush_and_release_bank();
   long end = millis();
   return end - start;
 }

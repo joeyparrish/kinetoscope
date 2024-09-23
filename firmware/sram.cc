@@ -11,6 +11,7 @@
 // This is the SRAM interface.
 
 #include "fast-gpio.h"
+#include "sram.h"
 
 static int leftover = -1;
 static int active_bank_pin = -1;
@@ -61,6 +62,8 @@ void sram_init() {
 }
 
 void sram_start_bank(int bank) {
+  sram_flush_and_release_bank();
+
   active_bank_pin = bank ? SRAM_PIN__WRITE_BANK_2 : SRAM_PIN__WRITE_BANK_1;
   FAST_SET(active_bank_pin);
 
@@ -94,15 +97,16 @@ void sram_write(const uint8_t *data, int num_bytes) {
   }
 }
 
-void sram_flush() {
-  if (leftover >= 0) {
-    uint16_t word = MAKE_WORD(leftover, 0);
-    sram_write_word(word);
-  }
-
+void sram_flush_and_release_bank() {
   if (active_bank_pin >= 0) {
+    if (leftover >= 0) {
+      uint16_t word = MAKE_WORD(leftover, 0);
+      sram_write_word(word);
+    }
+
     FAST_CLEAR(active_bank_pin);
     active_bank_pin = -1;
   }
+
   leftover = -1;
 }

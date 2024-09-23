@@ -187,7 +187,7 @@ static void process_command(uint8_t command, uint8_t arg) {
       // Write the argument to SRAM so the ROM software knows we are listening.
       sram_start_bank(0);
       sram_write(&arg, sizeof(arg));
-      sram_flush();
+      sram_flush_and_release_bank();
       break;
 
     case KINETOSCOPE_CMD_LIST_VIDEOS:
@@ -359,7 +359,7 @@ void loop1() {
   // It's fine to do this, even if fetch_callback != http_sram_callback.
   // This way, SRAM is always flushed even when the first core doesn't await
   // the fetch.
-  sram_flush();
+  sram_flush_and_release_bank();
   digitalWrite(LED_BUILTIN, LOW);
 
   // Clear state.

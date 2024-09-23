@@ -15,6 +15,6 @@
 void sram_init();
 void sram_start_bank(int bank);
 void sram_write(const uint8_t *data, int num_bytes);
-void sram_flush();
+void sram_flush_and_release_bank();
 
 #endif // _KINETOSCOPE_SRAM_H
