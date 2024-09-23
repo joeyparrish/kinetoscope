@@ -1,0 +1,1 @@
+../../player/src/segavideo_player.c

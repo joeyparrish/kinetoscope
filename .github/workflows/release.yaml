@@ -75,6 +75,12 @@ jobs:
           name: streamer-rom
           path: kinetoscope-streamer-rom
 
+      - name: Pull self-test ROM
+        uses: actions/download-artifact@v4
+        with:
+          name: self-test-rom
+          path: kinetoscope-self-test-rom
+
       - name: Pull firmware
         uses: actions/download-artifact@v4
         with:
@@ -136,6 +142,13 @@ jobs:
           mv kinetoscope-streamer-rom kinetoscope-$VERSION-streamer-rom
           zip -r9 kinetoscope-$VERSION-streamer-rom.zip kinetoscope-$VERSION-streamer-rom/
 
+          # Prep self-test ROM.
+          mv kinetoscope-self-test-rom/rom.bin kinetoscope-self-test-rom/kinetoscope-self-test.bin
+          cp source/LICENSE.txt kinetoscope-self-test-rom/
+          echo "The Kinetoscope self-test ROM is built to be flashed to Kinetoscope hardware or run inside an emulator built with Kinetoscope support." >> kinetoscope-self-test-rom/README.txt
+          mv kinetoscope-self-test-rom kinetoscope-$VERSION-self-test-rom
+          zip -r9 kinetoscope-$VERSION-self-test-rom.zip kinetoscope-$VERSION-self-test-rom/
+
           # Prep firmware.
           mv kinetoscope-firmware/firmware.ino.uf2 kinetoscope-firmware/kinetoscope-firmware.uf2
           cp source/LICENSE.txt kinetoscope-firmware/
@@ -184,6 +197,7 @@ jobs:
             kinetoscope-*-never-gonna-give-you-up-rom.zip
             kinetoscope-*-you-spin-me-round-rom.zip
             kinetoscope-*-streamer-rom.zip
+            kinetoscope-*-self-test-rom.zip
             kinetoscope-*-firmware.zip
             kinetoscope-*-hardware.zip
             kinetoscope-*-blastem64-0.6.2-linux-x64.zip

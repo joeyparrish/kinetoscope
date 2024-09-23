@@ -45,7 +45,7 @@ jobs:
       - name: Pull SGDK docker container
         run: docker pull ghcr.io/stephane-d/sgdk:latest
 
-      - name: Build embedded Never Gonna Give You Up
+      - name: Build embedded Never Gonna Give You Up ROM
         run: |
           wget https://storage.googleapis.com/sega-kinetoscope/canned-videos/never-gonna-give-you-up-embed.zip
           unzip -o never-gonna-give-you-up-embed.zip -d software/embed-video-in-rom/
@@ -60,7 +60,7 @@ jobs:
           path: ./software/embed-video-in-rom/out/rom.bin
           retention-days: 1
 
-      - name: Build embedded You Spin Me Round
+      - name: Build embedded You Spin Me Round ROM
         run: |
           wget https://storage.googleapis.com/sega-kinetoscope/canned-videos/you-spin-me-round-embed.zip
           unzip -o you-spin-me-round-embed.zip -d software/embed-video-in-rom/
@@ -75,7 +75,7 @@ jobs:
           path: ./software/embed-video-in-rom/out/rom.bin
           retention-days: 1
 
-      - name: Build streamer software
+      - name: Build streamer ROM
         run: ./software/stream-with-special-hardware/build.sh
 
       - name: Upload streamer ROM
@@ -84,4 +84,15 @@ jobs:
         with:
           name: streamer-rom
           path: ./software/stream-with-special-hardware/out/rom.bin
+          retention-days: 1
+
+      - name: Build self-test ROM
+        run: ./software/hardware-test/build.sh
+
+      - name: Upload self-test ROM
+        uses: actions/upload-artifact@v4
+        if: inputs.for-release
+        with:
+          name: self-test-rom
+          path: ./software/hardware-test/out/rom.bin
           retention-days: 1

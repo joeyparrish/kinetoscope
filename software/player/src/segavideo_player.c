@@ -6,8 +6,6 @@
 
 // Sega video player and streaming hardware interface.
 
-#define DEBUG 1
-
 #include <genesis.h>
 
 #include "segavideo_player.h"
@@ -15,6 +13,8 @@
 #include "segavideo_state_internal.h"
 
 #include "trivial_tilemap.h"
+
+//#define DEBUG 1
 
 #define AUDIO_XGM2   1
 #define AUDIO_PCM    2

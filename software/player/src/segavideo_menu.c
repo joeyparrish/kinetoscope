@@ -7,6 +7,7 @@
 // Sega menu interface.
 
 #include <genesis.h>
+#include <string.h>
 
 #include "segavideo_menu.h"
 #include "segavideo_format.h"
@@ -16,6 +17,8 @@
 #include "kinetoscope_logo.h"
 #include "menu_font.h"
 #include "trivial_tilemap.h"
+
+//#define DEBUG 1
 
 static bool menuChanged;
 static char **menuLines;
@@ -180,9 +183,20 @@ static void statusMessage(const char* message) {
   genericMessage(PAL_WHITE, message);
 }
 
-static void errorMessage(const char* message) {
+
+#define ERROR_MAX 256
+static char error_message_buffer[ERROR_MAX];
+
+// SGDK has no snprintf.  God help you if you write more than ERROR_MAX
+// characters...
+static void errorMessage(const char* format, ...) {
+  va_list args;
+  va_start(args, format);
+  vsprintf(error_message_buffer, format, args);
+  va_end(args);
+
   if (!segavideo_menu_hasError()) {
-    genericMessage(PAL_YELLOW, message);
+    genericMessage(PAL_YELLOW, error_message_buffer);
     segavideo_setState(Error);
   }
 }
@@ -290,6 +304,7 @@ void segavideo_menu_init() {
   loadMenuColors();
   clearScreen();
   drawLogo();
+  VDP_loadFont(&menu_font, CPU);
 
   // Allocate menu line pointers.
   menuLines = (char**)MEM_alloc(sizeof(char*) * MAX_CATALOG_SIZE);
@@ -337,7 +352,8 @@ bool segavideo_menu_checkHardware() {
   }
 
   if (*data != 0x55) {
-    errorMessage("Kinetoscope cartridge not found! (code 3)");
+    errorMessage("Kinetoscope cartridge not found! (code 3, data 0x%02x)",
+                 *data);
     kprintf("Unable to find 0x55 echoed back: %d\n", *data);
     return false;
   }
