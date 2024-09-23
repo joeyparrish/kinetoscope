@@ -6145,6 +6145,12 @@
 			(uuid "214d3f3a-2429-492d-baa0-b29ee7cfae18")
 		)
 		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "J2")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "J2")
@@ -6608,6 +6614,12 @@
 			(uuid "a6e96f8f-5f5a-498b-89d6-173fd9f2e372")
 		)
 		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "J1")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "J1")
@@ -7115,6 +7127,12 @@
 			)
 		)
 		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
+					(reference "X1")
+					(unit 1)
+				)
+			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
 					(reference "X1")
