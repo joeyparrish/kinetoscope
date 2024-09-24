@@ -13,10 +13,16 @@
 #include "fast-gpio.h"
 #include "sram.h"
 
+// Macros to complete sram_march_test in sram-common.h
+#define SRAM_MARCH_TEST_START(bank) sram_start_bank(bank)
+#define SRAM_MARCH_TEST_DATA(data) sram_write(&data, 1)
+#define SRAM_MARCH_TEST_END() sram_flush_and_release_bank()
+
+// Defines sram_march_test()
+#include "sram-common.h"
+
 static int leftover = -1;
 static int active_bank_pin = -1;
-
-#define SRAM_BANK_SIZE_BYTES (1 << 20)
 
 // Explicitly unrolled loop for 16 bits of data.
 #define X16(a) { a; a; a; a; a; a; a; a; a; a; a; a; a; a; a; a; }
@@ -111,52 +117,4 @@ void sram_flush_and_release_bank() {
   }
 
   leftover = -1;
-}
-
-// Write a test pattern that the Sega can read and verify.
-void sram_march_test(int pass) {
-  sram_start_bank(pass & 1);
-
-  switch (pass) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 11:
-    case 12:
-    case 13:
-    case 14:
-    case 15:
-      for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
-        int bit = (i + pass / 2) % 8;
-        uint8_t data = 1 << bit;
-        sram_write(&data, 1);
-      }
-      break;
-
-    case 16:
-    case 17:
-      for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
-        uint8_t data = i & 0xff;
-        sram_write(&data, 1);
-      }
-      break;
-
-    case 18:
-    case 19:
-      for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
-        uint8_t data = (i & 0xff) ^ 0xff;
-        sram_write(&data, 1);
-      }
-      break;
-  }
-
-  sram_flush_and_release_bank();
 }

@@ -33,8 +33,18 @@
 #define PAL_WHITE  PAL2
 #define PAL_YELLOW PAL3
 
-// The size of each bank of SRAM.
-#define SRAM_BANK_SIZE_BYTES (1 << 20)
+// Macros to complete sram_march_test in sram-common.h
+#define SRAM_MARCH_TEST_START(bank) \
+  volatile uint8_t* sram = bank ? KINETOSCOPE_SRAM_BANK_1 : KINETOSCOPE_SRAM_BANK_0
+#define SRAM_MARCH_TEST_DATA(data) { \
+  if (sram[i] != data) { \
+    return false; \
+  } \
+}
+#define SRAM_MARCH_TEST_END() {}
+
+// Defines sram_march_test()
+#include "sram-common.h"
 
 
 static bool waitForToken(uint16_t timeout_seconds) {
@@ -64,7 +74,7 @@ int main(bool hardReset) {
 
   // 0. Print anything.  We should see this even if we hang on the next part.
   VDP_setTextPalette(PAL_WHITE);
-  VDP_drawText("Beginning hardware test.", 0, line++);
+  VDP_drawText("Beginning hardware test...", 0, line++);
 
   // Wait for microcontroller initialization without any kind of active
   // handshake, since we are testing that here (among other things).  This is
@@ -214,8 +224,8 @@ int main(bool hardReset) {
   int echo_test_line = line++;
   VDP_setTextPalette(PAL_WHITE);
   //           0         1
-  //           01234567890123
-  VDP_drawText("Echo test ..", 1, echo_test_line);
+  //           012345678901234
+  VDP_drawText("Echo test ...", 1, echo_test_line);
 
   uint8_t echo_data[2] = {0x55, 0xAA};
   int status_x[2] = {11, 12};
@@ -242,13 +252,14 @@ int main(bool hardReset) {
 
   // 13. Perform various intensive memory tests through the firmware.
   // There are 20 different passes of this, with different patterns to verify.
+  line++;  // blank line
   int memory_test_pass_line = line;
   line += 2;
 
   VDP_setTextPalette(PAL_WHITE);
   //            0         1
-  //            0123456789012345678
-  VDP_drawText("SRAM test pass 00:", 0, memory_test_pass_line);
+  //            012345678901234567
+  VDP_drawText("SRAM test pass 00", 0, memory_test_pass_line);
   VDP_drawText("....................", 1, memory_test_pass_line + 1);
 
   for (int pass = 0; pass < 20; ++pass) {
@@ -272,65 +283,14 @@ int main(bool hardReset) {
       break;
     }
 
-    volatile uint8_t* sram =
-        (pass & 1) ? KINETOSCOPE_SRAM_BANK_1 : KINETOSCOPE_SRAM_BANK_0;
-    bool matched = true;
-    switch (pass) {
-      case 0:
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-      case 5:
-      case 6:
-      case 7:
-      case 8:
-      case 9:
-      case 10:
-      case 11:
-      case 12:
-      case 13:
-      case 14:
-      case 15:
-        for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
-          int bit = (i + pass / 2) % 8;
-          uint8_t data = 1 << bit;
-          if (sram[i] != data) {
-            matched = false;
-            break;
-          }
-        }
-        break;
-
-      case 16:
-      case 17:
-        for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
-          uint8_t data = i & 0xff;
-          if (sram[i] != data) {
-            matched = false;
-            break;
-          }
-        }
-        break;
-
-      case 18:
-      case 19:
-        for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
-          uint8_t data = (i & 0xff) ^ 0xff;
-          if (sram[i] != data) {
-            matched = false;
-            break;
-          }
-        }
-        break;
-    }
-
-    VDP_setTextPalette(matched ? PAL_WHITE : PAL_YELLOW);
-    VDP_drawText(matched ? "P" : "F", pass + 1, memory_test_pass_line + 1);
+    bool ok = sram_march_test(pass);
+    VDP_setTextPalette(ok ? PAL_WHITE : PAL_YELLOW);
+    VDP_drawText(ok ? "P" : "F", pass + 1, memory_test_pass_line + 1);
   }
 
 
-  VDP_drawText("Testing complete.", 0, line++);
+  line++;  // blank line
+  VDP_drawText("Testing complete!", 0, line++);
   while (true) {
     waitMs(1000);
   }
