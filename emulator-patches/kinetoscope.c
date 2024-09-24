@@ -39,6 +39,7 @@
 #define CMD_FLIP_REGION 0x04
 #define CMD_GET_ERROR   0x05
 #define CMD_CONNECT_NET 0x06
+#define CMD_MARCH_TEST  0x07
 
 // NOTE: The addresses sent to us are all relative to the base of 0xA13000.
 // So we only check the offset from there.  All addresses are even because the
@@ -365,6 +366,54 @@ static void get_video_list() {
   }
 }
 
+#define SRAM_BANK_SIZE_BYTES (1 << 20)
+
+// Write a test pattern that the Sega can read and verify.
+static void sram_march_test(int pass) {
+  uint32_t offset = (pass & 1) * SRAM_BANK_SIZE_BYTES;
+
+  switch (pass) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+      for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
+        int bit = (i + pass / 2) % 8;
+        uint8_t data = 1 << bit;
+        write_sram(offset++, &data, 1);
+      }
+      break;
+
+    case 16:
+    case 17:
+      for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
+        uint8_t data = i & 0xff;
+        write_sram(offset++, &data, 1);
+      }
+      break;
+
+    case 18:
+    case 19:
+      for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
+        uint8_t data = (i & 0xff) ^ 0xff;
+        write_sram(offset++, &data, 1);
+      }
+      break;
+  }
+}
+
 static void execute_command() {
   if (global_command == CMD_ECHO) {
     // Used by the ROM to check for the necessary streaming hardware.
@@ -389,6 +438,9 @@ static void execute_command() {
   } else if (global_command == CMD_CONNECT_NET) {
     printf("Kinetoscope: CMD_CONNECT_NET\n");
     // Nothing to do: already connected.
+  } else if (global_command == CMD_MARCH_TEST) {
+    printf("Kinetoscope: CMD_MARCH_TEST\n");
+    sram_march_test(global_arg);
   } else {
     report_error("Unrecognized command 0x%02X!", global_command);
   }

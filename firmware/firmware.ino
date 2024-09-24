@@ -287,6 +287,10 @@ static void process_command(uint8_t command, uint8_t arg) {
       }
       break;
 
+    case KINETOSCOPE_CMD_MARCH_TEST:
+      sram_march_test(arg);
+      break;
+
     default: {
       report_error("Unrecognized command 0x%02X!", command);
       break;

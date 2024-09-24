@@ -20,15 +20,21 @@
 #define KINETOSCOPE_PORT_TOKEN   ((volatile uint16_t*)0xA13008)  // low 1 bit, set on write
 #define KINETOSCOPE_PORT_ERROR   ((volatile uint16_t*)0xA1300A)  // low 1 bit, clear on write
 #define KINETOSCOPE_DATA          ((volatile uint8_t*)0x200000)
+#define KINETOSCOPE_SRAM_BANK_0   ((volatile uint8_t*)0x200000)
+#define KINETOSCOPE_SRAM_BANK_1   ((volatile uint8_t*)0x300000)
 
 // Commands for that hardware.
 #define CMD_ECHO        0x00  // Writes arg to SRAM
 #define CMD_GET_ERROR   0x05  // Load error information into SRAM
 #define CMD_CONNECT_NET 0x06  // Connect to the network
+#define CMD_MARCH_TEST  0x07  // Test SRAM
 
 // Palettes allocated for on-screen text.
 #define PAL_WHITE  PAL2
 #define PAL_YELLOW PAL3
+
+// The size of each bank of SRAM.
+#define SRAM_BANK_SIZE_BYTES (1 << 20)
 
 
 static bool waitForToken(uint16_t timeout_seconds) {
@@ -59,7 +65,6 @@ int main(bool hardReset) {
   // 0. Print anything.  We should see this even if we hang on the next part.
   VDP_setTextPalette(PAL_WHITE);
   VDP_drawText("Beginning hardware test.", 0, line++);
-  SYS_doVBlankProcess();
 
   // Wait for microcontroller initialization without any kind of active
   // handshake, since we are testing that here (among other things).  This is
@@ -76,7 +81,6 @@ int main(bool hardReset) {
     VDP_setTextPalette(PAL_WHITE);
     VDP_drawText("Error flag not set on boot.", 1, line++);
   }
-  SYS_doVBlankProcess();
 
 
   // 2. Check our ability to clear the error flag.  (Weak test, may not have
@@ -92,7 +96,6 @@ int main(bool hardReset) {
     VDP_setTextPalette(PAL_WHITE);
     VDP_drawText("Error flag cleared.", 1, line++);
   }
-  SYS_doVBlankProcess();
 
 
   // 3. Check initial state of command token.
@@ -103,7 +106,6 @@ int main(bool hardReset) {
     VDP_setTextPalette(PAL_WHITE);
     VDP_drawText("Command token not set on boot.", 1, line++);
   }
-  SYS_doVBlankProcess();
 
 
   // 4. Try to send a command.
@@ -112,7 +114,6 @@ int main(bool hardReset) {
   *KINETOSCOPE_PORT_ARG = 0;
   waitMs(1);
   *KINETOSCOPE_PORT_TOKEN = 1;
-  SYS_doVBlankProcess();
 
 
   // 5. Wait for a reply.
@@ -124,7 +125,6 @@ int main(bool hardReset) {
     VDP_setTextPalette(PAL_YELLOW);
     VDP_drawText("Echo command timed out.", 1, line++);
   }
-  SYS_doVBlankProcess();
 
 
   // 6. Send an invalid command.
@@ -133,7 +133,6 @@ int main(bool hardReset) {
   *KINETOSCOPE_PORT_ARG = 0;
   waitMs(1);
   *KINETOSCOPE_PORT_TOKEN = 1;
-  SYS_doVBlankProcess();
 
 
   // 7. Wait for a reply.
@@ -145,7 +144,6 @@ int main(bool hardReset) {
     VDP_setTextPalette(PAL_YELLOW);
     VDP_drawText("Invalid command timed out.", 1, line++);
   }
-  SYS_doVBlankProcess();
 
 
   // 8. Check state of error flag.
@@ -156,7 +154,6 @@ int main(bool hardReset) {
     VDP_setTextPalette(PAL_YELLOW);
     VDP_drawText("Error flag not set.", 1, line++);
   }
-  SYS_doVBlankProcess();
 
 
   // 9. Request error data.
@@ -165,7 +162,6 @@ int main(bool hardReset) {
   *KINETOSCOPE_PORT_ARG = 0;
   waitMs(1);
   *KINETOSCOPE_PORT_TOKEN = 1;
-  SYS_doVBlankProcess();
 
 
   // 10. Wait for a reply.
@@ -177,7 +173,6 @@ int main(bool hardReset) {
     VDP_setTextPalette(PAL_YELLOW);
     VDP_drawText("Get error command timed out.", 1, line++);
   }
-  SYS_doVBlankProcess();
 
 
   // 11. Check error data from SRAM.
@@ -195,68 +190,147 @@ int main(bool hardReset) {
   }
   error[255] = '\0';
 
-  VDP_setTextPalette(PAL_WHITE);
-  VDP_drawText("Error data in SRAM:", 1, line++);
-  VDP_setTextPalette(PAL_YELLOW);
-  VDP_drawText(error, 3, line++);
-  SYS_doVBlankProcess();
-
-
-  // 12. Test echoing various values through SRAM.  FIXME: Only verifies the
-  // first byte of the first bank of SRAM.
-  uint8_t results[64];  // 4 bits each.
-  char resultMessage[65];  // hex character.
-  const char* hex_alphabet = "0123456789ABCDEF";
-  for (int i = 0; i < 64; ++i) {
-    results[i] = 0;
-    resultMessage[i] = ' ';
+  const char* expected_error = "Unrecognized command 0xFF!";
+  // NOTE: There is no memcmp in SGDK.
+  bool error_matches = true;
+  for (int i = 0; i < strlen(expected_error) + 1; ++i) {
+    if (error[i] != expected_error[i]) {
+      error_matches = false;
+      break;
+    }
   }
-  resultMessage[64] = '\0';
+  if (error_matches) {
+    VDP_setTextPalette(PAL_WHITE);
+    VDP_drawText("Found expected message in SRAM.", 1, line++);
+  } else {
+    VDP_setTextPalette(PAL_WHITE);
+    VDP_drawText("Unexpected message in SRAM:", 1, line++);
+    VDP_setTextPalette(PAL_YELLOW);
+    VDP_drawText(error, 3, line++);
+  }
 
+
+  // 12. Basic echo handshake that the streamer ROM will do.
+  int echo_test_line = line++;
   VDP_setTextPalette(PAL_WHITE);
-  VDP_drawText("Echo test results:", 1, line++);
-  line += 2;  // Consume two lines for results
+  //           0         1
+  //           01234567890123
+  VDP_drawText("Echo test ..", 1, echo_test_line);
 
-  bool all_passed = true;
-  for (int i = 0; i < 256; ++i) {
+  uint8_t echo_data[2] = {0x55, 0xAA};
+  int status_x[2] = {11, 12};
+
+  for (int i = 0; i < 2; ++i) {
     waitMs(1);
     *KINETOSCOPE_PORT_COMMAND = CMD_ECHO;
-    *KINETOSCOPE_PORT_ARG = i;
+    *KINETOSCOPE_PORT_ARG = echo_data[i];
     waitMs(1);
     *KINETOSCOPE_PORT_TOKEN = 1;
-    SYS_doVBlankProcess();
 
-    if (!waitForToken(/* timeout_seconds= */ 10)) {
+    if (!waitForToken(/* timeout_seconds= */ 2)) {
       VDP_setTextPalette(PAL_YELLOW);
       VDP_drawText("Echo command timed out.", 1, line++);
       break;
     }
-    SYS_doVBlankProcess();
 
     uint8_t data = *KINETOSCOPE_DATA;
-    if (data == i) {
-      results[i / 4] |= 0x08 >> (i % 4);  // 0x08, 0x04, 0x02, 0x01
-    } else {
-      all_passed = false;
-    }
-    resultMessage[i / 4] = hex_alphabet[results[i / 4]];
-
-    if (i % 4 == 3) {
-      VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText(resultMessage, 0, line - 2);
-      VDP_drawText(resultMessage + 32, 0, line - 1);
-    }
+    bool pass = data == echo_data[i];
+    VDP_setTextPalette(pass ? PAL_WHITE : PAL_YELLOW);
+    VDP_drawText(pass ? "P" : "F", status_x[i], echo_test_line);
   }
 
-  if (all_passed) {
+
+  // 13. Perform various intensive memory tests through the firmware.
+  // There are 20 different passes of this, with different patterns to verify.
+  int memory_test_pass_line = line;
+  line += 2;
+
+  VDP_setTextPalette(PAL_WHITE);
+  //            0         1
+  //            0123456789012345678
+  VDP_drawText("SRAM test pass 00:", 0, memory_test_pass_line);
+  VDP_drawText("....................", 1, memory_test_pass_line + 1);
+
+  for (int pass = 0; pass < 20; ++pass) {
+    waitMs(1);
+    *KINETOSCOPE_PORT_COMMAND = CMD_MARCH_TEST;
+    *KINETOSCOPE_PORT_ARG = pass;
+    waitMs(1);
+    *KINETOSCOPE_PORT_TOKEN = 1;
+
     VDP_setTextPalette(PAL_WHITE);
-    VDP_drawText("Echo test complete.", 1, line++);
-  } else {
-    VDP_setTextPalette(PAL_YELLOW);
-    VDP_drawText("Echo test failed.", 1, line++);
+    char counter[3] = {
+      '0' + (((pass + 1) / 10) % 10),
+      '0' + ((pass + 1) % 10),
+      '\0',
+    };
+    VDP_drawText(counter, 15, memory_test_pass_line);
+
+    if (!waitForToken(/* timeout_seconds= */ 10)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("SRAM test command timed out.", 1, line++);
+      break;
+    }
+
+    volatile uint8_t* sram =
+        (pass & 1) ? KINETOSCOPE_SRAM_BANK_1 : KINETOSCOPE_SRAM_BANK_0;
+    bool matched = true;
+    switch (pass) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+      case 10:
+      case 11:
+      case 12:
+      case 13:
+      case 14:
+      case 15:
+        for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
+          int bit = (i + pass / 2) % 8;
+          uint8_t data = 1 << bit;
+          if (sram[i] != data) {
+            matched = false;
+            break;
+          }
+        }
+        break;
+
+      case 16:
+      case 17:
+        for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
+          uint8_t data = i & 0xff;
+          if (sram[i] != data) {
+            matched = false;
+            break;
+          }
+        }
+        break;
+
+      case 18:
+      case 19:
+        for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
+          uint8_t data = (i & 0xff) ^ 0xff;
+          if (sram[i] != data) {
+            matched = false;
+            break;
+          }
+        }
+        break;
+    }
+
+    VDP_setTextPalette(matched ? PAL_WHITE : PAL_YELLOW);
+    VDP_drawText(matched ? "P" : "F", pass + 1, memory_test_pass_line + 1);
   }
 
 
+  VDP_drawText("Testing complete.", 0, line++);
   while (true) {
     waitMs(1000);
   }

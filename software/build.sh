@@ -45,7 +45,7 @@ docker run \
   -v "$repo_root":/src \
   -u $(id -u):$(id -g) \
   -w "/src/$relative_dir" \
-  ghcr.io/stephane-d/sgdk:latest
+  ghcr.io/stephane-d/sgdk:working
 
 # SGDK's compiler makes the output executable, but that's not appropriate.
 chmod 644 $this_dir/out/rom.bin

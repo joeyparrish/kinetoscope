@@ -29,6 +29,7 @@
 #define KINETOSCOPE_CMD_FLIP_REGION 0x04  // Switch SRAM banks for streaming
 #define KINETOSCOPE_CMD_GET_ERROR   0x05  // Load error information into SRAM
 #define KINETOSCOPE_CMD_CONNECT_NET 0x06  // Connect/reconnect to the network
+#define KINETOSCOPE_CMD_MARCH_TEST  0x07  // Perform a march test on SRAM
 
 void registers_init();
 
