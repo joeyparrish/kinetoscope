@@ -17,6 +17,9 @@ void sram_start_bank(int bank);
 void sram_write(const uint8_t *data, int num_bytes);
 void sram_flush_and_release_bank();
 
-void sram_march_test(int pass);
+// Always returns true.  Only returns anything at all because the definition
+// is shared between readers and writers, and the reader version returns false
+// if the test fails.
+bool sram_march_test(int pass);
 
 #endif // _KINETOSCOPE_SRAM_H

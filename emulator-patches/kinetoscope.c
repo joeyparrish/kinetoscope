@@ -56,7 +56,6 @@
 #define SIMULATED_PROCESSING_DELAY 100  // milliseconds
 
 // SRAM regions.
-#define REGION_OFFSET_MASK 0x100000  // 0MB or 1MB offset
 #define REGION_SIZE        0x100000  // 1MB size
 
 // Offset of paddingBytes field from the end of the headers
@@ -71,6 +70,16 @@
 #define STRINGIFY(X) _STRINGIFY(X)
 #define VIDEO_BASE_URL "http://" VIDEO_SERVER ":" STRINGIFY(VIDEO_SERVER_PORT) VIDEO_BASE_PATH
 #define VIDEO_CATALOG_URL VIDEO_BASE_URL "catalog.bin"
+
+static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size);
+
+// Macros to complete sram_march_test in sram-common.h
+#define SRAM_MARCH_TEST_START(bank) uint32_t offset = (pass & 1) * SRAM_BANK_SIZE_BYTES
+#define SRAM_MARCH_TEST_DATA(data) write_sram(offset++, &data, 1)
+#define SRAM_MARCH_TEST_END() {}
+
+// Defines sram_march_test()
+#include "../common/sram-common.h"
 
 static uint8_t* global_sram_buffer = NULL;
 static uint32_t global_sram_size = 0;
@@ -363,54 +372,6 @@ static void get_video_list() {
   if (!fetch_to_sram(VIDEO_CATALOG_URL)) {
     report_error("Failed to download video catalog!");
     return;
-  }
-}
-
-#define SRAM_BANK_SIZE_BYTES (1 << 20)
-
-// Write a test pattern that the Sega can read and verify.
-static void sram_march_test(int pass) {
-  uint32_t offset = (pass & 1) * SRAM_BANK_SIZE_BYTES;
-
-  switch (pass) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 11:
-    case 12:
-    case 13:
-    case 14:
-    case 15:
-      for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
-        int bit = (i + pass / 2) % 8;
-        uint8_t data = 1 << bit;
-        write_sram(offset++, &data, 1);
-      }
-      break;
-
-    case 16:
-    case 17:
-      for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
-        uint8_t data = i & 0xff;
-        write_sram(offset++, &data, 1);
-      }
-      break;
-
-    case 18:
-    case 19:
-      for (int i = 0; i < SRAM_BANK_SIZE_BYTES; ++i) {
-        uint8_t data = (i & 0xff) ^ 0xff;
-        write_sram(offset++, &data, 1);
-      }
-      break;
   }
 }
 
