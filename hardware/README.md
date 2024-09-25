@@ -4,9 +4,9 @@ The hardware is composed of several stacking boards, each of which hosts a set
 of subcomponents.  The subcomponents are each in a subsheet, exposing
 hierarchical pins and buses to the parent sheet.
 
-One of these boards includes a microcontroller with WiFi and an ethernet
-module, and runs its own firmware to take commands from the Sega ROM.  See
-firmware in the `../firmware/` folder.
+One of these boards includes a microcontroller with WiFi, and runs its own
+firmware to take commands from the Sega ROM.  See firmware in the
+`../firmware/` folder.
 
 
 ## Prerequisites
@@ -89,7 +89,7 @@ The stacking boards are:
      data to SRAM.
    - The registers and sync token allow the Sega to send commands to the
      microcontroller and wait for responses.
-   - The microcontroller is a Raspberry Pi Pico W, which is receives commands
+   - The microcontroller is a Raspberry Pi Pico W, which receives commands
      through the registers and sync token, and is responsible for WiFi/Ethernet
      and streaming video to SRAM.  You can buy one here for $7 (as of September
      2024): https://www.adafruit.com/product/5544
@@ -106,7 +106,11 @@ The stacking boards are:
          single jumper (see silkscreen notes for jumper settings for play vs
          programming)
        - J6 is an optional 2x3 pin header @ 0.1 inch pitch to connect to an
-         external Ethernet featherwing (wiring required, no adapter yet)
+         external Ethernet Adapter Board and [Adafruit Ethernet Featherwing][].
+ - `ethernet`: Ethernet Adapter Board
+   - This connects to an optional header on the microcontroller board and
+     allows you to plug in the [Adafruit Ethernet Featherwing][].
+   - If Ethernet is connected, the firmware prefers Ethernet over WiFi.
 
 
 ## Sheets
@@ -158,3 +162,4 @@ To program the Flash chip in-place:
 [Krikzz FlashKit Programmer MD]: https://krikzz.com/our-products/accessories/flashkitmd.html
 [original FlashKit-MD software]: https://krikzz.com/pub/support/flashkit-md/
 [FlashKit MD Python Client]: https://github.com/joeyparrish/flashkit-md-py
+[Adafruit Ethernet Featherwing]: https://www.adafruit.com/product/3201
