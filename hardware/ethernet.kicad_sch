@@ -1809,6 +1809,113 @@
 		(uuid "fa3076d0-d428-48eb-9b2d-f435c270152c")
 	)
 	(symbol
+		(lib_id "Connector_Generic:Conn_02x03_Odd_Even")
+		(at 53.34 38.1 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "13d8089a-510e-4821-8eee-a13a92f1db45")
+		(property "Reference" "J1"
+			(at 52.07 30.1455 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_02x03_Odd_Even"
+			(at 52.07 32.5698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical"
+			(at 53.34 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 53.34 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 53.34 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "C7501594"
+			(at 53.34 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "737-PH2-06-UA"
+			(at 53.34 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "PH2-06-UA"
+			(at 53.34 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0a3f82ad-9487-40ab-8f15-4f4feec0e549")
+		)
+		(pin "6"
+			(uuid "f2f7a33d-2f89-43a1-bfbe-fcfb2c1be188")
+		)
+		(pin "5"
+			(uuid "7a6e8f1b-753e-477f-9ffa-f7c92793f7db")
+		)
+		(pin "4"
+			(uuid "e7a8aa8a-f45c-47a4-a514-5d06447ba9c7")
+		)
+		(pin "3"
+			(uuid "ca5fe2a0-445c-49b5-a185-da81bbc2eb46")
+		)
+		(pin "2"
+			(uuid "74eba27d-e14e-4778-bcd3-eee481dca79e")
+		)
+		(instances
+			(project "ethernet"
+				(path "/b1dc5e42-aa91-4854-9ce2-fed45471f957"
+					(reference "J1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector_Generic:Conn_01x16")
 		(at 33.02 60.96 0)
 		(unit 1)
@@ -2008,113 +2115,6 @@
 			(project "ethernet"
 				(path "/b1dc5e42-aa91-4854-9ce2-fed45471f957"
 					(reference "#FLG02")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector_Generic:Conn_02x03_Odd_Even")
-		(at 50.8 38.1 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8c120b63-69f5-45e7-bb34-d2ad275da5b6")
-		(property "Reference" "J1"
-			(at 52.07 30.1455 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Conn_02x03_Odd_Even"
-			(at 52.07 32.5698 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical"
-			(at 50.8 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 50.8 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 50.8 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "JLCPCB Part Number" "C7501594"
-			(at 50.8 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "737-PH2-06-UA"
-			(at 50.8 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Number" "PH2-06-UA"
-			(at 50.8 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "67a8501f-182d-4bba-ad3c-50d04dd045a4")
-		)
-		(pin "6"
-			(uuid "b304be5d-a2aa-4e0f-b258-39982b0437ed")
-		)
-		(pin "5"
-			(uuid "0efa82bb-4289-4b1a-a6b8-e44d9ac6a122")
-		)
-		(pin "4"
-			(uuid "f5b56228-f897-4b65-8713-ea9e89e3cecb")
-		)
-		(pin "3"
-			(uuid "a0d0df94-f5f3-466d-99ba-65b1606fc3a8")
-		)
-		(pin "2"
-			(uuid "b5b5c8af-3876-45b2-93a4-11328f12d937")
-		)
-		(instances
-			(project ""
-				(path "/b1dc5e42-aa91-4854-9ce2-fed45471f957"
-					(reference "J1")
 					(unit 1)
 				)
 			)

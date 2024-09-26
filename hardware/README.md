@@ -117,6 +117,8 @@ The stacking boards are:
        assembly:
        - J1 & J2 (female headers on top of the board, 1x16 and 1x12
          respectively, where the Featherwing plugs in)
+     - The following **must** be done by hand, because JLCPCB will only
+       populate one side of the board:
        - J3 (male header on the bottom of the board, where it attaches to the
          Microcontroller Board)
 
