@@ -74,8 +74,8 @@
 static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size);
 
 // Macros to complete sram_march_test in sram-common.h
-#define SRAM_MARCH_TEST_START(bank) uint32_t offset = (pass & 1) * SRAM_BANK_SIZE_BYTES
-#define SRAM_MARCH_TEST_DATA(data) write_sram(offset++, &data, 1)
+#define SRAM_MARCH_TEST_START(bank) uint32_t bank_offset = bank ? SRAM_BANK_SIZE_BYTES : 0;
+#define SRAM_MARCH_TEST_DATA(offset, data) write_sram(offset + bank_offset, &data, 1)
 #define SRAM_MARCH_TEST_END() {}
 
 // Defines sram_march_test()

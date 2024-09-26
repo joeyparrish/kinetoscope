@@ -1,6 +1,6 @@
-commit 5126640d303a7411d7e84e8d41cfd5d92b88c1bd
-Author: Joey Parrish <joey.parrish@gmail.com>
-Date:   Wed Mar 27 07:39:28 2024 -0700
+commit 3c98e2a06d7c398d7b46b032c349837ebb43aa59
+Author: Joey Parrish <joeyparrish@google.com>
+Date:   Mon Sep 23 21:34:59 2024 -0700
 
     Emulate Kinetoscope hardware in BlastEm 0.6.2
     
@@ -21,7 +21,7 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..f4c96df 100644
+index 0dddc9f..f8e4562 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -109,6 +109,13 @@ endif
@@ -77,6 +77,15 @@ index 0dddc9f..f4c96df 100644
  
  %.tiles : %.spec
  	./img2tiles.py -s $< $@
+@@ -382,6 +398,8 @@ m68k.c : m68k.cpu cpu_dsl.py
+ res.o : blastem.rc
+ 	$(WINDRES) blastem.rc res.o
+ 
++kinetoscope/emulator-patches/kinetoscope.o: kinetoscope/emulator-patches/kinetoscope.c kinetoscope/emulator-patches/*.h kinetoscope/common/*.h
++
+ arrow.tiles : arrow.png
+ cursor.tiles : cursor.png
+ font_interlace_variable.tiles : font_interlace_variable.png
 diff --git a/build_release b/build_release
 index f5faa10..880044d 100755
 --- a/build_release

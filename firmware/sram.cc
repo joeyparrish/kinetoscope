@@ -15,7 +15,7 @@
 
 // Macros to complete sram_march_test in sram-common.h
 #define SRAM_MARCH_TEST_START(bank) sram_start_bank(bank)
-#define SRAM_MARCH_TEST_DATA(data) sram_write(&data, 1)
+#define SRAM_MARCH_TEST_DATA(offset, data) sram_write(&data, 1)
 #define SRAM_MARCH_TEST_END() sram_flush_and_release_bank()
 
 // Defines sram_march_test()

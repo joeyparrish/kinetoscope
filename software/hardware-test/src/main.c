@@ -36,8 +36,8 @@
 // Macros to complete sram_march_test in sram-common.h
 #define SRAM_MARCH_TEST_START(bank) \
   volatile uint8_t* sram = bank ? KINETOSCOPE_SRAM_BANK_1 : KINETOSCOPE_SRAM_BANK_0
-#define SRAM_MARCH_TEST_DATA(data) { \
-  if (sram[i] != data) { \
+#define SRAM_MARCH_TEST_DATA(offset, data) { \
+  if (sram[offset] != data) { \
     return false; \
   } \
 }
@@ -251,7 +251,7 @@ int main(bool hardReset) {
 
 
   // 13. Perform various intensive memory tests through the firmware.
-  // There are 20 different passes of this, with different patterns to verify.
+  // There are many different passes of this, with different patterns to verify.
   line++;  // blank line
   int memory_test_pass_line = line;
   line += 2;
@@ -260,9 +260,9 @@ int main(bool hardReset) {
   //            0         1
   //            012345678901234567
   VDP_drawText("SRAM test pass 00", 0, memory_test_pass_line);
-  VDP_drawText("....................", 1, memory_test_pass_line + 1);
+  VDP_drawText("......................", 1, memory_test_pass_line + 1);
 
-  for (int pass = 0; pass < 20; ++pass) {
+  for (int pass = 0; pass < SRAM_MARCH_TEST_NUM_PASSES; ++pass) {
     waitMs(1);
     *KINETOSCOPE_PORT_COMMAND = CMD_MARCH_TEST;
     *KINETOSCOPE_PORT_ARG = pass;
