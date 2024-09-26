@@ -5441,7 +5441,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part Number" ""
+		(property "JLCPCB Part Number" "C3323945"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5454,7 +5454,7 @@
 				)
 			)
 		)
-		(property "Mouser Part Number" ""
+		(property "Mouser Part Number" "200-SSW12602TD"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5467,7 +5467,7 @@
 				)
 			)
 		)
-		(property "Part Number" ""
+		(property "Part Number" "SSW-126-02-T-D "
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8272,6 +8272,45 @@
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "JLCPCB Part Number" "C6825448"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "3d5c28ae-4c88-45a9-8f8a-2eed4b61ad53")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Mouser Part Number" "200-SSW10301TD"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "9efc6e43-e68d-4277-a063-ab18d6916b48")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Part Number" "SSW-103-01-T-D"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "5f3b6eed-0618-4324-b645-55970f6506f3")
+			(effects
+				(font
+					(size 1 1)
 					(thickness 0.15)
 				)
 			)
@@ -11504,7 +11543,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part Number" ""
+		(property "JLCPCB Part Number" "C6952593"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12539,12 +12578,38 @@
 				)
 			)
 		)
-		(property "JLCPCB Part Number" ""
+		(property "JLCPCB Part Number" "C3324002"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "94991e1a-0ded-49ce-9e0e-18f17b49b379")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Mouser Part Number" "200-SSW12102TD"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "7b5b1114-c743-4716-a4c4-9e2ee9e88431")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Part Number" "SSW-121-02-T-D "
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "69c30d4b-815f-40ea-b79d-7c748398d048")
 			(effects
 				(font
 					(size 1 1)
@@ -13601,7 +13666,7 @@
 			)
 		)
 		(property ki_fp_filters "DIP*W7.62mm* SSOP?14* TSSOP?14*")
-		(path "/f6aed283-edca-4642-a4c6-6ed5d2088f56/71124448-849f-461d-8e68-8d394a6a4622")
+		(path "/f6aed283-edca-4642-a4c6-6ed5d2088f56/6b3f169b-b27c-48aa-9f60-7960551c1bb3")
 		(sheetname "register-file-internal")
 		(sheetfile "register-file-internal.kicad_sch")
 		(attr smd)
@@ -17320,7 +17385,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part Number" ""
+		(property "JLCPCB Part Number" "C6952593"
 			(at 0 0 90)
 			(unlocked yes)
 			(layer "F.Fab")

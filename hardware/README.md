@@ -71,6 +71,8 @@ The stacking boards are:
        automatically, and must be adjusted manually during the ordering process:
        - J1 (pin header for attaching other boards, wrong location and rotation)
        - U2 (voltage regulator, offset a little too far to the right)
+     - The following optional parts _may_ be populated by hand if you wish:
+       - J4 (2-pin right-angle header for measuring current)
  - `sram-bank`: SRAM Bank Board
    - There are actually two of these in the stack, one for each 1MB SRAM bank.
    - These host the SRAM itself, and the buffers that allow it to be
@@ -78,9 +80,9 @@ The stacking boards are:
      most complex.  A solder jumper on the board selects whether it responds as
      bank 1 or bank 2.
    - When ordering this through JLCPCB:
-     - The following parts must be populated by hand:
-       - J1 must be 2x Adafruit stacking headers modified to 26 pins each
-       - J2 must be 2x Adafruit stacking headers modified to 21 pins each
+     - The following parts could easily be populated by hand if you wish:
+       - J1 & J2 (stacking headers, 2x26 and 2x21 pins respectively)
+     - The following **must** be soldered by hand:
        - JP1 and JP2 are solder jumpers that must be closed on each board; to
          set bank 1, bridge center to left on both jumpers; to set bank 2,
          bridge center to right on both jumpers (also indicated on silkscreen)
@@ -99,18 +101,24 @@ The stacking boards are:
        them by hand if you wish:
        - J3 and J4 are 20-pin female headers @ 0.1 inch pitch, to mount a
          Raspberry Pi Pico W with male headers facing down
-     - The following parts must be populated by hand:
-       - J1 must be 2x Adafruit stacking headers modified to 26 pins each
-       - J2 must be 2x Adafruit stacking headers modified to 21 pins each
-       - J5 and J7 are male right-angle headers @ 0.1 inch pitch, which need a
-         single jumper (see silkscreen notes for jumper settings for play vs
-         programming)
-       - J6 is an optional 2x3 pin header @ 0.1 inch pitch to connect to an
-         external Ethernet Adapter Board and [Adafruit Ethernet Featherwing][].
+     - The following parts could easily be populated by hand if you wish:
+       - J1 & J2 (stacking headers, 2x26 and 2x21 pins respectively)
+       - J6 (optional 2x3 female header to connect to an Ethernet Adapter Board
+         with an [Adafruit Ethernet Featherwing][])
+     - The following **must** be done by hand:
+       - A single jumper must be added to either J5 or J7 (see silkscreen notes
+         for play vs programming setting)
  - `ethernet`: Ethernet Adapter Board
    - This connects to an optional header on the microcontroller board and
      allows you to plug in the [Adafruit Ethernet Featherwing][].
    - If Ethernet is connected, the firmware prefers Ethernet over WiFi.
+   - When ordering this through JLCPCB:
+     - All headers could easily be populated by hand if you wish to skip paid
+       assembly:
+       - J1 & J2 (female headers on top of the board, 1x16 and 1x12
+         respectively, where the Featherwing plugs in)
+       - J3 (male header on the bottom of the board, where it attaches to the
+         Microcontroller Board)
 
 
 ## Sheets

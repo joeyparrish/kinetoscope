@@ -6009,7 +6009,25 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" ""
+		(property "JLCPCB Part Number" "C3324002"
+			(at 204.47 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "200-SSW12102TD"
+			(at 204.47 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "SSW-121-02-T-D"
 			(at 204.47 41.91 0)
 			(effects
 				(font
@@ -6430,7 +6448,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" ""
+		(property "JLCPCB Part Number" "C3323945"
 			(at 62.23 34.29 0)
 			(effects
 				(font
@@ -6439,7 +6457,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" ""
+		(property "Mouser Part Number" "200-SSW12602TD"
 			(at 62.23 34.29 0)
 			(effects
 				(font
@@ -6448,7 +6466,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" ""
+		(property "Part Number" "SSW-126-02-T-D"
 			(at 62.23 34.29 0)
 			(effects
 				(font
