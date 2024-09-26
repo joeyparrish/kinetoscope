@@ -5961,7 +5961,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" ""
+		(property "JLCPCB Part Number" "C6952593"
 			(at 104.14 58.42 0)
 			(effects
 				(font
@@ -8306,6 +8306,33 @@
 				(hide yes)
 			)
 		)
+		(property "JLCPCB Part Number" "C6825448"
+			(at 232.41 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "200-SSW10301TD"
+			(at 232.41 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "SSW-103-01-T-D"
+			(at 232.41 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "5f830333-e85c-4a4a-83ac-1504c2060f0d")
 		)
@@ -8730,7 +8757,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" ""
+		(property "JLCPCB Part Number" "C6952593"
 			(at 104.14 50.8 0)
 			(effects
 				(font
