@@ -279,16 +279,18 @@ def extract_frames_and_audio(args, crop, normalization, frame_dir, audio_dir):
     # Audio filters.
     audio_filters = [
       # Experimentation shows that the biggest source of noise is quantization
-      # noise when we go down to 8-bit samples.  This effect is the most extreme
-      # in quiet moments, so start by normalizing the volume.
+      # noise when we go down to 8-bit samples.  This effect is the most
+      # extreme in quiet moments, so start by normalizing the volume.
       "volume={}dB".format(normalization),
-      # Then, run a denoising filter to remove frequency components below a certain
-      # volume threshold.  This part might just be voodoo.  I don't know what I'm
-      # doing here, but Star Wars sounds like crap and I'm desperate.
+      # Then, run a denoising filter to remove frequency components below a
+      # certain volume threshold.  This part might just be voodoo.  I don't
+      # know what I'm doing here, but Star Wars sounds like crap and I'm
+      # desperate.
       "afftdn=nr=40:nf=-36",
-      # Finally, resample to 13kHz using sox, which should include a low-pass filter
-      # to remove frequencies above the Nyquist frequency (13kHz / 2) and avoid
-      # aliasing (where high frequencies get mapped to low ones again).
+      # Finally, resample to 13kHz using sox, which should include a low-pass
+      # filter to remove frequencies above the Nyquist frequency (13kHz / 2)
+      # and avoid aliasing (where high frequencies get mapped to low ones
+      # again).
       "aresample={}:resampler=soxr:osf=8:osr={}:dither_method=triangular".format(
           args.sample_rate, args.sample_rate),
     ]
@@ -319,8 +321,14 @@ def extract_frames_and_audio(args, crop, normalization, frame_dir, audio_dir):
   run(args.debug, check=True, args=ffmpeg_args)
 
   if args.debug_audio:
-    audio_debug_path = os.path.join(args.output + '.wav')
-    print('Saving extracted audio to {}'.format(audio_debug_path))
+    audio_debug_path_wav = os.path.join(args.output + '.wav')
+    audio_debug_path_pcm = os.path.join(args.output + '.pcm')
+    os.makedirs(os.path.dirname(audio_debug_path_wav), exist_ok=True)
+
+    print('Saving extracted audio to {} and {}'.format(
+        audio_debug_path_pcm, audio_debug_path_wav))
+
+    shutil.copy(temp_audio_file, audio_debug_path_pcm)
 
     run(args.debug, check=True, args=[
       'ffmpeg',
@@ -331,10 +339,10 @@ def extract_frames_and_audio(args, crop, normalization, frame_dir, audio_dir):
       '-acodec', 'pcm_s8',
       '-ac', '1',
       '-ar', str(args.sample_rate),
-      '-i', temp_audio_file,
+      '-i', audio_debug_path_pcm,
       # Output.
       '-acodec', 'pcm_u8',
-      '-y', audio_debug_path,
+      '-y', audio_debug_path_wav,
     ])
 
 
