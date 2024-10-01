@@ -47,8 +47,8 @@ static inline void sram_write_word(uint16_t word_data) {
 
 void sram_init() {
   // Set output modes on all SRAM pins.
+  pinMode(SRAM_PIN__WRITE_BANK_0, OUTPUT);
   pinMode(SRAM_PIN__WRITE_BANK_1, OUTPUT);
-  pinMode(SRAM_PIN__WRITE_BANK_2, OUTPUT);
   pinMode(SRAM_PIN__ADDR_RESET, OUTPUT);
   pinMode(SRAM_PIN__ADDR_CLOCK, OUTPUT);
   pinMode(SRAM_PIN__DATA_NEXT_BIT, OUTPUT);
@@ -60,8 +60,8 @@ void sram_init() {
   FAST_SET(SRAM_PIN__DATA_WRITE);
 
   // Set other outputs low by default.
+  FAST_CLEAR(SRAM_PIN__WRITE_BANK_0);
   FAST_CLEAR(SRAM_PIN__WRITE_BANK_1);
-  FAST_CLEAR(SRAM_PIN__WRITE_BANK_2);
   FAST_CLEAR(SRAM_PIN__ADDR_CLOCK);
   FAST_CLEAR(SRAM_PIN__DATA_NEXT_BIT);
   FAST_CLEAR(SRAM_PIN__DATA_CLOCK);
@@ -72,7 +72,7 @@ void sram_init() {
 void sram_start_bank(int bank) {
   sram_flush_and_release_bank();
 
-  active_bank_pin = bank ? SRAM_PIN__WRITE_BANK_2 : SRAM_PIN__WRITE_BANK_1;
+  active_bank_pin = bank ? SRAM_PIN__WRITE_BANK_1 : SRAM_PIN__WRITE_BANK_0;
   FAST_SET(active_bank_pin);
 
   // Reset the write address to 0.

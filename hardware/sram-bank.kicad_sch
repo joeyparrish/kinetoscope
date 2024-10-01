@@ -2326,7 +2326,7 @@
 		)
 		(uuid "1ad68464-c13a-4f31-a463-2a50e5cea37d")
 	)
-	(text "These two jumpers need to be soldered the same way.\ne.g.:\n\nSRAM_DIS = SRAM_DIS_1 and ~{SRAM_CE} = ~{SRAM_CE_1}\n\nor\n\nSRAM_DIS = SRAM_DIS_2 and ~{SRAM_CE} = ~{SRAM_CE_2}\n\nThis determines whether the board responds as\nbank 1 (2MB - 3MB range) or bank 2 (3MB - 4MB range)."
+	(text "These two jumpers need to be soldered the same way.\ne.g.:\n\nSRAM_DIS = SRAM_DIS_0 and ~{SRAM_CE} = ~{SRAM_CE_1}\n\nor\n\nSRAM_DIS = SRAM_DIS_1 and ~{SRAM_CE} = ~{SRAM_CE_2}\n\nThis determines whether the board responds as\nbank 0 (2MB - 3MB range) or bank 1 (3MB - 4MB range)."
 		(exclude_from_sim no)
 		(at 17.78 183.896 0)
 		(effects
@@ -2924,7 +2924,7 @@
 		)
 		(uuid "7758da0f-6f21-441a-9041-c6084993ba02")
 	)
-	(label "SRAM_DIS_2"
+	(label "SRAM_DIS_1"
 		(at 261.62 124.46 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2957,7 +2957,7 @@
 		)
 		(uuid "7ce4a0be-ff56-4e5d-a29d-aa1de152b8a1")
 	)
-	(label "SRAM_DIS_1"
+	(label "SRAM_DIS_0"
 		(at 261.62 121.92 0)
 		(fields_autoplaced yes)
 		(effects
@@ -3034,7 +3034,7 @@
 		)
 		(uuid "8feeb3ab-06cf-4a1f-9b42-18b19ae35a0c")
 	)
-	(label "SRAM_DIS_1"
+	(label "SRAM_DIS_0"
 		(at 87.63 181.61 180)
 		(fields_autoplaced yes)
 		(effects
@@ -3078,7 +3078,7 @@
 		)
 		(uuid "b239083f-6144-4fb6-b345-35845484ceae")
 	)
-	(label "SRAM_DIS_2"
+	(label "SRAM_DIS_1"
 		(at 100.33 181.61 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6177,7 +6177,7 @@
 			)
 			(uuid "a8dce3ba-4f5d-4dba-9f49-ac5b9b02e07a")
 		)
-		(pin "SRAM_DIS_2" passive
+		(pin "SRAM_DIS_1" passive
 			(at 259.08 124.46 0)
 			(effects
 				(font
@@ -6187,7 +6187,7 @@
 			)
 			(uuid "6c5e11ad-b452-4d2a-9901-bb528ae7eb02")
 		)
-		(pin "SRAM_DIS_1" passive
+		(pin "SRAM_DIS_0" passive
 			(at 259.08 121.92 0)
 			(effects
 				(font

@@ -19,8 +19,8 @@
 
 #if defined(ARDUINO_ARCH_RP2040)  // e.g. Raspberry Pi Pico (W)
 
-#define SRAM_PIN__WRITE_BANK_1  12
-#define SRAM_PIN__WRITE_BANK_2  13
+#define SRAM_PIN__WRITE_BANK_0  12
+#define SRAM_PIN__WRITE_BANK_1  13
 
 #define SRAM_PIN__ADDR_RESET    15
 #define SRAM_PIN__ADDR_CLOCK    20
@@ -56,8 +56,8 @@
 
 #else
 
+#define SRAM_PIN__WRITE_BANK_0   0
 #define SRAM_PIN__WRITE_BANK_1   0
-#define SRAM_PIN__WRITE_BANK_2   0
 
 #define SRAM_PIN__ADDR_RESET     0
 #define SRAM_PIN__ADDR_CLOCK     0

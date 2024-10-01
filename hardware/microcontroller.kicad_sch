@@ -4389,7 +4389,7 @@
 		)
 		(uuid "1cd60674-764c-48af-8c72-18a059c4fc89")
 	)
-	(label "SRAM_DIS_1"
+	(label "SRAM_DIS_0"
 		(at 24.13 156.21 180)
 		(fields_autoplaced yes)
 		(effects
@@ -4543,7 +4543,7 @@
 		)
 		(uuid "48096a2c-d096-4e97-abae-1ca3c9b00729")
 	)
-	(label "SRAM_DIS_1"
+	(label "SRAM_DIS_0"
 		(at 35.56 88.9 180)
 		(fields_autoplaced yes)
 		(effects
@@ -4950,7 +4950,7 @@
 		)
 		(uuid "b3064596-2f23-48b8-b19f-be861e2b0da0")
 	)
-	(label "SRAM_DIS_2"
+	(label "SRAM_DIS_1"
 		(at 35.56 91.44 180)
 		(fields_autoplaced yes)
 		(effects
@@ -5247,7 +5247,7 @@
 		)
 		(uuid "eb20dc20-816e-4371-8dc3-efa5c48b6780")
 	)
-	(label "SRAM_DIS_2"
+	(label "SRAM_DIS_1"
 		(at 24.13 158.75 180)
 		(fields_autoplaced yes)
 		(effects
@@ -10147,7 +10147,7 @@
 			)
 			(uuid "6b4575e2-a7da-4f67-8ca7-f82d9304e897")
 		)
-		(pin "SRAM_DIS_2" passive
+		(pin "SRAM_DIS_1" passive
 			(at 33.02 158.75 180)
 			(effects
 				(font
@@ -10157,7 +10157,7 @@
 			)
 			(uuid "68c241c4-745f-4a4f-a1f4-3010418ece04")
 		)
-		(pin "SRAM_DIS_1" passive
+		(pin "SRAM_DIS_0" passive
 			(at 33.02 156.21 180)
 			(effects
 				(font
