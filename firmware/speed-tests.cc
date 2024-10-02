@@ -12,12 +12,13 @@
 #include "fast-gpio.h"
 #include "http.h"
 #include "registers.h"
+#include "segavideo_format.h"
 #include "sram.h"
 
 #define SERVER "storage.googleapis.com"
-#define PATH   "/sega-kinetoscope/canned-videos/Never%20Gonna%20Give%20You%20Up.segavideo"
+#define RAW_VIDEO_PATH   "/sega-kinetoscope/canned-videos/Never%20Gonna%20Give%20You%20Up.segavideo"
 
-// 3s worth of audio+video data, at default settings, with headers.
+// 3s chunk of audio+video data, at default settings, without main headers
 #define ABOUT_3S_VIDEO_AUDIO_BYTES 901376
 
 // A safe buffer size for these tests.
@@ -67,31 +68,44 @@ static long test_register_read_speed() {
   return end - start;
 }
 
-static long test_sram_speed(const uint8_t* buffer, int bytes) {
+static long test_sram_speed() {
   // 100kB: ~116ms
   // 1MB: ~1160ms
   // 3s video+audio: ~1020ms
+  // Rather than allocate a buffer, just write out 100kB of instructions.
+  uint8_t* buffer = (uint8_t*)main;
   long start = millis();
   sram_start_bank(0);
-  sram_write(buffer, bytes);
+  sram_write(buffer, BUFFER_SIZE);
   sram_flush_and_release_bank();
   long end = millis();
   return end - start;
 }
 
-static bool sram_write_callback(const uint8_t* buffer, int bytes) {
-  sram_write(buffer, bytes);
-  return true;  // HTTP transfer can continue.
+static uint8_t* http_local_buffer = NULL;
+static bool http_local_buffer_callback(const uint8_t* buffer, int bytes) {
+  memcpy(http_local_buffer, buffer, bytes);
+  http_local_buffer += bytes;
+  return true;
 }
 
-static long test_download_speed(int first_byte, int total_size) {
+// Linked from firmware.ino:
+extern bool http_sram_callback(const uint8_t* buffer, int bytes);
+
+static long test_raw_download_speed() {
   // 2.5Mbps minimum required
   // ~2.7Mbps with initial HTTP connection overhead
-  // ~3.0Mbps on subsequent requests @902kB
+  // ~3.0Mbps on subsequent requests
   long start = millis();
   sram_start_bank(0);
-  http_fetch(SERVER, /* default port */ 0, PATH, first_byte, total_size,
-             sram_write_callback);
+  if (!http_fetch(SERVER,
+                  /* default port */ 0,
+                  RAW_VIDEO_PATH,
+                  /* first byte */ 0,
+                  /* total_size= */ ABOUT_3S_VIDEO_AUDIO_BYTES,
+                  http_sram_callback)) {
+    Serial.println("Fetch failed!");
+  }
   sram_flush_and_release_bank();
   long end = millis();
   return end - start;
@@ -99,13 +113,6 @@ static long test_download_speed(int first_byte, int total_size) {
 
 void run_tests() {
   long ms;
-
-  uint8_t* buffer = (uint8_t*)malloc(BUFFER_SIZE);
-  if (!buffer) {
-    Serial.println("Failed to allocate buffer!");
-    while (true) { delay(1000); }
-  }
-  memset(buffer, 0x55, BUFFER_SIZE);
 
   ms = test_fast_gpio_speed();
   Serial.print(ms);
@@ -123,7 +130,7 @@ void run_tests() {
   Serial.print(ms);
   Serial.println(" ns avg per register read.");  // 1Mx reads, ms => ns
 
-  ms = test_sram_speed(buffer, BUFFER_SIZE);
+  ms = test_sram_speed();
   Serial.print(ms);
   Serial.print(" ms to write ");
   Serial.print(BUFFER_SIZE);
@@ -132,18 +139,19 @@ void run_tests() {
   if (is_error_flagged()) {
     Serial.println("Error flagged, skipping network tests.");
   } else {
+    Serial.println("Beginning raw network tests.");
+
     for (int i = 0; i < 10; i++) {
-      ms = test_download_speed(/* first_byte= */ i, ABOUT_3S_VIDEO_AUDIO_BYTES);
+      ms = test_raw_download_speed();
       float bits = ABOUT_3S_VIDEO_AUDIO_BYTES * 8.0;
       float seconds = ms / 1000.0;
       float mbps = bits / seconds / 1024.0 / 1024.0;
       Serial.print(ms);
-      Serial.print(" ms to stream ~3s video to SRAM (");
+      Serial.print(" ms to stream ~3s raw video to SRAM (");
       Serial.print(mbps);
       Serial.println(" Mbps vs 2.50 Mbps minimum)");
     }
   }
 
   Serial.println("\n");
-  free(buffer);
 }

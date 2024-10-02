@@ -20,7 +20,7 @@
 #endif
 
 #define SEGAVIDEO_HEADER_MAGIC  "what nintendon't"
-#define SEGAVIDEO_HEADER_FORMAT 0x0002
+#define SEGAVIDEO_HEADER_FORMAT 0x0003
 
 // This header appears at the start of the file in both embedded and streaming
 // mode.  Each one is exactly 8kB, so they can form the basis of a catalog
@@ -41,7 +41,8 @@ typedef struct SegaVideoHeader {
   // 38 bytes above.
   char title[128];  // US-ASCII for display with a very simple font
   char relative_url[128];  // relative to catalog, filled in catalog creation
-  uint8_t padding[698];  // zeros
+  uint16_t compression;  // 0 == uncompressed / embedded
+  uint8_t padding[696];  // zeros
   // 7200 bytes below.
 
   // A thumbnail for display in the streamer ROM menu. Just like
@@ -51,7 +52,23 @@ typedef struct SegaVideoHeader {
   uint32_t thumbTiles[8 * 16 * 14];  // 16x14 tiles
 } __attribute__((packed)) SegaVideoHeader;
 
-// After the header is a sequence of chunks.
+// This header appears after the main header, only when compression != 0.
+// It is not used by the Sega, only by the microcontroller to make requests for
+// compressed chunks.  In streaming, the microcontroller decompresses the
+// stream, sets compression = 0 in the above header, and does not send this
+// index header to the Sega at all.
+typedef struct SegaVideoIndex {
+  // This can index up to 30 hours of content with 3s chunks, or up to 4GB of
+  // compressed data.  If an offset is SEGA_CHUNK_OFFSET_EOF, that indicates no
+  // more chunks.  Importantly, this structure is a multiple of 256 bytes so
+  // to maintain audio alignment the same in all chunks.  (The first chunk's
+  // headers don't push the audio into a different alignment.)
+  uint32_t chunk_offset[36032];
+} __attribute__((packed)) SegaVideoIndex;
+
+#define SEGA_CHUNK_OFFSET_EOF ((uint32_t)0xffffffff)
+
+// After these headers is a sequence of chunks.
 
 // Each chunk is:
 //  SegaVideoChunkHeader header
@@ -62,12 +79,11 @@ typedef struct SegaVideoHeader {
 typedef struct SegaVideoChunkHeader {
   uint32_t samples;  // in audio, each of which is one byte
   uint16_t frames;  // in video, each of which is a SegaVideoFrame
-  // If zero, keep playing after this.  If non-zero, this is the final chunk.
-  uint16_t finalChunk;
+  uint16_t unused1;  // formerly "finalChunk"
   // Padding right after the chunk header to maintain 256-byte alignment for
   // the audio data that follows.  The audio driver requires this alignment.
   uint16_t prePaddingBytes;
-  // Padding after the last frame to maintain 256-byte alignemnt for the next
+  // Padding after the last frame to maintain 256-byte alignment for the next
   // chunk.  This is slightly wasteful, but makes chunk sizes predictable,
   // removing chunk parsing from the microcontroller.
   uint16_t postPaddingBytes;

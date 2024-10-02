@@ -15,6 +15,7 @@ You can fit ~13.6s of audio+video in a 4MB ROM with 128kB left for the player.
 
 import argparse
 import glob
+import io
 import os
 import shutil
 import subprocess
@@ -29,17 +30,30 @@ FILE_MAGIC = b"what nintendon't"
 # that people want to expand on this goofy project and worry about
 # compatibility, we define a constant for the file format that is written into
 # the output file.
-FILE_FORMAT = 2
+FILE_FORMAT = 3
 
 # Number of tiles (w, h) for fullscreen and thumbnail sizes.
 FULLSCREEN_TILES = (32, 28)
 THUMBNAIL_TILES = (16, 14)
 
+# Maximum number of video index entries.
+SEGA_VIDEO_INDEX_MAX_ENTRIES = 36032
+
+# An index offset that indicates EOF.
+EOF_OFFSET = 0xffffffff
+
+# Compression constants.
+COMPRESSION_NONE = 0
 
 def main(args):
+  if args.generate_resource_file and args.compressed:
+    print('--generate-resource-file and --compressed are mutually exclusive!')
+    sys.exit(1)
+
   with tempfile.TemporaryDirectory(prefix='encode_sega_video_') as tmp_dir:
-    print('Converting {} to {} at {} fps and {} Hz.'.format(
-        args.input, args.output, args.fps, args.sample_rate))
+    print('Converting {} to {} at {} fps and {} Hz{}.'.format(
+        args.input, args.output, args.fps, args.sample_rate,
+        ' with compression' if args.compressed else ''))
     print('Temporary files written to {}'.format(tmp_dir))
 
     # Create various folders within the overall temp dir.
@@ -576,8 +590,92 @@ def pack_palette(palette):
 def patch_at_offset(f, patch_offset, value, size):
   offset = f.tell()
   f.seek(patch_offset)
-  f.write(value.to_bytes(size, 'big'))
+  if type(value) == list:
+    for item in value:
+      f.write(item.to_bytes(size, 'big'))
+  else:
+    f.write(value.to_bytes(size, 'big'))
   f.seek(offset)
+
+
+class ChunkWritingState(object):
+  sound_file = None
+  samples_per_chunk = 0
+  frames_per_chunk = 0
+  frame_paths = []
+  chunk_size = 0
+  num_chunks = 0
+  sound_len = 0  # bytes left to write
+  frame_count = 0  # frames left to write
+  frame_path_index = 0  # next index into frame_paths
+
+
+def write_chunk(f, state):
+  # Write SegaVideoChunkHeader
+  start_of_chunk = f.tell()
+  chunk_sound_size = min(state.sound_len, state.samples_per_chunk)
+  f.write(chunk_sound_size.to_bytes(4, 'big'))
+  chunk_frame_count = min(state.frame_count, state.frames_per_chunk)
+  f.write(chunk_frame_count.to_bytes(2, 'big'))
+  f.write(bytes(2))  # "unused1", formerly "finalChunk"
+
+  current_offset = f.tell()
+  pre_padding_remainder = (current_offset + 4) % 256
+  pre_padding_bytes = 256 - pre_padding_remainder if pre_padding_remainder else 0
+  f.write(pre_padding_bytes.to_bytes(2, 'big'))
+
+  # We fill this in later.
+  post_padding_bytes = 0
+  post_padding_bytes_offset = f.tell()
+  f.write(post_padding_bytes.to_bytes(2, 'big'))
+
+  # Add pre-padding.
+  f.write(bytes(pre_padding_bytes))
+
+  # Write audio:
+  sound_data = state.sound_file.read(chunk_sound_size)
+  if len(sound_data) < chunk_sound_size:
+    # Padding up to sound alignment requirements
+    sound_data += bytes(chunk_sound_size - len(sound_data))
+    assert len(sound_data) == chunk_sound_size
+  f.write(sound_data)
+  state.sound_len -= chunk_sound_size
+
+  # Write frames:
+  chunk_frame_data_len = 0
+  for i in range(chunk_frame_count):
+    with open(state.frame_paths[state.frame_path_index], 'rb') as frame_file:
+      frame_data = frame_file.read()
+      f.write(frame_data)
+      chunk_frame_data_len += len(frame_data)
+    state.frame_count -= 1
+    state.frame_path_index += 1
+
+  # Figure out the post-padding.
+  end_of_frames = f.tell()
+  post_padding_remainder = end_of_frames % 256
+  post_padding_bytes = 256 - post_padding_remainder if post_padding_remainder else 0
+
+  # Seek back to fill in the post-padding field.
+  patch_at_offset(f, post_padding_bytes_offset, post_padding_bytes, 2)
+
+  # Add post-padding.
+  f.write(bytes(post_padding_bytes))
+
+  # If this is the first chunk, record the size.
+  end_of_chunk = f.tell()
+  if state.chunk_size == 0:
+    state.chunk_size = end_of_chunk - start_of_chunk
+
+  # Count chunks.
+  state.num_chunks += 1
+
+
+def compress(compression, uncompressed):
+  if compression == COMPRESSION_NONE:
+    return uncompressed
+
+  raise RuntimeError('Unrecognized compression constant')
 
 
 def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
@@ -585,22 +683,26 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
 
   sound_path = os.path.join(sound_dir, 'sound.pcm')
   raw_sound_len = os.path.getsize(sound_path)
+  state = ChunkWritingState()
 
   # Pad sound up to a 256-byte multiple as required by the driver:
   sound_remainder = raw_sound_len % 256
   sound_padding = (256 - sound_remainder) if sound_remainder else 0
-  sound_len = raw_sound_len + sound_padding
-  assert sound_len % 256 == 0
+  state.sound_len = raw_sound_len + sound_padding
+  assert state.sound_len % 256 == 0
 
   # Compute chunk sizes
-  samples_per_chunk = args.sample_rate * args.chunk_length
-  frames_per_chunk = args.fps * args.chunk_length
+  state.samples_per_chunk = args.sample_rate * args.chunk_length
+  state.frames_per_chunk = args.fps * args.chunk_length
 
   # List all frames:
-  frame_paths = sorted(glob.glob(os.path.join(frame_dir, '*.bin')))
-  frame_count = len(frame_paths)
+  state.frame_paths = sorted(glob.glob(os.path.join(frame_dir, '*.bin')))
+  state.frame_count = len(state.frame_paths)
 
-  frame_path_index = 0
+  state.frame_path_index = 0
+
+  # Index of compressed chunk offsets.
+  index = [ EOF_OFFSET ] * SEGA_VIDEO_INDEX_MAX_ENTRIES
 
   # Create the output folder.
   output_folder = os.path.dirname(args.output)
@@ -609,19 +711,20 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
 
   with open(sound_path, 'rb') as sound_file:
     with open(args.output, 'wb') as f:
-      chunk_size = 0
-      num_chunks = 0
+      state.sound_file = sound_file
+      state.chunk_size = 0
+      state.num_chunks = 0
 
       # Write SegaVideoHeader
       f.write(FILE_MAGIC)
       f.write(FILE_FORMAT.to_bytes(2, 'big'))
       f.write(args.fps.to_bytes(2, 'big'))
       f.write(args.sample_rate.to_bytes(2, 'big'))
-      f.write(frame_count.to_bytes(4, 'big'))
-      f.write(sound_len.to_bytes(4, 'big'))
+      f.write(state.frame_count.to_bytes(4, 'big'))
+      f.write(state.sound_len.to_bytes(4, 'big'))
       chunk_size_offset = f.tell()
-      f.write(chunk_size.to_bytes(4, 'big'))
-      f.write(num_chunks.to_bytes(4, 'big'))
+      f.write(state.chunk_size.to_bytes(4, 'big'))
+      f.write(state.num_chunks.to_bytes(4, 'big'))
 
       # Compute the title for the metadata, truncate/pad to 128 bytes including
       # terminator.
@@ -634,80 +737,46 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
 
       f.write(bytes(128)) # relative URL, filled in for catalog later
 
-      f.write(bytes(698)) # Padding/unused
+      compression = COMPRESSION_NONE
+      f.write(compression.to_bytes(2, 'big'))
+
+      f.write(bytes(696)) # Padding/unused
 
       with open(os.path.join(thumb_dir, 'thumb.segaframe'), 'rb') as thumb:
         f.write(thumb.read())
+      # End of SegaVideoHeader
 
-      while sound_len and frame_count:
-        # Write SegaVideoChunkHeader
-        start_of_chunk = f.tell()
-        chunk_sound_size = min(sound_len, samples_per_chunk)
-        f.write(chunk_sound_size.to_bytes(4, 'big'))
-        chunk_frame_count = min(frame_count, frames_per_chunk)
-        f.write(chunk_frame_count.to_bytes(2, 'big'))
-        final_chunk = 0
-        final_chunk_offset = f.tell()
-        f.write(final_chunk.to_bytes(2, 'big'))
+      if args.compressed:
+        # Write SegaVideoIndex (empty for now, will rewrite later)
+        video_index_offset = f.tell()
+        for offset in index:
+          f.write(offset.to_bytes(4, 'big'))
 
-        current_offset = f.tell()
-        pre_padding_remainder = (current_offset + 4) % 256
-        pre_padding_bytes = 256 - pre_padding_remainder if pre_padding_remainder else 0
-        f.write(pre_padding_bytes.to_bytes(2, 'big'))
+      while state.sound_len and state.frame_count:
+        if args.compressed:
+          # Minus one here because we need the final entry for the total size.
+          if state.num_chunks >= SEGA_VIDEO_INDEX_MAX_ENTRIES - 1:
+            raise RuntimeError('Streaming index overflow!')
+          index[state.num_chunks] = f.tell()
 
-        # We fill this in later.
-        post_padding_bytes = 0
-        post_padding_bytes_offset = f.tell()
-        f.write(post_padding_bytes.to_bytes(2, 'big'))
+          f2 = io.BytesIO()
+          write_chunk(f2, state)
+          f2.seek(0)
+          uncompressed = f2.read()
 
-        # Add pre-padding.
-        f.write(bytes(pre_padding_bytes))
-
-        # Write audio:
-        sound_data = sound_file.read(chunk_sound_size)
-        if len(sound_data) < chunk_sound_size:
-          # Padding up to sound alignment requirements
-          sound_data += bytes(chunk_sound_size - len(sound_data))
-          assert len(sound_data) == chunk_sound_size
-        f.write(sound_data)
-        sound_len -= chunk_sound_size
-
-        # Write frames:
-        chunk_frame_data_len = 0
-        for i in range(chunk_frame_count):
-          with open(frame_paths[frame_path_index], 'rb') as frame_file:
-            frame_data = frame_file.read()
-            f.write(frame_data)
-            chunk_frame_data_len += len(frame_data)
-          frame_count -= 1
-          frame_path_index += 1
-
-        # Figure out the post-padding.
-        end_of_frames = f.tell()
-        post_padding_remainder = end_of_frames % 256
-        post_padding_bytes = 256 - post_padding_remainder if post_padding_remainder else 0
-
-        # Seek back to fill in the post-padding field.
-        patch_at_offset(f, post_padding_bytes_offset, post_padding_bytes, 2)
-
-        # Add post-padding.
-        f.write(bytes(post_padding_bytes))
-
-        # If this is the first chunk, record the size.
-        end_of_chunk = f.tell()
-        if chunk_size == 0:
-          chunk_size = end_of_chunk - start_of_chunk
-
-        # Count chunks.
-        num_chunks += 1
+          compressed = compress(compression, uncompressed)
+          f.write(compressed)
+        else:
+          write_chunk(f, state)
 
       # Seek back to the header to fill in these two fields.
-      patch_at_offset(f, chunk_size_offset, chunk_size, 4)
-      patch_at_offset(f, chunk_size_offset + 4, num_chunks, 4)
+      patch_at_offset(f, chunk_size_offset, state.chunk_size, 4)
+      patch_at_offset(f, chunk_size_offset + 4, state.num_chunks, 4)
 
-      # Seek back to the final chunk header to fill in this field.
-      final_chunk = 1
-      patch_at_offset(f, final_chunk_offset, final_chunk, 2)
+      if args.compressed:
+        # Seek back to fill in the index.
+        index[state.num_chunks] = f.tell()
+        patch_at_offset(f, video_index_offset, index, 4)
 
   print('Output complete.')
 
@@ -798,6 +867,9 @@ if __name__ == '__main__':
   parser.add_argument('-g', '--generate-resource-file',
       action='store_true',
       help='Generate SGDK resource file for hard-coding a video into a ROM.')
+  parser.add_argument('-z', '--compressed',
+      action='store_true',
+      help='Compress chunks.  Incompatible with embedded playback (-g).')
   parser.add_argument('-t', '--title',
       help='Title to store in metadata.  Defaults to input filename.')
   parser.add_argument('-f', '--fps',

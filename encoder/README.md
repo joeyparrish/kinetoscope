@@ -43,7 +43,7 @@ For a complete example of embedded video in a ROM, see
 
 To prepare video for a streaming server ([`server/`](../server/) folder), omit
 the `--generate-resource-file` flag, as well as the start and end (`-s` and
-`-e`) flags.
+`-e`) flags, and add the `--compressed` flag.
 
 
 ## Other Settings

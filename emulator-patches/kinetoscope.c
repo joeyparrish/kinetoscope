@@ -71,16 +71,6 @@
 #define VIDEO_BASE_URL "http://" VIDEO_SERVER ":" STRINGIFY(VIDEO_SERVER_PORT) VIDEO_BASE_PATH
 #define VIDEO_CATALOG_URL VIDEO_BASE_URL "catalog.bin"
 
-static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size);
-
-// Macros to complete sram_march_test in sram-common.h
-#define SRAM_MARCH_TEST_START(bank) uint32_t bank_offset = bank ? SRAM_BANK_SIZE_BYTES : 0;
-#define SRAM_MARCH_TEST_DATA(offset, data) write_sram(offset + bank_offset, &data, 1)
-#define SRAM_MARCH_TEST_END() {}
-
-// Defines sram_march_test()
-#include "../common/sram-common.h"
-
 static uint8_t* global_sram_buffer = NULL;
 static uint32_t global_sram_size = 0;
 static uint16_t global_command = 0;
@@ -93,13 +83,29 @@ static char* global_video_url = NULL;
 static uint32_t global_chunk_size = 0;
 static uint32_t global_chunk_num = 0;
 static uint32_t global_chunks_left = 0;
+
 static pthread_t global_fetch_thread;
 static volatile bool global_fetch_busy = false;
+
+static bool global_compressed = false;
+static SegaVideoIndex global_index;
 
 // Where we read from next:
 static uint32_t global_video_url_start_byte;
 // Where we write to next:
 static uint32_t global_sram_offset;
+
+
+static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size);
+
+// Macros to complete sram_march_test in sram-common.h
+#define SRAM_MARCH_TEST_START(bank) uint32_t bank_offset = bank ? SRAM_BANK_SIZE_BYTES : 0;
+#define SRAM_MARCH_TEST_DATA(offset, data) write_sram(offset + bank_offset, &data, 1)
+#define SRAM_MARCH_TEST_END() {}
+
+// Defines sram_march_test()
+#include "../common/sram-common.h"
+
 
 // Current time in milliseconds.
 static uint64_t ms_now() {
@@ -161,8 +167,12 @@ static void write_error_to_sram() {
 
 // Writes HTTP data to SRAM.
 static size_t http_data_to_sram(char* data, size_t size, size_t n, void* ctx) {
-  write_sram(global_sram_offset, (const uint8_t*)data, size * n);
-  global_sram_offset += size * n;
+  if (global_compressed) {
+    return -1;  // FIXME
+  } else {
+    write_sram(global_sram_offset, (const uint8_t*)data, size * n);
+    global_sram_offset += size * n;
+  }
   return size * n;
 }
 
@@ -256,8 +266,9 @@ static void* fetch_thread(void* ignored_arg) {
     }
 
     size_t size = global_chunk_size;
-    if (global_chunk_num == 0) {
-      size += sizeof(SegaVideoHeader);
+    if (global_compressed) {
+      size = global_index.chunk_offset[global_chunk_num + 1] -
+             global_video_url_start_byte;
     }
 
     if (!fetch_range_to_sram(global_video_url, global_video_url_start_byte,
@@ -336,15 +347,39 @@ static void start_video() {
   global_video_url[base_len + path_len] = '\0';
 
   if (!fetch_to_buffer(global_video_url, &header, sizeof(header))) {
-    report_error("Failed to fetch video! (header)");
+    report_error("Failed to fetch header!");
     return;
+  }
+
+  global_compressed = header.compression != 0;
+  header.compression = 0;
+
+  if (global_compressed) {
+    if (!fetch_range_to_buffer(global_video_url, &global_index,
+                               /* offset= */ sizeof(header),
+                               /* size= */ sizeof(global_index))) {
+      report_error("Failed to fetch index!");
+      return;
+    }
+
+    // Pre-byteswap the index.
+    for (int i = 0; i < sizeof(global_index) / 4; ++i) {
+      global_index.chunk_offset[i] = ntohl(global_index.chunk_offset[i]);
+    }
   }
 
   global_chunk_size = ntohl(header.chunkSize);
   global_chunks_left = ntohl(header.totalChunks);
   global_chunk_num = 0;
+
+  // Transfer the header.
   global_sram_offset = 0;
-  global_video_url_start_byte = 0;
+  write_sram(0, (const uint8_t*)&header, sizeof(header));
+  global_sram_offset += sizeof(header);
+  global_video_url_start_byte = sizeof(header);
+  if (global_compressed) {
+    global_video_url_start_byte = global_index.chunk_offset[0];
+  }
 
   // Fill the first region.
   fetch_chunk();

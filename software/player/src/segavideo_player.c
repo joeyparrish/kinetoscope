@@ -28,7 +28,6 @@ typedef struct ChunkInfo {
   const uint8_t* frameStart;
   uint32_t numFrames;
   const uint8_t* end;
-  bool final;
 } ChunkInfo;
 
 // State
@@ -161,14 +160,13 @@ static void parseChunk(const uint8_t* chunkStart,
   chunkInfo->end =
       chunkInfo->frameStart + sizeof(SegaVideoFrame) * chunkInfo->numFrames +
       chunkHeader->postPaddingBytes;
-  chunkInfo->final = chunkHeader->finalChunk != 0;
 }
 
 static void prepNextChunk(const ChunkInfo* currentChunk,
                           ChunkInfo* nextChunk,
                           uint32_t regionMask,
                           uint32_t regionSize) {
-  if (currentChunk->final) {
+  if (currentChunkNum == totalChunks - 1) {
     kprintf("No more chunks!\n");
     memset(nextChunk, 0, sizeof(*nextChunk));
   } else {
@@ -484,7 +482,12 @@ bool segavideo_playInternal(const uint8_t* videoData, bool pleaseLoop,
   if (!segavideo_validateHeader(videoData)) {
     return false;
   }
+
   const SegaVideoHeader* header = (const SegaVideoHeader*)videoData;
+  if (header->compression) {
+    kprintf("Compressed chunks not supported!\n");
+    return false;
+  }
 
   // State
   paused = false;

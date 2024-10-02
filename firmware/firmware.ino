@@ -70,12 +70,15 @@ static char fetch_path[MAX_PATH];
 static http_data_callback fetch_callback = NULL;
 static uint8_t* fetch_buffer = NULL;
 static int fetch_buffer_size = 0;
+static SegaVideoIndex video_index;
 
 static bool network_connected = false;
 static int chunk_size = 0;
 static int total_chunks = 0;
+static bool is_compressed = false;
 static int next_chunk_num = 0;
 static int next_offset = 0;
+static int next_size = 0;
 
 static void init_all_hardware() {
   registers_init();
@@ -124,7 +127,8 @@ static void connect_network() {
   network_connected = client != NULL;
 }
 
-static bool http_sram_callback(const uint8_t* buffer, int bytes) {
+// Also called by speed tests
+bool http_sram_callback(const uint8_t* buffer, int bytes) {
   // Check for interrupt.
   if (second_core_interrupt) {
     return false;
@@ -173,7 +177,8 @@ static bool fetch_into_buffer(void* buffer, const char* path,
 }
 
 static bool fetch_into_sram(const char* path, int start_byte = 0,
-                            int size = MAX_FETCH_SIZE) {
+                            int size = MAX_FETCH_SIZE,
+                            bool decompress = false) {
   fetch_callback = http_sram_callback;
   return fetch_generic(path, start_byte, size);
 }
@@ -214,7 +219,7 @@ static void process_command(uint8_t command, uint8_t arg) {
       // Get the appropriate header from the catalog.
       SegaVideoHeader header;
       if (!fetch_into_buffer(&header, VIDEO_CATALOG_PATH, arg * sizeof(header),
-                            sizeof(header)) ||
+                             sizeof(header)) ||
           !await_fetch()) {
         break;
       }
@@ -226,24 +231,60 @@ static void process_command(uint8_t command, uint8_t arg) {
       // Start streaming.
       chunk_size = ntohl(header.chunkSize);
       total_chunks = ntohl(header.totalChunks);
+      is_compressed = header.compression != 0;
+
+      // Since we decompress it in firmware, the Sega sees it as uncompressed.
+      header.compression = 0;
+
+      if (is_compressed) {
+        // Fetch the index into memory, only if compressed.
+        if (!fetch_into_buffer(&video_index, fetch_path, sizeof(header),
+                               sizeof(video_index)) ||
+            !await_fetch()) {
+          break;
+        }
+
+        // Pre-byteswap the whole index.
+        for (int i = 0; i < sizeof(video_index) / 4; ++i) {
+          video_index.chunk_offset[i] = ntohl(video_index.chunk_offset[i]);
+        }
+      }
 
       // Fill both SRAM banks before returning.
       sram_start_bank(0);
-      if (!fetch_into_sram(fetch_path, 0, sizeof(header) + chunk_size) ||
+      sram_write((const uint8_t*)&header, sizeof(header));
+      // NOTE: Always omit the video index in SRAM!
+      next_chunk_num = 0;
+
+      if (is_compressed) {
+        next_offset = video_index.chunk_offset[next_chunk_num];
+        next_size = video_index.chunk_offset[next_chunk_num + 1] - next_offset;
+      } else {
+        next_offset = sizeof(header) + sizeof(video_index);
+        next_size = chunk_size;
+      }
+      if (!fetch_into_sram(fetch_path, next_offset, next_size, is_compressed) ||
           !await_fetch()) {
         break;
       }
-      next_chunk_num = 1;
-      next_offset = sizeof(header) + chunk_size;
+      next_chunk_num++;
+      next_offset += next_size;
 
       if (total_chunks != 1) {
         sram_start_bank(1);
-        if (!fetch_into_sram(fetch_path, next_offset, chunk_size) ||
+        if (is_compressed) {
+          next_size =
+              video_index.chunk_offset[next_chunk_num + 1] - next_offset;
+        } else {
+          next_size = chunk_size;
+        }
+        if (!fetch_into_sram(fetch_path, next_offset, next_size,
+                             is_compressed) ||
             !await_fetch()) {
           break;
         }
         next_chunk_num++;
-        next_offset += chunk_size;
+        next_offset += next_size;
       }
       break;
 
@@ -271,9 +312,14 @@ static void process_command(uint8_t command, uint8_t arg) {
 
       // Start filling the next SRAM bank.  Don't wait for completion.
       sram_start_bank(next_chunk_num & 1);
-      fetch_into_sram(fetch_path, next_offset, chunk_size);
+      if (is_compressed) {
+        next_size = video_index.chunk_offset[next_chunk_num + 1] - next_offset;
+      } else {
+        next_size = chunk_size;
+      }
+      fetch_into_sram(fetch_path, next_offset, next_size, is_compressed);
       next_chunk_num++;
-      next_offset += chunk_size;
+      next_offset += next_size;
       break;
 
     case KINETOSCOPE_CMD_GET_ERROR:
