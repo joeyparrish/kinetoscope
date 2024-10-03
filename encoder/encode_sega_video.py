@@ -22,6 +22,8 @@ import subprocess
 import sys
 import tempfile
 
+from rle_encoder import rle_compress
+
 
 # A "magic" string in the file header to identify it.
 FILE_MAGIC = b"what nintendon't"
@@ -44,6 +46,7 @@ EOF_OFFSET = 0xffffffff
 
 # Compression constants.
 COMPRESSION_NONE = 0
+COMPRESSION_RLE = 1
 
 def main(args):
   if args.generate_resource_file and args.compressed:
@@ -675,6 +678,9 @@ def compress(compression, uncompressed):
   if compression == COMPRESSION_NONE:
     return uncompressed
 
+  if compression == COMPRESSION_RLE:
+    return rle_compress(uncompressed)
+
   raise RuntimeError('Unrecognized compression constant')
 
 
@@ -737,7 +743,7 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
 
       f.write(bytes(128)) # relative URL, filled in for catalog later
 
-      compression = COMPRESSION_NONE
+      compression = COMPRESSION_RLE if args.compressed else COMPRESSION_NONE
       f.write(compression.to_bytes(2, 'big'))
 
       f.write(bytes(696)) # Padding/unused
