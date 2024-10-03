@@ -106,6 +106,15 @@ static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size);
 // Defines sram_march_test()
 #include "../common/sram-common.h"
 
+// Macros for rle-common.h
+#define SRAM_WRITE(buffer, size) { \
+  write_sram(global_sram_offset, buffer, size); \
+  global_sram_offset += size; \
+}
+
+// Defines rle_to_sram()
+#include "../common/rle-common.h"
+
 
 // Current time in milliseconds.
 static uint64_t ms_now() {
@@ -168,7 +177,7 @@ static void write_error_to_sram() {
 // Writes HTTP data to SRAM.
 static size_t http_data_to_sram(char* data, size_t size, size_t n, void* ctx) {
   if (global_compressed) {
-    return -1;  // FIXME
+    rle_to_sram(data, size * n);
   } else {
     write_sram(global_sram_offset, (const uint8_t*)data, size * n);
     global_sram_offset += size * n;

@@ -17,6 +17,7 @@
 
 #define SERVER "storage.googleapis.com"
 #define RAW_VIDEO_PATH   "/sega-kinetoscope/canned-videos/Never%20Gonna%20Give%20You%20Up.segavideo"
+#define RLE_VIDEO_PATH   "/sega-kinetoscope/canned-videos/Never%20Gonna%20Give%20You%20Up.segavideo.rle"
 
 // 3s chunk of audio+video data, at default settings, without main headers
 #define ABOUT_3S_VIDEO_AUDIO_BYTES 901376
@@ -91,6 +92,9 @@ static bool http_local_buffer_callback(const uint8_t* buffer, int bytes) {
 
 // Linked from firmware.ino:
 extern bool http_sram_callback(const uint8_t* buffer, int bytes);
+extern bool http_rle_sram_callback(const uint8_t* buffer, int bytes);
+extern void http_rle_reset();
+extern bool network_connected;
 
 static long test_raw_download_speed() {
   // 2.5Mbps minimum required
@@ -104,6 +108,24 @@ static long test_raw_download_speed() {
                   /* first byte */ 0,
                   /* total_size= */ ABOUT_3S_VIDEO_AUDIO_BYTES,
                   http_sram_callback)) {
+    Serial.println("Fetch failed!");
+  }
+  sram_flush_and_release_bank();
+  long end = millis();
+  return end - start;
+}
+
+static long test_rle_download_speed(int offset, int size) {
+  // (Effective) 2.5Mbps minimum required
+  // (Effective) ~5.1 Mbps (after decompression)
+  http_rle_reset();
+  long start = millis();
+  sram_start_bank(0);
+  if (!http_fetch(SERVER, /* default port */ 0,
+                  RLE_VIDEO_PATH,
+                  offset,
+                  size,
+                  http_rle_sram_callback)) {
     Serial.println("Fetch failed!");
   }
   sram_flush_and_release_bank();
@@ -136,8 +158,8 @@ void run_tests() {
   Serial.print(BUFFER_SIZE);
   Serial.println(" bytes to SRAM");
 
-  if (is_error_flagged()) {
-    Serial.println("Error flagged, skipping network tests.");
+  if (!network_connected) {
+    Serial.println("No network, skipping network tests.");
   } else {
     Serial.println("Beginning raw network tests.");
 
@@ -149,6 +171,39 @@ void run_tests() {
       Serial.print(ms);
       Serial.print(" ms to stream ~3s raw video to SRAM (");
       Serial.print(mbps);
+      Serial.println(" Mbps vs 2.50 Mbps minimum)");
+    }
+
+    Serial.println("Beginning RLE network tests.");
+    uint32_t minimal_index[2];
+    http_local_buffer = (uint8_t*)minimal_index;
+    if (!http_fetch(SERVER, /* default port */ 0,
+                    RLE_VIDEO_PATH,
+                    sizeof(SegaVideoHeader),
+                    sizeof(minimal_index),
+                    http_local_buffer_callback)) {
+      Serial.println("Index fetch failed!");
+      return;
+    }
+
+    int offset = sizeof(SegaVideoHeader) + sizeof(SegaVideoIndex);
+    int compressed_chunk_size =
+        ntohl(minimal_index[1]) - ntohl(minimal_index[0]);
+    Serial.print("Detected compressed chunk size: ");
+    Serial.println(compressed_chunk_size);
+
+    for (int i = 0; i < 10; i++) {
+      ms = test_rle_download_speed(offset, compressed_chunk_size);
+      float compressed_bits = compressed_chunk_size * 8.0;
+      float final_bits = ABOUT_3S_VIDEO_AUDIO_BYTES * 8.0;
+      float seconds = ms / 1000.0;
+      float mbps = compressed_bits / seconds / 1024.0 / 1024.0;
+      float effective_mbps = final_bits / seconds / 1024.0 / 1024.0;
+      Serial.print(ms);
+      Serial.print(" ms to stream ~3s RLE video to SRAM (");
+      Serial.print(mbps);
+      Serial.print(" Mbps, effectively ");
+      Serial.print(effective_mbps);
       Serial.println(" Mbps vs 2.50 Mbps minimum)");
     }
   }

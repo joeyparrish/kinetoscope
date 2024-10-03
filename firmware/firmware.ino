@@ -45,6 +45,10 @@
 
 #define NETWORK_TIMEOUT_SECONDS 30
 
+// Macro required by rle-common.h:
+#define SRAM_WRITE(buffer, size) sram_write(buffer, size)
+#include "rle-common.h"
+
 // Allocate a second 8kB stack for the second core.
 // https://github.com/earlephilhower/arduino-pico/blob/master/docs/multicore.rst
 bool core1_separate_stack = true;
@@ -72,7 +76,9 @@ static uint8_t* fetch_buffer = NULL;
 static int fetch_buffer_size = 0;
 static SegaVideoIndex video_index;
 
-static bool network_connected = false;
+// Also read by speed tests
+bool network_connected = false;
+
 static int chunk_size = 0;
 static int total_chunks = 0;
 static bool is_compressed = false;
@@ -138,6 +144,22 @@ bool http_sram_callback(const uint8_t* buffer, int bytes) {
   return true;
 }
 
+// Also called by speed tests
+bool http_rle_sram_callback(const uint8_t* buffer, int bytes) {
+  // Check for interrupt.
+  if (second_core_interrupt) {
+    return false;
+  }
+
+  rle_to_sram(buffer, bytes);
+  return true;
+}
+
+// Also called by speed tests
+void http_rle_reset() {
+  rle_reset();
+}
+
 static bool http_buffer_callback(const uint8_t* buffer, int bytes) {
   // Check for interrupt.
   if (second_core_interrupt) {
@@ -179,7 +201,7 @@ static bool fetch_into_buffer(void* buffer, const char* path,
 static bool fetch_into_sram(const char* path, int start_byte = 0,
                             int size = MAX_FETCH_SIZE,
                             bool decompress = false) {
-  fetch_callback = http_sram_callback;
+  fetch_callback = decompress ? http_rle_sram_callback : http_sram_callback;
   return fetch_generic(path, start_byte, size);
 }
 
