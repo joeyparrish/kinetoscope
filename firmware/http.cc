@@ -122,7 +122,7 @@ static inline void write_request(const char* server, uint16_t port,
 
 static inline bool read_response_headers(HeaderData* header_data) {
   int num_read = -1;
-  while (num_read <= 0 && client->connected()) {
+  while (num_read <= MIN_RESPONSE_LENGTH && client->connected()) {
     num_read = client->read((uint8_t*)response_buffer, sizeof(response_buffer));
   }
 
