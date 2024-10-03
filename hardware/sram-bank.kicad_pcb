@@ -1127,7 +1127,7 @@
 				)
 			)
 		)
-		(property "Mouser Part Number" "200-SSW12602TD"
+		(property "Mouser Part Number" "200-SSQ12603TD"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1140,7 +1140,7 @@
 				)
 			)
 		)
-		(property "Part Number" "SSW-126-02-T-D"
+		(property "Part Number" "SSQ-126-03-T-D"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -17639,7 +17639,7 @@
 				)
 			)
 		)
-		(property "Mouser Part Number" "200-SSW12102TD"
+		(property "Mouser Part Number" "200-SSQ12103TD"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -17652,7 +17652,7 @@
 				)
 			)
 		)
-		(property "Part Number" "SSW-121-02-T-D"
+		(property "Part Number" "SSQ-121-03-T-D"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")

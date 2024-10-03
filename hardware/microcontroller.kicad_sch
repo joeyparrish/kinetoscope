@@ -8315,7 +8315,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "200-SSW10301TD"
+		(property "Mouser Part Number" "200-SSQ10301TD"
 			(at 232.41 158.75 0)
 			(effects
 				(font
@@ -8324,7 +8324,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SSW-103-01-T-D"
+		(property "Part Number" "SSQ-103-01-T-D"
 			(at 232.41 158.75 0)
 			(effects
 				(font

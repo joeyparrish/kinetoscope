@@ -6018,7 +6018,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "200-SSW12102TD"
+		(property "Mouser Part Number" "200-SSQ12103TD"
 			(at 204.47 41.91 0)
 			(effects
 				(font
@@ -6027,7 +6027,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SSW-121-02-T-D"
+		(property "Part Number" "SSQ-121-03-T-D"
 			(at 204.47 41.91 0)
 			(effects
 				(font
@@ -6457,7 +6457,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "200-SSW12602TD"
+		(property "Mouser Part Number" "200-SSQ12603TD"
 			(at 62.23 34.29 0)
 			(effects
 				(font
@@ -6466,7 +6466,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SSW-126-02-T-D"
+		(property "Part Number" "SSQ-126-03-T-D"
 			(at 62.23 34.29 0)
 			(effects
 				(font
