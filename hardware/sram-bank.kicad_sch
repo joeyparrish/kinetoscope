@@ -1242,6 +1242,12 @@
 		)
 	)
 	(junction
+		(at 59.69 99.06)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0b496834-b5bd-4259-9a9a-45f4564d0c7d")
+	)
+	(junction
 		(at 59.69 132.08)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1278,12 +1284,12 @@
 		(uuid "ccd91438-5007-4f05-8185-e422a345497f")
 	)
 	(no_connect
-		(at 261.62 82.55)
-		(uuid "144fbaf4-5470-42f1-abcb-12b9cf9af4b4")
+		(at 261.62 87.63)
+		(uuid "13e2399f-2a66-48f3-9320-53d53294ad27")
 	)
 	(no_connect
-		(at 261.62 72.39)
-		(uuid "189aa5e6-07c6-4f48-9689-34bbc87b1150")
+		(at 261.62 82.55)
+		(uuid "144fbaf4-5470-42f1-abcb-12b9cf9af4b4")
 	)
 	(no_connect
 		(at 227.33 161.29)
@@ -1298,8 +1304,8 @@
 		(uuid "2d7a9abf-5aa3-455e-8fca-e6eaa1ac8c04")
 	)
 	(no_connect
-		(at 262.89 29.21)
-		(uuid "5070802c-9691-4dea-8b83-49011989cb19")
+		(at 262.89 44.45)
+		(uuid "444b6847-278e-4156-9b7d-b8d3e358c192")
 	)
 	(no_connect
 		(at 212.09 161.29)
@@ -1322,8 +1328,8 @@
 		(uuid "6da0f7ab-46bb-4039-9221-065c5e18bee2")
 	)
 	(no_connect
-		(at 262.89 31.75)
-		(uuid "814fbaf7-7388-4fa0-a40e-29fd9d1083c1")
+		(at 262.89 46.99)
+		(uuid "89649f1d-623c-4e91-bcd9-c1dc12ff2156")
 	)
 	(no_connect
 		(at 229.87 161.29)
@@ -1336,6 +1342,10 @@
 	(no_connect
 		(at 209.55 161.29)
 		(uuid "94f8fe37-bc14-4996-8928-9e80aa038f0c")
+	)
+	(no_connect
+		(at 261.62 90.17)
+		(uuid "9af27596-81b7-4d2c-be2b-26c925c0eff1")
 	)
 	(no_connect
 		(at 232.41 161.29)
@@ -1360,10 +1370,6 @@
 	(no_connect
 		(at 261.62 77.47)
 		(uuid "cb79ebbc-ac7e-4e85-abcf-1480dee0e9cb")
-	)
-	(no_connect
-		(at 261.62 74.93)
-		(uuid "cd196c12-cc6b-4b9a-865d-77cf8361639c")
 	)
 	(no_connect
 		(at 207.01 161.29)
@@ -1395,16 +1401,6 @@
 	)
 	(wire
 		(pts
-			(xy 266.7 46.99) (xy 262.89 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "04900e5a-8301-4367-a0c6-387173340a79")
-	)
-	(wire
-		(pts
 			(xy 93.98 104.14) (xy 80.01 104.14)
 		)
 		(stroke
@@ -1432,16 +1428,6 @@
 			(type default)
 		)
 		(uuid "07947d6a-294a-4238-8a93-9d1235f674e4")
-	)
-	(wire
-		(pts
-			(xy 80.01 109.22) (xy 93.98 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "07ca954d-6e45-4b45-9e7c-e01085ec6ad9")
 	)
 	(wire
 		(pts
@@ -1575,6 +1561,16 @@
 	)
 	(wire
 		(pts
+			(xy 261.62 72.39) (xy 266.7 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a3915f6-451e-4195-8df6-337301c97faf")
+	)
+	(wire
+		(pts
 			(xy 119.38 19.05) (xy 119.38 22.86)
 		)
 		(stroke
@@ -1645,7 +1641,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 72.39) (xy 102.87 72.39)
+			(xy 99.06 72.39) (xy 102.87 72.39)
 		)
 		(stroke
 			(width 0)
@@ -1655,7 +1651,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 96.52) (xy 59.69 101.6)
+			(xy 59.69 96.52) (xy 59.69 99.06)
 		)
 		(stroke
 			(width 0)
@@ -1682,6 +1678,16 @@
 			(type default)
 		)
 		(uuid "3ac09302-1923-4d09-b655-55c99f2cf3c1")
+	)
+	(wire
+		(pts
+			(xy 59.69 99.06) (xy 59.69 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3c3d45a6-d085-4786-9ed7-1a9ed94fb5cb")
 	)
 	(wire
 		(pts
@@ -1715,6 +1721,16 @@
 	)
 	(wire
 		(pts
+			(xy 262.89 31.75) (xy 266.7 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "418467e5-38e1-464a-af6a-203334c87396")
+	)
+	(wire
+		(pts
 			(xy 80.01 111.76) (xy 93.98 111.76)
 		)
 		(stroke
@@ -1722,6 +1738,16 @@
 			(type default)
 		)
 		(uuid "41f711b6-b0d8-46f9-8013-0a1df1a806d2")
+	)
+	(wire
+		(pts
+			(xy 64.77 101.6) (xy 64.77 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "460d23f4-e57e-4d39-9855-de47412719e8")
 	)
 	(bus
 		(pts
@@ -1733,15 +1759,15 @@
 		)
 		(uuid "46a83dda-1d19-46fd-8247-1152654dccce")
 	)
-	(wire
+	(polyline
 		(pts
-			(xy 266.7 44.45) (xy 262.89 44.45)
+			(xy 120.65 128.27) (xy 123.19 128.27)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "50266ea8-5652-4911-beab-f1f63cec0fe8")
+		(uuid "4bd2ff9a-1146-4866-ab9c-14b40427d9f7")
 	)
 	(wire
 		(pts
@@ -1915,16 +1941,6 @@
 	)
 	(wire
 		(pts
-			(xy 261.62 87.63) (xy 265.43 87.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7d30652e-9f92-486a-881f-ca2183ac6f23")
-	)
-	(wire
-		(pts
 			(xy 33.02 69.85) (xy 54.61 69.85)
 		)
 		(stroke
@@ -1942,6 +1958,36 @@
 			(type default)
 		)
 		(uuid "890b25bd-0200-4772-9c59-202effcde9e0")
+	)
+	(wire
+		(pts
+			(xy 64.77 99.06) (xy 59.69 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b850335-2610-4092-aed4-f0f197be8e48")
+	)
+	(polyline
+		(pts
+			(xy 71.12 67.31) (xy 80.01 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "920f36e8-1fa2-4d3c-9563-b77a364585e0")
+	)
+	(polyline
+		(pts
+			(xy 64.77 146.05) (xy 71.12 146.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "942f7e38-2e5c-4c27-9b0c-c7b4c5eb55f4")
 	)
 	(wire
 		(pts
@@ -1963,6 +2009,16 @@
 		)
 		(uuid "9e802979-d472-4e59-936e-c3fe426ba5c1")
 	)
+	(polyline
+		(pts
+			(xy 123.19 128.27) (xy 123.19 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f01ca34-93ba-43a6-91f8-1c33b31d8442")
+	)
 	(wire
 		(pts
 			(xy 148.59 139.7) (xy 153.67 139.7)
@@ -1972,16 +2028,6 @@
 			(type default)
 		)
 		(uuid "a4b0542d-aea1-49cf-908f-5e6414c60c81")
-	)
-	(wire
-		(pts
-			(xy 64.77 96.52) (xy 64.77 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a61343f9-f7ff-41c0-af95-fbb5f924f591")
 	)
 	(wire
 		(pts
@@ -2012,6 +2058,26 @@
 			(type default)
 		)
 		(uuid "afc9d7ee-ee90-4ca2-b53f-6011683bb78c")
+	)
+	(polyline
+		(pts
+			(xy 123.19 130.81) (xy 128.27 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b17efb63-d800-4fbc-a84e-345559159b43")
+	)
+	(wire
+		(pts
+			(xy 234.95 31.75) (xy 242.57 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc5cec34-3558-4b70-8484-88836cc75649")
 	)
 	(wire
 		(pts
@@ -2075,6 +2141,16 @@
 	)
 	(wire
 		(pts
+			(xy 80.01 109.22) (xy 93.98 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce306e34-20d8-4767-b4b3-8d379f341cfd")
+	)
+	(wire
+		(pts
 			(xy 195.58 129.54) (xy 199.39 129.54)
 		)
 		(stroke
@@ -2092,6 +2168,16 @@
 			(type default)
 		)
 		(uuid "d1f86ad7-2e54-4905-90b3-df8e82532343")
+	)
+	(wire
+		(pts
+			(xy 261.62 74.93) (xy 266.7 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d2842d69-3efd-4859-b3e4-8173cb683570")
 	)
 	(wire
 		(pts
@@ -2123,6 +2209,16 @@
 		)
 		(uuid "d6d684a0-772c-4efa-9e92-865d0998325f")
 	)
+	(wire
+		(pts
+			(xy 262.89 29.21) (xy 266.7 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d945a9f7-73e7-4c95-b69e-259e8c7df5cb")
+	)
 	(bus
 		(pts
 			(xy 81.28 64.77) (xy 91.44 64.77)
@@ -2153,15 +2249,15 @@
 		)
 		(uuid "e44acf7c-1f12-4a0b-9b19-7deca9b4df81")
 	)
-	(wire
+	(polyline
 		(pts
-			(xy 261.62 90.17) (xy 265.43 90.17)
+			(xy 64.77 110.49) (xy 71.12 110.49)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ea21edf2-0ac5-4407-a103-8dcefc51682b")
+		(uuid "e4e037b6-aacb-4394-b804-0a0c1b978155")
 	)
 	(wire
 		(pts
@@ -2257,6 +2353,19 @@
 		(uuid 0ef47509-5879-4ea3-9950-6c9575bcaa79)
 	)
 	(arc
+		(start 80.01 67.31)
+		(mid 79.112 66.938)
+		(end 78.74 66.04)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 1f817f1f-a621-4c38-9f09-0252da0b444b)
+	)
+	(arc
 		(start 120.65 74.93)
 		(mid 121.022 74.032)
 		(end 121.92 73.66)
@@ -2268,6 +2377,45 @@
 			(type none)
 		)
 		(uuid 266c5a12-c5d3-430d-a29e-0282434d397d)
+	)
+	(arc
+		(start 71.12 67.31)
+		(mid 72.018 67.682)
+		(end 72.39 68.58)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 32782081-04eb-4781-a97b-618de1910678)
+	)
+	(arc
+		(start 64.77 146.05)
+		(mid 65.668 146.422)
+		(end 66.04 147.32)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 40372731-4674-4407-a5fb-cf8979bdad97)
+	)
+	(arc
+		(start 72.39 66.04)
+		(mid 72.018 66.938)
+		(end 71.12 67.31)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 427889ee-460e-4bf6-9d79-398f37618dec)
 	)
 	(arc
 		(start 121.92 73.66)
@@ -2295,7 +2443,85 @@
 		)
 		(uuid 51042487-f13a-474b-b682-7d237d36bd49)
 	)
-	(text "3V/5V signal\n5V tolerated"
+	(arc
+		(start 64.77 110.49)
+		(mid 65.668 110.862)
+		(end 66.04 111.76)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 6e53c8a9-8264-489a-b7bc-b069baa31d97)
+	)
+	(arc
+		(start 78.74 68.58)
+		(mid 79.112 67.682)
+		(end 80.01 67.31)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 8e7240d2-590a-46fd-9491-47e7be389bef)
+	)
+	(arc
+		(start 66.04 144.78)
+		(mid 65.668 145.678)
+		(end 64.77 146.05)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 9548a896-231c-4c22-8606-2717a985e9a2)
+	)
+	(arc
+		(start 66.04 109.22)
+		(mid 65.668 110.118)
+		(end 64.77 110.49)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid a4cc776a-d6de-4696-8374-c34f37daf284)
+	)
+	(arc
+		(start 127 132.08)
+		(mid 127.372 131.182)
+		(end 128.27 130.81)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid cf03f767-8787-43af-b2fe-10d2032c5633)
+	)
+	(arc
+		(start 128.27 130.81)
+		(mid 127.372 130.438)
+		(end 127 129.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid d3463316-9392-4ecc-ab4c-00dbf9d0e8d2)
+	)
+	(text "3V signal"
 		(exclude_from_sim no)
 		(at 93.472 75.184 0)
 		(effects
@@ -2326,7 +2552,18 @@
 		)
 		(uuid "1ad68464-c13a-4f31-a463-2a50e5cea37d")
 	)
-	(text "These two jumpers need to be soldered the same way.\ne.g.:\n\nSRAM_DIS = SRAM_DIS_0 and ~{SRAM_CE} = ~{SRAM_CE_1}\n\nor\n\nSRAM_DIS = SRAM_DIS_1 and ~{SRAM_CE} = ~{SRAM_CE_2}\n\nThis determines whether the board responds as\nbank 0 (2MB - 3MB range) or bank 1 (3MB - 4MB range)."
+	(text "For now, SRAM's ~{CE} signal is always on.\nThis should be fine, since ~{OE} and ~{WE}\nsignals will still control access to its\ndata bus."
+		(exclude_from_sim no)
+		(at 81.534 129.032 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1bdea03b-a131-4502-9ca6-daebb0187b45")
+	)
+	(text "These two jumpers need to be soldered the same way.\ne.g.:\n\nSRAM_DIS = SRAM_DIS_0 and ~{SRAM_CE} = ~{SRAM_CE_0}\n\nor\n\nSRAM_DIS = SRAM_DIS_1 and ~{SRAM_CE} = ~{SRAM_CE_1}\n\nThis determines whether the board responds as\nbank 0 (2MB - 3MB range) or bank 1 (3MB - 4MB range)."
 		(exclude_from_sim no)
 		(at 17.78 183.896 0)
 		(effects
@@ -2357,9 +2594,20 @@
 		)
 		(uuid "30b69b4a-d30b-4e42-8e0a-241fd6b58e41")
 	)
+	(text "Only one of these is active at a time.\nThe address decoder outputs for the\ndisconnect signal outputs are mutually\nexclusive (~{SEGA_CONTROL} and ~{UC_CONTROL})."
+		(exclude_from_sim no)
+		(at 12.7 126.492 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3a8bd906-4660-4ed6-a141-8952eb6b291b")
+	)
 	(text "~{WE} high (off)"
 		(exclude_from_sim no)
-		(at 102.87 114.554 0)
+		(at 105.156 114.554 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2398,16 +2646,6 @@
 		)
 		(uuid "482416cd-d192-4d28-9525-552b1aea513e")
 	)
-	(text "5V signals"
-		(exclude_from_sim no)
-		(at 97.79 118.364 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "48620442-4efd-4360-b9af-57f251e54a30")
-	)
 	(text "3V signals"
 		(exclude_from_sim no)
 		(at 83.566 61.214 0)
@@ -2437,16 +2675,6 @@
 			)
 		)
 		(uuid "5fa00dc9-c176-4c0f-b63a-2ab51ee3ef3f")
-	)
-	(text "<- 3V, works anyway"
-		(exclude_from_sim no)
-		(at 117.094 110.744 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "606fcce7-29c7-48a9-a749-d05672a2a71e")
 	)
 	(text "Decoder for SRAM disconnect\nPre-reqs: none\n\nSEGA_CONTROL = !SRAM_DIS  (000 = Y0)\nUC_CONTROL   =  SRAM_DIS  (001 = Y1)"
 		(exclude_from_sim no)
@@ -2479,7 +2707,7 @@
 		)
 		(uuid "6d41a0a2-8ee9-4539-86c9-3e8024af894b")
 	)
-	(text "Decoder for SRAM chip-select\nPre-reqs: A21 & AS & CE (2MB-4MB address range)\n\nSRAM_CE1 = !A20  (2MB-3MB range)  (000 = Y0)\nSRAM_CE2 =  A20  (3MB-4MB range)  (001 = Y1)"
+	(text "Decoder for SRAM output-enable\nPre-reqs: A21 & AS & CE (2MB-4MB address range)\n\nSRAM_OE0 = OE & !A20  (2MB-3MB range)  (000 = Y0)\nSRAM_OE1 = OE &  A20  (3MB-4MB range)  (001 = Y1)"
 		(exclude_from_sim no)
 		(at 188.214 20.828 0)
 		(effects
@@ -2499,16 +2727,6 @@
 			)
 		)
 		(uuid "74a8aa10-bd0e-4a98-b068-028e100141a4")
-	)
-	(text "<- 3V, works anyway"
-		(exclude_from_sim no)
-		(at 123.698 102.87 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "774a4c28-cec0-4686-b220-d7748df8d9aa")
 	)
 	(text "3V signals"
 		(exclude_from_sim no)
@@ -2550,6 +2768,16 @@
 		)
 		(uuid "a29b2e9d-d176-4ae4-98a2-c812bfc8b7de")
 	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 99.06 119.38 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "b6a2597a-6e01-461c-9416-2843147fb55f")
+	)
 	(text "U2+U3"
 		(exclude_from_sim no)
 		(at 129.286 81.28 0)
@@ -2560,18 +2788,27 @@
 		)
 		(uuid "c3026e94-694a-4ca6-af55-d93d47419c2e")
 	)
-	(text "NOTE: Both of these data buffers can be active at once.\n\n~{SRAM_CE} is decoded from Sega address and control signals only.\n~{UC_CONTROL} is from the microcontroller only.\n\nIf this happens, the Sega will end up reading whatever word is\nbeing actively written by the microcontroller.  This would not be\ncatastrophic, and it could only happen if the microcontroller were\nunable to write to SRAM fast enough, and the Sega's read caught up\nto the write position."
+	(text "NOTE: Both of these data buffers can be active at once.\n\n~{SRAM_OE} is decoded from Sega address and control signals only.\n~{UC_CONTROL} is from the microcontroller only.\n\nIf this happens, the Sega will end up reading whatever word is\nbeing actively written by the microcontroller.  This would not be\ncatastrophic, and it could only happen if the microcontroller were\nunable to write to SRAM fast enough, and the Sega's read caught up\nto the write position."
 		(exclude_from_sim no)
 		(at 20.828 33.274 0)
 		(effects
 			(font
 				(size 1.27 1.27)
-				(thickness 0.254)
-				(bold yes)
+				(thickness 0.1588)
 			)
 			(justify left)
 		)
 		(uuid "c89b8e09-0167-4340-bc97-ab08c55ae2ec")
+	)
+	(text "<- 5V, tolerated"
+		(exclude_from_sim no)
+		(at 115.824 105.918 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "d0e268cc-e2b5-4512-8f1f-1dfde36d354b")
 	)
 	(text "3V signals"
 		(exclude_from_sim no)
@@ -2583,19 +2820,8 @@
 		)
 		(uuid "fc2b6293-fc2a-493d-b304-21a44f1b97b4")
 	)
-	(label "~{SRAM_CE}"
-		(at 137.16 130.81 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "0d939275-c61d-4eb9-9815-d672823529bc")
-	)
 	(label "~{UC_CONTROL}"
-		(at 265.43 87.63 0)
+		(at 266.7 74.93 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2604,6 +2830,17 @@
 			(justify left bottom)
 		)
 		(uuid "118c83a8-b963-47b9-8753-7600031cced3")
+	)
+	(label "~{SEGA_OE}"
+		(at 234.95 31.75 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "1d217a37-82b1-4569-8c6f-43846b4403af")
 	)
 	(label "~{SRAM_FINAL_OE}"
 		(at 35.56 109.22 180)
@@ -2649,7 +2886,7 @@
 		)
 		(uuid "29a5b0fa-5c92-4863-a759-28a668bfcee2")
 	)
-	(label "~{SEGA_OE_INT}"
+	(label "~{SRAM_OE_INT}"
 		(at 153.67 156.21 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2682,7 +2919,7 @@
 		)
 		(uuid "3121535a-c05c-4382-889a-da7b85988bc0")
 	)
-	(label "~{SRAM_CE2}"
+	(label "~{SRAM_OE1}"
 		(at 135.89 181.61 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2759,8 +2996,8 @@
 		)
 		(uuid "3f8395a4-97ce-4f44-a5fc-80de3b0b7e09")
 	)
-	(label "~{SRAM_CE1}"
-		(at 266.7 46.99 0)
+	(label "~{SRAM_OE0}"
+		(at 266.7 29.21 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2824,6 +3061,17 @@
 			(justify right bottom)
 		)
 		(uuid "56e89f04-2ce9-4ac2-a403-86310a8c70ae")
+	)
+	(label "~{SRAM_OE_INT}"
+		(at 93.98 109.22 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5be1f99b-90c6-416f-9aeb-70bca60f7e47")
 	)
 	(label "~{SEGA_AS}"
 		(at 195.58 124.46 180)
@@ -2890,17 +3138,6 @@
 			(justify left bottom)
 		)
 		(uuid "663504cb-5024-48c1-a4af-190d0a916966")
-	)
-	(label "~{SEGA_OE_INT}"
-		(at 93.98 109.22 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "66a11e3f-4857-4ec4-88ad-1e013e83e063")
 	)
 	(label "SRAM_D_IN[0..15]"
 		(at 151.13 25.4 0)
@@ -2990,7 +3227,7 @@
 		)
 		(uuid "8d2b7f55-34c7-4c22-96d7-8e94c98eb609")
 	)
-	(label "~{SEGA_OE}"
+	(label "~{SRAM_OE}"
 		(at 137.16 156.21 180)
 		(fields_autoplaced yes)
 		(effects
@@ -3067,8 +3304,8 @@
 		)
 		(uuid "a94b7add-88a8-4627-bd1f-7c9611343d23")
 	)
-	(label "~{SRAM_OE_INT}"
-		(at 100.33 72.39 180)
+	(label "~{SRAM_BUFFER_OE_INT}"
+		(at 99.06 72.39 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3089,7 +3326,7 @@
 		)
 		(uuid "b43f09f7-8bc2-42ab-992a-820f20c7e197")
 	)
-	(label "~{SRAM_CE}"
+	(label "~{SRAM_OE}"
 		(at 129.54 185.42 270)
 		(fields_autoplaced yes)
 		(effects
@@ -3166,8 +3403,8 @@
 		)
 		(uuid "c628b299-32af-4ba9-8597-9aabf16a7526")
 	)
-	(label "~{SRAM_CE2}"
-		(at 266.7 44.45 0)
+	(label "~{SRAM_OE1}"
+		(at 266.7 31.75 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3200,7 +3437,7 @@
 		(uuid "d4ac88ed-cef8-4880-b5d2-bea7461d7644")
 	)
 	(label "~{SEGA_CONTROL}"
-		(at 265.43 90.17 0)
+		(at 266.7 72.39 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3210,7 +3447,7 @@
 		)
 		(uuid "dae7c7d1-7324-4315-b3bc-3975dcf2f1cd")
 	)
-	(label "~{SRAM_OE_INT}"
+	(label "~{SRAM_BUFFER_OE_INT}"
 		(at 153.67 171.45 0)
 		(fields_autoplaced yes)
 		(effects
@@ -3276,7 +3513,7 @@
 		)
 		(uuid "f972ce61-6f1d-4aff-9563-e81e8254f8d1")
 	)
-	(label "~{SRAM_CE1}"
+	(label "~{SRAM_OE0}"
 		(at 123.19 181.61 180)
 		(fields_autoplaced yes)
 		(effects
@@ -3416,73 +3653,6 @@
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
 					(reference "#PWR048")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 242.57 31.75 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2ea6a478-9bf5-41b5-9ba5-689dd7fbfec2")
-		(property "Reference" "#PWR012"
-			(at 236.22 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 239.3951 31.75 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 242.57 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 242.57 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 242.57 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6d9b625a-0919-4537-951e-94f9784bb531")
-		)
-		(instances
-			(project "sram-bank"
-				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
-					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -3859,6 +4029,73 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
+		(at 93.98 114.3 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "57b37cdb-7f20-43e0-96e4-54c5a80b6281")
+		(property "Reference" "#PWR017"
+			(at 90.17 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 97.79 114.2999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 93.98 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.98 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 93.98 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "96a081ba-a4ff-4eff-bf84-87902b2abd2b")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
+					(reference "#PWR017")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
 		(at 205.74 91.44 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3985,73 +4222,6 @@
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
 					(reference "#PWR049")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 93.98 114.3 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6263cb7c-6d91-4d0d-b9f4-8a08428a3b81")
-		(property "Reference" "#PWR051"
-			(at 90.17 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 97.155 114.3 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 93.98 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 93.98 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b01c5389-e0fe-4daf-82af-7717f8d9fae4")
-		)
-		(instances
-			(project ""
-				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
-					(reference "#PWR051")
 					(unit 1)
 				)
 			)
@@ -4253,6 +4423,73 @@
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
 					(reference "J_~{OE}_1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 137.16 130.81 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9a68d587-6f0c-4646-8794-32f5da5345f4")
+		(property "Reference" "#PWR012"
+			(at 130.81 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 133.35 130.8099 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 137.16 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 137.16 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 137.16 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b8cffeca-e7f3-40c6-abaa-bd7bcd658ae2")
+		)
+		(instances
+			(project ""
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -5000,72 +5237,6 @@
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
 					(reference "#PWR045")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 64.77 96.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "de20148b-a5a6-46da-a8a5-5aabff4235b3")
-		(property "Reference" "#PWR017"
-			(at 64.77 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 64.77 92.3869 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 64.77 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 64.77 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 64.77 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "008d31a8-537e-49b2-995b-a38c520a26d2")
-		)
-		(instances
-			(project ""
-				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
-					(reference "#PWR017")
 					(unit 1)
 				)
 			)

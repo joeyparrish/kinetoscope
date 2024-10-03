@@ -77,8 +77,8 @@ The stacking boards are:
    - There are actually two of these in the stack, one for each 1MB SRAM bank.
    - These host the SRAM itself, and the buffers that allow it to be
      alternately controlled by the Sega or the microcontroller.  This is the
-     most complex.  A solder jumper on the board selects whether it responds as
-     bank 0 or bank 1.
+     most complex.  Two solder jumpers on the board select whether it responds
+     as bank 0 or bank 1.
    - When ordering this through JLCPCB:
      - The following parts could easily be populated by hand if you wish:
        - J1 & J2 (stacking headers, 2x26 and 2x21 pins respectively)
