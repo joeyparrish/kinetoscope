@@ -83,17 +83,17 @@ def rle_compress(block):
   i = 0
   while i < len(block):
     count = _count_repeats(block, i)
-    this_byte = block[i:i+1]  # Still bytes type, not int as block[i] would be
+    these_bytes = block[i:i+count]
     i += count
 
     if count < MIN_REPEAT_FOR_COMPRESSION:
       # Buffer literals for later
-      literals += this_byte
+      literals += these_bytes
     else:
       # Flush buffered literals first
       flush_buffered_literals()
       # Compress repeated sequence
-      compress_repeats(this_byte, count)
+      compress_repeats(these_bytes[0:1], count)
 
   # Flush any remaining buffered literals
   flush_buffered_literals()
