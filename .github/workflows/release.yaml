@@ -185,17 +185,23 @@ jobs:
           mv kinetoscope-hardware kinetoscope-$VERSION-hardware
           zip -r9 kinetoscope-$VERSION-hardware.zip kinetoscope-$VERSION-hardware/
 
-          # Prep emulator binaries.
+          # Prep emulator binaries for Linux.
           echo "This build of BlastEm supports Kinetoscope emulation." >> kinetoscope-blastem-0.6.2-linux-x64/README.kinetoscope.txt
           chmod 755 kinetoscope-blastem-0.6.2-linux-x64/blastem
           mv kinetoscope-blastem-0.6.2-linux-x64 kinetoscope-$VERSION-blastem-0.6.2-linux-x64
           zip -r9 kinetoscope-$VERSION-blastem-0.6.2-linux-x64.zip kinetoscope-$VERSION-blastem-0.6.2-linux-x64/
 
-          # Prep emulator binaries.
+          # Prep emulator binaries for Windows.
           echo "This build of BlastEm supports Kinetoscope emulation." >> kinetoscope-blastem-0.6.2-windows-x64/README.kinetoscope.txt
           chmod 755 kinetoscope-blastem-0.6.2-windows-x64/blastem.exe
           mv kinetoscope-blastem-0.6.2-windows-x64 kinetoscope-$VERSION-blastem-0.6.2-windows-x64
           zip -r9 kinetoscope-$VERSION-blastem-0.6.2-windows-x64.zip kinetoscope-$VERSION-blastem-0.6.2-windows-x64/
+
+          # Prep emulator binaries for macOS.
+          echo "This build of BlastEm supports Kinetoscope emulation." >> kinetoscope-blastem-0.6.2-macos-x64/README.kinetoscope.txt
+          chmod 755 kinetoscope-blastem-0.6.2-macos-x64/blastem
+          mv kinetoscope-blastem-0.6.2-macos-x64 kinetoscope-$VERSION-blastem-0.6.2-macos-x64
+          zip -r9 kinetoscope-$VERSION-blastem-0.6.2-macos-x64.zip kinetoscope-$VERSION-blastem-0.6.2-macos-x64/
 
       - name: Create release
         uses: softprops/action-gh-release@v2
@@ -214,3 +220,4 @@ jobs:
             kinetoscope-*-hardware.zip
             kinetoscope-*-blastem-0.6.2-linux-x64.zip
             kinetoscope-*-blastem-0.6.2-windows-x64.zip
+            kinetoscope-*-blastem-0.6.2-macos-x64.zip

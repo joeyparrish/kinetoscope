@@ -15,6 +15,11 @@ on:
       ref:
         description: "The ref to build."
         required: false
+        type: string
+      for-release:
+        description: "True if we should upload artifacts for a release."
+        default: false
+        type: boolean
   workflow_call: # Allows for another workflow to call this one.
     inputs:
       ref:
@@ -84,7 +89,7 @@ jobs:
         if: inputs.for-release
         with:
           name: blastem-linux
-          path: blastem64-0.6.2-kinetoscope
+          path: blastem-0.6.2-kinetoscope
           retention-days: 1
 
   build-blastem-windows:
@@ -145,5 +150,56 @@ jobs:
         if: inputs.for-release
         with:
           name: blastem-windows
-          path: blastem64-0.6.2-kinetoscope
+          path: blastem-0.6.2-kinetoscope
+          retention-days: 1
+
+  build-blastem-macos:
+    name: Build BlastEm for macOS
+    runs-on: macos-13  # x86-64 explicitly, since BlastEm won't build on arm64
+    steps:
+      - name: Checkout BlastEm
+        uses: actions/checkout@v4
+        with:
+          repository: libretro/blastem
+          ref: 277e4a62668597d4f59cadda1cbafb844f981d45
+          path: .
+
+      - name: Checkout Kinetoscope
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ inputs.ref || github.ref }}
+          path: kinetoscope
+
+      - name: Apply patch
+        run: patch -p1 -i kinetoscope/emulator-patches/blastem-0.6.2.patch
+
+      - name: Install deps for portable build
+        run: |
+          wget -O glew-2.1.0.tgz https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.tgz/download
+          tar xf glew-2.1.0.tgz
+          ln -s glew-2.1.0 glew
+
+          wget -O SDL2-2.30.3.tar.gz https://github.com/libsdl-org/SDL/releases/download/release-2.30.3/SDL2-2.30.3.tar.gz
+          tar xf SDL2-2.30.3.tar.gz
+          ln -s SDL2-2.30.3 sdl
+
+          wget -O curl-8.8.0.tar.gz https://github.com/curl/curl/releases/download/curl-8_8_0/curl-8.8.0.tar.gz
+          tar xf curl-8.8.0.tar.gz
+          ln -s curl-8.8.0 curl
+
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          create-symlink: true
+
+      - name: Build portable binaries
+        run: OS=Darwin ./build_release
+
+      - name: Upload blastem binaries
+        uses: actions/upload-artifact@v4
+        if: inputs.for-release
+        with:
+          name: blastem-macos
+          path: blastem-0.6.2-kinetoscope
           retention-days: 1
