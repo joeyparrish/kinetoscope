@@ -66,6 +66,7 @@ jobs:
           ./fab-jlcpcb.sh cart
           ./fab-jlcpcb.sh microcontroller
           ./fab-jlcpcb.sh sram-bank
+          ./fab-jlcpcb.sh ethernet
 
       - name: Upload fab outputs
         uses: actions/upload-artifact@v4
