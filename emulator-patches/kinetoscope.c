@@ -412,6 +412,7 @@ static void flip_region() {
 static void get_video_list() {
   printf("Kinetoscope: list\n");
 
+  global_compressed = 0;
   global_sram_offset = 0;
   if (!fetch_to_sram(VIDEO_CATALOG_URL)) {
     report_error("Failed to download video catalog!");
