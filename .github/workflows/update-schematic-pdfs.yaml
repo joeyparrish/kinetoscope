@@ -54,6 +54,7 @@ jobs:
           ./update-pdfs.sh cart
           ./update-pdfs.sh microcontroller
           ./update-pdfs.sh sram-bank
+          ./update-pdfs.sh ethernet
 
           if git diff --exit-code *.pdf; then
             echo "needs-update=" >> $GITHUB_OUTPUT
