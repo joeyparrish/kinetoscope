@@ -11,12 +11,15 @@ firmware to take commands from the Sega ROM.  See firmware in the
 
 ## Prerequisites
 
-The hardware design was done in KiCad 8.  To install KiCad 8 on Ubuntu, run:
+The hardware design was done in KiCad 8, and routing was done in FreeRouting.
+To install KiCad 8 and FreeRouting on Ubuntu, run:
 
 ```sh
 sudo add-apt-repository --yes ppa:kicad/kicad-8.0-releases
 sudo apt update
-sudo apt install --install-recommends kicad
+sudo apt install --install-recommends kicad default-jre wget unzip
+wget https://github.com/freerouting/freerouting/releases/download/v1.9.0/freerouting-1.9.0-linux-x64.zip
+sudo unzip -j -d /opt/freerouting freerouting-1.9.0-linux-x64.zip freerouting-1.9.0-linux-x64/lib/app/freerouting-executable.jar
 ```
 
 To install the custom footprints and symbols used in this design, on Ubuntu
@@ -159,6 +162,39 @@ The subsheets are:
      microcontroller clears it when the command has been completed.  For the
      error bit, the microcontroller sets it to tell the Sega that an error has
      occurred, and the Sega clears it after the error has been read.
+
+
+## Routing
+
+To reroute a PCB after modifying the schematic:
+
+  1. Open the PCB in KiCad
+  2. Select all (CTRL+A)
+  3. Right click the board, "Select >", "Filter Selected Items..."
+  4. Uncheck "All items"
+  5. Check "Include tracks" and "Include vias"
+  6. Delete (Delete key)
+  7. Update PCB from schematic (F8)
+  8. Click "Update PCB", then "Close"
+  8. Save PCB (CTRL+S)
+  9. Select "File", "Export >", "Specctra DSN..."
+  10. Click "Save" (and "Replace" if prompted)
+  11. Run `route-pcb.sh` with the name of the board.  For example:
+
+```sh
+./route-pcb.sh sram-bank
+```
+
+After the routing process completes:
+
+  1. Open the PCB in KiCad
+  2. Select "File", "Import >", "Specctra Session..."
+  3. Select the .ses file corresponding to this design
+  4. Click "Open"
+  5. Redo fill zones (B)
+  6. Select "Inspect", "Design Rules Checker"
+  7. Click "Run DRC"
+  8. Manually fix any violations or unconnected items
 
 
 ## Programming
