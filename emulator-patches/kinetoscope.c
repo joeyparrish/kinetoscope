@@ -244,6 +244,10 @@ static bool fetch_range(const char* url, size_t first_byte, size_t size,
 
 static bool fetch_range_to_sram(const char* url, size_t first_byte,
                                 size_t size) {
+  // This shouldn't be necessary, but in case of an incomplete compressed
+  // buffer being processed before this, reset the RLE decoder now.
+  rle_reset();
+
   return fetch_range(url, first_byte, size, http_data_to_sram, NULL);
 }
 
