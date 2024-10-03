@@ -78,6 +78,7 @@
 			(layer "B.SilkS"
 				(type "Bottom Silk Screen")
 			)
+			(copper_finish "HAL lead-free")
 			(dielectric_constraints no)
 		)
 		(pad_to_mask_clearance 0.0508)
