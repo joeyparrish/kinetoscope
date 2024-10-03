@@ -19,7 +19,12 @@
 
 #include "segavideo_format.h"
 
-#if defined(_WIN32)
+#if defined(__MINGW32__)
+// Windows header for ntohs and ntohl.
+# include <winsock2.h>
+// For clock_gettime.
+# include <time.h>
+#elif defined(_WIN32)
 // Windows header for ntohs and ntohl.
 # include <winsock2.h>
 // For GetTickCount64.
@@ -118,7 +123,7 @@ static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size);
 
 // Current time in milliseconds.
 static uint64_t ms_now() {
-#if defined(_WIN32)
+#if defined(_WIN32) && !defined(__MINGW32__)
   return GetTickCount64();
 #else
   struct timespec tp;

@@ -1,6 +1,6 @@
-commit 3c98e2a06d7c398d7b46b032c349837ebb43aa59
-Author: Joey Parrish <joeyparrish@google.com>
-Date:   Mon Sep 23 21:34:59 2024 -0700
+commit 3dfebd407a96288ca68e494e93c01fa9b8ec0015
+Author: Joey Parrish <joey.parrish@gmail.com>
+Date:   Wed Mar 27 07:39:28 2024 -0700
 
     Emulate Kinetoscope hardware in BlastEm 0.6.2
     
@@ -21,10 +21,38 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..f8e4562 100644
+index 0dddc9f..56ca15e 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -109,6 +109,13 @@ endif
+@@ -23,11 +23,11 @@ ifeq ($(CPU),i686)
+ CC:=i686-w64-mingw32-gcc-win32
+ WINDRES:=i686-w64-mingw32-windres
+ GLUDIR:=Win32
+-SDL2_PREFIX:="sdl/i686-w64-mingw32"
++SDL2_PREFIX:=sdl/i686-w64-mingw32
+ else
+ CC:=x86_64-w64-mingw32-gcc-win32
+ WINDRES:=x86_64-w64-mingw32-windres
+-SDL2_PREFIX:="sdl/x86_64-w64-mingw32"
++SDL2_PREFIX:=sdl/x86_64-w64-mingw32
+ GLUDIR:=x64
+ endif
+ GLEW32S_LIB:=$(GLEW_PREFIX)/lib/Release/$(GLUDIR)/glew32s.lib
+@@ -39,6 +39,13 @@ LDFLAGS+= $(GLEW32S_LIB) -L"$(SDL2_PREFIX)/lib" -lSDL2main -lSDL2 -lopengl32 -lg
+ endif
+ LIBZOBJS=$(BUNDLED_LIBZ)
+ 
++# Static libcurl for kinetoscope emulation
++CFLAGS+= -Icurl/include -DCURL_STATICLIB
++LDFLAGS+= curl/lib/.libs/libcurl.a
++# Pthread for kinetoscope emulation
++CFLAGS+= -pthread
++LDFLAGS+= -pthread
++
+ else
+ 
+ MEM:=mem.o
+@@ -109,6 +116,13 @@ endif
  endif #Darwin
  CFLAGS+= -I$(SDL_INCLUDE_PATH)
  
@@ -38,7 +66,7 @@ index 0dddc9f..f8e4562 100644
  else
  ifeq ($(MAKECMDGOALS),libblastem.$(SO))
  LDFLAGS:=-lm
-@@ -126,6 +133,12 @@ LDFLAGS+= -framework OpenGL -framework AppKit
+@@ -126,6 +140,12 @@ LDFLAGS+= -framework OpenGL -framework AppKit
  endif
  endif
  
@@ -51,7 +79,7 @@ index 0dddc9f..f8e4562 100644
  endif #PORTABLE
  endif #Windows
  
-@@ -221,6 +234,7 @@ endif
+@@ -221,6 +241,7 @@ endif
  
  MAINOBJS=blastem.o system.o genesis.o debug.o gdb_remote.o vdp.o $(RENDEROBJS) io.o romdb.o hash.o menu.o xband.o \
  	realtec.o i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
@@ -59,7 +87,7 @@ index 0dddc9f..f8e4562 100644
  	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o zip.o bindings.o jcart.o gen_player.o
  
  LIBOBJS=libblastem.o system.o genesis.o debug.o gdb_remote.o vdp.o io.o romdb.o hash.o xband.o realtec.o \
-@@ -277,6 +291,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
+@@ -277,6 +298,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
  CFLAGS+= -fpic -DIS_LIB
  endif
  
@@ -68,7 +96,7 @@ index 0dddc9f..f8e4562 100644
  all : $(ALL)
  
  libblastem.$(SO) : $(LIBOBJS)
-@@ -366,7 +382,7 @@ m68k.c : m68k.cpu cpu_dsl.py
+@@ -366,7 +389,7 @@ m68k.c : m68k.cpu cpu_dsl.py
  	$(CC) $(CFLAGS) -c -o $@ $<
  
  %.png : %.xcf
@@ -77,35 +105,33 @@ index 0dddc9f..f8e4562 100644
  
  %.tiles : %.spec
  	./img2tiles.py -s $< $@
-@@ -382,6 +398,8 @@ m68k.c : m68k.cpu cpu_dsl.py
- res.o : blastem.rc
- 	$(WINDRES) blastem.rc res.o
- 
-+kinetoscope/emulator-patches/kinetoscope.o: kinetoscope/emulator-patches/kinetoscope.c kinetoscope/emulator-patches/*.h kinetoscope/common/*.h
-+
- arrow.tiles : arrow.png
- cursor.tiles : cursor.png
- font_interlace_variable.tiles : font_interlace_variable.png
 diff --git a/build_release b/build_release
-index f5faa10..880044d 100755
+index f5faa10..a2aa4c4 100755
 --- a/build_release
 +++ b/build_release
-@@ -24,6 +24,14 @@ if [ $OS = "Linux" ]; then
+@@ -24,6 +24,21 @@ if [ $OS = "Linux" ]; then
  	make all
  	cd ..
  fi
 +
++if [ $OS = "Win64" ]; then
++  HOST_FLAG=--host=x86_64-w64-mingw32
++else
++  HOST_FLAG=""
++fi
++
 +cd curl
 +./configure \
 +    --enable-static --disable-shared --without-ssl \
-+    --without-libpsl --without-zstd --without-brotli
-+make
++    --without-libpsl --without-zstd --without-brotli \
++    --disable-ldap $HOST_FLAG
++make -C lib
 +cd ..
 +
  echo "Path is: $PATH"
  if [ $OS = "Win64" ]; then
  	make PORTABLE=1 OS=Windows CPU=x86_64 clean all
-@@ -32,10 +40,8 @@ else
+@@ -32,10 +47,8 @@ else
  	make PORTABLE=1 clean all
  	SDLDLLPATH=sdl/i686-w64-mingw32/bin
  fi
@@ -116,7 +142,7 @@ index f5faa10..880044d 100755
  	txt=".txt"
  else
  	binaries="dis zdis vgmplay blastem termhelper"
-@@ -44,11 +50,9 @@ else
+@@ -44,11 +57,9 @@ else
  	else
  		binaries="$binaries lib"
  	fi
@@ -129,7 +155,7 @@ index f5faa10..880044d 100755
  if [ $OS = "Windows" ]; then
  	suffix='-win32'
  elif [ $OS = "Win64" ]; then
-@@ -66,11 +70,7 @@ cp -r $binaries shaders images default.cfg rom.db gamecontrollerdb.txt systems.c
+@@ -66,11 +77,7 @@ cp -r $binaries shaders images default.cfg rom.db gamecontrollerdb.txt systems.c
  for file in README COPYING CHANGELOG; do
  	cp "$file" "$dir"/"$file$txt"
  done
@@ -224,3 +250,25 @@ index 79afa76..feb6fcb 100644
  	} else if (has_ram_header(rom, size)) {
  		uint32_t ram_start = read_ram_header(info, rom);
  
+diff --git a/zlib/gzguts.h b/zlib/gzguts.h
+index 990a4d2..db6ee72 100644
+--- a/zlib/gzguts.h
++++ b/zlib/gzguts.h
+@@ -3,6 +3,17 @@
+  * For conditions of distribution and use, see copyright notice in zlib.h
+  */
+ 
++#if defined(__MINGW32__)
++# include <wchar.h>  // _wopen
++# include <sys/types.h>
++# include <unistd.h>
++int open(const char *pathname, int flags, mode_t mode);
++off_t lseek(int fd, off_t offset, int whence);
++ssize_t read(int fd, void *buf, size_t count);
++ssize_t write(int fd, const void *buf, size_t count);
++int close(int fd);
++#endif
++
+ #ifdef _LARGEFILE64_SOURCE
+ #  ifndef _LARGEFILE_SOURCE
+ #    define _LARGEFILE_SOURCE 1

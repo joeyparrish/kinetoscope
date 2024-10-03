@@ -34,8 +34,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-blastem:
-    name: Build BlastEm
+  build-blastem-linux:
+    name: Build BlastEm for Linux
     runs-on: ubuntu-latest
     steps:
       - name: Checkout BlastEm
@@ -84,5 +84,66 @@ jobs:
         if: inputs.for-release
         with:
           name: blastem-linux
+          path: blastem64-0.6.2-kinetoscope
+          retention-days: 1
+
+  build-blastem-windows:
+    name: Build BlastEm for Windows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout BlastEm
+        uses: actions/checkout@v4
+        with:
+          repository: libretro/blastem
+          ref: 277e4a62668597d4f59cadda1cbafb844f981d45
+          path: .
+
+      - name: Checkout Kinetoscope
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ inputs.ref || github.ref }}
+          path: kinetoscope
+
+      - name: Apply patch
+        run: patch -p1 -i kinetoscope/emulator-patches/blastem-0.6.2.patch
+
+      - name: Install deps for portable build
+        run: |
+          sudo apt -y install mingw-w64
+
+          wget -O glew-2.2.0-win32.zip https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0-win32.zip
+          unzip glew-2.2.0-win32.zip
+          ln -s glew-2.2.0 glew
+
+          wget -O SDL2-devel-2.30.8-mingw.tar.gz https://github.com/libsdl-org/SDL/releases/download/release-2.30.8/SDL2-devel-2.30.8-mingw.tar.gz
+          tar xf SDL2-devel-2.30.8-mingw.tar.gz
+          ln -s SDL2-2.30.8 sdl
+
+          wget -O curl-8.8.0.tar.gz https://github.com/curl/curl/releases/download/curl-8_8_0/curl-8.8.0.tar.gz
+          tar xf curl-8.8.0.tar.gz
+          ln -s curl-8.8.0 curl
+
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          create-symlink: true
+
+      - name: Symlink mingw compilers to ccache
+        run: |
+          for name in \
+              x86_64-w64-mingw32-gcc-win32 \
+              x86_64-w64-mingw32-gcc; do
+            sudo ln -s $(which ccache) /usr/local/bin/$name
+          done
+
+      - name: Build portable binaries
+        run: OS=Win64 ./build_release
+
+      - name: Upload blastem binaries
+        uses: actions/upload-artifact@v4
+        if: inputs.for-release
+        with:
+          name: blastem-windows
           path: blastem64-0.6.2-kinetoscope
           retention-days: 1

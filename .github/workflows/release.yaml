@@ -93,11 +93,17 @@ jobs:
           name: hardware
           path: kinetoscope-hardware
 
-      - name: Pull blastem
+      - name: Pull BlastEm for Linux
         uses: actions/download-artifact@v4
         with:
           name: blastem-linux
-          path: kinetoscope-blastem64-0.6.2-linux-x64
+          path: kinetoscope-blastem-0.6.2-linux-x64
+
+      - name: Pull BlastEm for Windows
+        uses: actions/download-artifact@v4
+        with:
+          name: blastem-windows
+          path: kinetoscope-blastem-0.6.2-windows-x64
 
       - name: Arrange release artifacts
         run: |
@@ -180,10 +186,16 @@ jobs:
           zip -r9 kinetoscope-$VERSION-hardware.zip kinetoscope-$VERSION-hardware/
 
           # Prep emulator binaries.
-          echo "This build of BlastEm supports Kinetoscope emulation." >> kinetoscope-blastem64-0.6.2-linux-x64/README.kinetoscope.txt
-          chmod 755 kinetoscope-blastem64-0.6.2-linux-x64/blastem
-          mv kinetoscope-blastem64-0.6.2-linux-x64 kinetoscope-$VERSION-blastem64-0.6.2-linux-x64
-          zip -r9 kinetoscope-$VERSION-blastem64-0.6.2-linux-x64.zip kinetoscope-$VERSION-blastem64-0.6.2-linux-x64/
+          echo "This build of BlastEm supports Kinetoscope emulation." >> kinetoscope-blastem-0.6.2-linux-x64/README.kinetoscope.txt
+          chmod 755 kinetoscope-blastem-0.6.2-linux-x64/blastem
+          mv kinetoscope-blastem-0.6.2-linux-x64 kinetoscope-$VERSION-blastem-0.6.2-linux-x64
+          zip -r9 kinetoscope-$VERSION-blastem-0.6.2-linux-x64.zip kinetoscope-$VERSION-blastem-0.6.2-linux-x64/
+
+          # Prep emulator binaries.
+          echo "This build of BlastEm supports Kinetoscope emulation." >> kinetoscope-blastem-0.6.2-windows-x64/README.kinetoscope.txt
+          chmod 755 kinetoscope-blastem-0.6.2-windows-x64/blastem.exe
+          mv kinetoscope-blastem-0.6.2-windows-x64 kinetoscope-$VERSION-blastem-0.6.2-windows-x64
+          zip -r9 kinetoscope-$VERSION-blastem-0.6.2-windows-x64.zip kinetoscope-$VERSION-blastem-0.6.2-windows-x64/
 
       - name: Create release
         uses: softprops/action-gh-release@v2
@@ -200,4 +212,5 @@ jobs:
             kinetoscope-*-self-test-rom.zip
             kinetoscope-*-firmware.zip
             kinetoscope-*-hardware.zip
-            kinetoscope-*-blastem64-0.6.2-linux-x64.zip
+            kinetoscope-*-blastem-0.6.2-linux-x64.zip
+            kinetoscope-*-blastem-0.6.2-windows-x64.zip
