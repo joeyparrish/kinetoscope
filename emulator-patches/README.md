@@ -9,7 +9,7 @@ We provide patches for the following emulators:
    3. `git checkout 277e4a62`  # Other revisions may also work
    4. `git clone https://github.com/joeyparrish/kinetoscope`
    5. `patch -p1 -i kinetoscope/emulator-patches/blastem-0.6.2.patch`
-   6. `make`
+   6. `make` or `./build_release`
 
 ## Licensing
 

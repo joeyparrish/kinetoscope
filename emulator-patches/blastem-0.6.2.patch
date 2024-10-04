@@ -1,4 +1,4 @@
-commit 36b12183ca89f7909a381a5984bacf16ab98d43a
+commit afd33eaffc60bf38c895f370af0a683a6fe67aa2
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -130,18 +130,24 @@ index 0dddc9f..4655371 100644
  	rm -rf $(ALL) trans ztestrun ztestgen *.o nuklear_ui/*.o zlib/*.o
 +	rm -f kinetoscope/emulator-patches/kinetoscope.o
 diff --git a/build_release b/build_release
-index f5faa10..5d12fba 100755
+index f5faa10..aa30c75 100755
 --- a/build_release
 +++ b/build_release
-@@ -6,24 +6,48 @@ if [ -z "$OS" ]; then
- 	OS=`uname -s`
+@@ -3,28 +3,52 @@
+ set -e
+ 
+ if [ -z "$OS" ]; then
+-	OS=`uname -s`
++  echo "\$OS should be Linux, Darwin, or Win64"
++  exit 1
  fi
  
 -if [ $OS = "Linux" ]; then
 +if [ $OS = "Linux" -o $OS = "Darwin" ]; then
  	cd sdl
  	./configure
- 	make all
+-	make all
++	make build/libSDL2.la
  	cd ..
  	rm -rf lib
  	mkdir lib
@@ -168,6 +174,7 @@ index f5faa10..5d12fba 100755
  	make all
  	cd ..
  fi
+-echo "Path is: $PATH"
 +
 +if [ $OS = "Win64" ]; then
 +	HOST_FLAG=--host=x86_64-w64-mingw32
@@ -184,29 +191,30 @@ index f5faa10..5d12fba 100755
 +make -C lib
 +cd ..
 +
- echo "Path is: $PATH"
  if [ $OS = "Win64" ]; then
  	make PORTABLE=1 OS=Windows CPU=x86_64 clean all
-@@ -32,33 +56,16 @@ else
+ 	SDLDLLPATH=sdl/x86_64-w64-mingw32/bin
+@@ -32,53 +56,20 @@ else
  	make PORTABLE=1 clean all
  	SDLDLLPATH=sdl/i686-w64-mingw32/bin
  fi
 -make menu.bin tmss.md
- if [ $OS = "Windows" -o $OS = "Win64" ]; then
+-if [ $OS = "Windows" -o $OS = "Win64" ]; then
++
++if [ $OS = "Win64" ]; then
  	binaries="dis.exe zdis.exe vgmplay.exe blastem.exe $SDLDLLPATH/SDL2.dll"
 -	verstr=`sed -E -n 's/^[^B]+BLASTEM_VERSION "([^"]+)"/blastem \1/p' blastem.c`
- 	txt=".txt"
+-	txt=".txt"
  else
- 	binaries="dis zdis vgmplay blastem termhelper"
+-	binaries="dis zdis vgmplay blastem termhelper"
 -	if [ $OS = "Darwin" ]; then
 -		binaries="$binaries Frameworks"
 -	else
 -		binaries="$binaries lib"
 -	fi
 -	verstr=`./blastem -v`
-+	binaries="$binaries lib"
- 	txt=""
- fi
+-	txt=""
+-fi
 -binaries="$binaries menu.bin tmss.md"
 -ver=`echo $verstr | awk '/blastem/ { gsub(/\r/, "", $2); print $2 }'`
 -if [ $OS = "Windows" ]; then
@@ -217,26 +225,38 @@ index f5faa10..5d12fba 100755
 -	suffix='-osx'
 -else
 -	suffix=`file ./blastem | sed -E 's/^[^:]*: [^ ]* ([0-9]*)-bit .*/\1/'`
--fi
++	binaries="dis zdis vgmplay blastem termhelper lib"
+ fi
 -dir="blastem${suffix}-${ver}"
-+ver="0.6.2-kinetoscope"
-+dir="blastem-${ver}"
- echo $dir
+-echo $dir
++
++dir="blastem-0.6.2-kinetoscope"
  rm -rf "$dir"
  mkdir "$dir"
-@@ -66,11 +73,7 @@ cp -r $binaries shaders images default.cfg rom.db gamecontrollerdb.txt systems.c
++
+ cp -r $binaries shaders images default.cfg rom.db gamecontrollerdb.txt systems.cfg "$dir"
  for file in README COPYING CHANGELOG; do
- 	cp "$file" "$dir"/"$file$txt"
+-	cp "$file" "$dir"/"$file$txt"
++	cp "$file" "$dir"/"$file".txt
  done
 -if [ $OS = "Darwin" ]; then
 -	cp SDL-LICENSE "$dir"
 -else
 -	cp sdl/COPYING.txt "$dir"/SDL-LICENSE$txt
 -fi
-+cp sdl/LICENSE.txt "$dir"/SDL-LICENSE$txt
- cp glew/LICENSE.txt "$dir"/GLEW-LICENSE$txt
- 
- if [ $OS = "Windows" -o $OS = "Win64" ]; then
+-cp glew/LICENSE.txt "$dir"/GLEW-LICENSE$txt
+-
+-if [ $OS = "Windows" -o $OS = "Win64" ]; then
+-	rm -f "${dir}.zip"
+-	zip -r "${dir}.zip" "$dir"
+-	echo "${dir}.zip"
+-else
+-	rm -f "${dir}.tar.gz"
+-	tar -cvzf "${dir}.tar.gz" "$dir"
+-	echo "${dir}.tar.gz"
+-fi
++cp sdl/LICENSE.txt "$dir"/SDL-LICENSE.txt
++cp glew/LICENSE.txt "$dir"/GLEW-LICENSE.txt
 diff --git a/gdb_remote.c b/gdb_remote.c
 index 9dbfce4..2effc89 100644
 --- a/gdb_remote.c

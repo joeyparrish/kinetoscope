@@ -60,7 +60,7 @@ jobs:
       - name: Apply patch
         run: patch -p1 -i kinetoscope/emulator-patches/blastem-0.6.2.patch
 
-      - name: Install deps for portable build
+      - name: Get source deps for portable build
         run: |
           sudo apt -y install libgl-dev libglu1-mesa-dev
 
@@ -82,7 +82,7 @@ jobs:
           create-symlink: true
 
       - name: Build portable binaries
-        run: ./build_release
+        run: OS=Linux ./build_release
 
       - name: Upload blastem binaries
         uses: actions/upload-artifact@v4
@@ -93,7 +93,7 @@ jobs:
           retention-days: 1
 
   build-blastem-windows:
-    name: Build BlastEm for Windows
+    name: Build BlastEm for Windows (cross-compile)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout BlastEm
@@ -113,7 +113,7 @@ jobs:
       - name: Apply patch
         run: patch -p1 -i kinetoscope/emulator-patches/blastem-0.6.2.patch
 
-      - name: Install deps for portable build
+      - name: Get binary and source deps for portable build
         run: |
           sudo apt -y install mingw-w64
 
@@ -174,7 +174,7 @@ jobs:
       - name: Apply patch
         run: patch -p1 -i kinetoscope/emulator-patches/blastem-0.6.2.patch
 
-      - name: Install deps for portable build
+      - name: Get source deps for portable build
         run: |
           wget -O glew-2.1.0.tgz https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.tgz/download
           tar xf glew-2.1.0.tgz
