@@ -62,7 +62,7 @@ jobs:
 
       - name: Get source deps for portable build
         run: |
-          sudo apt -y install libgl-dev libglu1-mesa-dev
+          sudo apt -y install libgl-dev libglu1-mesa-dev libpulse-dev
 
           wget -O glew-2.1.0.tgz https://sourceforge.net/projects/glew/files/glew/2.1.0/glew-2.1.0.tgz/download
           tar xf glew-2.1.0.tgz
