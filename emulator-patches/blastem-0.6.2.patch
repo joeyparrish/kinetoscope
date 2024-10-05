@@ -1,4 +1,4 @@
-commit afd33eaffc60bf38c895f370af0a683a6fe67aa2
+commit 9acf6e19a6633eeecb5feabd5fab0188468aa16e
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,7 +21,7 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..4655371 100644
+index 0dddc9f..cfa4645 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -23,11 +23,11 @@ ifeq ($(CPU),i686)
@@ -38,21 +38,7 @@ index 0dddc9f..4655371 100644
  GLUDIR:=x64
  endif
  GLEW32S_LIB:=$(GLEW_PREFIX)/lib/Release/$(GLUDIR)/glew32s.lib
-@@ -39,6 +39,13 @@ LDFLAGS+= $(GLEW32S_LIB) -L"$(SDL2_PREFIX)/lib" -lSDL2main -lSDL2 -lopengl32 -lg
- endif
- LIBZOBJS=$(BUNDLED_LIBZ)
- 
-+# Static libcurl for kinetoscope emulation
-+CFLAGS+= -Icurl/include -DCURL_STATICLIB
-+LDFLAGS+= curl/lib/.libs/libcurl.a
-+# Pthread for kinetoscope emulation
-+CFLAGS+= -pthread
-+LDFLAGS+= -pthread
-+
- else
- 
- MEM:=mem.o
-@@ -96,10 +103,11 @@ LDFLAGS:=-lm glew/lib/libGLEW.a
+@@ -96,10 +96,11 @@ LDFLAGS:=-lm glew/lib/libGLEW.a
  endif
  
  ifeq ($(OS),Darwin)
@@ -68,37 +54,46 @@ index 0dddc9f..4655371 100644
  else
  SDL_INCLUDE_PATH:=sdl/include
  LDFLAGS+= -Wl,-rpath='$$ORIGIN/lib' -Llib -lSDL2
-@@ -109,6 +117,16 @@ endif
- endif #Darwin
- CFLAGS+= -I$(SDL_INCLUDE_PATH)
- 
-+# Static libcurl for kinetoscope emulation
-+CFLAGS+= -Icurl/include
-+LDFLAGS+= curl/lib/.libs/libcurl.a
-+ifeq ($(OS),Darwin)
-+LDFLAGS+= -framework SystemConfiguration
-+endif #Darwin
-+# Pthread for kinetoscope emulation
-+CFLAGS+= -pthread
-+LDFLAGS+= -pthread
-+
- else
- ifeq ($(MAKECMDGOALS),libblastem.$(SO))
- LDFLAGS:=-lm
-@@ -126,6 +144,12 @@ LDFLAGS+= -framework OpenGL -framework AppKit
- endif
- endif
- 
-+# System libcurl for Kinetoscope emulation
-+LDFLAGS+= $(shell curl-config --libs)
-+# Pthread for kinetoscope emulation
-+CFLAGS+= -pthread
-+LDFLAGS+= -pthread
-+
+@@ -129,6 +130,38 @@ endif
  endif #PORTABLE
  endif #Windows
  
-@@ -221,6 +245,7 @@ endif
++
++# Kinetoscope code itself
++CFLAGS+= -I. -Ikinetoscope/software/player/inc/
++
++ifeq ($(PLATFORM),emscripten)
++CFLAGS+= -sMEMORY64=1
++LDFLAGS+= -sMEMORY64=1
++endif
++
++ifneq ($(PLATFORM),emscripten)
++# Curl, but only if it's not an emscripten environment
++ifdef PORTABLE
++# Static libcurl
++CFLAGS+= -Icurl/include -DCURL_STATICLIB
++LDFLAGS+= curl/lib/.libs/libcurl.a
++else
++# System libcurl
++LDFLAGS+= $(shell curl-config --libs)
++endif
++endif
++
++# Pthread is required
++CFLAGS+= -pthread
++LDFLAGS+= -pthread
++
++ifeq ($(OS),Darwin)
++# Needed for curl on macOS?
++LDFLAGS+= -framework SystemConfiguration
++endif #Darwin
++
++
++
+ ifndef OPT
+ ifdef DEBUG
+ OPT:=-g3 -O0
+@@ -221,10 +254,12 @@ endif
  
  MAINOBJS=blastem.o system.o genesis.o debug.o gdb_remote.o vdp.o $(RENDEROBJS) io.o romdb.o hash.o menu.o xband.o \
  	realtec.o i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
@@ -106,16 +101,12 @@ index 0dddc9f..4655371 100644
  	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o zip.o bindings.o jcart.o gen_player.o
  
  LIBOBJS=libblastem.o system.o genesis.o debug.o gdb_remote.o vdp.o io.o romdb.o hash.o xband.o realtec.o \
-@@ -277,6 +302,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
- CFLAGS+= -fpic -DIS_LIB
- endif
- 
-+CFLAGS+= -I. -Ikinetoscope/software/player/inc/
-+
- all : $(ALL)
- 
- libblastem.$(SO) : $(LIBOBJS)
-@@ -366,7 +393,7 @@ m68k.c : m68k.cpu cpu_dsl.py
+ 	i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
++	kinetoscope/emulator-patches/kinetoscope.o \
+ 	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o jcart.o rom.db.o gen_player.o $(LIBZOBJS)
+ 	
+ ifdef NONUKLEAR
+@@ -366,7 +401,7 @@ m68k.c : m68k.cpu cpu_dsl.py
  	$(CC) $(CFLAGS) -c -o $@ $<
  
  %.png : %.xcf
@@ -124,11 +115,24 @@ index 0dddc9f..4655371 100644
  
  %.tiles : %.spec
  	./img2tiles.py -s $< $@
-@@ -393,3 +420,4 @@ tmss.md : font.tiles
+@@ -393,3 +428,4 @@ tmss.md : font.tiles
  
  clean :
  	rm -rf $(ALL) trans ztestrun ztestgen *.o nuklear_ui/*.o zlib/*.o
 +	rm -f kinetoscope/emulator-patches/kinetoscope.o
+diff --git a/Makefile.libretro b/Makefile.libretro
+index a8af9bc..f890d01 100644
+--- a/Makefile.libretro
++++ b/Makefile.libretro
+@@ -58,7 +58,7 @@ endif
+ 
+ 
+ core: $(OBJ)
+-	$(MAKE) $(target) OS=$(OS) CC=$(CC) CPU=$(ABI) LIBRETRO=$(LIBRETRO)
++	$(MAKE) $(target) OS=$(OS) CC=$(CC) CPU=$(ABI) LIBRETRO=$(LIBRETRO) PLATFORM=$(platform)
+ 	cp -v $(target) $(libname)
+ 
+ install: $(libname)
 diff --git a/build_release b/build_release
 index f5faa10..aa30c75 100755
 --- a/build_release

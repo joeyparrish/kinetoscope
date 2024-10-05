@@ -8,10 +8,16 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
-#include <curl/curl.h>
+#if defined(__EMSCRIPTEN__)
+# include <emscripten/fetch.h>
+#else
+# include <curl/curl.h>
+#endif
+
 #include <pthread.h>
 
 #include "genesis.h"
@@ -182,7 +188,7 @@ static void write_error_to_sram() {
 // Writes HTTP data to SRAM.
 static size_t http_data_to_sram(char* data, size_t size, size_t n, void* ctx) {
   if (global_compressed) {
-    rle_to_sram(data, size * n);
+    rle_to_sram((const uint8_t*)data, size * n);
   } else {
     write_sram(global_sram_offset, (const uint8_t*)data, size * n);
     global_sram_offset += size * n;
@@ -223,6 +229,7 @@ static bool fetch_range(const char* url, size_t first_byte, size_t size,
   // snprintf doesn't guarantee a terminator when it overflows.
   range[31] = '\0';
 
+#if !defined(__EMSCRIPTEN__)
   CURL* handle = curl_easy_init();
   curl_easy_setopt(handle, CURLOPT_URL, url);
   curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_callback);
@@ -245,6 +252,35 @@ static bool fetch_range(const char* url, size_t first_byte, size_t size,
   }
 
   return res == CURLE_OK && (http_code == 200 || http_code == 206);
+#else
+  emscripten_fetch_attr_t fetch_attributes;
+  emscripten_fetch_attr_init(&fetch_attributes);
+
+  strcpy(fetch_attributes.requestMethod, "GET");
+  fetch_attributes.attributes = EMSCRIPTEN_FETCH_LOAD_TO_MEMORY;
+  fetch_attributes.attributes |= EMSCRIPTEN_FETCH_SYNCHRONOUS;
+
+  const char* headers[] = { "Range", range, NULL };
+  fetch_attributes.requestHeaders = headers;
+
+  emscripten_fetch_t *fetch = emscripten_fetch(&fetch_attributes, url);
+
+  int http_code = fetch->status;
+  printf("Kinetoscope: url = %s, http status = %d\n",
+         url, http_code);
+
+  bool ok = http_code == 200 || http_code == 206;
+  if (ok) {
+    write_callback(fetch->data, fetch->numBytes, 1, ctx);
+  } else {
+    char buf[64];
+    snprintf(buf, 64, "fetch error, code %d", http_code);
+    report_error(buf);
+  }
+
+  emscripten_fetch_close(fetch);
+  return ok;
+#endif
 }
 
 static bool fetch_range_to_sram(const char* url, size_t first_byte,
@@ -469,7 +505,9 @@ void kinetoscope_init(void *sram_buffer, uint32_t sram_size) {
   global_sram_buffer = sram_buffer;
   global_sram_size = sram_size;
 
+#if !defined(__EMSCRIPTEN__)
   curl_global_init(CURL_GLOBAL_ALL);
+#endif
 
   global_fetch_busy = false;
   pthread_create(&global_fetch_thread, NULL, fetch_thread, NULL);
