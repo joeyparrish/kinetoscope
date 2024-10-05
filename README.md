@@ -35,6 +35,11 @@ cartridge/ROM.
 Schematics and board layouts for special streaming hardware can be found in the
 [`hardware/`](hardware/) folder.
 
+You can download a pre-built emulator for macOS, Windows, or Linux from the
+[releases page](https://github.com/joeyparrish/kinetoscope/releases).
+**NOTE:** On Linux, you should have OpenGL and PulseAudio pre-installed to use
+these binaries.
+
 
 ## Web Demo
 
