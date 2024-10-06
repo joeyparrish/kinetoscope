@@ -758,6 +758,7 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
         for offset in index:
           f.write(offset.to_bytes(4, 'big'))
 
+      total_frames = state.frame_count
       while state.sound_len and state.frame_count:
         if args.compressed:
           # Minus one here because we need the final entry for the total size.
@@ -774,6 +775,11 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
           f.write(compressed)
         else:
           write_chunk(f, state)
+
+        print('\rOutput {} / {} frames...'.format(
+            total_frames - state.frame_count, total_frames), end='')
+
+      print('')
 
       # Seek back to the header to fill in these two fields.
       patch_at_offset(f, chunk_size_offset, state.chunk_size, 4)
