@@ -16,7 +16,7 @@
 #include "sram.h"
 
 #define SERVER "storage.googleapis.com"
-#define RAW_VIDEO_PATH   "/sega-kinetoscope/canned-videos/Never%20Gonna%20Give%20You%20Up.segavideo"
+#define PORT 80
 #define RLE_VIDEO_PATH   "/sega-kinetoscope/canned-videos/Never%20Gonna%20Give%20You%20Up.segavideo.rle"
 
 // 3s chunk of audio+video data, at default settings, without main headers
@@ -96,32 +96,14 @@ extern bool http_rle_sram_callback(const uint8_t* buffer, int bytes);
 extern void http_rle_reset();
 extern bool network_connected;
 
-static long test_raw_download_speed() {
-  // 2.5Mbps minimum required
-  // ~2.7Mbps with initial HTTP connection overhead
-  // ~3.0Mbps on subsequent requests
-  long start = millis();
-  sram_start_bank(0);
-  if (!http_fetch(SERVER,
-                  /* default port */ 0,
-                  RAW_VIDEO_PATH,
-                  /* first byte */ 0,
-                  /* total_size= */ ABOUT_3S_VIDEO_AUDIO_BYTES,
-                  http_sram_callback)) {
-    Serial.println("Fetch failed!");
-  }
-  sram_flush_and_release_bank();
-  long end = millis();
-  return end - start;
-}
-
 static long test_rle_download_speed(int offset, int size) {
   // (Effective) 2.5Mbps minimum required
   // (Effective) ~5.1 Mbps (after decompression)
   http_rle_reset();
   long start = millis();
   sram_start_bank(0);
-  if (!http_fetch(SERVER, /* default port */ 0,
+  if (!http_fetch(SERVER,
+                  PORT,
                   RLE_VIDEO_PATH,
                   offset,
                   size,
@@ -163,21 +145,11 @@ void run_tests() {
   } else {
     Serial.println("Beginning raw network tests.");
 
-    for (int i = 0; i < 10; i++) {
-      ms = test_raw_download_speed();
-      float bits = ABOUT_3S_VIDEO_AUDIO_BYTES * 8.0;
-      float seconds = ms / 1000.0;
-      float mbps = bits / seconds / 1024.0 / 1024.0;
-      Serial.print(ms);
-      Serial.print(" ms to stream ~3s raw video to SRAM (");
-      Serial.print(mbps);
-      Serial.println(" Mbps vs 2.50 Mbps minimum)");
-    }
-
     Serial.println("Beginning RLE network tests.");
     uint32_t minimal_index[2];
     http_local_buffer = (uint8_t*)minimal_index;
-    if (!http_fetch(SERVER, /* default port */ 0,
+    if (!http_fetch(SERVER,
+                    PORT,
                     RLE_VIDEO_PATH,
                     sizeof(SegaVideoHeader),
                     sizeof(minimal_index),

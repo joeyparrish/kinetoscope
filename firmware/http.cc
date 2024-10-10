@@ -117,19 +117,35 @@ static inline void write_request(const char* server, uint16_t port,
       "Range: %s\r\n"
       "\r\n",
       path, server, range_value);
+
+#ifdef DEBUG
+  Serial.println(request_buffer);
+#endif
+
   client->write((const uint8_t*)request_buffer, request_size);
 }
 
 static inline bool read_response_headers(HeaderData* header_data) {
-  int num_read = -1;
+  int num_read = 0;
   while (num_read <= MIN_RESPONSE_LENGTH && client->connected()) {
-    num_read = client->read((uint8_t*)response_buffer, sizeof(response_buffer));
+    // FIXME: ensure all headers are buffered here
+    int last_read = client->read(
+        (uint8_t*)response_buffer + num_read,
+        sizeof(response_buffer) - num_read);
+    if (last_read >= 0) {
+      num_read += last_read;
+    }
   }
+  response_buffer[num_read] = '\0';
 
   if (num_read < MIN_RESPONSE_LENGTH) {
     Serial.println("Failed!  Did not find status code!");
     return false;
   }
+
+#ifdef DEBUG
+  Serial.println(response_buffer);
+#endif
 
   char status_code_buf[4];
   memcpy(status_code_buf, response_buffer + HTTP_RESPONSE_HEADER_LENGTH, 3);
@@ -150,19 +166,12 @@ static inline bool read_response_headers(HeaderData* header_data) {
   int body_bytes_in_first_buffer = 0;
 
   // Scan through the buffer looking for the body length and the end of the
-  // headers.
-  for (int i = 0; i < num_read - 3; ++i) {
-    if (response_buffer[i    ] == '\r' &&
-        response_buffer[i + 1] == '\n' &&
-        response_buffer[i + 2] == '\r' &&
-        response_buffer[i + 3] == '\n') {
-      // End of headers.  Save the location and length of the body bytes we
-      // have in buffer, then quit the loop.
-      header_data->body_start = (const uint8_t*)response_buffer + i + 4;
-      header_data->body_start_length = num_read - (i + 4);
-      break;
-    } else if (response_buffer[i] == '\r' &&
-               response_buffer[i + 1] == '\n') {
+  // headers.  NOTE: Although compliant servers are supposed to send \r\n as a
+  // line terminator, compliant clients may ignore the \r and accept \n only.
+  // Android's com.phlox.simpleserver, which I used briefly during testing,
+  // only replies with \n, so we take care here to tolerate that.
+  for (int i = 0; i < num_read - 1; ++i) {
+    if (response_buffer[i] == '\n') {
       if (this_header_starts > 0) {
         // Parse one more header, looking for Content-Length.
         if (!strncasecmp(
@@ -176,7 +185,27 @@ static inline bool read_response_headers(HeaderData* header_data) {
         }
       }
 
-      this_header_starts = i + 2;
+      this_header_starts = i + 1;
+    }
+
+    if (i < num_read - 3 &&
+        response_buffer[i    ] == '\r' &&
+        response_buffer[i + 1] == '\n' &&
+        response_buffer[i + 2] == '\r' &&
+        response_buffer[i + 3] == '\n') {
+      // End of headers (compliant, DOS style line termination).
+      // Save the location and length of the body bytes we have in buffer, then
+      // quit the loop.
+      header_data->body_start = (const uint8_t*)response_buffer + i + 4;
+      header_data->body_start_length = num_read - (i + 4);
+      break;
+    } else if (response_buffer[i    ] == '\n' &&
+               response_buffer[i + 1] == '\n') {
+      // End of headers.  Save the location and length of the body bytes we
+      // have in buffer, then quit the loop.
+      header_data->body_start = (const uint8_t*)response_buffer + i + 2;
+      header_data->body_start_length = num_read - (i + 2);
+      break;
     }
   }
 
