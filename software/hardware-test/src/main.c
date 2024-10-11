@@ -40,7 +40,7 @@ char march_error_2[256];
   volatile uint8_t* sram = bank ? KINETOSCOPE_SRAM_BANK_1 : KINETOSCOPE_SRAM_BANK_0
 #define SRAM_MARCH_TEST_DATA(offset, data) { \
   if (sram[offset] != data) { \
-    sprintf(march_error_1, "Fail at offset %d", (int)offset); \
+    sprintf(march_error_1, "Fail at offset %d      ", (int)offset); \
     sprintf(march_error_2, "real 0x%02x != expected 0x%02x", \
             (int)(sram[offset]), (int)data); \
     return false; \
@@ -296,7 +296,7 @@ int main(bool hardReset) {
     if (!ok) {
       VDP_drawText(march_error_1, 0, memory_test_error_line);
       VDP_drawText(march_error_2, 0, memory_test_error_line + 1);
-      waitMs(3000);
+      waitMs(10 * 1000);
     }
   }
 
