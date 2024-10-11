@@ -34,10 +34,15 @@
 #define PAL_YELLOW PAL3
 
 // Macros to complete sram_march_test in sram-common.h
+char march_error_1[256];
+char march_error_2[256];
 #define SRAM_MARCH_TEST_START(bank) \
   volatile uint8_t* sram = bank ? KINETOSCOPE_SRAM_BANK_1 : KINETOSCOPE_SRAM_BANK_0
 #define SRAM_MARCH_TEST_DATA(offset, data) { \
   if (sram[offset] != data) { \
+    sprintf(march_error_1, "Fail at offset %d", (int)offset); \
+    sprintf(march_error_2, "real 0x%02x != expected 0x%02x", \
+            (int)(sram[offset]), (int)data); \
     return false; \
   } \
 }
@@ -255,6 +260,8 @@ int main(bool hardReset) {
   line++;  // blank line
   int memory_test_pass_line = line;
   line += 2;
+  int memory_test_error_line = line;
+  line += 2;
 
   VDP_setTextPalette(PAL_WHITE);
   //            0         1
@@ -286,6 +293,11 @@ int main(bool hardReset) {
     bool ok = sram_march_test(pass);
     VDP_setTextPalette(ok ? PAL_WHITE : PAL_YELLOW);
     VDP_drawText(ok ? "P" : "F", pass + 1, memory_test_pass_line + 1);
+    if (!ok) {
+      VDP_drawText(march_error_1, 0, memory_test_error_line);
+      VDP_drawText(march_error_2, 0, memory_test_error_line + 1);
+      waitMs(3000);
+    }
   }
 
 
