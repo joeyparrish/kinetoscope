@@ -5,6 +5,9 @@
 // See MIT License in LICENSE.txt
 
 // Shared SRAM code.
+// Beware: The Sega runs a version of sram_march_test, and "int" in that
+// environment is only 15 bits (plus sign bit).  So use specific uint* types
+// instead!
 
 #define SRAM_BANK_SIZE_BYTES (1 << 20)
 
@@ -46,18 +49,20 @@ bool sram_march_test(int pass) {
     case 12:
     case 13:
     case 14:
-    case 15:
-      for (int offset = 0; offset < SRAM_BANK_SIZE_BYTES; ++offset) {
-        int bit = (offset + pass / 2) % 8;
-        uint8_t data = 1 << bit;
+    case 15: {
+      uint32_t start_offset = pass / 2;
+      for (uint32_t offset = 0; offset < SRAM_BANK_SIZE_BYTES; ++offset) {
+        uint32_t bit = (offset + start_offset) % 8;
+        uint8_t data = 1U << bit;
         SRAM_MARCH_TEST_DATA(offset, data);
       }
       break;
+    }
 
     // Write the lowest 8 bits of the address to each byte of SRAM.
     case 16:
     case 17:
-      for (int offset = 0; offset < SRAM_BANK_SIZE_BYTES; ++offset) {
+      for (uint32_t offset = 0; offset < SRAM_BANK_SIZE_BYTES; ++offset) {
         uint8_t data = offset & 0xff;
         SRAM_MARCH_TEST_DATA(offset, data);
       }
@@ -66,7 +71,7 @@ bool sram_march_test(int pass) {
     // Write the lowest 8 bits of the address (inverted) to each byte of SRAM.
     case 18:
     case 19:
-      for (int offset = 0; offset < SRAM_BANK_SIZE_BYTES; ++offset) {
+      for (uint32_t offset = 0; offset < SRAM_BANK_SIZE_BYTES; ++offset) {
         uint8_t data = (offset & 0xff) ^ 0xff;
         SRAM_MARCH_TEST_DATA(offset, data);
       }
@@ -77,10 +82,10 @@ bool sram_march_test(int pass) {
     // different from bank 0, start counter at non-zero for bank 1.
     case 20:
     case 21: {
-      int primes[8] = { 251, 241, 239, 233, 229, 227, 223, 211 };
-      int prime_index = 0;
-      int offset = 0;
-      int counter = bank * 199;
+      uint32_t primes[8] = { 251, 241, 239, 233, 229, 227, 223, 211 };
+      uint32_t prime_index = 0;
+      uint32_t offset = 0;
+      uint32_t counter = bank * 199;
       for (; offset < SRAM_BANK_SIZE_BYTES; ++offset, ++counter) {
         if (counter == primes[prime_index] * 255) {
           prime_index = (prime_index + 1) % 8;
