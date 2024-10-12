@@ -283,12 +283,16 @@ int main(bool hardReset) {
       '\0',
     };
     VDP_drawText(counter, 15, memory_test_pass_line);
+    // "!": indicates that the uC is filling the SRAM with data.
+    VDP_drawText("!", pass + 1, memory_test_pass_line + 1);
 
-    if (!waitForToken(/* timeout_seconds= */ 10)) {
+    if (!waitForToken(/* timeout_seconds= */ 30)) {
       VDP_setTextPalette(PAL_YELLOW);
       VDP_drawText("SRAM test command timed out.", 1, line++);
       break;
     }
+    // "?": indicates that the Sega is reading the SRAM.
+    VDP_drawText("?", pass + 1, memory_test_pass_line + 1);
 
     bool ok = sram_march_test(pass);
     VDP_setTextPalette(ok ? PAL_WHITE : PAL_YELLOW);
