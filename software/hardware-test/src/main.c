@@ -278,8 +278,8 @@ int main(bool hardReset) {
 
     VDP_setTextPalette(PAL_WHITE);
     char counter[3] = {
-      '0' + (((pass + 1) / 10) % 10),
-      '0' + ((pass + 1) % 10),
+      '0' + ((pass / 10) % 10),
+      '0' + (pass % 10),
       '\0',
     };
     VDP_drawText(counter, 15, memory_test_pass_line);
