@@ -17,6 +17,9 @@
 
 #include <Arduino.h>
 
+// For debugging, we can slow down GPIO.
+//#define GO_SLOW
+
 #if defined(ARDUINO_ARCH_RP2040)  // e.g. Raspberry Pi Pico (W)
 
 #define SRAM_PIN__WRITE_BANK_0  12
@@ -49,8 +52,29 @@
 #define REG_PIN__D_MASK    0x000000ff
 #define REG_PIN__D_SHIFT            0
 
-#define FAST_CLEAR(PIN) sio_hw->gpio_clr = 1 << (PIN)
-#define FAST_SET(PIN) sio_hw->gpio_set = 1 << (PIN)
+// Without the nops, pulses happen in about 16ns, but the voltage change
+// from the GPIO pins (~8ns/V over 3.3V) is much slower than the CPU speed
+// (125MHz or 8ns/cycle).  So without nops, at top speed, a signal would
+// bounce between ~2V and ~1V, never reaching high (>= 2.3V) or low (<= 0.8V).
+
+// One nop after each pin change adds roughly doubles the duration to 32ns.
+// With this timing, the voltage ranges from ~2.4V to ~0.5V.  It spends about
+// 4ns in the "high" zone and about 6ns in the "low" zone.  Our minimum pulse
+// widths for most ICs are around 7ns (74AHC74 clear/set, 74LV163A clock,
+// 74LV164 clock), so this is not long enough in stable states.
+
+// With two nops, the pin tends to stay in the right range for 12-16ns,
+// reaching all the way to VCC and 0V.
+#define FAST_GPIO_DELAY() { asm("nop"); asm("nop"); }
+
+#ifdef GO_SLOW
+# define FAST_CLEAR(PIN) { digitalWrite(PIN, LOW); FAST_GPIO_DELAY(); }
+# define FAST_SET(PIN) { digitalWrite(PIN, HIGH); FAST_GPIO_DELAY(); }
+#else
+# define FAST_CLEAR(PIN) { sio_hw->gpio_clr = 1 << (PIN); FAST_GPIO_DELAY(); }
+# define FAST_SET(PIN) { sio_hw->gpio_set = 1 << (PIN); FAST_GPIO_DELAY(); }
+#endif
+
 #define FAST_GET(PIN) (sio_hw->gpio_in & (1 << (PIN)))
 #define FAST_READ_MULTIPLE(MASK, SHIFT) ((sio_hw->gpio_in & (MASK)) >> SHIFT)
 
@@ -95,37 +119,14 @@
 
 #endif
 
-
-// Without the nops, these pulses happen in about 16ns, but the voltage change
-// from the GPIO pins (~8ns/V over 3.3V) is much slower than the CPU speed
-// (125MHz or 8ns/cycle).  So without nops, at top speed, this signal would
-// bounce between ~2V and ~1V, never reaching high (>= 2.3V) or low (<= 0.8V).
-
-// One nop after each pin change adds roughly doubles the duration to 32ns.
-// With this timing, the voltage ranges from ~2.4V to ~0.5V.  It spends about
-// 4ns in the "high" zone and about 6ns in the "low" zone.  Our minimum pulse
-// widths for most ICs are around 7ns (74AHC74 clear/set, 74LV163A clock,
-// 74LV164 clock), so this is not long enough in stable states.
-
-// With two nops, the pin tends to stay in the right range for 12-16ns,
-// reaching all the way to VCC and 0V.
-
 #define FAST_PULSE_ACTIVE_LOW(PIN) { \
   FAST_CLEAR(PIN); \
-  asm("nop"); \
-  asm("nop"); \
   FAST_SET(PIN); \
-  asm("nop"); \
-  asm("nop"); \
 }
 
 #define FAST_PULSE_ACTIVE_HIGH(PIN) { \
   FAST_SET(PIN); \
-  asm("nop"); \
-  asm("nop"); \
   FAST_CLEAR(PIN); \
-  asm("nop"); \
-  asm("nop"); \
 }
 
 #define FAST_WRITE(PIN, VALUE) { \

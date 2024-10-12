@@ -23,7 +23,9 @@
 #include "genesis.h"
 #include "util.h"
 
+// TODO: Clean up kinetoscope paths
 #include "segavideo_format.h"
+#include "../common/video-server.h"
 
 #if defined(__MINGW32__)
 // Windows header for ntohs and ntohl.
@@ -73,14 +75,6 @@
 #define PADDING_BYTES_OFFSET_FROM_END_OF_HEADER \
   (sizeof(SegaVideoChunkHeader) - offsetof(SegaVideoChunkHeader, paddingBytes))
 
-#define VIDEO_SERVER "storage.googleapis.com"
-#define VIDEO_SERVER_PORT 80
-#define VIDEO_BASE_PATH "/sega-kinetoscope/canned-videos/"
-
-#define _STRINGIFY(X) #X
-#define STRINGIFY(X) _STRINGIFY(X)
-#define VIDEO_BASE_URL "http://" VIDEO_SERVER ":" STRINGIFY(VIDEO_SERVER_PORT) VIDEO_BASE_PATH
-#define VIDEO_CATALOG_URL VIDEO_BASE_URL "catalog.bin"
 
 static uint8_t* global_sram_buffer = NULL;
 static uint32_t global_sram_size = 0;
@@ -371,7 +365,7 @@ static void start_video() {
   }
 
   SegaVideoHeader header;
-  if (!fetch_range_to_buffer(VIDEO_CATALOG_URL, &header,
+  if (!fetch_range_to_buffer(VIDEO_SERVER_CATALOG_URL, &header,
                              sizeof(header) * video_index, sizeof(header))) {
     char buf[64];
     snprintf(buf, 64, "Failed to fetch catalog index! (%d)", (int)video_index);
@@ -391,12 +385,12 @@ static void start_video() {
     return;
   }
 
-  size_t base_len = strlen(VIDEO_BASE_URL);
+  size_t base_len = strlen(VIDEO_SERVER_BASE_URL);
   if (global_video_url) {
     free(global_video_url);
   }
   global_video_url = (char*)malloc(base_len + path_len + 1);
-  memcpy(global_video_url, VIDEO_BASE_URL, base_len);
+  memcpy(global_video_url, VIDEO_SERVER_BASE_URL, base_len);
   memcpy(global_video_url + base_len, path, path_len);
   global_video_url[base_len + path_len] = '\0';
 
@@ -459,7 +453,7 @@ static void get_video_list() {
 
   global_compressed = 0;
   global_sram_offset = 0;
-  if (!fetch_to_sram(VIDEO_CATALOG_URL)) {
+  if (!fetch_to_sram(VIDEO_SERVER_CATALOG_URL)) {
     report_error("Failed to download video catalog!");
     return;
   }

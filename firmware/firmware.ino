@@ -19,6 +19,7 @@
 #include "speed-tests.h"
 #include "sram.h"
 #include "string-util.h"
+#include "video-server.h"
 
 //#define DEBUG
 //#define RUN_TESTS
@@ -30,14 +31,6 @@
 #if !defined(SECRET_WIFI_PASS)
 # define SECRET_WIFI_PASS ""
 #endif
-
-// NOTE: This must be a plain HTTP server.  HTTPS is too expensive for this
-// application and microcontroller.  Even though we could do it, it would hurt
-// our slim throughput margins too much.
-#define VIDEO_SERVER "storage.googleapis.com"
-#define VIDEO_SERVER_PORT 80
-#define VIDEO_BASE_PATH "/sega-kinetoscope/canned-videos/"
-#define VIDEO_CATALOG_PATH VIDEO_BASE_PATH "catalog.bin"
 
 #define MAX_SERVER 256
 #define MAX_PATH 256
@@ -247,7 +240,7 @@ static void process_command(uint8_t command, uint8_t arg) {
       }
 
       // Construct the URL of the video.
-      copy_string(fetch_path, VIDEO_BASE_PATH, MAX_PATH);
+      copy_string(fetch_path, VIDEO_SERVER_BASE_PATH, MAX_PATH);
       concatenate_string(fetch_path, header.relative_url, MAX_PATH);
 
       // Start streaming.

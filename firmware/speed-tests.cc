@@ -14,10 +14,9 @@
 #include "registers.h"
 #include "segavideo_format.h"
 #include "sram.h"
+#include "video-server.h"
 
-#define SERVER "storage.googleapis.com"
-#define PORT 80
-#define RLE_VIDEO_PATH   "/sega-kinetoscope/canned-videos/Never%20Gonna%20Give%20You%20Up.segavideo.rle"
+#define RLE_VIDEO   "Never%20Gonna%20Give%20You%20Up.segavideo.rle"
 
 // 3s chunk of audio+video data, at default settings, without main headers
 #define ABOUT_3S_VIDEO_AUDIO_BYTES 901376
@@ -102,9 +101,9 @@ static long test_rle_download_speed(int offset, int size) {
   http_rle_reset();
   long start = millis();
   sram_start_bank(0);
-  if (!http_fetch(SERVER,
-                  PORT,
-                  RLE_VIDEO_PATH,
+  if (!http_fetch(VIDEO_SERVER,
+                  VIDEO_SERVER_PORT,
+                  VIDEO_SERVER_BASE_PATH RLE_VIDEO,
                   offset,
                   size,
                   http_rle_sram_callback)) {
@@ -148,9 +147,9 @@ void run_tests() {
     Serial.println("Beginning RLE network tests.");
     uint32_t minimal_index[2];
     http_local_buffer = (uint8_t*)minimal_index;
-    if (!http_fetch(SERVER,
-                    PORT,
-                    RLE_VIDEO_PATH,
+    if (!http_fetch(VIDEO_SERVER,
+                    VIDEO_SERVER_PORT,
+                    VIDEO_SERVER_BASE_PATH RLE_VIDEO,
                     sizeof(SegaVideoHeader),
                     sizeof(minimal_index),
                     http_local_buffer_callback)) {
