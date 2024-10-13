@@ -378,8 +378,13 @@ void setup() {
   Serial.println("Kinetoscope boot!\n");
 
 #ifdef RUN_TESTS
+  // Wait for Serial.  No point running tests if we can't see the output.
+  while (!Serial) { delay(1); }
+
   // Automatically connect to the network to run speed tests.
   connect_network();
+
+  // Run tests.
   run_tests();
 #endif
 
