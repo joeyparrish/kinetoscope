@@ -1759,16 +1759,6 @@
 		)
 		(uuid "46a83dda-1d19-46fd-8247-1152654dccce")
 	)
-	(polyline
-		(pts
-			(xy 120.65 128.27) (xy 123.19 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4bd2ff9a-1146-4866-ab9c-14b40427d9f7")
-	)
 	(wire
 		(pts
 			(xy 195.58 124.46) (xy 199.39 124.46)
@@ -1868,6 +1858,16 @@
 			(type default)
 		)
 		(uuid "6e4d97ac-fc77-4622-954b-b2d9834ef7f0")
+	)
+	(wire
+		(pts
+			(xy 153.67 123.19) (xy 148.59 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6f6734b1-e0e0-43ba-bda3-b1ae2eb5a214")
 	)
 	(wire
 		(pts
@@ -2009,16 +2009,6 @@
 		)
 		(uuid "9e802979-d472-4e59-936e-c3fe426ba5c1")
 	)
-	(polyline
-		(pts
-			(xy 123.19 128.27) (xy 123.19 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9f01ca34-93ba-43a6-91f8-1c33b31d8442")
-	)
 	(wire
 		(pts
 			(xy 148.59 139.7) (xy 153.67 139.7)
@@ -2059,16 +2049,6 @@
 		)
 		(uuid "afc9d7ee-ee90-4ca2-b53f-6011683bb78c")
 	)
-	(polyline
-		(pts
-			(xy 123.19 130.81) (xy 128.27 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b17efb63-d800-4fbc-a84e-345559159b43")
-	)
 	(wire
 		(pts
 			(xy 234.95 31.75) (xy 242.57 31.75)
@@ -2078,6 +2058,16 @@
 			(type default)
 		)
 		(uuid "bc5cec34-3558-4b70-8484-88836cc75649")
+	)
+	(wire
+		(pts
+			(xy 137.16 123.19) (xy 140.97 123.19)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bdf0eee9-e987-450b-8422-e276e0b65f40")
 	)
 	(wire
 		(pts
@@ -2181,7 +2171,7 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 114.3) (xy 93.98 114.3)
+			(xy 80.01 114.3) (xy 83.82 114.3)
 		)
 		(stroke
 			(width 0)
@@ -2279,16 +2269,6 @@
 		)
 		(uuid "eeff0713-03ce-4cd9-ae6c-4aba9d9676c7")
 	)
-	(wire
-		(pts
-			(xy 137.16 130.81) (xy 140.97 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ef362172-6f08-4c8e-bcb7-149042b9ea2c")
-	)
 	(polyline
 		(pts
 			(xy 110.49 73.66) (xy 121.92 73.66)
@@ -2298,6 +2278,16 @@
 			(type default)
 		)
 		(uuid "effc3fa4-63f8-4993-ab4d-6475859fde46")
+	)
+	(wire
+		(pts
+			(xy 137.16 130.81) (xy 140.97 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f76e1812-e7e3-4097-9720-fe66e4c3f10f")
 	)
 	(bus
 		(pts
@@ -2321,7 +2311,7 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 144.78) (xy 93.98 144.78)
+			(xy 80.01 144.78) (xy 83.82 144.78)
 		)
 		(stroke
 			(width 0)
@@ -2495,32 +2485,6 @@
 		)
 		(uuid a4cc776a-d6de-4696-8374-c34f37daf284)
 	)
-	(arc
-		(start 127 132.08)
-		(mid 127.372 131.182)
-		(end 128.27 130.81)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid cf03f767-8787-43af-b2fe-10d2032c5633)
-	)
-	(arc
-		(start 128.27 130.81)
-		(mid 127.372 130.438)
-		(end 127 129.54)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid d3463316-9392-4ecc-ab4c-00dbf9d0e8d2)
-	)
 	(text "3V signal"
 		(exclude_from_sim no)
 		(at 93.472 75.184 0)
@@ -2541,9 +2505,9 @@
 		)
 		(uuid "1983307b-768f-484a-a3a9-4239d36b58d6")
 	)
-	(text "~{OE} high (off)\n~{CE} low (on)"
+	(text "~{OE} high (off)"
 		(exclude_from_sim no)
-		(at 104.648 145.796 0)
+		(at 93.98 144.272 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2552,9 +2516,9 @@
 		)
 		(uuid "1ad68464-c13a-4f31-a463-2a50e5cea37d")
 	)
-	(text "For now, SRAM's ~{CE} signal is always on.\nThis should be fine, since ~{OE} and ~{WE}\nsignals will still control access to its\ndata bus."
+	(text "NOTE: A PSRAM's ~{CE} signal may not stay\non at all times. There is a maximum pulse\nwidth of 15us for this chipset, so that\nthe DRAM internal to the PSRAM can go\nthrough a refresh cycle.\n\nTying ~{CE} to ~{WE} (for writes) or\n~{SEGA_CE} (for reads) seems to meet\nall the timing requirements."
 		(exclude_from_sim no)
-		(at 81.534 129.032 0)
+		(at 137.922 99.314 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2607,7 +2571,7 @@
 	)
 	(text "~{WE} high (off)"
 		(exclude_from_sim no)
-		(at 105.156 114.554 0)
+		(at 94.234 114.554 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2668,7 +2632,7 @@
 	)
 	(text "These bridges can be used to snoop on these\nsignals, or cut with a knife to hijack them."
 		(exclude_from_sim no)
-		(at 147.32 123.19 0)
+		(at 147.32 115.57 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2747,6 +2711,16 @@
 			)
 		)
 		(uuid "975d005c-7d6e-4532-9397-ca7b6919c4ee")
+	)
+	(text "<- 5V, tolerated"
+		(exclude_from_sim no)
+		(at 120.904 110.744 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "9d2cd944-f6d8-4a16-956d-792e8f42675b")
 	)
 	(text "3V signals"
 		(exclude_from_sim no)
@@ -2830,6 +2804,17 @@
 			(justify left bottom)
 		)
 		(uuid "118c83a8-b963-47b9-8753-7600031cced3")
+	)
+	(label "~{SRAM_WE}"
+		(at 137.16 130.81 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "1d1b6b04-aa96-46e8-9a03-f26a3b11878d")
 	)
 	(label "~{SEGA_OE}"
 		(at 234.95 31.75 180)
@@ -3062,6 +3047,17 @@
 		)
 		(uuid "56e89f04-2ce9-4ac2-a403-86310a8c70ae")
 	)
+	(label "~{SRAM_CE_WRITE_INT}"
+		(at 93.98 147.32 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5a5f2fc5-1129-4ddd-a15e-403d73e934cc")
+	)
 	(label "~{SRAM_OE_INT}"
 		(at 93.98 109.22 0)
 		(fields_autoplaced yes)
@@ -3139,6 +3135,17 @@
 		)
 		(uuid "663504cb-5024-48c1-a4af-190d0a916966")
 	)
+	(label "~{SRAM_CE_READ_INT}"
+		(at 153.67 123.19 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6b0e81dd-b32a-4093-a6ca-07c0a7b92013")
+	)
 	(label "SRAM_D_IN[0..15]"
 		(at 151.13 25.4 0)
 		(fields_autoplaced yes)
@@ -3150,7 +3157,7 @@
 		)
 		(uuid "7676fd7a-4511-4175-8277-d334582c0c41")
 	)
-	(label "~{SRAM_CE_INT}"
+	(label "~{SRAM_CE_READ_INT}"
 		(at 93.98 111.76 0)
 		(fields_autoplaced yes)
 		(effects
@@ -3260,7 +3267,7 @@
 		)
 		(uuid "8f1ca1ab-9bc0-4ab5-b2f1-4f422b721b86")
 	)
-	(label "~{SRAM_CE_INT}"
+	(label "~{SRAM_CE_WRITE_INT}"
 		(at 153.67 130.81 0)
 		(fields_autoplaced yes)
 		(effects
@@ -3336,17 +3343,6 @@
 			(justify right bottom)
 		)
 		(uuid "b88c2786-d342-4f38-b462-5c1302defe8f")
-	)
-	(label "GND"
-		(at 93.98 147.32 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "bc333df2-afa1-45e1-b813-1f9ce17476c1")
 	)
 	(label "SEGA_D[0..15]"
 		(at 195.58 137.16 180)
@@ -3424,6 +3420,17 @@
 			(justify right bottom)
 		)
 		(uuid "cd83b7e0-2ce0-453f-975f-0eda95309473")
+	)
+	(label "~{SEGA_CE}"
+		(at 137.16 123.19 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "d37beffe-5932-4cf0-b99b-30a2a50e69be")
 	)
 	(label "SEGA_A21"
 		(at 234.95 46.99 180)
@@ -3653,6 +3660,74 @@
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
 					(reference "#PWR048")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 144.78 123.19 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "124c1357-7617-4c9f-9469-c76210b3c704")
+		(property "Reference" "J_~{CE}_1"
+			(at 144.78 119.497 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 144.78 121.3239 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 144.78 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 144.78 123.19 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a2c96375-6b1f-413f-8e8f-92792d05bd67")
+		)
+		(pin "2"
+			(uuid "4ac60f52-15a5-4d8c-a894-7b9228065f91")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
+					(reference "J_~{CE}_1")
 					(unit 1)
 				)
 			)
@@ -4029,7 +4104,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 93.98 114.3 270)
+		(at 83.82 114.3 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4038,7 +4113,7 @@
 		(fields_autoplaced yes)
 		(uuid "57b37cdb-7f20-43e0-96e4-54c5a80b6281")
 		(property "Reference" "#PWR017"
-			(at 90.17 114.3 0)
+			(at 80.01 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4047,7 +4122,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 97.79 114.2999 90)
+			(at 87.63 114.2999 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4056,7 +4131,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 93.98 114.3 0)
+			(at 83.82 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4065,7 +4140,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 93.98 114.3 0)
+			(at 83.82 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4074,7 +4149,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 93.98 114.3 0)
+			(at 83.82 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4423,73 +4498,6 @@
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
 					(reference "J_~{OE}_1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 137.16 130.81 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9a68d587-6f0c-4646-8794-32f5da5345f4")
-		(property "Reference" "#PWR012"
-			(at 130.81 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 133.35 130.8099 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 137.16 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 137.16 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 137.16 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b8cffeca-e7f3-40c6-abaa-bd7bcd658ae2")
-		)
-		(instances
-			(project ""
-				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
-					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -5244,7 +5252,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 93.98 144.78 270)
+		(at 83.82 144.78 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5253,7 +5261,7 @@
 		(fields_autoplaced yes)
 		(uuid "de37166f-3009-443c-831a-06bb3897a9ad")
 		(property "Reference" "#PWR020"
-			(at 90.17 144.78 0)
+			(at 80.01 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5262,7 +5270,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 97.155 144.78 90)
+			(at 86.995 144.78 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5271,7 +5279,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 93.98 144.78 0)
+			(at 83.82 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5280,7 +5288,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 93.98 144.78 0)
+			(at 83.82 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5289,7 +5297,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 93.98 144.78 0)
+			(at 83.82 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5319,7 +5327,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "deecb1a9-852b-456f-952c-146fa8d9b67c")
-		(property "Reference" "J_~{CE}_1"
+		(property "Reference" "J_~{CE}_2"
 			(at 144.78 127.117 0)
 			(effects
 				(font
@@ -5371,7 +5379,7 @@
 		(instances
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
-					(reference "J_~{CE}_1")
+					(reference "J_~{CE}_2")
 					(unit 1)
 				)
 			)
