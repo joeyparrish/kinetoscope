@@ -67,6 +67,13 @@
 // reaching all the way to VCC and 0V.
 #define FAST_GPIO_DELAY() { asm("nop"); asm("nop"); }
 
+// SRAM write-enable pulses must be at least 45ns, so an extra delay is needed.
+// Each nop adds about 8ns.  The standard delay above already gives us ~16ns.
+// So we need 4-5 more.
+#define SRAM_GPIO_DELAY() { \
+  asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); \
+}
+
 #ifdef GO_SLOW
 # define FAST_CLEAR(PIN) { digitalWrite(PIN, LOW); FAST_GPIO_DELAY(); }
 # define FAST_SET(PIN) { digitalWrite(PIN, HIGH); FAST_GPIO_DELAY(); }
@@ -115,6 +122,8 @@
 #define FAST_GET(PIN) digitalRead(PIN)
 #define FAST_READ_MULTIPLE(MASK, SHIFT) 0
 
+#define SRAM_GPIO_DELAY() {}
+
 #error No fast GPIO or pin definitions for this board!
 
 #endif
@@ -135,4 +144,11 @@
   } else { \
     FAST_CLEAR(PIN); \
   } \
+}
+
+// Like "fast" pulse, but a little extra delay for SRAM.
+#define SRAM_PULSE_ACTIVE_LOW(PIN) { \
+  FAST_CLEAR(PIN); \
+  SRAM_GPIO_DELAY(); \
+  FAST_SET(PIN); \
 }

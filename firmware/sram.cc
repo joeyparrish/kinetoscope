@@ -38,8 +38,9 @@ static inline void sram_write_word(uint16_t word_data) {
     word_data <<= 1;
   );
 
-  // Write the word (active low).
-  FAST_PULSE_ACTIVE_LOW(SRAM_PIN__DATA_WRITE);
+  // Write the word (active low).  This is a special, longer pulse length to
+  // meet the SRAM chip's timing requirements.
+  SRAM_PULSE_ACTIVE_LOW(SRAM_PIN__DATA_WRITE);
 
   // Clock up to the next write address (rising edge).
   FAST_PULSE_ACTIVE_HIGH(SRAM_PIN__ADDR_CLOCK);
