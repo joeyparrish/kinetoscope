@@ -75,11 +75,11 @@
 }
 
 #ifdef GO_SLOW
-# define FAST_CLEAR(PIN) { digitalWrite(PIN, LOW); FAST_GPIO_DELAY(); }
-# define FAST_SET(PIN) { digitalWrite(PIN, HIGH); FAST_GPIO_DELAY(); }
+# define FAST_CLEAR(PIN) digitalWrite(PIN, LOW);
+# define FAST_SET(PIN) digitalWrite(PIN, HIGH);
 #else
-# define FAST_CLEAR(PIN) { sio_hw->gpio_clr = 1 << (PIN); FAST_GPIO_DELAY(); }
-# define FAST_SET(PIN) { sio_hw->gpio_set = 1 << (PIN); FAST_GPIO_DELAY(); }
+# define FAST_CLEAR(PIN) sio_hw->gpio_clr = 1 << (PIN)
+# define FAST_SET(PIN) sio_hw->gpio_set = 1 << (PIN)
 #endif
 
 #define FAST_GET(PIN) (sio_hw->gpio_in & (1 << (PIN)))
@@ -130,11 +130,13 @@
 
 #define FAST_PULSE_ACTIVE_LOW(PIN) { \
   FAST_CLEAR(PIN); \
+  FAST_GPIO_DELAY(); \
   FAST_SET(PIN); \
 }
 
 #define FAST_PULSE_ACTIVE_HIGH(PIN) { \
   FAST_SET(PIN); \
+  FAST_GPIO_DELAY(); \
   FAST_CLEAR(PIN); \
 }
 
