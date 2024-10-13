@@ -142,8 +142,6 @@ void run_tests() {
   if (!network_connected) {
     Serial.println("No network, skipping network tests.");
   } else {
-    Serial.println("Beginning raw network tests.");
-
     Serial.println("Beginning RLE network tests.");
     uint32_t minimal_index[2];
     http_local_buffer = (uint8_t*)minimal_index;
