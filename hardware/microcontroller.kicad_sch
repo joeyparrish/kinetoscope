@@ -8306,7 +8306,7 @@
 				(hide yes)
 			)
 		)
-		(property "JLCPCB Part Number" "C6825448"
+		(property "JLCPCB Part Number" "C4944863"
 			(at 232.41 158.75 0)
 			(effects
 				(font
@@ -8315,7 +8315,7 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "200-SSQ10301TD"
+		(property "Mouser Part Number" "710-61300621821"
 			(at 232.41 158.75 0)
 			(effects
 				(font
@@ -8324,7 +8324,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Number" "SSQ-103-01-T-D"
+		(property "Part Number" "61300621821"
 			(at 232.41 158.75 0)
 			(effects
 				(font

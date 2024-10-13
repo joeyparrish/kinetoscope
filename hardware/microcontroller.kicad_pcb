@@ -5442,7 +5442,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part Number" "C3323945"
+		(property "JLCPCB Part Number" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5455,7 +5455,7 @@
 				)
 			)
 		)
-		(property "Mouser Part Number" "200-SSQ12603TD"
+		(property "Mouser Part Number" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5468,7 +5468,7 @@
 				)
 			)
 		)
-		(property "Part Number" "SSQ-126-03-T-D "
+		(property "Part Number" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8277,7 +8277,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part Number" "C6825448"
+		(property "JLCPCB Part Number" "C4944863"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8290,7 +8290,7 @@
 				)
 			)
 		)
-		(property "Mouser Part Number" "200-SSQ10301TD"
+		(property "Mouser Part Number" "710-61300621821"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8303,7 +8303,7 @@
 				)
 			)
 		)
-		(property "Part Number" "SSQ-103-01-T-D"
+		(property "Part Number" "61300621821"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12579,7 +12579,7 @@
 				)
 			)
 		)
-		(property "JLCPCB Part Number" "C3324002"
+		(property "JLCPCB Part Number" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12592,7 +12592,7 @@
 				)
 			)
 		)
-		(property "Mouser Part Number" "200-SSQ12103TD"
+		(property "Mouser Part Number" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -12605,7 +12605,7 @@
 				)
 			)
 		)
-		(property "Part Number" "SSQ-121-03-T-D "
+		(property "Part Number" ""
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
