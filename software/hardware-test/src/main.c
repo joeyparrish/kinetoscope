@@ -39,10 +39,11 @@ char march_error_2[256];
 #define SRAM_MARCH_TEST_START(bank) \
   volatile uint8_t* sram = bank ? KINETOSCOPE_SRAM_BANK_1 : KINETOSCOPE_SRAM_BANK_0
 #define SRAM_MARCH_TEST_DATA(offset, data) { \
-  if (sram[offset] != data) { \
+  uint8_t real = sram[offset]; \
+  if (real != data) { \
     sprintf(march_error_1, "Fail at offset %d      ", (int)offset); \
-    sprintf(march_error_2, "real 0x%02x != expected 0x%02x", \
-            (int)(sram[offset]), (int)data); \
+    sprintf(march_error_2, "Expected 0x%02x, got 0x%02x", \
+            (int)data, (int)real); \
     return false; \
   } \
 }
