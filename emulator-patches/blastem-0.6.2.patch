@@ -1,4 +1,4 @@
-commit 4c23028aa3a829d67910dba2ab9acff6e1a9c603
+commit 169ef692633bd8b89ff0f714b6606dbe5a494889
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,7 +21,7 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..dbe9c28 100644
+index 0dddc9f..9a776a5 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -23,11 +23,11 @@ ifeq ($(CPU),i686)
@@ -105,7 +105,7 @@ index 0dddc9f..dbe9c28 100644
  %.o : %.m
  	$(CC) $(CFLAGS) -c -o $@ $<
  
-+kinetoscope.o : kinetoscope/emulator-patches/kinetoscope.c
++kinetoscope.o : kinetoscope/emulator-patches/kinetoscope.c kinetoscope/emulator-patches/fetch.c
 +	$(CC) $(CFLAGS) -c -o $@ $<
 +
  %.png : %.xcf
@@ -278,7 +278,7 @@ index c91273c..f637add 100755
  
  def gchannel(Val):
 diff --git a/romdb.c b/romdb.c
-index 79afa76..f7ca40d 100644
+index 79afa76..b5e7c9a 100644
 --- a/romdb.c
 +++ b/romdb.c
 @@ -14,6 +14,7 @@
@@ -289,7 +289,7 @@ index 79afa76..f7ca40d 100644
  
  #define DOM_TITLE_START 0x120
  #define DOM_TITLE_END 0x150
-@@ -338,6 +339,46 @@ void add_memmap_header(rom_info *info, uint8_t *rom, uint32_t size, memmap_chunk
+@@ -338,6 +339,45 @@ void add_memmap_header(rom_info *info, uint8_t *rom, uint32_t size, memmap_chunk
  			warning("ROM uses MegaWiFi, but it is disabled\n");
  		}
  		return;
@@ -304,6 +304,8 @@ index 79afa76..f7ca40d 100644
 +		info->map[0].end   = 0x400000;
 +		info->map[0].mask  = 0x1FFFFF;
 +		info->map[0].flags = MMAP_READ;
++		// Returns the address of the buffer that emulates the SRAM banks (2MB).
++		info->map[0].buffer = kinetoscope_init();
 +
 +		// In hardware, this whole range will trigger the /TIME signal.
 +		info->map[1].start = 0xA13000;
@@ -316,6 +318,11 @@ index 79afa76..f7ca40d 100644
 +		// 0x...40, ... would all map to the same port.
 +		info->map[1].mask  = 0x00001F;
 +
++		info->map[1].write_16 = kinetoscope_write_16;
++		info->map[1].write_8 = kinetoscope_write_8;
++		info->map[1].read_16 = kinetoscope_read_16;
++		info->map[1].read_8 = kinetoscope_read_8;
++
 +		info->map[2].start = 0x000000;
 +		info->map[2].end   = 0x200000;
 +		if (rom_end < info->map[2].end) {
@@ -324,14 +331,6 @@ index 79afa76..f7ca40d 100644
 +		info->map[2].mask  = 0x1FFFFF;
 +		info->map[2].flags = MMAP_READ;
 +		info->map[2].buffer = rom;
-+
-+		info->map[1].write_16 = kinetoscope_write_16;
-+		info->map[1].write_8 = kinetoscope_write_8;
-+		info->map[1].read_16 = kinetoscope_read_16;
-+		info->map[1].read_8 = kinetoscope_read_8;
-+
-+		// Returns the address of the buffer that emulates the SRAM banks (2MB).
-+		info->map[0].buffer = kinetoscope_init();
 +		return;
  	} else if (has_ram_header(rom, size)) {
  		uint32_t ram_start = read_ram_header(info, rom);

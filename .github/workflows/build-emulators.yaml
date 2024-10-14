@@ -203,3 +203,66 @@ jobs:
           name: blastem-macos
           path: blastem-0.6.2-kinetoscope
           retention-days: 1
+
+  build-genesis-plus-gx-web:
+    name: Build Genesis Plus GX for web
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Genesis Plus GX
+        uses: actions/checkout@v4
+        with:
+          repository: libretro/Genesis-Plus-GX
+          ref: 7de0f0b6cde9bda1235b448aa607044b3f80ab3c
+          path: .
+
+      - name: Checkout Kinetoscope
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ inputs.ref || github.ref }}
+          path: core/kinetoscope
+
+      - name: Checkout RetroArch
+        uses: actions/checkout@v4
+        with:
+          repository: libretro/RetroArch
+          ref: fbf2c70e0df88cbe9bf74752834592cf5613fca9
+          path: retroarch
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 3.1.46
+          # This triggers the SDK to be cached
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Apply patch
+        run: patch -p1 -i core/kinetoscope/emulator-patches/genesis-plus-gx.patch
+
+      # Instructions based on
+      # https://github.com/libretro/RetroArch/blob/master/pkg/emscripten/README.md
+      - name: Build Genesis Plus GX Core
+        run: |
+          # Build the Genesis Plux GX core
+          emmake make -f Makefile.libretro platform=emscripten
+          # Copy it into RetroArch's build
+          cp *_libretro_emscripten.bc retroarch/libretro_emscripten.bc
+          # Go to RetroArch
+          cd retroarch
+          # Build support infrastructure and perform final linking step
+          emmake make -f Makefile.emscripten LIBRETRO=genesis_plus_gx 'LIBS=-s USE_ZLIB=1 -s FETCH=1' -j all
+          # Outputs are genesis_plus_gx_libretro.*
+
+      - name: Upload libretro wasm core
+        uses: actions/upload-artifact@v4
+        # FIXME: Fix artifacts
+        #if: inputs.for-release
+        with:
+          name: genesis-plus-gx-web
+          path: genesis_plus_gx_libretro.*
+          retention-days: 1
+
+      # TODO: deploy this with nostalgist to GitHub Pages
+      - name: Deploy to GitHub Pages
+        if: inputs.for-release
+        run: true

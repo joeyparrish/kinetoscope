@@ -5,14 +5,8 @@
 // See MIT License in LICENSE.txt
 
 // Emulation of Kinetoscope video streaming hardware.
+// An emscripten build requires -s FETCH=1 at link time.
 
-#if defined(__EMSCRIPTEN__)
-# include <emscripten/fetch.h>
-#else
-# include <curl/curl.h>
-#endif
-
-#include <pthread.h>
 #include <stdbool.h>
 #include <stdarg.h>
 #include <stdint.h>
@@ -23,6 +17,7 @@
 
 #include "kinetoscope/software/player/inc/segavideo_format.h"
 #include "kinetoscope/common/video-server.h"
+#include "kinetoscope/emulator-patches/fetch.c"
 
 #if defined(__MINGW32__)
 // Windows header for ntohs and ntohl.
@@ -91,7 +86,7 @@ typedef struct kinetoscope_emulation_context_t {
   // SRAM
   // =========
   // backing store for emulated SRAM banks
-  uint8_t sram_buffer[SRAM_SIZE];
+  uint8_t* sram_buffer;
   // position we write to next
   uint32_t sram_offset;
 
@@ -109,6 +104,8 @@ typedef struct kinetoscope_emulation_context_t {
   char* error_str;
   // time when the current command will be complete, to emulate a processing delay
   uint64_t ready_time;
+  // commands may be async, so this flag tracks a command in process internally
+  bool command_busy;
 
   // Streaming
   // =========
@@ -124,18 +121,18 @@ typedef struct kinetoscope_emulation_context_t {
   uint32_t video_url_start_byte;
   // whether the content is compressed or not
   bool compressed;
+  // the header of the video we're starting
+  SegaVideoHeader header;
   // the index of chunk offsets for compressed video
   SegaVideoIndex index;
 
   // Threading
   // =========
-  // thread handle for fetching content
-  pthread_t fetch_thread;
   // whether the thread is busy doing something right now
   volatile bool fetch_busy;
 } kinetoscope_emulation_context_t;
 
-static kinetoscope_emulation_context_t kinetoscope;
+static kinetoscope_emulation_context_t kinetoscope = { .sram_buffer = NULL };
 
 static void* fetch_thread(void* ignored_arg);
 
@@ -144,13 +141,16 @@ void* kinetoscope_init() {
   curl_global_init(CURL_GLOBAL_ALL);
 #endif
 
+  if (!kinetoscope.sram_buffer) {
+    kinetoscope.sram_buffer = malloc(SRAM_SIZE);
+  }
   kinetoscope.token = TOKEN_CONTROL_TO_SEGA;
   kinetoscope.error = 0;
   kinetoscope.error_str = NULL;
   kinetoscope.ready_time = (uint64_t)-1;
+  kinetoscope.command_busy = false;
   kinetoscope.video_url = NULL;
   kinetoscope.fetch_busy = false;
-  pthread_create(&kinetoscope.fetch_thread, NULL, fetch_thread, NULL);
 
 #if 0
   // To test error handling, simulate no connection
@@ -196,7 +196,7 @@ static void write_sram(const uint8_t* data, uint32_t size) {
     // TODO: WHY?  This shouldn't be necessary!  Is this a bug in the emulator?
     // An assumption about what kind of data is in a direct-access buffer?
     // Should this nonsense only happen for little-endian builds?
-    kinetoscope.sram_buffer[(kinetoscope.sram_offset + i) ^ 1] = data[i];
+    kinetoscope.sram_buffer[kinetoscope.sram_offset ^ 1] = data[i];
     kinetoscope.sram_offset++;
   }
 }
@@ -259,177 +259,155 @@ static size_t http_data_to_buffer(char* data, size_t size, size_t n, void* ctx) 
   return size * n;
 }
 
-typedef size_t (*WriteCallback)(char*, size_t, size_t, void *);
-
-static bool fetch_range(const char* url, size_t first_byte, size_t size,
-                        WriteCallback write_callback, void* ctx) {
-  char range[32];
-  size_t last_byte = first_byte + size - 1;
-  snprintf(range, 32, "%zd-%zd", first_byte, last_byte);
-  // snprintf doesn't guarantee a terminator when it overflows.
-  range[31] = '\0';
-
-#if !defined(__EMSCRIPTEN__)
-  CURL* handle = curl_easy_init();
-  curl_easy_setopt(handle, CURLOPT_URL, url);
-  curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_callback);
-  curl_easy_setopt(handle, CURLOPT_WRITEDATA, ctx);
-  if (first_byte != 0 || last_byte != -1) {
-    curl_easy_setopt(handle, CURLOPT_RANGE, range);
-  }
-
-  CURLcode res = curl_easy_perform(handle);
-  long http_code = 0;
-  curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &http_code);
-  curl_easy_cleanup(handle);
-
-  printf("Kinetoscope: url = %s, CURLcode = %d, http status = %ld\n",
-         url, res, http_code);
-  if (res != CURLE_OK) {
-    char buf[64];
-    snprintf(buf, 64, "Curl error: %s", curl_easy_strerror(res));
-    report_error(buf);
-  }
-
-  return res == CURLE_OK && (http_code == 200 || http_code == 206);
-#else
-  emscripten_fetch_attr_t fetch_attributes;
-  emscripten_fetch_attr_init(&fetch_attributes);
-
-  strcpy(fetch_attributes.requestMethod, "GET");
-  fetch_attributes.attributes = EMSCRIPTEN_FETCH_LOAD_TO_MEMORY;
-  fetch_attributes.attributes |= EMSCRIPTEN_FETCH_SYNCHRONOUS;
-
-  const char* headers[] = { "Range", range, NULL };
-  fetch_attributes.requestHeaders = headers;
-
-  emscripten_fetch_t *fetch = emscripten_fetch(&fetch_attributes, url);
-
-  int http_code = fetch->status;
-  printf("Kinetoscope: url = %s, http status = %d\n",
-         url, http_code);
-
-  bool ok = http_code == 200 || http_code == 206;
-  if (ok) {
-    write_callback((char*)fetch->data, fetch->numBytes, 1, ctx);
-  } else {
-    char buf[64];
-    snprintf(buf, 64, "fetch error, code %d", http_code);
-    report_error(buf);
-  }
-
-  emscripten_fetch_close(fetch);
-  return ok;
-#endif
-}
-
-static bool fetch_range_to_sram(const char* url, bool compressed,
-                                size_t first_byte, size_t size) {
+static void fetch_range_to_sram(const char* url, bool compressed,
+                                size_t first_byte, size_t size,
+                                DoneCallback done_callback,
+                                void* user_ctx) {
   kinetoscope.compressed = compressed;
 
   // This shouldn't be necessary, but in case of an incomplete compressed
   // buffer being processed before this, reset the RLE decoder now.
   rle_reset();
 
-  return fetch_range(url, first_byte, size, http_data_to_sram, NULL);
+  fetch_range_async(url, first_byte, size,
+                    http_data_to_sram,
+                    done_callback,
+                    user_ctx);
 }
 
-static bool fetch_to_sram(const char* url, bool compressed) {
-  return fetch_range_to_sram(url, compressed, 0, -1);
+static void fetch_to_sram(const char* url, bool compressed,
+                          DoneCallback done_callback,
+                          void* user_ctx) {
+  fetch_range_to_sram(url, compressed, 0, (size_t)-1, done_callback, user_ctx);
 }
 
-static bool fetch_range_to_buffer(const char* url, void* data,
-                                  size_t first_byte, size_t size) {
-  HttpBuffer buffer;
-  buffer.data = (char*)data;
-  buffer.offset = 0;
-  buffer.max = size;
-  return fetch_range(url, first_byte, size, http_data_to_buffer, &buffer);
+static void fetch_range_to_buffer(const char* url, void* data,
+                                  size_t first_byte, size_t size,
+                                  DoneCallback done_callback) {
+  HttpBuffer* buffer = (HttpBuffer*)malloc(sizeof(HttpBuffer));
+  buffer->data = (char*)data;
+  buffer->offset = 0;
+  buffer->max = size;
+
+  fetch_range_async(url, first_byte, size,
+                    http_data_to_buffer,
+                    done_callback,
+                    buffer);
 }
 
-static bool fetch_to_buffer(const char* url, void* data, size_t size) {
-  return fetch_range_to_buffer(url, data, 0, size);
+static void fetch_to_buffer(const char* url, void* data, size_t size,
+                            DoneCallback done_callback) {
+  fetch_range_to_buffer(url, data, 0, size, done_callback);
 }
 
 static void stop_video() {
-  // TODO: interrupt curl transfers
+  // TODO: interrupt HTTP transfers
 }
 
-static void* fetch_thread(void* ignored_arg) {
-  while (true) {
-    while (!kinetoscope.fetch_busy) {
-      usleep(10 * 1000);  // 10ms
-    }
+static size_t next_chunk_size() {
+  size_t size = kinetoscope.chunk_size;
+  if (kinetoscope.compressed) {
+    size = kinetoscope.index.chunk_offset[kinetoscope.chunk_num + 1] -
+           kinetoscope.video_url_start_byte;
+  }
+  return size;
+}
 
-    size_t size = kinetoscope.chunk_size;
-    if (kinetoscope.compressed) {
-      size = kinetoscope.index.chunk_offset[kinetoscope.chunk_num + 1] -
-             kinetoscope.video_url_start_byte;
-    }
+static void fetch_chunk_done(bool ok, int http_status, void* user_ctx) {
+  if (ok) {
+    size_t size = next_chunk_size();
 
-    if (!fetch_range_to_sram(kinetoscope.video_url, kinetoscope.compressed,
-                             kinetoscope.video_url_start_byte, size)) {
-      char buf[64];
-      snprintf(buf, 64, "Failed to fetch video! (chunk %d)", kinetoscope.chunk_num);
-      report_error(buf);
-    } else {
-      kinetoscope.chunk_num++;
-      kinetoscope.chunks_left--;
-      kinetoscope.video_url_start_byte += size;
-      reset_sram(kinetoscope.chunk_num & 1);
-    }
-
-    kinetoscope.fetch_busy = false;
+    kinetoscope.chunk_num++;
+    kinetoscope.chunks_left--;
+    kinetoscope.video_url_start_byte += size;
+    reset_sram(kinetoscope.chunk_num & 1);
+  } else {
+    char buf[64];
+    snprintf(buf, 64, "Failed to fetch video! (chunk %d)", kinetoscope.chunk_num);
+    report_error(buf);
   }
 
-  return NULL;
+  kinetoscope.fetch_busy = false;
+
+  if (user_ctx) {
+    DoneCallback continue_callback = (DoneCallback)user_ctx;
+    continue_callback(ok, http_status, /* user_ctx= */ NULL);
+  }
 }
 
-static void fetch_chunk() {
+static void fetch_chunk(DoneCallback done_callback) {
   // Check for underflow
   if (kinetoscope.fetch_busy) {
     report_error("Underflow detected! Internet too slow?");
     return;
   }
 
-  // Flag the thread to start the next chunk.
+  // Flag that we are busy fetching.  This simulates the firmware, which can
+  // only fetch one thing at a time.
   kinetoscope.fetch_busy = true;
+
+  fetch_range_to_sram(kinetoscope.video_url,
+                      kinetoscope.compressed,
+                      kinetoscope.video_url_start_byte,
+                      next_chunk_size(),
+                      fetch_chunk_done,
+                      /* user_ctx= */ done_callback);
 }
 
-static void wait_for_chunk() {
-  while (kinetoscope.fetch_busy) {
-    usleep(10 * 1000);  // 10ms
-  }
+static void complete_command() {
+  printf("Kinetoscope: command complete.\n");
+  kinetoscope.command_busy = false;
+  kinetoscope.token = TOKEN_CONTROL_TO_SEGA;
 }
 
-static void start_video() {
+static void start_video_0(bool ok, int http_status, void* user_ctx);
+static void start_video_1(bool ok, int http_status, void* user_ctx);
+static void start_video_2(bool ok, int http_status, void* user_ctx);
+static void start_video_3(bool ok, int http_status, void* user_ctx);
+static void start_video_4(bool ok, int http_status, void* user_ctx);
+static void start_video_5(bool ok, int http_status, void* user_ctx);
+
+static void start_video_async() {
   // Look up the video URL.
   uint16_t video_index = kinetoscope.arg;
   if (video_index > 127) {
     char buf[64];
     snprintf(buf, 64, "Invalid video index requested! (%d)", (int)video_index);
     report_error(buf);
+    complete_command();
     return;
   }
 
-  SegaVideoHeader header;
-  if (!fetch_range_to_buffer(VIDEO_SERVER_CATALOG_URL, &header,
-                             sizeof(header) * video_index, sizeof(header))) {
+  const size_t header_size = sizeof(kinetoscope.header);
+  fetch_range_to_buffer(VIDEO_SERVER_CATALOG_URL, &kinetoscope.header,
+                        /* first_byte= */ header_size * video_index,
+                        /* size= */ header_size,
+                        start_video_0);
+}
+
+static void start_video_0(bool ok, int http_status, void* user_ctx) {
+  // user_ctx was a memory buffer context.  Free it now.
+  free(user_ctx);
+
+  uint16_t video_index = kinetoscope.arg;
+  if (!ok) {
     char buf[64];
     snprintf(buf, 64, "Failed to fetch catalog index! (%d)", (int)video_index);
     report_error(buf);
+    complete_command();
     return;
   }
 
   // header.relative_url should be nul-terminated, but just in case, use
   // strnlen and fail if we get the maximum size, which would indicate no
   // nul-terminator.
-  const char* path = header.relative_url;
-  size_t path_len = strnlen(path, sizeof(header.relative_url));
-  if (path_len == sizeof(header.relative_url)) {
+  const char* path = kinetoscope.header.relative_url;
+  size_t path_len = strnlen(path, sizeof(kinetoscope.header.relative_url));
+  if (path_len == sizeof(kinetoscope.header.relative_url)) {
     char buf[64];
     snprintf(buf, 64, "Invalid catalog data at index! (%d)", (int)video_index);
     report_error(buf);
+    complete_command();
     return;
   }
 
@@ -442,50 +420,86 @@ static void start_video() {
   memcpy(kinetoscope.video_url + base_len, path, path_len);
   kinetoscope.video_url[base_len + path_len] = '\0';
 
-  if (!fetch_to_buffer(kinetoscope.video_url, &header, sizeof(header))) {
+  fetch_to_buffer(kinetoscope.video_url, &kinetoscope.header,
+                  sizeof(kinetoscope.header), start_video_1);
+}
+
+static void start_video_1(bool ok, int http_status, void* user_ctx) {
+  // user_ctx was a memory buffer context.  Free it now.
+  free(user_ctx);
+
+  if (!ok) {
     report_error("Failed to fetch header!");
+    complete_command();
     return;
   }
 
-  kinetoscope.compressed = header.compression != 0;
-  header.compression = 0;
+  kinetoscope.compressed = kinetoscope.header.compression != 0;
+  kinetoscope.header.compression = 0;
 
   if (kinetoscope.compressed) {
-    if (!fetch_range_to_buffer(kinetoscope.video_url, &kinetoscope.index,
-                               /* offset= */ sizeof(header),
-                               /* size= */ sizeof(kinetoscope.index))) {
-      report_error("Failed to fetch index!");
-      return;
-    }
+    fetch_range_to_buffer(kinetoscope.video_url, &kinetoscope.index,
+                          /* offset= */ sizeof(kinetoscope.header),
+                          /* size= */ sizeof(kinetoscope.index),
+                          start_video_2);
+  } else {
+    start_video_2(/* ok= */ true, /* http_status= */ 0, /* user_ctx= */ NULL);
+  }
+}
 
+static void start_video_2(bool ok, int http_status, void* user_ctx) {
+  if (user_ctx) {
+    // user_ctx was a memory buffer context.  Free it now.
+    free(user_ctx);
+  }
+
+  if (!ok) {
+    report_error("Failed to fetch index!");
+    complete_command();
+    return;
+  }
+
+  if (kinetoscope.compressed) {
     // Pre-byteswap the index.
     for (int i = 0; i < sizeof(kinetoscope.index) / 4; ++i) {
       kinetoscope.index.chunk_offset[i] = ntohl(kinetoscope.index.chunk_offset[i]);
     }
   }
 
-  kinetoscope.chunk_size = ntohl(header.chunkSize);
-  kinetoscope.chunks_left = ntohl(header.totalChunks);
+  kinetoscope.chunk_size = ntohl(kinetoscope.header.chunkSize);
+  kinetoscope.chunks_left = ntohl(kinetoscope.header.totalChunks);
   kinetoscope.chunk_num = 0;
 
   // Transfer the header.
   reset_sram(0);
-  write_sram((const uint8_t*)&header, sizeof(header));
-  kinetoscope.sram_offset += sizeof(header);
-  kinetoscope.video_url_start_byte = sizeof(header);
+  write_sram((const uint8_t*)&kinetoscope.header, sizeof(kinetoscope.header));
+  kinetoscope.sram_offset += sizeof(kinetoscope.header);
+  kinetoscope.video_url_start_byte = sizeof(kinetoscope.header);
   if (kinetoscope.compressed) {
     kinetoscope.video_url_start_byte = kinetoscope.index.chunk_offset[0];
   }
 
   // Fill the first region.
-  fetch_chunk();
-  wait_for_chunk();
+  fetch_chunk(start_video_3);
+}
+
+static void start_video_3(bool ok, int http_status, void* user_ctx) {
+  if (!ok) {
+    report_error("Failed to fetch first chunk!");
+    complete_command();
+    return;
+  }
 
   if (kinetoscope.chunks_left) {
     // Fill the second region as well.
-    fetch_chunk();
-    wait_for_chunk();
+    fetch_chunk(start_video_4);
+  } else {
+    start_video_4(/* ok= */ true, /* http_status= */ 0, /* user_ctx= */ NULL);
   }
+}
+
+static void start_video_4(bool ok, int http_status, void* user_ctx) {
+  complete_command();
 }
 
 static void flip_region() {
@@ -493,20 +507,30 @@ static void flip_region() {
     return;
   }
 
-  fetch_chunk();
+  fetch_chunk(/* done_callback= */ NULL);
 }
 
-static void get_video_list() {
+static void get_video_list_0(bool ok, int http_status, void* user_ctx);
+
+static void get_video_list_async() {
   printf("Kinetoscope: list\n");
 
   reset_sram(0);
-  if (!fetch_to_sram(VIDEO_SERVER_CATALOG_URL, /* compressed= */ false)) {
+  fetch_to_sram(VIDEO_SERVER_CATALOG_URL, /* compressed= */ false,
+                get_video_list_0, /* user_ctx= */ NULL);
+}
+
+static void get_video_list_0(bool ok, int http_status, void* user_ctx) {
+  if (!ok) {
     report_error("Failed to download video catalog!");
-    return;
   }
+
+  complete_command();
 }
 
 static void execute_command() {
+  kinetoscope.command_busy = true;
+
   if (kinetoscope.command == CMD_ECHO) {
     // Used by the ROM to check for the necessary streaming hardware.
     uint16_t value = kinetoscope.arg;
@@ -515,10 +539,18 @@ static void execute_command() {
     write_sram((const uint8_t*)&value, sizeof(value));
   } else if (kinetoscope.command == CMD_LIST_VIDEOS) {
     printf("Kinetoscope: CMD_LIST_VIDEOS\n");
-    get_video_list();
+    get_video_list_async();
+    // Because this command is async, don't fall through and complete the
+    // command by returning control to the Sega.  start_video_async() will
+    // eventually return control when its chain of callbacks terminates.
+    return;
   } else if (kinetoscope.command == CMD_START_VIDEO) {
     printf("Kinetoscope: CMD_START_VIDEO\n");
-    start_video();
+    start_video_async();
+    // Because this command is async, don't fall through and complete the
+    // command by returning control to the Sega.  start_video_async() will
+    // eventually return control when its chain of callbacks terminates.
+    return;
   } else if (kinetoscope.command == CMD_STOP_VIDEO) {
     printf("Kinetoscope: CMD_STOP_VIDEO\n");
     stop_video();
@@ -538,9 +570,7 @@ static void execute_command() {
     report_error("Unrecognized command 0x%02X!", kinetoscope.command);
   }
 
-  // Completed.
-  printf("Kinetoscope: command complete.\n");
-  kinetoscope.token = TOKEN_CONTROL_TO_SEGA;
+  complete_command();
 }
 
 void *kinetoscope_write_16(uint32_t address, void *context, uint16_t value) {
@@ -579,7 +609,8 @@ void *kinetoscope_write_8(uint32_t address, void *context, uint8_t value) {
 
 uint16_t kinetoscope_read_16(uint32_t address, void *context) {
   if (ms_now() >= kinetoscope.ready_time &&
-      kinetoscope.token == TOKEN_CONTROL_TO_STREAMER) {
+      kinetoscope.token == TOKEN_CONTROL_TO_STREAMER &&
+      !kinetoscope.command_busy) {
     execute_command();
   }
 

@@ -1,0 +1,195 @@
+commit eab1e6c3a8a19e99fad9a0cf703affcad46fe3c5
+Author: Joey Parrish <joeyparrish@google.com>
+Date:   Sun Oct 13 19:42:58 2024 -0700
+
+    Emulate Kinetoscope hardware in Genesis-Plus-GX
+    
+    Patch based on https://github.com/libretro/Genesis-Plus-GX revision 7de0f0b6
+
+diff --git a/LICENSE.txt b/LICENSE.txt
+index eba63d1..3d1fd37 100644
+--- a/LICENSE.txt
++++ b/LICENSE.txt
+@@ -879,3 +879,30 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
++
++
++----------------------------------------------------------------------------------------
++
++Kinetoscope emulation adapter is distributed under the following license:
++
++MIT License
++
++Copyright (c) 2024 Joey Parrish
++
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
++furnished to do so, subject to the following conditions:
++
++The above copyright notice and this permission notice shall be included in all
++copies or substantial portions of the Software.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++SOFTWARE.
+diff --git a/Makefile.libretro b/Makefile.libretro
+index 0d870ef..d6bd5a0 100644
+--- a/Makefile.libretro
++++ b/Makefile.libretro
+@@ -425,6 +425,7 @@ else ifeq ($(platform), libnx)
+ else ifeq ($(platform), emscripten)
+    TARGET := $(TARGET_NAME)_libretro_$(platform).bc
+    ENDIANNESS_DEFINES := -DLSB_FIRST -DALIGN_LONG -DBYTE_ORDER=LITTLE_ENDIAN -DHAVE_ZLIB
++   LDFLAGS += -s FETCH=1
+    STATIC_LINKING = 1
+ 
+ # RS90
+@@ -881,6 +882,9 @@ all: $(TARGET)
+ %.o: %.c
+ 	$(CC) $(OBJOUT)$@ -c $< $(CFLAGS) $(LIBRETRO_CFLAGS)
+ 
++core/cart_hw/kinetoscope_adapter.o: core/cart_hw/kinetoscope_adapter.c core/kinetoscope/emulator-patches/kinetoscope.c core/kinetoscope/emulator-patches/fetch.c
++	$(CC) $(OBJOUT)$@ -c $< $(CFLAGS) $(LIBRETRO_CFLAGS)
++
+ $(TARGET): $(OBJECTS)
+ ifeq ($(STATIC_LINKING), 1)
+ 	$(AR) rcs $@ $(OBJECTS)
+diff --git a/core/cart_hw/kinetoscope_adapter.c b/core/cart_hw/kinetoscope_adapter.c
+new file mode 100644
+index 0000000..ac30ee8
+--- /dev/null
++++ b/core/cart_hw/kinetoscope_adapter.c
+@@ -0,0 +1,45 @@
++// Kinetoscope: A Sega Genesis Video Player
++//
++// Copyright (c) 2024 Joey Parrish
++//
++// See MIT License in LICENSE.txt
++
++// Adapter between Kinetoscope emulation and Genesis Plus GX.
++
++#include "kinetoscope/emulator-patches/kinetoscope.c"
++
++#include "kinetoscope_adapter.h"
++#include "shared.h"
++
++void kinetoscope_adapter_reset() {
++  uint8_t* sram_buffer = (uint8_t*)kinetoscope_init();
++
++  // 0x20 here represents 2MB in the map.  Each "unit" of the memory map is
++  // 16kB.  We map each of these units to the corresponding offset in
++  // sram_buffer.
++  for (int i = 0x20; i < 0x40; ++i) {
++    m68k.memory_map[i].base = sram_buffer;
++
++    m68k.memory_map[i].read8 = NULL;
++    m68k.memory_map[i].read16 = NULL;
++    m68k.memory_map[i].write8 = m68k_unused_8_w;
++    m68k.memory_map[i].write16 = m68k_unused_16_w;
++
++    zbank_memory_map[i].read = NULL;
++    zbank_memory_map[i].write = zbank_unused_w;
++
++    sram_buffer += (16 << 10);  // 16kB
++  }
++}
++
++void kinetoscope_adapter_write(unsigned int address, unsigned int data) {
++  // The Kinetoscope emulator expects only the low 8 bits of this address.
++  address &= 0xff;
++  kinetoscope_write_16((uint32_t)address, NULL, (uint16_t)data);
++}
++
++unsigned int kinetoscope_adapter_read(unsigned int address) {
++  // The Kinetoscope emulator expects only the low 8 bits of this address.
++  address &= 0xff;
++  return (unsigned int)kinetoscope_read_16((uint32_t)address, NULL);
++}
+diff --git a/core/cart_hw/kinetoscope_adapter.h b/core/cart_hw/kinetoscope_adapter.h
+new file mode 100644
+index 0000000..654f816
+--- /dev/null
++++ b/core/cart_hw/kinetoscope_adapter.h
+@@ -0,0 +1,16 @@
++// Kinetoscope: A Sega Genesis Video Player
++//
++// Copyright (c) 2024 Joey Parrish
++//
++// See MIT License in LICENSE.txt
++
++// Adapter between Kinetoscope emulation and Genesis Plus GX.
++
++#ifndef _KINETOSCOPE_ADAPTER_H_
++#define _KINETOSCOPE_ADAPTER_H_
++
++extern void kinetoscope_adapter_reset(void);
++extern void kinetoscope_adapter_write(unsigned int address, unsigned int data);
++extern unsigned int kinetoscope_adapter_read(unsigned int address);
++
++#endif
+diff --git a/core/cart_hw/md_cart.c b/core/cart_hw/md_cart.c
+index 766289d..07d75e1 100644
+--- a/core/cart_hw/md_cart.c
++++ b/core/cart_hw/md_cart.c
+@@ -45,6 +45,7 @@
+ #include "eeprom_i2c.h"
+ #include "eeprom_spi.h"
+ #include "megasd.h"
++#include "kinetoscope_adapter.h"
+ 
+ /* Cart database entry */
+ typedef struct
+@@ -549,6 +550,13 @@ void md_cart_init(void)
+     cart.special |= HW_MEGASD;
+     cart.hw.time_w = megasd_rom_mapper_w;
+   }
++  else if (strstr(rominfo.consoletype,"SEGA KINETOSCOPE"))
++  {
++    /* Kinetoscope cartridge hardware */
++    cart.special |= HW_KINETOSCOPE;
++    cart.hw.time_w = kinetoscope_adapter_write;
++    cart.hw.time_r = kinetoscope_adapter_read;
++  }
+   else if (strstr(rominfo.domestic,"SUPER STREET FIGHTER2"))
+   {
+     /* SSF2 mapper */
+@@ -848,6 +856,12 @@ void md_cart_reset(int hard_reset)
+     megasd_reset();
+   }
+ 
++  /* MegaSD hardware */
++  if (cart.special & HW_KINETOSCOPE)
++  {
++    kinetoscope_adapter_reset();
++  }
++
+   /* SVP chip */
+   if (svp)
+   {
+diff --git a/core/cart_hw/md_cart.h b/core/cart_hw/md_cart.h
+index 58687b9..f142356 100644
+--- a/core/cart_hw/md_cart.h
++++ b/core/cart_hw/md_cart.h
+@@ -62,9 +62,10 @@
+ #define HW_ADDON_NONE    0x03
+ 
+ /* Special hardware (0x01 & 0x02 reserved for Master System 3-D glasses & Terebi Oekaki) */
+-#define HW_J_CART   0x04
+-#define HW_LOCK_ON  0x08
+-#define HW_MEGASD   0x10
++#define HW_J_CART       0x04
++#define HW_LOCK_ON      0x08
++#define HW_MEGASD       0x10
++#define HW_KINETOSCOPE  0x20
+ 
+ /* Cartridge extra hardware */
+ typedef struct
