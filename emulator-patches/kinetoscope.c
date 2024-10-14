@@ -6,14 +6,6 @@
 
 // Emulation of Kinetoscope video streaming hardware.
 
-#include <stdbool.h>
-#include <stdarg.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-
 #if defined(__EMSCRIPTEN__)
 # include <emscripten/fetch.h>
 #else
@@ -21,6 +13,13 @@
 #endif
 
 #include <pthread.h>
+#include <stdbool.h>
+#include <stdarg.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 #include "kinetoscope/software/player/inc/segavideo_format.h"
 #include "kinetoscope/common/video-server.h"
@@ -312,7 +311,7 @@ static bool fetch_range(const char* url, size_t first_byte, size_t size,
 
   bool ok = http_code == 200 || http_code == 206;
   if (ok) {
-    write_callback(fetch->data, fetch->numBytes, 1, ctx);
+    write_callback((char*)fetch->data, fetch->numBytes, 1, ctx);
   } else {
     char buf[64];
     snprintf(buf, 64, "fetch error, code %d", http_code);
