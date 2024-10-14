@@ -4,10 +4,12 @@
 //
 // See MIT License in LICENSE.txt
 
-// Emulation of Kinetoscope video streaming hardware in BlastEm.
+// Emulation of Kinetoscope video streaming hardware.
 
 #include <stdbool.h>
+#include <stdarg.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -20,12 +22,8 @@
 
 #include <pthread.h>
 
-#include "genesis.h"
-#include "util.h"
-
-// TODO: Clean up kinetoscope paths
-#include "segavideo_format.h"
-#include "../common/video-server.h"
+#include "kinetoscope/software/player/inc/segavideo_format.h"
+#include "kinetoscope/common/video-server.h"
 
 #if defined(__MINGW32__)
 // Windows header for ntohs and ntohl.
@@ -70,6 +68,7 @@
 
 // SRAM regions.
 #define REGION_SIZE        0x100000  // 1MB size
+#define SRAM_SIZE          (REGION_SIZE * 2)  // Both banks
 
 // Offset of paddingBytes field from the end of the headers
 #define PADDING_BYTES_OFFSET_FROM_END_OF_HEADER \
@@ -132,7 +131,7 @@ static uint64_t ms_now() {
     rv = clock_gettime(CLOCK_REALTIME, &tp);
   }
   if (rv != 0) {
-    warning("Kinetoscope: failed to get clock!\n");
+    fprintf(stderr, "Kinetoscope: failed to get clock!\n");
     return (uint64_t)-1;
   }
   return (tp.tv_sec * 1000) + (tp.tv_nsec / 1e6);
@@ -141,7 +140,7 @@ static uint64_t ms_now() {
 
 static void write_sram(uint32_t offset, const uint8_t* data, uint32_t size) {
   if (offset + size > global_sram_size) {
-    warning("Kinetoscope: tried to overflow SRAM!"
+    fprintf(stderr, "Kinetoscope: tried to overflow SRAM!"
             " (offset: 0x%08x, size: 0x%08x)\n",
             offset, size);
     return;
@@ -495,9 +494,10 @@ static void execute_command() {
   global_token = TOKEN_CONTROL_TO_SEGA;
 }
 
-void kinetoscope_init(void *sram_buffer, uint32_t sram_size) {
-  global_sram_buffer = sram_buffer;
-  global_sram_size = sram_size;
+void* kinetoscope_init() {
+  // TODO: Make this static!
+  global_sram_size = 2 << 20;  // 2MB
+  global_sram_buffer = malloc(global_sram_size);
 
 #if !defined(__EMSCRIPTEN__)
   curl_global_init(CURL_GLOBAL_ALL);
@@ -510,6 +510,8 @@ void kinetoscope_init(void *sram_buffer, uint32_t sram_size) {
   // To test error handling, simulate no connection
   report_error("Wired connection failed and WiFi not configured!  Have you tried connecting the thing to the other thing?");
 #endif
+
+  return global_sram_buffer;
 }
 
 void *kinetoscope_write_16(uint32_t address, void *context, uint16_t value) {
