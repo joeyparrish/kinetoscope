@@ -7,6 +7,11 @@
 // Emulation of Kinetoscope video streaming hardware.
 // An emscripten build requires -s FETCH=1 at link time.
 
+#if defined(_WIN32)
+// Enable Windows 10 APIs.  Must be defined before any headers are included.
+# define _WIN32_WINNT 0x0A00
+#endif
+
 #include <stdbool.h>
 #include <stdarg.h>
 #include <stdint.h>
@@ -19,12 +24,7 @@
 #include "kinetoscope/common/video-server.h"
 #include "kinetoscope/emulator-patches/fetch.c"
 
-#if defined(__MINGW32__)
-// Windows header for ntohs and ntohl.
-# include <winsock2.h>
-// For clock_gettime.
-# include <time.h>
-#elif defined(_WIN32)
+#if defined(_WIN32)
 // Windows header for ntohs and ntohl.
 # include <winsock2.h>
 // For GetTickCount64.
@@ -163,7 +163,7 @@ void* kinetoscope_init() {
 
 // Current time in milliseconds.
 static uint64_t ms_now() {
-#if defined(_WIN32) && !defined(__MINGW32__)
+#if defined(_WIN32)
   return GetTickCount64();
 #else
   struct timespec tp;

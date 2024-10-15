@@ -1,4 +1,4 @@
-commit 3d2b5e185071df612c8d6774f7cda9498fd7bffb
+commit cc06e71f2329b95d2b0655535b77910dfef44a41
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -130,7 +130,7 @@ index a8af9bc..f890d01 100644
  
  install: $(libname)
 diff --git a/build_release b/build_release
-index f5faa10..aa30c75 100755
+index f5faa10..c49e0b9 100755
 --- a/build_release
 +++ b/build_release
 @@ -3,28 +3,52 @@
@@ -177,9 +177,9 @@ index f5faa10..aa30c75 100755
 -echo "Path is: $PATH"
 +
 +if [ $OS = "Win64" ]; then
-+	HOST_FLAG=--host=x86_64-w64-mingw32
++	OS_FLAGS="--host=x86_64-w64-mingw32 --disable-pthreads"
 +else
-+	HOST_FLAG=""
++	OS_FLAGS=""
 +fi
 +
 +cd curl
@@ -187,7 +187,7 @@ index f5faa10..aa30c75 100755
 +    --enable-static --disable-shared --without-ssl \
 +    --without-libpsl --without-zstd --without-brotli \
 +    --without-libidn2 --without-librtmp \
-+    --without-zlib --without-nghttp2 --disable-ldap $HOST_FLAG
++    --without-zlib --without-nghttp2 --disable-ldap $OS_FLAGS
 +make -C lib
 +cd ..
 +

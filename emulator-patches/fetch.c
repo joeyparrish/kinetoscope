@@ -11,11 +11,13 @@
 
 #if defined(__EMSCRIPTEN__)
 # include <emscripten/fetch.h>
-#elif defined(_WIN32) || defined(__MINGW32__)
-# include <windows.h>
 #else
 # include <curl/curl.h>
-# include <pthread.h>
+# if defined(_WIN32)
+#  include <windows.h>
+# else
+#  include <pthread.h>
+# endif
 #endif
 
 #include <stdint.h>
@@ -91,7 +93,7 @@ static void fetch_with_curl_in_thread(void* thread_ctx) {
   free(ctx);
 }
 
-# if defined(_WIN32) || defined(__MINGW32__)
+# if defined(_WIN32)
 static DWORD WINAPI fetch_with_curl_in_windows_thread(void* thread_ctx) {
   fetch_with_curl_in_thread(thread_ctx);
   return 0;
@@ -151,7 +153,7 @@ static void fetch_range_async(const char* url, size_t first_byte, size_t size,
     curl_easy_setopt(handle, CURLOPT_RANGE, range);
   }
 
-# if defined(_WIN32) || defined(__MINGW32__)
+# if defined(_WIN32)
   CreateThread(/* security attributes= */ NULL,
                /* default stack size= */ 0,
                fetch_with_curl_in_windows_thread,
