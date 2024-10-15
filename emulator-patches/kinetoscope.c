@@ -239,6 +239,7 @@ typedef struct HttpBuffer {
   char* data;
   size_t offset;
   size_t max;
+  DoneCallback final_done_callback;
 } HttpBuffer;
 
 // Writes HTTP data to a fixed-size buffer.
@@ -280,6 +281,13 @@ static void fetch_to_sram(const char* url, bool compressed,
   fetch_range_to_sram(url, compressed, 0, (size_t)-1, done_callback, user_ctx);
 }
 
+static void write_to_buffer_done(bool ok, void* user_ctx) {
+  HttpBuffer* buffer = (HttpBuffer*)user_ctx;
+  DoneCallback final_done_callback = buffer->final_done_callback;
+  free(buffer);
+  final_done_callback(ok, /* user_ctx= */ NULL);
+}
+
 static void fetch_range_to_buffer(const char* url, void* data,
                                   size_t first_byte, size_t size,
                                   DoneCallback done_callback) {
@@ -287,10 +295,11 @@ static void fetch_range_to_buffer(const char* url, void* data,
   buffer->data = (char*)data;
   buffer->offset = 0;
   buffer->max = size;
+  buffer->final_done_callback = done_callback;
 
   fetch_range_async(url, first_byte, size,
                     http_data_to_buffer,
-                    done_callback,
+                    write_to_buffer_done,
                     buffer);
 }
 
@@ -385,9 +394,6 @@ static void start_video_async() {
 }
 
 static void start_video_0(bool ok, void* user_ctx) {
-  // user_ctx was a memory buffer context.  Free it now.
-  free(user_ctx);
-
   uint16_t video_index = kinetoscope.arg;
   if (!ok) {
     char buf[64];
@@ -424,9 +430,6 @@ static void start_video_0(bool ok, void* user_ctx) {
 }
 
 static void start_video_1(bool ok, void* user_ctx) {
-  // user_ctx was a memory buffer context.  Free it now.
-  free(user_ctx);
-
   if (!ok) {
     report_error("Failed to fetch header!");
     complete_command();
@@ -447,11 +450,6 @@ static void start_video_1(bool ok, void* user_ctx) {
 }
 
 static void start_video_2(bool ok, void* user_ctx) {
-  if (user_ctx) {
-    // user_ctx was a memory buffer context.  Free it now.
-    free(user_ctx);
-  }
-
   if (!ok) {
     report_error("Failed to fetch index!");
     complete_command();
