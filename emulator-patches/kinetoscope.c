@@ -231,7 +231,6 @@ static size_t http_data_to_sram(char* data, size_t size, size_t n, void* ctx) {
     rle_to_sram((const uint8_t*)data, size * n);
   } else {
     write_sram((const uint8_t*)data, size * n);
-    kinetoscope.sram_offset += size * n;
   }
   return size * n;
 }
