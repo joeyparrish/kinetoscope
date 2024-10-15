@@ -1,4 +1,4 @@
-commit 169ef692633bd8b89ff0f714b6606dbe5a494889
+commit 3d2b5e185071df612c8d6774f7cda9498fd7bffb
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,7 +21,7 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..9a776a5 100644
+index 0dddc9f..77d119e 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -23,11 +23,11 @@ ifeq ($(CPU),i686)
@@ -54,7 +54,7 @@ index 0dddc9f..9a776a5 100644
  else
  SDL_INCLUDE_PATH:=sdl/include
  LDFLAGS+= -Wl,-rpath='$$ORIGIN/lib' -Llib -lSDL2
-@@ -129,6 +130,33 @@ endif
+@@ -129,6 +130,35 @@ endif
  endif #PORTABLE
  endif #Windows
  
@@ -74,9 +74,11 @@ index 0dddc9f..9a776a5 100644
 +endif
 +endif
 +
-+# Pthread is required
++ifneq ($(OS),Windows)
++# Pthread is required, except on Windows
 +CFLAGS+= -pthread
 +LDFLAGS+= -pthread
++endif
 +
 +ifeq ($(OS),Darwin)
 +# Needed for curl on macOS?
@@ -88,7 +90,7 @@ index 0dddc9f..9a776a5 100644
  ifndef OPT
  ifdef DEBUG
  OPT:=-g3 -O0
-@@ -221,10 +249,12 @@ endif
+@@ -221,10 +251,12 @@ endif
  
  MAINOBJS=blastem.o system.o genesis.o debug.o gdb_remote.o vdp.o $(RENDEROBJS) io.o romdb.o hash.o menu.o xband.o \
  	realtec.o i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
@@ -101,7 +103,7 @@ index 0dddc9f..9a776a5 100644
  	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o jcart.o rom.db.o gen_player.o $(LIBZOBJS)
  	
  ifdef NONUKLEAR
-@@ -365,8 +395,11 @@ m68k.c : m68k.cpu cpu_dsl.py
+@@ -365,8 +397,11 @@ m68k.c : m68k.cpu cpu_dsl.py
  %.o : %.m
  	$(CC) $(CFLAGS) -c -o $@ $<
  

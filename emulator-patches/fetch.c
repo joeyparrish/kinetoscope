@@ -11,6 +11,8 @@
 
 #if defined(__EMSCRIPTEN__)
 # include <emscripten/fetch.h>
+#elif defined(_WIN32) || defined(__MINGW32__)
+# include <windows.h>
 #else
 # include <curl/curl.h>
 # include <pthread.h>
@@ -68,7 +70,7 @@ static void fetch_with_emscripten_error(emscripten_fetch_t* fetch) {
   emscripten_fetch_close(fetch);
 }
 #else
-static void* fetch_with_curl_in_pthread(void* thread_ctx) {
+static void fetch_with_curl_in_thread(void* thread_ctx) {
   FetchContext* ctx = (FetchContext*)thread_ctx;
 
   CURLcode res = curl_easy_perform(ctx->handle);
@@ -87,9 +89,20 @@ static void* fetch_with_curl_in_pthread(void* thread_ctx) {
 
   free(ctx->url);
   free(ctx);
+}
+
+# if defined(_WIN32) || defined(__MINGW32__)
+static DWORD WINAPI fetch_with_curl_in_windows_thread(void* thread_ctx) {
+  fetch_with_curl_in_thread(thread_ctx);
+  return 0;
+}
+# else
+static void* fetch_with_curl_in_pthread(void* thread_ctx) {
+  fetch_with_curl_in_thread(thread_ctx);
   pthread_exit(NULL);
   return NULL;
 }
+# endif
 #endif
 
 static void fetch_range_async(const char* url, size_t first_byte, size_t size,
@@ -112,20 +125,7 @@ static void fetch_range_async(const char* url, size_t first_byte, size_t size,
   ctx->write_callback = write_callback;
   ctx->done_callback = done_callback;
 
-#if !defined(__EMSCRIPTEN__)
-  CURL* handle = curl_easy_init();
-  ctx->handle = handle;
-
-  curl_easy_setopt(handle, CURLOPT_URL, url);
-  curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_callback);
-  curl_easy_setopt(handle, CURLOPT_WRITEDATA, ctx);
-  if (use_range) {
-    curl_easy_setopt(handle, CURLOPT_RANGE, range);
-  }
-
-  pthread_t thread;
-  pthread_create(&thread, NULL, fetch_with_curl_in_pthread, ctx);
-#else
+#if defined(__EMSCRIPTEN__)
   emscripten_fetch_attr_t fetch_attributes;
   emscripten_fetch_attr_init(&fetch_attributes);
 
@@ -140,5 +140,27 @@ static void fetch_range_async(const char* url, size_t first_byte, size_t size,
   fetch_attributes.onerror = fetch_with_emscripten_error;
 
   emscripten_fetch(&fetch_attributes, url);
+#else
+  CURL* handle = curl_easy_init();
+  ctx->handle = handle;
+
+  curl_easy_setopt(handle, CURLOPT_URL, url);
+  curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_callback);
+  curl_easy_setopt(handle, CURLOPT_WRITEDATA, ctx);
+  if (use_range) {
+    curl_easy_setopt(handle, CURLOPT_RANGE, range);
+  }
+
+# if defined(_WIN32) || defined(__MINGW32__)
+  CreateThread(/* security attributes= */ NULL,
+               /* default stack size= */ 0,
+               fetch_with_curl_in_windows_thread,
+               /* thread context= */ NULL,
+               /* creation flags= */ 0,
+               /* thread id output= */ NULL);
+# else
+  pthread_t thread;
+  pthread_create(&thread, NULL, fetch_with_curl_in_pthread, ctx);
+# endif
 #endif
 }
