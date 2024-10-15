@@ -33,11 +33,9 @@ typedef void (*ReportError)(const char* buf);
 typedef struct FetchContext {
   void* user_ctx;
   char* url;
+  char* range;
   WriteCallback write_callback;
   DoneCallback done_callback;
-#if !defined(__EMSCRIPTEN__)
-  CURL* handle;
-#endif
 } FetchContext;
 
 #if defined(__EMSCRIPTEN__)
@@ -56,6 +54,9 @@ static void fetch_with_emscripten_success(emscripten_fetch_t* fetch) {
     ctx->done_callback(ok, ctx->user_ctx);
   }
 
+  if (ctx->range) {
+    free(ctx->range);
+  }
   free(ctx->url);
   free(ctx);
   emscripten_fetch_close(fetch);
@@ -74,11 +75,19 @@ static void fetch_with_emscripten_error(emscripten_fetch_t* fetch) {
 #else
 static void fetch_with_curl_in_thread(void* thread_ctx) {
   FetchContext* ctx = (FetchContext*)thread_ctx;
+  CURL* handle = curl_easy_init();
 
-  CURLcode res = curl_easy_perform(ctx->handle);
+  curl_easy_setopt(handle, CURLOPT_URL, ctx->url);
+  curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, ctx->write_callback);
+  curl_easy_setopt(handle, CURLOPT_WRITEDATA, ctx);
+  if (ctx->range) {
+    curl_easy_setopt(handle, CURLOPT_RANGE, ctx->range);
+  }
+
+  CURLcode res = curl_easy_perform(handle);
   long http_status = 0;
-  curl_easy_getinfo(ctx->handle, CURLINFO_RESPONSE_CODE, &http_status);
-  curl_easy_cleanup(ctx->handle);
+  curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &http_status);
+  curl_easy_cleanup(handle);
 
   printf("Kinetoscope: url = %s, CURLcode = %d, http status = %ld\n",
          ctx->url, res, http_status);
@@ -89,6 +98,9 @@ static void fetch_with_curl_in_thread(void* thread_ctx) {
   bool ok = res == CURLE_OK && (http_status == 200 || http_status == 206);
   ctx->done_callback(ok, ctx->user_ctx);
 
+  if (ctx->range) {
+    free(ctx->range);
+  }
   free(ctx->url);
   free(ctx);
 }
@@ -111,21 +123,22 @@ static void fetch_range_async(const char* url, size_t first_byte, size_t size,
                               WriteCallback write_callback,
                               DoneCallback done_callback,
                               void* user_ctx) {
-  char range[32];
-  bool use_range = false;
-  if (size != (size_t)-1) {
-    size_t last_byte = first_byte + size - 1;
-    snprintf(range, 32, "%zd-%zd", first_byte, last_byte);
-    // snprintf doesn't guarantee a terminator when it overflows.
-    range[31] = '\0';
-    use_range = true;
-  }
-
   FetchContext* ctx = (FetchContext*)malloc(sizeof(FetchContext));
   ctx->user_ctx = user_ctx;
   ctx->url = strdup(url);
   ctx->write_callback = write_callback;
   ctx->done_callback = done_callback;
+
+  if (size == (size_t)-1) {
+    ctx->range = NULL;
+  } else {
+    char range[32];
+    size_t last_byte = first_byte + size - 1;
+    snprintf(range, 32, "%zd-%zd", first_byte, last_byte);
+    // snprintf doesn't guarantee a terminator when it overflows.
+    range[31] = '\0';
+    ctx->range = strdup(range);
+  }
 
 #if defined(__EMSCRIPTEN__)
   emscripten_fetch_attr_t fetch_attributes;
@@ -134,8 +147,10 @@ static void fetch_range_async(const char* url, size_t first_byte, size_t size,
   strcpy(fetch_attributes.requestMethod, "GET");
   fetch_attributes.attributes = EMSCRIPTEN_FETCH_LOAD_TO_MEMORY;
 
-  const char* headers[] = { "Range", range, NULL };
-  fetch_attributes.requestHeaders = headers;
+  const char* headers[] = { "Range", ctx->range, NULL };
+  if (ctx->range) {
+    fetch_attributes.requestHeaders = headers;
+  }
 
   fetch_attributes.userData = ctx;
   fetch_attributes.onsuccess = fetch_with_emscripten_success;
@@ -143,16 +158,6 @@ static void fetch_range_async(const char* url, size_t first_byte, size_t size,
 
   emscripten_fetch(&fetch_attributes, url);
 #else
-  CURL* handle = curl_easy_init();
-  ctx->handle = handle;
-
-  curl_easy_setopt(handle, CURLOPT_URL, url);
-  curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_callback);
-  curl_easy_setopt(handle, CURLOPT_WRITEDATA, ctx);
-  if (use_range) {
-    curl_easy_setopt(handle, CURLOPT_RANGE, range);
-  }
-
 # if defined(_WIN32)
   CreateThread(/* security attributes= */ NULL,
                /* default stack size= */ 0,
