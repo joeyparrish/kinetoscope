@@ -313,7 +313,7 @@ static size_t next_chunk_size() {
   return size;
 }
 
-static void fetch_chunk_done(bool ok, int http_status, void* user_ctx) {
+static void fetch_chunk_done(bool ok, void* user_ctx) {
   if (ok) {
     size_t size = next_chunk_size();
 
@@ -331,7 +331,7 @@ static void fetch_chunk_done(bool ok, int http_status, void* user_ctx) {
 
   if (user_ctx) {
     DoneCallback continue_callback = (DoneCallback)user_ctx;
-    continue_callback(ok, http_status, /* user_ctx= */ NULL);
+    continue_callback(ok, /* user_ctx= */ NULL);
   }
 }
 
@@ -360,12 +360,12 @@ static void complete_command() {
   kinetoscope.token = TOKEN_CONTROL_TO_SEGA;
 }
 
-static void start_video_0(bool ok, int http_status, void* user_ctx);
-static void start_video_1(bool ok, int http_status, void* user_ctx);
-static void start_video_2(bool ok, int http_status, void* user_ctx);
-static void start_video_3(bool ok, int http_status, void* user_ctx);
-static void start_video_4(bool ok, int http_status, void* user_ctx);
-static void start_video_5(bool ok, int http_status, void* user_ctx);
+static void start_video_0(bool ok, void* user_ctx);
+static void start_video_1(bool ok, void* user_ctx);
+static void start_video_2(bool ok, void* user_ctx);
+static void start_video_3(bool ok, void* user_ctx);
+static void start_video_4(bool ok, void* user_ctx);
+static void start_video_5(bool ok, void* user_ctx);
 
 static void start_video_async() {
   // Look up the video URL.
@@ -385,7 +385,7 @@ static void start_video_async() {
                         start_video_0);
 }
 
-static void start_video_0(bool ok, int http_status, void* user_ctx) {
+static void start_video_0(bool ok, void* user_ctx) {
   // user_ctx was a memory buffer context.  Free it now.
   free(user_ctx);
 
@@ -424,7 +424,7 @@ static void start_video_0(bool ok, int http_status, void* user_ctx) {
                   sizeof(kinetoscope.header), start_video_1);
 }
 
-static void start_video_1(bool ok, int http_status, void* user_ctx) {
+static void start_video_1(bool ok, void* user_ctx) {
   // user_ctx was a memory buffer context.  Free it now.
   free(user_ctx);
 
@@ -443,11 +443,11 @@ static void start_video_1(bool ok, int http_status, void* user_ctx) {
                           /* size= */ sizeof(kinetoscope.index),
                           start_video_2);
   } else {
-    start_video_2(/* ok= */ true, /* http_status= */ 0, /* user_ctx= */ NULL);
+    start_video_2(/* ok= */ true, /* user_ctx= */ NULL);
   }
 }
 
-static void start_video_2(bool ok, int http_status, void* user_ctx) {
+static void start_video_2(bool ok, void* user_ctx) {
   if (user_ctx) {
     // user_ctx was a memory buffer context.  Free it now.
     free(user_ctx);
@@ -483,7 +483,7 @@ static void start_video_2(bool ok, int http_status, void* user_ctx) {
   fetch_chunk(start_video_3);
 }
 
-static void start_video_3(bool ok, int http_status, void* user_ctx) {
+static void start_video_3(bool ok, void* user_ctx) {
   if (!ok) {
     report_error("Failed to fetch first chunk!");
     complete_command();
@@ -494,11 +494,11 @@ static void start_video_3(bool ok, int http_status, void* user_ctx) {
     // Fill the second region as well.
     fetch_chunk(start_video_4);
   } else {
-    start_video_4(/* ok= */ true, /* http_status= */ 0, /* user_ctx= */ NULL);
+    start_video_4(/* ok= */ true, /* user_ctx= */ NULL);
   }
 }
 
-static void start_video_4(bool ok, int http_status, void* user_ctx) {
+static void start_video_4(bool ok, void* user_ctx) {
   complete_command();
 }
 
@@ -510,7 +510,7 @@ static void flip_region() {
   fetch_chunk(/* done_callback= */ NULL);
 }
 
-static void get_video_list_0(bool ok, int http_status, void* user_ctx);
+static void get_video_list_0(bool ok, void* user_ctx);
 
 static void get_video_list_async() {
   printf("Kinetoscope: list\n");
@@ -520,7 +520,7 @@ static void get_video_list_async() {
                 get_video_list_0, /* user_ctx= */ NULL);
 }
 
-static void get_video_list_0(bool ok, int http_status, void* user_ctx) {
+static void get_video_list_0(bool ok, void* user_ctx) {
   if (!ok) {
     report_error("Failed to download video catalog!");
   }

@@ -23,8 +23,8 @@
 
 //      bytes written           buffer, num_things, thing_size, context
 typedef size_t (*WriteCallback)(char*, size_t, size_t, void *);
-//                           ok, status, context
-typedef void (*DoneCallback)(bool, int, void *);
+//                           ok,   context
+typedef void (*DoneCallback)(bool, void *);
 //                          terminated error string
 typedef void (*ReportError)(const char* buf);
 
@@ -42,16 +42,16 @@ typedef struct FetchContext {
 static void fetch_with_emscripten_success(emscripten_fetch_t* fetch) {
   FetchContext* ctx = (FetchContext*)fetch->userData;
 
-  int http_code = fetch->status;
-  printf("Kinetoscope: url = %s, http status = %d\n", ctx->url, http_code);
+  int http_status = fetch->status;
+  printf("Kinetoscope: url = %s, http status = %d\n", ctx->url, http_status);
 
-  bool ok = http_code == 200 || http_code == 206;
+  bool ok = http_status == 200 || http_status == 206;
   if (ok) {
     ctx->write_callback((char*)fetch->data, fetch->numBytes, 1, ctx->user_ctx);
   }
 
   if (ctx->done_callback) {
-    ctx->done_callback(ok, http_code, ctx->user_ctx);
+    ctx->done_callback(ok, ctx->user_ctx);
   }
 
   free(ctx->url);
@@ -63,7 +63,7 @@ static void fetch_with_emscripten_error(emscripten_fetch_t* fetch) {
   FetchContext* ctx = (FetchContext*)fetch->userData;
 
   printf("Kinetoscope: url = %s, error!\n", ctx->url);
-  ctx->done_callback(/* ok= */ false, /* http_code= */ 0, ctx->user_ctx);
+  ctx->done_callback(/* ok= */ false, ctx->user_ctx);
 
   free(ctx->url);
   free(ctx);
@@ -74,18 +74,18 @@ static void fetch_with_curl_in_thread(void* thread_ctx) {
   FetchContext* ctx = (FetchContext*)thread_ctx;
 
   CURLcode res = curl_easy_perform(ctx->handle);
-  long http_code = 0;
-  curl_easy_getinfo(ctx->handle, CURLINFO_RESPONSE_CODE, &http_code);
+  long http_status = 0;
+  curl_easy_getinfo(ctx->handle, CURLINFO_RESPONSE_CODE, &http_status);
   curl_easy_cleanup(ctx->handle);
 
   printf("Kinetoscope: url = %s, CURLcode = %d, http status = %ld\n",
-         ctx->url, res, http_code);
+         ctx->url, res, http_status);
   if (res != CURLE_OK) {
     printf("Curl error: %s\n", curl_easy_strerror(res));
   }
 
-  bool ok = res == CURLE_OK && (http_code == 200 || http_code == 206);
-  ctx->done_callback(ok, http_code, ctx->user_ctx);
+  bool ok = res == CURLE_OK && (http_status == 200 || http_status == 206);
+  ctx->done_callback(ok, ctx->user_ctx);
 
   free(ctx->url);
   free(ctx);
