@@ -127,19 +127,31 @@ static inline void write_request(const char* server, uint16_t port,
 
 static inline bool read_response_headers(HeaderData* header_data) {
   int num_read = 0;
-  while (num_read <= MIN_RESPONSE_LENGTH && client->connected()) {
-    // FIXME: ensure all headers are buffered here
+  bool end_of_headers = false;
+  while (client->connected() && !end_of_headers) {
     int last_read = client->read(
         (uint8_t*)response_buffer + num_read,
         sizeof(response_buffer) - num_read);
     if (last_read >= 0) {
       num_read += last_read;
     }
+    response_buffer[num_read] = '\0';
+
+    // NOTE: Although compliant servers are supposed to send \r\n as a line
+    // terminator, compliant clients may ignore the \r and accept \n only.
+    // Android's com.phlox.simpleserver, which I used briefly during testing,
+    // only replies with \n, so we take care here to tolerate that.
+    end_of_headers = strstr(response_buffer, "\r\n\r\n") != NULL ||
+                     strstr(response_buffer, "\n\n") != NULL;
   }
-  response_buffer[num_read] = '\0';
 
   if (num_read < MIN_RESPONSE_LENGTH) {
     Serial.println("Failed!  Did not find status code!");
+    return false;
+  }
+
+  if (!end_of_headers) {
+    Serial.println("Failed!  Did not find end of headers!");
     return false;
   }
 
@@ -166,10 +178,7 @@ static inline bool read_response_headers(HeaderData* header_data) {
   int body_bytes_in_first_buffer = 0;
 
   // Scan through the buffer looking for the body length and the end of the
-  // headers.  NOTE: Although compliant servers are supposed to send \r\n as a
-  // line terminator, compliant clients may ignore the \r and accept \n only.
-  // Android's com.phlox.simpleserver, which I used briefly during testing,
-  // only replies with \n, so we take care here to tolerate that.
+  // headers.  See also NOTE above about line endings.
   for (int i = 0; i < num_read - 1; ++i) {
     if (response_buffer[i] == '\n') {
       if (this_header_starts > 0) {
