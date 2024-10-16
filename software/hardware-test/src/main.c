@@ -43,7 +43,7 @@ char march_error_2[256];
 #define SRAM_MARCH_TEST_DATA(offset, data) { \
   uint8_t real = sram[offset]; \
   if (real != data) { \
-    sprintf(march_error_1, "Fail at offset %d      ", (int)offset); \
+    sprintf(march_error_1, "Fail at offset %ld      ", offset); \
     sprintf(march_error_2, "Expected 0x%02x, got 0x%02x", \
             (int)data, (int)real); \
     return false; \
