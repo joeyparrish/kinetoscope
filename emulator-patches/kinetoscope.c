@@ -482,7 +482,6 @@ static void start_video_2(bool ok, void* user_ctx) {
   // Transfer the header from emulator memory to emulated SRAM.
   reset_sram(0);
   write_sram((const uint8_t*)&kinetoscope.header, sizeof(kinetoscope.header));
-  kinetoscope.sram_offset += sizeof(kinetoscope.header);
   kinetoscope.video_url_start_byte = sizeof(kinetoscope.header);
   if (kinetoscope.compressed) {
     kinetoscope.video_url_start_byte = kinetoscope.index.chunk_offset[0];
