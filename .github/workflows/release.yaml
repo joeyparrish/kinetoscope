@@ -177,7 +177,7 @@ jobs:
           # Prep hardware fab files.
           (cd kinetoscope-hardware
 
-            for project in cart microcontroller sram-bank; do
+            for project in cart microcontroller sram-bank ethernet; do
               unzip $project-fab.zip
               rm $project-fab.zip
               mv $project-fab kinetoscope-$VERSION-$project-fab
