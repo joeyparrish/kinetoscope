@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - software/**
+      - common/**
       - .github/workflows/build-software.yaml
   pull_request: # Trigger for pull requests.
     types: [opened, synchronize, reopened, ready_for_review]

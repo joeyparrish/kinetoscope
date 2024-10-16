@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - firmware/**
+      - common/**
       - .github/workflows/build-firmware.yaml
   pull_request: # Trigger for pull requests.
     types: [opened, synchronize, reopened, ready_for_review]
