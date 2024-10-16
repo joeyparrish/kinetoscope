@@ -195,9 +195,9 @@ static void write_sram(const uint8_t* data, uint32_t size) {
 
   for (size_t i = 0; i < size; i++) {
     // XOR with 1 swaps every 2 bytes in the output.
-    // TODO: WHY?  This shouldn't be necessary!  Is this a bug in the emulator?
-    // An assumption about what kind of data is in a direct-access buffer?
-    // Should this nonsense only happen for little-endian builds?
+    // You wouldn't assume this to be necessary, but the emulated memory is
+    // accessed as big-endian 16-bit ints or something.
+    // TODO: Should this nonsense only happen for little-endian builds?
     kinetoscope.sram_buffer[kinetoscope.sram_offset ^ 1] = data[i];
     kinetoscope.sram_offset++;
   }

@@ -358,12 +358,6 @@ static void process_command(uint8_t command, uint8_t arg) {
     }
   }
 
-#ifdef DEBUG
-  // Don't clear the flag too quickly.
-  // TODO: Determine if this is necessary once hardware prototypes are working.
-  delay(10 /* ms */);
-#endif
-
   clear_cmd();
   Serial.println("Command complete.");
 }
