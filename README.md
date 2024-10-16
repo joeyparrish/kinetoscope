@@ -6,7 +6,7 @@
   </picture>
 </h1>
 
-A Sega Genesis / Mega Drive Video Player
+A Sega Genesis / Mega Drive Streaming Video Player
 
 
 ## Overview
@@ -32,23 +32,22 @@ at a different ratio by the Sega's Video Display Processor (VDP).
 If video is embedded in the ROM, you can only fit about 13.6 seconds in a 4MB
 cartridge/ROM.
 
+For streaming, an RLE compression scheme is used to reduce required throughput,
+and the microcontroller decompresses the video into SRAM on the fly.
+
 Schematics and board layouts for special streaming hardware can be found in the
 [`hardware/`](hardware/) folder.
 
 You can download a pre-built emulator for macOS, Windows, or Linux from the
 [releases page](https://github.com/joeyparrish/kinetoscope/releases).
-**NOTE:** On Linux, you should have OpenGL and PulseAudio pre-installed to use
-these binaries.
+(**NOTE:** On Linux, you should have OpenGL and PulseAudio pre-installed to use
+these binaries.)
 
 
 ## Web Demo
 
-To see Kinetoscope playing a simple embedded video ROM in a web-based emulator,
-try this StackBlitz:
-
- - [Web Demo](https://js-qsqtm3.stackblitz.io/)
- - [StackBlitz Editor](https://stackblitz.com/edit/js-qsqtm3?file=index.js)
- - [Nostalgist.js Emulator](https://nostalgist.js.org/)
+To see Kinetoscope in a web-based emulator, check out
+[https://joeyparrish.github.io/kinetoscope/](https://joeyparrish.github.io/kinetoscope/)
 
 
 ## Project Folders

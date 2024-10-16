@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+
+Kinetoscope: A Sega Genesis Video Player
+
+Copyright (c) 2024 Joey Parrish
+
+See MIT License in LICENSE.txt
+
+This web-based demo is incomplete without the emulator core
+(genesis_plus_gx_libretro.js and genesis_plus_gx_libretro.wasm) and the
+Kinetoscope ROM (kinetoscope-streamer.bin), all of which must be in the same folder as
+this page.
+-->
+<html lang="en">
+  <head>
+    <title>Kinetoscope Web Emulator Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kinetoscope Emulator for the web">
+
+    <style>
+
+@font-face {
+  font-family: 'Kode Mono';
+  font-style: normal;
+  font-weight: bold;
+  font-display: block;
+  src: url(https://fonts.gstatic.com/s/kodemono/v2/A2BLn5pb0QgtVEPFnlYkkaoBgw4qv9odq3619Do.ttf) format('truetype');
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: black;
+}
+
+#clickToStart {
+  background: black;
+  color: white;
+  border: none;
+
+  font-family: "Kode Mono";
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: italic;
+
+  font-size: calc(min(6vw, 20vh));
+  display: block;
+  margin: auto;
+}
+
+    </style>
+  </head>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/nostalgist@0.10.0/dist/nostalgist.umd.min.js"></script>
+  <script>
+
+// AudioContext needs a user gesture to start.  So we define main, but don't
+// run it until the user clicks the click-to-start button.
+async function main() {
+  // Hide the click-to-start button.
+  clickToStart.style.display = 'none';
+
+  // Launch the emulator, which will create its own canvas.
+  const nostalgist = await Nostalgist.launch({
+    core: {
+      name: 'genesis_plus_gx',
+      js: 'genesis_plus_gx_libretro.js',
+      wasm: 'genesis_plus_gx_libretro.wasm',
+    },
+    rom: 'kinetoscope-streamer.bin',
+  });
+
+  // Resize the emulator when the window changes size.
+  window.addEventListener('resize', () => {
+    nostalgist.resize({width: window.innerWidth, height: window.innerHeight});
+  });
+
+  // Stored globally for debugging access.
+  window.nostalgist = nostalgist;
+}
+
+  </script>
+
+  <body>
+    <button id="clickToStart" onclick="main()">Click to start<br>Kinetoscope Emulator</button>
+  </body>
+</html>

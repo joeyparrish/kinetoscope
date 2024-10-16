@@ -261,8 +261,3 @@ jobs:
           name: genesis-plus-gx-web
           path: genesis_plus_gx_libretro.*
           retention-days: 1
-
-      # TODO: deploy this with nostalgist to GitHub Pages
-      - name: Deploy to GitHub Pages
-        if: inputs.for-release
-        run: true

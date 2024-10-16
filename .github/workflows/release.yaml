@@ -111,6 +111,12 @@ jobs:
           name: blastem-macos
           path: kinetoscope-blastem-0.6.2-macos-x64
 
+      - name: Pull Genesis Plus GX for Web
+        uses: actions/download-artifact@v4
+        with:
+          name: genesis-plus-gx-web
+          path: kinetoscope-genesis-plus-gx-web
+
       - name: Arrange release artifacts
         run: |
           # Debug: show everything we execute.
@@ -209,6 +215,19 @@ jobs:
           mv kinetoscope-blastem-0.6.2-macos-x64 kinetoscope-$VERSION-blastem-0.6.2-macos-x64
           zip -r9 kinetoscope-$VERSION-blastem-0.6.2-macos-x64.zip kinetoscope-$VERSION-blastem-0.6.2-macos-x64/
 
+          # Prep emulator binaries for web.
+          echo "This build of the Genesis Plus GX libretro core supports Kinetoscope emulation." >> kinetoscope-genesis-plus-gx-web/README.kinetoscope.txt
+          chmod 644 kinetoscope-genesis-plus-gx-web/*
+          cp kinetoscope-$VERSION-streamer-rom/kinetoscope-streamer.bin kinetoscope-genesis-plus-gx-web/
+          cp source/emulator-patches/web-demo.html kinetoscope-genesis-plus-gx-web/
+          cp -a kinetoscope-genesis-plus-gx-web kinetoscope-$VERSION-genesis-plus-gx-web
+          zip -r9 kinetoscope-$VERSION-genesis-plus-gx-web.zip kinetoscope-$VERSION-genesis-plus-gx-web/
+
+      - name: Upload GitHub Pages Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: kinetoscope-genesis-plus-gx-web
+
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
@@ -227,3 +246,22 @@ jobs:
             kinetoscope-*-blastem-0.6.2-linux-x64.zip
             kinetoscope-*-blastem-0.6.2-windows-x64.zip
             kinetoscope-*-blastem-0.6.2-macos-x64.zip
+
+  pages:
+    needs:
+      - release
+
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
