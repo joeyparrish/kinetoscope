@@ -33,6 +33,7 @@
 // Linux headers for ntohs and ntohl.
 # include <arpa/inet.h>
 # include <netinet/in.h>
+# include <signal.h>
 // For clock_gettime.
 # include <time.h>
 #endif
@@ -188,6 +189,9 @@ static void write_sram(const uint8_t* data, uint32_t size) {
     fprintf(stderr, "Kinetoscope: tried to overflow SRAM!"
             " (offset: 0x%08x, size: 0x%08x)\n",
             kinetoscope.sram_offset, size);
+#if !defined(_WIN32)
+    raise(11);
+#endif
     return;
   }
 
