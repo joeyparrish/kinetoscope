@@ -63,8 +63,8 @@ body {
 // AudioContext needs a user gesture to start.  So we define main, but don't
 // run it until the user clicks the click-to-start button.
 async function main() {
-  // Hide the click-to-start button.
-  clickToStart.style.display = 'none';
+  // Change the click-to-start label to a loading indicator.
+  clickToStart.innerText = 'Loading...'
 
   // Launch the emulator, which will create its own canvas.
   const nostalgist = await Nostalgist.launch({
@@ -74,6 +74,10 @@ async function main() {
       wasm: 'genesis_plus_gx_libretro.wasm',
     },
     rom: 'kinetoscope-streamer.rom',
+    onLaunch: () => {
+      // Once loaded, hide the click-to-start button.
+      clickToStart.style.display = 'none';
+    },
   });
 
   // Resize the emulator when the window changes size.
