@@ -80,6 +80,7 @@ static void fetch_with_curl_in_thread(void* thread_ctx) {
   curl_easy_setopt(handle, CURLOPT_URL, ctx->url);
   curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, ctx->write_callback);
   curl_easy_setopt(handle, CURLOPT_WRITEDATA, ctx->user_ctx);
+  curl_easy_setopt(handle, CURLOPT_FOLLOWLOCATION, 1);
   if (ctx->range) {
     curl_easy_setopt(handle, CURLOPT_RANGE, ctx->range);
   }
