@@ -140,28 +140,28 @@ jobs:
           zip -r9 kinetoscope-$VERSION-player.zip kinetoscope-$VERSION-player/
 
           # Prep Never Gonna Give You Up ROM.
-          mv kinetoscope-never-gonna-give-you-up-rom/rom.bin kinetoscope-never-gonna-give-you-up-rom/kinetoscope-never-gonna-give-you-up.bin
+          mv kinetoscope-never-gonna-give-you-up-rom/rom.bin kinetoscope-never-gonna-give-you-up-rom/kinetoscope-never-gonna-give-you-up.rom
           cp source/LICENSE.txt kinetoscope-never-gonna-give-you-up-rom/
           echo "This Kinetoscope demo ROM will run on any system or emulator." >> kinetoscope-never-gonna-give-you-up-rom/README.txt
           mv kinetoscope-never-gonna-give-you-up-rom kinetoscope-$VERSION-never-gonna-give-you-up-rom
           zip -r9 kinetoscope-$VERSION-never-gonna-give-you-up-rom.zip kinetoscope-$VERSION-never-gonna-give-you-up-rom/
 
           # Prep You Spin Me Round ROM.
-          mv kinetoscope-you-spin-me-round-rom/rom.bin kinetoscope-you-spin-me-round-rom/kinetoscope-you-spin-me-round.bin
+          mv kinetoscope-you-spin-me-round-rom/rom.bin kinetoscope-you-spin-me-round-rom/kinetoscope-you-spin-me-round.rom
           cp source/LICENSE.txt kinetoscope-you-spin-me-round-rom/
           echo "This Kinetoscope demo ROM will run on any system or emulator." >> kinetoscope-you-spin-me-round-rom/README.txt
           mv kinetoscope-you-spin-me-round-rom kinetoscope-$VERSION-you-spin-me-round-rom
           zip -r9 kinetoscope-$VERSION-you-spin-me-round-rom.zip kinetoscope-$VERSION-you-spin-me-round-rom/
 
           # Prep streamer ROM.
-          mv kinetoscope-streamer-rom/rom.bin kinetoscope-streamer-rom/kinetoscope-streamer.bin
+          mv kinetoscope-streamer-rom/rom.bin kinetoscope-streamer-rom/kinetoscope-streamer.rom
           cp source/LICENSE.txt kinetoscope-streamer-rom/
           echo "The Kinetoscope streamer ROM is built to be flashed to Kinetoscope hardware or run inside an emulator built with Kinetoscope support." >> kinetoscope-streamer-rom/README.txt
           mv kinetoscope-streamer-rom kinetoscope-$VERSION-streamer-rom
           zip -r9 kinetoscope-$VERSION-streamer-rom.zip kinetoscope-$VERSION-streamer-rom/
 
           # Prep self-test ROM.
-          mv kinetoscope-self-test-rom/rom.bin kinetoscope-self-test-rom/kinetoscope-self-test.bin
+          mv kinetoscope-self-test-rom/rom.bin kinetoscope-self-test-rom/kinetoscope-self-test.rom
           cp source/LICENSE.txt kinetoscope-self-test-rom/
           echo "The Kinetoscope self-test ROM is built to be flashed to Kinetoscope hardware or run inside an emulator built with Kinetoscope support." >> kinetoscope-self-test-rom/README.txt
           mv kinetoscope-self-test-rom kinetoscope-$VERSION-self-test-rom
@@ -218,8 +218,8 @@ jobs:
           # Prep emulator binaries for web.
           echo "This build of the Genesis Plus GX libretro core supports Kinetoscope emulation." >> kinetoscope-genesis-plus-gx-web/README.kinetoscope.txt
           chmod 644 kinetoscope-genesis-plus-gx-web/*
-          cp kinetoscope-$VERSION-streamer-rom/kinetoscope-streamer.bin kinetoscope-genesis-plus-gx-web/
-          cp source/emulator-patches/web-demo.html kinetoscope-genesis-plus-gx-web/
+          cp kinetoscope-$VERSION-streamer-rom/kinetoscope-streamer.rom kinetoscope-genesis-plus-gx-web/
+          cp source/emulator-patches/web-demo.html kinetoscope-genesis-plus-gx-web/index.html
           cp -a kinetoscope-genesis-plus-gx-web kinetoscope-$VERSION-genesis-plus-gx-web
           zip -r9 kinetoscope-$VERSION-genesis-plus-gx-web.zip kinetoscope-$VERSION-genesis-plus-gx-web/
 
@@ -246,6 +246,7 @@ jobs:
             kinetoscope-*-blastem-0.6.2-linux-x64.zip
             kinetoscope-*-blastem-0.6.2-windows-x64.zip
             kinetoscope-*-blastem-0.6.2-macos-x64.zip
+            kinetoscope-*-genesis-plus-gx-web.zip
 
   pages:
     needs:

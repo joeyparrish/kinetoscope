@@ -9,7 +9,7 @@ See MIT License in LICENSE.txt
 
 This web-based demo is incomplete without the emulator core
 (genesis_plus_gx_libretro.js and genesis_plus_gx_libretro.wasm) and the
-Kinetoscope ROM (kinetoscope-streamer.bin), all of which must be in the same folder as
+Kinetoscope ROM (kinetoscope-streamer.rom), all of which must be in the same folder as
 this page.
 -->
 <html lang="en">
@@ -72,7 +72,7 @@ async function main() {
       js: 'genesis_plus_gx_libretro.js',
       wasm: 'genesis_plus_gx_libretro.wasm',
     },
-    rom: 'kinetoscope-streamer.bin',
+    rom: 'kinetoscope-streamer.rom',
   });
 
   // Resize the emulator when the window changes size.
