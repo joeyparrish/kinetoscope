@@ -9183,12 +9183,12 @@
 		(layer "F.Cu")
 		(uuid "5dea64a0-3921-4da0-a53e-c941e24d1e63")
 		(at 55.0775 47.94)
-		(descr "TSSOP, 16 Pin (JEDEC MO-153 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
-		(tags "TSSOP SO")
+		(descr "TSSOP, 16 Pin (https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
+		(tags "TSSOP SO JEDEC-MO-153-AB TI-PW0016A Microchip-ST Toshiba-TSSOP16-P-0044-0.65A NXP-SOT403-1 Infineon-P-TSSOP-16-800")
 		(property "Reference" "U5"
 			(at 0 -3.45 0)
 			(layer "F.SilkS")
-			(uuid "83433e66-4972-4a22-a230-97e2c143b30a")
+			(uuid "f39df196-076e-44e1-9ae1-77e16fea3bd9")
 			(effects
 				(font
 					(size 1 1)
@@ -9199,7 +9199,7 @@
 		(property "Value" "74LV161A"
 			(at 0 3.45 0)
 			(layer "F.Fab")
-			(uuid "eb5dc214-8c05-47d7-86bc-cb919bc40afc")
+			(uuid "9b2b1139-75d1-42a3-ae3a-507e8356551a")
 			(effects
 				(font
 					(size 1 1)
@@ -9212,7 +9212,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6df37a33-4233-49b8-9071-4859571cd4a7")
+			(uuid "868e21b0-0b52-4f4a-ae3e-99518ba162dc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9225,7 +9225,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b8e9f633-99ed-4821-a9a2-a2464b431b25")
+			(uuid "e9d260d3-2225-4690-9180-a864fd0ec292")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9238,7 +9238,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b0890e30-87cf-4fc7-ba59-dcf3c3b70da0")
+			(uuid "49d36386-7207-42ef-88de-c59e4657bfd6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9298,7 +9298,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "de4df60c-293c-4b92-b297-085455c64c59")
+			(uuid "902ebe47-742a-41d5-ab44-9cbb84f72512")
 		)
 		(fp_line
 			(start 0 -2.735)
@@ -9308,7 +9308,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "2012dfd1-37db-4b09-8e05-4b2512804a79")
+			(uuid "85a10385-ff9c-404e-8f45-7e4d2582529e")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -9318,7 +9318,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "b087131c-dc28-4c0b-ad9b-0dd1a80a9a91")
+			(uuid "78ddc19e-da53-412d-88ba-e37f70949263")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -9328,7 +9328,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "9ac3a008-c7cd-482f-a5db-880a0ced6ada")
+			(uuid "04262d98-e0f2-46f9-99ea-ec0437a9af04")
 		)
 		(fp_poly
 			(pts
@@ -9340,7 +9340,7 @@
 			)
 			(fill solid)
 			(layer "F.SilkS")
-			(uuid "e26ad940-117c-4ad9-9eab-fd0330269d70")
+			(uuid "953ab236-c3ba-4922-81e4-842b1f6958dc")
 		)
 		(fp_line
 			(start -3.85 -2.75)
@@ -9350,7 +9350,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "5645d41a-ea94-482f-8670-bc29d60cbb70")
+			(uuid "a879ee51-f6e1-4d51-84e0-9eca44f36059")
 		)
 		(fp_line
 			(start -3.85 2.75)
@@ -9360,7 +9360,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "36c3021c-8d3e-4926-bc98-fb49821c8636")
+			(uuid "91f87afe-08e4-4df0-9cfd-5815e610f101")
 		)
 		(fp_line
 			(start 3.85 -2.75)
@@ -9370,7 +9370,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "5a51ff62-c3d4-4eff-9796-4ee9eaba6f0a")
+			(uuid "5c5ef35d-64aa-4379-8973-229be4fb10c5")
 		)
 		(fp_line
 			(start 3.85 2.75)
@@ -9380,7 +9380,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "ac88532d-84e3-4f11-9880-d4989303dcf7")
+			(uuid "1cb067b4-46f2-4ae5-b5a0-d2af1d995e23")
 		)
 		(fp_line
 			(start -2.2 -1.5)
@@ -9390,7 +9390,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "0ea8a6f0-2561-40b9-8f3d-87a0abd50cc5")
+			(uuid "43bef5a4-37e2-4234-ab59-b5220e6b34e4")
 		)
 		(fp_line
 			(start -2.2 2.5)
@@ -9400,7 +9400,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "af868209-20ea-4e5f-a623-eeebe11e33e3")
+			(uuid "4e86cb7b-b880-497b-8d5e-ef8932bc31c5")
 		)
 		(fp_line
 			(start -1.2 -2.5)
@@ -9410,7 +9410,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "01017b9b-b82b-4526-b595-db0862e17e12")
+			(uuid "1c9c5cac-1ad6-4d25-8eef-52b9f9723cb8")
 		)
 		(fp_line
 			(start 2.2 -2.5)
@@ -9420,7 +9420,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "53d0042a-6a39-4ef5-aedd-1fd2d5ee715b")
+			(uuid "c1871e60-933d-43a8-9c2c-46b6082d2ae6")
 		)
 		(fp_line
 			(start 2.2 2.5)
@@ -9430,12 +9430,12 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "9091bf4f-eea1-4a0c-9f98-52ea89bc6c21")
+			(uuid "884ed989-34b1-46d8-9746-3e233f6cbf64")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "b1998e87-2281-495b-b8d7-46378f437c75")
+			(uuid "218125bc-2830-40f4-bc62-5b09c706b589")
 			(effects
 				(font
 					(size 1 1)
@@ -9451,7 +9451,7 @@
 			(net 8 "/~{SRAM_W_A_CLR}")
 			(pinfunction "~{MR}")
 			(pintype "input")
-			(uuid "13adccc0-a3e6-4662-9b7c-335861841e0f")
+			(uuid "68c5f8d8-8220-4b3f-ac50-ef8755f87c07")
 		)
 		(pad "2" smd roundrect
 			(at -2.8625 -1.625)
@@ -9461,7 +9461,7 @@
 			(net 42 "/SRAM_W_A_CLK")
 			(pinfunction "CP")
 			(pintype "input")
-			(uuid "cc067619-a603-462c-9484-e522d96cc69b")
+			(uuid "260f5391-59d2-4769-9a5e-803a9b1dd3dd")
 		)
 		(pad "3" smd roundrect
 			(at -2.8625 -0.975)
@@ -9471,7 +9471,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D0")
 			(pintype "input")
-			(uuid "c1381bee-afdf-46c1-86e9-64fa110a0dff")
+			(uuid "7ef0e097-37f5-4a35-8ce9-8c70cd19a660")
 		)
 		(pad "4" smd roundrect
 			(at -2.8625 -0.325)
@@ -9481,7 +9481,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D1")
 			(pintype "input")
-			(uuid "772b0f43-f7a3-4a4d-8bd5-57f5ca590b91")
+			(uuid "dbe095a0-a541-442a-8ee5-21a863083c83")
 		)
 		(pad "5" smd roundrect
 			(at -2.8625 0.325)
@@ -9491,7 +9491,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D2")
 			(pintype "input")
-			(uuid "028d900a-e795-479c-8227-a5c49a75c81b")
+			(uuid "b0f09348-0081-45d4-a830-83dec4ed5c63")
 		)
 		(pad "6" smd roundrect
 			(at -2.8625 0.975)
@@ -9501,7 +9501,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D3")
 			(pintype "input")
-			(uuid "d98621d0-8e88-400d-becd-66d39c760b8b")
+			(uuid "592c955a-3e95-4361-822c-a0cb5b20a379")
 		)
 		(pad "7" smd roundrect
 			(at -2.8625 1.625)
@@ -9511,7 +9511,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "CEP")
 			(pintype "input")
-			(uuid "bf1d5e2c-b6d9-4ead-ac84-19fb6d3b73a1")
+			(uuid "9d094e41-dfab-4388-9e46-f886891492bf")
 		)
 		(pad "8" smd roundrect
 			(at -2.8625 2.275)
@@ -9521,7 +9521,7 @@
 			(net 84 "GND")
 			(pinfunction "GND")
 			(pintype "power_in")
-			(uuid "13050776-7b4e-4fd1-b74c-678c29888cc3")
+			(uuid "24537b10-bcf7-42c9-a021-e62173c07953")
 		)
 		(pad "9" smd roundrect
 			(at 2.8625 2.275)
@@ -9531,7 +9531,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "~{PE}")
 			(pintype "input")
-			(uuid "cb6f857b-1d9b-48bc-a2e8-78c2b9660164")
+			(uuid "a94698b7-1d52-45db-b0ae-fee19b718c5c")
 		)
 		(pad "10" smd roundrect
 			(at 2.8625 1.625)
@@ -9541,7 +9541,7 @@
 			(net 136 "/address-counter-internal/AR1")
 			(pinfunction "CET")
 			(pintype "input")
-			(uuid "0c3d0e6a-6240-44c0-86f5-388e712090b4")
+			(uuid "76a70abf-0eaa-490d-a3a8-aea0a8f22388")
 		)
 		(pad "11" smd roundrect
 			(at 2.8625 0.975)
@@ -9551,7 +9551,7 @@
 			(net 129 "/SRAM_W_A11")
 			(pinfunction "Q3")
 			(pintype "output")
-			(uuid "20d88b5e-82da-48ff-9f00-e6c0a0f5835b")
+			(uuid "2f157a55-9672-4a12-9b69-1ea7f8308fad")
 		)
 		(pad "12" smd roundrect
 			(at 2.8625 0.325)
@@ -9561,7 +9561,7 @@
 			(net 118 "/SRAM_W_A10")
 			(pinfunction "Q2")
 			(pintype "output")
-			(uuid "e3dc965f-b3c7-4c86-9fc8-191508a5ecb9")
+			(uuid "38f5f0ab-99bb-43d9-8838-d99f46849f33")
 		)
 		(pad "13" smd roundrect
 			(at 2.8625 -0.325)
@@ -9571,7 +9571,7 @@
 			(net 104 "/SRAM_W_A9")
 			(pinfunction "Q1")
 			(pintype "output")
-			(uuid "04d6884e-933f-4100-b5d1-c5bb8d51da81")
+			(uuid "c71baf38-46a6-48f7-bde2-37b726f3908d")
 		)
 		(pad "14" smd roundrect
 			(at 2.8625 -0.975)
@@ -9581,7 +9581,7 @@
 			(net 121 "/SRAM_W_A8")
 			(pinfunction "Q0")
 			(pintype "output")
-			(uuid "7497f468-b612-4aee-ba7f-2ae2cc42c647")
+			(uuid "9ca10763-767b-4815-a3c2-533842da38f8")
 		)
 		(pad "15" smd roundrect
 			(at 2.8625 -1.625)
@@ -9591,7 +9591,7 @@
 			(net 137 "/address-counter-internal/AR2")
 			(pinfunction "TC")
 			(pintype "output")
-			(uuid "83a5589e-07c3-4050-ab56-9f911236c112")
+			(uuid "4917be4d-402c-4892-9f4c-1e841f517c09")
 		)
 		(pad "16" smd roundrect
 			(at 2.8625 -2.275)
@@ -9601,7 +9601,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "VCC")
 			(pintype "power_in")
-			(uuid "4b2988f7-b062-490e-aa92-b3bc009f2939")
+			(uuid "b13b53b0-1bc1-4ba4-a0dc-638f1351271a")
 		)
 		(model "${KICAD8_3DMODEL_DIR}/Package_SO.3dshapes/TSSOP-16_4.4x5mm_P0.65mm.wrl"
 			(offset
@@ -10791,12 +10791,12 @@
 		(layer "F.Cu")
 		(uuid "89fbaf3c-1530-4c78-bbb6-862b9760ffd3")
 		(at 36.5275 87.94)
-		(descr "TSSOP, 16 Pin (JEDEC MO-153 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
-		(tags "TSSOP SO")
+		(descr "TSSOP, 16 Pin (https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
+		(tags "TSSOP SO JEDEC-MO-153-AB TI-PW0016A Microchip-ST Toshiba-TSSOP16-P-0044-0.65A NXP-SOT403-1 Infineon-P-TSSOP-16-800")
 		(property "Reference" "U15"
 			(at 0 -3.45 0)
 			(layer "F.SilkS")
-			(uuid "1bf04b36-72ec-4df0-ac7f-d2e12d30b349")
+			(uuid "0dd7f441-8983-40ec-b6da-24682fcc9139")
 			(effects
 				(font
 					(size 1 1)
@@ -10807,7 +10807,7 @@
 		(property "Value" "74LVC138A"
 			(at 0 3.45 0)
 			(layer "F.Fab")
-			(uuid "d1a331e6-8403-426f-9325-a1e2abd8093a")
+			(uuid "ccf9f0b3-a2d6-4f6d-b18e-736b313da3b5")
 			(effects
 				(font
 					(size 1 1)
@@ -10820,7 +10820,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "dc0f8d4c-cb49-4173-8a25-f251e44689f5")
+			(uuid "2708a373-67a9-4578-b7c6-ecb9ccefd16e")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10833,7 +10833,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c6eb07df-7db2-4679-ab5f-f3408c02c45b")
+			(uuid "cccc823e-ac16-411f-9ef2-d8af46cd3b50")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10846,7 +10846,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ffc8b1c1-cbfe-4a7c-bf57-b9d6c4f1f7cd")
+			(uuid "88dd7bff-bc44-45d2-b911-4f12a26e656f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10906,7 +10906,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "043b3072-50ff-4901-b1fb-0886b4971a36")
+			(uuid "3753cce2-d9ca-4c38-ae87-191589d1ce4e")
 		)
 		(fp_line
 			(start 0 -2.735)
@@ -10916,7 +10916,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "7c2eb977-1156-4ff8-9a9a-bb2640b9553d")
+			(uuid "b01310df-cf31-4778-9a72-8e83dfb5c753")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -10926,7 +10926,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "6f767877-770f-4a1b-8d77-c01fe8a7b1bc")
+			(uuid "8c63c444-17b3-4572-bac0-cf5df9ad00cb")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -10936,7 +10936,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "caf2ea1e-3c52-41af-82fd-78e80fe7121e")
+			(uuid "ff3fb18e-d3c5-424e-9dc5-d54115f7af02")
 		)
 		(fp_poly
 			(pts
@@ -10948,7 +10948,7 @@
 			)
 			(fill solid)
 			(layer "F.SilkS")
-			(uuid "84442100-1750-4d4d-9cdd-dad6543e0645")
+			(uuid "c161924d-e4e0-40d4-8d81-b01b9fe02d5d")
 		)
 		(fp_line
 			(start -3.85 -2.75)
@@ -10958,7 +10958,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "71abbb7d-056b-486b-8555-3378eab36886")
+			(uuid "e9980368-83e3-413e-8673-6c29114c0ec6")
 		)
 		(fp_line
 			(start -3.85 2.75)
@@ -10968,7 +10968,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "d9e355c9-9a35-4b99-8850-2e93b313bd78")
+			(uuid "718379ea-6ee9-4500-ac94-ec5d19383dca")
 		)
 		(fp_line
 			(start 3.85 -2.75)
@@ -10978,7 +10978,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "8730d0de-f3cd-4c70-87b4-16da3bf55143")
+			(uuid "4c881c67-03e9-4b22-9f33-e81a1c4d7f3e")
 		)
 		(fp_line
 			(start 3.85 2.75)
@@ -10988,7 +10988,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "98e6124e-ee91-4156-9ce5-3017eb10ee81")
+			(uuid "6e213d23-4c18-4cea-afa4-f2084cd21a61")
 		)
 		(fp_line
 			(start -2.2 -1.5)
@@ -10998,7 +10998,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "57df9e9a-596f-4ad0-9b77-71af1dd40120")
+			(uuid "1c93afb2-8e17-40fc-89f4-818da0173ef6")
 		)
 		(fp_line
 			(start -2.2 2.5)
@@ -11008,7 +11008,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "8e980cac-a852-4930-bec3-f42503604556")
+			(uuid "6a44365b-37a0-45a8-a84b-ad6e18d77d0c")
 		)
 		(fp_line
 			(start -1.2 -2.5)
@@ -11018,7 +11018,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "06b4d4f6-ebc9-40b9-9220-19ae4d11b4e0")
+			(uuid "b4e593c4-2ac8-4cb1-96c8-a6a9fd4b0f41")
 		)
 		(fp_line
 			(start 2.2 -2.5)
@@ -11028,7 +11028,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "03792b1d-3e54-45d7-b0ab-1cea34da6f41")
+			(uuid "cfbd6f07-5828-473d-9523-9262f9646964")
 		)
 		(fp_line
 			(start 2.2 2.5)
@@ -11038,12 +11038,12 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "3cbca88a-8bd4-4707-ae8b-c2aa3d452638")
+			(uuid "4ed23a28-25b5-43f7-bda3-62a5f6351c01")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "85cfc274-4f55-44f7-8b7d-d82f87095786")
+			(uuid "efde7a09-0960-4c32-a3f1-a48122a32406")
 			(effects
 				(font
 					(size 1 1)
@@ -11059,7 +11059,7 @@
 			(net 5 "/kinetoscope-header-internal/SEGA_A1")
 			(pinfunction "A0")
 			(pintype "input")
-			(uuid "ff113c71-8adc-463a-926e-71062744aaa6")
+			(uuid "4a4d809f-597e-4f6b-a937-84ebe9a0c7e0")
 		)
 		(pad "2" smd roundrect
 			(at -2.8625 -1.625)
@@ -11069,7 +11069,7 @@
 			(net 1 "/~{SEGA_OE}")
 			(pinfunction "A1")
 			(pintype "input")
-			(uuid "015dd85a-ecac-4c0d-b041-38bd7f0d15f7")
+			(uuid "e40e6d40-d288-4555-bdb4-3b61a78aad9a")
 		)
 		(pad "3" smd roundrect
 			(at -2.8625 -0.975)
@@ -11079,7 +11079,7 @@
 			(net 74 "/~{SEGA_WE_LB}")
 			(pinfunction "A2")
 			(pintype "input")
-			(uuid "39789c1f-cb77-4bbd-b9a5-89cc747a1a9b")
+			(uuid "93677943-b068-44f7-b2c0-6aca7648b44c")
 		)
 		(pad "4" smd roundrect
 			(at -2.8625 -0.325)
@@ -11089,7 +11089,7 @@
 			(net 49 "/~{SEGA_REGISTER}")
 			(pinfunction "~{E0}")
 			(pintype "input")
-			(uuid "16d715ea-be22-4768-be71-81937fb4dd84")
+			(uuid "af2db3b2-ea33-43b1-9858-bd8ad3dd8f55")
 		)
 		(pad "5" smd roundrect
 			(at -2.8625 0.325)
@@ -11099,7 +11099,7 @@
 			(net 7 "/~{SEGA_AS}")
 			(pinfunction "~{E1}")
 			(pintype "input")
-			(uuid "47cd3d42-d6a5-46f0-952c-30588f1c4802")
+			(uuid "eaf53ad4-5cff-4bef-887c-358cb8603790")
 		)
 		(pad "6" smd roundrect
 			(at -2.8625 0.975)
@@ -11109,7 +11109,7 @@
 			(net 32 "/kinetoscope-header-internal/SEGA_A3")
 			(pinfunction "E2")
 			(pintype "input")
-			(uuid "759a0c95-bf11-4c5b-8ce9-f85c3d77ebfb")
+			(uuid "d4cdbb69-1c64-4d27-8ff8-d9a2834b028e")
 		)
 		(pad "7" smd roundrect
 			(at -2.8625 1.625)
@@ -11119,7 +11119,7 @@
 			(net 68 "unconnected-(U15-~{Y7}-Pad7)")
 			(pinfunction "~{Y7}")
 			(pintype "output+no_connect")
-			(uuid "03232d37-2ed5-4b84-9363-197653fb0edd")
+			(uuid "b7799873-9d6e-4bbc-96b8-37073be14f76")
 		)
 		(pad "8" smd roundrect
 			(at -2.8625 2.275)
@@ -11129,7 +11129,7 @@
 			(net 84 "GND")
 			(pinfunction "GND")
 			(pintype "power_in")
-			(uuid "1bcb9665-9366-4a71-8f19-78b2991adc76")
+			(uuid "4d9cdc93-01fe-4889-a28e-f772f651adfd")
 		)
 		(pad "9" smd roundrect
 			(at 2.8625 2.275)
@@ -11139,7 +11139,7 @@
 			(net 71 "unconnected-(U15-~{Y6}-Pad9)")
 			(pinfunction "~{Y6}")
 			(pintype "output+no_connect")
-			(uuid "9d6e30a0-4883-4702-91a7-a5e6d1ab2adb")
+			(uuid "156b53a2-f0ad-4998-a08e-bedc2b779f73")
 		)
 		(pad "10" smd roundrect
 			(at 2.8625 1.625)
@@ -11149,7 +11149,7 @@
 			(net 78 "/~{ERR_OE}")
 			(pinfunction "~{Y5}")
 			(pintype "output")
-			(uuid "d9407296-b0a6-433b-bb40-303b0a43a2a4")
+			(uuid "d7482493-cd20-421a-ba3c-5926a54cc0da")
 		)
 		(pad "11" smd roundrect
 			(at 2.8625 0.975)
@@ -11159,7 +11159,7 @@
 			(net 93 "/~{CMD_OE}")
 			(pinfunction "~{Y4}")
 			(pintype "output")
-			(uuid "5e62167a-2948-4e4a-90ab-6aad663a965d")
+			(uuid "77f00b7f-0f00-4995-9dee-1001b9aabc8d")
 		)
 		(pad "12" smd roundrect
 			(at 2.8625 0.325)
@@ -11169,7 +11169,7 @@
 			(net 92 "/~{ERR_CLR}")
 			(pinfunction "~{Y3}")
 			(pintype "output")
-			(uuid "7b5213e7-1f44-4230-8da1-b9b64852c79e")
+			(uuid "2df39142-80c3-4376-a1bb-d290ee339a66")
 		)
 		(pad "13" smd roundrect
 			(at 2.8625 -0.325)
@@ -11179,7 +11179,7 @@
 			(net 91 "/~{CMD_SET}")
 			(pinfunction "~{Y2}")
 			(pintype "output")
-			(uuid "d260f7e7-5b13-4d7b-811c-8623ea1378bb")
+			(uuid "e0b999ce-a5fd-44a2-91ca-e3f90893ea14")
 		)
 		(pad "14" smd roundrect
 			(at 2.8625 -0.975)
@@ -11189,7 +11189,7 @@
 			(net 70 "unconnected-(U15-~{Y1}-Pad14)")
 			(pinfunction "~{Y1}")
 			(pintype "output+no_connect")
-			(uuid "19d7ef9e-30db-4519-9376-bcf16ba6f6be")
+			(uuid "d7e16ea0-1d09-466f-bd81-c28064b83c17")
 		)
 		(pad "15" smd roundrect
 			(at 2.8625 -1.625)
@@ -11199,7 +11199,7 @@
 			(net 69 "unconnected-(U15-~{Y0}-Pad15)")
 			(pinfunction "~{Y0}")
 			(pintype "output+no_connect")
-			(uuid "41dd5ea7-0693-4ae5-8a7f-925e68ceccd7")
+			(uuid "bce88565-b588-408a-95cb-cd52b31a8448")
 		)
 		(pad "16" smd roundrect
 			(at 2.8625 -2.275)
@@ -11209,7 +11209,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "VCC")
 			(pintype "power_in")
-			(uuid "36ea79b2-0a52-40dd-b013-5db4191af9b3")
+			(uuid "5cfd101f-943d-4fbc-9376-1a205538d6fc")
 		)
 		(model "${KICAD8_3DMODEL_DIR}/Package_SO.3dshapes/TSSOP-16_4.4x5mm_P0.65mm.wrl"
 			(offset
@@ -12077,12 +12077,12 @@
 		(layer "F.Cu")
 		(uuid "9992ea11-7f4e-42be-8117-a6caf621187c")
 		(at 55.04 64.94)
-		(descr "TSSOP, 16 Pin (JEDEC MO-153 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
-		(tags "TSSOP SO")
+		(descr "TSSOP, 16 Pin (https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
+		(tags "TSSOP SO JEDEC-MO-153-AB TI-PW0016A Microchip-ST Toshiba-TSSOP16-P-0044-0.65A NXP-SOT403-1 Infineon-P-TSSOP-16-800")
 		(property "Reference" "U7"
 			(at 0 -3.45 0)
 			(layer "F.SilkS")
-			(uuid "c4450ef9-e97f-4319-ae91-c66546ad3b36")
+			(uuid "527cd786-0266-4255-9124-8b92f3e8da17")
 			(effects
 				(font
 					(size 1 1)
@@ -12093,7 +12093,7 @@
 		(property "Value" "74LV161A"
 			(at 0 3.45 0)
 			(layer "F.Fab")
-			(uuid "86d715ee-4963-4130-8e73-ccb9b7609a62")
+			(uuid "9b392aa6-b098-4931-bfe8-c8844595ecc5")
 			(effects
 				(font
 					(size 1 1)
@@ -12106,7 +12106,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4bdb7c9a-f4a1-418f-87be-1534805ca5ac")
+			(uuid "d34d29b4-26bb-4b3e-b3c9-081716629dee")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12119,7 +12119,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "dd8022ef-ee1b-4635-97a8-3c1fcf9314a9")
+			(uuid "76c4a645-a3e0-4fd5-bce0-691290c4b189")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12132,7 +12132,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "27317589-cf67-402d-ab89-81c17154423f")
+			(uuid "1aacb752-01df-49b9-8f71-cce29e1d31ee")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12192,7 +12192,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "b378d9a2-376c-429e-ad0d-c5e42971aec6")
+			(uuid "78ca8f14-3528-4ecf-bed7-7d86b1458c80")
 		)
 		(fp_line
 			(start 0 -2.735)
@@ -12202,7 +12202,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "6c147bb8-966a-4c40-91fd-f1257e86864a")
+			(uuid "297aa5d8-58ac-4351-a9f2-f7e76160e8f8")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -12212,7 +12212,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "a1b60459-70dc-41c3-934e-a405bc9ae408")
+			(uuid "21b1d0d6-63c1-4cd5-b71d-e2cac4c60c46")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -12222,7 +12222,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "3e728430-6c1f-4ad8-92c9-e6a338448079")
+			(uuid "b0c2cc03-8eab-45d5-85c9-6ee00ab0c253")
 		)
 		(fp_poly
 			(pts
@@ -12234,7 +12234,7 @@
 			)
 			(fill solid)
 			(layer "F.SilkS")
-			(uuid "c8801186-4424-4a22-87e7-803490907784")
+			(uuid "58c2f174-52c3-4f5a-bdfb-7215524688be")
 		)
 		(fp_line
 			(start -3.85 -2.75)
@@ -12244,7 +12244,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "ab1347a5-ca8b-460f-8fb0-fb484a63e325")
+			(uuid "c31b440f-993b-43a8-b3be-25c7dba23fc3")
 		)
 		(fp_line
 			(start -3.85 2.75)
@@ -12254,7 +12254,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "77cba17a-acd8-47e3-91cf-876e1b3e1566")
+			(uuid "a447adb3-acdc-40ff-a842-6998e91fcfc7")
 		)
 		(fp_line
 			(start 3.85 -2.75)
@@ -12264,7 +12264,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "1e368090-4adb-4cd2-99f2-8ccd8a1994f3")
+			(uuid "e1d4ae8f-f595-48c3-80e5-82db59380396")
 		)
 		(fp_line
 			(start 3.85 2.75)
@@ -12274,7 +12274,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "ed40b3db-1061-4c7d-aab6-19a26648e4fb")
+			(uuid "a4574745-3dd9-4dfb-877a-d930713614fa")
 		)
 		(fp_line
 			(start -2.2 -1.5)
@@ -12284,7 +12284,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "9df2e364-adb4-4378-9bf9-cda6f9d34d7f")
+			(uuid "fa8d9904-855e-4db5-9631-a774b114cdb9")
 		)
 		(fp_line
 			(start -2.2 2.5)
@@ -12294,7 +12294,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "aeec4bcb-1de6-47fb-80df-1d15b59b70a7")
+			(uuid "2b03d0d9-56df-48ea-9abf-08de42a20608")
 		)
 		(fp_line
 			(start -1.2 -2.5)
@@ -12304,7 +12304,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "ca834789-6382-481b-8d50-2b9e7108895c")
+			(uuid "f15baf3a-5d5b-4ca8-b00f-2fb2bf3ba34a")
 		)
 		(fp_line
 			(start 2.2 -2.5)
@@ -12314,7 +12314,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "2c6100ef-7aba-4a72-8a5b-f3ea4bf12b16")
+			(uuid "856e932a-f967-4726-8c9f-448c2a49d644")
 		)
 		(fp_line
 			(start 2.2 2.5)
@@ -12324,12 +12324,12 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "1ee82b2c-887c-4b11-beeb-a07f917a14d9")
+			(uuid "806f6ede-66ad-4864-b147-a227bdaf2a79")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "3941bca9-5c80-41ed-a5d5-3f636884ea16")
+			(uuid "c7856399-3cea-4ef4-8331-ebf8b8fb0f02")
 			(effects
 				(font
 					(size 1 1)
@@ -12345,7 +12345,7 @@
 			(net 8 "/~{SRAM_W_A_CLR}")
 			(pinfunction "~{MR}")
 			(pintype "input")
-			(uuid "fe753b86-29af-4bc9-b5a9-65e8b0774c8f")
+			(uuid "dcd1b2e5-b59e-47a0-95a1-2a31c02c9754")
 		)
 		(pad "2" smd roundrect
 			(at -2.8625 -1.625)
@@ -12355,7 +12355,7 @@
 			(net 42 "/SRAM_W_A_CLK")
 			(pinfunction "CP")
 			(pintype "input")
-			(uuid "c651e68d-7663-4f3d-96f1-d0f3ad2ae294")
+			(uuid "99452ac2-ac70-453a-bc95-79a8dfd3333f")
 		)
 		(pad "3" smd roundrect
 			(at -2.8625 -0.975)
@@ -12365,7 +12365,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D0")
 			(pintype "input")
-			(uuid "1ea8324f-6bbd-4ebd-b6f0-ffbd301f1ecc")
+			(uuid "71cdd24c-2e93-4f7a-be07-ede15d77049e")
 		)
 		(pad "4" smd roundrect
 			(at -2.8625 -0.325)
@@ -12375,7 +12375,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D1")
 			(pintype "input")
-			(uuid "7ef9208d-ec72-4888-bcdf-9b35c31525b5")
+			(uuid "dc6d43c9-b373-4cb7-92a7-f849b2baf48c")
 		)
 		(pad "5" smd roundrect
 			(at -2.8625 0.325)
@@ -12385,7 +12385,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D2")
 			(pintype "input")
-			(uuid "87bd1f4f-0dc6-4f99-bdbb-ac0704f40ff5")
+			(uuid "b16aa57e-7d83-4eab-adca-ae53c6282f32")
 		)
 		(pad "6" smd roundrect
 			(at -2.8625 0.975)
@@ -12395,7 +12395,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D3")
 			(pintype "input")
-			(uuid "48068c75-0545-449e-a67b-587a40160e7e")
+			(uuid "b2d20afe-b2b5-428d-b98a-9e40e2788358")
 		)
 		(pad "7" smd roundrect
 			(at -2.8625 1.625)
@@ -12405,7 +12405,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "CEP")
 			(pintype "input")
-			(uuid "b813bd2e-c019-47d6-a4a1-5c5f1c87b2d4")
+			(uuid "85cc005d-d125-4858-bb44-6a325eaf2c73")
 		)
 		(pad "8" smd roundrect
 			(at -2.8625 2.275)
@@ -12415,7 +12415,7 @@
 			(net 84 "GND")
 			(pinfunction "GND")
 			(pintype "power_in")
-			(uuid "acc3f4b4-dc71-4466-b544-2204a5fdf8bd")
+			(uuid "4aad536a-ef03-4e0c-9b22-461d6ff7a414")
 		)
 		(pad "9" smd roundrect
 			(at 2.8625 2.275)
@@ -12425,7 +12425,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "~{PE}")
 			(pintype "input")
-			(uuid "3e51c21a-f10f-47fe-9b9a-23892a688856")
+			(uuid "2af7910b-1c95-4675-bd8c-efd0e0601475")
 		)
 		(pad "10" smd roundrect
 			(at 2.8625 1.625)
@@ -12435,7 +12435,7 @@
 			(net 138 "/address-counter-internal/AR3")
 			(pinfunction "CET")
 			(pintype "input")
-			(uuid "c372563f-8afa-4840-a875-05423069d788")
+			(uuid "882aa90c-04ea-4e3e-8425-299e20c4fd3d")
 		)
 		(pad "11" smd roundrect
 			(at 2.8625 0.975)
@@ -12445,7 +12445,7 @@
 			(net 75 "unconnected-(U7-Q3-Pad11)")
 			(pinfunction "Q3")
 			(pintype "output+no_connect")
-			(uuid "bdb86982-8c70-463a-b14a-c153cf291f9a")
+			(uuid "d77128c3-2086-4c52-9ff0-98500ef8f93b")
 		)
 		(pad "12" smd roundrect
 			(at 2.8625 0.325)
@@ -12455,7 +12455,7 @@
 			(net 108 "/SRAM_W_A18")
 			(pinfunction "Q2")
 			(pintype "output")
-			(uuid "2ad98460-d045-4753-9013-271a4f8d8d93")
+			(uuid "c5a38e1b-b046-48f7-a699-6a5c326332d4")
 		)
 		(pad "13" smd roundrect
 			(at 2.8625 -0.325)
@@ -12465,7 +12465,7 @@
 			(net 127 "/SRAM_W_A17")
 			(pinfunction "Q1")
 			(pintype "output")
-			(uuid "bbe0b7a6-1da4-4915-be46-2038dc4eefb9")
+			(uuid "22641678-400f-4d76-a044-16cf16726491")
 		)
 		(pad "14" smd roundrect
 			(at 2.8625 -0.975)
@@ -12475,7 +12475,7 @@
 			(net 110 "/SRAM_W_A16")
 			(pinfunction "Q0")
 			(pintype "output")
-			(uuid "6433029c-0a6a-4389-8f22-1babbd9d67c5")
+			(uuid "6b6fd783-3275-4e34-83e5-7a591b01de9d")
 		)
 		(pad "15" smd roundrect
 			(at 2.8625 -1.625)
@@ -12485,7 +12485,7 @@
 			(net 76 "unconnected-(U7-TC-Pad15)")
 			(pinfunction "TC")
 			(pintype "output+no_connect")
-			(uuid "916ab752-b4ea-4580-a09f-ef91052c507d")
+			(uuid "7f42886f-33c3-496c-8a91-8e8491c47353")
 		)
 		(pad "16" smd roundrect
 			(at 2.8625 -2.275)
@@ -12495,7 +12495,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "VCC")
 			(pintype "power_in")
-			(uuid "5478f2f9-057c-4320-a794-ba855a36d2ea")
+			(uuid "723a77f4-34dc-46c9-8314-f8880f3a8762")
 		)
 		(model "${KICAD8_3DMODEL_DIR}/Package_SO.3dshapes/TSSOP-16_4.4x5mm_P0.65mm.wrl"
 			(offset
@@ -14567,12 +14567,12 @@
 		(layer "F.Cu")
 		(uuid "b8ed8a4f-5a02-4e6c-b50e-a8f3cb12189b")
 		(at 54.84 56.24)
-		(descr "TSSOP, 16 Pin (JEDEC MO-153 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
-		(tags "TSSOP SO")
+		(descr "TSSOP, 16 Pin (https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
+		(tags "TSSOP SO JEDEC-MO-153-AB TI-PW0016A Microchip-ST Toshiba-TSSOP16-P-0044-0.65A NXP-SOT403-1 Infineon-P-TSSOP-16-800")
 		(property "Reference" "U6"
 			(at 0 -3.45 0)
 			(layer "F.SilkS")
-			(uuid "2e8e5d2a-1189-41e6-add8-97c5151abb4c")
+			(uuid "3e998204-596a-4249-8fb5-9e13c4e3f386")
 			(effects
 				(font
 					(size 1 1)
@@ -14583,7 +14583,7 @@
 		(property "Value" "74LV161A"
 			(at 0 3.45 0)
 			(layer "F.Fab")
-			(uuid "924e4b7a-ae46-49c6-9ef1-9893f39df5f3")
+			(uuid "caaa2acc-4b9a-49eb-ae8b-77f97641b190")
 			(effects
 				(font
 					(size 1 1)
@@ -14596,7 +14596,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "753b6ad1-fc56-4982-8f25-732c91e80194")
+			(uuid "ab6cb73c-37c7-4733-9433-6bd20c948936")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14609,7 +14609,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e8f87c3b-2812-4d72-b469-036de28aad5f")
+			(uuid "40ccf509-f074-44a5-909b-abc81b0f77bd")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14622,7 +14622,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "fa3e8b67-462c-480a-985c-1538a99a813f")
+			(uuid "b5d897d9-70b9-4c44-8961-7708829fdd50")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14682,7 +14682,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "dab3b88a-51e0-4577-820c-53580b643f70")
+			(uuid "06746475-3e17-4dbc-8d61-23bc5fc87167")
 		)
 		(fp_line
 			(start 0 -2.735)
@@ -14692,7 +14692,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "d7234c2b-4862-434a-b1e9-7cabbcdfcaf5")
+			(uuid "00705a29-bb47-4e91-a497-10efd4a32af0")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -14702,7 +14702,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "fb17d325-bc54-4640-949c-18ba64d14aec")
+			(uuid "2932d1a2-11bc-40bc-8687-2e3805b0ae8b")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -14712,7 +14712,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "08a2895e-ebac-4615-914a-d56899c35fa4")
+			(uuid "72090064-5845-43ae-a91a-757c7b164b30")
 		)
 		(fp_poly
 			(pts
@@ -14724,7 +14724,7 @@
 			)
 			(fill solid)
 			(layer "F.SilkS")
-			(uuid "ea2e8fce-6bf0-4dc4-894b-ae8e3d1c79ef")
+			(uuid "a2c23ae0-67e3-4c5f-9f2c-981c58e8a4c6")
 		)
 		(fp_line
 			(start -3.85 -2.75)
@@ -14734,7 +14734,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "5e6b0d94-4715-47e0-93ec-8121f1c80bd0")
+			(uuid "f2f1e105-abb3-43b6-b07a-ca9c0bea9270")
 		)
 		(fp_line
 			(start -3.85 2.75)
@@ -14744,7 +14744,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "5d765a01-aae7-496c-bfe7-e314d10ac595")
+			(uuid "ff5077f0-43b0-4065-9f0a-414cdb9768e5")
 		)
 		(fp_line
 			(start 3.85 -2.75)
@@ -14754,7 +14754,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "e9845cc3-a0b2-4ca7-a43b-05871cb26c36")
+			(uuid "e2974c74-aeee-48d2-b7c7-a70daa1bdf33")
 		)
 		(fp_line
 			(start 3.85 2.75)
@@ -14764,7 +14764,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "5fdc6d5a-f056-4702-b060-f2e4f3242d4d")
+			(uuid "4b287e38-a732-421f-afd1-5c9a1a19288a")
 		)
 		(fp_line
 			(start -2.2 -1.5)
@@ -14774,7 +14774,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "3027d46a-aee3-4783-9582-ce4269b32c73")
+			(uuid "ee45505a-dbca-4a38-a1cc-6a22bb1cf2d4")
 		)
 		(fp_line
 			(start -2.2 2.5)
@@ -14784,7 +14784,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "50780937-92da-4628-8ffe-e090bc32e771")
+			(uuid "d9347901-bd5a-42bb-a0f5-d5992fda6e52")
 		)
 		(fp_line
 			(start -1.2 -2.5)
@@ -14794,7 +14794,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "e69b7e54-b1f2-4fdf-bb9b-0cd6ceb5499a")
+			(uuid "4866be71-2560-4d1e-9b8f-4d0c2e6e6132")
 		)
 		(fp_line
 			(start 2.2 -2.5)
@@ -14804,7 +14804,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "129a6381-735f-42ef-9451-cbd188a641f1")
+			(uuid "ac91f0e8-05a6-454a-871b-ae03780bc79c")
 		)
 		(fp_line
 			(start 2.2 2.5)
@@ -14814,12 +14814,12 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "7fb569af-0c28-4108-abe4-d7ae5c27d353")
+			(uuid "be0cccc0-04a6-42bf-8f85-476eceadf167")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "de754ba3-828d-45f3-b061-17bd35feb51b")
+			(uuid "2b45c357-b767-48c1-ae62-69a935793117")
 			(effects
 				(font
 					(size 1 1)
@@ -14835,7 +14835,7 @@
 			(net 8 "/~{SRAM_W_A_CLR}")
 			(pinfunction "~{MR}")
 			(pintype "input")
-			(uuid "fa2091ac-f2a2-45ca-9a4b-e83a6cfac4e8")
+			(uuid "fe58e60b-3f3a-4112-9bb0-675a237c08a5")
 		)
 		(pad "2" smd roundrect
 			(at -2.8625 -1.625)
@@ -14845,7 +14845,7 @@
 			(net 42 "/SRAM_W_A_CLK")
 			(pinfunction "CP")
 			(pintype "input")
-			(uuid "e7e78e36-4dc1-4dbc-868c-049ce4ccfdce")
+			(uuid "45a55837-6661-4812-a1c8-5b0518b17737")
 		)
 		(pad "3" smd roundrect
 			(at -2.8625 -0.975)
@@ -14855,7 +14855,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D0")
 			(pintype "input")
-			(uuid "b95117f3-2f4c-4189-b02b-abfe240b4567")
+			(uuid "b1487667-4417-44b8-a904-96ea5085de95")
 		)
 		(pad "4" smd roundrect
 			(at -2.8625 -0.325)
@@ -14865,7 +14865,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D1")
 			(pintype "input")
-			(uuid "44fe1196-0606-466c-8543-3337791dab15")
+			(uuid "934fadf3-4953-4fbe-9314-acb8c76a028c")
 		)
 		(pad "5" smd roundrect
 			(at -2.8625 0.325)
@@ -14875,7 +14875,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D2")
 			(pintype "input")
-			(uuid "c9c9615b-2abc-4731-a01b-f6f088188d7f")
+			(uuid "59421080-af7f-4ec1-893a-7d0c533dde95")
 		)
 		(pad "6" smd roundrect
 			(at -2.8625 0.975)
@@ -14885,7 +14885,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D3")
 			(pintype "input")
-			(uuid "b37c18be-96ec-4bed-8c42-05c0a700f5ae")
+			(uuid "ff321006-2ea4-472a-8b79-87ee7bfb82e9")
 		)
 		(pad "7" smd roundrect
 			(at -2.8625 1.625)
@@ -14895,7 +14895,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "CEP")
 			(pintype "input")
-			(uuid "e73bade4-f2c5-4bd2-a26c-78bf6ffe9525")
+			(uuid "334f417b-4ad7-438a-95e0-80130cea4cab")
 		)
 		(pad "8" smd roundrect
 			(at -2.8625 2.275)
@@ -14905,7 +14905,7 @@
 			(net 84 "GND")
 			(pinfunction "GND")
 			(pintype "power_in")
-			(uuid "1523f0ed-a83d-4f86-bbee-12e69ce01c2d")
+			(uuid "6e5701b4-3632-41bf-80db-d4abb6bd955c")
 		)
 		(pad "9" smd roundrect
 			(at 2.8625 2.275)
@@ -14915,7 +14915,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "~{PE}")
 			(pintype "input")
-			(uuid "49d2c8a8-4a89-456d-9617-a03006464090")
+			(uuid "94f2d368-fdef-43c0-93ef-654af9f18d40")
 		)
 		(pad "10" smd roundrect
 			(at 2.8625 1.625)
@@ -14925,7 +14925,7 @@
 			(net 137 "/address-counter-internal/AR2")
 			(pinfunction "CET")
 			(pintype "input")
-			(uuid "5a4ee0dc-c45d-4637-8814-352a22e61b10")
+			(uuid "81498b2d-72c7-439f-9fd1-7c415211580f")
 		)
 		(pad "11" smd roundrect
 			(at 2.8625 0.975)
@@ -14935,7 +14935,7 @@
 			(net 106 "/SRAM_W_A15")
 			(pinfunction "Q3")
 			(pintype "output")
-			(uuid "56869778-16dc-48b9-8d9c-18d67de5d8bf")
+			(uuid "8872f69c-ab5c-4dfd-b745-3b1b509feb6a")
 		)
 		(pad "12" smd roundrect
 			(at 2.8625 0.325)
@@ -14945,7 +14945,7 @@
 			(net 122 "/SRAM_W_A14")
 			(pinfunction "Q2")
 			(pintype "output")
-			(uuid "210ed28e-1b8b-47f9-947a-6c64180e4877")
+			(uuid "dcbd92fe-5ef5-448a-9668-1ec27db567b4")
 		)
 		(pad "13" smd roundrect
 			(at 2.8625 -0.325)
@@ -14955,7 +14955,7 @@
 			(net 107 "/SRAM_W_A13")
 			(pinfunction "Q1")
 			(pintype "output")
-			(uuid "42d323e4-f09b-4d49-9284-4da44a9c4ebd")
+			(uuid "a9172ee7-3d15-4b72-a17d-5e348a43e130")
 		)
 		(pad "14" smd roundrect
 			(at 2.8625 -0.975)
@@ -14965,7 +14965,7 @@
 			(net 101 "/SRAM_W_A12")
 			(pinfunction "Q0")
 			(pintype "output")
-			(uuid "68abd04d-b69d-4f36-aaf0-d524fe7bf13b")
+			(uuid "928fe5fc-88d1-412c-9465-4ae59eb1ecf0")
 		)
 		(pad "15" smd roundrect
 			(at 2.8625 -1.625)
@@ -14975,7 +14975,7 @@
 			(net 138 "/address-counter-internal/AR3")
 			(pinfunction "TC")
 			(pintype "output")
-			(uuid "7154105d-65d2-4227-82fd-ee4101fa09fd")
+			(uuid "dab64c26-5f3d-457a-9bc0-e4efa6ccc5a3")
 		)
 		(pad "16" smd roundrect
 			(at 2.8625 -2.275)
@@ -14985,7 +14985,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "VCC")
 			(pintype "power_in")
-			(uuid "e6017b02-10de-4906-b4b7-08eb386b438d")
+			(uuid "459426ca-e3b0-4650-ba39-41f1316499de")
 		)
 		(model "${KICAD8_3DMODEL_DIR}/Package_SO.3dshapes/TSSOP-16_4.4x5mm_P0.65mm.wrl"
 			(offset
@@ -15003,12 +15003,12 @@
 		(layer "F.Cu")
 		(uuid "bdd91136-2caa-4575-9885-8922f38f1a8d")
 		(at 54.94 31.04)
-		(descr "TSSOP, 16 Pin (JEDEC MO-153 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
-		(tags "TSSOP SO")
+		(descr "TSSOP, 16 Pin (https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
+		(tags "TSSOP SO JEDEC-MO-153-AB TI-PW0016A Microchip-ST Toshiba-TSSOP16-P-0044-0.65A NXP-SOT403-1 Infineon-P-TSSOP-16-800")
 		(property "Reference" "U3"
 			(at 0 -3.45 0)
 			(layer "F.SilkS")
-			(uuid "43b59827-728f-4b8d-ab03-3bf570f983d6")
+			(uuid "33f322ba-c356-4def-8fca-322603dbdd06")
 			(effects
 				(font
 					(size 1 1)
@@ -15019,7 +15019,7 @@
 		(property "Value" "74LV161A"
 			(at 0 3.45 0)
 			(layer "F.Fab")
-			(uuid "3a86a0c2-8c26-41b2-99c3-07d94fe33ebd")
+			(uuid "c30b1ae7-16fb-450b-a2ae-b69bb927a9c1")
 			(effects
 				(font
 					(size 1 1)
@@ -15032,7 +15032,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "bebf6980-8212-47cd-a525-9a56b225ad23")
+			(uuid "dae939a3-eef1-4dc8-b640-7a14d5e38b58")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15045,7 +15045,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "47b5828f-be7c-4af1-89e1-7950dea50186")
+			(uuid "9695dd2b-d61c-45a5-b957-58b6234b01a6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15058,7 +15058,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e8d9ad86-438b-4d12-8a75-142f0913ab76")
+			(uuid "2703dccf-037d-4896-976a-78a2c7100eee")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15118,7 +15118,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "ae480b3f-3439-4f19-958f-a53ad3f50fd5")
+			(uuid "ea8af76a-cafb-49c2-b42c-9f5dde79562d")
 		)
 		(fp_line
 			(start 0 -2.735)
@@ -15128,7 +15128,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "be3bbc3b-13de-40b1-b954-94174b4c9c1a")
+			(uuid "12f05b29-7d50-46d6-9a6d-db3708cfba57")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -15138,7 +15138,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "bed99f4c-a089-4f31-8c42-2c7e0fea9bee")
+			(uuid "5b9d64cb-8d07-41c9-afa8-74df160cbc98")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -15148,7 +15148,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "c196975d-feaf-43db-8260-ba65e6ac620f")
+			(uuid "5db5370c-4440-4be7-9ebf-88611146da6a")
 		)
 		(fp_poly
 			(pts
@@ -15160,7 +15160,7 @@
 			)
 			(fill solid)
 			(layer "F.SilkS")
-			(uuid "764afbd9-8396-4afa-a773-fe5ce49989f1")
+			(uuid "e2773a7f-686e-4634-968a-6b7c93419f17")
 		)
 		(fp_line
 			(start -3.85 -2.75)
@@ -15170,7 +15170,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "fe51d2c4-b95b-451a-94a4-063f4ca85d61")
+			(uuid "50264015-d036-4333-8d0f-5488dde46361")
 		)
 		(fp_line
 			(start -3.85 2.75)
@@ -15180,7 +15180,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "7c00fbac-571f-495c-9a30-4f93ba6eb45f")
+			(uuid "08dc8ae4-763f-44e8-b66a-7bb32eabe213")
 		)
 		(fp_line
 			(start 3.85 -2.75)
@@ -15190,7 +15190,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "6c443f87-586e-4f07-bc5b-3f3018b30764")
+			(uuid "00861b49-a85a-4455-91dd-3217fb2bdd18")
 		)
 		(fp_line
 			(start 3.85 2.75)
@@ -15200,7 +15200,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "bd798457-3bd4-40ea-a8e3-9261e37d4e8f")
+			(uuid "98474a84-38a6-4c27-a098-a4f26d8208b7")
 		)
 		(fp_line
 			(start -2.2 -1.5)
@@ -15210,7 +15210,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "dd4bdd4f-f9dc-4dfe-9407-898399e9712b")
+			(uuid "757f3ddf-4b58-4fa7-a2f9-da252f5153b4")
 		)
 		(fp_line
 			(start -2.2 2.5)
@@ -15220,7 +15220,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "7f987eed-03f9-46ab-9c3b-152250d118f0")
+			(uuid "c1956fa8-4743-48e6-b5b8-897bd2495060")
 		)
 		(fp_line
 			(start -1.2 -2.5)
@@ -15230,7 +15230,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "5dd784a5-b7fc-4314-bfec-b2aabefe5cc7")
+			(uuid "3d31efcd-5f0c-4718-b111-68834f7719b0")
 		)
 		(fp_line
 			(start 2.2 -2.5)
@@ -15240,7 +15240,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "15c3156c-d130-4c64-b049-38e79a02e280")
+			(uuid "77f871cc-cb2c-4ba1-9372-e772112abc37")
 		)
 		(fp_line
 			(start 2.2 2.5)
@@ -15250,12 +15250,12 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "59968bbe-727d-4e4e-9abc-97b1742b4266")
+			(uuid "f4d89820-ef11-43b5-8bcf-ed057c98ffda")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "32eaa245-ad7c-42bf-987f-e972365b356d")
+			(uuid "33f247aa-52ef-4936-bf28-efa1b8413f28")
 			(effects
 				(font
 					(size 1 1)
@@ -15271,7 +15271,7 @@
 			(net 8 "/~{SRAM_W_A_CLR}")
 			(pinfunction "~{MR}")
 			(pintype "input")
-			(uuid "8c4687cc-1e9e-4385-a6ef-a4f7ef06264e")
+			(uuid "d380e200-997b-4f82-b5c9-74519a18208f")
 		)
 		(pad "2" smd roundrect
 			(at -2.8625 -1.625)
@@ -15281,7 +15281,7 @@
 			(net 42 "/SRAM_W_A_CLK")
 			(pinfunction "CP")
 			(pintype "input")
-			(uuid "3161f931-d6a6-427c-97c5-69a14a3b325e")
+			(uuid "820a0b4c-e548-4634-9a87-d0d597e16a36")
 		)
 		(pad "3" smd roundrect
 			(at -2.8625 -0.975)
@@ -15291,7 +15291,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D0")
 			(pintype "input")
-			(uuid "a3e051c3-3369-456a-9fd9-320b126abd69")
+			(uuid "4e59dfbe-36fc-4651-b0e8-30503ffc7248")
 		)
 		(pad "4" smd roundrect
 			(at -2.8625 -0.325)
@@ -15301,7 +15301,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D1")
 			(pintype "input")
-			(uuid "52c2e450-b6ba-4e46-b7b3-d070bf82c322")
+			(uuid "2b6fcbc2-51e2-4db9-8000-62ca2124a3f0")
 		)
 		(pad "5" smd roundrect
 			(at -2.8625 0.325)
@@ -15311,7 +15311,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D2")
 			(pintype "input")
-			(uuid "6843005b-ff86-4250-ad7d-3b28d0b88c1f")
+			(uuid "944296be-cb93-456c-8750-d900aaee13a8")
 		)
 		(pad "6" smd roundrect
 			(at -2.8625 0.975)
@@ -15321,7 +15321,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D3")
 			(pintype "input")
-			(uuid "3c0e2ed2-cac0-401c-9a5d-8fa7cec11f49")
+			(uuid "84a12ab7-c4a7-47b1-9a1f-438ca944441d")
 		)
 		(pad "7" smd roundrect
 			(at -2.8625 1.625)
@@ -15331,7 +15331,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "CEP")
 			(pintype "input")
-			(uuid "a8533f7d-34b3-46f3-b859-ef5bc2c31a87")
+			(uuid "03557a3f-6ed8-4333-aecb-ae94b142626f")
 		)
 		(pad "8" smd roundrect
 			(at -2.8625 2.275)
@@ -15341,7 +15341,7 @@
 			(net 84 "GND")
 			(pinfunction "GND")
 			(pintype "power_in")
-			(uuid "083eab3e-982f-4a8e-9019-532d112411b4")
+			(uuid "46e171a0-6f8f-45c1-8dee-5918ec9c5d24")
 		)
 		(pad "9" smd roundrect
 			(at 2.8625 2.275)
@@ -15351,7 +15351,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "~{PE}")
 			(pintype "input")
-			(uuid "721f8a0a-6922-4153-8022-7f54a00b531e")
+			(uuid "c544ac94-4bd3-4991-9e4d-8851e0cbf201")
 		)
 		(pad "10" smd roundrect
 			(at 2.8625 1.625)
@@ -15361,7 +15361,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "CET")
 			(pintype "input")
-			(uuid "b01720ea-fcc9-4f8d-a1b3-c2557b77953a")
+			(uuid "7e4b2f9c-39c1-4d71-8c10-886f1f3dcc80")
 		)
 		(pad "11" smd roundrect
 			(at 2.8625 0.975)
@@ -15371,7 +15371,7 @@
 			(net 113 "/SRAM_W_A3")
 			(pinfunction "Q3")
 			(pintype "output")
-			(uuid "51c81f63-6058-4e98-a6a5-ce58cb0784b0")
+			(uuid "efb35ab7-4d94-4c04-a061-10135ce8fd23")
 		)
 		(pad "12" smd roundrect
 			(at 2.8625 0.325)
@@ -15381,7 +15381,7 @@
 			(net 131 "/SRAM_W_A2")
 			(pinfunction "Q2")
 			(pintype "output")
-			(uuid "950934a7-fe48-4cc4-97cb-a0c363c23dd7")
+			(uuid "b657edc3-80b9-4438-8c60-8f8bb1764f9c")
 		)
 		(pad "13" smd roundrect
 			(at 2.8625 -0.325)
@@ -15391,7 +15391,7 @@
 			(net 99 "/SRAM_W_A1")
 			(pinfunction "Q1")
 			(pintype "output")
-			(uuid "6389fa0a-e2cf-48a6-8cbf-6d35185cc241")
+			(uuid "4058807f-f314-4db8-8ae1-cab79ba6c3a1")
 		)
 		(pad "14" smd roundrect
 			(at 2.8625 -0.975)
@@ -15401,7 +15401,7 @@
 			(net 117 "/SRAM_W_A0")
 			(pinfunction "Q0")
 			(pintype "output")
-			(uuid "3e13d1a7-7037-46e8-82b5-c8e3bef543ba")
+			(uuid "d5f8f981-2e22-474d-8d65-be9d81999204")
 		)
 		(pad "15" smd roundrect
 			(at 2.8625 -1.625)
@@ -15411,7 +15411,7 @@
 			(net 135 "/address-counter-internal/AR0")
 			(pinfunction "TC")
 			(pintype "output")
-			(uuid "b6c1c368-a7d0-4059-a0da-0672ffabb5da")
+			(uuid "e9de3c49-b2dd-4b64-bd93-c9f87e33e0d9")
 		)
 		(pad "16" smd roundrect
 			(at 2.8625 -2.275)
@@ -15421,7 +15421,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "VCC")
 			(pintype "power_in")
-			(uuid "8713a18f-2f36-436b-908b-f61a4edc98de")
+			(uuid "b872887b-d79f-4aca-8f59-c188cb765395")
 		)
 		(model "${KICAD8_3DMODEL_DIR}/Package_SO.3dshapes/TSSOP-16_4.4x5mm_P0.65mm.wrl"
 			(offset
@@ -15691,12 +15691,12 @@
 		(layer "F.Cu")
 		(uuid "c2772298-8dea-4b93-9849-508b4105ad57")
 		(at 36.6275 79.09)
-		(descr "TSSOP, 16 Pin (JEDEC MO-153 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
-		(tags "TSSOP SO")
+		(descr "TSSOP, 16 Pin (https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
+		(tags "TSSOP SO JEDEC-MO-153-AB TI-PW0016A Microchip-ST Toshiba-TSSOP16-P-0044-0.65A NXP-SOT403-1 Infineon-P-TSSOP-16-800")
 		(property "Reference" "U17"
 			(at 0 -3.45 0)
 			(layer "F.SilkS")
-			(uuid "244bf5ff-4efb-4e60-900c-9425eeb47b98")
+			(uuid "470bb36d-d61c-4853-9008-b7a42d0d9cfe")
 			(effects
 				(font
 					(size 1 1)
@@ -15707,7 +15707,7 @@
 		(property "Value" "74LVC138A"
 			(at 0 3.45 0)
 			(layer "F.Fab")
-			(uuid "020d06ce-d349-46ff-8d14-aeef362890d5")
+			(uuid "5ec10e8f-01c7-4c68-a078-eb7c2d9f0154")
 			(effects
 				(font
 					(size 1 1)
@@ -15720,7 +15720,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d5233378-9a81-4b5a-b5f6-5d39e076eba2")
+			(uuid "70b10e63-f52c-47cc-92f3-961947aa07aa")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15733,7 +15733,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "3280837b-d9c7-4832-b690-3161d3af3182")
+			(uuid "37c92af3-b9ad-4a9d-8aaa-4df6d4ab9bec")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15746,7 +15746,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "8625db6b-f306-44f7-ad9e-6352d3f55716")
+			(uuid "ef4d189a-313b-495c-9d82-2dfa3ebccb68")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15806,7 +15806,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "5ca8bc38-f95b-40a5-92ac-0ded0b6c6efa")
+			(uuid "4d67f056-ab67-4a7c-b251-e432e5563791")
 		)
 		(fp_line
 			(start 0 -2.735)
@@ -15816,7 +15816,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "7916f950-c930-4762-9f12-9718000f4016")
+			(uuid "b010d8ed-4d81-46f3-8881-9e6d90b8063a")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -15826,7 +15826,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "af9a2937-0bd9-45ed-9930-0fa3aaef6a12")
+			(uuid "0b95e523-7411-4bd0-911f-f35eb6b6d884")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -15836,7 +15836,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "d9e137bc-018f-4192-8190-a8884e494ffc")
+			(uuid "3119572f-d34b-4fe7-b9b9-5c267591240c")
 		)
 		(fp_poly
 			(pts
@@ -15848,7 +15848,7 @@
 			)
 			(fill solid)
 			(layer "F.SilkS")
-			(uuid "250091d6-a85e-43e8-8d01-7923d8f21553")
+			(uuid "17238f42-d845-4078-b1d2-a5a85abf250d")
 		)
 		(fp_line
 			(start -3.85 -2.75)
@@ -15858,7 +15858,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "839345e9-f760-4679-b624-41a2dc12e087")
+			(uuid "1a2a5665-05d6-4b6d-8f79-c222a9bf67a8")
 		)
 		(fp_line
 			(start -3.85 2.75)
@@ -15868,7 +15868,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "ad3fcc3d-7f68-49fd-976d-e0937536115b")
+			(uuid "dada575e-a2fd-43e0-92e1-1d434b3323d0")
 		)
 		(fp_line
 			(start 3.85 -2.75)
@@ -15878,7 +15878,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "ab06e53f-e8e7-4d4f-8f7e-b0b249e39235")
+			(uuid "06efd8bc-7631-451e-821e-3bef452160ff")
 		)
 		(fp_line
 			(start 3.85 2.75)
@@ -15888,7 +15888,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "6b6137d4-773f-4243-a734-ac12c1f4ed64")
+			(uuid "3ad747a1-1811-4d26-bbee-aad7633b912d")
 		)
 		(fp_line
 			(start -2.2 -1.5)
@@ -15898,7 +15898,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "d5935930-a656-49b6-9b56-30bce0609b8a")
+			(uuid "8df416ac-58bd-4aa5-97cb-e0b838e84663")
 		)
 		(fp_line
 			(start -2.2 2.5)
@@ -15908,7 +15908,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "2311463b-dff2-4006-8398-dd8869d5ac13")
+			(uuid "523f1d8b-d54b-4317-a147-e146b834d7ec")
 		)
 		(fp_line
 			(start -1.2 -2.5)
@@ -15918,7 +15918,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "3c68e912-eafa-4dd5-8683-029569724cc0")
+			(uuid "61bb58af-3162-4f98-a472-0e5317f11046")
 		)
 		(fp_line
 			(start 2.2 -2.5)
@@ -15928,7 +15928,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "05c96144-03f0-48ae-a82d-e2201759181f")
+			(uuid "bd03d5c6-1e45-4d95-83d0-a794f0d88c1f")
 		)
 		(fp_line
 			(start 2.2 2.5)
@@ -15938,12 +15938,12 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "21556e3f-962c-4971-8b02-f61b461db962")
+			(uuid "2ebb2486-bfa0-46a4-be8a-9ac7337e2b4c")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "364f0385-4687-4022-a6ab-4b97481906ae")
+			(uuid "b6b91b71-1b50-4da1-b93f-d0f19b7d51b8")
 			(effects
 				(font
 					(size 1 1)
@@ -15959,7 +15959,7 @@
 			(net 5 "/kinetoscope-header-internal/SEGA_A1")
 			(pinfunction "A0")
 			(pintype "input")
-			(uuid "1083e8b6-0e0f-45e3-93a1-47d37b34e0bb")
+			(uuid "fa03d79d-fdaa-43d6-b22f-87dd921aa9ee")
 		)
 		(pad "2" smd roundrect
 			(at -2.8625 -1.625)
@@ -15969,7 +15969,7 @@
 			(net 1 "/~{SEGA_OE}")
 			(pinfunction "A1")
 			(pintype "input")
-			(uuid "d556df45-3b0a-4536-a976-a88a5e834d44")
+			(uuid "d8644e31-c985-4225-b086-7f2c08402677")
 		)
 		(pad "3" smd roundrect
 			(at -2.8625 -0.975)
@@ -15979,7 +15979,7 @@
 			(net 74 "/~{SEGA_WE_LB}")
 			(pinfunction "A2")
 			(pintype "input")
-			(uuid "2a1862ed-cbe4-4baa-a2ba-4abf37699096")
+			(uuid "1ec69a0b-3246-4e05-857a-732585ebc9c7")
 		)
 		(pad "4" smd roundrect
 			(at -2.8625 -0.325)
@@ -15989,7 +15989,7 @@
 			(net 49 "/~{SEGA_REGISTER}")
 			(pinfunction "~{E0}")
 			(pintype "input")
-			(uuid "703c89fe-c579-4648-a5d5-f3d031498d62")
+			(uuid "f74b3aa1-76ff-4731-ae7f-3936a6a6f6ee")
 		)
 		(pad "5" smd roundrect
 			(at -2.8625 0.325)
@@ -15999,7 +15999,7 @@
 			(net 7 "/~{SEGA_AS}")
 			(pinfunction "~{E1}")
 			(pintype "input")
-			(uuid "493f5e59-1f56-4e92-870f-eaf5b75dd657")
+			(uuid "88ddc754-1916-4ac3-ba70-042053c5cea0")
 		)
 		(pad "6" smd roundrect
 			(at -2.8625 0.975)
@@ -16009,7 +16009,7 @@
 			(net 24 "/kinetoscope-header-internal/SEGA_A4")
 			(pinfunction "E2")
 			(pintype "input")
-			(uuid "b5393cf4-e7cf-49e4-a003-d055169c256f")
+			(uuid "edcb7b50-2792-4541-99f1-07dbc0326ead")
 		)
 		(pad "7" smd roundrect
 			(at -2.8625 1.625)
@@ -16019,7 +16019,7 @@
 			(net 73 "unconnected-(U17-~{Y7}-Pad7)")
 			(pinfunction "~{Y7}")
 			(pintype "output+no_connect")
-			(uuid "a037c9ef-f93c-42fb-8b91-3f153d033ca4")
+			(uuid "dee63018-29c8-47bb-9056-595469795ef6")
 		)
 		(pad "8" smd roundrect
 			(at -2.8625 2.275)
@@ -16029,7 +16029,7 @@
 			(net 84 "GND")
 			(pinfunction "GND")
 			(pintype "power_in")
-			(uuid "8033b9ec-e509-4be8-b458-2548327e7e35")
+			(uuid "fe22a653-b94c-4dab-a24e-d071b770389b")
 		)
 		(pad "9" smd roundrect
 			(at 2.8625 2.275)
@@ -16039,7 +16039,7 @@
 			(net 94 "unconnected-(U17-~{Y6}-Pad9)")
 			(pinfunction "~{Y6}")
 			(pintype "output+no_connect")
-			(uuid "0f38c5c4-9117-4b55-9ab0-70ff9d897874")
+			(uuid "724249b2-d29e-446f-8547-fa97e60e2488")
 		)
 		(pad "10" smd roundrect
 			(at 2.8625 1.625)
@@ -16049,7 +16049,7 @@
 			(net 72 "unconnected-(U17-~{Y5}-Pad10)")
 			(pinfunction "~{Y5}")
 			(pintype "output+no_connect")
-			(uuid "297935d8-0e6f-4a00-90d5-6bdd9c7b3e37")
+			(uuid "814fd69a-c2d6-4164-80a9-3b774fcbccd5")
 		)
 		(pad "11" smd roundrect
 			(at 2.8625 0.975)
@@ -16059,7 +16059,7 @@
 			(net 96 "unconnected-(U17-~{Y4}-Pad11)")
 			(pinfunction "~{Y4}")
 			(pintype "output+no_connect")
-			(uuid "b961af5d-e53e-468a-9fac-81465d5631e4")
+			(uuid "3184462b-e4d7-461b-8055-9703efa0deae")
 		)
 		(pad "12" smd roundrect
 			(at 2.8625 0.325)
@@ -16069,7 +16069,7 @@
 			(net 139 "/~{REG_1_WE}")
 			(pinfunction "~{Y3}")
 			(pintype "output")
-			(uuid "65eea3dd-3f17-4e8d-baf2-41f435848e54")
+			(uuid "b4998517-1944-4e72-953f-18e2fb74096c")
 		)
 		(pad "13" smd roundrect
 			(at 2.8625 -0.325)
@@ -16079,7 +16079,7 @@
 			(net 140 "/~{REG_0_WE}")
 			(pinfunction "~{Y2}")
 			(pintype "output")
-			(uuid "e3d3670e-d701-44f3-a5ff-308bafabefa7")
+			(uuid "59ff7af0-2d4b-4562-a362-08759e66f810")
 		)
 		(pad "14" smd roundrect
 			(at 2.8625 -0.975)
@@ -16089,7 +16089,7 @@
 			(net 97 "unconnected-(U17-~{Y1}-Pad14)")
 			(pinfunction "~{Y1}")
 			(pintype "output+no_connect")
-			(uuid "be1617d2-0afc-4dd4-af18-b1d387c4989f")
+			(uuid "9b5a893b-01bd-4b64-b0bd-bc7a893ca8c1")
 		)
 		(pad "15" smd roundrect
 			(at 2.8625 -1.625)
@@ -16099,7 +16099,7 @@
 			(net 98 "unconnected-(U17-~{Y0}-Pad15)")
 			(pinfunction "~{Y0}")
 			(pintype "output+no_connect")
-			(uuid "e06bdf81-f29e-4fb7-882f-541f028c1247")
+			(uuid "41c4ddd7-ade7-430e-9d80-7f621d91f7f3")
 		)
 		(pad "16" smd roundrect
 			(at 2.8625 -2.275)
@@ -16109,7 +16109,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "VCC")
 			(pintype "power_in")
-			(uuid "e1134464-ec16-4938-8db5-6fd97abec7a7")
+			(uuid "b131eedb-1fbb-4337-a96d-9cce1f4650d7")
 		)
 		(model "${KICAD8_3DMODEL_DIR}/Package_SO.3dshapes/TSSOP-16_4.4x5mm_P0.65mm.wrl"
 			(offset
@@ -16379,12 +16379,12 @@
 		(layer "F.Cu")
 		(uuid "c60bd858-db33-407b-b845-fb048a3537d1")
 		(at 54.9275 39.74)
-		(descr "TSSOP, 16 Pin (JEDEC MO-153 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
-		(tags "TSSOP SO")
+		(descr "TSSOP, 16 Pin (https://www.jedec.org/document_search?search_api_views_fulltext=MO-153), generated with kicad-footprint-generator ipc_gullwing_generator.py")
+		(tags "TSSOP SO JEDEC-MO-153-AB TI-PW0016A Microchip-ST Toshiba-TSSOP16-P-0044-0.65A NXP-SOT403-1 Infineon-P-TSSOP-16-800")
 		(property "Reference" "U4"
 			(at 0 -3.45 0)
 			(layer "F.SilkS")
-			(uuid "6f117e44-2787-475f-9921-ac3b8e90cae2")
+			(uuid "f5d1ff34-c309-4ad9-ace1-632ec97df11a")
 			(effects
 				(font
 					(size 1 1)
@@ -16395,7 +16395,7 @@
 		(property "Value" "74LV161A"
 			(at 0 3.45 0)
 			(layer "F.Fab")
-			(uuid "7e1beb65-b8a1-4698-a6e1-f76d02846b8f")
+			(uuid "cd664209-fdac-45ef-8d7e-aa45199233e7")
 			(effects
 				(font
 					(size 1 1)
@@ -16408,7 +16408,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "00c9e157-272b-4994-b8c7-938add666d2a")
+			(uuid "a78e8be3-7019-4db1-92ea-711ce47ea163")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16421,7 +16421,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "7915c370-9c49-4580-b3ab-4e013fcc4a0a")
+			(uuid "8950d561-cf07-46d6-b3de-0b579061eb59")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16434,7 +16434,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "04479ce6-5b62-4ff3-9c2f-ef5074cab6dc")
+			(uuid "a76e7e28-c061-4208-aad6-41ac1832ed19")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -16494,7 +16494,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "2790b5f5-bf3b-498c-b13e-b71b6fba26a3")
+			(uuid "c38c3c85-000a-42ff-b381-c48cef22b467")
 		)
 		(fp_line
 			(start 0 -2.735)
@@ -16504,7 +16504,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "8f38ee19-869c-4e09-9055-77253dc5c30a")
+			(uuid "1bf8ef59-4912-4076-a6b1-c2f11c574c64")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -16514,7 +16514,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "073a22ca-74ed-46fd-b3d6-df2e8be3f21c")
+			(uuid "c9d600a2-1d51-481b-8c83-fb469ee76744")
 		)
 		(fp_line
 			(start 0 2.735)
@@ -16524,7 +16524,7 @@
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "a37d66fe-fcce-41ca-a6ef-b7364e8f62a9")
+			(uuid "cf8916a2-c646-4342-bf96-b4301481a38b")
 		)
 		(fp_poly
 			(pts
@@ -16536,7 +16536,7 @@
 			)
 			(fill solid)
 			(layer "F.SilkS")
-			(uuid "58efeb72-d3ca-4f59-9823-71cd227a4864")
+			(uuid "cd458658-631b-4ce6-a485-f2d0ca261e67")
 		)
 		(fp_line
 			(start -3.85 -2.75)
@@ -16546,7 +16546,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "281a79cc-f88c-4943-862e-365b71000bff")
+			(uuid "6ce90e10-1016-42ac-824b-e95daa055bd5")
 		)
 		(fp_line
 			(start -3.85 2.75)
@@ -16556,7 +16556,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "12d794bf-33d0-462f-8efe-94025ef7c133")
+			(uuid "5640df30-fcae-4910-b177-c12d63abbaca")
 		)
 		(fp_line
 			(start 3.85 -2.75)
@@ -16566,7 +16566,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "fe510918-beaf-413d-abc9-4d7b7f0a8e0a")
+			(uuid "280800e2-a54c-49e4-93d7-af769caed5c2")
 		)
 		(fp_line
 			(start 3.85 2.75)
@@ -16576,7 +16576,7 @@
 				(type solid)
 			)
 			(layer "F.CrtYd")
-			(uuid "95036d2f-e8bd-4025-b93e-7b93d613c83f")
+			(uuid "23ef6bc4-50a6-4d8a-ae79-bb6f98c99ded")
 		)
 		(fp_line
 			(start -2.2 -1.5)
@@ -16586,7 +16586,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "4608df26-d26e-4a05-b831-6933058f6d59")
+			(uuid "8ca8dbd1-24b1-49ee-9f8b-e02be6f3860c")
 		)
 		(fp_line
 			(start -2.2 2.5)
@@ -16596,7 +16596,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "55bab413-8501-454b-b6c8-59986e89bf4e")
+			(uuid "10541a70-c14f-45e9-9ebe-8a27cd4112c9")
 		)
 		(fp_line
 			(start -1.2 -2.5)
@@ -16606,7 +16606,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "210dd8c8-8628-441e-a8fa-8711d9791725")
+			(uuid "5dec6488-5b12-499f-a363-5dd2a2256d76")
 		)
 		(fp_line
 			(start 2.2 -2.5)
@@ -16616,7 +16616,7 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "28462a0a-4300-4606-b812-2207602f3d28")
+			(uuid "176871d0-ba3f-402c-988d-9096c75d6c90")
 		)
 		(fp_line
 			(start 2.2 2.5)
@@ -16626,12 +16626,12 @@
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "9f15c6cc-428a-4215-a768-8312b3770388")
+			(uuid "e31b99ac-35e7-4336-8dd2-c7bd8c95f76e")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
 			(layer "F.Fab")
-			(uuid "9fb7a7c1-8c3d-418e-823c-0ba0733d7d07")
+			(uuid "1da6efe1-cf2f-47ac-a759-53158d73f837")
 			(effects
 				(font
 					(size 1 1)
@@ -16647,7 +16647,7 @@
 			(net 8 "/~{SRAM_W_A_CLR}")
 			(pinfunction "~{MR}")
 			(pintype "input")
-			(uuid "b87a0491-8e9d-42ff-8935-9a97c87f6af8")
+			(uuid "3914c42f-4637-4534-afcc-8ab6ffab51d3")
 		)
 		(pad "2" smd roundrect
 			(at -2.8625 -1.625)
@@ -16657,7 +16657,7 @@
 			(net 42 "/SRAM_W_A_CLK")
 			(pinfunction "CP")
 			(pintype "input")
-			(uuid "276233e8-4f37-4390-86c6-d7ce9baad0a9")
+			(uuid "10354daf-b946-4efa-b436-188aa84a9290")
 		)
 		(pad "3" smd roundrect
 			(at -2.8625 -0.975)
@@ -16667,7 +16667,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D0")
 			(pintype "input")
-			(uuid "dac4e02e-a213-4d4c-bc72-679718bf3940")
+			(uuid "be60cc11-b12c-4072-87b2-93cac0fae0cb")
 		)
 		(pad "4" smd roundrect
 			(at -2.8625 -0.325)
@@ -16677,7 +16677,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D1")
 			(pintype "input")
-			(uuid "e10b87e7-c1d3-4a37-8804-d68ed5492658")
+			(uuid "f07ea962-c638-480e-afe2-bf0036d72deb")
 		)
 		(pad "5" smd roundrect
 			(at -2.8625 0.325)
@@ -16687,7 +16687,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D2")
 			(pintype "input")
-			(uuid "44d991bd-49b0-46dd-a8bb-597e2926b921")
+			(uuid "237b24d8-d6d1-4589-896f-1904db453142")
 		)
 		(pad "6" smd roundrect
 			(at -2.8625 0.975)
@@ -16697,7 +16697,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "D3")
 			(pintype "input")
-			(uuid "a56ac1cc-4dac-4238-9fa3-c38a2f0edf74")
+			(uuid "f5b29779-b6a0-487f-abab-29a4d673e7a2")
 		)
 		(pad "7" smd roundrect
 			(at -2.8625 1.625)
@@ -16707,7 +16707,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "CEP")
 			(pintype "input")
-			(uuid "5b2a1a27-f41f-4d0a-9720-bd79fabc00e2")
+			(uuid "085c4c1f-110e-4809-8477-01c02e163688")
 		)
 		(pad "8" smd roundrect
 			(at -2.8625 2.275)
@@ -16717,7 +16717,7 @@
 			(net 84 "GND")
 			(pinfunction "GND")
 			(pintype "power_in")
-			(uuid "0745f6c8-95ea-42c9-b6b9-30724f2264a4")
+			(uuid "2ed68453-4787-456c-a451-75c000d98728")
 		)
 		(pad "9" smd roundrect
 			(at 2.8625 2.275)
@@ -16727,7 +16727,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "~{PE}")
 			(pintype "input")
-			(uuid "41426e69-7716-4f18-bd50-90c815f61b04")
+			(uuid "f593bae7-4580-47dc-b9c1-12cd91719695")
 		)
 		(pad "10" smd roundrect
 			(at 2.8625 1.625)
@@ -16737,7 +16737,7 @@
 			(net 135 "/address-counter-internal/AR0")
 			(pinfunction "CET")
 			(pintype "input")
-			(uuid "d556514c-7d56-4a4d-ac4d-06d694dc6cee")
+			(uuid "817ea4a8-418e-4c43-830e-6090c6a7c596")
 		)
 		(pad "11" smd roundrect
 			(at 2.8625 0.975)
@@ -16747,7 +16747,7 @@
 			(net 102 "/SRAM_W_A7")
 			(pinfunction "Q3")
 			(pintype "output")
-			(uuid "5e5a09d7-fcd8-4dc7-a497-daa450172a51")
+			(uuid "f6242e33-5be6-48a5-9b14-e84a63ac3f93")
 		)
 		(pad "12" smd roundrect
 			(at 2.8625 0.325)
@@ -16757,7 +16757,7 @@
 			(net 128 "/SRAM_W_A6")
 			(pinfunction "Q2")
 			(pintype "output")
-			(uuid "95e28b45-8799-4e4d-a683-287479c5cead")
+			(uuid "1c381443-29ec-4d65-badf-2625e4dba6a4")
 		)
 		(pad "13" smd roundrect
 			(at 2.8625 -0.325)
@@ -16767,7 +16767,7 @@
 			(net 115 "/SRAM_W_A5")
 			(pinfunction "Q1")
 			(pintype "output")
-			(uuid "a924bd0e-bf23-4e86-bb1d-638c48386c9c")
+			(uuid "b689dd15-8579-4004-baeb-78df952f182c")
 		)
 		(pad "14" smd roundrect
 			(at 2.8625 -0.975)
@@ -16777,7 +16777,7 @@
 			(net 133 "/SRAM_W_A4")
 			(pinfunction "Q0")
 			(pintype "output")
-			(uuid "d7655278-8d72-40f7-84f7-1b8855c9abf1")
+			(uuid "318f5fde-4c52-469c-92f0-5f49ba9cc657")
 		)
 		(pad "15" smd roundrect
 			(at 2.8625 -1.625)
@@ -16787,7 +16787,7 @@
 			(net 136 "/address-counter-internal/AR1")
 			(pinfunction "TC")
 			(pintype "output")
-			(uuid "7ed28fec-5659-4dcc-8d00-7837755bd65b")
+			(uuid "29d9838a-9a53-4e86-9f09-0030d80dbe2d")
 		)
 		(pad "16" smd roundrect
 			(at 2.8625 -2.275)
@@ -16797,7 +16797,7 @@
 			(net 85 "+3.3V")
 			(pinfunction "VCC")
 			(pintype "power_in")
-			(uuid "c6833ef7-5b05-4650-8a7e-edd36baab3b6")
+			(uuid "ca4a5e99-e47a-4248-9394-7f7320ad3db0")
 		)
 		(model "${KICAD8_3DMODEL_DIR}/Package_SO.3dshapes/TSSOP-16_4.4x5mm_P0.65mm.wrl"
 			(offset
