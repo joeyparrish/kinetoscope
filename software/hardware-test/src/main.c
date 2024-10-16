@@ -19,12 +19,14 @@
 #define KINETOSCOPE_PORT_ARG     ((volatile uint16_t*)0xA13012)  // low 8 bits
 #define KINETOSCOPE_PORT_TOKEN   ((volatile uint16_t*)0xA13008)  // low 1 bit, set on write
 #define KINETOSCOPE_PORT_ERROR   ((volatile uint16_t*)0xA1300A)  // low 1 bit, clear on write
-#define KINETOSCOPE_DATA          ((volatile uint8_t*)0x200000)
-#define KINETOSCOPE_SRAM_BANK_0   ((volatile uint8_t*)0x200000)
-#define KINETOSCOPE_SRAM_BANK_1   ((volatile uint8_t*)0x300000)
+#define KINETOSCOPE_DATA          ((volatile const uint8_t*)0x200000)
+#define KINETOSCOPE_SRAM_BANK_0   ((volatile const uint8_t*)0x200000)
+#define KINETOSCOPE_SRAM_BANK_1   ((volatile const uint8_t*)0x300000)
 
 // Commands for that hardware.
 #define CMD_ECHO        0x00  // Writes arg to SRAM
+#define CMD_LIST_VIDEOS 0x01  // Writes video list to SRAM
+#define CMD_START_VIDEO 0x02  // Begins streaming to SRAM
 #define CMD_GET_ERROR   0x05  // Load error information into SRAM
 #define CMD_CONNECT_NET 0x06  // Connect to the network
 #define CMD_MARCH_TEST  0x07  // Test SRAM
@@ -37,7 +39,7 @@
 char march_error_1[256];
 char march_error_2[256];
 #define SRAM_MARCH_TEST_START(bank) \
-  volatile uint8_t* sram = bank ? KINETOSCOPE_SRAM_BANK_1 : KINETOSCOPE_SRAM_BANK_0
+  volatile const uint8_t* sram = bank ? KINETOSCOPE_SRAM_BANK_1 : KINETOSCOPE_SRAM_BANK_0
 #define SRAM_MARCH_TEST_DATA(offset, data) { \
   uint8_t real = sram[offset]; \
   if (real != data) { \
@@ -305,6 +307,69 @@ int main(bool hardReset) {
     }
   }
 
+
+  // 14. Test network connectivity and writing data to SRAM.
+  line++;  // blank line
+  do {
+    *KINETOSCOPE_PORT_ERROR = 0;
+    *KINETOSCOPE_PORT_COMMAND = CMD_CONNECT_NET;
+    *KINETOSCOPE_PORT_TOKEN = 1;
+    if (!waitForToken(/* timeout_seconds= */ 30)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Network command timed out!", 1, line++);
+      break;
+    } else if (*KINETOSCOPE_PORT_ERROR & 1) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Unable to connect to network!", 1, line++);
+      break;
+    } else {
+      VDP_setTextPalette(PAL_WHITE);
+      VDP_drawText("Network connected.", 1, line++);
+    }
+
+    *KINETOSCOPE_PORT_COMMAND = CMD_LIST_VIDEOS;
+    *KINETOSCOPE_PORT_TOKEN = 1;
+    if (!waitForToken(/* timeout_seconds= */ 30)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("List videos command timed out!", 1, line++);
+      break;
+    } else if (*KINETOSCOPE_PORT_ERROR & 1) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("List videos command failed!", 1, line++);
+      break;
+    }
+
+    if (!segavideo_validateHeader((const uint8_t*)KINETOSCOPE_DATA)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Catalog header invalid!", 1, line++);
+      break;
+    } else {
+      VDP_setTextPalette(PAL_WHITE);
+      VDP_drawText("Catalog header validated.", 1, line++);
+    }
+
+    *KINETOSCOPE_PORT_COMMAND = CMD_START_VIDEO;
+    *KINETOSCOPE_PORT_ARG = 0;
+    *KINETOSCOPE_PORT_TOKEN = 1;
+    if (!waitForToken(/* timeout_seconds= */ 30)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Start video command timed out!", 1, line++);
+      break;
+    } else if (*KINETOSCOPE_PORT_ERROR & 1) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Start video command failed!", 1, line++);
+      break;
+    }
+
+    if (!segavideo_validateHeader((const uint8_t*)KINETOSCOPE_DATA)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Video header invalid!", 1, line++);
+      break;
+    } else {
+      VDP_setTextPalette(PAL_WHITE);
+      VDP_drawText("Video header validated.", 1, line++);
+    }
+  } while (false);
 
   line++;  // blank line
   VDP_drawText("Testing complete!", 0, line++);
