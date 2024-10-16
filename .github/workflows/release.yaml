@@ -220,6 +220,7 @@ jobs:
           chmod 644 kinetoscope-genesis-plus-gx-web/*
           cp kinetoscope-$VERSION-streamer-rom/kinetoscope-streamer.rom kinetoscope-genesis-plus-gx-web/
           cp source/emulator-patches/web-demo.html kinetoscope-genesis-plus-gx-web/index.html
+          cp source/emulator-patches/gesture-tracker.js kinetoscope-genesis-plus-gx-web/
           cp -a kinetoscope-genesis-plus-gx-web kinetoscope-$VERSION-genesis-plus-gx-web
           zip -r9 kinetoscope-$VERSION-genesis-plus-gx-web.zip kinetoscope-$VERSION-genesis-plus-gx-web/
 

@@ -57,6 +57,7 @@ body {
   </head>
 
   <script defer src="https://cdn.jsdelivr.net/npm/nostalgist@0.10.0/dist/nostalgist.umd.min.js"></script>
+  <script defer src="gesture-tracker.js"></script>
   <script>
 
 // AudioContext needs a user gesture to start.  So we define main, but don't
@@ -80,8 +81,24 @@ async function main() {
     nostalgist.resize({width: window.innerWidth, height: window.innerHeight});
   });
 
+  function send(buttonName) {
+    // Send a button press "down" event, then 100ms later an button "up"
+    // (release) event.
+    nostalgist.pressDown(buttonName);
+    setTimeout(() => nostalgist.pressUp(buttonName), 100);
+  }
+
+  const gestures = new GestureTracker(document.querySelector('canvas'));
+  gestures.addEventListener('swipe-up', () => send('up'));
+  gestures.addEventListener('swipe-down', () => send('down'));
+  // Somehow, nostalgist sending 'a' becomes the "C" button in the ROM.  WTF?
+  gestures.addEventListener('swipe-left', () => send('a'));
+  gestures.addEventListener('swipe-right', () => send('start'));
+  gestures.addEventListener('tap', () => send('start'));
+
   // Stored globally for debugging access.
   window.nostalgist = nostalgist;
+  window.gestures = gestures;
 }
 
   </script>
