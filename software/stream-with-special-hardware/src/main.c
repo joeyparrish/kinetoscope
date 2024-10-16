@@ -98,6 +98,7 @@ int main(bool hardReset) {
 
       // Check for errors.  At this stage, most likely a buffer underflow.
       if (segavideo_menu_hasError()) {
+        segavideo_stop();
         handleError();
         break;
       }
