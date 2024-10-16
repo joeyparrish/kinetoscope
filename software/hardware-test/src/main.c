@@ -83,6 +83,7 @@ int main(bool hardReset) {
   // 0. Print anything.  We should see this even if we hang on the next part.
   VDP_setTextPalette(PAL_WHITE);
   VDP_drawText("Beginning hardware test...", 0, line++);
+  line++;  // blank line
 
   // Wait for microcontroller initialization without any kind of active
   // handshake, since we are testing that here (among other things).  This is
@@ -309,7 +310,6 @@ int main(bool hardReset) {
 
 
   // 14. Test network connectivity and writing data to SRAM.
-  line++;  // blank line
   do {
     *KINETOSCOPE_PORT_ERROR = 0;
     *KINETOSCOPE_PORT_COMMAND = CMD_CONNECT_NET;

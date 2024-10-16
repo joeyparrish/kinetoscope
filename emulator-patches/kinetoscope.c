@@ -386,6 +386,8 @@ static void start_video_async() {
     return;
   }
 
+  // Fetch the header from the appropriate section of the catalog.
+  // This will have the relative URL of the full video.
   const size_t header_size = sizeof(kinetoscope.header);
   fetch_range_to_buffer(VIDEO_SERVER_CATALOG_URL, &kinetoscope.header,
                         /* first_byte= */ header_size * video_index,
@@ -403,6 +405,8 @@ static void start_video_0(bool ok, void* user_ctx) {
     return;
   }
 
+  // Construct the full URL of the requested video from the relative one in the
+  // header.
   // header.relative_url should be nul-terminated, but just in case, use
   // strnlen and fail if we get the maximum size, which would indicate no
   // nul-terminator.
@@ -425,6 +429,7 @@ static void start_video_0(bool ok, void* user_ctx) {
   memcpy(kinetoscope.video_url + base_len, path, path_len);
   kinetoscope.video_url[base_len + path_len] = '\0';
 
+  // Fetch the real header now to a buffer.
   fetch_to_buffer(kinetoscope.video_url, &kinetoscope.header,
                   sizeof(kinetoscope.header), start_video_1);
 }
@@ -436,15 +441,21 @@ static void start_video_1(bool ok, void* user_ctx) {
     return;
   }
 
+  // Manage compression.  If it's compressed, we're going to overwrite that
+  // fact in memory before transferring the header data to SRAM.  We will
+  // decompress it on the fly before the Sega sees it.
   kinetoscope.compressed = kinetoscope.header.compression != 0;
   kinetoscope.header.compression = 0;
+  printf("Video is%s compressed!\n", kinetoscope.compressed ? "" : " not");
 
   if (kinetoscope.compressed) {
+    // If it's compressed, fetch the chunk index to a buffer in memory.
     fetch_range_to_buffer(kinetoscope.video_url, &kinetoscope.index,
                           /* offset= */ sizeof(kinetoscope.header),
                           /* size= */ sizeof(kinetoscope.index),
                           start_video_2);
   } else {
+    // If it's not compressed, move on to the next step.
     start_video_2(/* ok= */ true, /* user_ctx= */ NULL);
   }
 }
@@ -463,11 +474,12 @@ static void start_video_2(bool ok, void* user_ctx) {
     }
   }
 
+  // Get the chunk size and number of chunks.
   kinetoscope.chunk_size = ntohl(kinetoscope.header.chunkSize);
   kinetoscope.chunks_left = ntohl(kinetoscope.header.totalChunks);
   kinetoscope.chunk_num = 0;
 
-  // Transfer the header.
+  // Transfer the header from emulator memory to emulated SRAM.
   reset_sram(0);
   write_sram((const uint8_t*)&kinetoscope.header, sizeof(kinetoscope.header));
   kinetoscope.sram_offset += sizeof(kinetoscope.header);
@@ -538,7 +550,7 @@ static void execute_command() {
     printf("Kinetoscope: CMD_LIST_VIDEOS\n");
     get_video_list_async();
     // Because this command is async, don't fall through and complete the
-    // command by returning control to the Sega.  start_video_async() will
+    // command by returning control to the Sega.  get_video_list_async() will
     // eventually return control when its chain of callbacks terminates.
     return;
   } else if (kinetoscope.command == CMD_START_VIDEO) {
