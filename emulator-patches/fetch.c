@@ -134,7 +134,12 @@ static void fetch_range_async(const char* url, size_t first_byte, size_t size,
   } else {
     char range[32];
     size_t last_byte = first_byte + size - 1;
+#if defined(__EMSCRIPTEN__)
+    // emscripten_fetch wants a little different format than curl.
+    snprintf(range, 32, "bytes=%zd-%zd", first_byte, last_byte);
+#else
     snprintf(range, 32, "%zd-%zd", first_byte, last_byte);
+#endif
     // snprintf doesn't guarantee a terminator when it overflows.
     range[31] = '\0';
     ctx->range = strdup(range);
