@@ -15,12 +15,21 @@
 //#define SERVE_FROM_HOTSPOT
 
 #if defined(SERVE_FROM_HOTSPOT)
+# define VIDEO_SERVER_PROTOCOL "http"
 # define VIDEO_SERVER "192.168.84.42"
 # define VIDEO_SERVER_PORT 8080
 # define VIDEO_SERVER_BASE_PATH "/"
 #else
+# if defined(__EMSCRIPTEN__)
+// Upgrade to https for the web, since mixed content doesn't work.
+// We can't take this path on the microcontroller, though.  No HTTPS there.
+#  define VIDEO_SERVER_PROTOCOL "https"
+#  define VIDEO_SERVER_PORT 443
+# else
+#  define VIDEO_SERVER_PROTOCOL "http"
+#  define VIDEO_SERVER_PORT 80
+# endif
 # define VIDEO_SERVER "storage.googleapis.com"
-# define VIDEO_SERVER_PORT 80
 # define VIDEO_SERVER_BASE_PATH "/sega-kinetoscope/canned-videos/"
 #endif
 
@@ -29,5 +38,5 @@
 
 #define _STRINGIFY(X) #X
 #define STRINGIFY(X) _STRINGIFY(X)
-#define VIDEO_SERVER_BASE_URL "http://" VIDEO_SERVER ":" STRINGIFY(VIDEO_SERVER_PORT) VIDEO_SERVER_BASE_PATH
+#define VIDEO_SERVER_BASE_URL VIDEO_SERVER_PROTOCOL "://" VIDEO_SERVER ":" STRINGIFY(VIDEO_SERVER_PORT) VIDEO_SERVER_BASE_PATH
 #define VIDEO_SERVER_CATALOG_URL VIDEO_SERVER_BASE_URL VIDEO_CATALOG_FILENAME
