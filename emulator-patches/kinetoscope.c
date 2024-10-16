@@ -181,6 +181,7 @@ static uint64_t ms_now() {
 }
 
 static void reset_sram(int bank) {
+  printf("Kinetoscope: Writing to bank %d\n", bank);
   kinetoscope.sram_offset = bank ? SRAM_BANK_1_OFFSET : SRAM_BANK_0_OFFSET;
 }
 
