@@ -38,7 +38,7 @@ body {
   background: black;
 }
 
-#clickToStart {
+#clickToStart, #instructions {
   background: black;
   color: white;
   border: none;
@@ -46,11 +46,22 @@ body {
   font-family: "Kode Mono";
   font-optical-sizing: auto;
   font-weight: bold;
-  font-style: italic;
 
   font-size: calc(min(6vw, 20vh));
   display: block;
   margin: auto;
+  margin-top: 1em;
+}
+
+#clickToStart {
+  border: 1px white solid;
+  padding: 0.5em;
+  font-style: italic;
+}
+
+#instructions {
+  font-size: calc(min(5vw, 16vh));
+  padding: 1em;
 }
 
     </style>
@@ -65,6 +76,14 @@ body {
 async function main() {
   // Change the click-to-start label to a loading indicator.
   clickToStart.innerText = 'Loading...'
+  clickToStart.disabled = true;
+
+  // We haven't finished loading JS, try again in 1s.
+  if (!window.Nostalgist) {
+    console.log('Waiting for Nostalgist...');
+    setTimeout(main, 1000);
+    return;
+  }
 
   // Launch the emulator, which will create its own canvas.
   const nostalgist = await Nostalgist.launch({
@@ -75,8 +94,9 @@ async function main() {
     },
     rom: 'kinetoscope-streamer.rom',
     onLaunch: () => {
-      // Once loaded, hide the click-to-start button.
+      // Once loaded, hide the click-to-start button and instructions.
       clickToStart.style.display = 'none';
+      instructions.style.display = 'none';
     },
   });
 
@@ -108,6 +128,15 @@ async function main() {
   </script>
 
   <body>
-    <button id="clickToStart" onclick="main()">Click to start<br>Kinetoscope Emulator</button>
+    <button id="clickToStart" onclick="main()">Click here to start<br>Kinetoscope Emulator</button>
+    <div id="instructions">
+      <ul>
+        <li>up: ↑ / swipe up</li>
+        <li>down: ↓ / swipe down</li>
+        <li>start: enter / tap</li>
+        <li>pause: enter / tap</li>
+        <li>stop: X / swipe left</li>
+      </ul>
+    </div>
   </body>
 </html>

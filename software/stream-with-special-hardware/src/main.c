@@ -15,8 +15,8 @@
 
 static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
   if (segavideo_getState() == Error) {
-    // Error: press start|A|B|C to continue.
-    if (state & (BUTTON_START | BUTTON_A | BUTTON_B | BUTTON_C)) {
+    // Error: press start|A to continue.
+    if (state & (BUTTON_START | BUTTON_A)) {
       segavideo_menu_clearError();
     }
   } else if (segavideo_getState() == Player) {
@@ -28,8 +28,8 @@ static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
       segavideo_stop();
     }
   } else if (segavideo_getState() == Menu) {
-    // Menu: press start|A|B|C to choose, up/down to navigate.
-    if (state & (BUTTON_START | BUTTON_A | BUTTON_B | BUTTON_C)) {
+    // Menu: press start|A to choose, up/down to navigate.
+    if (state & (BUTTON_START | BUTTON_A)) {
       segavideo_menu_select(/* loop= */ false);
     }
     if (state & BUTTON_UP) {
