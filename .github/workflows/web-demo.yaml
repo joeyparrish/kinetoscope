@@ -1,0 +1,74 @@
+name: Update Web Demo
+
+on:
+  workflow_dispatch:
+    # Allows for manual triggering
+
+jobs:
+  software:
+    uses: joeyparrish/kinetoscope/.github/workflows/build-software.yaml@main
+    with:
+      ref: ${{ github.ref }}
+      for-release: true
+
+  emulators:
+    uses: joeyparrish/kinetoscope/.github/workflows/build-emulators.yaml@main
+    with:
+      ref: ${{ github.ref }}
+      for-release: true
+
+  prep-web-demo:
+    needs:
+      - software
+      - emulators
+
+    name: Prep Web Demo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          path: source
+
+      - name: Pull streamer ROM
+        uses: actions/download-artifact@v4
+        with:
+          name: streamer-rom
+          path: streamer
+
+      - name: Pull Genesis Plus GX for Web
+        uses: actions/download-artifact@v4
+        with:
+          name: genesis-plus-gx-web
+          path: web
+
+      - name: Arrange web demo artifacts
+        run: |
+          mv streamer/rom.bin web/kinetoscope-streamer.rom
+          cp source/emulator-patches/web-demo.html web/index.html
+          cp source/emulator-patches/gesture-tracker.js web/
+
+      - name: Upload GitHub Pages Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+  pages:
+    needs:
+      - prep-web-demo
+
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
