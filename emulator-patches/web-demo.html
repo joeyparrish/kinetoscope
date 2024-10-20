@@ -32,6 +32,10 @@ this page.
 html, body {
   margin: 0;
   padding: 0;
+
+  /* Prevent pull-to-refresh on mobile, since we use swipe gestures in a
+   * keyboard-less environment. */
+  overscroll-behavior: none;
 }
 
 body {
