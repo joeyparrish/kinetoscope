@@ -18,7 +18,7 @@ perl -i -0pe 's/\(plane GND \(polygon.*?\)\)//sg' "$1.dsn"
 if ! time java -jar \
     /opt/freerouting/freerouting-executable.jar -- \
     -de "$1".dsn -do "$1".ses -da \
-    -dct 3 -mp 100 -oit 0.5 -mt 8; then
+    -dct 3 -mp 100 -oit 0.5 -mt 1; then
   echo; echo "Failed to route PCB!"
   exit 1
 fi
