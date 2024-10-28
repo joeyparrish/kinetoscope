@@ -11,6 +11,7 @@
 #include <genesis.h>
 
 #include "menu_font.h"
+#include "segavideo_format.h"
 #include "segavideo_menu.h"
 #include "segavideo_player.h"
 
@@ -34,6 +35,9 @@
 // Palettes allocated for on-screen text.
 #define PAL_WHITE  PAL2
 #define PAL_YELLOW PAL3
+
+// Maximum number of entries in a video catalog file.
+#define MAX_CATALOG_SIZE 127
 
 // Macros to complete sram_march_test in sram-common.h
 char march_error_1[256];
@@ -259,7 +263,101 @@ int main(bool hardReset) {
   }
 
 
-  // 13. Perform various intensive memory tests through the firmware.
+  // 13. Test network connectivity and writing data to SRAM.
+  do {
+    *KINETOSCOPE_PORT_ERROR = 0;
+    *KINETOSCOPE_PORT_COMMAND = CMD_CONNECT_NET;
+    *KINETOSCOPE_PORT_TOKEN = 1;
+    if (!waitForToken(/* timeout_seconds= */ 30)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Network command timed out!", 1, line++);
+      break;
+    } else if (*KINETOSCOPE_PORT_ERROR & 1) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Unable to connect to network!", 1, line++);
+      break;
+    } else {
+      VDP_setTextPalette(PAL_WHITE);
+      VDP_drawText("Network connected.", 1, line++);
+    }
+
+    *KINETOSCOPE_PORT_COMMAND = CMD_LIST_VIDEOS;
+    *KINETOSCOPE_PORT_TOKEN = 1;
+    if (!waitForToken(/* timeout_seconds= */ 30)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("List videos command timed out!", 1, line++);
+      break;
+    } else if (*KINETOSCOPE_PORT_ERROR & 1) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("List videos command failed!", 1, line++);
+      break;
+    }
+
+    if (!segavideo_validateHeader((const uint8_t*)KINETOSCOPE_DATA)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Catalog header invalid!", 1, line++);
+      break;
+    } else {
+      VDP_setTextPalette(PAL_WHITE);
+      VDP_drawText("Catalog header validated.", 1, line++);
+    }
+  } while (false);
+
+
+  // 14. Count the size of the catalog.
+  const SegaVideoHeader* header = (const SegaVideoHeader*)KINETOSCOPE_DATA;
+  int num_videos = 0;
+  while (header->magic[0]) {
+    num_videos++;
+    header++;
+
+    if (num_videos > MAX_CATALOG_SIZE) {
+      VDP_clearTextArea(0, line, 32, 1);
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Video catalog overflow!", 1, line++);
+      break;
+    }
+
+    VDP_clearTextArea(0, line, 32, 1);
+    VDP_setTextPalette(PAL_WHITE);
+    VDP_drawText(header->title, 0, line);
+  }
+  char catalog_count_buf[32];
+  //                          0         1         2         3
+  //                          0123456789012345678901234567890
+  //                                        12345678901
+  sprintf(catalog_count_buf, "Catalog size: %d", num_videos);
+  VDP_setTextPalette(PAL_WHITE);
+  VDP_drawText(catalog_count_buf, 0, line++);
+
+
+  // 15. Attempt to start streaming a video.
+  do {
+    *KINETOSCOPE_PORT_COMMAND = CMD_START_VIDEO;
+    *KINETOSCOPE_PORT_ARG = 0;
+    *KINETOSCOPE_PORT_TOKEN = 1;
+    if (!waitForToken(/* timeout_seconds= */ 30)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Start video command timed out!", 1, line++);
+      break;
+    } else if (*KINETOSCOPE_PORT_ERROR & 1) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Start video command failed!", 1, line++);
+      break;
+    }
+
+    if (!segavideo_validateHeader((const uint8_t*)KINETOSCOPE_DATA)) {
+      VDP_setTextPalette(PAL_YELLOW);
+      VDP_drawText("Video header invalid!", 1, line++);
+      break;
+    } else {
+      VDP_setTextPalette(PAL_WHITE);
+      VDP_drawText("Video header validated.", 1, line++);
+    }
+  } while (false);
+
+
+  // 16. Perform various intensive memory tests through the firmware.
   // There are many different passes of this, with different patterns to verify.
   line++;  // blank line
   int memory_test_pass_line = line;
@@ -309,68 +407,7 @@ int main(bool hardReset) {
   }
 
 
-  // 14. Test network connectivity and writing data to SRAM.
-  do {
-    *KINETOSCOPE_PORT_ERROR = 0;
-    *KINETOSCOPE_PORT_COMMAND = CMD_CONNECT_NET;
-    *KINETOSCOPE_PORT_TOKEN = 1;
-    if (!waitForToken(/* timeout_seconds= */ 30)) {
-      VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText("Network command timed out!", 1, line++);
-      break;
-    } else if (*KINETOSCOPE_PORT_ERROR & 1) {
-      VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText("Unable to connect to network!", 1, line++);
-      break;
-    } else {
-      VDP_setTextPalette(PAL_WHITE);
-      VDP_drawText("Network connected.", 1, line++);
-    }
-
-    *KINETOSCOPE_PORT_COMMAND = CMD_LIST_VIDEOS;
-    *KINETOSCOPE_PORT_TOKEN = 1;
-    if (!waitForToken(/* timeout_seconds= */ 30)) {
-      VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText("List videos command timed out!", 1, line++);
-      break;
-    } else if (*KINETOSCOPE_PORT_ERROR & 1) {
-      VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText("List videos command failed!", 1, line++);
-      break;
-    }
-
-    if (!segavideo_validateHeader((const uint8_t*)KINETOSCOPE_DATA)) {
-      VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText("Catalog header invalid!", 1, line++);
-      break;
-    } else {
-      VDP_setTextPalette(PAL_WHITE);
-      VDP_drawText("Catalog header validated.", 1, line++);
-    }
-
-    *KINETOSCOPE_PORT_COMMAND = CMD_START_VIDEO;
-    *KINETOSCOPE_PORT_ARG = 0;
-    *KINETOSCOPE_PORT_TOKEN = 1;
-    if (!waitForToken(/* timeout_seconds= */ 30)) {
-      VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText("Start video command timed out!", 1, line++);
-      break;
-    } else if (*KINETOSCOPE_PORT_ERROR & 1) {
-      VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText("Start video command failed!", 1, line++);
-      break;
-    }
-
-    if (!segavideo_validateHeader((const uint8_t*)KINETOSCOPE_DATA)) {
-      VDP_setTextPalette(PAL_YELLOW);
-      VDP_drawText("Video header invalid!", 1, line++);
-      break;
-    } else {
-      VDP_setTextPalette(PAL_WHITE);
-      VDP_drawText("Video header validated.", 1, line++);
-    }
-  } while (false);
-
+  // 16. Done!
   line++;  // blank line
   VDP_drawText("Testing complete!", 0, line++);
   while (true) {
