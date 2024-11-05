@@ -19,6 +19,7 @@
 #include "trivial_tilemap.h"
 
 //#define DEBUG 1
+//#define SIMULATE_HARDWARE 1
 
 static bool menuChanged;
 static char **menuLines;
@@ -425,7 +426,6 @@ bool segavideo_menu_load() {
     }
   }
 
-  selectedIndex = 0;
   return true;
 }
 
