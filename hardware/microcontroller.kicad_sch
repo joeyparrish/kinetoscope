@@ -8,259 +8,6 @@
 		(title "Kinetoscope Microcontroller and Register Board")
 	)
 	(lib_symbols
-		(symbol "74xGxx:74LVC2G125"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at 2.54 7.62 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "74LVC2G125"
-				(at 2.54 -7.62 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Dual Buffer Tri-State, Low-Voltage CMOS"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "Dual Buff Tri-State LVC CMOS"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "VSSOP*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "74LVC2G125_1_1"
-				(polyline
-					(pts
-						(xy -7.62 6.35) (xy -7.62 -6.35) (xy 5.08 0) (xy -7.62 6.35)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin input inverted
-					(at 0 10.16 270)
-					(length 7.62)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -15.24 0 0)
-					(length 7.62)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin tri_state line
-					(at 12.7 0 180)
-					(length 7.62)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "74LVC2G125_2_1"
-				(polyline
-					(pts
-						(xy -7.62 6.35) (xy -7.62 -6.35) (xy 5.08 0) (xy -7.62 6.35)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin tri_state line
-					(at 12.7 0 180)
-					(length 7.62)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -15.24 0 0)
-					(length 7.62)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input inverted
-					(at 0 10.16 270)
-					(length 7.62)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "74LVC2G125_3_0"
-				(rectangle
-					(start -5.08 -5.08)
-					(end 5.08 5.08)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "74LVC2G125_3_1"
-				(pin power_in line
-					(at 0 -10.16 90)
-					(length 5.08)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 10.16 270)
-					(length 5.08)
-					(name "VCC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "74xx:74HC138"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -2735,18 +2482,6 @@
 			)
 		)
 	)
-	(junction
-		(at 149.86 190.5)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ca2851bc-6031-43ba-8c4c-bfe6baee8875")
-	)
-	(junction
-		(at 149.86 170.18)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e0ea7ca1-fc37-4689-adb3-c46f8656065c")
-	)
 	(no_connect
 		(at 184.15 46.99)
 		(uuid "0f74c601-5b76-4bf5-ae4a-76c362d6861d")
@@ -2816,10 +2551,6 @@
 		(uuid "ad43f3ad-ecce-4712-9ef0-b59cee7e2781")
 	)
 	(no_connect
-		(at 171.45 149.86)
-		(uuid "b18156a3-170f-47d9-8fa4-167479c77163")
-	)
-	(no_connect
 		(at 53.34 193.04)
 		(uuid "c9fc40af-e045-4251-aceb-abacc2ae6508")
 	)
@@ -2830,6 +2561,14 @@
 	(no_connect
 		(at 55.88 193.04)
 		(uuid "dcab84aa-5e13-4dd4-a0c4-70013d7aba5e")
+	)
+	(no_connect
+		(at 82.55 76.2)
+		(uuid "e513e30c-24e3-4528-8a2b-a51b41c7eb24")
+	)
+	(no_connect
+		(at 58.42 193.04)
+		(uuid "ea9d8adc-b2da-4290-b65e-f6f6ae895b24")
 	)
 	(no_connect
 		(at 185.42 97.79)
@@ -3071,16 +2810,6 @@
 		)
 		(uuid "2919f848-bbae-416c-8a8c-e2590bb4f754")
 	)
-	(wire
-		(pts
-			(xy 82.55 76.2) (xy 91.44 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "29b3f8a5-ac03-484f-adbb-f68fdf566f42")
-	)
 	(bus
 		(pts
 			(xy 46.99 134.62) (xy 46.99 142.24)
@@ -3201,26 +2930,6 @@
 		)
 		(uuid "3ebf501a-c9f2-40dc-a7eb-aadc0451556a")
 	)
-	(wire
-		(pts
-			(xy 121.92 132.08) (xy 127 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "47240e84-ba76-4cc7-bcad-76d825cea012")
-	)
-	(wire
-		(pts
-			(xy 165.1 170.18) (xy 149.86 170.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4f583c10-6808-4a04-8229-886aac575e53")
-	)
 	(bus
 		(pts
 			(xy 33.02 58.42) (xy 33.02 60.96)
@@ -3250,16 +2959,6 @@
 			(type default)
 		)
 		(uuid "579496eb-af38-4cd8-a839-b874e7cce381")
-	)
-	(wire
-		(pts
-			(xy 165.1 190.5) (xy 149.86 190.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "58229c88-3bd2-4b32-b42b-0578f8c4345b")
 	)
 	(wire
 		(pts
@@ -3373,7 +3072,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 140.97) (xy 186.69 137.16)
+			(xy 200.66 140.97) (xy 200.66 137.16)
 		)
 		(stroke
 			(width 0)
@@ -3450,16 +3149,6 @@
 			(type default)
 		)
 		(uuid "7a52980b-70ed-44ed-b5da-d0d87b399cff")
-	)
-	(wire
-		(pts
-			(xy 149.86 168.91) (xy 149.86 170.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7b2835a5-3ac9-4f77-9261-55f752360112")
 	)
 	(bus
 		(pts
@@ -3583,16 +3272,6 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 191.77) (xy 149.86 190.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9b7ae2b4-576c-44b8-b15b-e0abaf7fede2")
-	)
-	(wire
-		(pts
 			(xy 82.55 88.9) (xy 91.44 88.9)
 		)
 		(stroke
@@ -3713,16 +3392,6 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 140.97) (xy 200.66 137.16)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b7eb130d-110f-41f7-8b80-1f8bff309083")
-	)
-	(wire
-		(pts
 			(xy 35.56 76.2) (xy 45.72 76.2)
 		)
 		(stroke
@@ -3770,16 +3439,6 @@
 			(type default)
 		)
 		(uuid "ba4226af-8eda-4630-89b9-f9f529dacb29")
-	)
-	(wire
-		(pts
-			(xy 90.17 132.08) (xy 93.98 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bc071145-e4f4-497b-86c9-a4dcafdc4f0a")
 	)
 	(wire
 		(pts
@@ -3843,16 +3502,6 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 170.18) (xy 149.86 176.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cbd2fa20-6cfa-43b4-ba08-e6682682c53a")
-	)
-	(wire
-		(pts
 			(xy 269.24 24.13) (xy 270.51 24.13)
 		)
 		(stroke
@@ -3883,16 +3532,6 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 190.5) (xy 149.86 184.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d19fae8d-47cf-4e10-a9c3-767fc2e59f1f")
-	)
-	(wire
-		(pts
 			(xy 229.87 24.13) (xy 232.41 24.13)
 		)
 		(stroke
@@ -3910,16 +3549,6 @@
 			(type default)
 		)
 		(uuid "dd1697f5-cc12-4024-be2e-eb0142fa976a")
-	)
-	(wire
-		(pts
-			(xy 59.69 133.35) (xy 59.69 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "de8da974-3fda-4b1a-9b77-9fb85c3384f6")
 	)
 	(wire
 		(pts
@@ -4153,16 +3782,6 @@
 		)
 		(uuid "6aab8910-8c14-4be2-a440-8496ea45c1df")
 	)
-	(text "5V input tolerated"
-		(exclude_from_sim no)
-		(at 90.17 126.746 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "7213816b-17aa-4ce9-8343-041e21b9e762")
-	)
 	(text "Decoder for registers (W)\nPre-reqs: register & AS & A4\n\nREG_0_WE = write & !read & !A1 (010 = Y2)\nREG_1_WE = write & !read &  A1 (011 = Y3)"
 		(exclude_from_sim no)
 		(at 153.162 18.542 0)
@@ -4174,16 +3793,6 @@
 		)
 		(uuid "7b4e70eb-5eb3-4bab-96ed-76ca4b1fa02f")
 	)
-	(text "Unused gate."
-		(exclude_from_sim no)
-		(at 167.64 145.542 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "a703e87f-0991-469b-875b-fe7bd02405f6")
-	)
 	(text "Write 16-bits to even addresses,\nbut only low byte is accepted."
 		(exclude_from_sim no)
 		(at 250.952 34.544 0)
@@ -4193,16 +3802,6 @@
 			)
 		)
 		(uuid "bb773e19-4b3e-42a8-bd09-277137c1f2b1")
-	)
-	(text "Always on,\nas a cheap\nlevel shifter."
-		(exclude_from_sim no)
-		(at 117.348 121.92 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "bd97f040-e9d5-4e94-9379-26260dc31def")
 	)
 	(text "Decoder for sync tokens (R/W)\nPre-reqs: register & AS & A3\n\nCMD_SET =  write & !read & !A1 (010 = Y2)\nCMD_OE  = !write &  read & !A1 (100 = Y4)\nERR_CLR =  write & !read &  A1 (011 = Y3)\nERR_OE  = !write &  read &  A1 (101 = Y5)"
 		(exclude_from_sim no)
@@ -4290,17 +3889,6 @@
 		)
 		(uuid "0991faea-9d50-449d-8330-cdbb5e7ecd69")
 	)
-	(label "~{RESET_3V}"
-		(at 91.44 76.2 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "0e83d403-c6f7-44b0-a820-4a7d76302cc3")
-	)
 	(label "~{REG_0_WE_INT}"
 		(at 250.19 101.6 0)
 		(fields_autoplaced yes)
@@ -4322,17 +3910,6 @@
 			(justify left bottom)
 		)
 		(uuid "12dae0fd-5a20-4d1b-836d-d9ada7d5f154")
-	)
-	(label "~{RESET_3V}"
-		(at 127 132.08 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "153d1fa0-158e-49e9-ab06-b5547786970e")
 	)
 	(label "~{SPI_CS}"
 		(at 242.57 156.21 0)
@@ -4433,17 +4010,6 @@
 		)
 		(uuid "29a8f3f5-27dc-47f7-9b93-78b85e25784d")
 	)
-	(label "~{SEGA_RESET}"
-		(at 59.69 133.35 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "29c30d4a-39d3-4653-b4ad-0d92618394ce")
-	)
 	(label "~{SEGA_OE}"
 		(at 153.67 36.83 180)
 		(fields_autoplaced yes)
@@ -4487,17 +4053,6 @@
 			(justify right bottom)
 		)
 		(uuid "372990e9-c9af-4a62-8f1e-0045bab1ab93")
-	)
-	(label "~{SEGA_RESET}"
-		(at 90.17 132.08 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "37b5b969-5bc8-4a7c-911a-7a2a1b36c5b1")
 	)
 	(label "~{ERR_CLR}"
 		(at 229.87 74.93 180)
@@ -5226,7 +4781,7 @@
 		(uuid "e8cea430-40f9-434d-95fb-d314790ba337")
 	)
 	(label "~{SEGA_OE}"
-		(at 186.69 140.97 180)
+		(at 200.66 140.97 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5313,17 +4868,6 @@
 		)
 		(uuid "fc6607e2-4783-49c6-8cc0-5e5ee6c2f583")
 	)
-	(label "~{SEGA_RESET}"
-		(at 200.66 140.97 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "fc964ea4-6d59-4f98-b4a5-437c8c574edb")
-	)
 	(label "~{REG_0_WE}"
 		(at 236.22 101.6 180)
 		(fields_autoplaced yes)
@@ -5348,7 +4892,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 186.69 129.54 0)
+		(at 200.66 129.54 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5357,7 +4901,7 @@
 		(fields_autoplaced yes)
 		(uuid "00bbf4bc-cf88-4b0f-82af-eaf7e31e38b2")
 		(property "Reference" "#PWR065"
-			(at 186.69 133.35 0)
+			(at 200.66 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5366,7 +4910,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 186.69 125.4069 0)
+			(at 200.66 125.4069 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5374,7 +4918,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 186.69 129.54 0)
+			(at 200.66 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5383,7 +4927,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 186.69 129.54 0)
+			(at 200.66 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5392,7 +4936,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 186.69 129.54 0)
+			(at 200.66 129.54 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5673,103 +5217,6 @@
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
 					(reference "#PWR015")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 149.86 180.34 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "08191d22-96ea-4143-b8ad-4a83157f4764")
-		(property "Reference" "C1"
-			(at 152.781 179.1278 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "22nF"
-			(at 152.781 181.5521 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 150.8252 184.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/585/MLCC-1837944.pdf"
-			(at 149.86 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 149.86 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "187-CL10B223KB8NNNC"
-			(at 149.86 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Number" "CL10B223KB8NNNC"
-			(at 149.86 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "JLCPCB Part Number" "C21122"
-			(at 149.86 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b543ed71-fff1-409f-8200-6083b750239a")
-		)
-		(pin "2"
-			(uuid "6c10eaa3-09f6-451f-8dbb-f610e1930780")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -6221,119 +5668,6 @@
 		)
 	)
 	(symbol
-		(lib_id "74xGxx:74LVC2G125")
-		(at 158.75 149.86 0)
-		(unit 2)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "237e429c-7ae1-4ad1-94b5-8863bd1c49f0")
-		(property "Reference" "U1"
-			(at 157.48 157.9301 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "74LVC2G125"
-			(at 157.48 160.3544 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
-			(at 158.75 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74LVC2G125-2937395.pdf"
-			(at 158.75 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Dual Buffer Tri-State, Low-Voltage CMOS"
-			(at 158.75 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "JLCPCB Part Number" "C548582"
-			(at 158.75 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "771-LVC2G125DC125"
-			(at 158.75 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Number" "74LVC2G125DC,125"
-			(at 158.75 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "8"
-			(uuid "a65ecb95-e896-4dc0-88b6-6d861e9be1be")
-		)
-		(pin "4"
-			(uuid "b8911bc9-b450-4395-aedb-5300d340686a")
-		)
-		(pin "2"
-			(uuid "52a94d2a-6795-48ef-94f2-960bb78635f8")
-		)
-		(pin "3"
-			(uuid "758d2eb5-39d4-46a7-bb84-8de6d69355dc")
-		)
-		(pin "6"
-			(uuid "685a8037-79eb-4b71-a5b1-3d469eb648bc")
-		)
-		(pin "1"
-			(uuid "fe27a67e-0aee-4af3-bea5-21a0e4e7051a")
-		)
-		(pin "5"
-			(uuid "5e7ff7d2-9a18-4207-93e7-f5dc545dc29a")
-		)
-		(pin "7"
-			(uuid "5e09999f-2357-4582-bdef-a4c00fdf075a")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "U1")
-					(unit 2)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Jumper:SolderJumper_2_Bridged")
 		(at 243.84 101.6 0)
 		(unit 1)
@@ -6534,71 +5868,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3.3V")
-		(at 149.86 168.91 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "2fe833f1-2055-4874-9442-351de7f4d3c7")
-		(property "Reference" "#PWR024"
-			(at 149.86 172.72 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 149.86 164.7769 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 149.86 168.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 149.86 168.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 149.86 168.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "81b9d109-f370-41a2-b9f0-473d86e45a7f")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "#PWR024")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 82.55 68.58 90)
 		(unit 1)
@@ -6660,71 +5929,6 @@
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
 					(reference "#PWR018")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 158.75 139.7 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "50522a67-bd59-414b-922b-888115bd854c")
-		(property "Reference" "#PWR066"
-			(at 158.75 143.51 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 158.75 135.5669 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 158.75 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 158.75 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 158.75 139.7 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "233505ca-7f1b-4b41-bc69-a9aefe0ba4b9")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "#PWR066")
 					(unit 1)
 				)
 			)
@@ -7589,119 +6793,6 @@
 		)
 	)
 	(symbol
-		(lib_id "74xGxx:74LVC2G125")
-		(at 109.22 132.08 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "841ccc31-7d50-4d80-98e5-956ddd656bad")
-		(property "Reference" "U1"
-			(at 107.95 140.1501 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "74LVC2G125"
-			(at 107.95 142.5744 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
-			(at 109.22 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74LVC2G125-2937395.pdf"
-			(at 109.22 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Dual Buffer Tri-State, Low-Voltage CMOS"
-			(at 109.22 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "JLCPCB Part Number" "C548582"
-			(at 109.22 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "771-LVC2G125DC125"
-			(at 109.22 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Number" "74LVC2G125DC,125"
-			(at 109.22 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "8"
-			(uuid "a65ecb95-e896-4dc0-88b6-6d861e9be1bd")
-		)
-		(pin "4"
-			(uuid "b8911bc9-b450-4395-aedb-5300d3406869")
-		)
-		(pin "2"
-			(uuid "54827b70-fa8c-4522-8472-df1aaecdfa72")
-		)
-		(pin "3"
-			(uuid "0d445565-f855-4e9f-a7be-eb738cfca7af")
-		)
-		(pin "6"
-			(uuid "0cb3cfce-e1a1-4ff7-bd4d-40d3697c8acb")
-		)
-		(pin "1"
-			(uuid "42f6e311-9e83-4d44-ac32-07672c5a4423")
-		)
-		(pin "5"
-			(uuid "1627d2df-d5e1-4cc2-9bb6-75ab0bc671bd")
-		)
-		(pin "7"
-			(uuid "464d8f03-41e3-4d8d-9867-30a8a792bdd2")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "U1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Raspberry_Pi_Pico_W:Raspberry_Pi_Pico_W_B")
 		(at 72.39 48.26 0)
 		(unit 1)
@@ -7845,73 +6936,6 @@
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
 					(reference "J4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 143.51 149.86 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8e087d6e-3968-45bb-b790-869be6e4d43f")
-		(property "Reference" "#PWR067"
-			(at 137.16 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 140.3351 149.86 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 143.51 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 143.51 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 143.51 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "dbc5f539-ec50-4369-b17a-e2d1548ddaf7")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "#PWR067")
 					(unit 1)
 				)
 			)
@@ -8361,74 +7385,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 200.66 129.54 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a8943e99-dce7-41b0-9d59-00db13b6a393")
-		(property "Reference" "#PWR0119"
-			(at 200.66 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 200.66 125.4069 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 200.66 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 200.66 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 200.66 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6691c39f-8729-4b2c-819e-5adc8dfb8c97")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "#PWR0119")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
-		(at 186.69 133.35 0)
+		(at 200.66 133.35 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8437,7 +7395,7 @@
 		(fields_autoplaced yes)
 		(uuid "b1576007-ef30-469a-96a7-ae49a20ebd8d")
 		(property "Reference" "R8"
-			(at 188.468 132.1378 0)
+			(at 202.438 132.1378 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8446,7 +7404,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 188.468 134.5621 0)
+			(at 202.438 134.5621 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8455,7 +7413,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 184.912 133.35 90)
+			(at 198.882 133.35 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8464,7 +7422,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 186.69 133.35 0)
+			(at 200.66 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8473,7 +7431,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 186.69 133.35 0)
+			(at 200.66 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8482,7 +7440,7 @@
 			)
 		)
 		(property "JLCPCB Part Number" "C136944"
-			(at 186.69 133.35 0)
+			(at 200.66 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8491,7 +7449,7 @@
 			)
 		)
 		(property "Part Number" "RT0603DRD0710KL"
-			(at 186.69 133.35 0)
+			(at 200.66 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8500,7 +7458,7 @@
 			)
 		)
 		(property "Mouser Part Number" "603-RT0603DRD0710KL"
-			(at 186.69 133.35 0)
+			(at 200.66 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8586,120 +7544,6 @@
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
 					(reference "#PWR019")
 					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "74xGxx:74LVC2G125")
-		(at 165.1 180.34 0)
-		(unit 3)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b38c05ec-5f36-4476-ad63-fa8f236f7910")
-		(property "Reference" "U1"
-			(at 170.942 179.1278 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "74LVC2G125"
-			(at 159.004 167.894 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Package_SO:VSSOP-8_2.3x2mm_P0.5mm"
-			(at 165.1 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74LVC2G125-2937395.pdf"
-			(at 165.1 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Dual Buffer Tri-State, Low-Voltage CMOS"
-			(at 165.1 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "JLCPCB Part Number" "C548582"
-			(at 165.1 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "771-LVC2G125DC125"
-			(at 165.1 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Number" "74LVC2G125DC,125"
-			(at 165.1 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "8"
-			(uuid "fd035ac0-17d3-48c6-b5ee-087781e56ab5")
-		)
-		(pin "4"
-			(uuid "2a33103d-513b-4bf8-944c-ae879f7ccc49")
-		)
-		(pin "2"
-			(uuid "52a94d2a-6795-48ef-94f2-960bb78635f9")
-		)
-		(pin "3"
-			(uuid "0d445565-f855-4e9f-a7be-eb738cfca7b1")
-		)
-		(pin "6"
-			(uuid "685a8037-79eb-4b71-a5b1-3d469eb648bd")
-		)
-		(pin "1"
-			(uuid "fe27a67e-0aee-4af3-bea5-21a0e4e7051b")
-		)
-		(pin "5"
-			(uuid "1627d2df-d5e1-4cc2-9bb6-75ab0bc671bf")
-		)
-		(pin "7"
-			(uuid "464d8f03-41e3-4d8d-9867-30a8a792bdd4")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "U1")
-					(unit 3)
 				)
 			)
 		)
@@ -8794,72 +7638,6 @@
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
 					(reference "J7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 149.86 191.77 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c87f79e0-abbb-4590-acfd-907f0affcd89")
-		(property "Reference" "#PWR025"
-			(at 149.86 198.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 149.86 195.9031 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 149.86 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 149.86 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 149.86 191.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "7e99b2a3-8af4-44e7-bc71-a1898b1765bb")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -9193,72 +7971,6 @@
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
 					(reference "U15")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 109.22 121.92 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "cceadb58-3100-4abf-a60f-da49e5a3d872")
-		(property "Reference" "#PWR022"
-			(at 109.22 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 109.22 117.7869 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 109.22 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 109.22 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 109.22 121.92 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "77ad4d00-dc13-4482-8962-0c23b7504f44")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -9621,103 +8333,6 @@
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
 					(reference "#PWR0128")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 200.66 133.35 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e34f22a4-8ae1-4c09-aad8-cc20a49080fa")
-		(property "Reference" "R1"
-			(at 202.438 132.1378 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 202.438 134.5621 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 198.882 133.35 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 200.66 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 200.66 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "JLCPCB Part Number" "C136944"
-			(at 200.66 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Number" "RT0603DRD0710KL"
-			(at 200.66 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" "603-RT0603DRD0710KL"
-			(at 200.66 133.35 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "6ad98afb-69b9-46b2-9e56-6f3b95f332ca")
-		)
-		(pin "1"
-			(uuid "393b1ff2-7bff-45a3-8333-d477c55f0838")
-		)
-		(instances
-			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1"
-					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -10288,12 +8903,12 @@
 			(uuid "8db5cf71-f779-4f9d-afbe-1e374f72ecce")
 		)
 		(pin "~{SEGA_RESET}" passive
-			(at 59.69 142.24 90)
+			(at 58.42 193.04 270)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 			(uuid "ef911288-44d5-4a3d-b67b-552749ba0988")
 		)
