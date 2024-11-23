@@ -9,6 +9,13 @@ firmware to take commands from the Sega ROM.  See firmware in the
 `../firmware/` folder.
 
 
+## Prototype
+
+The first working prototype looked like this:
+
+![Kinetoscope prototype hardware](prototype-cart.gif)
+
+
 ## Prerequisites
 
 The hardware design was done in KiCad 8, and routing was done in FreeRouting.

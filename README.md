@@ -50,6 +50,13 @@ To see Kinetoscope in a web-based emulator, check out
 [https://joeyparrish.github.io/kinetoscope/](https://joeyparrish.github.io/kinetoscope/)
 
 
+## Prototype
+
+The prototype hardware is a stack of boards that looks like this:
+
+![Kinetoscope prototype hardware](hardware/prototype-cart.gif)
+
+
 ## Project Folders
 
 Each folder has a README with more information, including prerequisites that
