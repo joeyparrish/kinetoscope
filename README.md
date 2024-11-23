@@ -52,7 +52,8 @@ To see Kinetoscope in a web-based emulator, check out
 
 ## Prototype
 
-The prototype hardware is a stack of boards that looks like this:
+The first working prototype of the hardware was a stack of boards that looked
+like this:
 
 ![Kinetoscope prototype hardware](hardware/prototype-cart.gif)
 
