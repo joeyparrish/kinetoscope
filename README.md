@@ -81,7 +81,8 @@ must be installed to work on that part of the project.
 
  - [SGDK][]: A free and open development kit for the Sega Genesis / Mega Drive
  - The logo font is [Kode Mono](https://kodemono.com/)
- - TODO: Presentation slides coming soon
+ - [Video presentation](https://youtu.be/0Atlf_whVgA)
+ - [Presentation slides](https://docs.google.com/presentation/d/1nqJEwOmjEmVEMR6anbMV5HIaqYFpPi18ib-LaNSrTQE/)
  - [Sega Genesis Slide Generator and Viewer](https://github.com/joeyparrish/sega-slides/)
  - [Krikzz](https://krikzz.com/our-products/cartridges/): Incredible hardware
    for retro game console hacking and development, including flash carts.
