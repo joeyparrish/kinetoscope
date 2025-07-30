@@ -426,6 +426,23 @@ def construct_scenes(input_dir, output_dir, scenes):
 def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
   # Create an optimized palette first.
   output_pal_path = os.path.join(output_scene_dir, 'pal.png')
+
+  # Color quantization formula that reduces 8-bit colors to 4-bit colors,
+  # scaled back up to 8-bit representation.
+  # 255 => 256 => 16 => 256 => 255
+  formula='(16 * floor((val + 1)/16)) - 1'
+  filters = [
+    # Reduce color complexity to that representable by the Sega, 4 bits per
+    # pixel.  Doing this before palette generation avoids allocating multiple
+    # palette slots to colors that map to the same 4-bit color later in a
+    # Sega-specific tile format.
+    'lut=r={}:g={}:b={}'.format(formula, formula, formula),
+    # Compute an optimized 15-color palette (16 color palette, but color 0 is
+    # always treated as transparent), based on the reduced color depth from the
+    # previous filter.
+    'palettegen=max_colors=16:reserve_transparent=1',
+  ]
+
   ffmpeg_args = [
     'ffmpeg',
     # Make no noise, except on error.
@@ -433,9 +450,8 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
     # Input and starting frame number.
     '-start_number', str(start_frame),
     '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
-    # Compute an optimized 15-color palette (16 color palette, but color 0 is
-    # always treated as transparent).
-    '-vf', 'palettegen=max_colors=15',
+    # Video filters from above.
+    '-vf', ','.join(filters),
     # Output a palette image.
     output_pal_path,
   ]
