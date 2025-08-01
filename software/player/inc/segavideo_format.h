@@ -91,9 +91,11 @@ typedef struct SegaVideoChunkHeader {
 
 typedef struct SegaVideoFrame {
   // Each palette entry is a single color in ABGR format, 4 bits per channel,
-  // in big-endian order.  Entry 0 is considered fully transparent by the VDP,
-  // and all other entries are considered fully opaque.  The alpha bits are
-  // always ignored.
+  // in big-endian order.  The lowest bit of each channel is ignored, so
+  // although it's 4 bits per channel in memory, it's only 3 bits of actual
+  // data per channel and only 512 possible colors.  Entry 0 of the palette is
+  // always considered fully transparent by the VDP, and all other entries are
+  // considered fully opaque.  The alpha bits are always ignored.
   uint16_t palette[16];
   // Each tile is a packed array of 64 (8x8) 4-bit palette indexes (16 words).
   // Uses trivial_tilemap_0 or trivial_tilemap_1.

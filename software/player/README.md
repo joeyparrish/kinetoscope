@@ -79,8 +79,10 @@ The frame format is a 16-color palette, followed by 32x28 tiles.
 The palette format is the native format of the Sega's VDP so it can be
 transfered directly to video memory: 16x 16-bit words, each of which represents
 one color.  Colors are in ABGR format, 4 bits per channel, big-endian.  The
-alpha bits are always ignored by the VDP.  Entry 0 is always considered fully
-transparent, and all other entries are always considered fully opaque.
+alpha bits are always ignored by the VDP, as is the low bit of each channel.
+So there are actually only 3 bits of data in those 4-bit fields, and only 512
+possible colors.  Entry 0 is always considered fully transparent, and all other
+entries are always considered fully opaque.
 
 The tile format is also native to the Sega's VDP.  The VDP represents game
 backgrounds as a plane of tiles.  Each tile is 8x8 pixels, and it supports both

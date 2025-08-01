@@ -427,10 +427,10 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
   # Create an optimized palette first.
   output_pal_path = os.path.join(output_scene_dir, 'pal.png')
 
-  # Color quantization formula that reduces 8-bit colors to 4-bit colors,
+  # Color quantization formula that reduces 8-bit colors to 3-bit colors,
   # scaled back up to 8-bit representation.
-  # 255 => 256 => 16 => 256 => 255
-  formula='(16 * floor((val + 1)/16)) - 1'
+  # 255 => 256 => 8 => 256 => 255
+  formula='(32 * floor((val + 1)/32)) - 1'
   filters = [
     # Reduce color complexity to that representable by the Sega, 4 bits per
     # pixel.  Doing this before palette generation avoids allocating multiple
@@ -583,11 +583,12 @@ def ppm_to_sega_frame(in_path, out_path, expected_tiles):
 
 
 def rgb_to_sega_color(r, g, b):
-  # 4 bits each for red, green, and blue, packed into a u16.
-  r //= 16
-  g //= 16
-  b //= 16
-  return (b << 8) | (g << 4) | r
+  # We only get 3 bits of accuracy for each for red, green, and blue.
+  r //= 32
+  g //= 32
+  b //= 32
+  # These get put into 4-bit fields in memory, ABGR, in a u16.
+  return (b << 9) | (g << 5) | (r << 1)
 
 
 def pack_tile(palette_indexes):
