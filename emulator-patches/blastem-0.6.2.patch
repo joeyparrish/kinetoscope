@@ -1,4 +1,4 @@
-commit cc06e71f2329b95d2b0655535b77910dfef44a41
+commit bf6f04ad67f7e556fee9bf92d8d9da95139759ee
 Author: Joey Parrish <joey.parrish@gmail.com>
 Date:   Wed Mar 27 07:39:28 2024 -0700
 
@@ -21,7 +21,7 @@ index 0000000..8f39f7f
 +zdis
 +kinetoscope
 diff --git a/Makefile b/Makefile
-index 0dddc9f..77d119e 100644
+index 0dddc9f..970cba3 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -23,11 +23,11 @@ ifeq ($(CPU),i686)
@@ -38,7 +38,21 @@ index 0dddc9f..77d119e 100644
  GLUDIR:=x64
  endif
  GLEW32S_LIB:=$(GLEW_PREFIX)/lib/Release/$(GLUDIR)/glew32s.lib
-@@ -96,10 +96,11 @@ LDFLAGS:=-lm glew/lib/libGLEW.a
+@@ -39,6 +39,13 @@ LDFLAGS+= $(GLEW32S_LIB) -L"$(SDL2_PREFIX)/lib" -lSDL2main -lSDL2 -lopengl32 -lg
+ endif
+ LIBZOBJS=$(BUNDLED_LIBZ)
+ 
++# Static libcurl for kinetoscope emulation
++CFLAGS+= -Icurl/include -DCURL_STATICLIB
++LDFLAGS+= curl/lib/.libs/libcurl.a -lbcrypt
++# Pthread for kinetoscope emulation
++CFLAGS+= -pthread
++LDFLAGS+= -pthread
++
+ else
+ 
+ MEM:=mem.o
+@@ -96,10 +103,11 @@ LDFLAGS:=-lm glew/lib/libGLEW.a
  endif
  
  ifeq ($(OS),Darwin)
@@ -54,83 +68,69 @@ index 0dddc9f..77d119e 100644
  else
  SDL_INCLUDE_PATH:=sdl/include
  LDFLAGS+= -Wl,-rpath='$$ORIGIN/lib' -Llib -lSDL2
-@@ -129,6 +130,35 @@ endif
+@@ -109,6 +117,16 @@ endif
+ endif #Darwin
+ CFLAGS+= -I$(SDL_INCLUDE_PATH)
+ 
++# Static libcurl for kinetoscope emulation
++CFLAGS+= -Icurl/include
++LDFLAGS+= curl/lib/.libs/libcurl.a
++ifeq ($(OS),Darwin)
++LDFLAGS+= -framework SystemConfiguration
++endif #Darwin
++# Pthread for kinetoscope emulation
++CFLAGS+= -pthread
++LDFLAGS+= -pthread
++
+ else
+ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
+ LDFLAGS:=-lm
+@@ -126,6 +144,12 @@ LDFLAGS+= -framework OpenGL -framework AppKit
+ endif
+ endif
+ 
++# System libcurl for Kinetoscope emulation
++LDFLAGS+= $(shell curl-config --libs)
++# Pthread for kinetoscope emulation
++CFLAGS+= -pthread
++LDFLAGS+= -pthread
++
  endif #PORTABLE
  endif #Windows
  
-+
-+# For the kinetscope symlink in this folder
-+CFLAGS+= -I.
-+
-+ifneq ($(PLATFORM),emscripten)
-+# Curl, but only if it's not an emscripten environment
-+ifdef PORTABLE
-+# Static libcurl
-+CFLAGS+= -Icurl/include -DCURL_STATICLIB
-+LDFLAGS+= curl/lib/.libs/libcurl.a
-+else
-+# System libcurl
-+LDFLAGS+= $(shell curl-config --libs)
-+endif
-+endif
-+
-+ifneq ($(OS),Windows)
-+# Pthread is required, except on Windows
-+CFLAGS+= -pthread
-+LDFLAGS+= -pthread
-+endif
-+
-+ifeq ($(OS),Darwin)
-+# Needed for curl on macOS?
-+LDFLAGS+= -framework SystemConfiguration
-+endif #Darwin
-+
-+
-+
- ifndef OPT
- ifdef DEBUG
- OPT:=-g3 -O0
-@@ -221,10 +251,12 @@ endif
+@@ -221,6 +245,7 @@ endif
  
  MAINOBJS=blastem.o system.o genesis.o debug.o gdb_remote.o vdp.o $(RENDEROBJS) io.o romdb.o hash.o menu.o xband.o \
  	realtec.o i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
-+	kinetoscope.o \
++	kinetoscope/emulator-patches/kinetoscope.o \
  	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o zip.o bindings.o jcart.o gen_player.o
  
  LIBOBJS=libblastem.o system.o genesis.o debug.o gdb_remote.o vdp.o io.o romdb.o hash.o xband.o realtec.o \
- 	i2c.o nor.o sega_mapper.o multi_game.o megawifi.o $(NET) serialize.o $(TERMINAL) $(CONFIGOBJS) gst.o \
-+	kinetoscope.o \
- 	$(M68KOBJS) $(TRANSOBJS) $(AUDIOOBJS) saves.o jcart.o rom.db.o gen_player.o $(LIBZOBJS)
- 	
- ifdef NONUKLEAR
-@@ -365,8 +397,11 @@ m68k.c : m68k.cpu cpu_dsl.py
- %.o : %.m
+@@ -277,6 +302,8 @@ ifeq ($(MAKECMDGOALS),libblastem.$(SO))
+ CFLAGS+= -fpic -DIS_LIB
+ endif
+ 
++CFLAGS+= -I. -Ikinetoscope/software/player/inc/
++
+ all : $(ALL)
+ 
+ libblastem.$(SO) : $(LIBOBJS)
+@@ -366,7 +393,7 @@ m68k.c : m68k.cpu cpu_dsl.py
  	$(CC) $(CFLAGS) -c -o $@ $<
  
-+kinetoscope.o : kinetoscope/emulator-patches/kinetoscope.c kinetoscope/emulator-patches/fetch.c
-+	$(CC) $(CFLAGS) -c -o $@ $<
-+
  %.png : %.xcf
 -	xcf2png $< > $@
 +	convert $< $@
  
  %.tiles : %.spec
  	./img2tiles.py -s $< $@
-diff --git a/Makefile.libretro b/Makefile.libretro
-index a8af9bc..f890d01 100644
---- a/Makefile.libretro
-+++ b/Makefile.libretro
-@@ -58,7 +58,7 @@ endif
+@@ -393,3 +420,4 @@ tmss.md : font.tiles
  
- 
- core: $(OBJ)
--	$(MAKE) $(target) OS=$(OS) CC=$(CC) CPU=$(ABI) LIBRETRO=$(LIBRETRO)
-+	$(MAKE) $(target) OS=$(OS) CC=$(CC) CPU=$(ABI) LIBRETRO=$(LIBRETRO) PLATFORM=$(platform)
- 	cp -v $(target) $(libname)
- 
- install: $(libname)
+ clean :
+ 	rm -rf $(ALL) trans ztestrun ztestgen *.o nuklear_ui/*.o zlib/*.o
++	rm -f kinetoscope/emulator-patches/kinetoscope.o
 diff --git a/build_release b/build_release
-index f5faa10..c49e0b9 100755
+index f5faa10..aa30c75 100755
 --- a/build_release
 +++ b/build_release
 @@ -3,28 +3,52 @@
@@ -177,9 +177,9 @@ index f5faa10..c49e0b9 100755
 -echo "Path is: $PATH"
 +
 +if [ $OS = "Win64" ]; then
-+	OS_FLAGS="--host=x86_64-w64-mingw32 --disable-pthreads"
++	HOST_FLAG=--host=x86_64-w64-mingw32
 +else
-+	OS_FLAGS=""
++	HOST_FLAG=""
 +fi
 +
 +cd curl
@@ -187,7 +187,7 @@ index f5faa10..c49e0b9 100755
 +    --enable-static --disable-shared --without-ssl \
 +    --without-libpsl --without-zstd --without-brotli \
 +    --without-libidn2 --without-librtmp \
-+    --without-zlib --without-nghttp2 --disable-ldap $OS_FLAGS
++    --without-zlib --without-nghttp2 --disable-ldap $HOST_FLAG
 +make -C lib
 +cd ..
 +
@@ -280,7 +280,7 @@ index c91273c..f637add 100755
  
  def gchannel(Val):
 diff --git a/romdb.c b/romdb.c
-index 79afa76..b5e7c9a 100644
+index 79afa76..feb6fcb 100644
 --- a/romdb.c
 +++ b/romdb.c
 @@ -14,6 +14,7 @@
@@ -291,7 +291,7 @@ index 79afa76..b5e7c9a 100644
  
  #define DOM_TITLE_START 0x120
  #define DOM_TITLE_END 0x150
-@@ -338,6 +339,45 @@ void add_memmap_header(rom_info *info, uint8_t *rom, uint32_t size, memmap_chunk
+@@ -338,6 +339,47 @@ void add_memmap_header(rom_info *info, uint8_t *rom, uint32_t size, memmap_chunk
  			warning("ROM uses MegaWiFi, but it is disabled\n");
  		}
  		return;
@@ -306,8 +306,8 @@ index 79afa76..b5e7c9a 100644
 +		info->map[0].end   = 0x400000;
 +		info->map[0].mask  = 0x1FFFFF;
 +		info->map[0].flags = MMAP_READ;
-+		// Returns the address of the buffer that emulates the SRAM banks (2MB).
-+		info->map[0].buffer = kinetoscope_init();
++		uint32_t sram_size = info->map[0].end - info->map[0].start;
++		void* sram_buffer = info->map[0].buffer = calloc(sram_size, 1);
 +
 +		// In hardware, this whole range will trigger the /TIME signal.
 +		info->map[1].start = 0xA13000;
@@ -320,11 +320,6 @@ index 79afa76..b5e7c9a 100644
 +		// 0x...40, ... would all map to the same port.
 +		info->map[1].mask  = 0x00001F;
 +
-+		info->map[1].write_16 = kinetoscope_write_16;
-+		info->map[1].write_8 = kinetoscope_write_8;
-+		info->map[1].read_16 = kinetoscope_read_16;
-+		info->map[1].read_8 = kinetoscope_read_8;
-+
 +		info->map[2].start = 0x000000;
 +		info->map[2].end   = 0x200000;
 +		if (rom_end < info->map[2].end) {
@@ -333,6 +328,13 @@ index 79afa76..b5e7c9a 100644
 +		info->map[2].mask  = 0x1FFFFF;
 +		info->map[2].flags = MMAP_READ;
 +		info->map[2].buffer = rom;
++
++		info->map[1].write_16 = kinetoscope_write_16;
++		info->map[1].write_8 = kinetoscope_write_8;
++		info->map[1].read_16 = kinetoscope_read_16;
++		info->map[1].read_8 = kinetoscope_read_8;
++
++		kinetoscope_init(sram_buffer, sram_size);
 +		return;
  	} else if (has_ram_header(rom, size)) {
  		uint32_t ram_start = read_ram_header(info, rom);
