@@ -432,9 +432,9 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
   # 255 => 256 => 8 => 256 => 255
   formula='(32 * floor((val + 1)/32)) - 1'
   filters = [
-    # Reduce color complexity to that representable by the Sega, 4 bits per
+    # Reduce color complexity to that representable by the Sega, 3 bits per
     # pixel.  Doing this before palette generation avoids allocating multiple
-    # palette slots to colors that map to the same 4-bit color later in a
+    # palette slots to colors that map to the same 3-bit color later in a
     # Sega-specific tile format.
     'lut=r={}:g={}:b={}'.format(formula, formula, formula),
     # Compute an optimized 15-color palette (16 color palette, but color 0 is
