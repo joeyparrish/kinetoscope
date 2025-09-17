@@ -20,14 +20,21 @@ import sys
 import urllib.parse
 
 
-def get_video_header(path):
+def parse_video(path):
+  print('Parsing', path)
+
   with open(path, 'rb') as f:
     header = f.read(8192)
   assert len(header) == 8192
 
   # The header parts before and after the relative_url field.
-  first_part = header[0:(38+128)]
+  first_part = header[0:38]
+  title_bytes = header[38:(38+128)]
+  # relative_url goes here
   last_part = header[(38+128+128):]
+
+  # The title field as a string.
+  title = title_bytes.rstrip(b'\x00').decode('utf-8')
 
   # Compute the relative URL.
   relative_url = os.path.relpath(path)
@@ -43,17 +50,22 @@ def get_video_header(path):
   relative_url = (relative_url + bytes(128))[0:127] + b'\0'
   assert len(relative_url) == 128
 
-  return first_part + relative_url + last_part
+  return {
+    'title': title,
+    'catalog_header': first_part + title_bytes + relative_url + last_part,
+  }
 
 
 def main(paths):
   if len(paths) > 127:
     raise RuntimeError('No more than 127 videos can fit in a catalog.')
 
+  metadata = [ parse_video(path) for path in paths ]
+  metadata.sort(key=lambda item: item['title'])
+
   with open('catalog.bin', 'wb') as f:
-    for path in paths:
-      print('Processing', path)
-      f.write(get_video_header(path))
+    for item in metadata:
+      f.write(item['catalog_header'])
 
     # End the catalog with a blank header.
     f.write(bytes(8192))
