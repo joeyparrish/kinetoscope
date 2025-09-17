@@ -3,6 +3,16 @@ name: Update Web Demo
 on:
   workflow_dispatch:
     # Allows for manual triggering
+  push: # Trigger for pushes.
+    branches:
+      - main
+    paths:
+      - emulator-patches/**
+      - software/**
+      - common/**
+      - .github/workflows/build-emulators.yaml
+      - .github/workflows/build-software.yaml
+      - .github/workflows/web-demo.yaml
 
 jobs:
   software:
