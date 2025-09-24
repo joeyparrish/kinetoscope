@@ -1,0 +1,5338 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "bef2da24-dc79-4b87-b5a9-c282c82d32a8")
+	(paper "A4")
+	(title_block
+		(title "Kinetoscope SRAM Bank Internal")
+	)
+	(lib_symbols
+		(symbol "74xx:74HC138"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at -7.62 13.97 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "74HC138"
+				(at 2.54 -11.43 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/cd74hc238.pdf"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "3-to-8 line decoder/multiplexer inverting, DIP-16/SOIC-16/SSOP-16"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "demux"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "DIP*W7.62mm* SOIC*3.9x9.9mm*P1.27mm* SSOP*5.3x6.2mm*P0.65mm*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "74HC138_0_1"
+				(rectangle
+					(start -7.62 12.7)
+					(end 7.62 -10.16)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "74HC138_1_1"
+				(pin input line
+					(at -10.16 10.16 0)
+					(length 2.54)
+					(name "A0"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 7.62 0)
+					(length 2.54)
+					(name "A1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 5.08 0)
+					(length 2.54)
+					(name "A2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -2.54 0)
+					(length 2.54)
+					(name "~{E0}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -5.08 0)
+					(length 2.54)
+					(name "~{E1}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -7.62 0)
+					(length 2.54)
+					(name "E2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 15.24 270)
+					(length 2.54)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "16"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -12.7 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 10.16 180)
+					(length 2.54)
+					(name "~{Y0}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 7.62 180)
+					(length 2.54)
+					(name "~{Y1}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 5.08 180)
+					(length 2.54)
+					(name "~{Y2}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "~{Y3}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 0 180)
+					(length 2.54)
+					(name "~{Y4}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 -2.54 180)
+					(length 2.54)
+					(name "~{Y5}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 -5.08 180)
+					(length 2.54)
+					(name "~{Y6}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 -7.62 180)
+					(length 2.54)
+					(name "~{Y7}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:C"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C"
+				(at 0.635 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.9652 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C_0_1"
+				(polyline
+					(pts
+						(xy -2.032 0.762) (xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Jumper:SolderJumper_2_Bridged"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim yes)
+			(in_bom no)
+			(on_board yes)
+			(property "Reference" "JP"
+				(at 0 2.032 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SolderJumper_2_Bridged"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "solder jumper SPST"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "SolderJumper*Bridged*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SolderJumper_2_Bridged_0_1"
+				(rectangle
+					(start -0.508 0.508)
+					(end 0.508 -0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.254 1.016) (xy -0.254 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 1.016) (xy 0.254 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SolderJumper_2_Bridged_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:+3.3V"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+3.3V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+3.3V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+3.3V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:+5V"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "+5V"
+				(at 0 3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+5V\""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "+5V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+5V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:GND"
+			(power)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+	)
+	(arc
+		(start 121.92 76.2)
+		(mid 121.022 75.828)
+		(end 120.65 74.93)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 13118d83-f8f2-467d-837a-54027520986f)
+	)
+	(arc
+		(start 120.65 77.47)
+		(mid 121.022 76.572)
+		(end 121.92 76.2)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 2b432bce-b738-4ca6-bf8d-0e0861afe294)
+	)
+	(arc
+		(start 78.74 71.12)
+		(mid 79.112 70.222)
+		(end 80.01 69.85)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 3331d314-ea61-4922-b1cf-fef58529fc67)
+	)
+	(arc
+		(start 72.39 68.58)
+		(mid 72.018 69.478)
+		(end 71.12 69.85)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 87994cce-9ef2-45be-a4e4-4313c8cf2b4c)
+	)
+	(arc
+		(start 113.03 36.83)
+		(mid 113.928 37.202)
+		(end 114.3 38.1)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid a915362a-11cf-4731-bfc2-4d4ce7dc9e7e)
+	)
+	(arc
+		(start 66.04 111.76)
+		(mid 65.668 112.658)
+		(end 64.77 113.03)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid ab8651d9-3252-49bb-bfd8-8fc2ebf3d16f)
+	)
+	(arc
+		(start 114.3 35.56)
+		(mid 113.928 36.458)
+		(end 113.03 36.83)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid b2d0816b-77d8-4017-a035-41184bc50ffe)
+	)
+	(arc
+		(start 80.01 69.85)
+		(mid 79.112 69.478)
+		(end 78.74 68.58)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid b8830f47-d73f-4af6-952b-f6948385c05f)
+	)
+	(arc
+		(start 66.04 147.32)
+		(mid 65.668 148.218)
+		(end 64.77 148.59)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid bc2359bb-1964-4795-9084-db17fa13ce1b)
+	)
+	(arc
+		(start 64.77 148.59)
+		(mid 65.668 148.962)
+		(end 66.04 149.86)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid c69b9bde-25a3-4c47-a4ce-ac45d6c99c8f)
+	)
+	(arc
+		(start 64.77 113.03)
+		(mid 65.668 113.402)
+		(end 66.04 114.3)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid cd232818-01f3-47d3-b6f8-c9950dd27f78)
+	)
+	(arc
+		(start 71.12 69.85)
+		(mid 72.018 70.222)
+		(end 72.39 71.12)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid d4301e05-c5c2-4ec4-91ee-4dc12fd36d85)
+	)
+	(text "5V signals"
+		(exclude_from_sim no)
+		(at 147.066 70.612 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "122e63ba-3086-4d3b-a4dc-b6951a89dbc4")
+	)
+	(text "U6+U7+U8"
+		(exclude_from_sim no)
+		(at 71.628 119.634 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "2f317c3b-0b56-41bd-9910-35497b69c0ae")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 34.544 120.65 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "36fd9c08-7e61-428d-a557-ee25da707f2f")
+	)
+	(text "U9+U10+U11"
+		(exclude_from_sim no)
+		(at 71.12 155.448 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "3c330393-2ac5-4270-9004-dfb1fb43af02")
+	)
+	(text "<- 5V, tolerated"
+		(exclude_from_sim no)
+		(at 115.824 108.458 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "3d8a6c7a-bc78-4c65-893c-34855af25c90")
+	)
+	(text "U4+U5"
+		(exclude_from_sim no)
+		(at 129.286 44.45 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "49fafe45-fdda-4116-b10f-e60670a6623b")
+	)
+	(text "<- 5V, tolerated"
+		(exclude_from_sim no)
+		(at 120.904 113.284 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "7b1296e9-8585-473d-af23-5e27c24a4ae5")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 40.132 77.978 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "7cb73b3b-3266-4c74-a8bb-c43442a1fc3f")
+	)
+	(text "U12"
+		(exclude_from_sim no)
+		(at 77.978 86.106 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "8197275e-e759-4984-86e2-efdc50b65967")
+	)
+	(text "shared data bus"
+		(exclude_from_sim no)
+		(at 158.242 63.5 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "84ef9965-0a8c-4569-8f56-b66d2aace440")
+	)
+	(text "3V signal"
+		(exclude_from_sim no)
+		(at 93.472 77.724 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "99bfcc86-c037-4678-af3f-78615b9781b8")
+	)
+	(text "Decoder for SRAM disconnect\nPre-reqs: none\n\nSEGA_CONTROL = !SRAM_DIS  (000 = Y0)\nUC_CONTROL   =  SRAM_DIS  (001 = Y1)"
+		(exclude_from_sim no)
+		(at 198.628 65.532 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b232540c-3612-43ce-aa8d-a1d333c673cb")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 142.24 30.734 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "c70329b3-6d0b-4aa3-98d6-607227855485")
+	)
+	(text "NOTE: A PSRAM's ~{CE} signal may not stay\non at all times. There is a maximum pulse\nwidth of 15us for this chipset, so that\nthe DRAM internal to the PSRAM can go\nthrough a refresh cycle.\n\nTying ~{CE} to ~{WE} (for writes) or\n~{SEGA_CE} (for reads) seems to meet\nall the timing requirements."
+		(exclude_from_sim no)
+		(at 137.922 101.854 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d6e10d65-af35-4d94-beb2-24ceccfb028f")
+	)
+	(text "~{OE} high (off)"
+		(exclude_from_sim no)
+		(at 93.98 146.812 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d748a5c2-ce77-4cb7-be15-89be7350fd69")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 83.566 63.754 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "ddd226ee-5ed3-4d8e-8ab9-7faca0135c87")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 98.552 157.226 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "dddf4592-ff2d-46a7-95cb-7e1204d1b6b3")
+	)
+	(text "U2+U3"
+		(exclude_from_sim no)
+		(at 129.286 83.82 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "e102047e-783e-47a0-8d56-14867f66f689")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 34.036 156.21 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "e2b522c6-8e0b-4209-ad14-2102aa6fd5dd")
+	)
+	(text "Only one of these is active at a time.\nThe address decoder outputs for the\ndisconnect signal outputs are mutually\nexclusive (~{SEGA_CONTROL} and ~{UC_CONTROL})."
+		(exclude_from_sim no)
+		(at 12.7 129.032 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e4f47dc6-b90b-463c-aac6-15f7dd8a9e34")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 99.06 121.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "f140b873-1160-4b36-b450-186bf7addba7")
+	)
+	(text "These bridges can be used to snoop on these\nsignals, or cut with a knife to hijack them."
+		(exclude_from_sim no)
+		(at 147.32 118.11 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "f8dd44b9-c7db-4d08-bdfe-26a046d53ead")
+	)
+	(text "~{WE} high (off)"
+		(exclude_from_sim no)
+		(at 94.234 117.094 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "fb6b1121-414d-4afd-8af7-46abaf666453")
+	)
+	(text "NOTE: Both of these data buffers can be active at once.\n\n~{SRAM_OE} is decoded from Sega address and control signals only.\n~{UC_CONTROL} is from the microcontroller only.\n\nIf this happens, the Sega will end up reading whatever word is\nbeing actively written by the microcontroller.  This would not be\ncatastrophic, and it could only happen if the microcontroller were\nunable to write to SRAM fast enough, and the Sega's read caught up\nto the write position."
+		(exclude_from_sim no)
+		(at 20.828 35.814 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left)
+		)
+		(uuid "fe9a56c2-4f37-4a85-b6b4-9c2b55579679")
+	)
+	(junction
+		(at 115.57 21.59)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "043b598c-1fdf-4d2a-83e6-0d92b7e0e45c")
+	)
+	(junction
+		(at 205.74 105.41)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "421a7631-b8e2-49d7-86e5-692095b34103")
+	)
+	(junction
+		(at 59.69 101.6)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4c228702-3ffd-44da-855f-44f7b86cee68")
+	)
+	(junction
+		(at 59.69 134.62)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "673560a0-0b4e-4afb-9a6e-eb29ef43e8ec")
+	)
+	(junction
+		(at 91.44 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "966b7772-f078-4872-b3a5-d255393d4c4e")
+	)
+	(junction
+		(at 50.8 82.55)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a2c095ef-8cf1-4818-afcb-95068b4be72e")
+	)
+	(junction
+		(at 205.74 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "faa73bde-6612-47dd-b51a-04e97a4ea901")
+	)
+	(no_connect
+		(at 261.62 90.17)
+		(uuid "5830c981-d9f0-4300-9532-eaad19ff73f1")
+	)
+	(no_connect
+		(at 261.62 82.55)
+		(uuid "7e2bf67e-0804-4d4b-9a9e-4fa475df4685")
+	)
+	(no_connect
+		(at 261.62 87.63)
+		(uuid "7ebbd2a4-be26-482c-a050-d15f008a1dfe")
+	)
+	(no_connect
+		(at 261.62 85.09)
+		(uuid "a33ce359-2b51-4b95-a5e7-99fbaba8d3e5")
+	)
+	(no_connect
+		(at 261.62 80.01)
+		(uuid "f7a6760e-9415-4147-90b3-b5daf3378fc8")
+	)
+	(no_connect
+		(at 261.62 92.71)
+		(uuid "faec23ec-01c4-4e58-b111-7003533e4691")
+	)
+	(wire
+		(pts
+			(xy 80.01 111.76) (xy 93.98 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0173b4df-3c6e-4517-9c7d-d4ae43989f1f")
+	)
+	(bus
+		(pts
+			(xy 133.35 27.94) (xy 151.13 27.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "03dfb210-0606-4406-b5a4-34f27e3ed276")
+	)
+	(wire
+		(pts
+			(xy 33.02 85.09) (xy 54.61 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "04713285-79a5-4440-b033-840d2c72d2ae")
+	)
+	(wire
+		(pts
+			(xy 64.77 104.14) (xy 64.77 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e012a3b-c722-4715-a283-0dd08da6e2d2")
+	)
+	(wire
+		(pts
+			(xy 59.69 101.6) (xy 59.69 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f41f050-ba4f-4013-bfa5-46407e15a5c4")
+	)
+	(wire
+		(pts
+			(xy 153.67 125.73) (xy 148.59 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "186722c8-da1a-440e-9378-c1cfe13eb04c")
+	)
+	(bus
+		(pts
+			(xy 80.01 109.22) (xy 93.98 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1d61b25c-a073-4c66-8f7a-63d1dc6d749e")
+	)
+	(polyline
+		(pts
+			(xy 64.77 148.59) (xy 71.12 148.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "23619c17-57b4-4734-8b46-ea2f2ee6cae4")
+	)
+	(wire
+		(pts
+			(xy 261.62 77.47) (xy 266.7 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "277c486a-ec22-4deb-b1da-f3f1126985d8")
+	)
+	(polyline
+		(pts
+			(xy 110.49 76.2) (xy 121.92 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2a902ac6-ffda-48be-a32e-6f3781400b95")
+	)
+	(wire
+		(pts
+			(xy 80.01 116.84) (xy 83.82 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b1da549-e4a8-49d9-a41e-8b96555c9a02")
+	)
+	(polyline
+		(pts
+			(xy 64.77 113.03) (xy 71.12 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b76d713-84ca-43bd-9864-7a21ab1b3388")
+	)
+	(wire
+		(pts
+			(xy 64.77 101.6) (xy 59.69 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2e7b7576-eb72-44f0-90e5-80eefa8ec7d1")
+	)
+	(wire
+		(pts
+			(xy 66.04 139.7) (xy 66.04 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3302eb1a-768c-49c3-849c-c512297188bb")
+	)
+	(wire
+		(pts
+			(xy 148.59 142.24) (xy 153.67 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "379a6fef-68b3-4aa2-97df-acc9606137a5")
+	)
+	(wire
+		(pts
+			(xy 137.16 133.35) (xy 140.97 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "37ae2b1d-cf1b-4937-892a-68d81f39b4b1")
+	)
+	(bus
+		(pts
+			(xy 91.44 27.94) (xy 102.87 27.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "37f3924f-f254-42cd-b7fc-42eee7fb640a")
+	)
+	(wire
+		(pts
+			(xy 148.59 151.13) (xy 153.67 151.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3b239748-1ab3-4d60-be23-ea146bfccd11")
+	)
+	(wire
+		(pts
+			(xy 66.04 134.62) (xy 59.69 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "40ec04f6-c4ec-4707-8bef-5fd9991a26d0")
+	)
+	(wire
+		(pts
+			(xy 119.38 21.59) (xy 119.38 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "59a5e600-bafc-40b4-bcd3-6509e5bdec37")
+	)
+	(wire
+		(pts
+			(xy 236.22 74.93) (xy 241.3 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c61d425-9bb2-40a6-8657-075e22ca8da8")
+	)
+	(wire
+		(pts
+			(xy 261.62 74.93) (xy 266.7 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "60e2c42a-98f4-41b9-bb93-f874bb6c09a1")
+	)
+	(bus
+		(pts
+			(xy 33.02 67.31) (xy 54.61 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "60f60743-304e-4ed5-9b69-d9b9109e5da8")
+	)
+	(wire
+		(pts
+			(xy 115.57 21.59) (xy 119.38 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64584efb-be82-4ef6-b9b0-098a94f6a68b")
+	)
+	(wire
+		(pts
+			(xy 59.69 99.06) (xy 59.69 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65216b59-1ca9-4367-9b9e-e03aa667d948")
+	)
+	(wire
+		(pts
+			(xy 205.74 93.98) (xy 205.74 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6921c775-0f54-45b9-a85d-04b35e5549fe")
+	)
+	(wire
+		(pts
+			(xy 137.16 158.75) (xy 140.97 158.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6acc40eb-a029-41ea-b52f-aa509b8d8a2c")
+	)
+	(wire
+		(pts
+			(xy 80.01 149.86) (xy 93.98 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6bbc8513-c10a-41cd-b2ff-7ffedf0684e7")
+	)
+	(bus
+		(pts
+			(xy 102.87 67.31) (xy 91.44 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d2a3ab5-16c4-4856-99f3-620799895d90")
+	)
+	(wire
+		(pts
+			(xy 35.56 114.3) (xy 45.72 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "704ae0bb-8e7e-463c-900c-6d0df84d48e8")
+	)
+	(wire
+		(pts
+			(xy 137.16 173.99) (xy 140.97 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "708acf7d-876c-4a36-9384-aba9c86f6ae6")
+	)
+	(wire
+		(pts
+			(xy 137.16 142.24) (xy 140.97 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "73f5ac75-5295-4fec-aa8b-9eacb080bfff")
+	)
+	(wire
+		(pts
+			(xy 33.02 74.93) (xy 54.61 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7d3f59b8-4820-4322-839f-c1bfe97ac809")
+	)
+	(wire
+		(pts
+			(xy 35.56 152.4) (xy 45.72 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ed23732-b7e9-4399-a25f-575dbe953c03")
+	)
+	(wire
+		(pts
+			(xy 80.01 147.32) (xy 83.82 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "88aa376e-4d65-4284-88a4-7c08392ab4d4")
+	)
+	(wire
+		(pts
+			(xy 217.17 104.14) (xy 217.17 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8b8ae142-1ba2-4071-aa5a-c1f167f49be2")
+	)
+	(bus
+		(pts
+			(xy 81.28 67.31) (xy 91.44 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c7ce28c-7f66-414e-a49f-b39032b8b86d")
+	)
+	(wire
+		(pts
+			(xy 35.56 116.84) (xy 45.72 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8cdd9d60-1abb-4e2c-80af-825a76f40111")
+	)
+	(wire
+		(pts
+			(xy 99.06 74.93) (xy 102.87 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ce1d12c-1a12-4dd9-8fc2-eed9fcf5725f")
+	)
+	(wire
+		(pts
+			(xy 54.61 80.01) (xy 50.8 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f8cc3d9-fefa-4621-be36-e32a2a0f2768")
+	)
+	(bus
+		(pts
+			(xy 133.35 67.31) (xy 151.13 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "923fa284-22d6-4ca1-a5cd-7aef76fd9969")
+	)
+	(wire
+		(pts
+			(xy 115.57 20.32) (xy 115.57 21.59)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "96195b64-f078-4874-ae95-f30b3e45a3bf")
+	)
+	(wire
+		(pts
+			(xy 217.17 105.41) (xy 205.74 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9701da4f-0d47-4a77-80e7-2b2aa5c74357")
+	)
+	(bus
+		(pts
+			(xy 35.56 109.22) (xy 45.72 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9be356c6-0104-412c-aebb-6455c7d84180")
+	)
+	(polyline
+		(pts
+			(xy 113.03 36.83) (xy 123.19 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a2830c01-e07b-4cb2-8fab-be91c6ed013d")
+	)
+	(bus
+		(pts
+			(xy 35.56 144.78) (xy 45.72 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3de1982-3893-484a-a6db-d54f7b1a54cb")
+	)
+	(wire
+		(pts
+			(xy 205.74 106.68) (xy 205.74 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a47fefc3-4feb-4079-94e0-4a93cd60dfcf")
+	)
+	(wire
+		(pts
+			(xy 205.74 95.25) (xy 217.17 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a765d25f-736f-4aaa-a553-08b7bbad3c38")
+	)
+	(wire
+		(pts
+			(xy 35.56 111.76) (xy 45.72 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a885037f-c76e-48b3-9e88-0b65410726df")
+	)
+	(polyline
+		(pts
+			(xy 71.12 69.85) (xy 80.01 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a8fc000f-5f93-4e7f-9e76-57e16b30c780")
+	)
+	(wire
+		(pts
+			(xy 137.16 125.73) (xy 140.97 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac2188b9-6668-4a20-96a2-4e36abf9696c")
+	)
+	(wire
+		(pts
+			(xy 115.57 58.42) (xy 115.57 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b18c2407-b398-470b-8162-dfe166679246")
+	)
+	(wire
+		(pts
+			(xy 137.16 151.13) (xy 140.97 151.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b23f7eef-8b8f-4e4a-9f7a-1f8deccf78c4")
+	)
+	(wire
+		(pts
+			(xy 50.8 80.01) (xy 50.8 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b25213c9-38e2-4b83-811c-2ede302f4ab1")
+	)
+	(wire
+		(pts
+			(xy 93.98 106.68) (xy 80.01 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3899c79-96c4-4f4d-b182-7e0542d9d6f2")
+	)
+	(wire
+		(pts
+			(xy 217.17 95.25) (xy 217.17 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b7c2f74b-6081-4d07-a9d0-0a650a23d03c")
+	)
+	(wire
+		(pts
+			(xy 137.16 166.37) (xy 140.97 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be0861eb-dcdc-4b8f-bda4-96d2a98b6827")
+	)
+	(bus
+		(pts
+			(xy 80.01 144.78) (xy 93.98 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c02db460-83fd-4a8c-a426-a9435645bd40")
+	)
+	(wire
+		(pts
+			(xy 133.35 33.02) (xy 151.13 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c2ec5949-9890-4399-985b-2261ade3a0dc")
+	)
+	(wire
+		(pts
+			(xy 35.56 149.86) (xy 45.72 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c4f34514-29b0-4c34-a15d-3a6500bce2b6")
+	)
+	(wire
+		(pts
+			(xy 35.56 147.32) (xy 45.72 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c5e4d0ac-abc9-406b-9fb3-6c227b35956d")
+	)
+	(wire
+		(pts
+			(xy 148.59 158.75) (xy 153.67 158.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cb189de0-f6cf-4e78-91f8-0a04ddb9f164")
+	)
+	(wire
+		(pts
+			(xy 148.59 173.99) (xy 153.67 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cd424bf8-ab80-4a4c-82c2-3c89c7280324")
+	)
+	(wire
+		(pts
+			(xy 59.69 134.62) (xy 59.69 139.7)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d10d296d-f06b-458f-967e-477ad9b8cce9")
+	)
+	(wire
+		(pts
+			(xy 80.01 142.24) (xy 93.98 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d98a9312-cfc1-401c-ab38-9038e7421ec9")
+	)
+	(wire
+		(pts
+			(xy 205.74 95.25) (xy 205.74 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dbba8c96-fd23-404c-af89-10ff5184076d")
+	)
+	(wire
+		(pts
+			(xy 80.01 152.4) (xy 93.98 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ddfb7344-f17f-49cb-8eaa-906858d6bec6")
+	)
+	(wire
+		(pts
+			(xy 148.59 166.37) (xy 153.67 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e11dc62c-895e-440c-9c92-6eddcf4746e7")
+	)
+	(wire
+		(pts
+			(xy 205.74 105.41) (xy 205.74 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e18a91d3-b09c-40c8-8637-010e024116a6")
+	)
+	(bus
+		(pts
+			(xy 91.44 67.31) (xy 91.44 27.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4452aed-99a5-4efb-8cf1-a61197c31bc1")
+	)
+	(wire
+		(pts
+			(xy 148.59 133.35) (xy 153.67 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e8735cc9-6fff-4cf1-bb69-67e9c6562d9b")
+	)
+	(wire
+		(pts
+			(xy 115.57 21.59) (xy 115.57 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed64b558-1410-4a22-a520-43b6470f054e")
+	)
+	(wire
+		(pts
+			(xy 119.38 58.42) (xy 119.38 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ee3f129d-adc8-4555-b9c3-58697f84e346")
+	)
+	(wire
+		(pts
+			(xy 33.02 72.39) (xy 54.61 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f588671a-04ed-4c2e-9f51-308ca3f0a6ae")
+	)
+	(wire
+		(pts
+			(xy 50.8 82.55) (xy 54.61 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f95ecdcc-bd3c-45bb-8e29-19399898ee6f")
+	)
+	(wire
+		(pts
+			(xy 80.01 114.3) (xy 93.98 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd86a749-f4cc-4612-81f6-d56579a229f1")
+	)
+	(label "~{SRAM_FINAL_WE}"
+		(at 33.02 85.09 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "12342b7d-235a-4231-9a1c-9fb9d583bd4e")
+	)
+	(label "SRAM_A[0..18]"
+		(at 33.02 67.31 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "18f265cf-7506-46f7-91f7-a8b86b4a6011")
+	)
+	(label "~{UC_CONTROL}"
+		(at 266.7 77.47 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "1fa3a758-bf56-4f7f-b005-f044fc7a48a8")
+	)
+	(label "~{SRAM_BUFFER_OE_INT}"
+		(at 99.06 74.93 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "2268a45e-e401-431e-8a70-d9982b864dda")
+	)
+	(label "~{UC_CONTROL_INT}"
+		(at 151.13 33.02 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "22c2c1c9-e46b-4397-8027-836572a14fe9")
+	)
+	(label "SRAM_A[0..18]"
+		(at 35.56 144.78 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "24efabdb-a641-48e0-9572-d7b86cc4e659")
+	)
+	(label "~{SEGA_CONTROL_INT}"
+		(at 153.67 151.13 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "29e30998-a7c2-41cf-9002-3b46a104ee62")
+	)
+	(label "~{SRAM_WE_INT}"
+		(at 153.67 166.37 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2b76dc3a-db9d-451e-a5cc-808e755ea3a4")
+	)
+	(label "~{SRAM_FINAL_WE}"
+		(at 35.56 116.84 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "37e09e92-daef-40a1-bbca-7c20986f789a")
+	)
+	(label "~{SRAM_CE_READ_INT}"
+		(at 93.98 114.3 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "38bbdd48-9e65-46f9-9427-607729df7f69")
+	)
+	(label "~{SRAM_FINAL_OE}"
+		(at 35.56 147.32 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "3cec4fd8-fccf-47f0-a11d-41f2a63a166f")
+	)
+	(label "~{UC_CONTROL_INT}"
+		(at 153.67 142.24 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3d27adbb-f7c0-470e-9e1b-6347383be030")
+	)
+	(label "~{SRAM_FINAL_OE}"
+		(at 33.02 72.39 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "466467ad-bf6c-4410-a029-f732919a24eb")
+	)
+	(label "~{SRAM_FINAL_OE}"
+		(at 137.16 173.99 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "49e7a8dc-230f-4511-9ea5-709b89503cac")
+	)
+	(label "~{SRAM_FINAL_CE}"
+		(at 35.56 114.3 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "55e604fd-788f-4b58-a4bc-a0397d855ffc")
+	)
+	(label "SRAM_A[0..18]"
+		(at 35.56 109.22 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "59ca97b3-581f-46f9-9c19-1fd11987930a")
+	)
+	(label "SRAM_DATA[0..15]"
+		(at 91.44 52.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "601392e4-c321-4d9f-9481-8b3390d0b4c3")
+	)
+	(label "~{SRAM_OE_INT}"
+		(at 153.67 158.75 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6a07a770-2657-4551-b8c3-5a2b9e207064")
+	)
+	(label "~{SRAM_CE_READ_INT}"
+		(at 153.67 125.73 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c34973f9-e19d-4539-ba21-f48ef23d3efe")
+	)
+	(label "~{SRAM_FINAL_OE}"
+		(at 35.56 111.76 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c519a95a-a0ed-499d-a72e-e2f30b50bd69")
+	)
+	(label "~{SEGA_CONTROL}"
+		(at 137.16 151.13 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c61f789b-3fce-4828-ac88-690c629b720b")
+	)
+	(label "~{SRAM_BUFFER_OE_INT}"
+		(at 153.67 173.99 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c8f05989-a5c2-4c2f-854e-da53c8a30b77")
+	)
+	(label "~{SRAM_OE_INT}"
+		(at 93.98 111.76 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d201d455-3067-4da4-a914-9bff656062b3")
+	)
+	(label "~{UC_CONTROL}"
+		(at 137.16 142.24 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "d45a7268-6b77-4842-b721-dfa3939ddabf")
+	)
+	(label "~{SRAM_CE_WRITE_INT}"
+		(at 93.98 149.86 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "da45bc42-a94f-4e92-a4d3-4da2def782b0")
+	)
+	(label "~{SRAM_FINAL_CE}"
+		(at 33.02 74.93 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "da656442-4ce2-4a52-bf49-e0e9f7680c93")
+	)
+	(label "~{UC_CONTROL_INT}"
+		(at 93.98 142.24 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e4eae7d8-c28e-4497-a3c8-aaaaa2cebe08")
+	)
+	(label "~{SEGA_CONTROL_INT}"
+		(at 93.98 106.68 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e5575c08-344e-47da-bd38-b1bf0fe99141")
+	)
+	(label "~{SRAM_CE_WRITE_INT}"
+		(at 153.67 133.35 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f23d24a1-77ef-4b7e-a87b-f82ee2e9a89f")
+	)
+	(label "~{SEGA_CONTROL}"
+		(at 266.7 74.93 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f4310d72-6b25-458c-b3f1-ff47a20e1bce")
+	)
+	(label "~{SRAM_FINAL_WE}"
+		(at 35.56 152.4 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "f4cbdd94-64bd-4033-86a0-834d5683fd79")
+	)
+	(label "~{SRAM_WE_INT}"
+		(at 93.98 152.4 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f8ac0b1a-efc3-4dc9-b763-03fa2db2c9d5")
+	)
+	(label "~{SRAM_FINAL_CE}"
+		(at 35.56 149.86 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "fb6cac9b-7286-4cf7-8c3f-8ce1aa88105c")
+	)
+	(global_label "SEGA_D[0..15]"
+		(shape passive)
+		(at 151.13 67.31 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "10c8a91d-97a3-4b10-aa95-f3cc2a75263b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 151.13 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "~{SRAM_WE}"
+		(shape passive)
+		(at 137.16 133.35 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "11a5f9ae-8823-4552-aa73-56cc09124bd1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 137.16 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SRAM_W_A[0..18]"
+		(shape passive)
+		(at 93.98 144.78 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "125e5a73-bd53-4417-b6fe-2575d438141a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 93.98 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SRAM_D_IN[0..15]"
+		(shape passive)
+		(at 151.13 27.94 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3e577570-c49d-4992-b2af-7528bac8884d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 151.13 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SEGA_A[1..19]"
+		(shape passive)
+		(at 93.98 109.22 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "90305fbb-a2e9-41e2-b865-53c994711cf0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 93.98 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "~{SRAM_WE}"
+		(shape passive)
+		(at 137.16 166.37 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b539cbd3-7d36-467c-acf6-7a0519eea172")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 137.16 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "~{SEGA_CE}"
+		(shape passive)
+		(at 137.16 125.73 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e62ca05a-c05a-43f9-8fcf-743417848b32")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 137.16 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(hierarchical_label "~{SRAM_OE}"
+		(shape input)
+		(at 137.16 158.75 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "11d40d41-9d83-40dd-a2b4-40227f873333")
+	)
+	(hierarchical_label "SRAM_DIS"
+		(shape input)
+		(at 236.22 74.93 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "16a2f662-fd11-47b2-897a-958fc057259b")
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 144.78 166.37 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "000caa21-1093-4501-afcd-ed30a61bf18c")
+		(property "Reference" "J_~{WE}_1"
+			(at 144.78 162.677 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 144.78 164.5039 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 144.78 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 144.78 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "99796721-07e5-4408-a9d4-ee928a3007d7")
+		)
+		(pin "2"
+			(uuid "870ae1a2-d985-46d6-8bcb-f7a4c29af6b6")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "J_~{WE}_1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 144.78 125.73 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "124c1357-7617-4c9f-9469-c76210b3c704")
+		(property "Reference" "J_~{CE}_1"
+			(at 144.78 122.037 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 144.78 123.8639 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 144.78 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 144.78 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a2c96375-6b1f-413f-8e8f-92792d05bd67")
+		)
+		(pin "2"
+			(uuid "4ac60f52-15a5-4d8c-a894-7b9228065f91")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "J_~{CE}_1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 205.74 100.33 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "300a52f5-fa5f-4621-b3c6-a80a22b3972b")
+		(property "Reference" "C1"
+			(at 208.661 99.1178 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22nF"
+			(at 208.661 101.5421 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 206.7052 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/447/KEM_C1002_X7R_SMD-3316098.pdf"
+			(at 205.74 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 205.74 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "CL10B223KB8NNNC"
+			(at 205.74 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "80-C0603C223K4R"
+			(at 205.74 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "C0603C223K4RACTU"
+			(at 205.74 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8a966114-5554-4af6-ac92-3a1c94ac6427")
+		)
+		(pin "2"
+			(uuid "c46f45e3-ec34-4bf6-aed5-543a39b22526")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "C1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 144.78 151.13 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "40ea0bb6-d338-412b-9975-a440960330a3")
+		(property "Reference" "J_~{SEGA}_1"
+			(at 144.78 147.437 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 144.78 149.2639 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 144.78 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 144.78 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5db0c6a4-5824-475e-b953-383e92ae42c7")
+		)
+		(pin "2"
+			(uuid "c9333b94-97f9-4a77-9275-cadb161ee538")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "J_~{SEGA}_1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 115.57 20.32 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4fe37246-91d1-4c72-81c8-b4466b96a708")
+		(property "Reference" "#PWR013"
+			(at 115.57 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 115.57 16.1869 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 115.57 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 115.57 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 115.57 20.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8e3e93f5-98c3-46ff-9846-ef0e0ecb21e9")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR013")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 119.38 58.42 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5232ae39-5281-4579-a84e-4fdc4599c132")
+		(property "Reference" "#PWR047"
+			(at 119.38 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at 119.38 54.2869 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 119.38 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 119.38 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+5V\""
+			(at 119.38 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "79f496ef-fd32-40eb-822a-6394a682f48a")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR047")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 83.82 116.84 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "57b37cdb-7f20-43e0-96e4-54c5a80b6281")
+		(property "Reference" "#PWR017"
+			(at 80.01 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 87.63 116.8399 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 83.82 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 83.82 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 83.82 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "96a081ba-a4ff-4eff-bf84-87902b2abd2b")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR017")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 205.74 93.98 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5c71b64e-5c45-4136-a666-cb8fcb138df0")
+		(property "Reference" "#PWR03"
+			(at 205.74 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 205.74 89.8469 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 205.74 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 205.74 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 205.74 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7df56cb9-241e-4f6a-ae76-fdf005682cf8")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 241.3 80.01 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "60cf3e02-7814-4545-becf-7d0994757a33")
+		(property "Reference" "#PWR049"
+			(at 234.95 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 238.1251 80.01 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 241.3 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 241.3 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c465bb4f-de64-41cd-bbc8-1325a55c0ed3")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR049")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 241.3 92.71 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "64949760-e264-4e29-8fa4-2b28ff0745cf")
+		(property "Reference" "#PWR055"
+			(at 245.11 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 238.125 92.71 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 241.3 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 241.3 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5facc2a8-e3f7-48d5-8763-05dda347307f")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR055")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 144.78 158.75 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "89f40c3a-96df-4ccf-bd45-17caaa959c15")
+		(property "Reference" "J_~{OE}_1"
+			(at 144.78 155.057 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 144.78 156.8839 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 144.78 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 144.78 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "2a1e6cc7-f147-48e2-acf1-ca8506c0c877")
+		)
+		(pin "2"
+			(uuid "9a78908f-117a-4c72-ba7d-ec444125a92e")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "J_~{OE}_1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 144.78 173.99 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9d746491-55ce-4b00-a88b-810eb56fed03")
+		(property "Reference" "J_~{OE}_2"
+			(at 144.78 170.297 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 144.78 172.1239 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 144.78 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 144.78 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ab5d0d62-2fa1-4054-b37a-0e60f0d67ff6")
+		)
+		(pin "2"
+			(uuid "7c222324-7ed9-42c8-9d47-e991c9130669")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "J_~{OE}_2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 115.57 58.42 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a110b9a1-2290-4102-9696-81cd0ade2d48")
+		(property "Reference" "#PWR014"
+			(at 115.57 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 115.57 54.2869 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 115.57 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 115.57 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 115.57 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "878311c8-cf77-4de0-a2a6-9c66804199b7")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR014")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 50.8 82.55 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a1590023-1b0f-4c65-8a45-02d952a956eb")
+		(property "Reference" "#PWR044"
+			(at 44.45 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 47.6251 82.55 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 50.8 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 50.8 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 50.8 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d4a2ce30-1ee4-481b-b450-d414f0c7e1ff")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR044")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 241.3 90.17 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "adefc73d-f08c-4bba-9af2-76950d60540c")
+		(property "Reference" "#PWR053"
+			(at 234.95 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 238.1251 90.17 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 241.3 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 241.3 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "254fa986-ddcb-49a6-a76b-5f296d79c58d")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR053")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "74xx:74HC138")
+		(at 251.46 85.09 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bb3fb47f-5ecc-4eb1-a16c-24a24dbbdc61")
+		(property "Reference" "U1"
+			(at 253.6541 68.2455 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "74LVC138A"
+			(at 253.6541 70.6698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_SO:TSSOP-16_4.4x5mm_P0.65mm"
+			(at 251.46 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/916/74LVC138A-2937328.pdf"
+			(at 251.46 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "3-to-8 line decoder/multiplexer inverting, DIP-16/SOIC-16/SSOP-16"
+			(at 251.46 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "C6062"
+			(at 251.46 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "771-74LVC138APW-T"
+			(at 251.46 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "74LVC138APW,118"
+			(at 251.46 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "c455864d-09ef-49b3-8c31-8bdbfc5f4893")
+		)
+		(pin "2"
+			(uuid "e5e2bd7e-1e5f-4b3a-96d5-f5a6725a22ab")
+		)
+		(pin "8"
+			(uuid "ffb0c577-a4d3-480a-88c9-233e995338a2")
+		)
+		(pin "9"
+			(uuid "c360e665-0a13-4d1f-ab9a-020fcc25455a")
+		)
+		(pin "5"
+			(uuid "710b6cee-e74e-403a-ab5a-acaa5af7bf09")
+		)
+		(pin "6"
+			(uuid "9fe5b360-f61e-42e7-9fc3-fb7da6b01f08")
+		)
+		(pin "14"
+			(uuid "f994f901-291c-4b19-8735-e5e2811ad409")
+		)
+		(pin "4"
+			(uuid "c3d99977-7b99-47fd-a352-eaa012c526cc")
+		)
+		(pin "16"
+			(uuid "36733805-3d1a-4fc8-a3a7-68d6c4c26c16")
+		)
+		(pin "10"
+			(uuid "48cb4fa1-be0a-4e33-9012-29f3c57f5ac9")
+		)
+		(pin "13"
+			(uuid "ce146dc0-f840-4816-a869-7dd0c39e88bb")
+		)
+		(pin "11"
+			(uuid "f91a8385-3316-40f8-a351-2e355fb745c6")
+		)
+		(pin "12"
+			(uuid "722df2e3-7ccc-4018-ab0c-7f44fdeef185")
+		)
+		(pin "15"
+			(uuid "65102421-c0e0-452a-a6d7-0b3432fe2339")
+		)
+		(pin "1"
+			(uuid "7fead201-c080-4ad2-9c4a-579c70f2c63b")
+		)
+		(pin "7"
+			(uuid "77ccc2cb-3980-4647-8c36-6f12b257cee6")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 144.78 142.24 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c103e2cf-bb11-4a0b-818d-e0a4a57431a1")
+		(property "Reference" "J_~{UC}_1"
+			(at 144.78 138.547 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 144.78 140.3739 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 144.78 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 144.78 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8608e8df-4978-4ae3-b946-2bdd8bb5bc96")
+		)
+		(pin "2"
+			(uuid "892f20ba-f9c9-430f-8341-a84c6abfc2ec")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "J_~{UC}_1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 241.3 87.63 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d6d4d650-c5c6-487d-a453-1ea4c07e1afb")
+		(property "Reference" "#PWR054"
+			(at 234.95 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 238.1251 87.63 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 241.3 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 241.3 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9bb647f5-e340-4844-9ced-c70abc354cd5")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR054")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 205.74 106.68 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d96d64e8-712b-4cc4-ad9d-b68887edd4f4")
+		(property "Reference" "#PWR045"
+			(at 205.74 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 205.74 110.8131 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 205.74 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 205.74 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 205.74 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "00d99969-d1f8-4774-88cd-629cc6124d92")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR045")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 83.82 147.32 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "de37166f-3009-443c-831a-06bb3897a9ad")
+		(property "Reference" "#PWR020"
+			(at 80.01 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 86.995 147.32 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 83.82 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 83.82 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 83.82 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e566b154-114f-4c50-be65-5e759cf1af1b")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR020")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:SolderJumper_2_Bridged")
+		(at 144.78 133.35 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "deecb1a9-852b-456f-952c-146fa8d9b67c")
+		(property "Reference" "J_~{CE}_2"
+			(at 144.78 129.657 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 144.78 131.4839 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm"
+			(at 144.78 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 144.78 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Solder Jumper, 2-pole, closed/bridged"
+			(at 144.78 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "286f267d-4d5c-4f9e-a4f7-ae417afba38f")
+		)
+		(pin "2"
+			(uuid "408fac6b-4d50-429d-a07a-0b788910cc72")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "J_~{CE}_2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 251.46 97.79 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e06cced0-3e14-40ad-aaf4-c5b89b7b4839")
+		(property "Reference" "#PWR052"
+			(at 251.46 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 251.46 101.9231 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 251.46 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 251.46 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 251.46 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a9158ffd-c943-4f11-aa05-191be0854130")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR052")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 59.69 99.06 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e1a47b3d-ba8a-49ed-9abe-4abff7aae898")
+		(property "Reference" "#PWR015"
+			(at 59.69 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 59.69 94.9269 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 59.69 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 59.69 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 59.69 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c3239070-cda8-46a4-987f-1ef5524eb430")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR015")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 241.3 77.47 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e40f9512-a163-4db4-8dda-d6c8e8c55b53")
+		(property "Reference" "#PWR046"
+			(at 234.95 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 238.1251 77.47 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 241.3 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 241.3 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "97fb196d-dc9b-48e4-8547-17fb8e029c3d")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR046")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 217.17 100.33 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e421d579-5531-4748-8471-cb6b1390eb47")
+		(property "Reference" "C24"
+			(at 220.091 99.1178 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22nF"
+			(at 220.091 101.5421 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 218.1352 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/447/KEM_C1002_X7R_SMD-3316098.pdf"
+			(at 217.17 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 217.17 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "CL10B223KB8NNNC"
+			(at 217.17 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "80-C0603C223K4R"
+			(at 217.17 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "C0603C223K4RACTU"
+			(at 217.17 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0e19eda3-b636-44ac-a303-af0d9e3f951a")
+		)
+		(pin "2"
+			(uuid "04c70cde-32c9-4ee7-aecb-0f9fdcf73db0")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "C24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 59.69 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ebdedb1b-f77f-4718-9876-25458195a77c")
+		(property "Reference" "#PWR016"
+			(at 59.69 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 59.69 130.4869 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 59.69 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 59.69 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 59.69 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5ddcc826-8e80-46ed-84c9-d643afce119a")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR016")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 251.46 69.85 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "fb3e2ebe-3c70-4273-b669-8e3c999c3b0f")
+		(property "Reference" "#PWR050"
+			(at 251.46 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 251.46 65.7169 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 251.46 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 251.46 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 251.46 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "85636f43-ad5b-4952-89c7-b608e0574930")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(reference "#PWR050")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet
+		(at 102.87 25.4)
+		(size 30.48 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "0a8080e9-a039-47f4-ae61-d3888692a6ad")
+		(property "Sheetname" "buffer-16-internal1"
+			(at 102.87 24.6884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "buffer-16-internal.kicad_sch"
+			(at 102.87 46.3046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "IN[0..15]" input
+			(at 133.35 27.94 0)
+			(uuid "911bc0a0-9f3c-4c44-b99d-14b763beabd3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{OE}" input
+			(at 133.35 33.02 0)
+			(uuid "aa5f0851-c1fb-4d58-87e0-24d565019969")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT[0..15]" tri_state
+			(at 102.87 27.94 180)
+			(uuid "b0588ea0-7d0d-4b50-befe-671a4e47707e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "IN_V" input
+			(at 119.38 25.4 90)
+			(uuid "f89d877e-c6b7-4c95-983c-5a96ee275f5b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT_V" input
+			(at 115.57 25.4 90)
+			(uuid "f5c0187c-1176-482c-b3b7-3a25a96d086d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 45.72 139.7)
+		(size 34.29 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "22390968-2134-4e99-8de5-d1b5a156bb61")
+		(property "Sheetname" "buffer-22-internal1"
+			(at 45.72 138.9884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "buffer-22-internal.kicad_sch"
+			(at 45.72 156.7946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "IN_A" input
+			(at 80.01 147.32 0)
+			(uuid "fc5275d0-c9a9-4af8-8d24-e4d4f395a82b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "IN_C" input
+			(at 80.01 152.4 0)
+			(uuid "81b43ff3-9056-4d67-972e-bd5c78e29f19")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "IN_B" input
+			(at 80.01 149.86 0)
+			(uuid "9f8a3ff8-de4e-462a-b08c-a603e4c75703")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT_B" input
+			(at 45.72 149.86 180)
+			(uuid "9997bfa6-07cc-4b9f-825f-4b38365b5457")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OUT_A" input
+			(at 45.72 147.32 180)
+			(uuid "8d3de7ce-dedc-4978-9546-dfdc6c2c5c3b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OUT_C" input
+			(at 45.72 152.4 180)
+			(uuid "5d89133e-db2f-473d-a014-12a4e830c6d5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "IN[0..18]" input
+			(at 80.01 144.78 0)
+			(uuid "23a194a5-431f-4f7d-ab91-c3684acb145c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{OE}" input
+			(at 80.01 142.24 0)
+			(uuid "a27901d7-5b89-4189-bc39-23a89f874f9c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT[0..18]" tri_state
+			(at 45.72 144.78 180)
+			(uuid "07c98c22-5e15-4d79-bebe-30a3610bc7d9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "IN_V" input
+			(at 66.04 139.7 90)
+			(uuid "d7c822c4-43de-4416-bfc1-600dd8c42f1d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT_V" input
+			(at 59.69 139.7 90)
+			(uuid "b2063e0d-68ae-4599-8e5a-e3d59e5e7882")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(page "8")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 54.61 64.77)
+		(size 26.67 22.86)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "3d478650-c721-4e59-90b6-3e9b8fac63c3")
+		(property "Sheetname" "sram-internal"
+			(at 54.61 64.0584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sram-internal.kicad_sch"
+			(at 54.61 88.2146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "A[0..18]" input
+			(at 54.61 67.31 180)
+			(uuid "2b5a84e6-5970-46be-85ab-5c482c706e47")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "~{OE}" input
+			(at 54.61 72.39 180)
+			(uuid "273a7836-a231-4f29-95ef-c4785e5ecc7c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "~{CE}" input
+			(at 54.61 74.93 180)
+			(uuid "7861ceb6-9cf8-4165-ba1e-f178d80227da")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "~{LB}" input
+			(at 54.61 80.01 180)
+			(uuid "4cfc2560-5065-4b2f-bfdf-85311ea24046")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "~{UB}" input
+			(at 54.61 82.55 180)
+			(uuid "99f20d61-2b37-4c67-a3c7-c52003ce7048")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "~{WE}" input
+			(at 54.61 85.09 180)
+			(uuid "9a94b385-d71a-41da-bbb1-f643f8b3084f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "D[0..15]" bidirectional
+			(at 81.28 67.31 0)
+			(uuid "c038ba8b-6180-4054-8fe9-44d4548b668f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(page "9")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 45.72 104.14)
+		(size 34.29 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "4b99e837-8b17-4c9a-ae0c-b0189d440061")
+		(property "Sheetname" "buffer-22-internal"
+			(at 45.72 103.4284 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "buffer-22-internal.kicad_sch"
+			(at 45.72 121.2346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "IN_A" input
+			(at 80.01 111.76 0)
+			(uuid "65a687ce-93eb-4d86-9c20-abfd1cd2c7c1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "IN_C" input
+			(at 80.01 116.84 0)
+			(uuid "51cde02f-18f7-4c9c-ae3f-ed0e795eb0de")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "IN_B" input
+			(at 80.01 114.3 0)
+			(uuid "81347f38-00fd-4ecf-a3a1-0131c5363ed7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT_B" input
+			(at 45.72 114.3 180)
+			(uuid "0bf6cb5f-f9a4-4959-a92f-a3b0b744a504")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OUT_A" input
+			(at 45.72 111.76 180)
+			(uuid "c736c448-e3b7-41e5-845d-b2747e988f80")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OUT_C" input
+			(at 45.72 116.84 180)
+			(uuid "f7d9d18a-9c62-47e2-987f-d96734eededd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "IN[0..18]" input
+			(at 80.01 109.22 0)
+			(uuid "8e16fe86-2923-4209-a46a-70db0f805744")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{OE}" input
+			(at 80.01 106.68 0)
+			(uuid "61da8872-ac73-43ed-987a-636ed6b0068c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT[0..18]" tri_state
+			(at 45.72 109.22 180)
+			(uuid "e3856ba0-ed44-4f48-ac0d-a06d77b40618")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "IN_V" input
+			(at 64.77 104.14 90)
+			(uuid "205146be-b379-4b2a-b6bb-e0e24ed072c7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT_V" input
+			(at 59.69 104.14 90)
+			(uuid "330676a6-39a7-4a02-b3f7-8836cef0478d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 102.87 64.77)
+		(size 30.48 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "8fba2bc8-5b90-4ec8-a637-aa04f63ad055")
+		(property "Sheetname" "buffer-16-internal"
+			(at 102.87 64.0584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "buffer-16-internal.kicad_sch"
+			(at 102.87 85.6746 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "IN[0..15]" input
+			(at 102.87 67.31 180)
+			(uuid "801d12ea-3463-4d84-8dae-d61db40a3748")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "~{OE}" input
+			(at 102.87 74.93 180)
+			(uuid "b7e37aa6-78b2-4945-88c4-9872d3582145")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OUT[0..15]" tri_state
+			(at 133.35 67.31 0)
+			(uuid "1bb0c467-103a-4e4b-815b-f9f6b37df7fb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "IN_V" input
+			(at 115.57 64.77 90)
+			(uuid "58158b35-85c8-4fde-ac79-6a5a8f65c1f6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "OUT_V" input
+			(at 119.38 64.77 90)
+			(uuid "f1924779-820c-428b-baaa-e43655638777")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/de6964c0-b8e7-4813-9bb5-2e4faf4431cb"
+					(page "5")
+				)
+			)
+		)
+	)
+)

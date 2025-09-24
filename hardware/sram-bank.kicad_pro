@@ -674,28 +674,36 @@
       "Root"
     ],
     [
-      "96cb94ae-287c-4ad3-afb4-5a50560014d1",
+      "8053bf40-a472-4b77-b25d-f8e0129ff590",
+      "kinetoscope-header-internal"
+    ],
+    [
+      "11da9ba7-2af4-42dd-9fca-690f22f9fed8",
+      "sram-decoder-internal"
+    ],
+    [
+      "de6964c0-b8e7-4813-9bb5-2e4faf4431cb",
+      "sram-bank-internal"
+    ],
+    [
+      "8fba2bc8-5b90-4ec8-a637-aa04f63ad055",
       "buffer-16-internal"
     ],
     [
-      "7fd3a89c-21a0-42ad-aeef-3acbc5a82fbe",
+      "0a8080e9-a039-47f4-ae61-d3888692a6ad",
       "buffer-16-internal1"
     ],
     [
-      "bc339041-f96e-4f3a-ab6d-4320e48b2499",
+      "4b99e837-8b17-4c9a-ae0c-b0189d440061",
       "buffer-22-internal"
     ],
     [
-      "0a9a7de8-3fba-4801-a42b-51b6ed2978d3",
+      "22390968-2134-4e99-8de5-d1b5a156bb61",
       "buffer-22-internal1"
     ],
     [
-      "498fb6bd-8d43-4ac2-b67e-254cc3671223",
+      "3d478650-c721-4e59-90b6-3e9b8fac63c3",
       "sram-internal"
-    ],
-    [
-      "8053bf40-a472-4b77-b25d-f8e0129ff590",
-      "kinetoscope-header-internal"
     ]
   ],
   "text_variables": {}
