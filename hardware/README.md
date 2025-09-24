@@ -18,11 +18,11 @@ The first working prototype looked like this:
 
 ## Prerequisites
 
-The hardware design was done in KiCad 8, and routing was done in FreeRouting.
-To install KiCad 8 and FreeRouting on Ubuntu, run:
+The hardware design was done in KiCad 9, and routing was done in FreeRouting.
+To install KiCad 9 and FreeRouting on Ubuntu, run:
 
 ```sh
-sudo add-apt-repository --yes ppa:kicad/kicad-8.0-releases
+sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
 sudo apt update
 sudo apt install --install-recommends kicad default-jre wget unzip
 wget https://github.com/freerouting/freerouting/releases/download/v1.9.0/freerouting-1.9.0-linux-x64.zip
@@ -183,10 +183,10 @@ To reroute a PCB after modifying the schematic:
   6. Delete (Delete key)
   7. Update PCB from schematic (F8)
   8. Click "Update PCB", then "Close"
-  8. Save PCB (CTRL+S)
-  9. Select "File", "Export >", "Specctra DSN..."
-  10. Click "Save" (and "Replace" if prompted)
-  11. Run `route-pcb.sh` with the name of the board.  For example:
+  9. Save PCB (CTRL+S)
+  10. Select "File", "Export >", "Specctra DSN..."
+  11. Click "Save" (and "Replace" if prompted)
+  12. Run `route-pcb.sh` with the name of the board.  For example:
 
 ```sh
 ./route-pcb.sh sram-bank

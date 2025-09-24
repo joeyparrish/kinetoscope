@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "620c762c-1ae9-4ea9-ab1a-d023a8da85ac")
 	(paper "A4")
 	(title_block
@@ -107,132 +107,6 @@
 						)
 					)
 				)
-				(pin output line
-					(at 10.16 -2.54 180)
-					(length 2.54)
-					(name "~{Y5}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "10"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 0 180)
-					(length 2.54)
-					(name "~{Y4}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "11"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 2.54 180)
-					(length 2.54)
-					(name "~{Y3}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "12"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 5.08 180)
-					(length 2.54)
-					(name "~{Y2}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "13"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 7.62 180)
-					(length 2.54)
-					(name "~{Y1}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "14"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 10.16 180)
-					(length 2.54)
-					(name "~{Y0}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "15"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 15.24 270)
-					(length 2.54)
-					(name "VCC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "16"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin input line
 					(at -10.16 7.62 0)
 					(length 2.54)
@@ -323,17 +197,17 @@
 						)
 					)
 				)
-				(pin output line
-					(at 10.16 -7.62 180)
+				(pin power_in line
+					(at 0 15.24 270)
 					(length 2.54)
-					(name "~{Y7}"
+					(name "VCC"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "7"
+					(number "16"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -360,6 +234,114 @@
 					)
 				)
 				(pin output line
+					(at 10.16 10.16 180)
+					(length 2.54)
+					(name "~{Y0}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 7.62 180)
+					(length 2.54)
+					(name "~{Y1}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 5.08 180)
+					(length 2.54)
+					(name "~{Y2}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "~{Y3}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 0 180)
+					(length 2.54)
+					(name "~{Y4}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 -2.54 180)
+					(length 2.54)
+					(name "~{Y5}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
 					(at 10.16 -5.08 180)
 					(length 2.54)
 					(name "~{Y6}"
@@ -377,10 +359,31 @@
 						)
 					)
 				)
+				(pin output line
+					(at 10.16 -7.62 180)
+					(length 2.54)
+					(name "~{Y7}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0.254)
 			)
@@ -453,7 +456,7 @@
 			(symbol "C_0_1"
 				(polyline
 					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
+						(xy -2.032 0.762) (xy 2.032 0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -465,7 +468,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -514,10 +517,13 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Jumper:Jumper_3_Open"
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim yes)
 			(in_bom no)
 			(on_board yes)
@@ -619,9 +625,9 @@
 			)
 			(symbol "Jumper_3_Open_0_1"
 				(arc
-					(start -0.254 1.016)
+					(start -3.048 1.016)
 					(mid -1.651 1.4992)
-					(end -3.048 1.016)
+					(end -0.254 1.016)
 					(stroke
 						(width 0)
 						(type default)
@@ -643,9 +649,9 @@
 					)
 				)
 				(arc
-					(start 3.048 1.016)
+					(start 0.254 1.016)
 					(mid 1.651 1.4992)
-					(end 0.254 1.016)
+					(end 3.048 1.016)
 					(stroke
 						(width 0)
 						(type default)
@@ -711,11 +717,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Jumper:SolderJumper_2_Bridged"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim yes)
 			(in_bom no)
 			(on_board yes)
@@ -792,30 +803,6 @@
 						(type outline)
 					)
 				)
-				(arc
-					(start -0.254 1.016)
-					(mid -1.2656 0)
-					(end -0.254 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -0.254 1.016)
-					(mid -1.2656 0)
-					(end -0.254 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
 				(polyline
 					(pts
 						(xy -0.254 1.016) (xy -0.254 -1.016)
@@ -828,6 +815,54 @@
 						(type none)
 					)
 				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
 				(polyline
 					(pts
 						(xy 0.254 1.016) (xy 0.254 -1.016)
@@ -838,30 +873,6 @@
 					)
 					(fill
 						(type none)
-					)
-				)
-				(arc
-					(start 0.254 -1.016)
-					(mid 1.2656 0)
-					(end 0.254 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 0.254 -1.016)
-					(mid 1.2656 0)
-					(end 0.254 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
 					)
 				)
 			)
@@ -903,12 +914,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:+3.3V"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -980,7 +996,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -992,7 +1008,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -1023,12 +1039,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:+5V"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1100,7 +1121,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -1112,7 +1133,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -1143,12 +1164,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1239,7 +1265,473 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
+	)
+	(arc
+		(start 113.03 34.29)
+		(mid 113.928 34.662)
+		(end 114.3 35.56)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 0ef47509-5879-4ea3-9950-6c9575bcaa79)
+	)
+	(arc
+		(start 80.01 67.31)
+		(mid 79.112 66.938)
+		(end 78.74 66.04)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 1f817f1f-a621-4c38-9f09-0252da0b444b)
+	)
+	(arc
+		(start 120.65 74.93)
+		(mid 121.022 74.032)
+		(end 121.92 73.66)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 266c5a12-c5d3-430d-a29e-0282434d397d)
+	)
+	(arc
+		(start 71.12 67.31)
+		(mid 72.018 67.682)
+		(end 72.39 68.58)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 32782081-04eb-4781-a97b-618de1910678)
+	)
+	(arc
+		(start 64.77 146.05)
+		(mid 65.668 146.422)
+		(end 66.04 147.32)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 40372731-4674-4407-a5fb-cf8979bdad97)
+	)
+	(arc
+		(start 72.39 66.04)
+		(mid 72.018 66.938)
+		(end 71.12 67.31)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 427889ee-460e-4bf6-9d79-398f37618dec)
+	)
+	(arc
+		(start 121.92 73.66)
+		(mid 121.022 73.288)
+		(end 120.65 72.39)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 46bb9952-91c2-4987-a3e9-7e3e9baf9b56)
+	)
+	(arc
+		(start 114.3 33.02)
+		(mid 113.928 33.918)
+		(end 113.03 34.29)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 51042487-f13a-474b-b682-7d237d36bd49)
+	)
+	(arc
+		(start 64.77 110.49)
+		(mid 65.668 110.862)
+		(end 66.04 111.76)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 6e53c8a9-8264-489a-b7bc-b069baa31d97)
+	)
+	(arc
+		(start 78.74 68.58)
+		(mid 79.112 67.682)
+		(end 80.01 67.31)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 8e7240d2-590a-46fd-9491-47e7be389bef)
+	)
+	(arc
+		(start 66.04 144.78)
+		(mid 65.668 145.678)
+		(end 64.77 146.05)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 9548a896-231c-4c22-8606-2717a985e9a2)
+	)
+	(arc
+		(start 66.04 109.22)
+		(mid 65.668 110.118)
+		(end 64.77 110.49)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid a4cc776a-d6de-4696-8374-c34f37daf284)
+	)
+	(text "3V signal"
+		(exclude_from_sim no)
+		(at 93.472 75.184 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "169b2f38-db61-4d31-9475-bcfb048a1d26")
+	)
+	(text "5V signals"
+		(exclude_from_sim no)
+		(at 187.198 119.126 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "1983307b-768f-484a-a3a9-4239d36b58d6")
+	)
+	(text "~{OE} high (off)"
+		(exclude_from_sim no)
+		(at 93.98 144.272 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1ad68464-c13a-4f31-a463-2a50e5cea37d")
+	)
+	(text "NOTE: A PSRAM's ~{CE} signal may not stay\non at all times. There is a maximum pulse\nwidth of 15us for this chipset, so that\nthe DRAM internal to the PSRAM can go\nthrough a refresh cycle.\n\nTying ~{CE} to ~{WE} (for writes) or\n~{SEGA_CE} (for reads) seems to meet\nall the timing requirements."
+		(exclude_from_sim no)
+		(at 137.922 99.314 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1bdea03b-a131-4502-9ca6-daebb0187b45")
+	)
+	(text "These two jumpers need to be soldered the same way.\ne.g.:\n\nSRAM_DIS = SRAM_DIS_0 and ~{SRAM_CE} = ~{SRAM_CE_0}\n\nor\n\nSRAM_DIS = SRAM_DIS_1 and ~{SRAM_CE} = ~{SRAM_CE_1}\n\nThis determines whether the board responds as\nbank 0 (2MB - 3MB range) or bank 1 (3MB - 4MB range)."
+		(exclude_from_sim no)
+		(at 17.78 183.896 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1f7eb490-825f-4b7a-b666-221f714b68be")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 278.13 117.856 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "2d8acf62-9cd3-498b-9c96-617caff7233f")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 142.24 28.194 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "30b69b4a-d30b-4e42-8e0a-241fd6b58e41")
+	)
+	(text "Only one of these is active at a time.\nThe address decoder outputs for the\ndisconnect signal outputs are mutually\nexclusive (~{SEGA_CONTROL} and ~{UC_CONTROL})."
+		(exclude_from_sim no)
+		(at 12.7 126.492 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3a8bd906-4660-4ed6-a141-8952eb6b291b")
+	)
+	(text "~{WE} high (off)"
+		(exclude_from_sim no)
+		(at 94.234 114.554 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3b87d4ea-3c61-4128-860f-593418a53872")
+	)
+	(text "U4+U5"
+		(exclude_from_sim no)
+		(at 129.286 41.91 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "3ff2b821-3e74-4b49-a7e4-d05f3d71ad4b")
+	)
+	(text "U6+U7+U8"
+		(exclude_from_sim no)
+		(at 71.628 117.094 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "40bf7f0b-ca58-4d08-af17-012d356d7418")
+	)
+	(text "5V signals"
+		(exclude_from_sim no)
+		(at 147.066 68.072 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "482416cd-d192-4d28-9525-552b1aea513e")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 83.566 61.214 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "4c9a2324-8c71-4e48-a05a-7df0ca54cae9")
+	)
+	(text "shared data bus"
+		(exclude_from_sim no)
+		(at 158.242 60.96 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "557d55ac-74c8-4005-a688-1773996bbcd8")
+	)
+	(text "These bridges can be used to snoop on these\nsignals, or cut with a knife to hijack them."
+		(exclude_from_sim no)
+		(at 147.32 115.57 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "5fa00dc9-c176-4c0f-b63a-2ab51ee3ef3f")
+	)
+	(text "Decoder for SRAM disconnect\nPre-reqs: none\n\nSEGA_CONTROL = !SRAM_DIS  (000 = Y0)\nUC_CONTROL   =  SRAM_DIS  (001 = Y1)"
+		(exclude_from_sim no)
+		(at 198.628 62.992 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "609f8cea-d496-401f-b2a1-44f20693a260")
+	)
+	(text "U12"
+		(exclude_from_sim no)
+		(at 77.978 83.566 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "664a6827-2c4c-47cc-8165-a10fa84943ff")
+	)
+	(text "U9+U10+U11"
+		(exclude_from_sim no)
+		(at 71.12 152.908 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "6d41a0a2-8ee9-4539-86c9-3e8024af894b")
+	)
+	(text "Decoder for SRAM output-enable\nPre-reqs: A21 & AS & CE (2MB-4MB address range)\n\nSRAM_OE0 = OE & !A20  (2MB-3MB range)  (000 = Y0)\nSRAM_OE1 = OE &  A20  (3MB-4MB range)  (001 = Y1)"
+		(exclude_from_sim no)
+		(at 188.214 20.828 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6e82c0bb-3485-49f9-aba2-e740db77c424")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 34.544 118.11 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "74a8aa10-bd0e-4a98-b068-028e100141a4")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 34.036 153.67 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "9540389d-be25-4397-b726-0da4db4b92b8")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 101.346 184.912 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "975d005c-7d6e-4532-9397-ca7b6919c4ee")
+	)
+	(text "<- 5V, tolerated"
+		(exclude_from_sim no)
+		(at 120.904 110.744 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "9d2cd944-f6d8-4a16-956d-792e8f42675b")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 40.132 75.438 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "a293d956-d82d-4f68-8925-862be48909a1")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 98.552 154.686 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "a29b2e9d-d176-4ae4-98a2-c812bfc8b7de")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 99.06 119.38 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "b6a2597a-6e01-461c-9416-2843147fb55f")
+	)
+	(text "U2+U3"
+		(exclude_from_sim no)
+		(at 129.286 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "c3026e94-694a-4ca6-af55-d93d47419c2e")
+	)
+	(text "NOTE: Both of these data buffers can be active at once.\n\n~{SRAM_OE} is decoded from Sega address and control signals only.\n~{UC_CONTROL} is from the microcontroller only.\n\nIf this happens, the Sega will end up reading whatever word is\nbeing actively written by the microcontroller.  This would not be\ncatastrophic, and it could only happen if the microcontroller were\nunable to write to SRAM fast enough, and the Sega's read caught up\nto the write position."
+		(exclude_from_sim no)
+		(at 20.828 33.274 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left)
+		)
+		(uuid "c89b8e09-0167-4340-bc97-ab08c55ae2ec")
+	)
+	(text "<- 5V, tolerated"
+		(exclude_from_sim no)
+		(at 115.824 105.918 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "d0e268cc-e2b5-4512-8f1f-1dfde36d354b")
+	)
+	(text "3V signals"
+		(exclude_from_sim no)
+		(at 137.922 184.658 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "fc2b6293-fc2a-493d-b304-21a44f1b97b4")
 	)
 	(junction
 		(at 59.69 99.06)
@@ -2329,474 +2821,8 @@
 		)
 		(uuid "fb43f2a5-07b8-4232-94c2-58e2704cbaf4")
 	)
-	(arc
-		(start 113.03 34.29)
-		(mid 113.928 34.662)
-		(end 114.3 35.56)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 0ef47509-5879-4ea3-9950-6c9575bcaa79)
-	)
-	(arc
-		(start 80.01 67.31)
-		(mid 79.112 66.938)
-		(end 78.74 66.04)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 1f817f1f-a621-4c38-9f09-0252da0b444b)
-	)
-	(arc
-		(start 120.65 74.93)
-		(mid 121.022 74.032)
-		(end 121.92 73.66)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 266c5a12-c5d3-430d-a29e-0282434d397d)
-	)
-	(arc
-		(start 71.12 67.31)
-		(mid 72.018 67.682)
-		(end 72.39 68.58)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 32782081-04eb-4781-a97b-618de1910678)
-	)
-	(arc
-		(start 64.77 146.05)
-		(mid 65.668 146.422)
-		(end 66.04 147.32)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 40372731-4674-4407-a5fb-cf8979bdad97)
-	)
-	(arc
-		(start 72.39 66.04)
-		(mid 72.018 66.938)
-		(end 71.12 67.31)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 427889ee-460e-4bf6-9d79-398f37618dec)
-	)
-	(arc
-		(start 121.92 73.66)
-		(mid 121.022 73.288)
-		(end 120.65 72.39)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 46bb9952-91c2-4987-a3e9-7e3e9baf9b56)
-	)
-	(arc
-		(start 114.3 33.02)
-		(mid 113.928 33.918)
-		(end 113.03 34.29)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 51042487-f13a-474b-b682-7d237d36bd49)
-	)
-	(arc
-		(start 64.77 110.49)
-		(mid 65.668 110.862)
-		(end 66.04 111.76)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 6e53c8a9-8264-489a-b7bc-b069baa31d97)
-	)
-	(arc
-		(start 78.74 68.58)
-		(mid 79.112 67.682)
-		(end 80.01 67.31)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 8e7240d2-590a-46fd-9491-47e7be389bef)
-	)
-	(arc
-		(start 66.04 144.78)
-		(mid 65.668 145.678)
-		(end 64.77 146.05)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid 9548a896-231c-4c22-8606-2717a985e9a2)
-	)
-	(arc
-		(start 66.04 109.22)
-		(mid 65.668 110.118)
-		(end 64.77 110.49)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(fill
-			(type none)
-		)
-		(uuid a4cc776a-d6de-4696-8374-c34f37daf284)
-	)
-	(text "3V signal"
-		(exclude_from_sim no)
-		(at 93.472 75.184 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "169b2f38-db61-4d31-9475-bcfb048a1d26")
-	)
-	(text "5V signals"
-		(exclude_from_sim no)
-		(at 187.198 119.126 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "1983307b-768f-484a-a3a9-4239d36b58d6")
-	)
-	(text "~{OE} high (off)"
-		(exclude_from_sim no)
-		(at 93.98 144.272 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "1ad68464-c13a-4f31-a463-2a50e5cea37d")
-	)
-	(text "NOTE: A PSRAM's ~{CE} signal may not stay\non at all times. There is a maximum pulse\nwidth of 15us for this chipset, so that\nthe DRAM internal to the PSRAM can go\nthrough a refresh cycle.\n\nTying ~{CE} to ~{WE} (for writes) or\n~{SEGA_CE} (for reads) seems to meet\nall the timing requirements."
-		(exclude_from_sim no)
-		(at 137.922 99.314 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "1bdea03b-a131-4502-9ca6-daebb0187b45")
-	)
-	(text "These two jumpers need to be soldered the same way.\ne.g.:\n\nSRAM_DIS = SRAM_DIS_0 and ~{SRAM_CE} = ~{SRAM_CE_0}\n\nor\n\nSRAM_DIS = SRAM_DIS_1 and ~{SRAM_CE} = ~{SRAM_CE_1}\n\nThis determines whether the board responds as\nbank 0 (2MB - 3MB range) or bank 1 (3MB - 4MB range)."
-		(exclude_from_sim no)
-		(at 17.78 183.896 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "1f7eb490-825f-4b7a-b666-221f714b68be")
-	)
-	(text "3V signals"
-		(exclude_from_sim no)
-		(at 278.13 117.856 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "2d8acf62-9cd3-498b-9c96-617caff7233f")
-	)
-	(text "3V signals"
-		(exclude_from_sim no)
-		(at 142.24 28.194 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "30b69b4a-d30b-4e42-8e0a-241fd6b58e41")
-	)
-	(text "Only one of these is active at a time.\nThe address decoder outputs for the\ndisconnect signal outputs are mutually\nexclusive (~{SEGA_CONTROL} and ~{UC_CONTROL})."
-		(exclude_from_sim no)
-		(at 12.7 126.492 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "3a8bd906-4660-4ed6-a141-8952eb6b291b")
-	)
-	(text "~{WE} high (off)"
-		(exclude_from_sim no)
-		(at 94.234 114.554 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "3b87d4ea-3c61-4128-860f-593418a53872")
-	)
-	(text "U4+U5"
-		(exclude_from_sim no)
-		(at 129.286 41.91 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "3ff2b821-3e74-4b49-a7e4-d05f3d71ad4b")
-	)
-	(text "U6+U7+U8"
-		(exclude_from_sim no)
-		(at 71.628 117.094 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "40bf7f0b-ca58-4d08-af17-012d356d7418")
-	)
-	(text "5V signals"
-		(exclude_from_sim no)
-		(at 147.066 68.072 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "482416cd-d192-4d28-9525-552b1aea513e")
-	)
-	(text "3V signals"
-		(exclude_from_sim no)
-		(at 83.566 61.214 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "4c9a2324-8c71-4e48-a05a-7df0ca54cae9")
-	)
-	(text "shared data bus"
-		(exclude_from_sim no)
-		(at 158.242 60.96 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "557d55ac-74c8-4005-a688-1773996bbcd8")
-	)
-	(text "These bridges can be used to snoop on these\nsignals, or cut with a knife to hijack them."
-		(exclude_from_sim no)
-		(at 147.32 115.57 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "5fa00dc9-c176-4c0f-b63a-2ab51ee3ef3f")
-	)
-	(text "Decoder for SRAM disconnect\nPre-reqs: none\n\nSEGA_CONTROL = !SRAM_DIS  (000 = Y0)\nUC_CONTROL   =  SRAM_DIS  (001 = Y1)"
-		(exclude_from_sim no)
-		(at 198.628 62.992 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "609f8cea-d496-401f-b2a1-44f20693a260")
-	)
-	(text "U12"
-		(exclude_from_sim no)
-		(at 77.978 83.566 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "664a6827-2c4c-47cc-8165-a10fa84943ff")
-	)
-	(text "U9+U10+U11"
-		(exclude_from_sim no)
-		(at 71.12 152.908 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "6d41a0a2-8ee9-4539-86c9-3e8024af894b")
-	)
-	(text "Decoder for SRAM output-enable\nPre-reqs: A21 & AS & CE (2MB-4MB address range)\n\nSRAM_OE0 = OE & !A20  (2MB-3MB range)  (000 = Y0)\nSRAM_OE1 = OE &  A20  (3MB-4MB range)  (001 = Y1)"
-		(exclude_from_sim no)
-		(at 188.214 20.828 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "6e82c0bb-3485-49f9-aba2-e740db77c424")
-	)
-	(text "3V signals"
-		(exclude_from_sim no)
-		(at 34.544 118.11 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "74a8aa10-bd0e-4a98-b068-028e100141a4")
-	)
-	(text "3V signals"
-		(exclude_from_sim no)
-		(at 34.036 153.67 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "9540389d-be25-4397-b726-0da4db4b92b8")
-	)
-	(text "3V signals"
-		(exclude_from_sim no)
-		(at 101.346 184.912 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "975d005c-7d6e-4532-9397-ca7b6919c4ee")
-	)
-	(text "<- 5V, tolerated"
-		(exclude_from_sim no)
-		(at 120.904 110.744 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "9d2cd944-f6d8-4a16-956d-792e8f42675b")
-	)
-	(text "3V signals"
-		(exclude_from_sim no)
-		(at 40.132 75.438 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "a293d956-d82d-4f68-8925-862be48909a1")
-	)
-	(text "3V signals"
-		(exclude_from_sim no)
-		(at 98.552 154.686 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "a29b2e9d-d176-4ae4-98a2-c812bfc8b7de")
-	)
-	(text "3V signals"
-		(exclude_from_sim no)
-		(at 99.06 119.38 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "b6a2597a-6e01-461c-9416-2843147fb55f")
-	)
-	(text "U2+U3"
-		(exclude_from_sim no)
-		(at 129.286 81.28 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "c3026e94-694a-4ca6-af55-d93d47419c2e")
-	)
-	(text "NOTE: Both of these data buffers can be active at once.\n\n~{SRAM_OE} is decoded from Sega address and control signals only.\n~{UC_CONTROL} is from the microcontroller only.\n\nIf this happens, the Sega will end up reading whatever word is\nbeing actively written by the microcontroller.  This would not be\ncatastrophic, and it could only happen if the microcontroller were\nunable to write to SRAM fast enough, and the Sega's read caught up\nto the write position."
-		(exclude_from_sim no)
-		(at 20.828 33.274 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(thickness 0.1588)
-			)
-			(justify left)
-		)
-		(uuid "c89b8e09-0167-4340-bc97-ab08c55ae2ec")
-	)
-	(text "<- 5V, tolerated"
-		(exclude_from_sim no)
-		(at 115.824 105.918 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "d0e268cc-e2b5-4512-8f1f-1dfde36d354b")
-	)
-	(text "3V signals"
-		(exclude_from_sim no)
-		(at 137.922 184.658 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "fc2b6293-fc2a-493d-b304-21a44f1b97b4")
-	)
 	(label "~{UC_CONTROL}"
 		(at 266.7 74.93 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2807,7 +2833,6 @@
 	)
 	(label "~{SRAM_WE}"
 		(at 137.16 130.81 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2818,7 +2843,6 @@
 	)
 	(label "~{SEGA_OE}"
 		(at 234.95 31.75 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2829,7 +2853,6 @@
 	)
 	(label "~{SRAM_FINAL_OE}"
 		(at 35.56 109.22 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2840,7 +2863,6 @@
 	)
 	(label "~{SRAM_FINAL_WE}"
 		(at 33.02 82.55 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2851,7 +2873,6 @@
 	)
 	(label "SEGA_A20"
 		(at 234.95 29.21 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2862,7 +2883,6 @@
 	)
 	(label "~{SRAM_FINAL_WE}"
 		(at 35.56 149.86 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2873,7 +2893,6 @@
 	)
 	(label "~{SRAM_OE_INT}"
 		(at 153.67 156.21 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2884,7 +2903,6 @@
 	)
 	(label "~{SRAM_FINAL_OE}"
 		(at 137.16 171.45 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2895,7 +2913,6 @@
 	)
 	(label "~{SEGA_CONTROL_INT}"
 		(at 93.98 104.14 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2906,7 +2923,6 @@
 	)
 	(label "~{SRAM_OE1}"
 		(at 135.89 181.61 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2917,7 +2933,6 @@
 	)
 	(label "~{SRAM_WE_INT}"
 		(at 93.98 149.86 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2928,7 +2943,6 @@
 	)
 	(label "SEGA_A[1..19]"
 		(at 93.98 106.68 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2939,7 +2953,6 @@
 	)
 	(label "SRAM_DIS"
 		(at 93.98 185.42 270)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2950,7 +2963,6 @@
 	)
 	(label "SRAM_A[0..18]"
 		(at 35.56 142.24 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2961,7 +2973,6 @@
 	)
 	(label "~{SRAM_FINAL_OE}"
 		(at 33.02 69.85 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2972,7 +2983,6 @@
 	)
 	(label "~{SRAM_WE_INT}"
 		(at 153.67 163.83 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2983,7 +2993,6 @@
 	)
 	(label "~{SRAM_OE0}"
 		(at 266.7 29.21 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2994,7 +3003,6 @@
 	)
 	(label "SRAM_D_IN[0..15]"
 		(at 261.62 137.16 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3005,7 +3013,6 @@
 	)
 	(label "~{UC_CONTROL_INT}"
 		(at 93.98 139.7 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3016,7 +3023,6 @@
 	)
 	(label "~{SRAM_FINAL_WE}"
 		(at 35.56 114.3 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3027,7 +3033,6 @@
 	)
 	(label "~{SEGA_OE}"
 		(at 195.58 129.54 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3038,7 +3043,6 @@
 	)
 	(label "~{SRAM_FINAL_CE}"
 		(at 33.02 72.39 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3049,7 +3053,6 @@
 	)
 	(label "~{SRAM_CE_WRITE_INT}"
 		(at 93.98 147.32 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3060,7 +3063,6 @@
 	)
 	(label "~{SRAM_OE_INT}"
 		(at 93.98 109.22 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3071,7 +3073,6 @@
 	)
 	(label "~{SEGA_AS}"
 		(at 195.58 124.46 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3082,7 +3083,6 @@
 	)
 	(label "SEGA_A21"
 		(at 195.58 146.05 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3093,7 +3093,6 @@
 	)
 	(label "SRAM_DIS"
 		(at 236.22 72.39 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3104,7 +3103,6 @@
 	)
 	(label "~{SEGA_AS}"
 		(at 234.95 44.45 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3115,7 +3113,6 @@
 	)
 	(label "~{SEGA_CE}"
 		(at 195.58 127 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3126,7 +3123,6 @@
 	)
 	(label "~{UC_CONTROL_INT}"
 		(at 151.13 30.48 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3137,7 +3133,6 @@
 	)
 	(label "~{SRAM_CE_READ_INT}"
 		(at 153.67 123.19 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3148,7 +3143,6 @@
 	)
 	(label "SRAM_D_IN[0..15]"
 		(at 151.13 25.4 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3159,7 +3153,6 @@
 	)
 	(label "~{SRAM_CE_READ_INT}"
 		(at 93.98 111.76 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3170,7 +3163,6 @@
 	)
 	(label "SRAM_DIS_1"
 		(at 261.62 124.46 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3181,7 +3173,6 @@
 	)
 	(label "~{SRAM_FINAL_CE}"
 		(at 35.56 111.76 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3192,7 +3183,6 @@
 	)
 	(label "~{SRAM_WE}"
 		(at 137.16 163.83 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3203,7 +3193,6 @@
 	)
 	(label "SRAM_DIS_0"
 		(at 261.62 121.92 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3214,7 +3203,6 @@
 	)
 	(label "SRAM_A[0..18]"
 		(at 33.02 64.77 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3225,7 +3213,6 @@
 	)
 	(label "~{SRAM_FINAL_CE}"
 		(at 35.56 147.32 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3236,7 +3223,6 @@
 	)
 	(label "~{SRAM_OE}"
 		(at 137.16 156.21 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3247,7 +3233,6 @@
 	)
 	(label "SEGA_D[0..15]"
 		(at 151.13 64.77 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3258,7 +3243,6 @@
 	)
 	(label "SRAM_W_A[0..18]"
 		(at 261.62 134.62 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3269,7 +3253,6 @@
 	)
 	(label "~{SRAM_CE_WRITE_INT}"
 		(at 153.67 130.81 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3280,7 +3263,6 @@
 	)
 	(label "SRAM_DIS_0"
 		(at 87.63 181.61 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3291,7 +3273,6 @@
 	)
 	(label "~{SEGA_CONTROL}"
 		(at 137.16 148.59 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3302,7 +3283,6 @@
 	)
 	(label "~{UC_CONTROL}"
 		(at 137.16 139.7 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3313,7 +3293,6 @@
 	)
 	(label "~{SRAM_BUFFER_OE_INT}"
 		(at 99.06 72.39 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3324,7 +3303,6 @@
 	)
 	(label "SRAM_DIS_1"
 		(at 100.33 181.61 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3335,7 +3313,6 @@
 	)
 	(label "~{SRAM_OE}"
 		(at 129.54 185.42 270)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3346,7 +3323,6 @@
 	)
 	(label "SEGA_D[0..15]"
 		(at 195.58 137.16 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3357,7 +3333,6 @@
 	)
 	(label "SEGA_A[1..19]"
 		(at 195.58 134.62 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3368,7 +3343,6 @@
 	)
 	(label "SEGA_A20"
 		(at 195.58 143.51 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3379,7 +3353,6 @@
 	)
 	(label "~{SRAM_WE}"
 		(at 261.62 129.54 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3390,7 +3363,6 @@
 	)
 	(label "SRAM_DATA[0..15]"
 		(at 91.44 49.53 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3401,7 +3373,6 @@
 	)
 	(label "~{SRAM_OE1}"
 		(at 266.7 31.75 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3412,7 +3383,6 @@
 	)
 	(label "~{SEGA_CE}"
 		(at 234.95 41.91 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3423,7 +3393,6 @@
 	)
 	(label "~{SEGA_CE}"
 		(at 137.16 123.19 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3434,7 +3403,6 @@
 	)
 	(label "SEGA_A21"
 		(at 234.95 46.99 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3445,7 +3413,6 @@
 	)
 	(label "~{SEGA_CONTROL}"
 		(at 266.7 72.39 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3456,7 +3423,6 @@
 	)
 	(label "~{SRAM_BUFFER_OE_INT}"
 		(at 153.67 171.45 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3467,7 +3433,6 @@
 	)
 	(label "~{SEGA_CONTROL_INT}"
 		(at 153.67 148.59 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3478,7 +3443,6 @@
 	)
 	(label "~{SRAM_FINAL_OE}"
 		(at 35.56 144.78 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3489,7 +3453,6 @@
 	)
 	(label "SRAM_A[0..18]"
 		(at 35.56 106.68 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3500,7 +3463,6 @@
 	)
 	(label "~{UC_CONTROL_INT}"
 		(at 153.67 139.7 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3511,7 +3473,6 @@
 	)
 	(label "SRAM_W_A[0..18]"
 		(at 93.98 142.24 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3522,7 +3483,6 @@
 	)
 	(label "~{SRAM_OE0}"
 		(at 123.19 181.61 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5955,6 +5915,10 @@
 	(sheet
 		(at 45.72 137.16)
 		(size 34.29 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -5984,113 +5948,113 @@
 		)
 		(pin "IN_A" input
 			(at 80.01 144.78 0)
+			(uuid "d1c3b0f3-909b-4620-a6f8-733b59a4349a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "d1c3b0f3-909b-4620-a6f8-733b59a4349a")
 		)
 		(pin "IN_C" input
 			(at 80.01 149.86 0)
+			(uuid "29015b25-6334-46ae-95db-9d4947a60a3b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "29015b25-6334-46ae-95db-9d4947a60a3b")
 		)
 		(pin "IN_B" input
 			(at 80.01 147.32 0)
+			(uuid "cdc0caf3-8dfc-49f0-bbbd-5349091b8e0b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "cdc0caf3-8dfc-49f0-bbbd-5349091b8e0b")
 		)
 		(pin "OUT_B" input
 			(at 45.72 147.32 180)
+			(uuid "9b8f04ac-cd7d-49e3-baad-171f7ddccf73")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "9b8f04ac-cd7d-49e3-baad-171f7ddccf73")
 		)
 		(pin "OUT_A" input
 			(at 45.72 144.78 180)
+			(uuid "97564c63-8195-484c-b6dd-220060c4a6d2")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "97564c63-8195-484c-b6dd-220060c4a6d2")
 		)
 		(pin "OUT_C" input
 			(at 45.72 149.86 180)
+			(uuid "a413198f-0325-44df-8392-2f3f5419449e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "a413198f-0325-44df-8392-2f3f5419449e")
 		)
 		(pin "IN[0..18]" input
 			(at 80.01 142.24 0)
+			(uuid "523bf632-9d9a-4ff4-8ef4-c9a6f838cc71")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "523bf632-9d9a-4ff4-8ef4-c9a6f838cc71")
 		)
 		(pin "~{OE}" input
 			(at 80.01 139.7 0)
+			(uuid "9da93c68-f39d-4fc6-a104-a4b0233c0fd9")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "9da93c68-f39d-4fc6-a104-a4b0233c0fd9")
 		)
 		(pin "OUT[0..18]" tri_state
 			(at 45.72 142.24 180)
+			(uuid "95d2144f-5c5d-42b3-a3fc-5040d95cefdc")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "95d2144f-5c5d-42b3-a3fc-5040d95cefdc")
 		)
 		(pin "IN_V" input
 			(at 66.04 137.16 90)
+			(uuid "e03f4a2e-059d-4e68-b1dc-db7af385add1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "e03f4a2e-059d-4e68-b1dc-db7af385add1")
 		)
 		(pin "OUT_V" input
 			(at 59.69 137.16 90)
+			(uuid "9cd3ef7a-8c04-42be-91c4-9dee80e757ba")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "9cd3ef7a-8c04-42be-91c4-9dee80e757ba")
 		)
 		(instances
 			(project "sram-bank"
@@ -6103,6 +6067,10 @@
 	(sheet
 		(at 54.61 62.23)
 		(size 26.67 22.86)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -6132,73 +6100,73 @@
 		)
 		(pin "A[0..18]" input
 			(at 54.61 64.77 180)
+			(uuid "98591112-0696-46c2-94e2-c5d4ef5f5996")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "98591112-0696-46c2-94e2-c5d4ef5f5996")
 		)
 		(pin "~{OE}" input
 			(at 54.61 69.85 180)
+			(uuid "71ea38ea-5270-4744-95de-05a5065b0624")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "71ea38ea-5270-4744-95de-05a5065b0624")
 		)
 		(pin "~{CE}" input
 			(at 54.61 72.39 180)
+			(uuid "c413dcc0-9aa6-43b3-a467-404032088ed8")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "c413dcc0-9aa6-43b3-a467-404032088ed8")
 		)
 		(pin "~{LB}" input
 			(at 54.61 77.47 180)
+			(uuid "7924643f-7389-48f9-ad2b-8c628d52abc6")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "7924643f-7389-48f9-ad2b-8c628d52abc6")
 		)
 		(pin "~{UB}" input
 			(at 54.61 80.01 180)
+			(uuid "86cd0cb0-a0d0-46c7-a2cc-979e94a19642")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "86cd0cb0-a0d0-46c7-a2cc-979e94a19642")
 		)
 		(pin "~{WE}" input
 			(at 54.61 82.55 180)
+			(uuid "49624aa5-7b5f-4e99-b794-2cd56657b899")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "49624aa5-7b5f-4e99-b794-2cd56657b899")
 		)
 		(pin "D[0..15]" bidirectional
 			(at 81.28 64.77 0)
+			(uuid "7aa9e87d-98de-4d94-9568-739b1d93875a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "7aa9e87d-98de-4d94-9568-739b1d93875a")
 		)
 		(instances
 			(project "sram-bank"
@@ -6211,6 +6179,10 @@
 	(sheet
 		(at 102.87 22.86)
 		(size 30.48 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -6240,53 +6212,53 @@
 		)
 		(pin "IN[0..15]" input
 			(at 133.35 25.4 0)
+			(uuid "a8aef55f-755b-493b-b9b1-77353dd4f97f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "a8aef55f-755b-493b-b9b1-77353dd4f97f")
 		)
 		(pin "~{OE}" input
 			(at 133.35 30.48 0)
+			(uuid "e5f27c30-76f3-4f41-998a-e998080948ef")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "e5f27c30-76f3-4f41-998a-e998080948ef")
 		)
 		(pin "OUT[0..15]" tri_state
 			(at 102.87 25.4 180)
+			(uuid "4aab64cd-5218-4024-a3e0-11cdde2094d1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "4aab64cd-5218-4024-a3e0-11cdde2094d1")
 		)
 		(pin "IN_V" input
 			(at 119.38 22.86 90)
+			(uuid "bb447f93-018e-4535-803f-b586d59474d0")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "bb447f93-018e-4535-803f-b586d59474d0")
 		)
 		(pin "OUT_V" input
 			(at 115.57 22.86 90)
+			(uuid "a7aee65e-f788-4b36-a9d4-98864aa6d384")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "a7aee65e-f788-4b36-a9d4-98864aa6d384")
 		)
 		(instances
 			(project "sram-bank"
@@ -6299,6 +6271,10 @@
 	(sheet
 		(at 199.39 119.38)
 		(size 59.69 41.91)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -6328,243 +6304,243 @@
 		)
 		(pin "SEGA_A[1..19]" input
 			(at 199.39 134.62 180)
+			(uuid "ff148cbf-1866-4c98-9d6c-905eafb3bc8e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "ff148cbf-1866-4c98-9d6c-905eafb3bc8e")
 		)
 		(pin "SEGA_D[0..15]" bidirectional
 			(at 199.39 137.16 180)
+			(uuid "ce1dee05-7b5a-48a5-86b5-13f77624f2b4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "ce1dee05-7b5a-48a5-86b5-13f77624f2b4")
 		)
 		(pin "SRAM_D_IN[0..15]" passive
 			(at 259.08 137.16 0)
+			(uuid "a8dce3ba-4f5d-4dba-9f49-ac5b9b02e07a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "a8dce3ba-4f5d-4dba-9f49-ac5b9b02e07a")
 		)
 		(pin "SRAM_DIS_1" passive
 			(at 259.08 124.46 0)
+			(uuid "6c5e11ad-b452-4d2a-9901-bb528ae7eb02")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "6c5e11ad-b452-4d2a-9901-bb528ae7eb02")
 		)
 		(pin "SRAM_DIS_0" passive
 			(at 259.08 121.92 0)
+			(uuid "7e47322a-a9de-4f02-b523-00574aa0b1ca")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "7e47322a-a9de-4f02-b523-00574aa0b1ca")
 		)
 		(pin "~{SRAM_WE}" passive
 			(at 259.08 129.54 0)
+			(uuid "c9221d58-4239-4045-a8e9-0e8fdc7e956c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "c9221d58-4239-4045-a8e9-0e8fdc7e956c")
 		)
 		(pin "SRAM_W_A[0..18]" passive
 			(at 259.08 134.62 0)
+			(uuid "af0f577a-a08c-41de-bf5c-7ee79e5146d5")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "af0f577a-a08c-41de-bf5c-7ee79e5146d5")
 		)
 		(pin "~{SEGA_CE}" passive
 			(at 199.39 127 180)
+			(uuid "d661277c-2559-4730-825b-ef49c070e268")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "d661277c-2559-4730-825b-ef49c070e268")
 		)
 		(pin "SEGA_A20" passive
 			(at 199.39 143.51 180)
+			(uuid "647b8b18-9a21-4fd2-bd1e-6ae013067b5b")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "647b8b18-9a21-4fd2-bd1e-6ae013067b5b")
 		)
 		(pin "SEGA_A21" passive
 			(at 199.39 146.05 180)
+			(uuid "78a22427-a585-4df9-b09c-24cdbb416d19")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "78a22427-a585-4df9-b09c-24cdbb416d19")
 		)
 		(pin "SEGA_A22" passive
 			(at 214.63 161.29 270)
+			(uuid "fda74b6e-a752-4722-aaf2-4fb7f52fd6ca")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "fda74b6e-a752-4722-aaf2-4fb7f52fd6ca")
 		)
 		(pin "SEGA_A23" passive
 			(at 217.17 161.29 270)
+			(uuid "531ae4e0-7fe7-4044-9c48-0877200cffe3")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "531ae4e0-7fe7-4044-9c48-0877200cffe3")
 		)
 		(pin "SEGA_A[1..17]" passive
 			(at 222.25 161.29 270)
+			(uuid "f0fa6a1c-9ee2-471f-a721-46869fff69e8")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "f0fa6a1c-9ee2-471f-a721-46869fff69e8")
 		)
 		(pin "~{SEGA_WE_LB}" passive
 			(at 232.41 161.29 270)
+			(uuid "8057367a-3133-43cb-a849-4833be6ce4c1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "8057367a-3133-43cb-a849-4833be6ce4c1")
 		)
 		(pin "~{SEGA_REGISTER}" passive
 			(at 227.33 161.29 270)
+			(uuid "543b9cb0-9a98-4695-943d-1496d4342159")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "543b9cb0-9a98-4695-943d-1496d4342159")
 		)
 		(pin "~{SEGA_WE_UB}" passive
 			(at 229.87 161.29 270)
+			(uuid "12052158-12a9-440d-aef6-f16f8e3b4ce4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "12052158-12a9-440d-aef6-f16f8e3b4ce4")
 		)
 		(pin "~{SEGA_AS}" passive
 			(at 199.39 124.46 180)
+			(uuid "1ec7d1e7-a7c1-4946-ad6a-a016362219fb")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "1ec7d1e7-a7c1-4946-ad6a-a016362219fb")
 		)
 		(pin "~{SEGA_RESET}" passive
 			(at 234.95 161.29 270)
+			(uuid "71a53dbd-b2b1-43db-a1d3-5e9fb1bccf8d")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "71a53dbd-b2b1-43db-a1d3-5e9fb1bccf8d")
 		)
 		(pin "SEGA_D[0..7]" bidirectional
 			(at 219.71 161.29 270)
+			(uuid "4a2d2abc-5947-434d-b5ae-f1a8882e974e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "4a2d2abc-5947-434d-b5ae-f1a8882e974e")
 		)
 		(pin "SEGA_A2" passive
 			(at 207.01 161.29 270)
+			(uuid "b796a5e9-eab6-4b0c-b0c7-e09bb0c73755")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "b796a5e9-eab6-4b0c-b0c7-e09bb0c73755")
 		)
 		(pin "SEGA_A1" passive
 			(at 204.47 161.29 270)
+			(uuid "d4c626fe-2852-4a70-b4ba-5681013cb496")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "d4c626fe-2852-4a70-b4ba-5681013cb496")
 		)
 		(pin "SEGA_A3" passive
 			(at 209.55 161.29 270)
+			(uuid "02b556d6-b54f-483d-ac06-feb77f487096")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "02b556d6-b54f-483d-ac06-feb77f487096")
 		)
 		(pin "~{SEGA_OE}" passive
 			(at 199.39 129.54 180)
+			(uuid "f013ea3b-e4fd-421f-98f2-95d983dd3f53")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "f013ea3b-e4fd-421f-98f2-95d983dd3f53")
 		)
 		(pin "SEGA_A4" passive
 			(at 212.09 161.29 270)
+			(uuid "8476cfa7-36b9-44b9-9292-44c65db93fc3")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "8476cfa7-36b9-44b9-9292-44c65db93fc3")
 		)
 		(instances
 			(project "sram-bank"
@@ -6577,6 +6553,10 @@
 	(sheet
 		(at 102.87 62.23)
 		(size 30.48 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -6606,53 +6586,53 @@
 		)
 		(pin "IN[0..15]" input
 			(at 102.87 64.77 180)
+			(uuid "f7a4ba86-bdf0-4e97-80a9-b480a15991fc")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "f7a4ba86-bdf0-4e97-80a9-b480a15991fc")
 		)
 		(pin "~{OE}" input
 			(at 102.87 72.39 180)
+			(uuid "4180efdf-2e93-4e37-8184-3656e69ee266")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "4180efdf-2e93-4e37-8184-3656e69ee266")
 		)
 		(pin "OUT[0..15]" tri_state
 			(at 133.35 64.77 0)
+			(uuid "98d947c7-e8ff-4db3-a38e-8644eb5daf04")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "98d947c7-e8ff-4db3-a38e-8644eb5daf04")
 		)
 		(pin "IN_V" input
 			(at 115.57 62.23 90)
+			(uuid "c524355f-e47f-42e2-a7d9-005fab88dc8f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "c524355f-e47f-42e2-a7d9-005fab88dc8f")
 		)
 		(pin "OUT_V" input
 			(at 119.38 62.23 90)
+			(uuid "fab7b7dd-d20a-4e6f-9850-14e4c6233892")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "fab7b7dd-d20a-4e6f-9850-14e4c6233892")
 		)
 		(instances
 			(project "sram-bank"
@@ -6665,6 +6645,10 @@
 	(sheet
 		(at 45.72 101.6)
 		(size 34.29 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -6694,113 +6678,113 @@
 		)
 		(pin "IN_A" input
 			(at 80.01 109.22 0)
+			(uuid "8c225c3a-29be-4c1a-a117-3608e6b99977")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "8c225c3a-29be-4c1a-a117-3608e6b99977")
 		)
 		(pin "IN_C" input
 			(at 80.01 114.3 0)
+			(uuid "978a9f7d-b642-462a-b864-224782d02ef9")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "978a9f7d-b642-462a-b864-224782d02ef9")
 		)
 		(pin "IN_B" input
 			(at 80.01 111.76 0)
+			(uuid "678ad43f-51aa-4e63-8083-627a3c7e6c13")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "678ad43f-51aa-4e63-8083-627a3c7e6c13")
 		)
 		(pin "OUT_B" input
 			(at 45.72 111.76 180)
+			(uuid "d693dfd6-1a5d-41a8-9e63-548236c19549")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "d693dfd6-1a5d-41a8-9e63-548236c19549")
 		)
 		(pin "OUT_A" input
 			(at 45.72 109.22 180)
+			(uuid "e518d05a-5b76-4a1c-9d37-3fc10acd2aa5")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "e518d05a-5b76-4a1c-9d37-3fc10acd2aa5")
 		)
 		(pin "OUT_C" input
 			(at 45.72 114.3 180)
+			(uuid "6c5e55e9-948d-4b79-a714-55f83725f130")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "6c5e55e9-948d-4b79-a714-55f83725f130")
 		)
 		(pin "IN[0..18]" input
 			(at 80.01 106.68 0)
+			(uuid "b2318e8d-7872-40c9-a622-edbb4c7002c6")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "b2318e8d-7872-40c9-a622-edbb4c7002c6")
 		)
 		(pin "~{OE}" input
 			(at 80.01 104.14 0)
+			(uuid "c10329c7-95e1-4946-8d66-d950e2053ae4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "c10329c7-95e1-4946-8d66-d950e2053ae4")
 		)
 		(pin "OUT[0..18]" tri_state
 			(at 45.72 106.68 180)
+			(uuid "b856b5be-2222-4e15-8186-9fcd8d52999e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "b856b5be-2222-4e15-8186-9fcd8d52999e")
 		)
 		(pin "IN_V" input
 			(at 64.77 101.6 90)
+			(uuid "02b0f291-a97c-480c-8294-279483bdf216")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "02b0f291-a97c-480c-8294-279483bdf216")
 		)
 		(pin "OUT_V" input
 			(at 59.69 101.6 90)
+			(uuid "8636ac8f-2745-432d-89e5-34208c480e86")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "8636ac8f-2745-432d-89e5-34208c480e86")
 		)
 		(instances
 			(project "sram-bank"
@@ -6815,4 +6799,5 @@
 			(page "1")
 		)
 	)
+	(embedded_fonts no)
 )

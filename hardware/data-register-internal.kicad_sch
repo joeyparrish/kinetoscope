@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "c12ad8ad-a658-4161-a442-7aad5fc3ec76")
 	(paper "A4")
 	(title_block
@@ -90,6 +90,24 @@
 			)
 			(symbol "74HC164_1_1"
 				(pin input line
+					(at -10.16 5.08 0)
+					(length 2.54)
+					(name "~{MR}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
 					(at -10.16 0 0)
 					(length 2.54)
 					(name "DSA"
@@ -107,17 +125,17 @@
 						)
 					)
 				)
-				(pin output line
-					(at 10.16 -2.54 180)
+				(pin input line
+					(at -10.16 -2.54 0)
 					(length 2.54)
-					(name "Q4"
+					(name "DSB"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "10"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -125,53 +143,17 @@
 						)
 					)
 				)
-				(pin output line
-					(at 10.16 -5.08 180)
+				(pin input line
+					(at -10.16 -7.62 0)
 					(length 2.54)
-					(name "Q5"
+					(name "CP"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "11"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 -7.62 180)
-					(length 2.54)
-					(name "Q6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "12"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 -10.16 180)
-					(length 2.54)
-					(name "Q7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "13"
+					(number "8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -197,17 +179,17 @@
 						)
 					)
 				)
-				(pin input line
-					(at -10.16 -2.54 0)
+				(pin power_in line
+					(at 0 -15.24 90)
 					(length 2.54)
-					(name "DSB"
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "2"
+					(number "7"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -287,17 +269,17 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at 0 -15.24 90)
+				(pin output line
+					(at 10.16 -2.54 180)
 					(length 2.54)
-					(name "GND"
+					(name "Q4"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "7"
+					(number "10"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -305,17 +287,17 @@
 						)
 					)
 				)
-				(pin input line
-					(at -10.16 -7.62 0)
+				(pin output line
+					(at 10.16 -5.08 180)
 					(length 2.54)
-					(name "CP"
+					(name "Q5"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "8"
+					(number "11"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -323,17 +305,35 @@
 						)
 					)
 				)
-				(pin input line
-					(at -10.16 5.08 0)
+				(pin output line
+					(at 10.16 -7.62 180)
 					(length 2.54)
-					(name "~{MR}"
+					(name "Q6"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "9"
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 -10.16 180)
+					(length 2.54)
+					(name "Q7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -342,9 +342,12 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0.254)
 			)
@@ -417,7 +420,7 @@
 			(symbol "C_0_1"
 				(polyline
 					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
+						(xy -2.032 0.762) (xy 2.032 0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -429,7 +432,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -478,12 +481,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:+3.3V"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -555,7 +563,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -567,7 +575,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -598,12 +606,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -694,7 +707,19 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
+	)
+	(text "There are not enough GPIO pins on the microcontroller to write\nto SRAM in parallel, so we fill this data register serially."
+		(exclude_from_sim no)
+		(at 38.354 31.242 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4d8b3a87-bd8c-4993-82e7-ff45172ef28e")
 	)
 	(junction
 		(at 40.64 55.88)
@@ -1456,20 +1481,8 @@
 		)
 		(uuid "ff7e6344-3e72-4ba5-b5ea-57ace682200c")
 	)
-	(text "There are not enough GPIO pins on the microcontroller to write\nto SRAM in parallel, so we fill this data register serially."
-		(exclude_from_sim no)
-		(at 38.354 31.242 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "4d8b3a87-bd8c-4993-82e7-ff45172ef28e")
-	)
 	(label "D3"
 		(at 74.93 60.96 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1480,7 +1493,6 @@
 	)
 	(label "D0"
 		(at 74.93 53.34 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1491,7 +1503,6 @@
 	)
 	(label "D4"
 		(at 74.93 63.5 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1502,7 +1513,6 @@
 	)
 	(label "D8"
 		(at 105.41 87.63 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1513,7 +1523,6 @@
 	)
 	(label "D5"
 		(at 74.93 66.04 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1524,7 +1533,6 @@
 	)
 	(label "D6"
 		(at 74.93 68.58 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1535,7 +1543,6 @@
 	)
 	(label "D9"
 		(at 105.41 90.17 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1546,7 +1553,6 @@
 	)
 	(label "D10"
 		(at 105.41 92.71 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1557,7 +1563,6 @@
 	)
 	(label "D14"
 		(at 105.41 102.87 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1568,7 +1573,6 @@
 	)
 	(label "D15"
 		(at 105.41 105.41 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1579,7 +1583,6 @@
 	)
 	(label "D12"
 		(at 105.41 97.79 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1590,7 +1593,6 @@
 	)
 	(label "D7"
 		(at 74.93 71.12 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1601,7 +1603,6 @@
 	)
 	(label "D11"
 		(at 105.41 95.25 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1612,7 +1613,6 @@
 	)
 	(label "D1"
 		(at 74.93 55.88 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1623,7 +1623,6 @@
 	)
 	(label "D2"
 		(at 74.93 58.42 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1634,7 +1633,6 @@
 	)
 	(label "D13"
 		(at 105.41 100.33 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1646,7 +1644,6 @@
 	(hierarchical_label "D[0..15]"
 		(shape output)
 		(at 85.09 43.18 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1658,7 +1655,6 @@
 	(hierarchical_label "D_IN"
 		(shape input)
 		(at 30.48 63.5 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1670,7 +1666,6 @@
 	(hierarchical_label "CLK"
 		(shape input)
 		(at 30.48 68.58 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)

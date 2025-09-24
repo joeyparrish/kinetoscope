@@ -7,7 +7,7 @@ runs:
     - name: Configure KiCad PPA
       shell: bash
       run: |
-        sudo add-apt-repository --yes ppa:kicad/kicad-8.0-releases
+        sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
         sudo apt update
 
     - name: Make Apt Packages Cacheable
@@ -15,7 +15,7 @@ runs:
       run: |
         sudo chmod 777 /var/cache/apt/archives/
         # NOTE: hashFiles (below) can only operate inside the workspace.
-        cp /var/lib/apt/lists/ppa.launchpadcontent.net_kicad_kicad-8.0-releases_ubuntu_dists_jammy_InRelease kicad.ppa.release
+        cp /var/lib/apt/lists/ppa.launchpadcontent.net_kicad_kicad-9.0-releases_ubuntu_dists_jammy_InRelease kicad.ppa.release
 
     - name: Cache KiCad Packages
       id: cache-packages
@@ -37,10 +37,10 @@ runs:
     - name: Install custom symbols and footprints
       shell: bash
       run: |
-        mkdir -p ~/.local/share/kicad/8.0
-        cp -a hardware/libraries/* ~/.local/share/kicad/8.0/
-        mkdir -p ~/.config/kicad/8.0
-        cp .github/workflows/*-lib-table ~/.config/kicad/8.0/
+        mkdir -p ~/.local/share/kicad/9.0
+        cp -a hardware/libraries/* ~/.local/share/kicad/9.0/
+        mkdir -p ~/.config/kicad/9.0
+        cp .github/workflows/*-lib-table ~/.config/kicad/9.0/
 
     - name: Install Kode Mono font
       shell: bash

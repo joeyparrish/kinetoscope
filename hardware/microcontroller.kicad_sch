@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "eb0e957f-b2ea-4261-97c1-e28148a3f6e1")
 	(paper "A4")
 	(title_block
@@ -107,132 +107,6 @@
 						)
 					)
 				)
-				(pin output line
-					(at 10.16 -2.54 180)
-					(length 2.54)
-					(name "~{Y5}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "10"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 0 180)
-					(length 2.54)
-					(name "~{Y4}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "11"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 2.54 180)
-					(length 2.54)
-					(name "~{Y3}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "12"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 5.08 180)
-					(length 2.54)
-					(name "~{Y2}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "13"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 7.62 180)
-					(length 2.54)
-					(name "~{Y1}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "14"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 10.16 10.16 180)
-					(length 2.54)
-					(name "~{Y0}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "15"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 0 15.24 270)
-					(length 2.54)
-					(name "VCC"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "16"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin input line
 					(at -10.16 7.62 0)
 					(length 2.54)
@@ -323,17 +197,17 @@
 						)
 					)
 				)
-				(pin output line
-					(at 10.16 -7.62 180)
+				(pin power_in line
+					(at 0 15.24 270)
 					(length 2.54)
-					(name "~{Y7}"
+					(name "VCC"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "7"
+					(number "16"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -360,6 +234,114 @@
 					)
 				)
 				(pin output line
+					(at 10.16 10.16 180)
+					(length 2.54)
+					(name "~{Y0}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 7.62 180)
+					(length 2.54)
+					(name "~{Y1}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 5.08 180)
+					(length 2.54)
+					(name "~{Y2}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "~{Y3}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 0 180)
+					(length 2.54)
+					(name "~{Y4}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 -2.54 180)
+					(length 2.54)
+					(name "~{Y5}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
 					(at 10.16 -5.08 180)
 					(length 2.54)
 					(name "~{Y6}"
@@ -377,11 +359,32 @@
 						)
 					)
 				)
+				(pin output line
+					(at 10.16 -7.62 180)
+					(length 2.54)
+					(name "~{Y7}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Connector_Generic:Conn_02x03_Odd_Even"
 			(pin_names
-				(offset 1.016) hide)
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -448,8 +451,19 @@
 			)
 			(symbol "Conn_02x03_Odd_Even_1_1"
 				(rectangle
-					(start -1.27 -2.413)
-					(end 0 -2.667)
+					(start -1.27 3.81)
+					(end 3.81 -3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 2.667)
+					(end 0 2.413)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -470,8 +484,8 @@
 					)
 				)
 				(rectangle
-					(start -1.27 2.667)
-					(end 0 2.413)
+					(start -1.27 -2.413)
+					(end 0 -2.667)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -481,19 +495,8 @@
 					)
 				)
 				(rectangle
-					(start -1.27 3.81)
-					(end 3.81 -3.81)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(rectangle
-					(start 3.81 -2.413)
-					(end 2.54 -2.667)
+					(start 3.81 2.667)
+					(end 2.54 2.413)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -514,8 +517,8 @@
 					)
 				)
 				(rectangle
-					(start 3.81 2.667)
-					(end 2.54 2.413)
+					(start 3.81 -2.413)
+					(end 2.54 -2.667)
 					(stroke
 						(width 0.1524)
 						(type default)
@@ -543,24 +546,6 @@
 					)
 				)
 				(pin passive line
-					(at 7.62 2.54 180)
-					(length 3.81)
-					(name "Pin_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at -5.08 0 0)
 					(length 3.81)
 					(name "Pin_3"
@@ -571,24 +556,6 @@
 						)
 					)
 					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 7.62 0 180)
-					(length 3.81)
-					(name "Pin_4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -615,6 +582,42 @@
 					)
 				)
 				(pin passive line
+					(at 7.62 2.54 180)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 7.62 0 180)
+					(length 3.81)
+					(name "Pin_4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
 					(at 7.62 -2.54 180)
 					(length 3.81)
 					(name "Pin_6"
@@ -633,9 +636,12 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0.254)
 			)
@@ -708,7 +714,7 @@
 			(symbol "C_0_1"
 				(polyline
 					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
+						(xy -2.032 0.762) (xy 2.032 0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -720,7 +726,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -769,9 +775,12 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:R"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0)
 			)
@@ -890,11 +899,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Jumper:Jumper_2_Open"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim yes)
 			(in_bom yes)
 			(on_board yes)
@@ -985,9 +999,9 @@
 			)
 			(symbol "Jumper_2_Open_0_1"
 				(arc
-					(start 1.524 1.27)
+					(start -1.524 1.27)
 					(mid 0 1.778)
-					(end -1.524 1.27)
+					(end 1.524 1.27)
 					(stroke
 						(width 0)
 						(type default)
@@ -1035,11 +1049,16 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Jumper:SolderJumper_2_Bridged"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim yes)
 			(in_bom no)
 			(on_board yes)
@@ -1116,30 +1135,6 @@
 						(type outline)
 					)
 				)
-				(arc
-					(start -0.254 1.016)
-					(mid -1.2656 0)
-					(end -0.254 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -0.254 1.016)
-					(mid -1.2656 0)
-					(end -0.254 -1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
 				(polyline
 					(pts
 						(xy -0.254 1.016) (xy -0.254 -1.016)
@@ -1152,6 +1147,54 @@
 						(type none)
 					)
 				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start -0.254 -1.016)
+					(mid -1.2656 0)
+					(end -0.254 1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(arc
+					(start 0.254 1.016)
+					(mid 1.2656 0)
+					(end 0.254 -1.016)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
 				(polyline
 					(pts
 						(xy 0.254 1.016) (xy 0.254 -1.016)
@@ -1162,30 +1205,6 @@
 					)
 					(fill
 						(type none)
-					)
-				)
-				(arc
-					(start 0.254 -1.016)
-					(mid 1.2656 0)
-					(end 0.254 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 0.254 -1.016)
-					(mid 1.2656 0)
-					(end 0.254 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
 					)
 				)
 			)
@@ -1227,6 +1246,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Raspberry_Pi_Pico_W:Raspberry_Pi_Pico_W_A"
 			(exclude_from_sim no)
@@ -1300,6 +1320,150 @@
 						)
 					)
 					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 -5.08 0)
+					(length 2.54)
+					(name "GP1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 -7.62 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 -10.16 0)
+					(length 2.54)
+					(name "GP2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 -12.7 0)
+					(length 2.54)
+					(name "GP3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 -15.24 0)
+					(length 2.54)
+					(name "GP4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 -17.78 0)
+					(length 2.54)
+					(name "GP5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 -20.32 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -10.16 -22.86 0)
+					(length 2.54)
+					(name "GP6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1488,24 +1652,6 @@
 					)
 				)
 				(pin passive line
-					(at -10.16 -5.08 0)
-					(length 2.54)
-					(name "GP1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at -10.16 -50.8 0)
 					(length 2.54)
 					(name "GP15"
@@ -1523,133 +1669,8 @@
 						)
 					)
 				)
-				(pin passive line
-					(at -10.16 -7.62 0)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -10.16 -10.16 0)
-					(length 2.54)
-					(name "GP2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -10.16 -12.7 0)
-					(length 2.54)
-					(name "GP3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -10.16 -15.24 0)
-					(length 2.54)
-					(name "GP4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -10.16 -17.78 0)
-					(length 2.54)
-					(name "GP5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -10.16 -20.32 0)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -10.16 -22.86 0)
-					(length 2.54)
-					(name "GP6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "9"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Raspberry_Pi_Pico_W:Raspberry_Pi_Pico_W_B"
 			(exclude_from_sim no)
@@ -1723,6 +1744,150 @@
 						)
 					)
 					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -5.08 180)
+					(length 2.54)
+					(name "VSYS"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -7.62 180)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -10.16 180)
+					(length 2.54)
+					(name "3V3_En"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -12.7 180)
+					(length 2.54)
+					(name "3V3_Out"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -15.24 180)
+					(length 2.54)
+					(name "ADC_VRef"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -17.78 180)
+					(length 2.54)
+					(name "GP28/A2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -20.32 180)
+					(length 2.54)
+					(name "ADC_GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 10.16 -22.86 180)
+					(length 2.54)
+					(name "GP27/A1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1911,24 +2076,6 @@
 					)
 				)
 				(pin passive line
-					(at 10.16 -5.08 180)
-					(length 2.54)
-					(name "VSYS"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at 10.16 -50.8 180)
 					(length 2.54)
 					(name "GP16"
@@ -1946,133 +2093,8 @@
 						)
 					)
 				)
-				(pin passive line
-					(at 10.16 -7.62 180)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 10.16 -10.16 180)
-					(length 2.54)
-					(name "3V3_En"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 10.16 -12.7 180)
-					(length 2.54)
-					(name "3V3_Out"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 10.16 -15.24 180)
-					(length 2.54)
-					(name "ADC_VRef"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 10.16 -17.78 180)
-					(length 2.54)
-					(name "GP28/A2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 10.16 -20.32 180)
-					(length 2.54)
-					(name "ADC_GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 10.16 -22.86 180)
-					(length 2.54)
-					(name "GP27/A1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "9"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Raspberry_Pi_Pico_W:Raspberry_Pi_Pico_W_template"
 			(exclude_from_sim no)
@@ -2144,12 +2166,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:+3.3V"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -2221,7 +2248,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -2233,7 +2260,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -2264,12 +2291,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:+5V"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -2341,7 +2373,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -2353,7 +2385,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -2384,12 +2416,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -2480,7 +2517,144 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
+	)
+	(text "This decoder tolerates 5V inputs."
+		(exclude_from_sim no)
+		(at 156.21 93.472 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "01d137db-4c75-46e7-bdec-e7dd746d139a")
+	)
+	(text "While powering the microcontroller via USB without the Sega (during\nprogramming and testing), pull-up resistors on these lines keep\ninputs from floating.  They can be set low for testing with jumper\nwires in the cartridge pin header."
+		(exclude_from_sim no)
+		(at 199.644 118.364 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0dab271b-18cf-4803-a5f9-5be46a8a218c")
+	)
+	(text "5V signals from Sega"
+		(exclude_from_sim no)
+		(at 38.608 136.652 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "221a58f9-3a71-402b-aa8b-90b8ee672db0")
+	)
+	(text "The 3.3V regulator built into the microcontroller is documented as\nonly supplying a max of 300mA to external circuitry.\n\nRather than use that, we use our own regulator in the cartridge board.\nIt can power the microcontroller and all 3V logic chips.  Then we power\nthe microcontroller through the 3V3_OUT and GND pins.\n\nOne jumper connects 3V3_EN connects to GND to disable the board's\nregulator.  Another jumper connects VBUS to the +5V supply to power\nthe 5V chips.\n\nWhile programming the microcontroller in-place via USB, the jumper should\nbe on the VBUS pins.  While operating in the Sega, the jumper should be\non the 3V3_EN pins."
+		(exclude_from_sim no)
+		(at 35.052 28.702 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "326c0fa7-401f-4946-b617-b91fbc399751")
+	)
+	(text "Register addresses\nCMD: 0xA13010\nARG: 0xA13012\n\nCommand token address\n0xA13008\n\nError token address\n0xA1300A"
+		(exclude_from_sim no)
+		(at 271.78 48.006 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "64114df4-530f-4fe8-bf65-3e93f4f79f30")
+	)
+	(text "This decoder tolerates 5V inputs."
+		(exclude_from_sim no)
+		(at 153.924 29.972 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "6aab8910-8c14-4be2-a440-8496ea45c1df")
+	)
+	(text "Decoder for registers (W)\nPre-reqs: register & AS & A4\n\nREG_0_WE = write & !read & !A1 (010 = Y2)\nREG_1_WE = write & !read &  A1 (011 = Y3)"
+		(exclude_from_sim no)
+		(at 153.162 18.542 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7b4e70eb-5eb3-4bab-96ed-76ca4b1fa02f")
+	)
+	(text "Write 16-bits to even addresses,\nbut only low byte is accepted."
+		(exclude_from_sim no)
+		(at 250.952 34.544 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "bb773e19-4b3e-42a8-bd09-277137c1f2b1")
+	)
+	(text "Decoder for sync tokens (R/W)\nPre-reqs: register & AS & A3\n\nCMD_SET =  write & !read & !A1 (010 = Y2)\nCMD_OE  = !write &  read & !A1 (100 = Y4)\nERR_CLR =  write & !read &  A1 (011 = Y3)\nERR_OE  = !write &  read &  A1 (101 = Y5)"
+		(exclude_from_sim no)
+		(at 149.352 76.708 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d700b986-ad2b-404e-b46d-76bd47463aed")
+	)
+	(text "These bridges can be used to snoop on these signals,\nor cut with a knife to hijack them."
+		(exclude_from_sim no)
+		(at 245.11 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "e185d8de-737c-4bc8-8d2a-0e731f84d984")
+	)
+	(text "NOTE: Because of limitations in the number of inputs\nin our address decoders, a conflict is possible\nif the addresses 0xA13018 - 0xA1301F are written.\nThis range could trigger both a sync token to be\nflipped and a register to be written at the same time.\nDon't do it."
+		(exclude_from_sim no)
+		(at 199.39 45.212 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "eca4b1d4-b16f-4abb-991f-1a4f3e13596b")
+	)
+	(text "3V signals from microcontroller"
+		(exclude_from_sim no)
+		(at 18.542 163.83 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f344436b-7082-4495-ba77-ca196209a960")
+	)
+	(text "Connector for optional Adafruit Ethernet featherwing\n(jumper wires or adapter needed)"
+		(exclude_from_sim no)
+		(at 234.442 148.336 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "f94110e8-6a93-4f43-a6b6-06c984218969")
 	)
 	(no_connect
 		(at 184.15 46.99)
@@ -3720,145 +3894,8 @@
 		)
 		(uuid "ffd2414c-1fc9-4fa4-834b-041ff95b045b")
 	)
-	(text "This decoder tolerates 5V inputs."
-		(exclude_from_sim no)
-		(at 156.21 93.472 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "01d137db-4c75-46e7-bdec-e7dd746d139a")
-	)
-	(text "While powering the microcontroller via USB without the Sega (during\nprogramming and testing), pull-up resistors on these lines keep\ninputs from floating.  They can be set low for testing with jumper\nwires in the cartridge pin header."
-		(exclude_from_sim no)
-		(at 199.644 118.364 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "0dab271b-18cf-4803-a5f9-5be46a8a218c")
-	)
-	(text "5V signals from Sega"
-		(exclude_from_sim no)
-		(at 38.608 136.652 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "221a58f9-3a71-402b-aa8b-90b8ee672db0")
-	)
-	(text "The 3.3V regulator built into the microcontroller is documented as\nonly supplying a max of 300mA to external circuitry.\n\nRather than use that, we use our own regulator in the cartridge board.\nIt can power the microcontroller and all 3V logic chips.  Then we power\nthe microcontroller through the 3V3_OUT and GND pins.\n\nOne jumper connects 3V3_EN connects to GND to disable the board's\nregulator.  Another jumper connects VBUS to the +5V supply to power\nthe 5V chips.\n\nWhile programming the microcontroller in-place via USB, the jumper should\nbe on the VBUS pins.  While operating in the Sega, the jumper should be\non the 3V3_EN pins."
-		(exclude_from_sim no)
-		(at 35.052 28.702 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "326c0fa7-401f-4946-b617-b91fbc399751")
-	)
-	(text "Register addresses\nCMD: 0xA13010\nARG: 0xA13012\n\nCommand token address\n0xA13008\n\nError token address\n0xA1300A"
-		(exclude_from_sim no)
-		(at 271.78 48.006 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "64114df4-530f-4fe8-bf65-3e93f4f79f30")
-	)
-	(text "This decoder tolerates 5V inputs."
-		(exclude_from_sim no)
-		(at 153.924 29.972 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "6aab8910-8c14-4be2-a440-8496ea45c1df")
-	)
-	(text "Decoder for registers (W)\nPre-reqs: register & AS & A4\n\nREG_0_WE = write & !read & !A1 (010 = Y2)\nREG_1_WE = write & !read &  A1 (011 = Y3)"
-		(exclude_from_sim no)
-		(at 153.162 18.542 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "7b4e70eb-5eb3-4bab-96ed-76ca4b1fa02f")
-	)
-	(text "Write 16-bits to even addresses,\nbut only low byte is accepted."
-		(exclude_from_sim no)
-		(at 250.952 34.544 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "bb773e19-4b3e-42a8-bd09-277137c1f2b1")
-	)
-	(text "Decoder for sync tokens (R/W)\nPre-reqs: register & AS & A3\n\nCMD_SET =  write & !read & !A1 (010 = Y2)\nCMD_OE  = !write &  read & !A1 (100 = Y4)\nERR_CLR =  write & !read &  A1 (011 = Y3)\nERR_OE  = !write &  read &  A1 (101 = Y5)"
-		(exclude_from_sim no)
-		(at 149.352 76.708 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "d700b986-ad2b-404e-b46d-76bd47463aed")
-	)
-	(text "These bridges can be used to snoop on these signals,\nor cut with a knife to hijack them."
-		(exclude_from_sim no)
-		(at 245.11 93.98 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "e185d8de-737c-4bc8-8d2a-0e731f84d984")
-	)
-	(text "NOTE: Because of limitations in the number of inputs\nin our address decoders, a conflict is possible\nif the addresses 0xA13018 - 0xA1301F are written.\nThis range could trigger both a sync token to be\nflipped and a register to be written at the same time.\nDon't do it."
-		(exclude_from_sim no)
-		(at 199.39 45.212 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "eca4b1d4-b16f-4abb-991f-1a4f3e13596b")
-	)
-	(text "3V signals from microcontroller"
-		(exclude_from_sim no)
-		(at 18.542 163.83 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "f344436b-7082-4495-ba77-ca196209a960")
-	)
-	(text "Connector for optional Adafruit Ethernet featherwing\n(jumper wires or adapter needed)"
-		(exclude_from_sim no)
-		(at 234.442 148.336 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "f94110e8-6a93-4f43-a6b6-06c984218969")
-	)
 	(label "CMD_3V"
 		(at 270.51 62.23 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3869,7 +3906,6 @@
 	)
 	(label "SEGA_A3"
 		(at 232.41 140.97 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3880,7 +3916,6 @@
 	)
 	(label "~{CMD_OE}"
 		(at 190.5 107.95 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3891,7 +3926,6 @@
 	)
 	(label "~{REG_0_WE_INT}"
 		(at 250.19 101.6 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3902,7 +3936,6 @@
 	)
 	(label "REG_R_D6"
 		(at 35.56 71.12 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3913,7 +3946,6 @@
 	)
 	(label "~{SPI_CS}"
 		(at 242.57 156.21 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3924,7 +3956,6 @@
 	)
 	(label "~{SEGA_WE_LB}"
 		(at 248.92 140.97 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3935,7 +3966,6 @@
 	)
 	(label "SRAM_D_CLK"
 		(at 121.92 190.5 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3946,7 +3976,6 @@
 	)
 	(label "SPI_MISO"
 		(at 91.44 99.06 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3957,7 +3986,6 @@
 	)
 	(label "~{CMD_CLR}"
 		(at 229.87 64.77 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3968,7 +3996,6 @@
 	)
 	(label "SRAM_DIS_0"
 		(at 24.13 156.21 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3979,7 +4006,6 @@
 	)
 	(label "~{CMD_CLR}"
 		(at 35.56 86.36 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3990,7 +4016,6 @@
 	)
 	(label "~{SEGA_OE}"
 		(at 69.85 133.35 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4001,7 +4026,6 @@
 	)
 	(label "~{SEGA_AS}"
 		(at 162.56 113.03 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4012,7 +4036,6 @@
 	)
 	(label "~{SEGA_OE}"
 		(at 153.67 36.83 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4023,7 +4046,6 @@
 	)
 	(label "SPI_SCK"
 		(at 91.44 91.44 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4034,7 +4056,6 @@
 	)
 	(label "SRAM_W_A_CLK"
 		(at 120.65 176.53 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4045,7 +4066,6 @@
 	)
 	(label "~{SRAM_WE}"
 		(at 24.13 161.29 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4056,7 +4076,6 @@
 	)
 	(label "~{ERR_CLR}"
 		(at 229.87 74.93 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4067,7 +4086,6 @@
 	)
 	(label "REG_R_D4"
 		(at 35.56 63.5 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4078,7 +4096,6 @@
 	)
 	(label "SEGA_A4"
 		(at 57.15 133.35 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4089,7 +4106,6 @@
 	)
 	(label "REG_R_D[0..7]"
 		(at 26.67 48.26 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4100,7 +4116,6 @@
 	)
 	(label "SRAM_DIS_0"
 		(at 35.56 88.9 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4111,7 +4126,6 @@
 	)
 	(label "~{REG_0_OE}"
 		(at 229.87 24.13 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4122,7 +4136,6 @@
 	)
 	(label "~{REG_1_WE_INT}"
 		(at 250.19 107.95 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4133,7 +4146,6 @@
 	)
 	(label "SEGA_A3"
 		(at 162.56 115.57 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4144,7 +4156,6 @@
 	)
 	(label "~{CMD_OE}"
 		(at 229.87 67.31 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4155,7 +4166,6 @@
 	)
 	(label "REG_R_D2"
 		(at 35.56 58.42 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4166,7 +4176,6 @@
 	)
 	(label "SPI_MISO"
 		(at 224.79 158.75 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4177,7 +4186,6 @@
 	)
 	(label "~{REG_0_WE}"
 		(at 191.77 39.37 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4188,7 +4196,6 @@
 	)
 	(label "REG_R_D0"
 		(at 35.56 50.8 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4199,7 +4206,6 @@
 	)
 	(label "SEGA_D[0..7]"
 		(at 270.51 20.32 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4210,7 +4216,6 @@
 	)
 	(label "~{SEGA_WE_LB}"
 		(at 62.23 133.35 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4221,7 +4226,6 @@
 	)
 	(label "~{SEGA_OE}"
 		(at 156.21 100.33 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4232,7 +4236,6 @@
 	)
 	(label "~{SEGA_WE_LB}"
 		(at 153.67 39.37 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4243,7 +4246,6 @@
 	)
 	(label "SPI_MOSI"
 		(at 224.79 156.21 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4254,7 +4256,6 @@
 	)
 	(label "SEGA_A2"
 		(at 220.98 140.97 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4265,7 +4266,6 @@
 	)
 	(label "SEGA_D0"
 		(at 270.51 64.77 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4276,7 +4276,6 @@
 	)
 	(label "SRAM_W_A_CLK"
 		(at 91.44 86.36 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4287,7 +4286,6 @@
 	)
 	(label "~{ERR_CLR}"
 		(at 190.5 105.41 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4298,7 +4296,6 @@
 	)
 	(label "~{SRAM_W_A_CLR}"
 		(at 35.56 99.06 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4309,7 +4306,6 @@
 	)
 	(label "SEGA_A1"
 		(at 153.67 34.29 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4320,7 +4316,6 @@
 	)
 	(label "SRAM_D_NEXT"
 		(at 121.92 193.04 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4331,7 +4326,6 @@
 	)
 	(label "REG_R_D3"
 		(at 35.56 60.96 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4342,7 +4336,6 @@
 	)
 	(label "~{CMD_SET}"
 		(at 190.5 102.87 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4353,7 +4346,6 @@
 	)
 	(label "~{SEGA_AS}"
 		(at 276.86 140.97 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4364,7 +4356,6 @@
 	)
 	(label "~{SEGA_REGISTER}"
 		(at 64.77 133.35 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4375,7 +4366,6 @@
 	)
 	(label "~{ERR_OE}"
 		(at 190.5 110.49 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4386,7 +4376,6 @@
 	)
 	(label "~{REG_1_WE}"
 		(at 236.22 107.95 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4397,7 +4386,6 @@
 	)
 	(label "~{SPI_CS}"
 		(at 91.44 96.52 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4408,7 +4396,6 @@
 	)
 	(label "~{REG_1_WE_INT}"
 		(at 270.51 26.67 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4419,7 +4406,6 @@
 	)
 	(label "~{REG_0_OE}"
 		(at 35.56 76.2 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4430,7 +4416,6 @@
 	)
 	(label "REG_EN"
 		(at 91.44 58.42 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4441,7 +4426,6 @@
 	)
 	(label "SRAM_D_CLK"
 		(at 91.44 78.74 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4452,7 +4436,6 @@
 	)
 	(label "~{SEGA_WE_LB}"
 		(at 156.21 102.87 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4463,7 +4446,6 @@
 	)
 	(label "REG_R_D5"
 		(at 35.56 66.04 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4474,7 +4456,6 @@
 	)
 	(label "ERR_3V"
 		(at 270.51 67.31 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4485,7 +4466,6 @@
 	)
 	(label "REG_R_D7"
 		(at 35.56 73.66 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4496,7 +4476,6 @@
 	)
 	(label "SRAM_D_NEXT"
 		(at 91.44 83.82 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4507,7 +4486,6 @@
 	)
 	(label "SRAM_DIS_1"
 		(at 35.56 91.44 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4518,7 +4496,6 @@
 	)
 	(label "~{REG_1_OE}"
 		(at 35.56 78.74 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4529,7 +4506,6 @@
 	)
 	(label "~{ERR_SET}"
 		(at 229.87 72.39 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4540,7 +4516,6 @@
 	)
 	(label "SEGA_A1"
 		(at 156.21 97.79 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4551,7 +4526,6 @@
 	)
 	(label "~{CMD_SET}"
 		(at 229.87 62.23 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4562,7 +4536,6 @@
 	)
 	(label "~{ERR_OE}"
 		(at 229.87 77.47 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4573,7 +4546,6 @@
 	)
 	(label "ERR_3V"
 		(at 91.44 71.12 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4584,7 +4556,6 @@
 	)
 	(label "SPI_SCK"
 		(at 224.79 161.29 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4595,7 +4566,6 @@
 	)
 	(label "SEGA_A1"
 		(at 49.53 133.35 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4606,7 +4576,6 @@
 	)
 	(label "REG_R_D1"
 		(at 35.56 53.34 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4617,7 +4586,6 @@
 	)
 	(label "SEGA_A2"
 		(at 52.07 133.35 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4628,7 +4596,6 @@
 	)
 	(label "SEGA_A4"
 		(at 161.29 52.07 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4639,7 +4606,6 @@
 	)
 	(label "~{SEGA_AS}"
 		(at 67.31 133.35 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4650,7 +4616,6 @@
 	)
 	(label "~{SRAM_WE}"
 		(at 35.56 96.52 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4661,7 +4626,6 @@
 	)
 	(label "SRAM_W_A[0..18]"
 		(at 96.52 176.53 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4672,7 +4636,6 @@
 	)
 	(label "SEGA_D[0..7]"
 		(at 46.99 134.62 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4683,7 +4646,6 @@
 	)
 	(label "~{REG_0_WE_INT}"
 		(at 270.51 24.13 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4694,7 +4656,6 @@
 	)
 	(label "SRAM_D_IN[0..15]"
 		(at 96.52 190.5 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4705,7 +4666,6 @@
 	)
 	(label "~{SEGA_REGISTER}"
 		(at 162.56 110.49 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4716,7 +4676,6 @@
 	)
 	(label "~{REG_1_OE}"
 		(at 229.87 26.67 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4727,7 +4686,6 @@
 	)
 	(label "~{REG_1_WE}"
 		(at 191.77 41.91 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4738,7 +4696,6 @@
 	)
 	(label "SPI_MOSI"
 		(at 91.44 88.9 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4749,7 +4706,6 @@
 	)
 	(label "REG_R_D[0..7]"
 		(at 229.87 20.32 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4760,7 +4716,6 @@
 	)
 	(label "SEGA_A3"
 		(at 54.61 133.35 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4771,7 +4726,6 @@
 	)
 	(label "SEGA_A1"
 		(at 210.82 140.97 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4782,7 +4736,6 @@
 	)
 	(label "~{SEGA_OE}"
 		(at 200.66 140.97 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4793,7 +4746,6 @@
 	)
 	(label "~{SEGA_REGISTER}"
 		(at 161.29 46.99 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4804,7 +4756,6 @@
 	)
 	(label "SRAM_DIS_1"
 		(at 24.13 158.75 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4815,7 +4766,6 @@
 	)
 	(label "~{SEGA_AS}"
 		(at 161.29 49.53 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4826,7 +4776,6 @@
 	)
 	(label "~{SEGA_REGISTER}"
 		(at 265.43 140.97 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4837,7 +4786,6 @@
 	)
 	(label "~{SRAM_W_A_CLR}"
 		(at 120.65 179.07 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4848,7 +4796,6 @@
 	)
 	(label "~{ERR_SET}"
 		(at 91.44 73.66 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4859,7 +4806,6 @@
 	)
 	(label "VBUS"
 		(at 91.44 50.8 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4870,7 +4816,6 @@
 	)
 	(label "~{REG_0_WE}"
 		(at 236.22 101.6 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4881,7 +4826,6 @@
 	)
 	(label "CMD_3V"
 		(at 35.56 83.82 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8705,6 +8649,10 @@
 	(sheet
 		(at 33.02 142.24)
 		(size 44.45 50.8)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -8734,243 +8682,243 @@
 		)
 		(pin "SEGA_A[1..19]" input
 			(at 45.72 193.04 270)
+			(uuid "98443c2f-e5ca-4e56-9e7e-55cc2888e246")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "98443c2f-e5ca-4e56-9e7e-55cc2888e246")
 		)
 		(pin "SEGA_D[0..15]" bidirectional
 			(at 40.64 193.04 270)
+			(uuid "f4b388fd-9b72-482e-93e6-5903b6a9b262")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "f4b388fd-9b72-482e-93e6-5903b6a9b262")
 		)
 		(pin "SRAM_D_IN[0..15]" passive
 			(at 77.47 190.5 0)
+			(uuid "6b4575e2-a7da-4f67-8ca7-f82d9304e897")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "6b4575e2-a7da-4f67-8ca7-f82d9304e897")
 		)
 		(pin "SRAM_DIS_1" passive
 			(at 33.02 158.75 180)
+			(uuid "68c241c4-745f-4a4f-a1f4-3010418ece04")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "68c241c4-745f-4a4f-a1f4-3010418ece04")
 		)
 		(pin "SRAM_DIS_0" passive
 			(at 33.02 156.21 180)
+			(uuid "4f4eafdd-e007-43b7-bd2c-10c290b39523")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "4f4eafdd-e007-43b7-bd2c-10c290b39523")
 		)
 		(pin "~{SRAM_WE}" passive
 			(at 33.02 161.29 180)
+			(uuid "7ba5edae-d6da-42d7-b020-50df155a6809")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "7ba5edae-d6da-42d7-b020-50df155a6809")
 		)
 		(pin "SRAM_W_A[0..18]" passive
 			(at 77.47 176.53 0)
+			(uuid "ac146670-b5c0-409d-8be1-cfdc7bc5cf20")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "ac146670-b5c0-409d-8be1-cfdc7bc5cf20")
 		)
 		(pin "~{SEGA_CE}" passive
 			(at 35.56 193.04 270)
+			(uuid "392586ed-0711-465b-bef5-efe1f666d241")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "392586ed-0711-465b-bef5-efe1f666d241")
 		)
 		(pin "SEGA_A20" passive
 			(at 48.26 193.04 270)
+			(uuid "9606182d-16b8-408e-aae8-cd4bb01227b9")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "9606182d-16b8-408e-aae8-cd4bb01227b9")
 		)
 		(pin "SEGA_A21" passive
 			(at 50.8 193.04 270)
+			(uuid "d0fc6560-8a3f-4987-a109-48bf5b26eec9")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "d0fc6560-8a3f-4987-a109-48bf5b26eec9")
 		)
 		(pin "SEGA_A22" passive
 			(at 53.34 193.04 270)
+			(uuid "cad0dc6f-cc73-4a43-a97d-722397a98d02")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "cad0dc6f-cc73-4a43-a97d-722397a98d02")
 		)
 		(pin "SEGA_A23" passive
 			(at 55.88 193.04 270)
+			(uuid "71aec900-1afa-49c6-baaf-bf3c3d5dfe3e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "71aec900-1afa-49c6-baaf-bf3c3d5dfe3e")
 		)
 		(pin "SEGA_A[1..17]" passive
 			(at 43.18 193.04 270)
+			(uuid "cbd1a819-6423-4657-bd5d-f5d9b3554902")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "cbd1a819-6423-4657-bd5d-f5d9b3554902")
 		)
 		(pin "~{SEGA_WE_LB}" passive
 			(at 62.23 142.24 90)
+			(uuid "53c71670-eada-407d-8add-96990999f28e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "53c71670-eada-407d-8add-96990999f28e")
 		)
 		(pin "~{SEGA_REGISTER}" passive
 			(at 64.77 142.24 90)
+			(uuid "8c3ad329-ecc7-4857-92a7-ca7153bef9a0")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "8c3ad329-ecc7-4857-92a7-ca7153bef9a0")
 		)
 		(pin "~{SEGA_WE_UB}" passive
 			(at 38.1 193.04 270)
+			(uuid "2aa46c67-4e84-4c9f-8ce0-2b7f7a031e39")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "2aa46c67-4e84-4c9f-8ce0-2b7f7a031e39")
 		)
 		(pin "~{SEGA_AS}" passive
 			(at 67.31 142.24 90)
+			(uuid "8db5cf71-f779-4f9d-afbe-1e374f72ecce")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "8db5cf71-f779-4f9d-afbe-1e374f72ecce")
 		)
 		(pin "~{SEGA_RESET}" passive
 			(at 58.42 193.04 270)
+			(uuid "ef911288-44d5-4a3d-b67b-552749ba0988")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "ef911288-44d5-4a3d-b67b-552749ba0988")
 		)
 		(pin "SEGA_D[0..7]" bidirectional
 			(at 46.99 142.24 90)
+			(uuid "4b8b0b83-c266-4b5d-94fd-8731d3c82301")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "4b8b0b83-c266-4b5d-94fd-8731d3c82301")
 		)
 		(pin "SEGA_A2" passive
 			(at 52.07 142.24 90)
+			(uuid "7998d357-8056-4352-b8b8-64a707ac337d")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "7998d357-8056-4352-b8b8-64a707ac337d")
 		)
 		(pin "SEGA_A1" passive
 			(at 49.53 142.24 90)
+			(uuid "73359548-401e-458d-9b26-ab52d417cdbb")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "73359548-401e-458d-9b26-ab52d417cdbb")
 		)
 		(pin "SEGA_A3" passive
 			(at 54.61 142.24 90)
+			(uuid "8e32b9bb-13bc-43a8-b6d6-17e2597ade2e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "8e32b9bb-13bc-43a8-b6d6-17e2597ade2e")
 		)
 		(pin "~{SEGA_OE}" passive
 			(at 69.85 142.24 90)
+			(uuid "22f2da5c-9530-4a5e-9236-e6dfe4246539")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "22f2da5c-9530-4a5e-9236-e6dfe4246539")
 		)
 		(pin "SEGA_A4" passive
 			(at 57.15 142.24 90)
+			(uuid "487f5f33-0534-4bcf-a05d-66e2b9d01801")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "487f5f33-0534-4bcf-a05d-66e2b9d01801")
 		)
 		(instances
 			(project "microcontroller"
@@ -8983,6 +8931,10 @@
 	(sheet
 		(at 97.79 173.99)
 		(size 17.78 7.62)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -9012,33 +8964,33 @@
 		)
 		(pin "~{CLR}" input
 			(at 115.57 179.07 0)
+			(uuid "1b95bde4-9759-4606-90f5-812127bbadb4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "1b95bde4-9759-4606-90f5-812127bbadb4")
 		)
 		(pin "CLK" input
 			(at 115.57 176.53 0)
+			(uuid "17ea8844-b02d-40e2-9d8b-ecd0ed240e7e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "17ea8844-b02d-40e2-9d8b-ecd0ed240e7e")
 		)
 		(pin "A[1..19]" output
 			(at 97.79 176.53 180)
+			(uuid "b92b8ce0-d3c1-4a79-9616-5b3b2ee398b4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "b92b8ce0-d3c1-4a79-9616-5b3b2ee398b4")
 		)
 		(instances
 			(project "microcontroller"
@@ -9051,6 +9003,10 @@
 	(sheet
 		(at 97.79 187.96)
 		(size 17.78 7.62)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -9080,33 +9036,33 @@
 		)
 		(pin "D[0..15]" output
 			(at 97.79 190.5 180)
+			(uuid "bbd410c6-428d-4366-94ab-5dee15db5b82")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "bbd410c6-428d-4366-94ab-5dee15db5b82")
 		)
 		(pin "D_IN" input
 			(at 115.57 193.04 0)
+			(uuid "554a5f30-24e0-48ad-a436-2b172837d0c3")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "554a5f30-24e0-48ad-a436-2b172837d0c3")
 		)
 		(pin "CLK" input
 			(at 115.57 190.5 0)
+			(uuid "deb680fe-7e08-40a3-9a1c-9cd408793c72")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "deb680fe-7e08-40a3-9a1c-9cd408793c72")
 		)
 		(instances
 			(project "microcontroller"
@@ -9119,6 +9075,10 @@
 	(sheet
 		(at 232.41 17.78)
 		(size 36.83 11.43)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -9148,63 +9108,63 @@
 		)
 		(pin "D_OUT[0..7]" output
 			(at 232.41 20.32 180)
+			(uuid "24ac2762-d1b4-4424-a764-6acd9cecd037")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "24ac2762-d1b4-4424-a764-6acd9cecd037")
 		)
 		(pin "D_IN[0..7]" input
 			(at 269.24 20.32 0)
+			(uuid "ec05c5f4-d31f-4ea4-af1a-5df0e507dc73")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "ec05c5f4-d31f-4ea4-af1a-5df0e507dc73")
 		)
 		(pin "~{REG_0_WE}" input
 			(at 269.24 24.13 0)
+			(uuid "9df75733-0d02-4c35-9d4f-7d9252f7a632")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "9df75733-0d02-4c35-9d4f-7d9252f7a632")
 		)
 		(pin "~{REG_0_OE}" input
 			(at 232.41 24.13 180)
+			(uuid "ed75abb2-fd98-4c65-9438-166e25f77562")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "ed75abb2-fd98-4c65-9438-166e25f77562")
 		)
 		(pin "~{REG_1_OE}" input
 			(at 232.41 26.67 180)
+			(uuid "14d97e04-d43b-41c9-b516-308960c6595c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "14d97e04-d43b-41c9-b516-308960c6595c")
 		)
 		(pin "~{REG_1_WE}" input
 			(at 269.24 26.67 0)
+			(uuid "93c9d3d9-6438-4fdc-b263-a2b0326c744f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "93c9d3d9-6438-4fdc-b263-a2b0326c744f")
 		)
 		(instances
 			(project "microcontroller"
@@ -9217,6 +9177,10 @@
 	(sheet
 		(at 231.14 59.69)
 		(size 38.1 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -9246,93 +9210,93 @@
 		)
 		(pin "~{ERR_CLR}" input
 			(at 231.14 74.93 180)
+			(uuid "8baee703-5d50-4994-b1dc-1a3013e6b857")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "8baee703-5d50-4994-b1dc-1a3013e6b857")
 		)
 		(pin "~{ERR_OE}" input
 			(at 231.14 77.47 180)
+			(uuid "21dd7aea-ade8-4756-a6e3-3850037f66fa")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "21dd7aea-ade8-4756-a6e3-3850037f66fa")
 		)
 		(pin "~{CMD_OE}" input
 			(at 231.14 67.31 180)
+			(uuid "a4de3ae3-15be-4cde-8064-62336a72d3a0")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "a4de3ae3-15be-4cde-8064-62336a72d3a0")
 		)
 		(pin "~{CMD_CLR}" input
 			(at 231.14 64.77 180)
+			(uuid "f447a9a1-0423-49bb-976e-13a0ead0fec1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "f447a9a1-0423-49bb-976e-13a0ead0fec1")
 		)
 		(pin "~{CMD_SET}" input
 			(at 231.14 62.23 180)
+			(uuid "6ce284b5-5c34-44c2-9e39-5a693d93859f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "6ce284b5-5c34-44c2-9e39-5a693d93859f")
 		)
 		(pin "~{ERR_SET}" input
 			(at 231.14 72.39 180)
+			(uuid "5101570f-f661-4aeb-aed0-3789c003d49d")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "5101570f-f661-4aeb-aed0-3789c003d49d")
 		)
 		(pin "CMD_3V_ALWAYS_ON" output
 			(at 269.24 62.23 0)
+			(uuid "ae1ae758-a428-45f0-a8fc-f654dfe3dcba")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "ae1ae758-a428-45f0-a8fc-f654dfe3dcba")
 		)
 		(pin "ERR_3V_ALWAYS_ON" output
 			(at 269.24 67.31 0)
+			(uuid "ff038f45-81a3-422a-b807-1410e20b0b0f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "ff038f45-81a3-422a-b807-1410e20b0b0f")
 		)
 		(pin "SHARED_OUTPUT" tri_state
 			(at 269.24 64.77 0)
+			(uuid "17556c32-dafc-4d1e-96b2-86dbe1df57d3")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "17556c32-dafc-4d1e-96b2-86dbe1df57d3")
 		)
 		(instances
 			(project "microcontroller"
@@ -9347,4 +9311,5 @@
 			(page "1")
 		)
 	)
+	(embedded_fonts no)
 )

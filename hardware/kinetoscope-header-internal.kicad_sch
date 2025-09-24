@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "abfc0f08-1027-43c9-b074-ee106d07c83f")
 	(paper "A4")
 	(title_block
@@ -78,6 +78,150 @@
 						)
 					)
 					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -7.62 0)
+					(length 2.54)
+					(name "SEGA_A2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -10.16 0)
+					(length 2.54)
+					(name "SEGA_A3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -12.7 0)
+					(length 2.54)
+					(name "SEGA_A4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -15.24 0)
+					(length 2.54)
+					(name "SEGA_A5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -17.78 0)
+					(length 2.54)
+					(name "SEGA_A6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -20.32 0)
+					(length 2.54)
+					(name "SEGA_A7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -25.4 0)
+					(length 2.54)
+					(name "SEGA_A8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -27.94 0)
+					(length 2.54)
+					(name "SEGA_A9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -266,24 +410,6 @@
 					)
 				)
 				(pin passive line
-					(at -17.78 -7.62 0)
-					(length 2.54)
-					(name "SEGA_A2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at -17.78 -58.42 0)
 					(length 2.54)
 					(name "SEGA_A20"
@@ -456,24 +582,6 @@
 						)
 					)
 					(number "29"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -17.78 -10.16 0)
-					(length 2.54)
-					(name "SEGA_A3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -662,24 +770,6 @@
 					)
 				)
 				(pin passive line
-					(at -17.78 -12.7 0)
-					(length 2.54)
-					(name "SEGA_A4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at 17.78 -43.18 180)
 					(length 2.54)
 					(name "SEGA_D15"
@@ -860,24 +950,6 @@
 					)
 				)
 				(pin passive line
-					(at -17.78 -15.24 0)
-					(length 2.54)
-					(name "SEGA_A5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at 17.78 -78.74 180)
 					(length 2.54)
 					(name "~{SEGA_AS}"
@@ -931,79 +1003,8 @@
 						)
 					)
 				)
-				(pin passive line
-					(at -17.78 -17.78 0)
-					(length 2.54)
-					(name "SEGA_A6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -17.78 -20.32 0)
-					(length 2.54)
-					(name "SEGA_A7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -17.78 -25.4 0)
-					(length 2.54)
-					(name "SEGA_A8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -17.78 -27.94 0)
-					(length 2.54)
-					(name "SEGA_A9"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "9"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "kinetoscope-cart-header:kinetoscope-cart-header-b"
 			(exclude_from_sim no)
@@ -1075,6 +1076,96 @@
 						)
 					)
 					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -7.62 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -17.78 0)
+					(length 2.54)
+					(name "SRAM_W_A0"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -20.32 0)
+					(length 2.54)
+					(name "SRAM_W_A1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -22.86 0)
+					(length 2.54)
+					(name "SRAM_W_A2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -17.78 -25.4 0)
+					(length 2.54)
+					(name "SRAM_W_A3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1263,24 +1354,6 @@
 					)
 				)
 				(pin passive line
-					(at -17.78 -7.62 0)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
 					(at -17.78 -55.88 0)
 					(length 2.54)
 					(name "SRAM_W_A14"
@@ -1388,6 +1461,60 @@
 						)
 					)
 				)
+				(pin passive line
+					(at 17.78 -5.08 180)
+					(length 2.54)
+					(name "SRAM_DIS_0"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 17.78 -7.62 180)
+					(length 2.54)
+					(name "SRAM_DIS_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 17.78 -10.16 180)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 				(pin bidirectional line
 					(at 17.78 -20.32 180)
 					(length 2.54)
@@ -1453,24 +1580,6 @@
 						)
 					)
 					(number "29"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 17.78 -5.08 180)
-					(length 2.54)
-					(name "SRAM_DIS_0"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1658,24 +1767,6 @@
 						)
 					)
 				)
-				(pin passive line
-					(at 17.78 -7.62 180)
-					(length 2.54)
-					(name "SRAM_DIS_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin bidirectional line
 					(at 17.78 -58.42 180)
 					(length 2.54)
@@ -1730,97 +1821,8 @@
 						)
 					)
 				)
-				(pin passive line
-					(at 17.78 -10.16 180)
-					(length 2.54)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -17.78 -17.78 0)
-					(length 2.54)
-					(name "SRAM_W_A0"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -17.78 -20.32 0)
-					(length 2.54)
-					(name "SRAM_W_A1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -17.78 -22.86 0)
-					(length 2.54)
-					(name "SRAM_W_A2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -17.78 -25.4 0)
-					(length 2.54)
-					(name "SRAM_W_A3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "9"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "kinetoscope-cart-header:kinetoscope-cart-template"
 			(exclude_from_sim no)
@@ -1892,12 +1894,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:+3.3V"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1969,7 +1976,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -1981,7 +1988,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -2012,12 +2019,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:+5V"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -2089,7 +2101,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -2101,7 +2113,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -2132,12 +2144,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -2228,12 +2245,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:PWR_FLAG"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -2324,6 +2346,7 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 	)
 	(junction
@@ -4682,7 +4705,6 @@
 	)
 	(label "SEGA_D12"
 		(at 86.36 69.85 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4693,7 +4715,6 @@
 	)
 	(label "SRAM_W_A3"
 		(at 170.18 67.31 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4704,7 +4725,6 @@
 	)
 	(label "SEGA_A13"
 		(at 33.02 72.39 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4715,7 +4735,6 @@
 	)
 	(label "SRAM_D_IN12"
 		(at 223.52 95.25 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4726,7 +4745,6 @@
 	)
 	(label "SEGA_A12"
 		(at 33.02 69.85 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4737,7 +4755,6 @@
 	)
 	(label "SRAM_D_IN0"
 		(at 223.52 62.23 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4748,7 +4765,6 @@
 	)
 	(label "SEGA_D13"
 		(at 86.36 72.39 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4759,7 +4775,6 @@
 	)
 	(label "SEGA_A2"
 		(at 33.02 41.91 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4770,7 +4785,6 @@
 	)
 	(label "SEGA_A14"
 		(at 33.02 74.93 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4781,7 +4795,6 @@
 	)
 	(label "SRAM_W_A17"
 		(at 170.18 107.95 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4792,7 +4805,6 @@
 	)
 	(label "SEGA_A6"
 		(at 33.02 52.07 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4803,7 +4815,6 @@
 	)
 	(label "SRAM_D_IN13"
 		(at 223.52 97.79 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4814,7 +4825,6 @@
 	)
 	(label "SRAM_W_A9"
 		(at 170.18 85.09 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4825,7 +4835,6 @@
 	)
 	(label "SEGA_A7"
 		(at 33.02 54.61 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4836,7 +4845,6 @@
 	)
 	(label "SRAM_W_A14"
 		(at 170.18 97.79 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4847,7 +4855,6 @@
 	)
 	(label "SEGA_D9"
 		(at 86.36 62.23 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4858,7 +4865,6 @@
 	)
 	(label "SRAM_W_A18"
 		(at 170.18 110.49 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4869,7 +4875,6 @@
 	)
 	(label "SRAM_W_A12"
 		(at 170.18 92.71 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4880,7 +4885,6 @@
 	)
 	(label "SRAM_W_A8"
 		(at 170.18 82.55 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4891,7 +4895,6 @@
 	)
 	(label "SRAM_D_IN7"
 		(at 223.52 80.01 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4902,7 +4905,6 @@
 	)
 	(label "SRAM_W_A10"
 		(at 170.18 87.63 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4913,7 +4915,6 @@
 	)
 	(label "SRAM_W_A11"
 		(at 170.18 90.17 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4924,7 +4925,6 @@
 	)
 	(label "SEGA_A5"
 		(at 33.02 49.53 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4935,7 +4935,6 @@
 	)
 	(label "SEGA_D15"
 		(at 86.36 77.47 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4946,7 +4945,6 @@
 	)
 	(label "SRAM_D_IN2"
 		(at 223.52 67.31 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4957,7 +4955,6 @@
 	)
 	(label "SRAM_D_IN3"
 		(at 223.52 69.85 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4968,7 +4965,6 @@
 	)
 	(label "SRAM_D_IN8"
 		(at 223.52 85.09 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4979,7 +4975,6 @@
 	)
 	(label "SEGA_A9"
 		(at 33.02 62.23 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4990,7 +4985,6 @@
 	)
 	(label "SEGA_A19"
 		(at 33.02 90.17 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5001,7 +4995,6 @@
 	)
 	(label "SRAM_D_IN14"
 		(at 223.52 100.33 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5012,7 +5005,6 @@
 	)
 	(label "SRAM_D_IN9"
 		(at 223.52 87.63 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5023,7 +5015,6 @@
 	)
 	(label "SEGA_A17"
 		(at 33.02 85.09 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5034,7 +5025,6 @@
 	)
 	(label "SRAM_D_IN1"
 		(at 223.52 64.77 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5045,7 +5035,6 @@
 	)
 	(label "SEGA_D0"
 		(at 86.36 36.83 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5056,7 +5045,6 @@
 	)
 	(label "SRAM_W_A5"
 		(at 170.18 72.39 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5067,7 +5055,6 @@
 	)
 	(label "SRAM_W_A7"
 		(at 170.18 77.47 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5078,7 +5065,6 @@
 	)
 	(label "SEGA_D6"
 		(at 86.36 52.07 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5089,7 +5075,6 @@
 	)
 	(label "SEGA_A1"
 		(at 33.02 39.37 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5100,7 +5085,6 @@
 	)
 	(label "SRAM_D_IN15"
 		(at 223.52 102.87 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5111,7 +5095,6 @@
 	)
 	(label "SEGA_A4"
 		(at 33.02 46.99 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5122,7 +5105,6 @@
 	)
 	(label "SEGA_A10"
 		(at 33.02 64.77 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5133,7 +5115,6 @@
 	)
 	(label "SEGA_D2"
 		(at 86.36 41.91 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5144,7 +5125,6 @@
 	)
 	(label "SEGA_D10"
 		(at 86.36 64.77 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5155,7 +5135,6 @@
 	)
 	(label "SRAM_D_IN11"
 		(at 223.52 92.71 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5166,7 +5145,6 @@
 	)
 	(label "SEGA_A3"
 		(at 33.02 44.45 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5177,7 +5155,6 @@
 	)
 	(label "SEGA_D8"
 		(at 86.36 59.69 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5188,7 +5165,6 @@
 	)
 	(label "SRAM_W_A2"
 		(at 170.18 64.77 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5199,7 +5175,6 @@
 	)
 	(label "SRAM_D_IN10"
 		(at 223.52 90.17 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5210,7 +5185,6 @@
 	)
 	(label "SEGA_A15"
 		(at 33.02 77.47 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5221,7 +5195,6 @@
 	)
 	(label "SEGA_D1"
 		(at 86.36 39.37 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5232,7 +5205,6 @@
 	)
 	(label "SRAM_D_IN6"
 		(at 223.52 77.47 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5243,7 +5215,6 @@
 	)
 	(label "SRAM_D_IN5"
 		(at 223.52 74.93 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5254,7 +5225,6 @@
 	)
 	(label "SRAM_W_A4"
 		(at 170.18 69.85 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5265,7 +5235,6 @@
 	)
 	(label "SEGA_D11"
 		(at 86.36 67.31 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5276,7 +5245,6 @@
 	)
 	(label "SEGA_D3"
 		(at 86.36 44.45 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5287,7 +5255,6 @@
 	)
 	(label "SEGA_D4"
 		(at 86.36 46.99 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5298,7 +5265,6 @@
 	)
 	(label "SEGA_A16"
 		(at 33.02 82.55 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5309,7 +5275,6 @@
 	)
 	(label "SRAM_W_A15"
 		(at 170.18 100.33 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5320,7 +5285,6 @@
 	)
 	(label "SEGA_D5"
 		(at 86.36 49.53 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5331,7 +5295,6 @@
 	)
 	(label "SEGA_A18"
 		(at 33.02 87.63 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5342,7 +5305,6 @@
 	)
 	(label "SRAM_W_A16"
 		(at 170.18 105.41 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5353,7 +5315,6 @@
 	)
 	(label "SRAM_W_A0"
 		(at 170.18 59.69 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5364,7 +5325,6 @@
 	)
 	(label "SEGA_D7"
 		(at 86.36 54.61 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5375,7 +5335,6 @@
 	)
 	(label "SRAM_W_A13"
 		(at 170.18 95.25 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5386,7 +5345,6 @@
 	)
 	(label "SRAM_W_A1"
 		(at 170.18 62.23 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5397,7 +5355,6 @@
 	)
 	(label "SEGA_A11"
 		(at 33.02 67.31 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5408,7 +5365,6 @@
 	)
 	(label "SRAM_W_A6"
 		(at 170.18 74.93 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5419,7 +5375,6 @@
 	)
 	(label "SEGA_D14"
 		(at 86.36 74.93 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5430,7 +5385,6 @@
 	)
 	(label "SEGA_A8"
 		(at 33.02 59.69 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5441,7 +5395,6 @@
 	)
 	(label "SRAM_D_IN4"
 		(at 223.52 72.39 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5453,7 +5406,6 @@
 	(hierarchical_label "~{SRAM_WE}"
 		(shape passive)
 		(at 182.88 46.99 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5465,7 +5417,6 @@
 	(hierarchical_label "~{SEGA_WE_LB}"
 		(shape passive)
 		(at 87.63 102.87 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5477,7 +5428,6 @@
 	(hierarchical_label "SEGA_A3"
 		(shape passive)
 		(at 27.94 22.86 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5489,7 +5439,6 @@
 	(hierarchical_label "~{SEGA_REGISTER}"
 		(shape passive)
 		(at 87.63 110.49 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5501,7 +5450,6 @@
 	(hierarchical_label "SRAM_D_IN[0..15]"
 		(shape passive)
 		(at 247.65 55.88 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5513,7 +5461,6 @@
 	(hierarchical_label "SRAM_W_A[0..18]"
 		(shape passive)
 		(at 163.83 49.53 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5525,7 +5472,6 @@
 	(hierarchical_label "SEGA_A[1..19]"
 		(shape passive)
 		(at 27.94 30.48 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5537,7 +5483,6 @@
 	(hierarchical_label "SEGA_A20"
 		(shape passive)
 		(at 27.94 92.71 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5549,7 +5494,6 @@
 	(hierarchical_label "~{SEGA_AS}"
 		(shape passive)
 		(at 87.63 113.03 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5561,7 +5505,6 @@
 	(hierarchical_label "SRAM_DIS_1"
 		(shape passive)
 		(at 227.33 49.53 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5573,7 +5516,6 @@
 	(hierarchical_label "SEGA_D[0..7]"
 		(shape bidirectional)
 		(at 102.87 26.67 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5585,7 +5527,6 @@
 	(hierarchical_label "SRAM_DIS_0"
 		(shape passive)
 		(at 227.33 46.99 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5597,7 +5538,6 @@
 	(hierarchical_label "SEGA_A[1..17]"
 		(shape passive)
 		(at 27.94 34.29 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5609,7 +5549,6 @@
 	(hierarchical_label "~{SEGA_OE}"
 		(shape passive)
 		(at 87.63 100.33 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5621,7 +5560,6 @@
 	(hierarchical_label "SEGA_A2"
 		(shape passive)
 		(at 27.94 19.05 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5633,7 +5571,6 @@
 	(hierarchical_label "~{SEGA_CE}"
 		(shape passive)
 		(at 87.63 107.95 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5645,7 +5582,6 @@
 	(hierarchical_label "~{SEGA_RESET}"
 		(shape passive)
 		(at 87.63 115.57 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5657,7 +5593,6 @@
 	(hierarchical_label "SEGA_A21"
 		(shape passive)
 		(at 27.94 95.25 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5669,7 +5604,6 @@
 	(hierarchical_label "SEGA_A23"
 		(shape passive)
 		(at 27.94 100.33 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5681,7 +5615,6 @@
 	(hierarchical_label "SEGA_A4"
 		(shape passive)
 		(at 27.94 26.67 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5693,7 +5626,6 @@
 	(hierarchical_label "SEGA_A22"
 		(shape passive)
 		(at 27.94 97.79 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5705,7 +5637,6 @@
 	(hierarchical_label "SEGA_D[0..15]"
 		(shape bidirectional)
 		(at 102.87 30.48 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5717,7 +5648,6 @@
 	(hierarchical_label "~{SEGA_WE_UB}"
 		(shape passive)
 		(at 87.63 105.41 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5729,7 +5659,6 @@
 	(hierarchical_label "SEGA_A1"
 		(shape passive)
 		(at 27.94 15.24 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)

@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "2ffb4642-165b-4c5d-ae12-c31d3024decc")
 	(paper "A4")
 	(title_block
@@ -86,24 +86,6 @@
 						(type background)
 					)
 				)
-				(pin input inverted
-					(at 0 10.16 270)
-					(length 7.62)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin input line
 					(at -15.24 0 0)
 					(length 7.62)
@@ -115,6 +97,24 @@
 						)
 					)
 					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input inverted
+					(at 0 10.16 270)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -154,24 +154,6 @@
 						(type background)
 					)
 				)
-				(pin tri_state line
-					(at 12.7 0 180)
-					(length 7.62)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin input line
 					(at -15.24 0 0)
 					(length 7.62)
@@ -208,6 +190,24 @@
 						)
 					)
 				)
+				(pin tri_state line
+					(at 12.7 0 180)
+					(length 7.62)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 			)
 			(symbol "74LVC2G125_3_0"
 				(rectangle
@@ -223,24 +223,6 @@
 				)
 			)
 			(symbol "74LVC2G125_3_1"
-				(pin power_in line
-					(at 0 -10.16 90)
-					(length 5.08)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin power_in line
 					(at 0 10.16 270)
 					(length 5.08)
@@ -259,7 +241,26 @@
 						)
 					)
 				)
+				(pin power_in line
+					(at 0 -10.16 90)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "74xx:74HCT74"
 			(pin_names
@@ -339,24 +340,6 @@
 			)
 			(symbol "74HCT74_1_0"
 				(pin input line
-					(at 0 -7.62 90)
-					(length 2.54)
-					(name "~{R}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
 					(at -7.62 2.54 0)
 					(length 2.54)
 					(name "D"
@@ -403,6 +386,24 @@
 						)
 					)
 					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 0 -7.62 90)
+					(length 2.54)
+					(name "~{R}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -462,16 +463,16 @@
 			)
 			(symbol "74HCT74_2_0"
 				(pin input line
-					(at 0 7.62 270)
+					(at -7.62 2.54 0)
 					(length 2.54)
-					(name "~{S}"
+					(name "D"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "10"
+					(number "12"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -498,16 +499,16 @@
 					)
 				)
 				(pin input line
-					(at -7.62 2.54 0)
+					(at 0 7.62 270)
 					(length 2.54)
-					(name "D"
+					(name "~{S}"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "12"
+					(number "10"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -534,24 +535,6 @@
 					)
 				)
 				(pin output line
-					(at 7.62 -2.54 180)
-					(length 2.54)
-					(name "~{Q}"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
 					(at 7.62 2.54 180)
 					(length 2.54)
 					(name "Q"
@@ -562,6 +545,24 @@
 						)
 					)
 					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 7.62 -2.54 180)
+					(length 2.54)
+					(name "~{Q}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -634,9 +635,12 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "Device:C"
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
 				(offset 0.254)
 			)
@@ -709,7 +713,7 @@
 			(symbol "C_0_1"
 				(polyline
 					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
+						(xy -2.032 0.762) (xy 2.032 0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -721,7 +725,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
 					)
 					(stroke
 						(width 0.508)
@@ -770,12 +774,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:+3.3V"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -847,7 +856,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 0) (xy 0 2.54)
+						(xy 0 2.54) (xy 0.762 1.27)
 					)
 					(stroke
 						(width 0)
@@ -859,7 +868,7 @@
 				)
 				(polyline
 					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
+						(xy 0 0) (xy 0 2.54)
 					)
 					(stroke
 						(width 0)
@@ -890,12 +899,17 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
 		(symbol "power:GND"
 			(power)
-			(pin_numbers hide)
+			(pin_numbers
+				(hide yes)
+			)
 			(pin_names
-				(offset 0) hide)
+				(offset 0)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -986,7 +1000,63 @@
 					)
 				)
 			)
+			(embedded_fonts no)
 		)
+	)
+	(text "Always on, outputs at 3.3V to the microcontroller."
+		(exclude_from_sim no)
+		(at 106.172 161.036 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2882fa3c-2809-4955-8c62-790422a82fd9")
+	)
+	(text "Always on, outputs at 3.3V to the microcontroller."
+		(exclude_from_sim no)
+		(at 106.172 107.696 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2cc3e940-2dcc-419c-8bc1-f6eec58c7e58")
+	)
+	(text "Controlled by ~{ERR_OE}, outputs at 3.3V (OK) to M68k\non the shared data bus.\n\n~{ERR_OE} and ~{CMD_OE} must be mutually exclusive."
+		(exclude_from_sim no)
+		(at 106.68 135.382 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5bbec4f5-af24-4d82-b197-f393f86fba06")
+	)
+	(text "These are synchronization tokens between the M68k and the microcontroller.\n\nThe tokens will be cleared on boot/reset.\n\nThe M68k will be able to set the command token (~{CMD_SET}), indicating to\nthe microcontroller that a command is ready to be executed.\n\nThe microcontroller will be able to clear the command token (~{CMD_CLR}),\nindicating to the M68k that the command has been executed.\n\nCommand codes and arguments are passed through a separate register file.\n\nThe microcontroller can also flag an error (~{ERR_SET}) to the M68k,\nwho can clear it (~{ERR_CLR}) after noticing.\n\nThe M68k and microcontroller both will be able to read the current state\nof either token through OUTPUT_5V, which goes to the shared data bus with\n5V logic.  3.3V version of both tokens are output to the microcontroller\non dedicated lines."
+		(exclude_from_sim no)
+		(at 32.258 41.402 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8cc3e9b8-17b7-472d-aeb2-fece0008abc7")
+	)
+	(text "Controlled by ~{CMD_OE}, outputs at 3.3V (OK) to M68k\non the shared data bus.\n\n~{ERR_OE} and ~{CMD_OE} must be mutually exclusive."
+		(exclude_from_sim no)
+		(at 106.426 84.836 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9242a584-9398-4837-b7b6-8973d5866e54")
 	)
 	(junction
 		(at 74.93 142.24)
@@ -1324,65 +1394,9 @@
 		)
 		(uuid "f28fe5bf-8311-4490-aa22-ad1b22e3a406")
 	)
-	(text "Always on, outputs at 3.3V to the microcontroller."
-		(exclude_from_sim no)
-		(at 106.172 161.036 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "2882fa3c-2809-4955-8c62-790422a82fd9")
-	)
-	(text "Always on, outputs at 3.3V to the microcontroller."
-		(exclude_from_sim no)
-		(at 106.172 107.696 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "2cc3e940-2dcc-419c-8bc1-f6eec58c7e58")
-	)
-	(text "Controlled by ~{ERR_OE}, outputs at 3.3V (OK) to M68k\non the shared data bus.\n\n~{ERR_OE} and ~{CMD_OE} must be mutually exclusive."
-		(exclude_from_sim no)
-		(at 106.68 135.382 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "5bbec4f5-af24-4d82-b197-f393f86fba06")
-	)
-	(text "These are synchronization tokens between the M68k and the microcontroller.\n\nThe tokens will be cleared on boot/reset.\n\nThe M68k will be able to set the command token (~{CMD_SET}), indicating to\nthe microcontroller that a command is ready to be executed.\n\nThe microcontroller will be able to clear the command token (~{CMD_CLR}),\nindicating to the M68k that the command has been executed.\n\nCommand codes and arguments are passed through a separate register file.\n\nThe microcontroller can also flag an error (~{ERR_SET}) to the M68k,\nwho can clear it (~{ERR_CLR}) after noticing.\n\nThe M68k and microcontroller both will be able to read the current state\nof either token through OUTPUT_5V, which goes to the shared data bus with\n5V logic.  3.3V version of both tokens are output to the microcontroller\non dedicated lines."
-		(exclude_from_sim no)
-		(at 32.258 41.402 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "8cc3e9b8-17b7-472d-aeb2-fece0008abc7")
-	)
-	(text "Controlled by ~{CMD_OE}, outputs at 3.3V (OK) to M68k\non the shared data bus.\n\n~{ERR_OE} and ~{CMD_OE} must be mutually exclusive."
-		(exclude_from_sim no)
-		(at 106.426 84.836 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "9242a584-9398-4837-b7b6-8973d5866e54")
-	)
 	(hierarchical_label "~{CMD_SET}"
 		(shape input)
 		(at 53.34 78.74 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1394,7 +1408,6 @@
 	(hierarchical_label "~{ERR_CLR}"
 		(shape input)
 		(at 52.07 156.21 270)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1406,7 +1419,6 @@
 	(hierarchical_label "ERR_3V_ALWAYS_ON"
 		(shape output)
 		(at 106.68 157.48 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1418,7 +1430,6 @@
 	(hierarchical_label "CMD_3V_ALWAYS_ON"
 		(shape output)
 		(at 106.68 104.14 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1430,7 +1441,6 @@
 	(hierarchical_label "~{ERR_OE}"
 		(shape input)
 		(at 93.98 132.08 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1442,7 +1452,6 @@
 	(hierarchical_label "~{ERR_SET}"
 		(shape input)
 		(at 52.07 132.08 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1454,7 +1463,6 @@
 	(hierarchical_label "~{CMD_CLR}"
 		(shape input)
 		(at 53.34 105.41 270)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1466,7 +1474,6 @@
 	(hierarchical_label "~{CMD_OE}"
 		(shape input)
 		(at 93.98 81.28 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1478,7 +1485,6 @@
 	(hierarchical_label "SHARED_OUTPUT"
 		(shape tri_state)
 		(at 106.68 91.44 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1490,7 +1496,6 @@
 	(hierarchical_label "SHARED_OUTPUT"
 		(shape tri_state)
 		(at 106.68 142.24 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
