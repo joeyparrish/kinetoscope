@@ -686,14 +686,6 @@
       "sram-bank-internal"
     ],
     [
-      "8fba2bc8-5b90-4ec8-a637-aa04f63ad055",
-      "buffer-16-internal"
-    ],
-    [
-      "0a8080e9-a039-47f4-ae61-d3888692a6ad",
-      "buffer-16-internal1"
-    ],
-    [
       "4b99e837-8b17-4c9a-ae0c-b0189d440061",
       "buffer-22-internal"
     ],
@@ -704,6 +696,14 @@
     [
       "3d478650-c721-4e59-90b6-3e9b8fac63c3",
       "sram-internal"
+    ],
+    [
+      "0a8080e9-a039-47f4-ae61-d3888692a6ad",
+      "buffer-16-internal1"
+    ],
+    [
+      "8fba2bc8-5b90-4ec8-a637-aa04f63ad055",
+      "buffer-16-internal"
     ]
   ],
   "text_variables": {}

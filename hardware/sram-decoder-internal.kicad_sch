@@ -380,6 +380,145 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:C"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C"
+				(at 0.635 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.9652 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C_0_1"
+				(polyline
+					(pts
+						(xy -2.032 0.762) (xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+3.3V"
 			(power)
 			(pin_numbers
@@ -674,6 +813,16 @@
 	)
 	(wire
 		(pts
+			(xy 120.65 40.64) (xy 120.65 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "540992cd-0af9-4511-8ed6-a490eb0d9aa3")
+	)
+	(wire
+		(pts
 			(xy 66.04 49.53) (xy 73.66 49.53)
 		)
 		(stroke
@@ -691,6 +840,16 @@
 			(type default)
 		)
 		(uuid "b65b6b7a-9a6d-4bf6-ae67-a95cefa7e111")
+	)
+	(wire
+		(pts
+			(xy 120.65 50.8) (xy 120.65 53.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c985ee9e-2671-4873-9767-610d3b4f8464")
 	)
 	(wire
 		(pts
@@ -849,7 +1008,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "065376db-5fa4-42f4-bb14-18ff26c9ec06")
-		(property "Reference" "#PWR048"
+		(property "Reference" "#PWR016"
 			(at 83.82 63.5 0)
 			(effects
 				(font
@@ -899,7 +1058,13 @@
 		(instances
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/11da9ba7-2af4-42dd-9fca-690f22f9fed8"
-					(reference "#PWR048")
+					(reference "#PWR016")
+					(unit 1)
+				)
+			)
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5/b93d7535-fc79-4dbb-96b6-70684ccada1f"
+					(reference "#PWR0403")
 					(unit 1)
 				)
 			)
@@ -915,7 +1080,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "09ffc45e-c2d6-426d-81b5-7c2028cefda5")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR014"
 			(at 67.31 39.37 0)
 			(effects
 				(font
@@ -966,7 +1131,157 @@
 		(instances
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/11da9ba7-2af4-42dd-9fca-690f22f9fed8"
-					(reference "#PWR034")
+					(reference "#PWR014")
+					(unit 1)
+				)
+			)
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5/b93d7535-fc79-4dbb-96b6-70684ccada1f"
+					(reference "#PWR0401")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 120.65 53.34 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2be0752d-108a-4948-9f17-cb82d12ad2ce")
+		(property "Reference" "#PWR018"
+			(at 120.65 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 120.65 57.4731 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 120.65 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 120.65 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 120.65 53.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "99bac3db-6394-457e-b140-2f397789ee8f")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/11da9ba7-2af4-42dd-9fca-690f22f9fed8"
+					(reference "#PWR018")
+					(unit 1)
+				)
+			)
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5/b93d7535-fc79-4dbb-96b6-70684ccada1f"
+					(reference "#PWR0405")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 120.65 40.64 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "da852416-e8ef-4ec2-a23a-ff7e8fcfb43b")
+		(property "Reference" "#PWR017"
+			(at 120.65 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V"
+			(at 120.65 36.5069 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 120.65 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 120.65 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 120.65 40.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "120c3c7d-9e14-4414-9e5e-f94d61d7149c")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/11da9ba7-2af4-42dd-9fca-690f22f9fed8"
+					(reference "#PWR017")
+					(unit 1)
+				)
+			)
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5/b93d7535-fc79-4dbb-96b6-70684ccada1f"
+					(reference "#PWR0404")
 					(unit 1)
 				)
 			)
@@ -982,7 +1297,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e3b88fae-0f4c-4f56-8d49-9b039fb37b4c")
-		(property "Reference" "#PWR035"
+		(property "Reference" "#PWR015"
 			(at 83.82 33.02 0)
 			(effects
 				(font
@@ -1032,7 +1347,116 @@
 		(instances
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/11da9ba7-2af4-42dd-9fca-690f22f9fed8"
-					(reference "#PWR035")
+					(reference "#PWR015")
+					(unit 1)
+				)
+			)
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5/b93d7535-fc79-4dbb-96b6-70684ccada1f"
+					(reference "#PWR0402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 120.65 46.99 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e421d579-5531-4748-8471-cb6b1390eb47")
+		(property "Reference" "C1"
+			(at 124.46 45.7199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22nF"
+			(at 124.46 48.2599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 121.6152 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.mouser.com/datasheet/2/447/KEM_C1002_X7R_SMD-3316098.pdf"
+			(at 120.65 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 120.65 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLCPCB Part Number" "CL10B223KB8NNNC"
+			(at 120.65 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "80-C0603C223K4R"
+			(at 120.65 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Number" "C0603C223K4RACTU"
+			(at 120.65 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0e19eda3-b636-44ac-a303-af0d9e3f951a")
+		)
+		(pin "2"
+			(uuid "04c70cde-32c9-4ee7-aecb-0f9fdcf73db0")
+		)
+		(instances
+			(project "sram-bank"
+				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/11da9ba7-2af4-42dd-9fca-690f22f9fed8"
+					(reference "C1")
+					(unit 1)
+				)
+			)
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5/b93d7535-fc79-4dbb-96b6-70684ccada1f"
+					(reference "C401")
 					(unit 1)
 				)
 			)
@@ -1048,7 +1472,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e88d5ede-eecc-4f3a-adf4-e261ab82f28f")
-		(property "Reference" "U13"
+		(property "Reference" "U1"
 			(at 86.0141 27.6055 0)
 			(effects
 				(font
@@ -1171,7 +1595,13 @@
 		(instances
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/11da9ba7-2af4-42dd-9fca-690f22f9fed8"
-					(reference "U13")
+					(reference "U1")
+					(unit 1)
+				)
+			)
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5/b93d7535-fc79-4dbb-96b6-70684ccada1f"
+					(reference "U401")
 					(unit 1)
 				)
 			)

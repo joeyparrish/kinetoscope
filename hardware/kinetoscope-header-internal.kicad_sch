@@ -5677,7 +5677,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "09d87e12-4f97-44da-b43d-7d1690e62d1a")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR02"
 			(at 86.36 82.55 0)
 			(effects
 				(font
@@ -5728,13 +5728,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR05")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR05")
+					(reference "#PWR0302")
 					(unit 1)
 				)
 			)
@@ -5750,7 +5750,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "154c6442-0003-4dc1-a3f4-b7f2ed81ae72")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR011"
 			(at 180.34 115.57 0)
 			(effects
 				(font
@@ -5801,13 +5801,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR07")
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR07")
+					(reference "#PWR0311")
 					(unit 1)
 				)
 			)
@@ -5823,7 +5823,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "19d822e5-3b2e-4737-8655-b8d606bb84a2")
-		(property "Reference" "#PWR084"
+		(property "Reference" "#PWR08"
 			(at 133.35 74.93 0)
 			(effects
 				(font
@@ -5873,13 +5873,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR084")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR084")
+					(reference "#PWR0308")
 					(unit 1)
 				)
 			)
@@ -6100,7 +6100,7 @@
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "J2")
+					(reference "J302")
 					(unit 1)
 				)
 			)
@@ -6172,7 +6172,7 @@
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#FLG02")
+					(reference "#FLG0302")
 					(unit 1)
 				)
 			)
@@ -6245,7 +6245,7 @@
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR01")
+					(reference "#PWR0301")
 					(unit 1)
 				)
 			)
@@ -6261,7 +6261,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4b42a87f-87d0-4158-97ca-0530375853b6")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR012"
 			(at 228.6 52.07 0)
 			(effects
 				(font
@@ -6312,13 +6312,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR08")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR08")
+					(reference "#PWR0312")
 					(unit 1)
 				)
 			)
@@ -6569,7 +6569,7 @@
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "J1")
+					(reference "J301")
 					(unit 1)
 				)
 			)
@@ -6585,7 +6585,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6fdee7dd-54f3-483c-8f24-b6fc7915e347")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR010"
 			(at 180.34 49.53 0)
 			(effects
 				(font
@@ -6636,13 +6636,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR09")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR09")
+					(reference "#PWR0310")
 					(unit 1)
 				)
 			)
@@ -6715,7 +6715,7 @@
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR04")
+					(reference "#PWR0304")
 					(unit 1)
 				)
 			)
@@ -6731,7 +6731,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "81977994-60dd-4298-bd43-6b913221ccbf")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR03"
 			(at 76.2 87.63 0)
 			(effects
 				(font
@@ -6782,13 +6782,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR010")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR010")
+					(reference "#PWR0303")
 					(unit 1)
 				)
 			)
@@ -6804,7 +6804,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a3693d88-69c5-4d83-8bfb-5d8656ecd4c7")
-		(property "Reference" "#PWR085"
+		(property "Reference" "#PWR09"
 			(at 143.51 64.77 0)
 			(effects
 				(font
@@ -6854,13 +6854,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR085")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR085")
+					(reference "#PWR0309")
 					(unit 1)
 				)
 			)
@@ -6876,7 +6876,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "baf34635-9d52-4fc5-a9c6-a609a613f545")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR06"
 			(at 86.36 118.11 0)
 			(effects
 				(font
@@ -6927,13 +6927,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR02")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR02")
+					(reference "#PWR0306")
 					(unit 1)
 				)
 			)
@@ -6949,7 +6949,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "be0ea6b6-bf06-4741-94b5-92fb572d8c1f")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR013"
 			(at 228.6 107.95 0)
 			(effects
 				(font
@@ -7000,13 +7000,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR06")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR06")
+					(reference "#PWR0313")
 					(unit 1)
 				)
 			)
@@ -7082,7 +7082,7 @@
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "X1")
+					(reference "X301")
 					(unit 1)
 				)
 			)
@@ -7154,7 +7154,7 @@
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#FLG01")
+					(reference "#FLG0301")
 					(unit 1)
 				)
 			)
@@ -7170,7 +7170,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "db494355-c699-4166-b9d0-828a93991d00")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR05"
 			(at 76.2 92.71 0)
 			(effects
 				(font
@@ -7221,13 +7221,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR011")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR011")
+					(reference "#PWR0305")
 					(unit 1)
 				)
 			)
@@ -7243,7 +7243,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e4b2e92a-2f82-4a2e-b8f7-5d32199a830a")
-		(property "Reference" "#PWR083"
+		(property "Reference" "#PWR07"
 			(at 123.19 74.93 0)
 			(effects
 				(font
@@ -7293,13 +7293,13 @@
 		(instances
 			(project ""
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac/8053bf40-a472-4b77-b25d-f8e0129ff590"
-					(reference "#PWR083")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#PWR083")
+					(reference "#PWR0307")
 					(unit 1)
 				)
 			)
@@ -7371,7 +7371,7 @@
 			)
 			(project "microcontroller"
 				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/3a2d4409-520b-42a9-988d-13f6351a40c4"
-					(reference "#FLG03")
+					(reference "#FLG0303")
 					(unit 1)
 				)
 			)

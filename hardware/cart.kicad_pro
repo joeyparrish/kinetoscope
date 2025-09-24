@@ -58,16 +58,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        [
-          "lib_footprint_mismatch|25200000|29000000|ced1d070-cc95-48ab-93c6-c2a97a373612|00000000-0000-0000-0000-000000000000",
-          ""
-        ],
-        [
-          "lib_footprint_mismatch|86507500|30625000|86c8c581-73c3-436c-aa7e-2ba301962e04|00000000-0000-0000-0000-000000000000",
-          ""
-        ]
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
@@ -135,7 +126,7 @@
         "max_error": 0.005,
         "min_clearance": 0.15,
         "min_connection": 0.15,
-        "min_copper_edge_clearance": 0.3,
+        "min_copper_edge_clearance": 0.2,
         "min_groove_width": 0.0,
         "min_hole_clearance": 0.33,
         "min_hole_to_hole": 0.5,

@@ -1,0 +1,408 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "686046a3-64dc-4761-a4ce-3e2fd65204d5")
+	(paper "A4")
+	(lib_symbols)
+	(wire
+		(pts
+			(xy 92.71 130.81) (xy 86.36 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "050c146d-4665-4dae-a8e4-7f5edc567069")
+	)
+	(wire
+		(pts
+			(xy 71.12 124.46) (xy 86.36 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1afd7c5d-127f-4c99-a32e-426b3e320ac8")
+	)
+	(wire
+		(pts
+			(xy 86.36 124.46) (xy 86.36 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c77f54d-417c-4ceb-87e5-5668e5260734")
+	)
+	(wire
+		(pts
+			(xy 86.36 130.81) (xy 86.36 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7cd9de72-d61f-4db5-8ee1-67936489e66b")
+	)
+	(wire
+		(pts
+			(xy 86.36 128.27) (xy 71.12 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a9a9f5da-8d20-41a2-a8e2-d0b8149933ff")
+	)
+	(wire
+		(pts
+			(xy 119.38 107.95) (xy 125.73 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3f6141c-fc0c-4da4-bf27-20ba4290224f")
+	)
+	(wire
+		(pts
+			(xy 118.11 130.81) (xy 125.73 130.81)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dffe62d2-2583-457d-bdd9-c5990a7c4d77")
+	)
+	(wire
+		(pts
+			(xy 86.36 107.95) (xy 93.98 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff1f12e9-2fd4-4587-87ef-8953b1b204d1")
+	)
+	(global_label "SRAM_DIS_0"
+		(shape passive)
+		(at 125.73 107.95 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8db347c6-574d-48d6-ab2f-d63abaa850c0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 138.8524 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SRAM_DIS_1"
+		(shape passive)
+		(at 125.73 130.81 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9aaa03db-87da-4494-9374-d7d6e8479630")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 138.8524 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(sheet
+		(at 93.98 93.98)
+		(size 25.4 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "1a626848-8147-4aad-b91b-a9b45fe719ed")
+		(property "Sheetname" "sram-bank-internal"
+			(at 93.98 93.2684 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sram-bank-internal.kicad_sch"
+			(at 93.98 112.3446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "SRAM_DIS" input
+			(at 119.38 107.95 0)
+			(uuid "77097d52-d18f-4a8c-bb0b-22978951526a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{SRAM_OE}" input
+			(at 93.98 107.95 180)
+			(uuid "4c1b2192-8025-4c9e-82d4-bf36baa61d55")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5"
+					(page "9")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 92.71 127)
+		(size 25.4 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "3e197955-3cb5-4695-aab7-f5b905115819")
+		(property "Sheetname" "sram-bank-internal1"
+			(at 92.71 126.2884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sram-bank-internal.kicad_sch"
+			(at 92.71 145.3646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "SRAM_DIS" input
+			(at 118.11 130.81 0)
+			(uuid "f09329ae-fccb-4d30-adcd-f3ede7a8eeb2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{SRAM_OE}" input
+			(at 92.71 130.81 180)
+			(uuid "0d10f684-c8ef-411a-aac0-2da52667d242")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5"
+					(page "15")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 41.91 88.9)
+		(size 20.32 16.51)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "7e8ae288-5866-48d7-b597-b9928e48743f")
+		(property "Sheetname" "microcontroller-internal"
+			(at 41.91 88.1884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "microcontroller-internal.kicad_sch"
+			(at 41.91 105.9946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 48.26 120.65)
+		(size 22.86 11.43)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "b93d7535-fc79-4dbb-96b6-70684ccada1f")
+		(property "Sheetname" "sram-decoder-internal"
+			(at 48.26 119.9384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sram-decoder-internal.kicad_sch"
+			(at 48.26 132.6646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "~{SRAM_OE0}" output
+			(at 71.12 124.46 0)
+			(uuid "b991fe63-4c18-4624-8d6f-983a025f05c6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{SRAM_OE1}" output
+			(at 71.12 128.27 0)
+			(uuid "5d077bfc-a326-445e-9ea6-f1445c63c2eb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5"
+					(page "21")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 41.91 59.69)
+		(size 19.05 15.24)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "e9fa6217-2f64-413a-b493-80c4dcbbade7")
+		(property "Sheetname" "cart-internal"
+			(at 41.91 58.9784 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "cart-internal.kicad_sch"
+			(at 41.91 75.5146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "unified"
+				(path "/686046a3-64dc-4761-a4ce-3e2fd65204d5"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)

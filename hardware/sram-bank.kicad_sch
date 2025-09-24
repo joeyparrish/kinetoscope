@@ -882,7 +882,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4d5b3e72-9c9c-4149-8dd1-372ea30dadf3")
-		(property "Reference" "JP1"
+		(property "Reference" "JP2"
 			(at 121.666 132.08 0)
 			(effects
 				(font
@@ -939,7 +939,7 @@
 		(instances
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
-					(reference "JP1")
+					(reference "JP2")
 					(unit 1)
 				)
 			)
@@ -954,7 +954,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "aa75b4e4-88db-46fa-b3a7-fa36aea58e89")
-		(property "Reference" "JP2"
+		(property "Reference" "JP1"
 			(at 119.888 162.814 0)
 			(effects
 				(font
@@ -1011,7 +1011,7 @@
 		(instances
 			(project "sram-bank"
 				(path "/620c762c-1ae9-4ea9-ab1a-d023a8da85ac"
-					(reference "JP2")
+					(reference "JP1")
 					(unit 1)
 				)
 			)
