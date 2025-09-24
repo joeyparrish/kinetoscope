@@ -682,20 +682,24 @@
       "kinetoscope-header-internal"
     ],
     [
-      "57b1bbcc-81ef-4ab7-8891-6dc63b07bcb2",
-      "address-counter-internal"
+      "1f234c04-2a4a-4cc4-8cff-97e40dff5b3b",
+      "microcontroller-internal"
     ],
     [
-      "b911a2b2-03a3-4715-9f7c-39085d644f78",
-      "data-register-internal"
-    ],
-    [
-      "f6aed283-edca-4642-a4c6-6ed5d2088f56",
+      "7994c0e5-2f64-4fd9-9fc2-251a26b48257",
       "register-file-internal"
     ],
     [
-      "fae06e8c-0a24-478c-87ed-aff0b09d1b33",
+      "2d231838-6b64-4e52-8f19-d0e449327717",
       "sync-token-internal"
+    ],
+    [
+      "520bd680-fc35-4253-9257-e9072eb95299",
+      "address-counter-internal"
+    ],
+    [
+      "1764d238-7313-4b57-ab0a-5aa9beb7e234",
+      "data-register-internal"
     ]
   ],
   "text_variables": {}

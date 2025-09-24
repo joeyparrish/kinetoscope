@@ -1684,7 +1684,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3b9fc90f-efc3-4d80-9cf0-ceeb74455d7f")
-		(property "Reference" "C9"
+		(property "Reference" "C19"
 			(at 150.241 72.4478 0)
 			(effects
 				(font
@@ -1757,15 +1757,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "629098d5-2ec2-4505-a992-859e9bd4e30b")
+			(uuid "f7b04cea-038d-413c-9693-df4eac3444dc")
 		)
 		(pin "2"
-			(uuid "e71937ef-40a1-4cd0-9550-c717851d5c79")
+			(uuid "8e93306f-9043-41a4-a437-dbbab61a135b")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "C9")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -1781,7 +1781,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "450d4542-b42e-4eea-ab99-21e9e65c9062")
-		(property "Reference" "#PWR051"
+		(property "Reference" "#PWR079"
 			(at 85.09 86.36 0)
 			(effects
 				(font
@@ -1826,12 +1826,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "3acea9e9-9e6b-4649-b3b0-72253b18cfab")
+			(uuid "e82406a5-64fc-442c-8cce-3d45c8c579f1")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "#PWR051")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "#PWR079")
 					(unit 1)
 				)
 			)
@@ -1847,7 +1847,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4517d4c6-e59a-483e-ae08-e9d532bc18e9")
-		(property "Reference" "#PWR049"
+		(property "Reference" "#PWR078"
 			(at 73.66 83.82 0)
 			(effects
 				(font
@@ -1892,12 +1892,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "27d906d1-5780-4bc8-97a1-977770d7b688")
+			(uuid "58c24ba8-ec00-4837-b236-a47e5512bf4b")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "#PWR049")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "#PWR078")
 					(unit 1)
 				)
 			)
@@ -1913,7 +1913,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "51541fe2-5c4e-49e6-8eef-d11fc1b07fcc")
-		(property "Reference" "#PWR050"
+		(property "Reference" "#PWR075"
 			(at 40.64 49.53 0)
 			(effects
 				(font
@@ -1958,12 +1958,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "273ed7c9-123e-4905-aeba-21bebb345b8a")
+			(uuid "7aa6f2ef-b919-4695-8ac8-e40d0e20e68d")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "#PWR050")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "#PWR075")
 					(unit 1)
 				)
 			)
@@ -1979,7 +1979,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "73264b82-8c80-4fbd-b715-7b9e9f9b99d8")
-		(property "Reference" "#PWR0118"
+		(property "Reference" "#PWR082"
 			(at 125.73 81.28 0)
 			(effects
 				(font
@@ -2025,12 +2025,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "e15b97a9-631d-4f82-a407-f980cdb80a61")
+			(uuid "972d89fc-33eb-4f7b-875e-f11f8a23333c")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "#PWR0118")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "#PWR082")
 					(unit 1)
 				)
 			)
@@ -2046,7 +2046,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7ce5e73a-e39a-4014-ae0f-e82b4a55da0b")
-		(property "Reference" "#PWR052"
+		(property "Reference" "#PWR081"
 			(at 135.89 66.04 0)
 			(effects
 				(font
@@ -2092,12 +2092,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "b62b6c8a-18ff-4c3e-ba9f-a9e620a7b5b4")
+			(uuid "15df0c13-795e-4da8-aefc-f78a5424ed5d")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "#PWR052")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "#PWR081")
 					(unit 1)
 				)
 			)
@@ -2113,7 +2113,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8593db73-1496-47d3-aa25-1fcbc6c09a3f")
-		(property "Reference" "C8"
+		(property "Reference" "C18"
 			(at 140.081 72.4478 0)
 			(effects
 				(font
@@ -2186,15 +2186,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "3853caf8-030f-41c2-8d46-33b079e0cec4")
+			(uuid "df03562e-5162-43d2-aa46-4fbecfcd25e3")
 		)
 		(pin "2"
-			(uuid "fe7631fc-fcb9-480f-bb19-07e319b51036")
+			(uuid "02981dcd-57ac-4ed7-bee3-753fedf1767b")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "C8")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "C18")
 					(unit 1)
 				)
 			)
@@ -2210,7 +2210,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8bad20cf-be00-46cf-9607-986eaeea2c1b")
-		(property "Reference" "#PWR053"
+		(property "Reference" "#PWR077"
 			(at 55.88 82.55 0)
 			(effects
 				(font
@@ -2255,12 +2255,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "e877016f-052a-403a-aa3f-4367d5962455")
+			(uuid "241ced3f-6803-4f5a-83fc-ebf238ed3850")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "#PWR053")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "#PWR077")
 					(unit 1)
 				)
 			)
@@ -2276,7 +2276,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ae98e763-fdac-4559-87af-7f0404bd1223")
-		(property "Reference" "#PWR048"
+		(property "Reference" "#PWR076"
 			(at 55.88 52.07 0)
 			(effects
 				(font
@@ -2321,12 +2321,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "bdfe4d3b-f731-4679-84fe-19cc7a9b0c8b")
+			(uuid "85be30b6-f74a-43e3-b0ea-05568cf1f0e9")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "#PWR048")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "#PWR076")
 					(unit 1)
 				)
 			)
@@ -2342,7 +2342,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c0f1c488-fa81-4b64-a43b-4deffbcd53b3")
-		(property "Reference" "#PWR054"
+		(property "Reference" "#PWR080"
 			(at 85.09 116.84 0)
 			(effects
 				(font
@@ -2387,12 +2387,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "77810144-f9a9-43cb-a2c6-910102214221")
+			(uuid "b74c8fce-97fc-489c-991a-d071e6f24a8f")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "#PWR054")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "#PWR080")
 					(unit 1)
 				)
 			)
@@ -2408,7 +2408,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d059626a-101d-4821-98ce-7febf949946e")
-		(property "Reference" "U8"
+		(property "Reference" "U20"
 			(at 58.0741 46.6555 0)
 			(effects
 				(font
@@ -2481,51 +2481,51 @@
 			)
 		)
 		(pin "13"
-			(uuid "e1d61c9e-e14a-4d88-9400-7772de6ead85")
+			(uuid "9cb57b71-4636-4eba-a472-9bb95d3af53e")
 		)
 		(pin "9"
-			(uuid "44fc4c90-ae02-4461-a46b-23593f672985")
+			(uuid "06de2499-d4df-4f6b-b7eb-3981eeec53d3")
 		)
 		(pin "5"
-			(uuid "e59d8262-7037-4911-92fb-f98326e5b513")
+			(uuid "d581e5fe-136f-4554-a6b0-9beaa9d6355d")
 		)
 		(pin "11"
-			(uuid "35e747b0-ac0c-4b0b-ac3c-bfd7bc1eb84d")
+			(uuid "5bd075fd-6e2c-4d3c-afe1-da4ad72a246e")
 		)
 		(pin "14"
-			(uuid "8182dc05-b104-4325-8a59-4722aa33e8d1")
+			(uuid "5371eef7-a0d0-4c3a-9602-ef2654f09394")
 		)
 		(pin "2"
-			(uuid "8eaa2994-de5d-47cc-bde4-ed5115c46f00")
+			(uuid "878aed69-9817-4c3e-a5ba-14c72be48a10")
 		)
 		(pin "10"
-			(uuid "a6c3afd7-07c9-4f5d-8850-39472f12aa8b")
+			(uuid "4d436a66-6c73-450e-ab64-0aafbfd5b40e")
 		)
 		(pin "7"
-			(uuid "09f7aad7-1daf-4a44-8f04-cbac1016aa2b")
+			(uuid "71e959d9-a7ee-4e78-90d3-15ff843a2e89")
 		)
 		(pin "1"
-			(uuid "e3cbb489-f386-4be4-9060-9f8a931b30f5")
+			(uuid "2ade073e-ee7e-4763-9f63-a413998eb794")
 		)
 		(pin "3"
-			(uuid "b092473e-a83c-4b57-842b-3a225de7b0c4")
+			(uuid "f2af27c5-30e0-4c78-bcf3-043352f5164a")
 		)
 		(pin "6"
-			(uuid "f4ae071d-af60-4735-9024-578f9f262bad")
+			(uuid "e09a55cd-222d-4cf7-86b8-96894d2a188e")
 		)
 		(pin "8"
-			(uuid "002a2dbd-78a4-439f-b01e-c52d1b1afedd")
+			(uuid "1147e172-2fd7-4932-9555-8dd43c52f77f")
 		)
 		(pin "4"
-			(uuid "180fd712-6d0e-444a-a6c3-2d46a8f9350a")
+			(uuid "fb3c1c01-6f89-430e-ae6e-b8a57fa82d33")
 		)
 		(pin "12"
-			(uuid "f686d7d0-80fe-4a8f-a218-9a14e066858f")
+			(uuid "ce1fb9b4-e4dc-42d1-b860-4390d6ada35a")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "U8")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "U20")
 					(unit 1)
 				)
 			)
@@ -2541,7 +2541,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d0d2eea3-2b61-43be-b1a7-7fd4467e50d9")
-		(property "Reference" "U9"
+		(property "Reference" "U21"
 			(at 87.2841 80.9455 0)
 			(effects
 				(font
@@ -2614,51 +2614,51 @@
 			)
 		)
 		(pin "13"
-			(uuid "b66f54d2-67f7-427b-8291-ebb88bc03b46")
+			(uuid "a3998f65-62f5-44a7-ba0d-7aae755319d4")
 		)
 		(pin "9"
-			(uuid "562e6217-9094-44f5-a7ee-f88289aac2f2")
+			(uuid "dd795602-f4cd-4902-8ae5-6bd40c36feb7")
 		)
 		(pin "5"
-			(uuid "c79ae4be-92ce-485b-9c55-929b3fbb97d9")
+			(uuid "407363c4-0e17-4cf9-b98a-f25cffd012aa")
 		)
 		(pin "11"
-			(uuid "6d93068c-3f05-4b90-964a-aa81ed2b950f")
+			(uuid "2c924b12-77f9-444d-aa07-13d541532120")
 		)
 		(pin "14"
-			(uuid "50d0dc30-45da-4e11-9602-2dee27c0134a")
+			(uuid "32753ac8-5439-4d13-8032-98ba43afaa42")
 		)
 		(pin "2"
-			(uuid "09d636d3-bb97-49a0-b858-a8f42475d80c")
+			(uuid "ad824665-0eb5-4ab3-82a2-658754eb87d4")
 		)
 		(pin "10"
-			(uuid "357160f6-edaa-43e7-9c2b-eb72ab36d9a5")
+			(uuid "d8d5656c-558f-4ae6-8506-07a570029f34")
 		)
 		(pin "7"
-			(uuid "2070eee7-20f6-4bd3-ac07-d4d0394878de")
+			(uuid "bc397356-ac5b-4472-9395-ddeae9bc490f")
 		)
 		(pin "1"
-			(uuid "c9018f3a-0a9e-44cf-9b94-7a94ddbdbddd")
+			(uuid "49869977-a0e4-4f33-b271-ea8288f9c905")
 		)
 		(pin "3"
-			(uuid "0d37a7ba-e5df-4aa0-af58-28ff21fb636c")
+			(uuid "91871943-9804-4b47-969c-ba96133cf9ae")
 		)
 		(pin "6"
-			(uuid "96a55a26-f1e1-471c-aaa8-e677084ae631")
+			(uuid "832fd678-65d9-4069-9640-a4d71203e9a6")
 		)
 		(pin "8"
-			(uuid "f17eaed6-f557-4b9d-8b66-0b09de3e286a")
+			(uuid "16d77dc3-c4de-4093-bd90-7664caaeadc8")
 		)
 		(pin "4"
-			(uuid "8a9aa322-a775-4f33-a8dc-1365371b761c")
+			(uuid "808352d0-0408-4a54-8087-b4db452689a3")
 		)
 		(pin "12"
-			(uuid "7558f770-c999-40b6-81c3-4d8314c478ef")
+			(uuid "7e99b94b-0fea-4790-b7e3-c815fae7d293")
 		)
 		(instances
 			(project "microcontroller"
-				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/b911a2b2-03a3-4715-9f7c-39085d644f78"
-					(reference "U9")
+				(path "/eb0e957f-b2ea-4261-97c1-e28148a3f6e1/1f234c04-2a4a-4cc4-8cff-97e40dff5b3b/1764d238-7313-4b57-ab0a-5aa9beb7e234"
+					(reference "U21")
 					(unit 1)
 				)
 			)
