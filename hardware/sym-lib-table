@@ -1,0 +1,8 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "IS66WV51216EBLL-55TLI")(type "KiCad")(uri "${KIPRJMOD}/libraries/symbols/IS66WV51216EBLL-55TLI.kicad_sym")(options "")(descr ""))
+  (lib (name "kinetoscope-cart-header")(type "KiCad")(uri "${KIPRJMOD}/libraries/symbols/kinetoscope-cart-header.kicad_sym")(options "")(descr ""))
+  (lib (name "MD-CART-FINGERS")(type "KiCad")(uri "${KIPRJMOD}/libraries/symbols/MD-CART-FINGERS.kicad_sym")(options "")(descr ""))
+  (lib (name "Raspberry_Pi_Pico_W")(type "KiCad")(uri "${KIPRJMOD}/libraries/symbols/Raspberry_Pi_Pico_W.kicad_sym")(options "")(descr ""))
+  (lib (name "S29AL016J55TFIR20")(type "KiCad")(uri "${KIPRJMOD}/libraries/symbols/S29AL016J55TFIR20.kicad_sym")(options "")(descr ""))
+)

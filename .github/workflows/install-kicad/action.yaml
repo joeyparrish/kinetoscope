@@ -34,14 +34,6 @@ runs:
       shell: bash
       run: sudo apt install kicad
 
-    - name: Install custom symbols and footprints
-      shell: bash
-      run: |
-        mkdir -p ~/.local/share/kicad/9.0
-        cp -a hardware/libraries/* ~/.local/share/kicad/9.0/
-        mkdir -p ~/.config/kicad/9.0
-        cp .github/workflows/*-lib-table ~/.config/kicad/9.0/
-
     - name: Install Kode Mono font
       shell: bash
       run: |

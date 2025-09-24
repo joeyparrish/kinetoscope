@@ -45,13 +45,6 @@ jobs:
       - name: Install KiCad
         uses: ./.github/workflows/install-kicad
 
-      - name: Install custom symbols and footprints
-        run: |
-          mkdir -p ~/.local/share/kicad/9.0
-          cp -a hardware/libraries/* ~/.local/share/kicad/9.0/
-          mkdir -p ~/.config/kicad/9.0
-          cp .github/workflows/*-lib-table ~/.config/kicad/9.0/
-
       - name: Install Kode Mono font
         run: |
           wget https://github.com/isaozler/kode-mono/releases/download/1.206/kode-mono-fonts.zip

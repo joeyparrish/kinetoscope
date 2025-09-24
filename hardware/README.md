@@ -29,26 +29,6 @@ wget https://github.com/freerouting/freerouting/releases/download/v1.9.0/freerou
 sudo unzip -j -d /opt/freerouting freerouting-1.9.0-linux-x64.zip freerouting-1.9.0-linux-x64/lib/app/freerouting-executable.jar
 ```
 
-To install the custom footprints and symbols used in this design, on Ubuntu
-run:
-
-```sh
-mkdir -p ~/.local/share/kicad/8.0
-cp -a hardware/libraries/* ~/.local/share/kicad/8.0/
-```
-
-If you have pre-existing KiCad configs, add these new symbol and footprint
-libraries to your config via "Preferences" > "Manage Symbol Libraries" and
-"Preferences" > "Manage Footprint Libraries".
-
-If you don't have pre-existing KiCad configs, you can copy the tables used in
-the automated workflows:
-
-```sh
-mkdir -p ~/.config/kicad/8.0
-cp .github/workflows/*-lib-table ~/.config/kicad/8.0/
-```
-
 To see hardware schematics without KiCad, open the PDF files in the
 [`hardware/`](hardware/) folder.
 
