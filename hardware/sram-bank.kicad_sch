@@ -2831,183 +2831,219 @@
 		)
 		(uuid "118c83a8-b963-47b9-8753-7600031cced3")
 	)
-	(label "~{SRAM_WE}"
+	(global_label "~{SRAM_WE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 137.16 130.81 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "1d1b6b04-aa96-46e8-9a03-f26a3b11878d")
 	)
-	(label "~{SEGA_OE}"
+	(global_label "~{SEGA_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 234.95 31.75 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "1d217a37-82b1-4569-8c6f-43846b4403af")
 	)
-	(label "~{SRAM_FINAL_OE}"
+	(global_label "~{SRAM_FINAL_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 35.56 109.22 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "1f8704bf-a0fc-4cd0-978a-6646d37fb031")
 	)
-	(label "~{SRAM_FINAL_WE}"
+	(global_label "~{SRAM_FINAL_WE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 33.02 82.55 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "20202200-b261-4fe3-8b12-a4aa2270588c")
 	)
-	(label "SEGA_A20"
+	(global_label "SEGA_A20"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 234.95 29.21 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "271f84bf-9677-41df-9d56-778ff48e156e")
 	)
-	(label "~{SRAM_FINAL_WE}"
+	(global_label "~{SRAM_FINAL_WE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 35.56 149.86 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "29a5b0fa-5c92-4863-a759-28a668bfcee2")
 	)
-	(label "~{SRAM_OE_INT}"
+	(global_label "~{SRAM_OE_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 153.67 156.21 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "2d4846e2-1a40-4c8c-9d8a-ea45e822585d")
 	)
-	(label "~{SRAM_FINAL_OE}"
+	(global_label "~{SRAM_FINAL_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 137.16 171.45 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "30533bb5-6534-416c-9b59-8a14e063f063")
 	)
-	(label "~{SEGA_CONTROL_INT}"
+	(global_label "~{SEGA_CONTROL_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 93.98 104.14 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "3121535a-c05c-4382-889a-da7b85988bc0")
 	)
-	(label "~{SRAM_OE1}"
+	(global_label "~{SRAM_OE1}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 135.89 181.61 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "32a76261-4973-4f6f-88d7-a268cdfd4d19")
 	)
-	(label "~{SRAM_WE_INT}"
+	(global_label "~{SRAM_WE_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 93.98 149.86 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "33bded19-4a85-4f5b-8dc8-3f02e32ea564")
 	)
-	(label "SEGA_A[1..19]"
+	(global_label "SEGA_A[1..19]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 93.98 106.68 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "33c21e8f-89b8-4da9-93d6-e30773ec1024")
 	)
-	(label "SRAM_DIS"
+	(global_label "SRAM_DIS"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 93.98 185.42 270)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "3b04f273-23c5-4847-ab9b-d1c7db4bc2fa")
 	)
-	(label "SRAM_A[0..18]"
+	(global_label "SRAM_A[0..18]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 35.56 142.24 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "3d07b8f3-ca0a-4424-98c8-a7a113b7a887")
 	)
-	(label "~{SRAM_FINAL_OE}"
+	(global_label "~{SRAM_FINAL_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 33.02 69.85 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "3d476257-6e6d-42a1-bfee-7488d8bf1276")
 	)
-	(label "~{SRAM_WE_INT}"
+	(global_label "~{SRAM_WE_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 153.67 163.83 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "3f8395a4-97ce-4f44-a5fc-80de3b0b7e09")
 	)
-	(label "~{SRAM_OE0}"
+	(global_label "~{SRAM_OE0}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 266.7 29.21 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "4503e881-785e-4f4e-a3be-b848a385706d")
 	)
-	(label "SRAM_D_IN[0..15]"
+	(global_label "SRAM_D_IN[0..15]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 261.62 137.16 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "4803ba65-5be7-4503-b033-f0e04f4381f6")
 	)
@@ -3021,103 +3057,123 @@
 		)
 		(uuid "4a56736c-88b2-455b-9b9a-69b47864733f")
 	)
-	(label "~{SRAM_FINAL_WE}"
+	(global_label "~{SRAM_FINAL_WE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 35.56 114.3 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "4d7c8726-21f9-48f5-b167-02b1fb4a6044")
 	)
-	(label "~{SEGA_OE}"
+	(global_label "~{SEGA_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 195.58 129.54 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "4ee38353-5d97-4811-b5f2-8a6f5ef18e45")
 	)
-	(label "~{SRAM_FINAL_CE}"
+	(global_label "~{SRAM_FINAL_CE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 33.02 72.39 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "56e89f04-2ce9-4ac2-a403-86310a8c70ae")
 	)
-	(label "~{SRAM_CE_WRITE_INT}"
+	(global_label "~{SRAM_CE_WRITE_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 93.98 147.32 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "5a5f2fc5-1129-4ddd-a15e-403d73e934cc")
 	)
-	(label "~{SRAM_OE_INT}"
+	(global_label "~{SRAM_OE_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 93.98 109.22 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "5be1f99b-90c6-416f-9aeb-70bca60f7e47")
 	)
-	(label "~{SEGA_AS}"
+	(global_label "~{SEGA_AS}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 195.58 124.46 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "5c1cc2f2-ba42-4dfd-806b-b4bf6f509d2e")
 	)
-	(label "SEGA_A21"
+	(global_label "SEGA_A21"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 195.58 146.05 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "5d08508a-8ee9-41ce-b7fc-2b210562287a")
 	)
-	(label "SRAM_DIS"
+	(global_label "SRAM_DIS"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 236.22 72.39 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "5f06a661-40da-45f2-9b13-b25f21f2e9a3")
 	)
-	(label "~{SEGA_AS}"
+	(global_label "~{SEGA_AS}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 234.95 44.45 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "60acf9f3-0d00-499d-a0c3-c14ce3a0c14c")
 	)
-	(label "~{SEGA_CE}"
+	(global_label "~{SEGA_CE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 195.58 127 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "6233a149-009d-4b86-814f-ed03d66083f2")
 	)
@@ -3131,153 +3187,183 @@
 		)
 		(uuid "663504cb-5024-48c1-a4af-190d0a916966")
 	)
-	(label "~{SRAM_CE_READ_INT}"
+	(global_label "~{SRAM_CE_READ_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 153.67 123.19 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "6b0e81dd-b32a-4093-a6ca-07c0a7b92013")
 	)
-	(label "SRAM_D_IN[0..15]"
+	(global_label "SRAM_D_IN[0..15]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 151.13 25.4 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "7676fd7a-4511-4175-8277-d334582c0c41")
 	)
-	(label "~{SRAM_CE_READ_INT}"
+	(global_label "~{SRAM_CE_READ_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 93.98 111.76 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "7758da0f-6f21-441a-9041-c6084993ba02")
 	)
-	(label "SRAM_DIS_1"
+	(global_label "SRAM_DIS_1"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 261.62 124.46 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "77b92ba4-7fbd-425d-80b6-fad4c04d2111")
 	)
-	(label "~{SRAM_FINAL_CE}"
+	(global_label "~{SRAM_FINAL_CE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 35.56 111.76 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "7a1aa2c8-80d8-41dc-9136-cee568cddd13")
 	)
-	(label "~{SRAM_WE}"
+	(global_label "~{SRAM_WE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 137.16 163.83 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "7ce4a0be-ff56-4e5d-a29d-aa1de152b8a1")
 	)
-	(label "SRAM_DIS_0"
+	(global_label "SRAM_DIS_0"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 261.62 121.92 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "84fb3324-af87-4c1e-9a21-35d6d2cff541")
 	)
-	(label "SRAM_A[0..18]"
+	(global_label "SRAM_A[0..18]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 33.02 64.77 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "884523ad-bb7f-463b-b4fd-eb51c06079aa")
 	)
-	(label "~{SRAM_FINAL_CE}"
+	(global_label "~{SRAM_FINAL_CE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 35.56 147.32 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "8d2b7f55-34c7-4c22-96d7-8e94c98eb609")
 	)
-	(label "~{SRAM_OE}"
+	(global_label "~{SRAM_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 137.16 156.21 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "8e8de495-aa8b-4eba-a113-0e9a46d2577d")
 	)
-	(label "SEGA_D[0..15]"
+	(global_label "SEGA_D[0..15]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 151.13 64.77 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "8ec892aa-2506-48cf-8583-ca49012539e2")
 	)
-	(label "SRAM_W_A[0..18]"
+	(global_label "SRAM_W_A[0..18]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 261.62 134.62 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "8f1ca1ab-9bc0-4ab5-b2f1-4f422b721b86")
 	)
-	(label "~{SRAM_CE_WRITE_INT}"
+	(global_label "~{SRAM_CE_WRITE_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 153.67 130.81 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "8feeb3ab-06cf-4a1f-9b42-18b19ae35a0c")
 	)
-	(label "SRAM_DIS_0"
+	(global_label "SRAM_DIS_0"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 87.63 181.61 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "98fa3f7b-42d1-4baa-bce9-d820c7714404")
 	)
-	(label "~{SEGA_CONTROL}"
+	(global_label "~{SEGA_CONTROL}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 137.16 148.59 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "996de2fb-855b-4e4b-8599-18a012e4a2e3")
 	)
@@ -3291,173 +3377,207 @@
 		)
 		(uuid "a94b7add-88a8-4627-bd1f-7c9611343d23")
 	)
-	(label "~{SRAM_BUFFER_OE_INT}"
+	(global_label "~{SRAM_BUFFER_OE_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 99.06 72.39 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "b239083f-6144-4fb6-b345-35845484ceae")
 	)
-	(label "SRAM_DIS_1"
+	(global_label "SRAM_DIS_1"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 100.33 181.61 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "b43f09f7-8bc2-42ab-992a-820f20c7e197")
 	)
-	(label "~{SRAM_OE}"
+	(global_label "~{SRAM_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 129.54 185.42 270)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "b88c2786-d342-4f38-b462-5c1302defe8f")
 	)
-	(label "SEGA_D[0..15]"
+	(global_label "SEGA_D[0..15]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 195.58 137.16 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "c02c1d36-1db9-42ef-b35c-4ed9526c870c")
 	)
-	(label "SEGA_A[1..19]"
+	(global_label "SEGA_A[1..19]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 195.58 134.62 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "c105c9c7-a28d-4224-9414-23f87ad34c99")
 	)
-	(label "SEGA_A20"
+	(global_label "SEGA_A20"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 195.58 143.51 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "c402d1cb-2c5d-4566-b208-84c97a2ffff1")
 	)
-	(label "~{SRAM_WE}"
+	(global_label "~{SRAM_WE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 261.62 129.54 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "c41b9622-9480-49af-83a4-740ea6888b21")
 	)
-	(label "SRAM_DATA[0..15]"
+	(global_label "SRAM_DATA[0..15]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 91.44 49.53 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "c628b299-32af-4ba9-8597-9aabf16a7526")
 	)
-	(label "~{SRAM_OE1}"
+	(global_label "~{SRAM_OE1}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 266.7 31.75 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "ca50763d-911d-4383-864c-621c145a537b")
 	)
-	(label "~{SEGA_CE}"
+	(global_label "~{SEGA_CE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 234.95 41.91 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "cd83b7e0-2ce0-453f-975f-0eda95309473")
 	)
-	(label "~{SEGA_CE}"
+	(global_label "~{SEGA_CE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 137.16 123.19 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "d37beffe-5932-4cf0-b99b-30a2a50e69be")
 	)
-	(label "SEGA_A21"
+	(global_label "SEGA_A21"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 234.95 46.99 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "d4ac88ed-cef8-4880-b5d2-bea7461d7644")
 	)
-	(label "~{SEGA_CONTROL}"
+	(global_label "~{SEGA_CONTROL}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 266.7 72.39 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "dae7c7d1-7324-4315-b3bc-3975dcf2f1cd")
 	)
-	(label "~{SRAM_BUFFER_OE_INT}"
+	(global_label "~{SRAM_BUFFER_OE_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 153.67 171.45 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "ebb24244-7b50-4e24-8660-a55f0e44ff13")
 	)
-	(label "~{SEGA_CONTROL_INT}"
+	(global_label "~{SEGA_CONTROL_INT}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 153.67 148.59 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "f4549fe1-4639-4cf8-91d4-45252e15e00a")
 	)
-	(label "~{SRAM_FINAL_OE}"
+	(global_label "~{SRAM_FINAL_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 35.56 144.78 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "f4c247c0-1914-4021-b6d2-dd116222abdf")
 	)
-	(label "SRAM_A[0..18]"
+	(global_label "SRAM_A[0..18]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 35.56 106.68 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "f68be557-cc32-4a54-b165-0fcd139bf987")
 	)
@@ -3471,23 +3591,27 @@
 		)
 		(uuid "f8afae2e-5aa8-4e40-a092-bfc917a05ff0")
 	)
-	(label "SRAM_W_A[0..18]"
+	(global_label "SRAM_W_A[0..18]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 93.98 142.24 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "f972ce61-6f1d-4aff-9563-e81e8254f8d1")
 	)
-	(label "~{SRAM_OE0}"
+	(global_label "~{SRAM_OE0}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 123.19 181.61 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "ff5367a5-ea27-496b-b93c-6e3ab8d821f3")
 	)

@@ -5463,373 +5463,447 @@
 		)
 		(uuid "fbd1b520-5d6c-4689-99cd-9eee5bb32562")
 	)
-	(label "SEGA_A2"
+	(global_label "SEGA_A2"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 34.29 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "01d429e9-a082-43dc-98c4-5b45eb39611c")
 	)
-	(label "SEGA_A15"
+	(global_label "SEGA_A15"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 69.85 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "080e488c-5ef7-4aa5-a3e7-20aedf202b94")
 	)
-	(label "SEGA_D1"
+	(global_label "SEGA_D1"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 31.75 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "085e01ba-d7ac-446f-9e12-7148b4d1c1f2")
 	)
-	(label "~{SEGA_OE}"
+	(global_label "~{SEGA_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 44.45 173.99 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "0dfdad59-8f00-4f09-a6b7-b19cacee9303")
 	)
-	(label "SEGA_D11"
+	(global_label "SEGA_D11"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 113.03 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "10167ce6-b1c5-4b39-972d-5d02664dca0e")
 	)
-	(label "SEGA_D8"
+	(global_label "SEGA_D8"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 52.07 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "1b32ae9e-1527-4ab5-9f63-cf85be212d17")
 	)
-	(label "~{SEGA_WE_UB}"
+	(global_label "~{SEGA_WE_UB}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 256.54 97.79 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "1d71ae17-8cde-4d86-94b0-1c3b48c0d423")
 	)
-	(label "SEGA_A11"
+	(global_label "SEGA_A11"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 59.69 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "20761316-6f3b-465e-a606-9425cd5bb852")
 	)
-	(label "SEGA_D0"
+	(global_label "SEGA_D0"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "21121215-3169-40d2-9c5e-a891d92c216f")
 	)
-	(label "~{SEGA_AS}"
+	(global_label "~{SEGA_AS}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 115.57 179.07 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "2563ca2f-12d2-4438-a924-5b26dc154ab7")
 	)
-	(label "SEGA_A16"
+	(global_label "SEGA_A16"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 74.93 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "26cfa540-9003-43e6-b74b-50ad123a4b68")
 	)
-	(label "~{SEGA_OE}"
+	(global_label "~{SEGA_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 256.54 92.71 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "2b4b2f02-2511-4981-a312-dc8991e861e4")
 	)
-	(label "~{SEGA_WE_LB}"
+	(global_label "~{SEGA_WE_LB}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 44.45 168.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "2b64e4fa-235e-45a3-8ed8-356f92f96a4b")
 	)
-	(label "SEGA_A12"
+	(global_label "SEGA_A12"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 62.23 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "2bf9d66b-a0e9-4e9b-86b8-162bd74b3952")
 	)
-	(label "SEGA_A23"
+	(global_label "SEGA_A23"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 80.01 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "2e6eb312-e4fd-4263-a1b9-1c232f1637ce")
 	)
-	(label "SEGA_A21"
+	(global_label "SEGA_A21"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 74.93 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "3123b7e6-c399-4717-b05a-6b3ef6110dd9")
 	)
-	(label "SEGA_D10"
+	(global_label "SEGA_D10"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 57.15 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "35d69533-6641-4fd0-a3c5-009f9fb761d2")
 	)
-	(label "SEGA_A17"
+	(global_label "SEGA_A17"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 64.77 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "399c2ff2-22b2-49db-bc46-62d69e491932")
 	)
-	(label "SEGA_D13"
+	(global_label "SEGA_D13"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 64.77 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "3a345650-43da-42af-b54d-fd909e0352c1")
 	)
-	(label "SEGA_A20"
+	(global_label "SEGA_A20"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 72.39 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "3d2365a4-3c35-42e7-a811-65b9f220e093")
 	)
-	(label "SEGA_A5"
+	(global_label "SEGA_A5"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 41.91 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "3e603339-a10e-4947-ab20-915bc8fe2be5")
 	)
-	(label "SEGA_D0"
+	(global_label "SEGA_D0"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 29.21 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "47ca3cd4-22f8-4569-9018-1cc3f35b68bd")
 	)
-	(label "SEGA_D9"
+	(global_label "SEGA_D9"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 54.61 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "4a32dbef-5360-49c2-9572-424d1ec1a835")
 	)
-	(label "~{SEGA_REGISTER}"
+	(global_label "~{SEGA_REGISTER}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 256.54 102.87 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "4b2bacb1-e117-4de6-a2d1-a8ea6541216c")
 	)
-	(label "SEGA_A1"
+	(global_label "SEGA_A1"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 24.13 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "4c823f21-296f-4357-8dbb-7fa954d1969b")
 	)
-	(label "SEGA_A19"
+	(global_label "SEGA_A19"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 69.85 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "4ca47741-22ca-42b0-b06a-06ce05f8fbb3")
 	)
-	(label "~{SEGA_OE}"
+	(global_label "~{SEGA_OE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 128.27 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "4e92826b-6058-4533-a979-d8297b3127a4")
 	)
-	(label "SEGA_A7"
+	(global_label "SEGA_A7"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 46.99 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "4fe9bea0-4cbe-434e-8018-654b445cb806")
 	)
-	(label "SEGA_D7"
+	(global_label "SEGA_D7"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 102.87 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "54c6d4d5-7269-4c60-9b27-d34a1531a4b9")
 	)
-	(label "SEGA_A23"
+	(global_label "SEGA_A23"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 92.71 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "5619879f-ae55-4133-9173-ac205522873c")
 	)
-	(label "~{SEGA_CE}"
+	(global_label "~{SEGA_CE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 115.57 163.83 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "58ade3b2-8b0f-4d1d-816e-08648f10bc66")
 	)
-	(label "SEGA_A6"
+	(global_label "SEGA_A6"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 36.83 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "5cdcb20f-5556-4d48-b9dc-dbd4ef04c49f")
 	)
-	(label "SEGA_D4"
+	(global_label "SEGA_D4"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 39.37 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "627f3db4-0dcc-4791-a490-be7e80d3a981")
 	)
-	(label "SEGA_A10"
+	(global_label "SEGA_A10"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 57.15 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "63e3b87c-e6d3-49c2-86a0-e0296be18042")
 	)
-	(label "SEGA_A21"
+	(global_label "SEGA_A21"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 115.57 168.91 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "64128fa8-658d-4b55-9dcf-a0388a5a7dd5")
 	)
-	(label "SEGA_A8"
+	(global_label "SEGA_A8"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 41.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "64317a25-bde4-46ba-b630-63c21bdce2fa")
 	)
-	(label "SEGA_D3"
+	(global_label "SEGA_D3"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 36.83 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "669936a2-8e85-4d87-b55c-36d36df268ed")
 	)
@@ -5843,63 +5917,75 @@
 		)
 		(uuid "670a05bf-f726-4408-95ff-cb340b997f1e")
 	)
-	(label "SEGA_A1"
+	(global_label "SEGA_A1"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 31.75 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "6d9304af-b4ff-49e2-93fc-ef43392a8358")
 	)
-	(label "SEGA_D7"
+	(global_label "SEGA_D7"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 46.99 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "719d142a-74a3-4516-bbe5-c2d27264645b")
 	)
-	(label "~{SEGA_CE}"
+	(global_label "~{SEGA_CE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 256.54 100.33 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "76208d37-d893-4f93-9f72-b4c74a721672")
 	)
-	(label "SEGA_A22"
+	(global_label "SEGA_A22"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 90.17 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "78f92ce9-ee53-4a99-8daf-43b7f5e82420")
 	)
-	(label "~{SEGA_WE_LB}"
+	(global_label "~{SEGA_WE_LB}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 256.54 95.25 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "797aac82-466c-4d3d-9ef7-4eef1dfa76d5")
 	)
-	(label "SEGA_A9"
+	(global_label "SEGA_A9"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 44.45 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "7e99a3ac-96db-431f-90d8-0f3913aa440a")
 	)
@@ -5913,513 +5999,615 @@
 		)
 		(uuid "80cd49b7-769c-42e3-abf4-42ae93ee39ec")
 	)
-	(label "SEGA_A3"
+	(global_label "SEGA_A3"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 36.83 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "80fd2d0d-afd6-49b7-a447-b91065bca021")
 	)
-	(label "~{SEGA_REGISTER}"
+	(global_label "~{SEGA_REGISTER}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 138.43 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "83de4c6d-8875-451b-8d5a-4e5e0a60aa9c")
 	)
-	(label "SEGA_D12"
+	(global_label "SEGA_D12"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 62.23 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "84255efe-728a-41a0-a0bc-766e3c811006")
 	)
-	(label "SEGA_A4"
+	(global_label "SEGA_A4"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 31.75 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "89d4beb3-6de0-49dd-916b-22cf325c62f2")
 	)
-	(label "SEGA_D11"
+	(global_label "SEGA_D11"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 59.69 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "8d86085f-b7b9-4b1d-a5e2-fa4f8a8442e1")
 	)
-	(label "SEGA_D1"
+	(global_label "SEGA_D1"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 87.63 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "8e5b2b0f-e05c-4336-b0d4-5b77aa9c9f0d")
 	)
-	(label "SEGA_D14"
+	(global_label "SEGA_D14"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 120.65 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "912f19d4-fd0a-4941-9985-f9223e4321b4")
 	)
-	(label "~{SEGA_RESET}"
+	(global_label "~{SEGA_RESET}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 82.55 90.17 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "96369331-ca9c-4124-8925-0d4739200528")
 	)
-	(label "SEGA_D2"
+	(global_label "SEGA_D2"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 90.17 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "986253c8-3928-4be7-abcf-3ccbbdaaa9a1")
 	)
-	(label "~{SEGA_WE_UB}"
+	(global_label "~{SEGA_WE_UB}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 135.89 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "9908c0c9-caf7-41ab-98d9-ceba408a079a")
 	)
-	(label "SEGA_A18"
+	(global_label "SEGA_A18"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 80.01 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "994b869e-f023-433e-a931-97c6fb44abf6")
 	)
-	(label "SEGA_A10"
+	(global_label "SEGA_A10"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 46.99 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "99519ed7-82f9-45d0-8ec2-dbce1e92486e")
 	)
-	(label "SEGA_A14"
+	(global_label "SEGA_A14"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 57.15 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "9c7dfac3-5236-478e-af28-d1cc75f22c4e")
 	)
-	(label "SEGA_A14"
+	(global_label "SEGA_A14"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 67.31 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "9dd2290b-7709-47c2-9548-51f5f3a9cdce")
 	)
-	(label "SEGA_A3"
+	(global_label "SEGA_A3"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 29.21 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "9f9ca176-8b05-4aa3-91dc-54112e4db528")
 	)
-	(label "SEGA_A[1..20]"
+	(global_label "SEGA_A[1..20]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 44.45 161.29 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "a15208c9-055d-4251-9039-a55d13068c2c")
 	)
-	(label "SEGA_D4"
+	(global_label "SEGA_D4"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 95.25 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "a188a595-9c73-4ebc-93ba-4cd25fd67f2a")
 	)
-	(label "SEGA_A12"
+	(global_label "SEGA_A12"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 52.07 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "a21eba7b-1852-4fd7-866f-2525ddd0bb55")
 	)
-	(label "SEGA_A20"
+	(global_label "SEGA_A20"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 85.09 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "a7d39f1f-8238-4f73-9b66-ef845dc0acb1")
 	)
-	(label "SEGA_D10"
+	(global_label "SEGA_D10"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 110.49 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "a99ae563-9c92-4738-a16b-872c589e4608")
 	)
-	(label "SEGA_D9"
+	(global_label "SEGA_D9"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 107.95 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "aad39db2-818f-49f1-bc6c-69d9960cfff9")
 	)
-	(label "SEGA_A7"
+	(global_label "SEGA_A7"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 39.37 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "ad1542b6-af79-4c5c-889d-5ac3b746d517")
 	)
-	(label "SEGA_A19"
+	(global_label "SEGA_A19"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 82.55 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "af62ade2-e4cf-4d3d-a72a-2ccf8dd147c4")
 	)
-	(label "SEGA_D12"
+	(global_label "SEGA_D12"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 115.57 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "b1206cfb-84fc-40ea-a386-ba0ba76acc50")
 	)
-	(label "SEGA_D2"
+	(global_label "SEGA_D2"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 34.29 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "b59943c0-5f00-4cac-b13a-64ae0ec3dafb")
 	)
-	(label "SEGA_D3"
+	(global_label "SEGA_D3"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 92.71 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "b6f4728c-d780-4579-9261-d86ad2f33d41")
 	)
-	(label "SEGA_D5"
+	(global_label "SEGA_D5"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 41.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "b9ae467d-f237-47d1-816b-0a6471a9d336")
 	)
-	(label "SEGA_A22"
+	(global_label "SEGA_A22"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 77.47 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "ba4ec069-1f13-49db-8106-a7442cbae903")
 	)
-	(label "SEGA_A13"
+	(global_label "SEGA_A13"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 64.77 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "bed73deb-abe7-4888-ab1e-33ed9c511795")
 	)
-	(label "SEGA_A18"
+	(global_label "SEGA_A18"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 67.31 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "c19ce5aa-0f0f-4eaa-aa5d-52ec822bf227")
 	)
-	(label "~{SEGA_AS}"
+	(global_label "~{SEGA_AS}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 256.54 105.41 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "c5fb7de8-299d-4597-8afd-36c09aa4834b")
 	)
-	(label "SEGA_D15"
+	(global_label "SEGA_D15"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 69.85 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "c66d6328-a2fb-4c4d-bb4d-2e6c6fd63943")
 	)
-	(label "SEGA_A15"
+	(global_label "SEGA_A15"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 59.69 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "ca3f2e74-65db-4bef-a3ad-2d0bafde0a39")
 	)
-	(label "SEGA_A2"
+	(global_label "SEGA_A2"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 26.67 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "cae00675-ed9f-4ee4-896c-c2e46816506b")
 	)
-	(label "SEGA_A16"
+	(global_label "SEGA_A16"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 62.23 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "cd2192a5-cfc6-43ad-b3bf-dc5b33c9e61b")
 	)
-	(label "SEGA_D14"
+	(global_label "SEGA_D14"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 67.31 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "d0106acd-e42c-414f-a813-2292018906b3")
 	)
-	(label "SEGA_D6"
+	(global_label "SEGA_D6"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 100.33 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "d1488522-cbdd-40a8-9b41-4562786d467d")
 	)
-	(label "SEGA_D15"
+	(global_label "SEGA_D15"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 123.19 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "d69f4c13-9ab6-4400-992b-aeed1517fbf8")
 	)
-	(label "SEGA_A9"
+	(global_label "SEGA_A9"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 54.61 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "d99145f2-2f30-4aa6-87c3-5d4f72cacea5")
 	)
-	(label "SEGA_A13"
+	(global_label "SEGA_A13"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 54.61 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "dd8acc48-12d2-4f08-b72f-0abfc8ba4a52")
 	)
-	(label "SEGA_D8"
+	(global_label "SEGA_D8"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 105.41 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "dddc387e-d78c-4556-86af-76f94a96ef49")
 	)
-	(label "SEGA_A11"
+	(global_label "SEGA_A11"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 49.53 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "de0625f3-63df-4b66-a891-ebc39361f97c")
 	)
-	(label "SEGA_A5"
+	(global_label "SEGA_A5"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 34.29 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "dfd3f96b-7032-4a49-985c-879d5da8567c")
 	)
-	(label "~{SEGA_AS}"
+	(global_label "~{SEGA_AS}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 82.55 107.95 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "e470d96c-636a-48e0-9feb-0c71db91446c")
 	)
-	(label "SEGA_D[0..15]"
+	(global_label "SEGA_D[0..15]"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 44.45 158.75 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "e65f1889-f574-43b8-ab43-59b5cb08a6d0")
 	)
-	(label "SEGA_A17"
+	(global_label "SEGA_A17"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 77.47 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "ebb6364d-42af-4358-9524-3d3949f5c84a")
 	)
-	(label "~{SEGA_RESET}"
+	(global_label "~{SEGA_RESET}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 44.45 166.37 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "f0ba208a-f607-4cd4-9e17-cbf14af47a2a")
 	)
-	(label "SEGA_D13"
+	(global_label "SEGA_D13"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 118.11 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "f18728f3-dcdd-42a5-80a2-93bdff57d94e")
 	)
-	(label "~{SEGA_RESET}"
+	(global_label "~{SEGA_RESET}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 256.54 107.95 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "f709e586-6347-4ca0-97ea-bce7919e08fd")
 	)
-	(label "SEGA_D6"
+	(global_label "SEGA_D6"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 254 44.45 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "f70dd028-8e3c-4fe9-8428-eb2cc379edf4")
 	)
-	(label "SEGA_A21"
+	(global_label "SEGA_A21"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 87.63 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "f804f0be-edd5-4e36-9e82-31cb6654ea7c")
 	)
@@ -6433,63 +6621,75 @@
 		)
 		(uuid "f821ad9d-a1a1-4dd8-ac6a-60f4a3c8fdee")
 	)
-	(label "SEGA_A4"
+	(global_label "SEGA_A4"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 39.37 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "f8328cdc-464a-49dd-ad95-f8834c92b3d6")
 	)
-	(label "~{SEGA_WE_LB}"
+	(global_label "~{SEGA_WE_LB}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 133.35 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "f98ae17a-65f0-4acb-a14a-3a58bdf70c4c")
 	)
-	(label "SEGA_A6"
+	(global_label "SEGA_A6"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 44.45 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "fc38946f-7d37-4309-ac24-dfb5d85d5292")
 	)
-	(label "SEGA_D5"
+	(global_label "SEGA_D5"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 97.79 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "fdf0567e-1574-464e-b5d3-dee0a081e120")
 	)
-	(label "~{SEGA_CE}"
+	(global_label "~{SEGA_CE}"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 133.35 130.81 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
 		(uuid "fe2e2fbb-4591-4fce-9229-1e555ca3817e")
 	)
-	(label "SEGA_A8"
+	(global_label "SEGA_A8"
+		(shape passive)
+		(fields_autoplaced yes)
 		(at 210.82 52.07 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify right)
 		)
 		(uuid "ff57097e-2fab-463f-a7a8-1e0c22ccc276")
 	)
