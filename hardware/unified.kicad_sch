@@ -4,6 +4,9 @@
 	(generator_version "9.0")
 	(uuid "686046a3-64dc-4761-a4ce-3e2fd65204d5")
 	(paper "A4")
+	(title_block
+		(title "Kinetoscope unified PCB")
+	)
 	(lib_symbols)
 	(wire
 		(pts
