@@ -90,7 +90,7 @@ if ! sed \
     -e 's/Ref/Designator/' \
     -e 's/Pos\([XY]\)/"Mid \1"/g' \
     -e 's/\<Rot\>/Rotation/' \
-    -e 's/Side/Layer/' -i "$1-fab/$1-front.pos.csv"; then
+    -e 's/Side/Layer/' -i "" "$1-fab/$1-front.pos.csv"; then
   echo; echo "Failed to translate position file columns for JLCPCB!"
   exit 1
 fi
