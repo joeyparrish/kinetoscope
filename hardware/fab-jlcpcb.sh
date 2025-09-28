@@ -38,7 +38,7 @@ fi
 mkdir "$1-fab/"
 
 echo "Exporting gerbers..."
-LAYERS="F.Cu,B.Cu,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,F.Mask,B.Mask,Edge.Cuts,F.Fab"
+LAYERS="F.Cu,In1.Cu,In2.Cu,B.Cu,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,F.Mask,B.Mask,Edge.Cuts,F.Fab"
 # Options based on https://jlcpcb.com/help/article/362-how-to-generate-gerber-and-drill-files-in-kicad-7
 # plus the experience that use you _should_ check "use drill/place file
 # origin", which JLCPCB's docs do not show checked in their screenshot.
