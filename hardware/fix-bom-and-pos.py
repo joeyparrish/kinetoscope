@@ -72,7 +72,10 @@ with open(pos_out, 'w', newline='') as f:
   for row in pos_rows:
     package = row['Package']
     name = row['Designator']
-    rotation = float(row['Rotation'])
+    if 'Rotation' in row:
+      rotation = float(row['Rotation'])
+    else:
+      rotation = float(row['Rot'])
 
     # Skip anything we omitted from the BOM.
     if name in skipped_names:
@@ -84,7 +87,10 @@ with open(pos_out, 'w', newline='') as f:
       rotation += ROTATE_PACKAGES[package]
       while rotation < 0: rotation += 360
       while rotation >= 360: rotation -= 360
-      row['Rotation'] = '{:.6f}'.format(rotation)
+      if 'Rotation' in row:
+        row['Rotation'] = '{:.6f}'.format(rotation)
+      else:
+        row['Rot'] = '{:.6f}'.format(rotation)
     elif package in OKAY_PACKAGES or package in DONT_HAVE_PACKAGES:
       pass
     else:
