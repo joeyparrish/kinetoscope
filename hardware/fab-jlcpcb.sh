@@ -6,6 +6,14 @@
 #
 # See MIT License in LICENSE.txt
 
+set -e
+set -x
+
+if [[ -z "$1" ]]; then
+  echo "Specify board name (e.g. \"cart\")"
+  exit 1
+fi
+
 # Prepare a project for fabrication at JLCPCB.
 # Pass the name of a project without extension, e.g. "cart"
 rm -rf "$1-fab/" "$1-fab.zip"
