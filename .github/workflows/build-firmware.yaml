@@ -68,7 +68,7 @@ jobs:
         run: |
           arduino-cli config add board_manager.additional_urls https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
           arduino-cli core update-index
-          arduino-cli core install rp2040:rp2040
+          arduino-cli core install rp2040:rp2040@3.8.1
 
       - name: Install Arduino libraries
         run: |
