@@ -15,7 +15,7 @@ runs:
       run: |
         sudo chmod 777 /var/cache/apt/archives/
         # NOTE: hashFiles (below) can only operate inside the workspace.
-        cp /var/lib/apt/lists/ppa.launchpadcontent.net_kicad_kicad-8.0-releases_ubuntu_dists_jammy_InRelease kicad.ppa.release
+        cp /var/lib/apt/lists/ppa.launchpadcontent.net_kicad_kicad-8.0-releases_ubuntu_dists_*_InRelease kicad.ppa.release
 
     - name: Cache KiCad Packages
       id: cache-packages

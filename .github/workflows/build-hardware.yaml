@@ -7,6 +7,7 @@ on:
     paths:
       - hardware/**
       - .github/workflows/build-hardware.yaml
+      - .github/workflows/install-kicad/action.yaml
   pull_request: # Trigger for pull requests.
     types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch: # Allows for manual triggering.
