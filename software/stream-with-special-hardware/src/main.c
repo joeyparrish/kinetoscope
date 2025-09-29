@@ -13,6 +13,9 @@
 #include "segavideo_player.h"
 #include "segavideo_state.h"
 
+#include "kinetoscope_logo.h"
+#include "kinetoscope_startup_sound.h"
+
 static void onJoystickEvent(u16 joystick, u16 changed, u16 state) {
   if (segavideo_getState() == Error) {
     // Error: press start|A to continue.
@@ -50,10 +53,44 @@ static void handleError() {
   }
 }
 
+static void startup_sequence() {
+  // Set PAL0 to black.
+  PAL_setPalette(PAL0, palette_black, CPU);
+
+  // Load the image into VRAM.
+  VDP_drawImageEx(
+      /* plane= */ BG_B,
+      &kinetoscope_logo,
+      /* tile= */ TILE_ATTR_FULL(PAL0, FALSE, FALSE, FALSE, TILE_USER_INDEX),
+      /* x= */ 2,
+      /* y= */ 10,
+      /* load palette= */ FALSE,
+      /* use DMA= */ FALSE);
+
+  // Fade in the image over 1 second (60 frames) asynchronously
+  PAL_fadePalette(
+      /* palette= */ PAL0,
+      /* first colors= */ palette_black,
+      /* final colors= */ kinetoscope_logo.palette->data,
+      /* num frames= */ 60,
+      /* async= */ TRUE);
+
+  // Play the WAV file (2s) asynchronously, then pause for 1 more second
+  SND_PCM_startPlay(
+      /* sound= */ kinetoscope_startup_sound,
+      /* length= */ sizeof(kinetoscope_startup_sound),
+      /* rate= */ SOUND_PCM_RATE_11025,
+      /* pan= */ SOUND_PAN_CENTER,
+      /* loop= */ FALSE);
+  waitMs(3000);
+}
+
 int main(bool hardReset) {
   JOY_setEventHandler(onJoystickEvent);
-
   segavideo_init();
+
+  startup_sequence();
+
   segavideo_menu_init();
 
   // Stop immediately if we don't have the right hardware.
