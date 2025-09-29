@@ -19,6 +19,10 @@ repo_root="$(git rev-parse --show-toplevel)"
 # this_dir, relative to repo_root.
 relative_dir="$(realpath -s --relative-to="$repo_root" "$this_dir")"
 
+# SGDK image to compile the ROM.
+# Equivalent to the tag "v2.11" as of 2025-09-28.
+SGDK_DOCKER_IMAGE='registry.gitlab.com/doragasu/docker-sgdk@sha256:327ab838fbdf6bc741c6a7a11ee3c937cf1aaf1dc07a475995e89b741b6a830d'
+
 if [[ ! -L "$0" ]]; then
   echo "This universal build script is meant to run as a symlink from a project folder."
   echo "Please run the build for a specific project, such as:"
@@ -45,7 +49,7 @@ docker run \
   -v "$repo_root":/src \
   -u $(id -u):$(id -g) \
   -w "/src/$relative_dir" \
-  ghcr.io/stephane-d/sgdk:latest
+  "$SGDK_DOCKER_IMAGE"
 
 # SGDK's compiler makes the output executable, but that's not appropriate.
 chmod 644 $this_dir/out/rom.bin

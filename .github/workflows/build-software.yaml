@@ -43,9 +43,6 @@ jobs:
         with:
           ref: ${{ inputs.ref || github.ref }}
 
-      - name: Pull SGDK docker container
-        run: docker pull ghcr.io/stephane-d/sgdk:latest
-
       - name: Build embedded Never Gonna Give You Up ROM
         run: |
           wget https://storage.googleapis.com/sega-kinetoscope/canned-videos/never-gonna-give-you-up-embed.zip
