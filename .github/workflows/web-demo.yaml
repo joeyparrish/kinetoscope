@@ -14,17 +14,27 @@ on:
       - .github/workflows/build-software.yaml
       - .github/workflows/web-demo.yaml
 
+# If another instance of this workflow is started for the same PR, cancel the
+# old one.  If a PR is updated and a new test run is started, the old test run
+# will be cancelled automatically to conserve resources and to avoid a race
+# updating the PR.
+concurrency:
+  group: web-demo-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   software:
     uses: joeyparrish/kinetoscope/.github/workflows/build-software.yaml@main
     with:
       ref: ${{ github.ref }}
+      caller: web-demo
       for-release: true
 
   emulators:
     uses: joeyparrish/kinetoscope/.github/workflows/build-emulators.yaml@main
     with:
       ref: ${{ github.ref }}
+      caller: web-demo
       for-release: true
 
   prep-web-demo:

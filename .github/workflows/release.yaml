@@ -21,24 +21,28 @@ jobs:
     uses: joeyparrish/kinetoscope/.github/workflows/build-software.yaml@main
     with:
       ref: ${{ github.ref }}
+      caller: release
       for-release: true
 
   firmware:
     uses: joeyparrish/kinetoscope/.github/workflows/build-firmware.yaml@main
     with:
       ref: ${{ github.ref }}
+      caller: release
       for-release: true
 
   hardware:
     uses: joeyparrish/kinetoscope/.github/workflows/build-hardware.yaml@main
     with:
       ref: ${{ github.ref }}
+      caller: release
       for-release: true
 
   emulators:
     uses: joeyparrish/kinetoscope/.github/workflows/build-emulators.yaml@main
     with:
       ref: ${{ github.ref }}
+      caller: release
       for-release: true
 
   release:

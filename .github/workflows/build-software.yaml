@@ -15,10 +15,23 @@ on:
       ref:
         description: "The ref to build."
         required: false
+        type: string
+      caller:
+        description: "Calling workflow name, to avoid cancellation when this is used in multiple parent workflows concurrently."
+        default: manual
+        type: string
+      for-release:
+        description: "True if we should upload artifacts for a release."
+        default: false
+        type: boolean
   workflow_call: # Allows for another workflow to call this one.
     inputs:
       ref:
         description: "The ref to build."
+        required: true
+        type: string
+      caller:
+        description: "Calling workflow name, to avoid cancellation when this is used in multiple parent workflows concurrently."
         required: true
         type: string
       for-release:
@@ -30,7 +43,7 @@ on:
 # old one.  If a PR is updated and a new test run is started, the old test run
 # will be cancelled automatically to conserve resources.
 concurrency:
-  group: build-software-${{ inputs.ref || github.ref }}
+  group: build-software-${{ inputs.caller }}-${{ inputs.ref || github.ref }}
   cancel-in-progress: true
 
 jobs:
