@@ -67,19 +67,19 @@ static void startup_sequence() {
       /* load palette= */ FALSE,
       /* use DMA= */ FALSE);
 
-  // Fade in the image over 1 second (60 frames) asynchronously
+  // Fade in the image over 1.5 seconds (90 frames) asynchronously
   PAL_fadePalette(
       /* palette= */ PAL0,
       /* first colors= */ palette_black,
       /* final colors= */ kinetoscope_logo.palette->data,
-      /* num frames= */ 60,
+      /* num frames= */ 90,
       /* async= */ TRUE);
 
   // Play the WAV file (2s) asynchronously, then pause for 1 more second
   SND_PCM_startPlay(
       /* sound= */ kinetoscope_startup_sound,
       /* length= */ sizeof(kinetoscope_startup_sound),
-      /* rate= */ SOUND_PCM_RATE_11025,
+      /* rate= */ SOUND_PCM_RATE_22050,
       /* pan= */ SOUND_PAN_CENTER,
       /* loop= */ FALSE);
   waitMs(3000);
