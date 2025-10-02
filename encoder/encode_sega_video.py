@@ -104,6 +104,10 @@ def main(args):
     # Turn those scenes into a single sequence of frames again.
     recombine_scenes(quantized_scenes_dir, quantized_dir)
 
+    # Dump a debug file if requested.
+    if args.debug_encoding:
+      dump_debug_file(quantized_dir, tmp_dir, args)
+
     # Encode each frame into Sega-formatted tiles.
     encode_frames_to_tiles(quantized_dir, sega_format_dir)
 
@@ -337,31 +341,6 @@ def extract_frames_and_audio(args, crop, normalization, frame_dir, audio_dir):
   print('Extracting video frames and audio...')
   run(args.debug, check=True, args=ffmpeg_args)
 
-  if args.debug_audio:
-    audio_debug_path_wav = os.path.join(args.output + '.wav')
-    audio_debug_path_pcm = os.path.join(args.output + '.pcm')
-    os.makedirs(os.path.dirname(audio_debug_path_wav), exist_ok=True)
-
-    print('Saving extracted audio to {} and {}'.format(
-        audio_debug_path_pcm, audio_debug_path_wav))
-
-    shutil.copy(temp_audio_file, audio_debug_path_pcm)
-
-    run(args.debug, check=True, args=[
-      'ffmpeg',
-      # Make less noise.
-      '-hide_banner', '-loglevel', 'error',
-      # Input.
-      '-f', 's8',
-      '-acodec', 'pcm_s8',
-      '-ac', '1',
-      '-ar', str(args.sample_rate),
-      '-i', audio_debug_path_pcm,
-      # Output.
-      '-acodec', 'pcm_u8',
-      '-y', audio_debug_path_wav,
-    ])
-
 
 def detect_scene_changes(args, frame_dir):
   print('Detecting scene changes...')
@@ -505,6 +484,37 @@ def recombine_scenes(input_dir, output_dir):
   for input_scene_dir in scene_paths:
     for input_frame in glob.glob(os.path.join(input_scene_dir, '*.ppm')):
       shutil.move(input_frame, output_dir)
+
+
+def dump_debug_file(frame_dir, audio_dir, args):
+  debug_output_path = args.output + '.debug'
+  print('Generating debug output {}...'.format(debug_output_path))
+
+  # Create the output folder.
+  output_folder = os.path.dirname(debug_output_path)
+  if output_folder:
+    os.makedirs(output_folder, exist_ok=True)
+
+  ffmpeg_args = [
+    'ffmpeg',
+    # Make less noise.
+    '-hide_banner', '-loglevel', 'error',
+    # Video input.
+    '-r', str(args.fps),
+    '-i', os.path.join(frame_dir, 'frame_%05d.ppm'),
+    # Audio input.
+    '-f', 's8',
+    '-acodec', 'pcm_s8',
+    '-ac', '1',
+    '-ar', str(args.sample_rate),
+    '-i', os.path.join(audio_dir, 'sound.pcm'),
+    # Output.
+    '-map', '0:v', '-map', '1:a',
+    '-c:v', 'ffv1', '-c:a', 'flac',
+    '-f', 'matroska',
+    '-y', debug_output_path,
+  ]
+  run(args.debug, check=True, args=ffmpeg_args)
 
 
 def encode_frames_to_tiles(input_dir, output_dir):
@@ -945,9 +955,12 @@ if __name__ == '__main__':
   parser.add_argument('--debug',
       action='store_true',
       help='Print all ffmpeg commands.')
-  parser.add_argument('--debug-audio',
+  parser.add_argument('--debug-encoding',
       action='store_true',
-      help='Save 8-bit audio for debugging filtering and audio driver.')
+      help='Save lossless video file after filtering, samples, quantization,'
+           ' etc.  Outputs a regular video file that can be played with'
+           ' ffplay, but shows exactly what playback would look like on the'
+           ' Sega.')
 
   args = parser.parse_args()
   main(args)
