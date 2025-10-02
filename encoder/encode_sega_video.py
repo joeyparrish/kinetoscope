@@ -407,20 +407,22 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
   output_pal_path = os.path.join(output_scene_dir, 'pal.png')
 
   # Color quantization formula that reduces 8-bit colors to 3-bit colors,
-  # scaled back up to 8-bit representation.
-  # 255 => 256 => 8 => 256 => 255
-  formula='(32 * floor((val + 1)/32)) - 1'
-  filters = [
-    # Reduce color complexity to that representable by the Sega, 3 bits per
-    # pixel.  Doing this before palette generation avoids allocating multiple
-    # palette slots to colors that map to the same 3-bit color later in a
-    # Sega-specific tile format.
-    'lut=r={}:g={}:b={}'.format(formula, formula, formula),
-    # Compute an optimized 15-color palette (16 color palette, but color 0 is
-    # always treated as transparent), based on the reduced color depth from the
-    # previous filter.
-    'palettegen=max_colors=16:reserve_transparent=1',
-  ]
+  # scaled back up to 8-bit representation, with low-order bits set low.
+  formula='(32 * floor(val / 32))'
+
+  # Reduce color complexity to that representable by the Sega, 3 bits per
+  # pixel.  Doing this before palette generation avoids allocating multiple
+  # palette slots to colors that map to the same 3-bit color later in a
+  # Sega-specific tile format.
+  quantize_filter = 'lut=r={}:g={}:b={}'.format(formula, formula, formula)
+
+  # Compute an optimized 15-color palette (16 color palette, but color 0 is
+  # always treated as transparent), based on the reduced color depth from the
+  # previous filter.
+  palettegen_filter = 'palettegen=max_colors=16:reserve_transparent=1'
+
+  # Use the generated palette.
+  paletteuse_filter = 'paletteuse=dither={}'.format(args.dithering)
 
   ffmpeg_args = [
     'ffmpeg',
@@ -429,8 +431,8 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
     # Input and starting frame number.
     '-start_number', str(start_frame),
     '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
-    # Video filters from above.
-    '-vf', ','.join(filters),
+    # Quantize and generate a palette.
+    '-vf', ','.join([quantize_filter, palettegen_filter]),
     # Output a palette image.
     output_pal_path,
   ]
@@ -445,8 +447,8 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
     '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
     # Palette.
     '-i', output_pal_path,
-    # Use the optimized palette to quantize all the frames in the scene.
-    '-lavfi', 'paletteuse=dither={}'.format(args.dithering),
+    # Quantize and then use the optimized palette on the frames in the scene.
+    '-filter_complex', ','.join([quantize_filter, paletteuse_filter]),
     # Output individual frames in PPM format with the same frame numbers.
     '-start_number', str(start_frame),
     os.path.join(output_scene_dir, 'frame_%05d.ppm'),
