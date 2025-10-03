@@ -946,12 +946,12 @@ if __name__ == '__main__':
            ' scene-detection thresholds. To generate a unique palette per frame'
            ' instead of per scene, set to 0.')
   parser.add_argument('--dithering',
-      default='bayer',
+      default='none',
       help='The ffmpeg dithering algorithm to use.'
-           ' The default of "bayer" produces good results, but you may prefer'
-           ' "none" for some content.'
-           ' See https://ffmpeg.org/ffmpeg-filters.html#paletteuse for a full'
-           ' list of options.')
+           ' For some content, "none" works best, and for others, you may'
+           ' prefer "bayer". See'
+           ' https://ffmpeg.org/ffmpeg-filters.html#paletteuse for a full list'
+           ' of options.')
   parser.add_argument('--no-filter-audio',
       dest='filter_audio',
       action='store_false',
