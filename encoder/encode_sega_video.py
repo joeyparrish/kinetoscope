@@ -936,13 +936,15 @@ if __name__ == '__main__':
       help='Fraction of the way through the video to choose a thumbnail.')
   parser.add_argument('--scene-detection-threshold',
       type=float,
-      default=0.5,
+      default=0.2,
       help='The percentage of pixels that must change to detect a new scene.'
            ' This is applied after padding and scaling, so depending on the'
            ' input resolution, this may need to be tweaked. For vertical'
-           ' video, we recommend something more like 0.2 because so many of'
-           ' the pixels will be occupied by black padding. To generate a'
-           ' unique palette per frame instead of per scene, set to 0.')
+           ' video, many pixels will be occupied by black padding. "Talking'
+           ' head"-type content will tend to have more constant backgrounds'
+           ' between shots. Both of these kinds of content may require lower'
+           ' scene-detection thresholds. To generate a unique palette per frame'
+           ' instead of per scene, set to 0.')
   parser.add_argument('--dithering',
       default='bayer',
       help='The ffmpeg dithering algorithm to use.'
