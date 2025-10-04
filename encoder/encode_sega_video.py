@@ -393,7 +393,9 @@ def construct_scenes(input_dir, output_dir, scenes):
       frame_name = 'frame_{:05d}.png'.format(input_num)
       input_frame = os.path.join(input_dir, frame_name)
       output_frame = os.path.join(scene_dir, frame_name)
-      shutil.copy(input_frame, output_frame)
+      # This is a ton of data in full color frames, so don't make a copy, just
+      # hard link it.  For I/O bound stages, this is a huge speed-up.
+      os.link(input_frame, output_frame)
 
     scene_index += 1
     print('\rCreated {} / {} scenes...'.format(scene_index, len(scenes)),
