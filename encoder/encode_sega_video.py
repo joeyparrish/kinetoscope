@@ -139,6 +139,8 @@ def detect_crop(args, skip_keyframes=True):
     'ffmpeg',
   ]
 
+  filters = []
+
   if skip_keyframes:
     # Keyframes only.  As much as a 4x speedup on some of my content.
     # Saves ~3 minutes on a full movie.
@@ -146,13 +148,19 @@ def detect_crop(args, skip_keyframes=True):
       '-skip_frame', 'nokey',
     ])
 
+    # Take every 3rd keyframe.
+    filters.append("select='not(mod(n,3))'")
+
+  # Cropdetect is the last filter.
+  filters.append('cropdetect=round={}'.format(rounding))
+
   ffmpeg_args.extend([
     # Input.
     '-i', args.input,
     # No audio or sub or metadata processing.
     '-an', '-sn', '-dn',
     # Video filters.
-    '-vf', 'cropdetect=round={}'.format(rounding),
+    '-vf', ','.join(filters),
   ])
 
   # Maybe subset the input.
