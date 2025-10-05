@@ -467,8 +467,9 @@ def encode_frames_to_tiles(input_dir, output_dir):
     ppm_to_sega_frame(input_path, output_path, FULLSCREEN_TILES)
 
     count += 1
-    print('\rConverted {} / {} frames to tiles...'.format(
-          count, len(all_inputs)), end='')
+    if count % 10 == 0 or count == len(all_inputs):
+      print('\rConverted {} / {} frames to tiles...'.format(
+            count, len(all_inputs)), end='')
   print('')
 
 
