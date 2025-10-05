@@ -83,9 +83,6 @@ def main(args):
     quantized_dir = os.path.join(tmp_dir, 'quantized')
     os.mkdir(quantized_dir)
 
-    sega_format_dir = os.path.join(tmp_dir, 'sega_format')
-    os.mkdir(sega_format_dir)
-
     thumb_dir = os.path.join(tmp_dir, 'thumb')
     os.mkdir(thumb_dir)
 
@@ -113,14 +110,12 @@ def main(args):
     if args.debug_encoding:
       dump_debug_file(quantized_dir, tmp_dir, args)
 
-    # Encode each frame into Sega-formatted tiles.
-    encode_frames_to_tiles(quantized_dir, sega_format_dir)
-
     # Generate a thumbnail image.
     generate_thumbnail(args, fullcolor_dir, thumb_dir)
 
-    # Generate the final output file.
-    generate_final_output(args, sega_format_dir, tmp_dir, thumb_dir)
+    # Generate the final output file, encoding each frame into Sega-formatted
+    # tiles on-the-fly.
+    generate_final_output(args, quantized_dir, tmp_dir, thumb_dir)
 
     if args.generate_resource_file:
       generate_resource_file(args)
@@ -467,25 +462,7 @@ def dump_debug_file(frame_dir, audio_dir, args):
   run(args.debug, check=True, args=ffmpeg_args)
 
 
-def encode_frames_to_tiles(input_dir, output_dir):
-  all_inputs = glob.glob(os.path.join(input_dir, '*.png'))
-  count = 0
-
-  for input_path in all_inputs:
-    input_filename = os.path.basename(input_path)
-    output_filename = input_filename.replace('.png', '.bin')
-    output_path = os.path.join(output_dir, output_filename)
-
-    png_to_sega_frame(input_path, output_path, FULLSCREEN_TILES)
-
-    count += 1
-    if count % 10 == 0 or count == len(all_inputs):
-      print('\rConverted {} / {} frames to tiles...'.format(
-            count, len(all_inputs)), end='')
-  print('')
-
-
-def png_to_sega_frame(in_path, out_path, expected_tiles):
+def png_to_sega_frame(in_path, out_file, expected_tiles):
   img = Image.open(in_path)
   pixels = img.getdata()
   width, height = img.size
@@ -533,11 +510,13 @@ def png_to_sega_frame(in_path, out_path, expected_tiles):
 
       binary_tiles += pack_tile(tile)
 
-  with open(out_path, 'wb') as f:
-    # SegaVideoFrameHeader contains the palette only
-    f.write(pack_palette(palette))
-    # Actual tile data follows
-    f.write(binary_tiles)
+  # SegaVideoFrameHeader contains the palette only
+  out_file.write(pack_palette(palette))
+  # Actual tile data follows
+  out_file.write(binary_tiles)
+
+  # A palette is always 32 bytes
+  return 32 + len(binary_tiles)
 
 
 def rgb_to_sega_color(r, g, b):
@@ -623,10 +602,9 @@ def write_chunk(f, state):
   # Write frames:
   chunk_frame_data_len = 0
   for i in range(chunk_frame_count):
-    with open(state.frame_paths[state.frame_path_index], 'rb') as frame_file:
-      frame_data = frame_file.read()
-      f.write(frame_data)
-      chunk_frame_data_len += len(frame_data)
+    input_path = state.frame_paths[state.frame_path_index]
+    bytes_written = png_to_sega_frame(input_path, f, FULLSCREEN_TILES)
+    chunk_frame_data_len += bytes_written
     state.frame_count -= 1
     state.frame_path_index += 1
 
@@ -678,7 +656,7 @@ def generate_final_output(args, frame_dir, sound_dir, thumb_dir):
   state.frames_per_chunk = args.fps * args.chunk_length
 
   # List all frames:
-  state.frame_paths = sorted(glob.glob(os.path.join(frame_dir, '*.bin')))
+  state.frame_paths = sorted(glob.glob(os.path.join(frame_dir, '*.png')))
   state.frame_count = len(state.frame_paths)
 
   state.frame_path_index = 0
@@ -824,7 +802,8 @@ def generate_thumbnail(args, fullcolor_dir, thumb_dir):
   quantize_scene(args, thumb_in_dir, thumb_out_dir, 1)
 
   # Then convert to Sega format.
-  png_to_sega_frame(thumb_out, sega_frame_out, THUMBNAIL_TILES)
+  with open(sega_frame_out, 'wb') as f:
+    png_to_sega_frame(thumb_out, f, THUMBNAIL_TILES)
 
   print('Thumbnail generated from frame #{}.'.format(thumb_index + 1))
 
