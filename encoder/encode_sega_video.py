@@ -48,6 +48,15 @@ EOF_OFFSET = 0xffffffff
 COMPRESSION_NONE = 0
 COMPRESSION_RLE = 1
 
+# Universal channel mixing formula applied to both stereo and surround.
+# Stereo inputs will be quieter, but in float internal format, this is fine,
+# and will be fixed again with normalization step later with little lost.
+# Having a consistent downmixing formula allows us to mix down in a filter
+# instead of relying on -ac 1 to do it _after_ our other filters, so we can do
+# normalization on our final mono output instead of the original audio.
+DOWNMIX_FORMULA = '0.35*c0+0.35*c1+0.5*c2+0.5*c3+0.35*c4+0.35*c5'
+
+
 def main(args):
   if args.generate_resource_file and args.compressed:
     print('--generate-resource-file and --compressed are mutually exclusive!')
@@ -81,15 +90,9 @@ def main(args):
     # Detect crop settings for the input video.
     crop = detect_crop(args)
 
-    # Detect normalization settings for the input audio.
-    if args.filter_audio:
-      normalization = detect_normalization(args)
-    else:
-      normalization = None
-
     # Extract individual frames, reduced to the output framerate, and audio,
     # resampled to the target sample rate and resolution.
-    extract_frames_and_audio(args, crop, normalization, fullcolor_dir, tmp_dir)
+    extract_frames_and_audio(args, crop, fullcolor_dir, tmp_dir)
 
     # Determine where scene changes are, to optimize the quantization process
     # and improve color quality.
@@ -185,62 +188,7 @@ def detect_crop(args, skip_keyframes=True):
   return crop
 
 
-def detect_normalization(args):
-  print('Detecting volume normalization...')
-
-  ffmpeg_args = [
-    'ffmpeg',
-    # Input.
-    '-i', args.input,
-    # No video or sub or metadata processing.
-    '-vn', '-sn', '-dn',
-    # Downmix to 1 channel.
-    '-ac', '1',
-    # Audio filters.
-    '-af', 'volumedetect',
-  ]
-
-  # Maybe subset the input.
-  if args.start:
-    ffmpeg_args.extend(['-ss', str(args.start)])
-  if args.end:
-    ffmpeg_args.extend(['-to', str(args.end)])
-
-  ffmpeg_args.extend([
-    # No output.
-    '-f', 'null', '-',
-  ])
-
-  process = run(args.debug,
-      check=True, capture_output=True, text=True, args=ffmpeg_args)
-
-  max_volume = None
-  for line in process.stderr.split('\n'):
-    # Ex: [Parsed_volumedetect_0 @ 0x55750044e8c0] max_volume: -4.7 dB
-    if ' max_volume: ' in line:
-      max_volume = line.split(' max_volume: ')[1].split(' ')[0]
-      print('Max volume detected: {} dB'.format(max_volume))
-      # This only happens once.  Quit parsing.
-      break
-
-  if max_volume is None:
-    raise RuntimeError(
-        'Unable to detect normalization settings for {}'.format(args.input))
-
-  # Whatever it is, invert it. If the max is -4.7, that becomes a 4.7 increase.
-  normalization = float(max_volume) * -1
-
-  # Actually, let's target -1.0 dB.  If the source is beyond that, do nothing.
-  if normalization <= 1.0:
-    normalization = 0
-  else:
-    normalization -= 1.0
-
-  print('Increasing volume by {:.1f} dB'.format(normalization))
-  return normalization
-
-
-def extract_frames_and_audio(args, crop, normalization, frame_dir, audio_dir):
+def extract_frames_and_audio(args, crop, frame_dir, audio_dir):
   # Notes on frame sizing:
   #  - SD analog display (NTSC) is 320x240.
   #  - The player sets the Genesis video processor's (VDP) resolution to
@@ -289,42 +237,28 @@ def extract_frames_and_audio(args, crop, normalization, frame_dir, audio_dir):
   ])
 
   ffmpeg_args.extend([
-    # Mix down to mono audio.
-    '-ac', '1',
     # Encode as 8-bit signed raw PCM.
-    '-acodec', 'pcm_s8',
+    '-c:a', 'pcm_s8',
     '-f', 's8',
   ])
 
-  if args.filter_audio:
-    # Audio filters.
-    audio_filters = [
-      # Experimentation shows that the biggest source of noise is quantization
-      # noise when we go down to 8-bit samples.  This effect is the most
-      # extreme in quiet moments, so start by normalizing the volume.
-      "volume={}dB".format(normalization),
-      # Then, run a denoising filter to remove frequency components below a
-      # certain volume threshold.  This part might just be voodoo.  I don't
-      # know what I'm doing here, but Star Wars sounds like crap and I'm
-      # desperate.
-      "afftdn=nr=40:nf=-36",
-      # Finally, resample to 13kHz using sox, which should include a low-pass
-      # filter to remove frequencies above the Nyquist frequency (13kHz / 2)
-      # and avoid aliasing (where high frequencies get mapped to low ones
-      # again).
-      "aresample={}:resampler=soxr:osf=8:osr={}:dither_method=triangular".format(
-          args.sample_rate, args.sample_rate),
-    ]
+  # Audio filters.
+  audio_filters = [
+    # Downsample first.
+    'aresample={}'.format(args.sample_rate),
 
-    ffmpeg_args.extend([
-      # Add audio filters.
-      '-af', ','.join(audio_filters),
-    ])
-  else:
-    ffmpeg_args.extend([
-      # Audio sample rate.
-      '-ar', str(args.sample_rate),
-    ])
+    # Downmix to mono next.
+    'pan=mono|c0={}'.format(DOWNMIX_FORMULA),
+
+    # Normalize the mono audio, dynamically, and continuously.  This turns
+    # out to dramatically reduce noise later when we quantize to 8-bit PCM.
+    'dynaudnorm',
+  ]
+
+  ffmpeg_args.extend([
+    # Add audio filters.
+    '-af', ','.join(audio_filters),
+  ])
 
   # Apply the same subset to the audio output.
   if args.start:
@@ -954,10 +888,6 @@ if __name__ == '__main__':
            ' prefer "bayer". See'
            ' https://ffmpeg.org/ffmpeg-filters.html#paletteuse for a full list'
            ' of options.')
-  parser.add_argument('--no-filter-audio',
-      dest='filter_audio',
-      action='store_false',
-      help='Skip audio filtering and normalization.')
   parser.add_argument('--debug',
       action='store_true',
       help='Print all ffmpeg commands.')
