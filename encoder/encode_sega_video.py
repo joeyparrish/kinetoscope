@@ -467,19 +467,17 @@ def png_to_sega_frame(in_path, out_file, expected_tiles):
   pixels = img.getdata()
   width, height = img.size
 
-  palette = []
+  # Entry 0 is always transparent when rendered.  We store black there.  If
+  # another index is assigned black, that one will be opaque.
+  palette = [0x000]
 
-  # Convert the PNG palette into a Sega palette.
+  # Convert the PNG palette into a Sega palette.  Only take the first 15
+  # entries, though there will be 256 total.  Entry [15] and on will be equal
+  # to entry [14], and will not be added to the Sega palette.
   img_pal = img.getpalette()
-  for i in range(0, 16*3, 3):
+  for i in range(0, 15*3, 3):
     r, g, b = img_pal[i:i+3]
     c = rgb_to_sega_color(r, g, b)
-
-    # Entry 0 is always transparent when rendered.  We store black there.
-    # If another index is assigned black, that one will be opaque.  The PNG
-    # palette should already be this way.
-    if i == 0:
-      assert(c == 0)
     palette.append(c)
 
   # Each tile is 8x8 pixels, 4 bit palette index per pixel.
@@ -503,7 +501,9 @@ def png_to_sega_frame(in_path, out_file, expected_tiles):
           pixel_x = (tile_x * 8) + x
           pixel_index = pixel_y * width + pixel_x
 
-          palette_index = pixels[pixel_index]
+          # PNG palette runs 0-14, but Sega 0 is transparent, so shift this to
+          # the range 1-15.
+          palette_index = pixels[pixel_index] + 1
           assert(palette_index < 16)
 
           tile.append(palette_index)
