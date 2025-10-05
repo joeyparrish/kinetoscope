@@ -5,7 +5,8 @@
 
 The encoder requires:
  - Python 3
- - a copy of ffmpeg with PNG and PPM output support
+ - the PIL Python module
+ - a copy of ffmpeg with PNG support
 
 The SGDK compiler requires:
  - Docker
@@ -13,7 +14,7 @@ The SGDK compiler requires:
 On Ubuntu, you can install these with:
 
 ```sh
-sudo apt install python3 ffmpeg docker.io
+sudo apt install python3 python3-pil ffmpeg docker.io
 ```
 
 

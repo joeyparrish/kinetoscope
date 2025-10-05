@@ -7,12 +7,13 @@ Encode videos into a format appropriate for streaming to a Sega Genesis.
 
 The encoder requires:
  - Python 3
- - a copy of ffmpeg with PNG and PPM output support
+ - the PIL Python module
+ - a copy of ffmpeg with PNG support
 
 On Ubuntu, you can install these with:
 
 ```sh
-sudo apt install python3 ffmpeg
+sudo apt install python3 python3-pil ffmpeg
 ```
 
 
@@ -77,6 +78,5 @@ are a few that require additional notes:
 
   * `--dithering`: The dithering algorithm, which controls how the limited
     palette of 15 colors per frame are used to represent the full color
-    original image.  The default of "bayer" produces good results for most
-    content, but you may prefer "none" in some cases.  For a full list of
+    original image.  The default is "none".  For a full list of
     options, see https://ffmpeg.org/ffmpeg-filters.html#paletteuse

@@ -8,7 +8,7 @@
 
 """Encode videos into a format appropriate for streaming to a Sega Genesis.
 
-Requires ffmpeg with PNG and PPM output support.
+Requires ffmpeg with PNG output support, and the Python library PIL.
 
 You can fit ~13.6s of audio+video in a 4MB ROM with 128kB left for the player.
 """
@@ -21,6 +21,8 @@ import shutil
 import subprocess
 import sys
 import tempfile
+
+from PIL import Image
 
 from rle_encoder import rle_compress
 
@@ -393,9 +395,9 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
     '-i', output_pal_path,
     # Quantize and then use the optimized palette on the frames in the scene.
     '-filter_complex', ','.join([quantize_filter, paletteuse_filter]),
-    # Output individual frames in PPM format with the same frame numbers.
+    # Output individual frames in PNG format with the same frame numbers.
     '-start_number', str(start_frame),
-    os.path.join(output_scene_dir, 'frame_%05d.ppm'),
+    os.path.join(output_scene_dir, 'frame_%05d.png'),
   ]
   run(args.debug, check=True, args=ffmpeg_args)
 
@@ -428,7 +430,9 @@ def recombine_scenes(input_dir, output_dir):
   # the output directory.
   scene_paths = glob.glob(os.path.join(input_dir, '*'))
   for input_scene_dir in scene_paths:
-    for input_frame in glob.glob(os.path.join(input_scene_dir, '*.ppm')):
+    for input_frame in glob.glob(os.path.join(input_scene_dir, '*.png')):
+      if input_frame.endswith('/pal.png'):
+        continue
       shutil.move(input_frame, output_dir)
 
 
@@ -447,7 +451,7 @@ def dump_debug_file(frame_dir, audio_dir, args):
     '-hide_banner', '-loglevel', 'error',
     # Video input.
     '-r', str(args.fps),
-    '-i', os.path.join(frame_dir, 'frame_%05d.ppm'),
+    '-i', os.path.join(frame_dir, 'frame_%05d.png'),
     # Audio input.
     '-f', 's8',
     '-acodec', 'pcm_s8',
@@ -464,15 +468,15 @@ def dump_debug_file(frame_dir, audio_dir, args):
 
 
 def encode_frames_to_tiles(input_dir, output_dir):
-  all_inputs = glob.glob(os.path.join(input_dir, '*.ppm'))
+  all_inputs = glob.glob(os.path.join(input_dir, '*.png'))
   count = 0
 
   for input_path in all_inputs:
     input_filename = os.path.basename(input_path)
-    output_filename = input_filename.replace('.ppm', '.bin')
+    output_filename = input_filename.replace('.png', '.bin')
     output_path = os.path.join(output_dir, output_filename)
 
-    ppm_to_sega_frame(input_path, output_path, FULLSCREEN_TILES)
+    png_to_sega_frame(input_path, output_path, FULLSCREEN_TILES)
 
     count += 1
     if count % 10 == 0 or count == len(all_inputs):
@@ -481,24 +485,25 @@ def encode_frames_to_tiles(input_dir, output_dir):
   print('')
 
 
-def ppm_to_sega_frame(in_path, out_path, expected_tiles):
-  with open(in_path, 'rb') as f:
-    data = f.read()
+def png_to_sega_frame(in_path, out_path, expected_tiles):
+  img = Image.open(in_path)
+  pixels = img.getdata()
+  width, height = img.size
 
-  # Parse the PPM header.
-  header = data.split(b'\n')[0:3]
-  magic, size, _ = header
-  assert(magic == b'P6')
+  palette = []
 
-  width, height = map(int, size.split(b' '))
-  header_size = len(b'\n'.join(header)) + 1 # final newline
+  # Convert the PNG palette into a Sega palette.
+  img_pal = img.getpalette()
+  for i in range(0, 16*3, 3):
+    r, g, b = img_pal[i:i+3]
+    c = rgb_to_sega_color(r, g, b)
 
-  # Extract pixel data.
-  data = data[header_size:]
-
-  # Entry 0 is always transparent when rendered.  We store black there.
-  # If another index is assigned black, that one will be opaque.
-  palette = [0x000]
+    # Entry 0 is always transparent when rendered.  We store black there.
+    # If another index is assigned black, that one will be opaque.  The PNG
+    # palette should already be this way.
+    if i == 0:
+      assert(c == 0)
+    palette.append(c)
 
   # Each tile is 8x8 pixels, 4 bit palette index per pixel.
   binary_tiles = b''
@@ -517,16 +522,12 @@ def ppm_to_sega_frame(in_path, out_path, expected_tiles):
 
       for y in range(8):
         for x in range(8):
-          pixel_index = ((tile_y * 8) + y) * width + (tile_x * 8) + x
-          data_index = pixel_index * 3
-          r, g, b = data[data_index:data_index+3]
-          sega_color = rgb_to_sega_color(r, g, b)
+          pixel_y = (tile_y * 8) + y
+          pixel_x = (tile_x * 8) + x
+          pixel_index = pixel_y * width + pixel_x
 
-          if sega_color in palette:
-            palette_index = palette.index(sega_color)
-          else:
-            palette_index = len(palette)
-            palette.append(sega_color)
+          palette_index = pixels[pixel_index]
+          assert(palette_index < 16)
 
           tile.append(palette_index)
 
@@ -558,6 +559,7 @@ def pack_tile(palette_indexes):
 
 def pack_palette(palette):
   packed = b''
+  assert(len(palette) <= 16)
   for i in range(16):  # palette may be smaller...
     c = palette[i] if i < len(palette) else 0
     packed += c.to_bytes(2, 'big')
@@ -800,7 +802,7 @@ def generate_thumbnail(args, fullcolor_dir, thumb_dir):
   os.mkdir(thumb_out_dir)
 
   thumb_in = os.path.join(thumb_in_dir, 'frame_00001.png')
-  thumb_out = os.path.join(thumb_out_dir, 'frame_00001.ppm')
+  thumb_out = os.path.join(thumb_out_dir, 'frame_00001.png')
   sega_frame_out = os.path.join(thumb_dir, 'thumb.segaframe')
 
   # Create a half-sized version of the frame to quantize and convert to a
@@ -822,7 +824,7 @@ def generate_thumbnail(args, fullcolor_dir, thumb_dir):
   quantize_scene(args, thumb_in_dir, thumb_out_dir, 1)
 
   # Then convert to Sega format.
-  ppm_to_sega_frame(thumb_out, sega_frame_out, THUMBNAIL_TILES)
+  png_to_sega_frame(thumb_out, sega_frame_out, THUMBNAIL_TILES)
 
   print('Thumbnail generated from frame #{}.'.format(thumb_index + 1))
 
