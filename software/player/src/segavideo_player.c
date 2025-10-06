@@ -214,14 +214,6 @@ static void unloadAudioDriver() {
   SND_NULL_loadDriver();
 }
 
-static void updateAudioDriver() {
-  // Does nothing for now, but we may wish to experiment with drivers that
-  // require a call from the m68k on every frame.
-#if AUDIO_DRIVER == AUDIO_XGM2
-#elif AUDIO_DRIVER == AUDIO_PCM
-#endif
-}
-
 static void startAudio(const uint8_t* samples, uint32_t length, bool loop) {
 #if AUDIO_DRIVER == AUDIO_XGM2
   // Assumes 13,312 Hz.
@@ -560,8 +552,6 @@ void segavideo_play(const uint8_t* videoData, bool loop) {
 }
 
 void segavideo_processFrames() {
-  updateAudioDriver();
-
   if (!playing || paused) return;
 
   bool stillPlaying = nextVideoFrame();
