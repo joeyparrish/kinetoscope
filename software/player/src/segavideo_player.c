@@ -236,8 +236,7 @@ static void startAudio(const uint8_t* samples, uint32_t length, bool loop) {
     rate = SOUND_PCM_RATE_32000;
   }
 
-  SND_PCM_startPlay(samples, length, SOUND_PCM_RATE_13400, SOUND_PAN_CENTER,
-      loop);
+  SND_PCM_startPlay(samples, length, rate, SOUND_PAN_CENTER, loop);
 #endif
 }
 
