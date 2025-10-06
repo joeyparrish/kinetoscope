@@ -90,20 +90,28 @@ static uint32_t nextFrameNum;
 //     PCM0_ADDR_ARG = 0x1C00 + 0x01F4
 //     PCM0_ADDR_ARG = 0x1DF4
 // The C interface does not expose these addresses, so we hard-code them below.
-// Note also that these addresses all apply only to SOUND_PCM_CH1.
+// Note also that these addresses all apply only to SOUND_PCM_CH1, which is the
+// one we are supposed to use when we are only using one PCM sound.
 
 // At this address, the first three bytes are the current PCM address, but we
 // only use the middle and high bytes.  The next two bytes are the remaining
 // PCM length divided by 64, in bytes.  The next byte is flags, including the
 // loop bit 0x80.
 #define XGM2_CURRENT ((volatile uint8_t*)(Z80_RAM + 0x01E0))
+// CH1: 0x01E0, CH2: 0x01E8, CH3: 0x01F0
 
 // At this address, the first two bytes are the base PCM address divided by 256.
 // The next two bytes are the PCM length divided by 64, in bytes.
 #define XGM2_PARAMS ((volatile uint8_t*)(Z80_RAM + 0x1DF4))
+// CH1: 0x1DF4, CH2: 0x1DF8, CH3: 0x1DFC
 
-// The status byte will have bit 0x01 set if we are playing PCM channel 1.
+// The status byte will have XGM2_STATUS_BIT set if we are playing PCM in that
+// channel.
 #define XGM2_STATUS ((volatile uint8_t*)(Z80_RAM + 0x0102))
+#define XGM2_STATUS_BIT SOUND_PCM_CH1_MSK
+
+
+
 
 // At this address, the first two bytes are the current PCM address divided by
 // 256.  The next two bytes are the remaining PCM length divided by 256, in
@@ -295,7 +303,7 @@ static uint32_t getCurrentAudioAddress() {
   uint8_t addrHigh = 0;
 
 #if AUDIO_DRIVER == AUDIO_XGM2
-  if (*XGM2_STATUS & 1) {
+  if (*XGM2_STATUS & XGM2_STATUS_BIT) {
     // Something is playing.
     // XGM2_CURRENT[0] is addrLow and is not used.
     addrMid = XGM2_CURRENT[1];
