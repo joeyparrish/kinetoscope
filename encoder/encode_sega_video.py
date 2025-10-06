@@ -127,10 +127,10 @@ def run(debug, **kwargs):
   return subprocess.run(**kwargs)
 
 
-def detect_crop(args, skip_keyframes=True):
+def detect_crop(args, keyframes_only=True):
   rounding = 8  # round to a multiple of 8 pixels, the Sega tile size
 
-  print('Detecting video crop settings...')
+  print('Detecting video crop settings...', '' if keyframes_only else '(all frames)')
 
   ffmpeg_args = [
     'ffmpeg',
@@ -138,7 +138,7 @@ def detect_crop(args, skip_keyframes=True):
 
   filters = []
 
-  if skip_keyframes:
+  if keyframes_only:
     # Keyframes only.  As much as a 4x speedup on some of my content.
     # Saves ~3 minutes on a full movie.
     ffmpeg_args.extend([
@@ -183,8 +183,8 @@ def detect_crop(args, skip_keyframes=True):
   if crop is None:
     # We can try again without skipping keyframes.  For some very small videos,
     # this is necessary.
-    if skip_keyframes:
-      return detect_crop(args, skip_keyframes=False)
+    if keyframes_only:
+      return detect_crop(args, keyframes_only=False)
 
     raise RuntimeError(
         'Unable to detect crop settings for {}'.format(args.input))
