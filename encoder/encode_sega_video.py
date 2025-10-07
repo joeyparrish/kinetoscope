@@ -124,7 +124,7 @@ def main(args):
 def run(debug, **kwargs):
   if debug:
     print('+ ' + ' '.join(kwargs['args']))
-  return subprocess.run(**kwargs)
+  return subprocess.run(stdin=subprocess.DEVNULL, **kwargs)
 
 
 def detect_crop(args, keyframes_only=True):
