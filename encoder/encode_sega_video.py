@@ -249,8 +249,12 @@ def extract_frames_and_audio(args, crop, frame_dir, audio_dir):
 
   # Audio filters.
   audio_filters = [
-    # Downsample first.
-    'aresample={}'.format(args.sample_rate),
+    # Downsample first, but use floating point representation.
+    'aresample={}:osf=dbl'.format(args.sample_rate),
+
+    # Filter out white noise.  This improves final results after quantization
+    # in some cases.  ("Shia LeBeouf" video.)
+    'afftdn=nf=-45',
 
     # Downmix to mono next.
     'pan=mono|c0={}'.format(DOWNMIX_FORMULA),
@@ -258,6 +262,12 @@ def extract_frames_and_audio(args, crop, frame_dir, audio_dir):
     # Normalize the mono audio, dynamically, and continuously.  This turns
     # out to dramatically reduce noise later when we quantize to 8-bit PCM.
     'dynaudnorm',
+
+    # Now reduce to 8-bit audio, with dithering.  I honestly can't hear the
+    # difference between dithered and not, at least in the content where I've
+    # compared.  But the internet keeps saying this is important, so I'm doing
+    # it.
+    'aresample=osf=8:dither_method=triangular_hp',
   ]
 
   ffmpeg_args.extend([
