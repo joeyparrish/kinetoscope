@@ -23,6 +23,9 @@
 #include <stdint.h>
 #include <stdio.h>
 
+// Allows for range requests into the terabyte range.
+#define MAX_RANGE_BYTES 40
+
 //      bytes written           buffer, num_things, thing_size, context
 typedef size_t (*WriteCallback)(char*, size_t, size_t, void *);
 //                           ok,   context
@@ -37,6 +40,14 @@ typedef struct FetchContext {
   WriteCallback write_callback;
   DoneCallback done_callback;
 } FetchContext;
+
+static void free_fetch_context(FetchContext* ctx) {
+  if (ctx->range) {
+    free(ctx->range);
+  }
+  free(ctx->url);
+  free(ctx);
+}
 
 #if defined(__EMSCRIPTEN__)
 static void fetch_with_emscripten_success(emscripten_fetch_t* fetch) {
@@ -54,11 +65,7 @@ static void fetch_with_emscripten_success(emscripten_fetch_t* fetch) {
     ctx->done_callback(ok, ctx->user_ctx);
   }
 
-  if (ctx->range) {
-    free(ctx->range);
-  }
-  free(ctx->url);
-  free(ctx);
+  free_fetch_context(ctx);
   emscripten_fetch_close(fetch);
 }
 
@@ -68,8 +75,7 @@ static void fetch_with_emscripten_error(emscripten_fetch_t* fetch) {
   printf("Kinetoscope: url = %s, error!\n", ctx->url);
   ctx->done_callback(/* ok= */ false, ctx->user_ctx);
 
-  free(ctx->url);
-  free(ctx);
+  free_fetch_context(ctx);
   emscripten_fetch_close(fetch);
 }
 #else
@@ -99,11 +105,7 @@ static void fetch_with_curl_in_thread(void* thread_ctx) {
   bool ok = res == CURLE_OK && (http_status == 200 || http_status == 206);
   ctx->done_callback(ok, ctx->user_ctx);
 
-  if (ctx->range) {
-    free(ctx->range);
-  }
-  free(ctx->url);
-  free(ctx);
+  free_fetch_context(ctx);
 }
 
 # if defined(_WIN32)
@@ -133,16 +135,16 @@ static void fetch_range_async(const char* url, size_t first_byte, size_t size,
   if (size == (size_t)-1) {
     ctx->range = NULL;
   } else {
-    char range[32];
+    char range[MAX_RANGE_BYTES];
     size_t last_byte = first_byte + size - 1;
 #if defined(__EMSCRIPTEN__)
     // emscripten_fetch wants a little different format than curl.
-    snprintf(range, 32, "bytes=%zd-%zd", first_byte, last_byte);
+    snprintf(range, MAX_RANGE_BYTES, "bytes=%zd-%zd", first_byte, last_byte);
 #else
-    snprintf(range, 32, "%zd-%zd", first_byte, last_byte);
+    snprintf(range, MAX_RANGE_BYTES, "%zd-%zd", first_byte, last_byte);
 #endif
     // snprintf doesn't guarantee a terminator when it overflows.
-    range[31] = '\0';
+    range[MAX_RANGE_BYTES - 1] = '\0';
     ctx->range = strdup(range);
   }
 
