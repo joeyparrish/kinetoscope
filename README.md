@@ -85,11 +85,19 @@ must be installed to work on that part of the project.
 
 ## Links
 
+Related Projects:
+
  - [SGDK][]: A free and open development kit for the Sega Genesis / Mega Drive
  - The logo font is [Kode Mono](https://kodemono.com/)
  - [Sega Genesis Slide Generator and Viewer](https://github.com/joeyparrish/sega-slides/)
  - [Krikzz](https://krikzz.com/our-products/cartridges/): Incredible hardware
-   for retro game console hacking and development, including flash carts.
+   for retro game console hacking and development, including flash carts
 
+Socials:
+
+ - [LinkedIn](https://www.linkedin.com/in/joeyparrish/)
+ - [Video-Dev Slack](https://www.video-dev.org/)
+ - [Pokemon Go](https://joeyparrish.github.io/joeyparrish/logos/trainer-code.png)
+ - End of list
 
 [SGDK]: https://github.com/Stephane-D/SGDK

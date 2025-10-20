@@ -7,3 +7,12 @@ Got here from a QR code in a talk?  I bet Joey didn't have enough time and/or sp
  * [14-minute tech talk on YouTube](https://youtu.be/0Atlf_whVgA)
  * [Slide viewer source](https://github.com/joeyparrish/sega-slides)
  * [Font (Kode Mono)](https://github.com/isaozler/kode-mono)
+ * [Krikzz](https://krikzz.com/our-products/cartridges/): Incredible hardware
+   for retro game console hacking and development, including flash carts
+
+Socials:
+
+ * [LinkedIn](https://www.linkedin.com/in/joeyparrish/)
+ * [Video-Dev Slack](https://www.video-dev.org/)
+ * [Pokemon Go](https://joeyparrish.github.io/joeyparrish/logos/trainer-code.png)
+ * End of list
