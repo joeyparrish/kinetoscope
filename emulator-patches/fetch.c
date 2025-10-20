@@ -37,6 +37,7 @@ typedef struct FetchContext {
   void* user_ctx;
   char* url;
   char* range;
+  char** headers;
   WriteCallback write_callback;
   DoneCallback done_callback;
 } FetchContext;
@@ -45,6 +46,14 @@ static void free_fetch_context(FetchContext* ctx) {
   if (ctx->range) {
     free(ctx->range);
   }
+
+  if (ctx->headers) {
+    for (int i = 0; ctx->headers[i]; i++) {
+      free(ctx->headers[i]);
+    }
+    free(ctx->headers);
+  }
+
   free(ctx->url);
   free(ctx);
 }
@@ -131,6 +140,7 @@ static void fetch_range_async(const char* url, size_t first_byte, size_t size,
   ctx->url = strdup(url);
   ctx->write_callback = write_callback;
   ctx->done_callback = done_callback;
+  ctx->headers = NULL;
 
   if (size == (size_t)-1) {
     ctx->range = NULL;
@@ -155,9 +165,15 @@ static void fetch_range_async(const char* url, size_t first_byte, size_t size,
   strcpy(fetch_attributes.requestMethod, "GET");
   fetch_attributes.attributes = EMSCRIPTEN_FETCH_LOAD_TO_MEMORY;
 
-  const char* headers[] = { "Range", ctx->range, NULL };
   if (ctx->range) {
+    const char** headers = malloc(sizeof(char*) * 3);
+    headers[0] = strdup("Range");
+    headers[1] = strdup(ctx->range);
+    headers[2] = NULL;
+    ctx->headers = headers;
     fetch_attributes.requestHeaders = headers;
+  } else {
+    ctx->headers = NULL;
   }
 
   fetch_attributes.userData = ctx;
