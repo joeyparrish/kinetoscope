@@ -87,7 +87,7 @@ typedef struct kinetoscope_emulation_context_t {
   // SRAM
   // =========
   // backing store for emulated SRAM banks
-  uint8_t sram_buffer[SRAM_SIZE];
+  uint8_t* sram_buffer;
   // position we write to next
   uint32_t sram_offset;
 
@@ -142,6 +142,7 @@ void* kinetoscope_init() {
   curl_global_init(CURL_GLOBAL_ALL);
 #endif
 
+  kinetoscope.sram_buffer = (uint8_t*)malloc(SRAM_SIZE);
   kinetoscope.token = TOKEN_CONTROL_TO_SEGA;
   kinetoscope.error = 0;
   kinetoscope.error_str = NULL;
