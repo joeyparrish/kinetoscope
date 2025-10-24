@@ -2,8 +2,6 @@ name: Build Emulators
 
 on:
   push: # Trigger for pushes.
-    branches:
-      - main
     paths:
       - emulator-patches/**
       - software/player/**
