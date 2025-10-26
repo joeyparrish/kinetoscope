@@ -369,8 +369,10 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
 
   # Compute an optimized 15-color palette (16 color palette, but color 0 is
   # always treated as transparent), based on the reduced color depth from the
-  # previous filter.
-  palettegen_filter = 'palettegen=max_colors=16:reserve_transparent=1'
+  # previous filter.  Use "diff" mode, which places more importance on the
+  # color fidelity of things that are moving, while allowing backgrounds to be
+  # less accurate.
+  palettegen_filter = 'palettegen=max_colors=16:reserve_transparent=1:stats_mode=diff'
 
   # Use the generated palette.
   paletteuse_filter = 'paletteuse=dither={}'.format(args.dithering)
