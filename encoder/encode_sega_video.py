@@ -357,6 +357,15 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
   # Create an optimized palette first.
   output_pal_path = os.path.join(output_scene_dir, 'pal.png')
 
+  filters = []
+
+  # If requested, apply gamma and contrast correction for washed out content.
+  if args.gamma_correction:
+    filters.append('eq=gamma=1.5:contrast=1.3')
+
+  # Use rgb24 color format during LUT quantization:
+  filters.append('format=rgb24')
+
   # Color quantization formula that reduces 8-bit colors to 3-bit colors,
   # scaled back up to 8-bit representation, with low-order bits set low.
   formula='(32 * floor(val / 32))'
@@ -365,7 +374,7 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
   # pixel.  Doing this before palette generation avoids allocating multiple
   # palette slots to colors that map to the same 3-bit color later in a
   # Sega-specific tile format.
-  quantize_filter = 'lut=r={}:g={}:b={}'.format(formula, formula, formula)
+  filters.append('lut=r={}:g={}:b={}'.format(formula, formula, formula))
 
   # Compute an optimized 15-color palette (16 color palette, but color 0 is
   # always treated as transparent), based on the reduced color depth from the
@@ -385,7 +394,7 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
     '-start_number', str(start_frame),
     '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
     # Quantize and generate a palette.
-    '-vf', ','.join([quantize_filter, palettegen_filter]),
+    '-vf', ','.join(filters + [palettegen_filter]),
     # Output a palette image.
     output_pal_path,
   ]
@@ -401,7 +410,7 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
     # Palette.
     '-i', output_pal_path,
     # Quantize and then use the optimized palette on the frames in the scene.
-    '-filter_complex', ','.join([quantize_filter, paletteuse_filter]),
+    '-filter_complex', ','.join(filters + [paletteuse_filter]),
     # Output individual frames in PNG format with the same frame numbers.
     '-start_number', str(start_frame),
     os.path.join(output_scene_dir, 'frame_%05d.png'),
@@ -890,6 +899,9 @@ if __name__ == '__main__':
            ' prefer "bayer". See'
            ' https://ffmpeg.org/ffmpeg-filters.html#paletteuse for a full list'
            ' of options.')
+  parser.add_argument('--gamma-correction',
+      action='store_true',
+      help='Apply gamma and contrast correction for washed out content.')
   parser.add_argument('--debug',
       action='store_true',
       help='Print all ffmpeg commands.')
