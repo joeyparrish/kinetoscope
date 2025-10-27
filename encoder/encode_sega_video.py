@@ -363,18 +363,27 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
   if args.gamma_correction:
     filters.append('eq=gamma=1.5:contrast=1.3')
 
-  # Use rgb24 color format during LUT quantization:
-  filters.append('format=rgb24')
-
   # Color quantization formula that reduces 8-bit colors to 3-bit colors,
   # scaled back up to 8-bit representation, with low-order bits set low.
-  formula='(32 * floor(val / 32))'
+  # Note that this is a non-linear quantization based on Blastem:
+  # https://github.com/libretro/blastem/blob/277e4a62668597d4f59cadda1cbafb844f981d45/vdp.c#L65
+
+  # If we don't do this, ffmpeg will choose colors in a way that doesn't
+  # exactly match the final rendering on the Sega, and then we end up with some
+  # weird color choices where everything is way too saturated/dark.
+  formula="""'if(lt(val, 24), 0,
+            if(lt(val, 68), 49,
+            if(lt(val, 103), 87,
+            if(lt(val, 132), 119,
+            if(lt(val, 160), 146,
+            if(lt(val, 190), 174,
+            if(lt(val, 230), 206, 255)))))))'"""
 
   # Reduce color complexity to that representable by the Sega, 3 bits per
   # pixel.  Doing this before palette generation avoids allocating multiple
   # palette slots to colors that map to the same 3-bit color later in a
   # Sega-specific tile format.
-  filters.append('lut=r={}:g={}:b={}'.format(formula, formula, formula))
+  filters.append('lutrgb=r={}:g={}:b={}'.format(formula, formula, formula))
 
   # Compute an optimized 15-color palette (16 color palette, but color 0 is
   # always treated as transparent), based on the reduced color depth from the
@@ -394,6 +403,7 @@ def quantize_scene(args, input_scene_dir, output_scene_dir, start_frame):
     '-start_number', str(start_frame),
     '-i', os.path.join(input_scene_dir, 'frame_%05d.png'),
     # Quantize and generate a palette.
+    '-dst_range', '1',
     '-vf', ','.join(filters + [palettegen_filter]),
     # Output a palette image.
     output_pal_path,
@@ -540,11 +550,31 @@ def png_to_sega_frame(in_path, out_file, expected_tiles):
   return 32 + len(binary_tiles)
 
 
+def sega_color_map(value):
+  # Non-linear map that mimcs what we see in Blastem source:
+  # https://github.com/libretro/blastem/blob/277e4a62668597d4f59cadda1cbafb844f981d45/vdp.c#L65
+  if value < 24:
+    return 0
+  if value < 68:
+    return 1
+  if value < 103:
+    return 2
+  if value < 132:
+    return 3
+  if value < 160:
+    return 4
+  if value < 190:
+    return 5
+  if value < 230:
+    return 6
+  return 7
+
+
 def rgb_to_sega_color(r, g, b):
   # We only get 3 bits of accuracy for each for red, green, and blue.
-  r //= 32
-  g //= 32
-  b //= 32
+  r = sega_color_map(r)
+  g = sega_color_map(g)
+  b = sega_color_map(b)
   # These get put into 4-bit fields in memory, ABGR, in a u16.
   return (b << 9) | (g << 5) | (r << 1)
 
