@@ -447,6 +447,12 @@ void segavideo_init() {
   VDP_setScreenHeight224();
   VDP_setPlaneSize(32, 32, true);
 
+  // Set non-interlaced mode.
+  VDP_setScanMode(0);
+
+  // Disable highlight/shadow mode.
+  VDP_setHilightShadow(false);
+
   // Move BGA and BGB both to 0xE000 (BGA default) to make room for tiles.
   // Also move window to the same.  This makes window unusable.
   VDP_setBGBAddress(0xE000);
