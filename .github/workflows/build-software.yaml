@@ -2,8 +2,6 @@ name: Build Software
 
 on:
   push: # Trigger for pushes.
-    branches:
-      - main
     paths:
       - software/**
       - common/**
