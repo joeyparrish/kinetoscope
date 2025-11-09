@@ -59,7 +59,7 @@ static uint32_t nextFrameNum;
 // Hard-coded for now.  Fullscreen video only.
 #define MAP_W 32
 #define MAP_H 28
-#define NUM_TILES (32 * 28)  // 896
+#define MAX_NUM_TILES (32 * 28)  // 896
 #define FRAME_TILE_INDEX 0  // Overwrites 16 system tiles, but we need space
 
 // NOTE: We use the XGM2 driver.  With the PCM-specific drivers, I found audio
@@ -371,13 +371,12 @@ static bool nextVideoFrame() {
 
   // We alternate tile and palette indexes every frame.
   bool second = currentFrameNum & 1;
-  const uint16_t* tileMap = (const uint16_t*)(
-      second ? trivial_tilemap_1 : trivial_tilemap_0);
+  const uint16_t* tileMap = frame->tileMap;
   uint16_t palNum =
       (tileMap[0] & TILE_ATTR_PALETTE_MASK) >> TILE_ATTR_PALETTE_SFT;
   // NOTE: We are hijacking system tiles for more space!
   // User tiles start at index 256, and the max index is 1425.
-  uint16_t tileIndex = FRAME_TILE_INDEX + (second ? NUM_TILES : 0);
+  uint16_t tileIndex = FRAME_TILE_INDEX + (second ? MAX_NUM_TILES : 0);
 
   // The order of loading things here matters, but it took some experimentation
   // to get it right.  Tiles, colors, then map gives us clean frames that look
@@ -389,7 +388,7 @@ static bool nextVideoFrame() {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Waddress-of-packed-member"
   // Unpacked, raw pointer method used by VDP_loadTileSet
-  VDP_loadTileData(frame->tiles, tileIndex, NUM_TILES, CPU);
+  VDP_loadTileData(frame->tiles, tileIndex, frame->numTiles, CPU);
 
   // Unpacked, raw pointer method used by PAL_setPaletteColors
   PAL_setColors(palNum << 4, frame->palette, /* count= */ 16, CPU);

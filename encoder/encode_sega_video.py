@@ -34,7 +34,7 @@ FILE_MAGIC = b"what nintendon't"
 # that people want to expand on this goofy project and worry about
 # compatibility, we define a constant for the file format that is written into
 # the output file.
-FILE_FORMAT = 3
+FILE_FORMAT = 4
 
 # Number of tiles (w, h) for fullscreen and thumbnail sizes.
 FULLSCREEN_TILES = (32, 28)
@@ -493,7 +493,7 @@ def dump_debug_file(frame_dir, audio_dir, args):
   run(args.debug, check=True, args=ffmpeg_args)
 
 
-def png_to_sega_frame(in_path, out_file, expected_tiles):
+def png_to_sega_frame(in_path, out_file, expected_tiles, dedup, pal=0):
   img = Image.open(in_path)
   pixels = img.getdata()
   width, height = img.size
@@ -513,6 +513,7 @@ def png_to_sega_frame(in_path, out_file, expected_tiles):
 
   # Each tile is 8x8 pixels, 4 bit palette index per pixel.
   binary_tiles = b''
+  tile_map = []
 
   # The image dimensions should each be a multiple of 8 already.
   assert width % 8 == 0 and height % 8 == 0
@@ -521,6 +522,8 @@ def png_to_sega_frame(in_path, out_file, expected_tiles):
 
   # We should have a fullscreen image.
   assert (tiles_width, tiles_height) == expected_tiles
+
+  binary_tile_to_index = {}
 
   for tile_y in range(tiles_height):
     for tile_x in range(tiles_width):
@@ -539,15 +542,33 @@ def png_to_sega_frame(in_path, out_file, expected_tiles):
 
           tile.append(palette_index)
 
-      binary_tiles += pack_tile(tile)
+      binary_tile = pack_tile(tile)
+      index = binary_tile_to_index.get(binary_tile, None)
+      if dedup == False:
+        index = None
 
-  # SegaVideoFrameHeader contains the palette only
+      if index is None:
+        index = len(binary_tile_to_index)
+        binary_tile_to_index[binary_tile] = index
+        binary_tiles += binary_tile
+
+      tile_map.append(index | (pal << 13))
+
+  # Output the palette
   out_file.write(pack_palette(palette))
+
+  if dedup == True:
+    # Pack the tile map
+    out_file.write(pack_tile_map(tile_map))
+    # The number of tiles to follow
+    out_file.write(len(binary_tile_to_index).to_bytes(4, 'big'))
+
   # Actual tile data follows
   out_file.write(binary_tiles)
 
-  # A palette is always 32 bytes
-  return 32 + len(binary_tiles)
+  # A palette is always 32 bytes, the tile map is 1792 bytes, the number of
+  # tiles is encoded in 4 bytes.
+  return 32 + 1792 + 4 + len(binary_tiles)
 
 
 def sega_color_map(value):
@@ -584,6 +605,13 @@ def pack_tile(palette_indexes):
   for i in range(32):
     first, second = palette_indexes[2*i : 2*i + 2]
     packed += ((first << 4) | second).to_bytes(1, 'big')
+  return packed
+
+
+def pack_tile_map(tile_indexes):
+  packed = b''
+  for idx in tile_indexes:
+    packed += idx.to_bytes(2, 'big')
   return packed
 
 
@@ -654,7 +682,8 @@ def write_chunk(f, state):
   chunk_frame_data_len = 0
   for i in range(chunk_frame_count):
     input_path = state.frame_paths[state.frame_path_index]
-    bytes_written = png_to_sega_frame(input_path, f, FULLSCREEN_TILES)
+    bytes_written = png_to_sega_frame(input_path, f, FULLSCREEN_TILES,
+        dedup=True, pal=(1 if (i % 2) else 0))
     chunk_frame_data_len += bytes_written
     state.frame_count -= 1
     state.frame_path_index += 1
@@ -854,7 +883,7 @@ def generate_thumbnail(args, fullcolor_dir, thumb_dir):
 
   # Then convert to Sega format.
   with open(sega_frame_out, 'wb') as f:
-    png_to_sega_frame(thumb_out, f, THUMBNAIL_TILES)
+    png_to_sega_frame(thumb_out, f, THUMBNAIL_TILES, dedup=False)
 
   print('Thumbnail generated from frame #{}.'.format(thumb_index + 1))
 

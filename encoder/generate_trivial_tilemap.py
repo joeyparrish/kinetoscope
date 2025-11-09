@@ -17,6 +17,11 @@ def write_trivial_tilemap(path, pal_num, width, height):
     for i in range(width * height):
       # Stripped down version of TILE_ATTR_FULL() macro without priority or
       # flipping.  Assuming no deduplication of tiles.
+      # #define TILE_ATTR_HFLIP_SFT         11
+      # #define TILE_ATTR_VFLIP_SFT         12
+      # #define TILE_ATTR_PALETTE_SFT       13
+      # #define TILE_ATTR_PRIORITY_SFT      15
+      # #define TILE_ATTR_FULL(pal, prio, flipV, flipH, index)   (((flipH) << TILE_ATTR_HFLIP_SFT) + ((flipV) << TILE_ATTR_VFLIP_SFT) + ((pal) << TILE_ATTR_PALETTE_SFT) + ((prio) << TILE_ATTR_PRIORITY_SFT) + (index))
       map_value = (pal_num << 13) | i
       f.write(map_value.to_bytes(2, 'big'))
 

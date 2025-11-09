@@ -20,7 +20,7 @@
 #endif
 
 #define SEGAVIDEO_HEADER_MAGIC  "what nintendon't"
-#define SEGAVIDEO_HEADER_FORMAT 0x0003
+#define SEGAVIDEO_HEADER_FORMAT 0x0004
 
 // This header appears at the start of the file in both embedded and streaming
 // mode.  Each one is exactly 8kB, so they can form the basis of a catalog
@@ -97,6 +97,12 @@ typedef struct SegaVideoFrame {
   // always considered fully transparent by the VDP, and all other entries are
   // considered fully opaque.  The alpha bits are always ignored.
   uint16_t palette[16];
+  // Custom tile map.  Each entry is a tile number in the low 10 bits, and a
+  // palette number in bits 13-14 (left blank by the encoder, set by the player
+  // as it flips frames).
+  uint16_t tileMap[32 * 28];
+  // Unique tiles below.  May not use all 32x28 tiles.
+  uint32_t numTiles;
   // Each tile is a packed array of 64 (8x8) 4-bit palette indexes (16 words).
   // Uses trivial_tilemap_0 or trivial_tilemap_1.
   uint32_t tiles[8 * 32 * 28];  // 32 bytes per tile (8*uint32_t), 32x28 tiles
